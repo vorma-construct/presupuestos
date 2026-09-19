@@ -123,6 +123,7 @@ if(!TOK){document.getElementById('cont').innerHTML='<div class="ico">🔗</div><
 else{
 db.collection('seguimiento').doc(TOK).get().then(function(s){
   var d=s.exists?s.data():{};window.__d=d;
+  if(d.redirige&&d.redirige!==TOK){location.replace('obra.html?t='+encodeURIComponent(d.redirige));return}
   document.getElementById('hMarca').textContent=d.marca||'Cómo va mi obra';
   document.getElementById('hTit').textContent=d.cliente?'Tu obra, '+String(d.cliente).split(' ')[0]:'Tu obra';
   document.getElementById('hSub').textContent=d.obra||'';

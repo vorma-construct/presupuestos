@@ -195,7 +195,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v137';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v138';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique, retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -831,7 +831,7 @@ ok(d)};
 im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
 function fasesDe(p){return (p.lineas||[]).map(function(l){return {d:String(l.d||'').slice(0,80),hecha:!!l.hecha}}).slice(0,60)}
 function tokenFijo(num){var str=String(FB.uid||'x')+'|'+String(num);var h=5381;for(var i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))|0}return String(num||'0')+'-s'+(Math.abs(h)).toString(36)}
-function tokenSeguimiento(p){if(p.segTok)return p.segTok;
+function tokenSeguimiento(p){if(p.segTok===tokenFijo(p.num))return p.segTok;if(p.segTok){try{unificarEnlaces()}catch(_){}return p.segTok}
 p.segTok=tokenFijo(p.num);DB.presus[p.num]=p;save();try{subirPresu(p.num)}catch(_){}return p.segTok}
 function segURL(t){return location.href.replace(/[^/]*$/,'')+'obra.html?t='+encodeURIComponent(t)}
 function fotosDeEste(){leer();if(!DB.presus[cur.num]){alert('Guarda primero el presupuesto y luego le puedes poner fotos');return}verFotos(cur.num)}
@@ -907,7 +907,19 @@ return FB.db.collection('seguimiento').doc(t).collection('fotos').doc('__prueba'
 function precioImprevisto(t,id){var v=prompt('Precio de arreglarlo (sin IVA):','');if(v===null)return;
 FB.db.collection('seguimiento').doc(t).collection('fotos').doc(id).set({precio:num(v),estado:'pendiente'},{merge:true}).then(function(){verFotos(window.__fotoObra)})}
 /* respuestas del cliente a los imprevistos: aviso a Ioan y, si acepta, se suma al presupuesto */
+/* todas las obras pasan al enlace fijo; lo que hubiera bajo un enlace antiguo se mueve y el antiguo redirige */
+function unificarEnlaces(){if(!FB.db||!FB.uid)return;var cambios=false;
+Object.values(DB.presus).forEach(function(p){if(!p.segTok)return;var fijo=tokenFijo(p.num);if(p.segTok===fijo)return;
+var viejo=p.segTok;p.segTok=fijo;DB.presus[p.num]=p;cambios=true;if(cur&&String(cur.num)===String(p.num))cur.segTok=fijo;
+var vRef=FB.db.collection('seguimiento').doc(viejo),nRef=FB.db.collection('seguimiento').doc(fijo);
+vRef.get().then(function(d){var dat=d.exists?d.data():{};delete dat.redirige;return nRef.set(Object.assign({},dat,{uid:FB.uid,num:p.num,ts:Date.now()}),{merge:true})})
+.then(function(){return vRef.collection('fotos').get()})
+.then(function(q){var ps=[];q.forEach(function(f){ps.push(nRef.collection('fotos').doc(f.id).set(f.data(),{merge:true}))});return Promise.all(ps)})
+.then(function(){return vRef.set({redirige:fijo,ts:Date.now()},{merge:true})})
+.then(function(){info('Enlace de la obra '+p.num+' unificado')}).catch(function(){})});
+if(cambios){save();try{Object.keys(DB.presus).forEach(function(n){subirPresu(n)})}catch(_){}}}
 function escucharImprevistos(){if(!FB.db||!FB.uid)return;if(!window.__escImp)window.__escImp={};
+try{unificarEnlaces()}catch(_){}
 Object.values(DB.presus).forEach(function(p){if(!p.segTok||window.__escImp[p.segTok])return;
 /* al arrancar, la ficha de cada obra con enlace se pone al dia con sus fases */
 try{FB.db.collection('seguimiento').doc(p.segTok).set({total:(p.lineas||[]).length,hechas:(p.lineas||[]).filter(function(l){return l.hecha}).length,fases:fasesDe(p),cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,tel:AJ.tel,uid:FB.uid,num:p.num},{merge:true}).catch(function(){})}catch(_){}
