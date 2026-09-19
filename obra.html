@@ -7,6 +7,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--crema);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
 header{background:var(--slate);color:#fff;padding:18px 18px 22px}
+header .logo{height:64px;display:block;margin-bottom:10px}
 header .marca{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--oro2);font-weight:700}
 header h1{font-size:24px;margin:6px 0 2px;line-height:1.1}
 header .sub{font-size:14px;color:#cfc8ba}
@@ -54,6 +55,7 @@ header .sub{font-size:14px;color:#cfc8ba}
 @media print{header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.acciones,.decide .btns{display:none!important}.foto{break-inside:avoid}body{background:#fff}}
 </style></head><body>
 <header>
+  <img src="icons/logo.svg" alt="" class="logo" onerror="this.style.display='none'">
   <div class="marca" id="hMarca">Cómo va mi obra</div>
   <h1 id="hTit">Tu obra</h1>
   <div class="sub" id="hSub"></div>
