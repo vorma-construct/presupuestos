@@ -1,55 +1,77 @@
 <!doctype html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Cómo va mi obra</title>
+<meta name="robots" content="noindex">
 <style>
-:root{--crema:#FBF8F1;--ink:#1c1f22;--slate:#111214;--brick:#A87B18;--line:#d9d6d0;--muted:#6b7178}
+:root{--crema:#FBF8F1;--ink:#1c1f22;--slate:#111214;--oro:#A87B18;--oro2:#C99A2E;--line:#e2dccf;--muted:#6b7178;--verde:#1a7a3f;--rojo:#B3261E;--naranja:#C24A00}
 *{box-sizing:border-box}
-body{margin:0;background:var(--crema);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{background:var(--slate);color:#fff;padding:16px}
-header b{font-size:19px;display:block}
-header span{font-size:13px;opacity:.85}
-.wrap{max-width:780px;margin:0 auto;padding:14px}
-.dia{font-family:system-ui;font-weight:700;font-size:15px;margin:18px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--brick)}
-.foto{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:12px}
-.foto img{width:100%;display:block}
-.foto .pie{padding:8px 10px;font-size:13px;color:var(--muted)}
-.foto.imp{border:2px solid #C24A00}
-.foto .cab{background:#C24A00;color:#fff;font-size:12px;font-weight:700;padding:5px 10px}
-.foto.imp .pie{color:var(--ink)}
-.aviso-imp{background:#FFF4E5;border-left:4px solid #C24A00;padding:10px;border-radius:6px;font-size:13px;margin-top:10px}
-.hist{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
-.hist h1{font-size:17px;margin:0 0 4px}
-.hist .dat{font-size:13px;color:var(--muted)}
-.linea{position:relative;padding-left:22px}
-.linea:before{content:"";position:absolute;left:6px;top:4px;bottom:0;width:2px;background:var(--line)}
-.dia{position:relative}
-.dia:before{content:"";position:absolute;left:-22px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--brick);border:3px solid var(--crema)}
-.paso{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.guardar{display:block;width:100%;margin:16px 0;background:var(--slate);color:#fff;border:0;border-radius:8px;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
-.irfin{display:inline-block;font-size:13px;color:var(--brick);margin-bottom:6px}
-@media print{header{background:#111214!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.guardar,.irfin,a.tel,.pie-pag{display:none!important}
-.foto{page-break-inside:avoid;break-inside:avoid}
-body{background:#fff}}
-.vacio{padding:30px;text-align:center;color:var(--muted)}
-.decide{padding:10px;background:#FFF7EE;border-top:1px solid #f1d9c4}
-.decide .precio{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:8px}
-.decide .precio b{font-size:19px}
-.decide .btns{display:flex;gap:8px}
-.decide .btns button{flex:1;border:0;border-radius:8px;padding:12px;font-size:15px;font-weight:700;cursor:pointer}
+body{margin:0;background:var(--crema);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+header{background:var(--slate);color:#fff;padding:18px 18px 22px}
+header .marca{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--oro2);font-weight:700}
+header h1{font-size:24px;margin:6px 0 2px;line-height:1.1}
+header .sub{font-size:14px;color:#cfc8ba}
+.wrap{max-width:760px;margin:0 auto;padding:14px 14px 40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 0 12px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.card h2{font-size:18px;margin:0 0 4px}
+.barra{height:10px;background:#e7e1d4;border-radius:99px;overflow:hidden;margin:12px 0 6px}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--oro2),var(--oro));width:0;transition:width 1.2s ease}
+.barra__txt{font-size:13px;color:var(--muted)}
+.fases{list-style:none;padding:0;margin:8px 0 0}
+.fases li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}
+.fases li:last-child{border-bottom:0}
+.fases li span{width:24px;height:24px;border-radius:50%;background:#e7e1d4;color:var(--muted);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.fases li em{margin-left:auto;font-style:normal;font-size:12px;color:#9aa0a6;flex:none}
+.fases li.ok{color:var(--ink)}.fases li.ok span{background:var(--verde);color:#fff}
+.fases li.ahora{color:var(--ink);font-weight:700}.fases li.ahora span{background:var(--oro);color:#fff}
+.dia{font-weight:700;font-size:14px;margin:20px 0 8px;padding-left:22px;position:relative;color:var(--ink)}
+.dia:before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;background:var(--oro);border:3px solid var(--crema);box-shadow:0 0 0 1px var(--line)}
+.dia small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.foto{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 12px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.foto img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;background:#eee}
+.foto .pie{padding:10px 14px;font-size:14px;color:var(--ink)}
+.foto.imp{border:2px solid var(--naranja)}
+.foto .cab{background:var(--naranja);color:#fff;font-size:12px;font-weight:700;padding:6px 12px;letter-spacing:.3px}
+.decide{padding:12px 14px 14px;background:#FFF7EE;border-top:1px solid #f1d9c4}
+.decide .precio{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:10px}
+.decide .precio b{font-size:20px}
+.decide .btns{display:flex;gap:10px}
+.decide .btns button{flex:1;border:0;border-radius:10px;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
 .decide .no{background:#fff;border:1px solid #d5cfc2!important;color:#5c6168}
-.decide .si{background:#1a7a3f;color:#fff}
-.decide .resp{font-size:14px;font-weight:700;padding:8px 0}
-.decide .resp.ok{color:#1a7a3f}.decide .resp.ko{color:#B3261E}
+.decide .si{background:var(--verde);color:#fff}
+.decide .resp{font-size:14px;font-weight:700;padding:6px 0}
+.decide .resp.ok{color:var(--verde)}.decide .resp.ko{color:var(--rojo)}
 .decide .aviso{font-size:12px;color:var(--muted);margin-top:6px}
-.pie-pag{margin:24px 0 10px;font-size:13px;color:var(--muted);text-align:center}
-a.tel{display:inline-block;margin-top:8px;background:var(--brick);color:#fff;text-decoration:none;padding:10px 14px;border-radius:8px;font-weight:700}
+.vacio{text-align:center;padding:28px 16px;color:var(--muted)}
+.vacio .ico{font-size:40px;margin-bottom:6px}
+.vacio b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.acciones{display:flex;gap:10px;margin:18px 0}
+.acciones a,.acciones button{flex:1;text-align:center;text-decoration:none;border:0;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.tel{background:var(--oro);color:#fff}
+.guardar{background:#fff;border:1px solid var(--line)!important;color:var(--ink)}
+.lopd{font-size:12px;color:var(--muted);line-height:1.45;margin-top:14px}
+.aviso-imp{background:#FFF4E5;border-left:4px solid var(--naranja);padding:10px 12px;border-radius:8px;font-size:13px;margin:6px 0 14px}
+.firma{text-align:center;font-size:12px;color:#9aa0a6;margin-top:22px}
+@media print{header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.acciones,.decide .btns{display:none!important}.foto{break-inside:avoid}body{background:#fff}}
 </style></head><body>
-<header><b id="hMarca">Cómo va mi obra</b><span id="hSub"></span></header>
+<header>
+  <div class="marca" id="hMarca">Cómo va mi obra</div>
+  <h1 id="hTit">Tu obra</h1>
+  <div class="sub" id="hSub"></div>
+</header>
 <div class="wrap">
-  <div id="avance" style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px"></div>
-  <div id="cont" class="vacio">Cargando las fotos…</div>
-  <div class="pie-pag" id="pie"></div><div id="lopd2" style="font-size:12px;color:var(--muted);line-height:1.45;margin-top:14px"></div>
+  <div class="card" id="avance" style="display:none">
+    <h2>Avance de la obra</h2>
+    <div class="barra"><i id="barraI"></i></div>
+    <div class="barra__txt" id="barraTxt"></div>
+    <ul class="fases" id="fases"></ul>
+  </div>
+  <div id="cont" class="vacio"><div class="ico">⏳</div>Cargando su obra…</div>
+  <div class="acciones" id="acciones" style="display:none">
+    <a class="tel" id="btnTel" href="#">Llamar</a>
+    <button class="guardar" onclick="window.print()">Guardar diario</button>
+  </div>
+  <div class="lopd" id="lopd2"></div>
+  <div class="firma" id="firma"></div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
@@ -57,54 +79,61 @@ a.tel{display:inline-block;margin-top:8px;background:var(--brick);color:#fff;tex
 var CFG={apiKey:"AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q",authDomain:"reformas-ioan.firebaseapp.com",projectId:"reformas-ioan",storageBucket:"reformas-ioan.firebasestorage.app",messagingSenderId:"65105142083",appId:"1:65105142083:web:cfcb082d4406f938c60ff6"};
 firebase.initializeApp(CFG);var db=firebase.firestore();
 var TOK=new URLSearchParams(location.search).get('t');
+function esc(s){return String(s==null?'':s).replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]})}
+function fechaLarga(s){try{return new Date(s).toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'})}catch(e){return ''}}
+function fechaCorta(s){try{return new Date(s).toLocaleDateString('es-ES',{day:'numeric',month:'short'})}catch(e){return ''}}
 function responder(id,resp,btn){
-  var txt=resp==='aceptado'?'\u00bfConfirma que quiere que lo arreglemos? El importe se suma a su presupuesto.':'\u00bfLo dejamos sin hacer por ahora?';
+  var txt=resp==='aceptado'?'¿Confirma que quiere que lo arreglemos? El importe se suma a su presupuesto.':'¿Lo dejamos sin hacer por ahora?';
   if(!confirm(txt))return;
-  var caja=btn.closest('.decide');caja.innerHTML='<div class="aviso">Guardando su respuesta\u2026</div>';
+  var caja=btn.closest('.decide');caja.innerHTML='<div class="aviso">Guardando su respuesta…</div>';
   db.collection('seguimiento').doc(TOK).collection('fotos').doc(id).update({respuesta:resp,fechaRespuesta:new Date().toISOString()})
-  .then(function(){caja.innerHTML=resp==='aceptado'?'<div class="resp ok">\u2713 Aprobado. Se lo hemos comunicado al equipo.</div>':'<div class="resp ko">\u2717 Anotado: no se hace por ahora.</div>'})
-  .catch(function(e){caja.innerHTML='<div class="resp ko">No se ha podido guardar ('+e.message+'). Ll\u00e1menos y lo apuntamos nosotros.</div>'});
+  .then(function(){caja.innerHTML=resp==='aceptado'?'<div class="resp ok">✓ Aprobado. Se lo hemos comunicado al equipo.</div>':'<div class="resp ko">✗ Anotado: no se hace por ahora.</div>'})
+  .catch(function(e){caja.innerHTML='<div class="resp ko">No se ha podido guardar ('+esc(e.message)+'). Llámenos y lo apuntamos nosotros.</div>'});
 }
-function fechaLarga(s){try{return new Date(s).toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}}
-if(!TOK){document.getElementById('cont').textContent='Enlace incompleto. Pida que se lo manden otra vez.';}
+function pintarFases(d){
+  var total=+d.total||0,hechas=+d.hechas||0;var f=d.fases||[];
+  if(!total&&!f.length)return;
+  document.getElementById('avance').style.display='';
+  var pct=Math.round(hechas*100/Math.max(1,total));
+  setTimeout(function(){document.getElementById('barraI').style.width=pct+'%'},60);
+  document.getElementById('barraTxt').textContent=pct+' % de la obra hecha · '+hechas+' de '+total+' trabajos';
+  var h='',primeraPend=-1;
+  f.forEach(function(x,i){if(!x.hecha&&primeraPend<0)primeraPend=i});
+  f.forEach(function(x,i){var cls=x.hecha?'ok':(i===primeraPend?'ahora':'');
+    h+='<li class="'+cls+'"><span>'+(x.hecha?'✓':(i+1))+'</span>'+esc(x.d)+'<em>'+(x.hecha?'hecho':(i===primeraPend?'en curso':'pendiente'))+'</em></li>'});
+  document.getElementById('fases').innerHTML=h;
+}
+if(!TOK){document.getElementById('cont').innerHTML='<div class="ico">🔗</div><b>Enlace incompleto</b>Pida que se lo manden otra vez.';}
 else{
 db.collection('seguimiento').doc(TOK).get().then(function(s){
-  var d=s.exists?s.data():{};
+  var d=s.exists?s.data():{};window.__d=d;
   document.getElementById('hMarca').textContent=d.marca||'Cómo va mi obra';
-  document.getElementById('hSub').textContent=(d.cliente?d.cliente+' · ':'')+(d.obra||'');
-  window.__d=d;
-  if(d.total)document.getElementById('avance').innerHTML='<b>'+d.hechas+' de '+d.total+'</b> trabajos del presupuesto ya hechos<div style="height:8px;background:#ddd;border-radius:4px;margin-top:6px"><div style="height:8px;width:'+Math.round(d.hechas*100/Math.max(1,d.total))+'%;background:#8A6A12;border-radius:4px"></div></div>';
-  document.getElementById('lopd2').innerHTML='<b>Protecci\u00f3n de datos.</b> Estas fotos son del seguimiento de su obra y las trata '+(d.marca||'el contratista')+' solo para inform\u00e1rselo a usted. El enlace es privado: no lo comparta si no quiere que otras personas lo vean. Puede pedir que se borren escribiendo o llamando al contratista.';
-  if(d.tel)document.getElementById('pie').innerHTML='¿Alguna duda con la obra?<br><a class="tel" href="tel:'+d.tel.replace(/\s/g,'')+'">Llamar al '+d.tel+'</a>';
+  document.getElementById('hTit').textContent=d.cliente?'Tu obra, '+String(d.cliente).split(' ')[0]:'Tu obra';
+  document.getElementById('hSub').textContent=d.obra||'';
+  pintarFases(d);
+  document.getElementById('lopd2').innerHTML='<b>Protección de datos.</b> Estas fotos son del seguimiento de su obra y las trata '+esc(d.marca||'el contratista')+' solo para informárselo a usted. El enlace es privado: no lo comparta si no quiere que otras personas lo vean. Puede pedir que se borren escribiendo o llamando al contratista.';
+  if(d.tel){var a=document.getElementById('btnTel');a.href='tel:'+String(d.tel).replace(/\s/g,'');a.textContent='Llamar al '+d.tel;document.getElementById('acciones').style.display='flex'}
+  document.getElementById('firma').textContent=(d.marca||'')+(d.responsable?' · '+d.responsable:'');
   return db.collection('seguimiento').doc(TOK).collection('fotos').orderBy('ts','asc').get();
 }).then(function(q){
-  var d0=window.__d||{};
   var cont=document.getElementById('cont');
-  if(!q||q.empty){cont.className='vacio';cont.textContent='Todavía no hay fotos subidas. En cuanto empecemos verá aquí cómo va avanzando.';return}
-  var html='',dia='',nImp=0,nDias=0,pri='',ult='';
+  if(!q||q.empty){cont.className='vacio';cont.innerHTML='<div class="ico">📷</div><b>Todavía no hay fotos</b>En cuanto empecemos, cada día verá aquí una foto de cómo va su casa.';return}
+  var html='',dia='',nImp=0,nDias=0;
   q.forEach(function(doc){var f=doc.data();
     var d=fechaLarga(f.fecha||f.ts);
-    if(!pri)pri=d;ult=d;
-    if(d!==dia){dia=d;nDias++;html+='<div class="dia"><div class="paso">Paso '+nDias+'</div>'+d+'</div>'}
+    if(d!==dia){dia=d;nDias++;html+='<div class="dia">'+d+'<small>Día '+nDias+'</small></div>'}
     var imp=(f.tipo==='imprevisto');if(imp)nImp++;
     var dec='';
     if(imp&&f.precio!=null){
-      var pr=Number(f.precio).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' \u20ac';
-      if(f.respuesta==='aceptado')dec='<div class="decide"><div class="precio"><span>Arreglarlo</span><b>'+pr+' + IVA</b></div><div class="resp ok">\u2713 Aprobado por usted'+(f.fechaRespuesta?' el '+fechaLarga(f.fechaRespuesta):'')+'</div></div>';
-      else if(f.respuesta==='rechazado')dec='<div class="decide"><div class="precio"><span>Arreglarlo</span><b>'+pr+' + IVA</b></div><div class="resp ko">\u2717 Ha decidido no hacerlo por ahora</div><div class="aviso">Si cambia de idea, ll\u00e1menos y lo retomamos.</div></div>';
+      var pr=Number(f.precio).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+      if(f.respuesta==='aceptado')dec='<div class="decide"><div class="precio"><span>Arreglarlo</span><b>'+pr+' + IVA</b></div><div class="resp ok">✓ Aprobado por usted'+(f.fechaRespuesta?' el '+fechaCorta(f.fechaRespuesta):'')+'</div></div>';
+      else if(f.respuesta==='rechazado')dec='<div class="decide"><div class="precio"><span>Arreglarlo</span><b>'+pr+' + IVA</b></div><div class="resp ko">✗ Ha decidido no hacerlo por ahora</div><div class="aviso">Si cambia de idea, llámenos y lo retomamos.</div></div>';
       else dec='<div class="decide"><div class="precio"><span>Arreglarlo cuesta</span><b>'+pr+' + IVA</b></div><div class="btns"><button class="no" onclick="responder(\''+doc.id+'\',\'rechazado\',this)">Ahora no</button><button class="si" onclick="responder(\''+doc.id+'\',\'aceptado\',this)">Adelante</button></div><div class="aviso">No se toca nada hasta que usted decida. Si acepta, este importe se suma a su presupuesto y queda por escrito.</div></div>';
-    }else if(imp){dec='<div class="decide"><div class="aviso">Estamos valorando lo que cuesta. Se lo pondremos aqu\u00ed con su precio para que decida usted.</div></div>'}
-    html+='<div class="foto'+(imp?' imp':'')+'">'+(imp?'<div class="cab">\u26a0\ufe0f Algo no previsto en la obra</div>':'')+'<img src="'+f.img+'" loading="lazy">'+(f.nota?'<div class="pie">'+String(f.nota).replace(/</g,'&lt;')+'</div>':'')+dec+'</div>';
+    }else if(imp){dec='<div class="decide"><div class="aviso">Estamos valorando lo que cuesta. Se lo pondremos aquí con su precio para que decida usted.</div></div>'}
+    html+='<div class="foto'+(imp?' imp':'')+'">'+(imp?'<div class="cab">⚠️ Algo no previsto en la obra</div>':'')+(f.img?'<img src="'+f.img+'" loading="lazy" alt="">':'')+(f.nota?'<div class="pie">'+esc(f.nota)+'</div>':'')+dec+'</div>';
   });
-  var cab='<div class="hist"><h1>Diario de obra</h1><div class="dat">'+
-    (d0.obra?d0.obra+'<br>':'')+'Empez\u00f3 el '+pri+'<br>'+
-    'Lo \u00faltimo, el '+ult+'<br>'+
-    nDias+(nDias===1?' jornada':' jornadas')+' con fotos \u00b7 '+q.size+(q.size===1?' foto':' fotos')+
-    (nImp?' \u00b7 '+nImp+(nImp===1?' imprevisto':' imprevistos'):'')+'</div>'+
-    (nDias>1?'<a class="irfin" href="#final">Ir a lo \u00faltimo \u2193</a>':'')+'</div>';
-  cont.className='';cont.innerHTML=cab+'<div class="linea">'+html+'</div><div id="final"></div>'+
-  (nImp?'<div class="aviso-imp"><b>Sobre los imprevistos.</b> Lo marcado en naranja es algo que ha aparecido al abrir la obra y no estaba en el presupuesto. Se le ense\u00f1a para que lo vea antes de decidir nada: cualquier trabajo de m\u00e1s se le pasar\u00e1 por escrito y no se hace sin que usted lo apruebe.</div>':'')+
-  '<button class="guardar" onclick="window.print()">Descargar el diario de obra</button>';
-}).catch(function(e){document.getElementById('cont').textContent='No he podido abrir el seguimiento ('+e.message+')'});
+  cont.className='';
+  cont.innerHTML=(nImp?'<div class="aviso-imp"><b>Sobre lo no previsto.</b> Lo marcado en naranja ha aparecido al abrir la obra y no estaba en el presupuesto. Se le enseña con su precio para que decida usted: no se hace nada sin su aprobación.</div>':'')+html;
+}).catch(function(e){document.getElementById('cont').innerHTML='<div class="ico">⚠️</div><b>No he podido abrir el seguimiento</b>'+esc(e.message)});
 }
 </script></body></html>

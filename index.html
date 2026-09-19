@@ -195,7 +195,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v134';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v135';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique, retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -829,6 +829,7 @@ var w2=w,h2=h;if(w2>h2&&w2>lado){h2=Math.round(h2*lado/w2);w2=lado}else if(h2>=w
 cv.width=w2;cv.height=h2;cv.getContext('2d').drawImage(im,0,0,w2,h2);d=cv.toDataURL('image/jpeg',q)}
 ok(d)};
 im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
+function fasesDe(p){return (p.lineas||[]).map(function(l){return {d:String(l.d||'').slice(0,80),hecha:!!l.hecha}}).slice(0,60)}
 function tokenSeguimiento(p){if(p.segTok)return p.segTok;
 p.segTok=(p.num||'0')+'-s'+Math.random().toString(36).slice(2,10);DB.presus[p.num]=p;save();return p.segTok}
 function segURL(t){return location.href.replace(/[^/]*$/,'')+'obra.html?t='+encodeURIComponent(t)}
@@ -861,7 +862,7 @@ var t=tokenSeguimiento(p);var i=0;var lista=document.getElementById('fotosLista'
 lista.innerHTML='<p>Subiendo fotos\u2026</p>';
 var paso=function(){if(i>=files.length){window.__pendFiles=null;
 var tot=(p.lineas||[]).length,hechas=(p.lineas||[]).filter(function(l){return l.hecha}).length;
-FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,total:tot,hechas:hechas,ts:Date.now()},{merge:true})
+FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,total:tot,hechas:hechas,fases:fasesDe(p),ts:Date.now()},{merge:true})
 .catch(function(e){window.__fotoErr=(window.__fotoErr||'')+'ficha: '+(e&&e.code?e.code+': ':'')+(e&&e.message||e)+'\n'});
 verFotos(n);return}
 comprimirFoto(files[i]).then(function(img){
@@ -925,11 +926,11 @@ FB.db.collection('seguimiento').doc(t).collection('fotos').doc(id).set({nota:v},
 function borrarFoto(t,id){if(!confirm('¿Borrar esta foto?'))return;
 FB.db.collection('seguimiento').doc(t).collection('fotos').doc(id).delete().then(function(){verFotos(window.__fotoObra)})}
 function cerrarFotos(){navSalir('caja:fotos');document.getElementById('fotosBox').style.display='none';document.body.style.overflow='';try{if(MAPAOBRAS)setTimeout(function(){MAPAOBRAS.invalidateSize()},100)}catch(_){}}
-function copiarSeguimiento(n){var p=DB.presus[n];if(!p)return;if(!FB.uid){alert('Entra en tu cuenta primero');return}var t=tokenSeguimiento(p),u=segURL(t);try{FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,ts:Date.now()},{merge:true})}catch(_){}if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){alert('Enlace de seguimiento copiado');renderClientes()},function(){prompt('Copia el enlace:',u)});else prompt('Copia el enlace:',u)}
+function copiarSeguimiento(n){var p=DB.presus[n];if(!p)return;if(!FB.uid){alert('Entra en tu cuenta primero');return}var t=tokenSeguimiento(p),u=segURL(t);try{FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,total:(p.lineas||[]).length,hechas:(p.lineas||[]).filter(function(l){return l.hecha}).length,fases:fasesDe(p),ts:Date.now()},{merge:true})}catch(_){}if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){alert('Enlace de seguimiento copiado');renderClientes()},function(){prompt('Copia el enlace:',u)});else prompt('Copia el enlace:',u)}
 function mandarSeguimiento(n){var p=DB.presus[n];if(!p)return;
 if(!FB.uid){alert('Entra en tu cuenta primero');return}
 var t=tokenSeguimiento(p),url=segURL(t);
-FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,ts:Date.now()},{merge:true});
+FB.db.collection('seguimiento').doc(t).set({uid:FB.uid,num:p.num,cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,email:AJ.email,tel:AJ.tel,total:(p.lineas||[]).length,hechas:(p.lineas||[]).filter(function(l){return l.hecha}).length,fases:fasesDe(p),ts:Date.now()},{merge:true});
 var txt=saludoHora()+' '+(p.nom||'')+', soy '+AJ.nombre+', de '+AJ.marca+'. Le dejo un enlace donde puede ver cómo va su obra: subimos fotos según vamos avanzando, así lo tiene a mano cuando quiera.\n\n📷 Seguimiento de su obra: '+url+'\n\nCualquier duda me llama al '+AJ.tel+'. Un saludo,\n'+AJ.nombre;
 var v=window.open(waURL(txt,p.tel),'_blank');if(!v&&navigator.clipboard)navigator.clipboard.writeText(txt)}
 
