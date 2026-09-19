@@ -2,6 +2,10 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Cómo va mi obra</title>
 <meta name="robots" content="noindex">
+<link rel="manifest" id="manif" href="obra.webmanifest">
+<meta name="theme-color" content="#111214">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root{--crema:#FBF8F1;--ink:#1c1f22;--slate:#111214;--oro:#A87B18;--oro2:#C99A2E;--line:#e2dccf;--muted:#6b7178;--verde:#1a7a3f;--rojo:#B3261E;--naranja:#C24A00}
 *{box-sizing:border-box}
@@ -51,6 +55,14 @@ header .sub{font-size:14px;color:#cfc8ba}
 .guardar{background:#fff;border:1px solid var(--line)!important;color:var(--ink)}
 .lopd{font-size:12px;color:var(--muted);line-height:1.45;margin-top:14px}
 .aviso-imp{background:#FFF4E5;border-left:4px solid var(--naranja);padding:10px 12px;border-radius:8px;font-size:13px;margin:6px 0 14px}
+.instalar{display:none;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.instalar.on{display:flex}
+.instalar img{width:40px;height:40px;border-radius:10px;flex:none}
+.instalar div{flex:1;font-size:14px}.instalar b{display:block}
+.instalar button{background:var(--oro);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;flex:none;font-family:inherit}
+.avisos{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px;font-size:14px;align-items:center;gap:10px}
+.avisos.on{display:flex}.avisos button{background:#fff;border:1px solid var(--oro)!important;color:var(--oro);border-radius:10px;padding:9px 12px;font-weight:700;cursor:pointer;flex:none;font-family:inherit}
+.nuevo{background:var(--verde);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:middle}
 .firma{text-align:center;font-size:12px;color:#9aa0a6;margin-top:22px}
 @media print{header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.acciones,.decide .btns{display:none!important}.foto{break-inside:avoid}body{background:#fff}}
 </style></head><body>
@@ -67,7 +79,9 @@ header .sub{font-size:14px;color:#cfc8ba}
     <div class="barra__txt" id="barraTxt"></div>
     <ul class="fases" id="fases"></ul>
   </div>
-  <div id="cont" class="vacio"><div class="ico">⏳</div>Cargando su obra…</div>
+  <div class="instalar" id="instalar"><img src="icons/icon-192.png" alt=""><div><b>Tenga su obra en el móvil</b>Instálela como una app y ábrala de un toque.</div><button type="button" id="btnInstalar">Instalar</button></div>
+<div class="avisos" id="avisos"><div style="flex:1"><b>¿Le avisamos de las novedades?</b><br>Cuando subamos una foto o aparezca algo, le llega un aviso al móvil.</div><button type="button" id="btnAvisos">Sí, avisadme</button></div>
+<div id="cont" class="vacio"><div class="ico">⏳</div>Cargando su obra…</div>
   <div class="acciones" id="acciones" style="display:none">
     <a class="tel" id="btnTel" href="#">Llamar</a>
     <button class="guardar" onclick="window.print()">Guardar diario</button>
@@ -116,8 +130,11 @@ db.collection('seguimiento').doc(TOK).get().then(function(s){
   document.getElementById('lopd2').innerHTML='<b>Protección de datos.</b> Estas fotos son del seguimiento de su obra y las trata '+esc(d.marca||'el contratista')+' solo para informárselo a usted. El enlace es privado: no lo comparta si no quiere que otras personas lo vean. Puede pedir que se borren escribiendo o llamando al contratista.';
   if(d.tel){var a=document.getElementById('btnTel');a.href='tel:'+String(d.tel).replace(/\s/g,'');a.textContent='Llamar al '+d.tel;document.getElementById('acciones').style.display='flex'}
   document.getElementById('firma').textContent=(d.marca||'')+(d.responsable?' · '+d.responsable:'');
-  return db.collection('seguimiento').doc(TOK).collection('fotos').orderBy('ts','asc').get();
-}).then(function(q){
+  db.collection('seguimiento').doc(TOK).collection('fotos').orderBy('ts','asc').onSnapshot(function(q){pintarFotos(q);avisarNuevas(q)},function(e){document.getElementById('cont').innerHTML='<div class="ico">⚠️</div><b>No he podido abrir el seguimiento</b>'+esc(e.message)});
+  db.collection('seguimiento').doc(TOK).onSnapshot(function(s2){if(s2.exists)pintarFases(s2.data())});
+}).catch(function(e){document.getElementById('cont').innerHTML='<div class="ico">⚠️</div><b>No he podido abrir el seguimiento</b>'+esc(e.message)});
+}
+function pintarFotos(q){
   var cont=document.getElementById('cont');
   if(!q||q.empty){cont.className='vacio';cont.innerHTML='<div class="ico">📷</div><b>Todavía no hay fotos</b>En cuanto empecemos, cada día verá aquí una foto de cómo va su casa.';return}
   var html='',dia='',nImp=0,nDias=0;
@@ -132,10 +149,33 @@ db.collection('seguimiento').doc(TOK).get().then(function(s){
       else if(f.respuesta==='rechazado')dec='<div class="decide"><div class="precio"><span>Arreglarlo</span><b>'+pr+' + IVA</b></div><div class="resp ko">✗ Ha decidido no hacerlo por ahora</div><div class="aviso">Si cambia de idea, llámenos y lo retomamos.</div></div>';
       else dec='<div class="decide"><div class="precio"><span>Arreglarlo cuesta</span><b>'+pr+' + IVA</b></div><div class="btns"><button class="no" onclick="responder(\''+doc.id+'\',\'rechazado\',this)">Ahora no</button><button class="si" onclick="responder(\''+doc.id+'\',\'aceptado\',this)">Adelante</button></div><div class="aviso">No se toca nada hasta que usted decida. Si acepta, este importe se suma a su presupuesto y queda por escrito.</div></div>';
     }else if(imp){dec='<div class="decide"><div class="aviso">Estamos valorando lo que cuesta. Se lo pondremos aquí con su precio para que decida usted.</div></div>'}
-    html+='<div class="foto'+(imp?' imp':'')+'">'+(imp?'<div class="cab">⚠️ Algo no previsto en la obra</div>':'')+(f.img?'<img src="'+f.img+'" loading="lazy" alt="">':'')+(f.nota?'<div class="pie">'+esc(f.nota)+'</div>':'')+dec+'</div>';
+    var nuevo=(f.ts&&f.ts>ultimoVisto())?'<span class="nuevo">NUEVO</span>':'';
+    html+='<div class="foto'+(imp?' imp':'')+'">'+(imp?'<div class="cab">⚠️ Algo no previsto en la obra</div>':'')+(f.img?'<img src="'+f.img+'" loading="lazy" alt="">':'')+((f.nota||nuevo)?'<div class="pie">'+esc(f.nota)+nuevo+'</div>':'')+dec+'</div>';
   });
   cont.className='';
   cont.innerHTML=(nImp?'<div class="aviso-imp"><b>Sobre lo no previsto.</b> Lo marcado en naranja ha aparecido al abrir la obra y no estaba en el presupuesto. Se le enseña con su precio para que decida usted: no se hace nada sin su aprobación.</div>':'')+html;
-}).catch(function(e){document.getElementById('cont').innerHTML='<div class="ico">⚠️</div><b>No he podido abrir el seguimiento</b>'+esc(e.message)});
 }
+/* ---- lo ultimo que vio el cliente, para marcar NUEVO ---- */
+function ultimoVisto(){try{return +localStorage.getItem('visto_'+TOK)||0}catch(e){return 0}}
+function marcarVisto(ts){try{localStorage.setItem('visto_'+TOK,String(ts))}catch(e){}}
+var __primera=true;
+function avisarNuevas(q){var max=0,nuevas=[];q.forEach(function(d){var f=d.data();if(f.ts>max)max=f.ts;if(f.ts>ultimoVisto())nuevas.push(f)});
+  if(!__primera&&nuevas.length&&window.Notification&&Notification.permission==='granted'){
+    var f=nuevas[nuevas.length-1];var t=f.tipo==='imprevisto'?'Algo no previsto en su obra':'Nueva foto de su obra';
+    var c=(f.nota||'')+(f.precio!=null?' · '+Number(f.precio).toLocaleString('es-ES')+' € + IVA':'');
+    try{navigator.serviceWorker.getRegistration().then(function(r){if(r)r.showNotification(t,{body:c,icon:'icons/icon-192.png',badge:'icons/icon-96.png',tag:'obra-'+TOK,data:{url:location.href}});else new Notification(t,{body:c,icon:'icons/icon-192.png'})})}catch(e){}
+  }
+  __primera=false;
+  // al cabo de unos segundos en pantalla, se da por visto
+  setTimeout(function(){if(max)marcarVisto(max)},8000);
+}
+/* ---- instalar como app y pedir avisos ---- */
+var __instEvt=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();__instEvt=e;document.getElementById('instalar').classList.add('on')});
+document.getElementById('btnInstalar').onclick=function(){if(__instEvt){__instEvt.prompt();__instEvt.userChoice.then(function(){document.getElementById('instalar').classList.remove('on');__instEvt=null})}
+  else alert('En Chrome: menú (⋮) → «Añadir a pantalla de inicio». En Safari: compartir → «Añadir a pantalla de inicio».')};
+if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone)document.getElementById('instalar').classList.remove('on');
+if(window.Notification&&Notification.permission==='default')document.getElementById('avisos').classList.add('on');
+document.getElementById('btnAvisos').onclick=function(){Notification.requestPermission().then(function(p){document.getElementById('avisos').classList.remove('on');if(p==='granted')try{navigator.serviceWorker.getRegistration().then(function(r){if(r)r.showNotification('Avisos activados',{body:'Le avisaremos cuando haya novedades en su obra.',icon:'icons/icon-192.png',tag:'obra-ok'})})}catch(e){}})};
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw-obra.js').catch(function(){});
 </script></body></html>
