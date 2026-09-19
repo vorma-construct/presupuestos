@@ -195,7 +195,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v135';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v136';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique, retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -653,7 +653,7 @@ function hayPend(){return Object.keys(pend().presus).length+(pend().config?1:0)}
 function pintaEstado(){var h=hayPend();dot(h?'#e0a800':(FB.uid?'var(--ok)':'#888'));
 var e=document.getElementById('syncDot');if(e)e.title=h?(h+' cambio(s) sin subir \u2014 se suben solos en cuanto haya cobertura'):(FB.uid?'Todo guardado en la nube':'Sin conexi\u00f3n con la nube');
 var v=document.getElementById('verFijo');if(v)v.style.background=h?'rgba(224,168,0,.92)':'rgba(37,51,64,.85)'}
-function subirPresu(n){if(!DB.presus[n])return;marcarPend(n);vaciarCola()}
+function subirPresu(n){if(!DB.presus[n])return;marcarPend(n);vaciarCola();try{var p=DB.presus[n];if(p&&p.segTok&&FB.db&&FB.uid)FB.db.collection('seguimiento').doc(p.segTok).set({total:(p.lineas||[]).length,hechas:(p.lineas||[]).filter(function(l){return l.hecha}).length,fases:fasesDe(p)},{merge:true}).catch(function(){})}catch(_){}}
 function vaciarCola(){if(!FB.uid||!FB.db)return;if(window.__colaVa)return;window.__colaVa=true;
 var P=pend(),ns=Object.keys(P.presus);
 var paso=function(i){if(i>=ns.length){
@@ -906,6 +906,8 @@ FB.db.collection('seguimiento').doc(t).collection('fotos').doc(id).set({precio:n
 /* respuestas del cliente a los imprevistos: aviso a Ioan y, si acepta, se suma al presupuesto */
 function escucharImprevistos(){if(!FB.db||!FB.uid)return;if(!window.__escImp)window.__escImp={};
 Object.values(DB.presus).forEach(function(p){if(!p.segTok||window.__escImp[p.segTok])return;
+/* al arrancar, la ficha de cada obra con enlace se pone al dia con sus fases */
+try{FB.db.collection('seguimiento').doc(p.segTok).set({total:(p.lineas||[]).length,hechas:(p.lineas||[]).filter(function(l){return l.hecha}).length,fases:fasesDe(p),cliente:p.nom,obra:p.dir||'',marca:AJ.marca,responsable:AJ.nombre,tel:AJ.tel,uid:FB.uid,num:p.num},{merge:true}).catch(function(){})}catch(_){}
 window.__escImp[p.segTok]=FB.db.collection('seguimiento').doc(p.segTok).collection('fotos').where('tipo','==','imprevisto').onSnapshot(function(q){
 q.docChanges().forEach(function(ch){var f=ch.doc.data();if(!f.respuesta||f.avisado)return;
 var d=ch.doc.ref;try{d.set({avisado:true},{merge:true})}catch(_){}
