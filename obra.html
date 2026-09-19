@@ -179,4 +179,10 @@ if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone
 if(window.Notification&&Notification.permission==='default')document.getElementById('avisos').classList.add('on');
 document.getElementById('btnAvisos').onclick=function(){Notification.requestPermission().then(function(p){document.getElementById('avisos').classList.remove('on');if(p==='granted')try{navigator.serviceWorker.getRegistration().then(function(r){if(r)r.showNotification('Avisos activados',{body:'Le avisaremos cuando haya novedades en su obra.',icon:'icons/icon-192.png',tag:'obra-ok'})})}catch(e){}})};
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw-obra.js').catch(function(){});
+/* el manifiesto se genera con el enlace de esta obra, para que el icono instalado abra directamente su obra */
+try{if(TOK){var man={name:'Mi obra · '+(document.getElementById('hMarca').textContent||'Vorma Construct'),short_name:'Mi obra',start_url:location.pathname+'?t='+encodeURIComponent(TOK),scope:location.pathname.replace(/[^/]*$/,''),display:'standalone',background_color:'#111214',theme_color:'#111214',
+icons:[{src:location.origin+location.pathname.replace(/[^/]*$/,'')+'icons/icon-192.png',sizes:'192x192',type:'image/png'},{src:location.origin+location.pathname.replace(/[^/]*$/,'')+'icons/icon-512.png',sizes:'512x512',type:'image/png'},{src:location.origin+location.pathname.replace(/[^/]*$/,'')+'icons/icon-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}]};
+document.getElementById('manif').setAttribute('href','data:application/manifest+json,'+encodeURIComponent(JSON.stringify(man)))}}catch(e){}
+/* si se abre el icono sin obra, recuerda la ultima */
+try{if(TOK)localStorage.setItem('ultima_obra',TOK);else{var u=localStorage.getItem('ultima_obra');if(u)location.replace('obra.html?t='+encodeURIComponent(u))}}catch(e){}
 </script></body></html>
