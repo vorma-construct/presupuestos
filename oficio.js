@@ -71,6 +71,17 @@ var precioAprendido0=window.precioAprendido;
 function aprendidoParecido(txt){var ex=(precioAprendido0?precioAprendido0(txt):0)||0;if(ex>0)return ex;if(!window.aprendidos)return 0;var A=aprendidos(),rs=raices(txt);if(!rs.length)return 0;var mejor=0,ms=0;Object.keys(A).forEach(function(k){var e=A[k];if(!(e&&e.p>0))return;var kr=raices(k);var comun=rs.filter(function(r){return kr.indexOf(r)>-1});var fu=fuertes(comun).length;var sc=comun.length/Math.max(rs.length,kr.length)+fu;if(fu>=1&&sc>ms){ms=sc;mejor=e.p}});return mejor}
 window.aprendidoParecido=aprendidoParecido;
 if(precioAprendido0){window.precioAprendido=function(txt){var ex=precioAprendido0(txt);return ex>0?ex:aprendidoParecido(txt)}}
+/* tabiques: un tabique normal de interior son unos 8 m2 (3,5 m x 2,5 m, la mitad con puerta).
+   Hasta dos tabiques se cobra por tabique; con mas, por metro cuadrado (precio aparte, que pone el). */
+var M2_TABIQUE=8,MAX_POR_UD=2;
+if(!TARIFA_BASE.some(function(t){return t.id==='tabm'}))TARIFA_BASE.push({id:'tabm',c:'Demoliciones',d:'Derribo de tabiquería de ladrillo por metro cuadrado (obra de varios tabiques), retirada de escombro y tirada al centro autorizado',u:'m2',p:0,k:['derribo de tabiqueria','tabiqueria por metro','tabiques por metro']});
+function tabiqueSegunMetros(m2){var n=Math.max(1,Math.round(m2/M2_TABIQUE));var T=tarifa();
+ if(n<=MAX_POR_UD){var t=T.find(function(x){return x.id==='tab'});return{id:'tab',q:n,u:'ud',p:t.p,d:t.d+' \u2014 '+(n===1?'un tabique':'dos tabiques')+' ('+String(m2).replace('.',',')+' m\u00b2 medidos)'}}
+ var tm=T.find(function(x){return x.id==='tabm'});return{id:'tabm',q:m2,u:'m2',p:tm.p,d:tm.d+' \u2014 unos '+n+' tabiques'}}
+window.tabiqueSegunMetros=tabiqueSegunMetros;
+function convertirTabiquesArq(){(ARQ.med||[]).forEach(function(p){if(p.tabHecho)return;var id=window.casar?casar(p.t):null;if(id!=='tab'||!/^m2$/.test(p.u))return;var r=tabiqueSegunMetros(p.q);p.tabHecho=true;p.sel=r.id;p.u=r.u;p.q=r.q;p.pr=r.p;p.dTab=r.d})}
+var renderArq0=window.renderArq;window.renderArq=function(){try{convertirTabiquesArq()}catch(e){}return renderArq0.apply(this,arguments)};
+var addMed0=window.addMediciones;window.addMediciones=function(){try{convertirTabiquesArq()}catch(e){}return addMed0.apply(this,arguments)};
 /* 1) las demoliciones no saltan sin verbo de derribo: "tabique de pladur" ya no añade "derribo de tabique" */
 TARIFA_BASE.forEach(function(t){if(t.c!=='Demoliciones')return;t.k=t.k.filter(function(k){return !/^(tabique|derribo|derribar)$/.test(norm(k))});if(t.id==='tab')t.k=t.k.concat(['tirar tabique','derribar tabique','quitar tabique','derribo de tabique','tirar pared','quitar pared'])});
 /* 2) medidas: alto de 2,5 m si no lo dices */
@@ -124,6 +135,7 @@ if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'
 var dl=fr.replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m|ud|uds|unidades)\b/g,'').replace(/^(?:quiero|hay que|habria que|tambien|y)\s+/,'').replace(/\s+/g,' ').replace(/[\s,]+$/,'').trim();if(dl.length<4)dl=fr;var d=dl.charAt(0).toUpperCase()+dl.slice(1);var ap=aprendidoParecido(dl);
 if(yaD[norm(d).slice(0,40)])return;
 cur.lineas.push({d:d,q:c.q,u:c.u,p:ap});yaD[norm(d).slice(0,40)]=1;añad++;if(!(ap>0))sinPrecio.push(d)});
+(function(){var m=txt.match(/tirar tabique[^,.;]*?(\d+(?:[.,]\d+)?)\s*(?:m2|m\u00b2|metros cuadrados|metros)\b/);var tabT=T.find(function(x){return x.id==='tab'});if(!m||!tabT)return;var l=cur.lineas.find(function(x){return x.d===tabT.d});if(!l)return;var r=tabiqueSegunMetros(num(m[1]));l.d=r.d;l.q=r.q;l.u=r.u;l.p=r.p;añad=añad||1})();
 if(añad)renderLineas();
 var ci=document.getElementById('convInfo');if(!ci)return;var extra='';
 if(MD.altoSupuesto&&(window.__PARED||[]).length)extra+='<div style="margin-top:6px;font-size:13px">Alto de pared supuesto: <b>2,5 m</b>. Si es otro, dilo («2,7 de alto») y lo recalculo.</div>';
@@ -135,7 +147,7 @@ ci.innerHTML+=extra};
       y una colocacion nunca se empareja con una demolicion */
 var casar0=window.casar;
 var SIN_PARTIDA=[/mampara/,/manta impermeable|lamina impermeable|impermeabiliz/,/conexion\w* a bajante/,/sacado de esquina/,/proteccion en zonas comunes|revestimientos? de proteccion/,/(levante|formacion|cerrar|cegar|tapiar).{0,40}hueco de puerta|para cerrar hueco/,/relleno (en suelo )?de huecos/,/rozas en suelo/];
-var FORZAR=[[/lucido.*(perliescayola|yeso).*cocina|(perliescayola|yeso).*cocina/,'luc'],[/tapado de rozas|ayuda a gremios|ayuda gremios/,'ayf'],[/desescombro general.*ba.o/,'san'],[/levantad\w* de alicatad|levantad\w*.*azulej/,'ali'],[/levantad\w* de solado|picado de solado/,'sol']];
+var FORZAR=[[/(derribo|demolici\w*|levant\w*).{0,20}tabiquer|derribo de tabique/,'tab'],[/lucido.*(perliescayola|yeso).*cocina|(perliescayola|yeso).*cocina/,'luc'],[/tapado de rozas|ayuda a gremios|ayuda gremios/,'ayf'],[/desescombro general.*ba.o/,'san'],[/levantad\w* de alicatad|levantad\w*.*azulej/,'ali'],[/levantad\w* de solado|picado de solado/,'sol']];
 window.casar=function(titulo){var n=norm(titulo||'');if(/mampara/.test(n)&&!/plato/.test(n))return null;
 for(var i=0;i<SIN_PARTIDA.length;i++)if(SIN_PARTIDA[i].test(n))return null;
 for(var j=0;j<FORZAR.length;j++)if(FORZAR[j][0].test(n))return FORZAR[j][1];
