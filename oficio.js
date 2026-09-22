@@ -49,7 +49,7 @@ var PAQUETES=[
 {re:/\bcocina\s+(completa|entera|nueva|integral)\b|\b(reformar|reforma de|reforma de la|hacer|rehacer|cambiar)\s+(?:la\s+|toda la\s+)?cocina\b/,nombre:'cocina completa',ids:['coc','ali','sol','dfon','fco','alc','luc','pit','mco','con'],pared:['ali','alc','luc'],suelo:['sol','pit'],alcSuelo:true},
 {re:/\b(pintar|pintura de)\s+(?:todo\s+)?(?:el\s+|la\s+)?(piso|casa|vivienda)\s+(entero|entera|completo|completa)?\b/,nombre:'pintar el piso',ids:['pip','pit'],pared:['pip'],suelo:['pit']}
 ];
-var DEMOL_RE=/\b(quitar|picar|tirar|sacar|levantar|retirar|desmont\w*|derrib\w*|demol\w*|arrancar|eliminar)\b/;
+var DEMOL_RE=/\b(quitar|picar|picad\w*|tirar|sacar|levant\w*|retir\w*|desmont\w*|derrib\w*|demol\w*|desescombr\w*|arranc\w*|eliminar)\b/;
 var HACER_RE=/\b(poner|colocar|hacer|montar|instalar|suministr\w*|colocaci\w*|instalaci\w*|nuev[oa]s?|formaci\w*|ejecuci\w*)\b/;
 /* raiz de palabra: para que "alicatado", "alicatar" y "alicatao" cuenten como lo mismo */
 var VACIAS={de:1,del:1,la:1,el:1,los:1,las:1,en:1,y:1,con:1,por:1,para:1,un:1,una:1,al:1,a:1,o:1,su:1,sus:1,tipo:1,segun:1,incluso:1,mm:1,cm:1,m:1,m2:1,ml:1,ud:1,existente:1,actual:1,medios:1,manuales:1,totalmente:1,terminado:1,color:1,blanco:1,blanca:1};
@@ -134,10 +134,24 @@ ci.innerHTML+=extra};
 /* 4) listas de otros (arquitecto, estudio, otro albañil): si el diccionario no encuentra, se busca la partida mas parecida;
       y una colocacion nunca se empareja con una demolicion */
 var casar0=window.casar;
-window.casar=function(titulo){var n=norm(titulo||'');if(/mampara/.test(n)&&!/plato/.test(n))return null;var id=casar0(titulo);var T=tarifa();var t=id&&T.find(function(x){return x.id===id});
+var SIN_PARTIDA=[/mampara/,/manta impermeable|lamina impermeable|impermeabiliz/,/conexion\w* a bajante/,/sacado de esquina/,/proteccion en zonas comunes|revestimientos? de proteccion/,/(levante|formacion|cerrar|cegar|tapiar).{0,40}hueco de puerta|para cerrar hueco/,/relleno (en suelo )?de huecos/,/rozas en suelo/];
+var FORZAR=[[/lucido.*(perliescayola|yeso).*cocina|(perliescayola|yeso).*cocina/,'luc'],[/tapado de rozas|ayuda a gremios|ayuda gremios/,'ayf'],[/desescombro general.*ba.o/,'san'],[/levantad\w* de alicatad|levantad\w*.*azulej/,'ali'],[/levantad\w* de solado|picado de solado/,'sol']];
+window.casar=function(titulo){var n=norm(titulo||'');if(/mampara/.test(n)&&!/plato/.test(n))return null;
+for(var i=0;i<SIN_PARTIDA.length;i++)if(SIN_PARTIDA[i].test(n))return null;
+for(var j=0;j<FORZAR.length;j++)if(FORZAR[j][0].test(n))return FORZAR[j][1];
+var id=casar0(titulo);var T=tarifa();var t=id&&T.find(function(x){return x.id===id});
 var esDem=DEMOL_RE.test(n)&&!HACER_RE.test(n);
 if(t&&t.c==='Demoliciones'&&['con','con7','mon','limp','limf'].indexOf(t.id)<0&&!esDem)t=null;
 if(t)return t.id;var p=parecida(titulo);return p?p.t.id:null};
 /* 5) lo que se pone a mano en una linea a cero, se aprende para la proxima */
 document.addEventListener('change',function(e){var inp=e.target;if(!inp||!inp.classList||!inp.classList.contains('lp'))return;var tr=inp.closest('tr');if(!tr)return;var d=tr.querySelector('.ld');var p=num(inp.value);if(d&&p>0&&window.aprendePrecio){var txt=d.value||d.textContent||'';if(txt&&!tarifa().some(function(t){return t.d===txt}))aprendePrecio(txt,p,(tr.querySelector('.lu')||{}).value||'')}},true);
+
+/* lector de listas: la unidad que va al final de la linea de abajo, y las notas a mano ("añadir rozas...") */
+var parseMed0=window.parseMediciones;
+window.parseMediciones=function(lineas){var out=parseMed0(lineas);var L=lineas.map(function(l){return l.replace(/\s+/g,' ').trim()});
+var UN=/(?:^|\s)(m²|m2|m3|ml\.?|ud\.?|uds\.?|pa)\s*$/i;
+out.forEach(function(p){var k=p.t.slice(0,35);var i=L.findIndex(function(l){return l.indexOf(k)>-1});if(i<0)return;
+ for(var j=i;j<Math.min(L.length,i+3);j++){if(j>i&&/\d+,\d{2}\s*$/.test(L[j])&&!UN.test(L[j]))break;var m=L[j].match(UN);if(m){var u=m[1].toLowerCase().replace('²','2').replace(/\.$/,'').replace('uds','ud');if(u!==p.u){p.u=u;p.uCorregida=true}break}}});
+L.forEach(function(l){var m=l.match(/^(?:a[ñn]adir|incluir|sumar|anadir)\s+(.{8,})$/i);if(m&&!out.some(function(p){return p.t.indexOf(m[1].slice(0,20))>-1}))out.push({code:'',u:'pa',t:m[1].replace(/\.$/,'').replace(/^./,function(c){return c.toUpperCase()}),q:1,pa:null,anadida:true})});
+return out};
 })();
