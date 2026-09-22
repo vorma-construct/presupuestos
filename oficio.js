@@ -71,10 +71,10 @@ var precioAprendido0=window.precioAprendido;
 function aprendidoParecido(txt){var ex=(precioAprendido0?precioAprendido0(txt):0)||0;if(ex>0)return ex;if(!window.aprendidos)return 0;var A=aprendidos(),rs=raices(txt);if(!rs.length)return 0;var mejor=0,ms=0;Object.keys(A).forEach(function(k){var e=A[k];if(!(e&&e.p>0))return;var kr=raices(k);var comun=rs.filter(function(r){return kr.indexOf(r)>-1});var fu=fuertes(comun).length;var sc=comun.length/Math.max(rs.length,kr.length)+fu;if(fu>=1&&sc>ms){ms=sc;mejor=e.p}});return mejor}
 window.aprendidoParecido=aprendidoParecido;
 if(precioAprendido0){window.precioAprendido=function(txt){var ex=precioAprendido0(txt);return ex>0?ex:aprendidoParecido(txt)}}
-/* tabiques: un tabique normal de interior son unos 8 m2 (3,5 m x 2,5 m, la mitad con puerta).
+/* tabiques: un tabique de piso de los 70-90 son unos 7,5 m2 (3 m x 2,5 m de alto; los de pasillo con puerta, los de habitacion a habitacion sin ella).
    Ioan cobra el derribo por lote: 440 y 650 euros por DOS tabiques (presupuestos 544 y 545).
    Hasta dos tabiques = un lote a su precio; con mas, por metro cuadrado (precio aparte, que decide el). */
-var M2_TABIQUE=8,MAX_POR_UD=2;
+var M2_TABIQUE=7.5,MAX_POR_UD=2;
 if(!TARIFA_BASE.some(function(t){return t.id==='tabm'}))TARIFA_BASE.push({id:'tabm',c:'Demoliciones',d:'Derribo de tabiquería de ladrillo por metro cuadrado (obra de varios tabiques), retirada de escombro y tirada al centro autorizado',u:'m2',p:0,k:['derribo de tabiqueria','tabiqueria por metro','tabiques por metro']});
 function tabiqueSegunMetros(m2){var n=Math.max(1,Math.round(m2/M2_TABIQUE));var T=tarifa();
  if(n<=MAX_POR_UD){var t=T.find(function(x){return x.id==='tab'});return{id:'tab',q:1,u:'ud',p:t.p,d:t.d+' \u2014 '+(n===1?'un tabique':'dos tabiques')+' ('+String(m2).replace('.',',')+' m\u00b2 medidos)'}}
