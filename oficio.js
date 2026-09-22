@@ -72,11 +72,12 @@ function aprendidoParecido(txt){var ex=(precioAprendido0?precioAprendido0(txt):0
 window.aprendidoParecido=aprendidoParecido;
 if(precioAprendido0){window.precioAprendido=function(txt){var ex=precioAprendido0(txt);return ex>0?ex:aprendidoParecido(txt)}}
 /* tabiques: un tabique normal de interior son unos 8 m2 (3,5 m x 2,5 m, la mitad con puerta).
-   Hasta dos tabiques se cobra por tabique; con mas, por metro cuadrado (precio aparte, que pone el). */
+   Ioan cobra el derribo por lote: 440 y 650 euros por DOS tabiques (presupuestos 544 y 545).
+   Hasta dos tabiques = un lote a su precio; con mas, por metro cuadrado (precio aparte, que decide el). */
 var M2_TABIQUE=8,MAX_POR_UD=2;
 if(!TARIFA_BASE.some(function(t){return t.id==='tabm'}))TARIFA_BASE.push({id:'tabm',c:'Demoliciones',d:'Derribo de tabiquería de ladrillo por metro cuadrado (obra de varios tabiques), retirada de escombro y tirada al centro autorizado',u:'m2',p:0,k:['derribo de tabiqueria','tabiqueria por metro','tabiques por metro']});
 function tabiqueSegunMetros(m2){var n=Math.max(1,Math.round(m2/M2_TABIQUE));var T=tarifa();
- if(n<=MAX_POR_UD){var t=T.find(function(x){return x.id==='tab'});return{id:'tab',q:n,u:'ud',p:t.p,d:t.d+' \u2014 '+(n===1?'un tabique':'dos tabiques')+' ('+String(m2).replace('.',',')+' m\u00b2 medidos)'}}
+ if(n<=MAX_POR_UD){var t=T.find(function(x){return x.id==='tab'});return{id:'tab',q:1,u:'ud',p:t.p,d:t.d+' \u2014 '+(n===1?'un tabique':'dos tabiques')+' ('+String(m2).replace('.',',')+' m\u00b2 medidos)'}}
  var tm=T.find(function(x){return x.id==='tabm'});return{id:'tabm',q:m2,u:'m2',p:tm.p,d:tm.d+' \u2014 unos '+n+' tabiques'}}
 window.tabiqueSegunMetros=tabiqueSegunMetros;
 function convertirTabiquesArq(){(ARQ.med||[]).forEach(function(p){if(p.tabHecho)return;var id=window.casar?casar(p.t):null;if(id!=='tab'||!/^m2$/.test(p.u))return;var r=tabiqueSegunMetros(p.q);p.tabHecho=true;p.sel=r.id;p.u=r.u;p.q=r.q;p.pr=r.p;p.dTab=r.d})}
