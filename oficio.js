@@ -7,7 +7,7 @@
 var ALTO_DEFECTO=2.5;
 /* palabras de obra -> palabras que la tarifa conoce. Orden: de lo mas concreto a lo mas general. */
 var VOCAB=[
-[/\b(embaldos\w*|enlos\w*|solar|solad\w*|poner (?:el )?suelo de (?:baldosa|gres|porcelanico|ceramica|azulejo))\b(?:\s+(?:el|la|los|las|del|de la|de|un|una))*\s*(bano|banos|cocina|terraza|pasillo|salon|habitacion|piso|suelo)?/g,function(m,v,d){return 'baldosa en el suelo'+(d?' del '+d:'')}],
+[/\b(enlos\w*|solar|solad\w*|poner (?:el )?suelo de (?:baldosa|gres|porcelanico|ceramica|azulejo))\b(?:\s+(?:el|la|los|las|del|de la|de|un|una))*\s*(bano|banos|cocina|terraza|pasillo|salon|habitacion|piso|suelo)?/g,function(m,v,d){return 'baldosa en el suelo'+(d?' del '+d:'')}],
 [/\b(chapar|chapad\w*|revestir|aplacar|aplacad\w*)\b(?:\s+(?:el|la|los|las|del|de la|de))*\s*(pared|paredes|bano|cocina)?/g,'alicatar'],
 [/\b(azulejar|azulejad\w*|poner azulejo\w*|colocar azulejo\w*|alikatar|aligatar)\b/g,'alicatar'],
 [/\b(alisar|alisad\w*|dejar lisas?|lisar)\b(?:\s+(?:las|la|el|los))?\s*(pared|paredes)?/g,'lijar paredes'],
@@ -45,8 +45,8 @@ var VOCAB=[
 ];
 /* paquetes: una frase que engloba varios trabajos. Cada uno entra en su linea y el albañil quita lo que no toque. */
 var PAQUETES=[
-{re:/\b(bano|aseo)\s+(completo|entero|nuevo|integral)\b|\b(reformar|reforma de|reforma del|hacer|rehacer|cambiar)\s+(?:el\s+|un\s+|todo el\s+)?(bano|aseo)\b/,nombre:'baño completo',ids:['san','ali','sol','dfon','fba','alc','pd7','pit','con'],pared:['ali','alc'],suelo:['sol']},
-{re:/\bcocina\s+(completa|entera|nueva|integral)\b|\b(reformar|reforma de|reforma de la|hacer|rehacer|cambiar)\s+(?:la\s+|toda la\s+)?cocina\b/,nombre:'cocina completa',ids:['coc','ali','sol','dfon','fco','alc','luc','pit','mco','con'],pared:['ali','alc','luc'],suelo:['sol']},
+{re:/\b(bano|aseo)\s+(completo|entero|nuevo|integral)\b|\b(reformar|reforma de|reforma del|hacer|rehacer|cambiar)\s+(?:el\s+|un\s+|todo el\s+)?(bano|aseo)\b/,nombre:'baño completo',ids:['san','ali','sol','dfon','fba','alc','pd7','pit','con'],pared:['ali','alc'],suelo:['sol','pit'],alcSuelo:true},
+{re:/\bcocina\s+(completa|entera|nueva|integral)\b|\b(reformar|reforma de|reforma de la|hacer|rehacer|cambiar)\s+(?:la\s+|toda la\s+)?cocina\b/,nombre:'cocina completa',ids:['coc','ali','sol','dfon','fco','alc','luc','pit','mco','con'],pared:['ali','alc','luc'],suelo:['sol','pit'],alcSuelo:true},
 {re:/\b(pintar|pintura de)\s+(?:todo\s+)?(?:el\s+|la\s+)?(piso|casa|vivienda)\s+(entero|entera|completo|completa)?\b/,nombre:'pintar el piso',ids:['pip','pit'],pared:['pip'],suelo:['pit']}
 ];
 var DEMOL_RE=/\b(quitar|picar|tirar|sacar|levantar|retirar|desmont\w*|derrib\w*|demol\w*|arrancar|eliminar)\b/;
@@ -54,7 +54,7 @@ var HACER_RE=/\b(poner|colocar|hacer|montar|instalar|suministr\w*|colocaci\w*|in
 /* raiz de palabra: para que "alicatado", "alicatar" y "alicatao" cuenten como lo mismo */
 var VACIAS={de:1,del:1,la:1,el:1,los:1,las:1,en:1,y:1,con:1,por:1,para:1,un:1,una:1,al:1,a:1,o:1,su:1,sus:1,tipo:1,segun:1,incluso:1,mm:1,cm:1,m:1,m2:1,ml:1,ud:1,existente:1,actual:1,medios:1,manuales:1,totalmente:1,terminado:1,color:1,blanco:1,blanca:1};
 function raices(t){return norm(t).replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!VACIAS[w]}).map(function(w){return w.slice(0,5)})}
-var GENERIC={poner:1,cambi:1,quita:1,hacer:1,monta:1,coloc:1,insta:1,sacar:1,tirar:1,picar:1,bano:1,cocin:1,salon:1,pared:1,suelo:1,techo:1,pasil:1,habit:1,casa:1,piso:1,vivie:1,nuevo:1,nueva:1,viejo:1,vieja:1,sumin:1,retir:1,tirad:1,centr:1,autor:1,resid:1,escom:1,todo:1,toda:1,entre:1,parte:1};
+var GENERIC={metro:1,cuadr:1,linea:1,alto:1,ancho:1,largo:1,altur:1,cuadra:1,poner:1,cambi:1,quita:1,hacer:1,monta:1,coloc:1,insta:1,sacar:1,tirar:1,picar:1,bano:1,cocin:1,salon:1,pared:1,suelo:1,techo:1,pasil:1,habit:1,casa:1,piso:1,vivie:1,nuevo:1,nueva:1,viejo:1,vieja:1,sumin:1,retir:1,tirad:1,centr:1,autor:1,resid:1,escom:1,todo:1,toda:1,entre:1,parte:1};
 function fuertes(rs){return rs.filter(function(r){return !GENERIC[r]})}
 var IDX=null;
 function indice(){var T=tarifa();if(IDX&&IDX.n===T.length)return IDX.l;IDX={n:T.length,l:T.map(function(t){var r={};raices(t.d+' '+(t.k||[]).join(' ')).forEach(function(x){r[x]=1});return{t:t,r:r,dem:t.c==='Demoliciones'&&['con','con7','mon','limp','limf'].indexOf(t.id)<0}})};return IDX.l}
@@ -81,17 +81,36 @@ function cantidadDe(fr){var m=fr.match(/(\d+(?:[.,]\d+)?)\s*(m2|m\u00b2|metros c
 /* 3) el dictado, mejorado */
 var convertir0=window.convertir;
 window.convertir=function(){var ta=document.getElementById('dictado');var bruto=ta.value;if(!bruto.trim())return;var txt=norm(bruto);
+txt=txt.replace(/\b(poner|colocar|meter|echar|hacer|cambiar|pintar|quitar)(?:le|les|lo|la|los|las)\b/g,'$1').replace(/\bponle\b/g,'poner');
+/* baldosa / azulejo en una estancia */
+txt=txt.split(/([,;.])/).map(function(fr){
+ if(!/\b(embaldos\w*|baldosa\w*|azulej\w*|gres|porcelanico\w*|ceramica|plaqueta\w*|alicatado en el suelo)\b/.test(fr))return fr;
+ if(/\b(quitar|picar|arrancar|levantar|sacar|tirar)\b/.test(fr)){var e2=(fr.match(/\b(bano|aseo|cocina)\b/)||[])[1];var s2=/\b(suelo|solado)\b/.test(fr),p2=/\b(pared|paredes)\b/.test(fr);var m2=(fr.match(/(\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros|m)\b)/)||[''])[0];
+  if(e2&&!s2&&!p2)return ' quitar alicatado de las paredes del '+e2+' '+m2+' , picar suelo del '+e2+' '+m2+' ';return fr}
+ var est=(fr.match(/\b(bano|aseo|cocina|terraza|pasillo|salon|habitacion|entrada|galeria)\b/)||[])[1]||'';
+ var med=(fr.match(/(\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros|m)\b(?:\s*(?:x|por)\s*\d+(?:[.,]\d+)?\s*(?:m|metros)?)?)/)||[])[1]||'';
+ var resto=fr.replace(/(\d+(?:[.,]\d+)?\s*(?:de\s+)?(?:alto|altura))/,' $1 ');var alto=(fr.match(/\d+(?:[.,]\d+)?\s*(?:m|metros)?\s*de\s*(?:alto|altura)/)||[''])[0];
+ var sue=/\b(suelo|solado|pavimento|enlos\w*)\b/.test(fr),par=/\b(pared|paredes|paramento\w*)\b/.test(fr);
+ var donde=(sue&&!par)?'suelo':(par&&!sue)?'paredes':(est==='bano'||est==='aseo'||est==='cocina')?'paredes y suelo':'suelo';
+ return ' alicatar '+donde+(est?' del '+est:'')+(med?' '+med:'')+(alto?' '+alto:'')+' ';
+}).join('');
 VOCAB.forEach(function(r){txt=txt.replace(r[0],r[1])});
 /* "20 metros cuadrados de suelo" es una medida, no un trabajo en el suelo */
 txt=txt.replace(/(metros cuadrados|m2)\s+(?:de\s+)?(?:suelo|planta)\b/g,'$1');
 /* paquetes */
-var MD=window.medidasDe(txt),paq=[];PAQUETES.forEach(function(p){if(p.re.test(txt))paq.push(p)});
+var MD=window.medidasDe(txt),paq=[];PAQUETES.forEach(function(p){if(p.re.test(txt))paq.push(p)});if(paq.length&&MD.suelo>0&&!(MD.alto>0)){MD.alto=ALTO_DEFECTO;MD.altoSupuesto=true}
 ta.value=txt;try{convertir0()}finally{ta.value=bruto}
 leer();var T=tarifa(),añad=0;
+/* si ya esta el derribo de solado, no se cobra el suelo otra vez como demolicion de alicatado */
+(function(){var ali=T.find(function(x){return x.id==='ali'}),sol=T.find(function(x){return x.id==='sol'});if(!ali||!sol)return;
+if(cur.lineas.some(function(l){return l.d===sol.d})){var n0=cur.lineas.length;cur.lineas=cur.lineas.filter(function(l){return l.d!==ali.d+' \u2014 en el suelo'});
+cur.lineas.forEach(function(l){if(l.d===ali.d+' \u2014 en las paredes')l.d=ali.d});if(cur.lineas.length!==n0)renderLineas()}})();
 var yaD={};cur.lineas.forEach(function(l){yaD[norm(l.d).slice(0,40)]=1});
 paq.forEach(function(p){p.ids.forEach(function(id){var t=T.find(function(x){return x.id===id});if(!t||yaD[norm(t.d).slice(0,40)])return;var q=1;
 if(t.u==='m2'){if(p.pared.indexOf(id)>-1&&MD.suelo>0)q=paredNeta(MD);else if(p.suelo.indexOf(id)>-1&&MD.suelo>0)q=MD.suelo}
-cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p,paquete:p.nombre});yaD[norm(t.d).slice(0,40)]=1;añad++})});
+var dd=t.d;if(id==='alc'&&p.alcSuelo)dd=t.d+' \u2014 en las paredes';
+cur.lineas.push({d:dd,q:q,u:t.u,p:t.p,paquete:p.nombre});yaD[norm(t.d).slice(0,40)]=1;añad++;
+if(id==='alc'&&p.alcSuelo){cur.lineas.push({d:t.d+' \u2014 en el suelo',q:MD.suelo>0?MD.suelo:1,u:t.u,p:t.p,paquete:p.nombre});añad++}})});
 /* frases que no han encajado con nada de la tarifa: entran a cero, con su cantidad, y se pide el precio */
 var frases=txt.split(/[,;.]| y (?=(?:poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat|lijar|nivelar|reformar|arreglar|sustituir|renovar|abrir|forrar|revestir|alisar|enlucir|chapar|embaldos|enlos|acuchill|barniz)\b)/).map(function(f){return f.trim()}).filter(function(f){return f.replace(/[^a-z]/g,'').length>=6});
 var sinPrecio=[];
