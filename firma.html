@@ -69,7 +69,7 @@ if(TOK)db.collection("firmas").doc(TOK).get().then(function(s){
   DATOS=s.data();
   document.getElementById('hMarca').textContent=DATOS.marca||'Presupuesto';
   document.getElementById('hSub').textContent='Presupuesto nº '+(DATOS.num||'')+(DATOS.cliente?' · '+DATOS.cliente:'');
-  if(DATOS.firma){pintaFin(DATOS);return}
+  if(DATOS.firma){verFirmado(DATOS);return}
   if(DATOS.css){var st=document.createElement('style');st.textContent=DATOS.css.replace(/@media print\{[\s\S]*?\}\s*$/,'');document.head.appendChild(st)}var st2=document.createElement('style');st2.textContent="#doc,#doc *{font-family:'TxtAzk',system-ui,sans-serif}h1,h2,h3,.cond,.ptag,.pclaim,.tot .big,.dochead .who,.ptab tr.cap td,.vals div b,.clausula b,.tarifa-cat,#doc b{font-family:'TitAzk','DejaVu Serif Condensed',Georgia,serif!important}";document.head.appendChild(st2);
   document.getElementById('doc').innerHTML=DATOS.html||'';limpiarDoc();
   document.getElementById('aviso').textContent=DATOS.aviso||'';
@@ -82,7 +82,38 @@ if(TOK)db.collection("firmas").doc(TOK).get().then(function(s){
   if(location.hash==='#firmar')setTimeout(function(){var e=document.getElementById('firmar');if(e)e.scrollIntoView({behavior:'smooth'})},300);
 }).catch(function(e){document.getElementById('cargando').textContent='No he podido abrir el presupuesto ('+e.message+')';});
 
-var FIRMA_VER='v139';
+/* presupuesto ya firmado: se ve el documento que firmo, los trabajos no previstos que ha aprobado y el total al dia */
+function tokObra(uid,num){var str=String(uid||'x')+'|'+String(num);var h=5381;for(var i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))|0}return String(num||'0')+'-s'+(Math.abs(h)).toString(36)}
+function eu(n){var s=(Math.round(n*100)/100).toFixed(2).split('.');return s[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.')+','+s[1]+' \u20ac'}
+function verFirmado(D){
+  if(D.css){var st=document.createElement('style');st.textContent=D.css.replace(/@media print\{[\s\S]*?\}\s*$/,'');document.head.appendChild(st)}
+  var st2=document.createElement('style');st2.textContent="#doc,#doc *{font-family:'TxtAzk',system-ui,sans-serif}";document.head.appendChild(st2);
+  document.getElementById('doc').innerHTML=D.html||'';limpiarDoc();
+  var cont=document.getElementById('cont');
+  /* fuera lo de firmar: ya esta firmado */
+  ['firmar','nom','dni','cv','acepto','btn','msg','lopd'].forEach(function(id){var e=document.getElementById(id);if(!e)return;var b=e.closest('label')||e;b.style.display='none';});
+  [].slice.call(cont.querySelectorAll('label,.row')).forEach(function(e){if(e.querySelector('#btnPdf'))return;if(/Nombre y apellidos|DNI|Firma con el dedo|Borrar firma|Firmar y enviar|He le\u00eddo/.test(e.textContent))e.style.display='none'});
+  var av=cont.querySelector('.aviso');if(av)av.style.display='none';
+  var fin=document.createElement('div');fin.className='fin';fin.style.marginBottom='14px';
+  fin.innerHTML='<b>Presupuesto firmado.</b> '+(D.nombreFirma||'')+(D.dni?' \u00b7 '+D.dni:'')+(D.fechaFirma?' \u00b7 '+D.fechaFirma:'')+'<br>Aqu\u00ed tienes siempre lo que firmaste, y abajo los trabajos no previstos que hayas aprobado durante la obra.';
+  cont.insertBefore(fin,cont.firstChild);
+  var extra=document.createElement('div');extra.id='imprevistos';extra.style.cssText='margin-top:16px';cont.appendChild(extra);
+  document.getElementById('cargando').style.display='none';cont.style.display='block';
+  var tok=tokObra(D.uid,D.num),ref=db.collection('seguimiento').doc(tok);
+  ref.get().then(function(s){var d=s.exists?s.data():{};return d.redirige?db.collection('seguimiento').doc(d.redirige):ref}).then(function(r){
+    r.collection('fotos').where('tipo','==','imprevisto').onSnapshot(function(q){var fil=[],suma=0;
+      q.forEach(function(x){var f=x.data();if(f.respuesta!=='aceptado'||f.precio==null)return;var pr=Number(f.precio)||0;suma+=pr;fil.push({n:f.nota||'Trabajo no previsto',p:pr,fe:f.fechaRespuesta||''})});
+      if(!fil.length){extra.innerHTML='';return}
+      var iva=(D.ivaPct!=null?Number(D.ivaPct):21);
+      var h='<div class="aviso" style="background:#fff"><b>Trabajos no previstos aprobados por ti</b><table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:14px">';
+      fil.forEach(function(f){h+='<tr><td style="padding:6px 0;border-bottom:1px solid var(--line)">'+f.n.replace(/</g,'&lt;')+(f.fe?'<br><span style="color:var(--muted);font-size:12px">Aprobado el '+new Date(f.fe).toLocaleDateString('es-ES')+'</span>':'')+'</td><td style="text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)">'+eu(f.p)+' + IVA</td></tr>'});
+      h+='<tr><td style="padding-top:8px"><b>Suman al presupuesto</b></td><td style="text-align:right;padding-top:8px"><b>'+eu(suma)+' + IVA</b></td></tr>';
+      if(D.base!=null){var b=Number(D.base)+suma;h+='<tr><td style="padding-top:10px">Presupuesto firmado</td><td style="text-align:right;padding-top:10px">'+eu(Number(D.base))+' + IVA</td></tr><tr><td><b>Total actualizado</b></td><td style="text-align:right"><b>'+eu(b)+' + IVA ('+eu(b*(1+iva/100))+' con IVA)</b></td></tr>'}
+      h+='</table></div>';extra.innerHTML=h})
+  }).catch(function(){});
+}
+
+var FIRMA_VER='v148';
 try{var _u=new URL(location.href);if(!_u.searchParams.get('v')){fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){if(j&&j.v&&j.v!==FIRMA_VER){_u.searchParams.set('v',j.v);location.replace(_u.toString())}}).catch(function(){})}}catch(_){}
 document.addEventListener('DOMContentLoaded',function(){var e=document.createElement('div');e.textContent=FIRMA_VER;e.style.cssText='position:fixed;right:6px;bottom:6px;font-size:10px;color:#9aa0a6;z-index:99';document.body.appendChild(e)});
 function volverAtras(){try{if(history.length>1){history.back();setTimeout(function(){if(!document.hidden)window.close()},400);return}}catch(_){}try{window.close()}catch(_){}}

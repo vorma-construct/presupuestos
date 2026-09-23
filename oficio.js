@@ -167,4 +167,7 @@ out.forEach(function(p){var k=p.t.slice(0,35);var i=L.findIndex(function(l){retu
  for(var j=i;j<Math.min(L.length,i+3);j++){if(j>i&&/\d+,\d{2}\s*$/.test(L[j])&&!UN.test(L[j]))break;var m=L[j].match(UN);if(m){var u=m[1].toLowerCase().replace('²','2').replace(/\.$/,'').replace('uds','ud');if(u!==p.u){p.u=u;p.uCorregida=true}break}}});
 L.forEach(function(l){var m=l.match(/^(?:a[ñn]adir|incluir|sumar|anadir)\s+(.{8,})$/i);if(m&&!out.some(function(p){return p.t.indexOf(m[1].slice(0,20))>-1}))out.push({code:'',u:'pa',t:m[1].replace(/\.$/,'').replace(/^./,function(c){return c.toUpperCase()}),q:1,pa:null,anadida:true})});
 return out};
+
+/* cada vez que una obra estrena enlace (seguimiento, foto o imprevisto), se empieza a vigilar sin cerrar la app */
+if(window.tokenSeguimiento&&!window.__tsVig){window.__tsVig=true;var _ts=window.tokenSeguimiento;window.tokenSeguimiento=function(p){var r=_ts.apply(this,arguments);setTimeout(function(){try{escucharImprevistos()}catch(_){}},1500);return r}}
 })();
