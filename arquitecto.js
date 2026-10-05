@@ -297,6 +297,6 @@ window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{va
       cur.firmaTok=P.tok;guardar();cur.firmaTok=P.tok;DB.presus[P.num].firmaTok=P.tok;save();
       var m=document.getElementById('msg');if(m)m.innerHTML='';
       mandarFirma();
-      espera(function(){var m=document.getElementById('msg');return m&&/Enlace actualizado|Enlace mandado/.test(m.textContent)},20000).then(function(){var m=document.getElementById('msg');var mismo=m&&/actualizado/.test(m.textContent);
+      var baseOk=Math.round(cur.lineas.filter(function(l){return !l.imp}).reduce(function(a,l){return a+Math.round(num(l.q)*num(l.p)*100)/100},0)*100)/100;var leido=null;espera(function(){if(leido===null){leido=false;FB.db.collection('firmas').doc(P.tok).get().then(function(d){var x=d.exists?d.data():{};leido=(Math.abs(num(x.base)-baseOk)<0.01)?'ok':false;if(leido!=='ok')setTimeout(function(){leido=null},1200)}).catch(function(){setTimeout(function(){leido=null},1200)})}return leido==='ok'},25000).then(function(){var mismo=leido==='ok';
        var tot=totalCon(cur.lineas,cur.iva);if(!mismo)window.__arrMal=1;
        hechos.push('nº '+P.num+' '+P.nom+': '+eur(tot)+(mismo?' (mismo enlace)':' (<b style="color:#b3261e">no se ha cambiado su enlace</b>)'));sig()})}catch(e){window.__arrMal=1;hechos.push('nº '+P.num+': <b style="color:#b3261e">no se ha podido: '+e.message+'</b>');sig()}},900)})()})}}).catch(function(){})})();
