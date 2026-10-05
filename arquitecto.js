@@ -154,3 +154,20 @@ var ai=document.getElementById('arqInfo');if(ai)ai.textContent=n+' precios sacad
 var _barra=window.cypeBarra;
 window.cypeBarra=function(){_barra.apply(this,arguments);var b=document.getElementById('cyBarra');if(!b)return;var R=cypeRatio();var falt=ARQ.med.filter(function(p){return p.on&&!(p.pr>0)&&p.pa>0}).length;if(!R||!falt){var v=document.getElementById('cyRatio');if(v)v.remove();return}
 var row=b.querySelector('.row');if(!row)return;var txt='Rellenar las '+falt+' sin precio con tu proporción ('+R.k.toFixed(2).replace('.',',')+' veces el arquitecto)';var ya=document.getElementById('cyRatio');if(ya&&ya.textContent===txt)return;if(ya)ya.remove();var bt=document.createElement('button');bt.id='cyRatio';bt.className='ok';bt.style.background='#5B4A12';bt.textContent=txt;bt.onclick=cypeProporcion;row.insertBefore(bt,row.firstChild)};
+/* presupuesto que viene de un proyecto de arquitecto: se explica como se trabaja y se enlaza a la web */
+function esDeArquitecto(c){c=c||cur;return !!(c&&((c.arqLeidas||0)>0||(c.lineas||[]).some(function(l){return /^\d+(\.\d+)+$/.test(l.code||'')})))}
+function webSeguimiento(){return (AJ.webSeg||'https://reformas-en-bilbao.es/seguimiento-de-obra')}
+var _pintarDocs=window.pintarDocs;
+window.pintarDocs=function(){var r=_pintarDocs.apply(this,arguments);try{var obs=document.getElementById('p_obs');if(!obs)return r;var b=document.getElementById('p_como');
+if(!esDeArquitecto()){if(b)b.style.display='none';return r}
+if(!b){b=document.createElement('div');b.id='p_como';obs.parentNode.insertBefore(b,obs.nextSibling)}
+var u=webSeguimiento(),uc=u.replace(/^https?:\/\//,'');
+b.style.cssText='display:block;margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--gold,#8B6914);border-radius:4px;font-size:11.5px;line-height:1.45;page-break-inside:avoid';
+b.innerHTML='<b style="font-size:12.5px">Así trabajamos su obra</b>'+
+'<div style="margin-top:4px">· Este presupuesto sigue las partidas y la numeración del proyecto del arquitecto, para que se puedan comparar una a una.</div>'+
+'<div>· El contrato se firma desde el móvil, sin papeles.</div>'+
+'<div>· Al empezar le damos un enlace privado con su obra: las fases y fotos cada semana y en cada avance. No hace falta ir a la obra para saber cómo va.</div>'+
+'<div>· Si aparece algo que no estaba previsto, le llega con su foto, su explicación y su precio. No se hace nada sin que usted lo apruebe, y queda por escrito.</div>'+
+'<div style="margin-top:5px">Véalo aquí: <a href="'+u+'" data-pdfurl="'+u+'" target="_blank" rel="noopener" style="color:var(--gold,#8B6914);font-weight:700;text-decoration:underline">'+uc+'</a></div>'}catch(e){}return r};
+var _msgCli=window.mensajeCliente;
+window.mensajeCliente=function(nom,num,url){var t=_msgCli.apply(this,arguments);try{if(esDeArquitecto())t=t.replace(/(\n\nCualquier duda)/,'\n\n📱 Cómo trabajamos y cómo seguirá su obra desde el móvil, con fotos: '+webSeguimiento()+'$1')}catch(_){}return t};
