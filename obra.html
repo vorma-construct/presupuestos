@@ -137,7 +137,7 @@ db.collection('seguimiento').doc(TOK).get().then(function(s){
 }
 function pintarFotos(q){
   var cont=document.getElementById('cont');
-  if(!q||q.empty){cont.className='vacio';cont.innerHTML='<div class="ico">📷</div><b>Todavía no hay fotos</b>En cuanto empecemos, cada día verá aquí una foto de cómo va su casa.';return}
+  if(!q||q.empty){cont.className='vacio';cont.innerHTML='<div class="ico">📷</div><b>Todavía no hay fotos</b>En cuanto empecemos, verá aquí las fotos de cómo va su casa: cada semana y en cada avance.';return}
   var html='',dia='',nImp=0,nDias=0;
   q.forEach(function(doc){var f=doc.data();
     var d=fechaLarga(f.fecha||f.ts);
