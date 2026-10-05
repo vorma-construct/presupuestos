@@ -263,3 +263,12 @@ window.cypeBarra=function(){_barra3.apply(this,arguments);var b=document.getElem
  var t=M.length?'<span><b>'+M.length+' marcadas</b> · '+eur(tot)+(falt?' · <span style="color:#b3261e">'+falt+' sin precio</span>':'')+'</span><button class="ok" onclick="document.getElementById(\'cyBarra\').scrollIntoView({behavior:\'smooth\',block:\'center\'})">Precios y presupuestos ↓</button>':'<span>Marca las partidas que vas a hacer tú.</span>';
  if(mi.__t!==t){mi.__t=t;mi.innerHTML=t}
  if((ARQ.duenos||[]).length>1)[].slice.call(b.querySelectorAll('button')).forEach(function(x){if(/^Cantidades a la mitad/.test(x.textContent))x.style.display='none'})};
+/* planos de proyecto (muchas hojas): las estancias se repiten; no se suman ni se marcan solas */
+var _parsePlano=window.parsePlano;
+window.parsePlano=function(items){var pl=_parsePlano.apply(this,arguments);try{if(!pl||!pl.rooms||!pl.rooms.length)return pl;
+ var visto={},unicas=[],rep=0;pl.rooms.forEach(function(r){var k=norm(r.n||'')+'|'+r.a;if(visto[k]){rep++;return}visto[k]=1;unicas.push(r)});
+ var muchas=pl.rooms.length>25||rep>=3||!(pl.paredes>0);
+ if(rep||muchas){pl.rooms=unicas;pl.repetidas=rep;pl.suelo=unicas.reduce(function(s,r){return s+r.a},0);if(muchas)pl.proyecto=true}}catch(e){}return pl};
+/* si en la misma tanda viene el presupuesto del arquitecto, los planos no hacen falta: las medidas salen de las mediciones */
+var _renderArq2=window.renderArq;
+window.renderArq=function(){if(ARQ.plano&&ARQ.plano.proyecto&&!(ARQ.med||[]).length)ARQ.dudosas=[];if(arqEsCype()&&ARQ.plano){ARQ.plano=null;var ai=document.getElementById('arqInfo');if(ai&&!/planos/.test(ai.textContent))ai.textContent=(ai.textContent?ai.textContent+' ':'')+'Los planos no los uso: las medidas salen de las mediciones del arquitecto.'}return _renderArq2.apply(this,arguments)};
