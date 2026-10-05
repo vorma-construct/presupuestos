@@ -1,8 +1,8 @@
 {
  "id": "urtzi",
- "ver": "2026-10-05-precios-reales",
  "presus": [
   {
+   "nuevo": true,
    "nom": "Urtzi Batiz Bilbao",
    "dir": "Giñarradui baserria, Astelarra 12-14, Muxika",
    "asc": "0",
@@ -135,11 +135,10 @@
      "cap": "Gestión de residuos",
      "fuente": "tarifa del albañil"
     }
-   ],
-   "tel": "642 96 34 38",
-   "nuevo": true
+   ]
   },
   {
+   "nuevo": true,
    "nom": "Maria Teresa Batiz Uriarte",
    "dir": "Giñarradui baserria, Astelarra 12-14, Muxika",
    "asc": "0",
@@ -429,9 +428,8 @@
      "cap": "Gestión de residuos",
      "fuente": "tarifa del albañil"
     }
-   ],
-   "tel": "642 96 34 38",
-   "nuevo": true
+   ]
   }
- ]
+ ],
+ "ver": "2026-10-05-precios-reales-sintel"
 }
