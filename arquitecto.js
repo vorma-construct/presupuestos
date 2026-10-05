@@ -272,3 +272,9 @@ window.parsePlano=function(items){var pl=_parsePlano.apply(this,arguments);try{i
 /* si en la misma tanda viene el presupuesto del arquitecto, los planos no hacen falta: las medidas salen de las mediciones */
 var _renderArq2=window.renderArq;
 window.renderArq=function(){if(ARQ.plano&&ARQ.plano.proyecto&&!(ARQ.med||[]).length)ARQ.dudosas=[];if(arqEsCype()&&ARQ.plano){ARQ.plano=null;var ai=document.getElementById('arqInfo');if(ai&&!/planos/.test(ai.textContent))ai.textContent=(ai.textContent?ai.textContent+' ':'')+'Los planos no los uso: las medidas salen de las mediciones del arquitecto.'}return _renderArq2.apply(this,arguments)};
+/* cabecera: "obra" solo cuenta si va como etiqueta ("Obra: ...", "Situación: ..."), no una frase cualquiera con la palabra obra */
+var _parseCab=window.parseCabecera;
+window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{var L=(ls||[]).slice(0,120).map(function(l){return String(l).replace(/[​]/g,'').trim()});
+ var et=function(rx){for(var i=0;i<L.length;i++){var m=L[i].match(rx);if(m){var v=(m[1]||'').trim();if(v.length<2&&L[i+1])v=L[i+1].trim();if(v.length>2&&v.length<90)return v}}return ''};
+ out.dir=et(/^\s*(?:emplazamiento|situaci[oó]n|direcci[oó]n(?: de la obra)?|obra|inmueble)\s*:\s*(.*)$/i);
+ out.cli=out.cli&&/^\s*(?:promotor|propietario|propiedad|cliente|peticionario)\s*:/i.test(L.filter(function(l){return l.indexOf(out.cli)>=0})[0]||'')?out.cli:et(/^\s*(?:promotor|propietario|propiedad|cliente|peticionario)\s*:\s*(.*)$/i)}catch(e){}return out};
