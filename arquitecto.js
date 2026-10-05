@@ -81,7 +81,7 @@ h+='<div class="cyp'+(p.on?' on':'')+(p.metida?' ya':'')+'" id="cyp_'+p.i+'"><la
 '<div class="cyd">'+arqEsc(p.code)+' · arquitecto: '+(sinMed?'sin medición':arqNum(p.q)+' '+arqUd(p.u))+' a '+eur(p.pa||0)+(p.metida?' · <b>ya metida en el presupuesto '+arqEsc(p.metida)+'</b>':'')+'</div>'+
 '<div class="cyv"><span>Cantidad <input inputmode="decimal" value="'+(p.q>0?String(p.q).replace('.',','):'')+'" oninput="cypeCant('+p.i+',this.value)"> '+arqUd(p.u)+'</span>'+
 '<span>Tu precio <input inputmode="decimal" value="'+(p.pr>0?String(p.pr).replace('.',','):'')+'" placeholder="0" oninput="cypePrecio('+p.i+',this.value)"'+(p.pr>0?'':' class="falta"')+'> €</span></div>'+
-(p.mitad?'<div class="cyn ok">la mitad de lo que mide el arquitecto</div>':'')+(p.estimado?'<div class="cyn">sacado con tu proporción, repásalo</div>':'')+(p.dePa?'<div class="cyn">precio del arquitecto, repásalo</div>':(p.deMemoria?'<div class="cyn ok">tu precio de otras veces</div>':(p.deTarifa?'<div class="cyn ok">de tu tarifa</div>':'')))+'</div>'})});
+(p.mitad?'<div class="cyn ok">la mitad de lo que mide el arquitecto</div>':'')+(p.estimado?'<div class="cyn">sacado con tu proporción, repásalo</div>':'')+(p.real&&p.pr>0?'<div class="cyn ok">precio real: '+p.real+'</div>':'')+(p.dePa?'<div class="cyn">precio del arquitecto, repásalo</div>':(p.deMemoria?'<div class="cyn ok">tu precio de otras veces</div>':(p.deTarifa?'<div class="cyn ok">de tu tarifa</div>':'')))+'</div>'})});
 h+='</details>'});
 h+='<div class="cyb" id="cyBarra"></div>';
 box.style.display='block';box.innerHTML=h;cypeBarra();cypeContar();
