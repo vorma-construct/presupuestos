@@ -278,3 +278,23 @@ window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{va
  var et=function(rx){for(var i=0;i<L.length;i++){var m=L[i].match(rx);if(m){var v=(m[1]||'').trim();if(v.length<2&&L[i+1])v=L[i+1].trim();if(v.length>2&&v.length<90)return v}}return ''};
  out.dir=et(/^\s*(?:emplazamiento|situaci[oó]n|direcci[oó]n(?: de la obra)?|obra|inmueble)\s*:\s*(.*)$/i);
  out.cli=out.cli&&/^\s*(?:promotor|propietario|propiedad|cliente|peticionario)\s*:/i.test(L.filter(function(l){return l.indexOf(out.cli)>=0})[0]||'')?out.cli:et(/^\s*(?:promotor|propietario|propiedad|cliente|peticionario)\s*:\s*(.*)$/i)}catch(e){}return out};
+/* ===== arreglo de presupuestos ya mandados: ?arreglo=ID abre una tarjeta que corrige esos presupuestos y actualiza sus mismos enlaces ===== */
+(function(){var id=new URLSearchParams(location.search).get('arreglo');if(!id)return;
+ function caja(h){var d=document.getElementById('arrBox');if(!d){d=document.createElement('div');d.id='arrBox';d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99990;display:flex;align-items:center;justify-content:center;padding:16px';document.body.appendChild(d)}d.innerHTML='<div class="card" style="max-width:460px;width:100%;max-height:85vh;overflow:auto">'+h+'</div>';return d}
+ function espera(fn,ms){return new Promise(function(ok){var t0=Date.now();(function v(){if(fn())return ok(true);if(Date.now()-t0>ms)return ok(false);setTimeout(v,250)})()})}
+ fetch('arreglos/'+id+'.json?'+Date.now()).then(function(r){return r.json()}).then(function(A){
+  caja('<h2 style="font-size:20px">Corregir presupuestos ya mandados</h2><p>Voy a corregir '+A.presus.map(function(p){return 'el nº '+p.num+' ('+p.nom+')'}).join(' y ')+'. El cliente lo verá corregido <b>en el mismo enlace</b> que ya tiene: no hace falta mandarle nada.</p><button class="ok" style="width:100%" id="arrGo">Corregir ahora</button><button class="sec" style="width:100%;margin-top:6px" onclick="document.getElementById(\'arrBox\').remove()">Ahora no</button><div id="arrMsg" style="margin-top:8px"></div>');
+  document.getElementById('arrGo').onclick=function(){var b=this;b.disabled=true;var msg=document.getElementById('arrMsg');msg.textContent='Entrando en tu cuenta…';
+   espera(function(){return !!(window.FB&&FB.uid&&FB.db)},20000).then(function(ok){if(!ok){msg.innerHTML='<b style="color:#b3261e">No has entrado en tu cuenta.</b> Entra y vuelve a abrir este enlace.';b.disabled=false;return}
+    var hechos=[],i=0;var ow=window.open;window.open=function(){return null};
+    (function sig(){if(i>=A.presus.length){window.open=ow;msg.innerHTML='<b style="color:#1b7a3a">Hecho.</b> '+hechos.join(' · ')+'<br>Los clientes ya lo ven bien en su enlace.';b.style.display='none';try{history.replaceState({},'',location.pathname)}catch(_){}return}
+     var P=A.presus[i++];msg.textContent='Corrigiendo el nº '+P.num+'…';
+     try{if(DB.presus[P.num])abrir(P.num);else{nuevo();cur.num=P.num}}catch(_){}
+     setTimeout(function(){try{
+      document.getElementById('f_nom').value=P.nom;if(P.dir)document.getElementById('f_dir').value=P.dir;if(P.asc!=null)document.getElementById('f_asc').value=P.asc;document.getElementById('f_obs').value=P.obs||'';
+      cur.lineas=JSON.parse(JSON.stringify(P.lineas));if(P.arq)cur.arqLeidas=P.lineas.length;renderLineas();leer();cur.firmaTok=P.tok;guardar();cur.firmaTok=P.tok;DB.presus[P.num].firmaTok=P.tok;save();
+      var m=document.getElementById('msg');if(m)m.innerHTML='';
+      mandarFirma();
+      espera(function(){var m=document.getElementById('msg');return m&&/Enlace actualizado|Enlace mandado/.test(m.textContent)},20000).then(function(){var m=document.getElementById('msg');var mismo=m&&/actualizado/.test(m.textContent);
+       var tot=cur.lineas.reduce(function(a,l){return a+l.q*l.p},0)*(1+num(cur.iva)/100);
+       hechos.push('nº '+P.num+' '+P.nom+': '+eur(tot)+(mismo?' (mismo enlace)':' (enlace nuevo: '+cur.firmaTok+')'));sig()})}catch(e){hechos.push('nº '+P.num+': error '+e.message);sig()}},900)})()})}}).catch(function(){})})();
