@@ -59,6 +59,30 @@ window.cypePonerArq=function(){if(!BASE){return base().then(function(){window.cy
 /* el texto del boton */
 var barra0=window.cypeBarra;
 window.cypeBarra=function(){var r=barra0.apply(this,arguments);try{var b=document.getElementById('cyBarra');if(b)b.querySelectorAll('button').forEach(function(x){if(/Poner el precio del arquitecto/.test(x.textContent))x.textContent='Poner precios reales'})}catch(e){}return r};
+
+/* al marcar una partida sin tu precio, coge sola el precio real (si la dejas a 0 a mano, se queda a 0) */
+var precio0=window.cypePrecio;
+window.cypePrecio=function(i,v){try{ARQ.med[i].aMano0=!(arqLee(v)>0)}catch(e){}return precio0.apply(this,arguments)};
+var barra1=window.cypeBarra,auto=false;
+window.cypeBarra=function(){var r=barra1.apply(this,arguments);try{
+ var q=document.getElementById('btnQuitarPdf');if(q)q.style.display=(ARQ&&ARQ.med&&ARQ.med.length)?'':'none';
+ if(!auto&&ARQ&&ARQ.cype&&ARQ.med.some(function(p){return p.on&&!(p.pr>0)&&p.pa>0&&!p.aMano0})){
+  if(!BASE){base().then(function(){window.cypeBarra()});return r}
+  auto=true;try{var ai=document.getElementById('arqInfo'),t=ai?ai.textContent:'';var y=window.scrollY;
+   var ant={};ARQ.med.forEach(function(p,i){if(p.aMano0&&p.on)ant[i]=1});
+   ARQ.med.forEach(function(p){if(p.aMano0)p.__off=p.on,p.on=false});
+   window.cypePonerArq();
+   ARQ.med.forEach(function(p){if(p.aMano0){p.on=p.__off;delete p.__off}});renderCype();
+   window.scrollTo(0,y);if(ai)ai.textContent=t}finally{auto=false}}
+}catch(e){}return r};
+/* quitar el PDF del arquitecto: se borra lo leido y se puede subir otro */
+window.quitarPdf=function(){if(!confirm('¿Quitar el PDF del arquitecto? Lo que ya hayas metido en el presupuesto se queda.'))return;
+ ARQ={med:[],plano:null,cab:null,dudosas:[]};window.ULT_ARQ=null;
+ var ap=document.getElementById('arqPanel');if(ap){ap.innerHTML='';ap.style.display='none'}
+ ['arqInfo'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=''});
+ ['arqAnt','cyHoy'].forEach(function(id){var e=document.getElementById(id);if(e)e.remove()});
+ var pa=document.getElementById('pdfArq');if(pa)pa.value='';var q=document.getElementById('btnQuitarPdf');if(q)q.style.display='none';
+ var c=document.getElementById('cardPdf');if(c)c.querySelectorAll('.arqEscrito,#arqEsc').forEach(function(e){e.remove()})};
 })(typeof window!=='undefined'?window:globalThis);
 /* listas sin precio (estudios, otros albañiles, arquitectos que no son CYPE): lo que no tenga precio tuyo entra con el de mercado */
 (function(){if(typeof window==='undefined')return;var r0=window.renderArq;if(!r0)return;
