@@ -1,0 +1,319 @@
+{
+ "id": "otxandio",
+ "ver": "2026-10-05-plano-aseo",
+ "presus": [
+  {
+   "nuevo": true,
+   "nom": "Chabola Artekale (Otxandio) · aseo",
+   "dir": "Artekale, Otxandio (Bizkaia)",
+   "asc": "0",
+   "obs": "Aseo adosado a la fachada este de la chabola, según el plano del aparejador (Capela, exp. 2026016A, 16/09/2026): 3,55 m de fachada a fachada por 1,32 m de fondo, interior libre de 1,20 × 3,31 m (3,97 m²). Cantidades sacadas de las cotas del plano. Supuestos que hay que confirmar: el muro este existente se trata como de ladrillo (si es de piedra, cambia el precio del hueco); la ducha va alicatada hasta 2,10 m y el resto pintado; el agua caliente y el desagüe se conectan a la instalación que ya tiene la chabola. No incluye la comprobación de normativa ni el cálculo estructural, que el propio plano deja pendientes (pendiente real del faldón, cota del alero norte, esbeltez de los muros y sección de los cabios).",
+   "lineas": [
+    {
+     "d": "Excavación de zanjas para la cimentación de los muros nuevos (6,19 m de muro × 0,60 × 0,90 m), con medios mecánicos",
+     "q": 3.34,
+     "u": "m3",
+     "p": 36.8,
+     "cap": "Movimiento de tierras y cimentación",
+     "fuente": "mercado + 15 % zona (t_zanja)"
+    },
+    {
+     "d": "Hormigón de limpieza de 10 cm en el fondo de la zanja",
+     "q": 3.1,
+     "u": "m2",
+     "p": 11.5,
+     "cap": "Movimiento de tierras y cimentación",
+     "fuente": "mercado + 15 % zona (c_hormigon_limpieza)"
+    },
+    {
+     "d": "Zapata corrida de hormigón armado HA-25 de 50×40 cm, con 4 Ø12 y cercos Ø8 cada 25 cm (detalle 3)",
+     "q": 1.24,
+     "u": "m3",
+     "p": 230.0,
+     "cap": "Movimiento de tierras y cimentación",
+     "fuente": "mercado + 15 % zona (c_zapata)"
+    },
+    {
+     "d": "Transporte de las tierras sobrantes a vertedero autorizado, con canon de vertido",
+     "q": 3.5,
+     "u": "m3",
+     "p": 17.25,
+     "cap": "Movimiento de tierras y cimentación",
+     "fuente": "mercado + 15 % zona (t_tierras_vertedero)"
+    },
+    {
+     "d": "Relleno compactado bajo la solera hasta su cota",
+     "q": 1.0,
+     "u": "m3",
+     "p": 20.7,
+     "cap": "Solera",
+     "fuente": "mercado + 15 % zona (t_relleno)"
+    },
+    {
+     "d": "Encachado de grava de 15 cm",
+     "q": 3.97,
+     "u": "m2",
+     "p": 12.65,
+     "cap": "Solera",
+     "fuente": "mercado + 15 % zona (c_encachado)"
+    },
+    {
+     "d": "Lámina impermeable bajo la solera",
+     "q": 3.97,
+     "u": "m2",
+     "p": 2.3,
+     "cap": "Solera",
+     "fuente": "mercado + 15 % zona (c_lamina_solera)"
+    },
+    {
+     "d": "Solera de hormigón armado de 12 cm con mallazo, al mismo nivel que el suelo de la chabola (sin escalón)",
+     "q": 3.97,
+     "u": "m2",
+     "p": 34.5,
+     "cap": "Solera",
+     "fuente": "mercado + 15 % zona (c_solera)"
+    },
+    {
+     "d": "Muro de arranque de bloque de hormigón de 20 cm relleno, con barrera antihumedad bajo la primera hilada (6,19 m × 0,90 m)",
+     "q": 5.57,
+     "u": "m2",
+     "p": 37.95,
+     "cap": "Muros",
+     "fuente": "mercado + 15 % zona (f_bloque)"
+    },
+    {
+     "d": "Impermeabilización del trasdós del muro de arranque",
+     "q": 3.1,
+     "u": "m2",
+     "p": 23.0,
+     "cap": "Muros",
+     "fuente": "mercado + 15 % zona (c_impermeabilizacion_muro)"
+    },
+    {
+     "d": "Muro de ladrillo perforado de 9 cm con pilastras de 24×24 cada 1,10 m: fachada este de 3,55 m y testeros sur y norte de 1,32 m, en prolongación de las fachadas existentes",
+     "q": 16.15,
+     "u": "m2",
+     "p": 35.65,
+     "cap": "Muros",
+     "fuente": "mercado + 15 % zona (f_ladrillo_perforado)"
+    },
+    {
+     "d": "Encuentro de los muros nuevos con la fachada existente: traba dentada o conectores inox Ø8 cada 40 cm con resina y malla de fibra de vidrio en las dos caras (2 encuentros, detalle 1)",
+     "q": 4,
+     "u": "h",
+     "p": 31.05,
+     "cap": "Muros",
+     "fuente": "mercado + 15 % zona (x_hora_oficial)"
+    },
+    {
+     "d": "Colocación del cargadero de hormigón armado de 9×15 sobre la ventana",
+     "q": 2,
+     "u": "h",
+     "p": 31.05,
+     "cap": "Muros",
+     "fuente": "mercado + 15 % zona (x_hora_oficial)"
+    },
+    {
+     "d": "Apeo del muro este existente antes de cortar el hueco",
+     "q": 1,
+     "u": "ud",
+     "p": 345.0,
+     "cap": "Hueco de paso en el muro existente",
+     "fuente": "mercado + 15 % zona (e_apeo)"
+    },
+    {
+     "d": "Apertura del hueco de paso de 0,75 × 2,03 m en el muro este existente, con su dintel (detalle 4)",
+     "q": 1,
+     "u": "ud",
+     "p": 345.0,
+     "cap": "Hueco de paso en el muro existente",
+     "fuente": "mercado + 15 % zona (hueco_ladrillo)"
+    },
+    {
+     "d": "Regularizar la coronación del muro este con mortero para recibir el entablado (detalle 2)",
+     "q": 2,
+     "u": "h",
+     "p": 31.05,
+     "cap": "Hueco de paso en el muro existente",
+     "fuente": "mercado + 15 % zona (x_hora_oficial)"
+    },
+    {
+     "d": "Retirada de la hilada de teja de borde sobre el muro este",
+     "q": 1.42,
+     "u": "m2",
+     "p": 18.4,
+     "cap": "Cubierta",
+     "fuente": "mercado + 15 % zona (d_teja)"
+    },
+    {
+     "d": "Estructura de cubierta con cabios de madera de 10×14 cada 55 cm, en la misma dirección y pendiente que los actuales",
+     "q": 5.9,
+     "u": "m2",
+     "p": 51.75,
+     "cap": "Cubierta",
+     "fuente": "mercado + 15 % zona (k_estructura_madera_cubierta)"
+    },
+    {
+     "d": "Entablado de cubierta",
+     "q": 5.9,
+     "u": "m2",
+     "p": 16.1,
+     "cap": "Cubierta",
+     "fuente": "mercado + 15 % zona (k_tablero)"
+    },
+    {
+     "d": "Cubierta de teja curva con lámina impermeable, en prolongación del faldón existente; alero norte continuo",
+     "q": 5.9,
+     "u": "m2",
+     "p": 100.05,
+     "cap": "Cubierta",
+     "fuente": "mercado + 15 % zona (k_cubierta_teja)"
+    },
+    {
+     "d": "Enfoscado de mortero de cemento en las dos caras de los muros nuevos",
+     "q": 32.0,
+     "u": "m2",
+     "p": 17.25,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_enfoscado)"
+    },
+    {
+     "d": "Zócalo de mortero hidrófugo con arista biselada hasta +0,50 m",
+     "q": 3.1,
+     "u": "m2",
+     "p": 18.4,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_raseo)"
+    },
+    {
+     "d": "Pintura de fachada en azul, igual a la existente",
+     "q": 15.8,
+     "u": "m2",
+     "p": 23.0,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (f_pintura_fachada)"
+    },
+    {
+     "d": "Pintura plástica de las paredes interiores del aseo",
+     "q": 19.2,
+     "u": "m2",
+     "p": 12.65,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_pintura)"
+    },
+    {
+     "d": "Lasur de los cabios y el entablado vistos por el interior",
+     "q": 4.2,
+     "u": "m2",
+     "p": 17.25,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_lasur)"
+    },
+    {
+     "d": "Impermeabilización de la zona de la ducha",
+     "q": 1.5,
+     "u": "m2",
+     "p": 34.5,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_impermeabilizacion_ducha)"
+    },
+    {
+     "d": "Alicatado de la zona de la ducha (dos paredes hasta 2,10 m)",
+     "q": 4.2,
+     "u": "m2",
+     "p": 46.0,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_alicatado)"
+    },
+    {
+     "d": "Solado del aseo con gres porcelánico sobre mortero",
+     "q": 3.97,
+     "u": "m2",
+     "p": 46.0,
+     "cap": "Revestimientos y pintura",
+     "fuente": "mercado + 15 % zona (r_gres)"
+    },
+    {
+     "d": "Ventana de 0,60 × 0,50 m, alféizar a +1,60 m",
+     "q": 1,
+     "u": "ud",
+     "p": 460.0,
+     "cap": "Carpintería",
+     "fuente": "mercado + 15 % zona (l_ventana_pvc)"
+    },
+    {
+     "d": "Puerta interior de paso de 0,75 × 2,03 m, abre hacia la chabola",
+     "q": 1,
+     "u": "ud",
+     "p": 368.0,
+     "cap": "Carpintería",
+     "fuente": "mercado + 15 % zona (p_puerta_interior)"
+    },
+    {
+     "d": "Fontanería del aseo: agua fría y caliente y desagües de ducha, lavabo e inodoro",
+     "q": 1,
+     "u": "ud",
+     "p": 1380.0,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (i_fontaneria_bano)"
+    },
+    {
+     "d": "Plato de ducha de 80 × 80 cm, suministrado y colocado",
+     "q": 1,
+     "u": "ud",
+     "p": 345.0,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (i_plato_ducha)"
+    },
+    {
+     "d": "Lavabo de 45 × 34 cm bajo la ventana, suministrado y colocado",
+     "q": 1,
+     "u": "ud",
+     "p": 460.0,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (i_lavabo)"
+    },
+    {
+     "d": "Inodoro, suministrado y colocado",
+     "q": 1,
+     "u": "ud",
+     "p": 253.0,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (i_inodoro)"
+    },
+    {
+     "d": "Grifería de lavabo y de ducha",
+     "q": 2,
+     "u": "ud",
+     "p": 143.75,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (i_griferia)"
+    },
+    {
+     "d": "Punto de luz con interruptor",
+     "q": 1,
+     "u": "ud",
+     "p": 103.5,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (el_punto_luz)"
+    },
+    {
+     "d": "Enchufe con su línea",
+     "q": 1,
+     "u": "ud",
+     "p": 86.25,
+     "cap": "Fontanería, sanitarios y electricidad",
+     "fuente": "mercado + 15 % zona (el_enchufe)"
+    },
+    {
+     "d": "Saco big-bag de escombro con recogida",
+     "q": 2,
+     "u": "ud",
+     "p": 87.4,
+     "cap": "Residuos",
+     "fuente": "mercado + 15 % zona (x_saco_escombro)"
+    }
+   ]
+  }
+ ]
+}

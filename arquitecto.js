@@ -341,3 +341,20 @@ window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{va
       var baseOk=Math.round(cur.lineas.filter(function(l){return !l.imp}).reduce(function(a,l){return a+Math.round(num(l.q)*num(l.p)*100)/100},0)*100)/100;var leido=null;espera(function(){if(leido===null){leido=false;FB.db.collection('firmas').doc(P.tok).get().then(function(d){var x=d.exists?d.data():{};leido=(Math.abs(num(x.base)-baseOk)<0.01)?'ok':false;if(leido!=='ok')setTimeout(function(){leido=null},1200)}).catch(function(){setTimeout(function(){leido=null},1200)})}return leido==='ok'},25000).then(function(){var mismo=leido==='ok';
        var tot=totalCon(cur.lineas,cur.iva);if(!mismo)window.__arrMal=1;
        hechos.push('nº '+P.num+' '+P.nom+': '+eur(tot)+(mismo?' (mismo enlace)':' (<b style="color:#b3261e">no se ha cambiado su enlace</b>)'));sig()})}catch(e){window.__arrMal=1;hechos.push('nº '+P.num+': <b style="color:#b3261e">no se ha podido: '+e.message+'</b>');sig()}},900)})()})}}).catch(function(){})})();
+/* un PLANO (dibujo con cotas: planta, alzado, sección, escala 1:20…) no es una lista de partidas:
+   no se inventan partidas con sus frases sueltas; se avisa y se lleva a contarlo o a buscarlas una a una */
+(function(){
+ var pm0=window.parseMediciones;if(!pm0)return;
+ window.parseMediciones=function(ls){var r=pm0.apply(this,arguments);try{
+  var txt=(ls||[]).join(' \n ');var marcas=(txt.match(/\bPLANO\b|\bESCALAS?\b|\bPLANTA\b|\bALZADO\b|\bSECCI[ÓO]N\b|\be\s?1\s?:\s?\d{1,3}\b|\bDETALLE\b|\bCOTAS?\b/gi)||[]).length;
+  var buenas=(r||[]).filter(function(p){return p.q>0&&(p.pa>0||p.imp>0)}).length;
+  if(marcas>=4&&buenas<Math.max(2,(r||[]).length*0.3)){
+   var sale=[];var m;var re=/([A-ZÁÉÍÓÚÑ]{3,}[A-ZÁÉÍÓÚÑ ]*)\s+([\d,]+\s*[×x]\s*[\d,]+\s*=\s*[\d,]+\s*m²?)/g;while((m=re.exec(txt))&&sale.length<6)sale.push(m[1].trim().toLowerCase()+' '+m[2].replace(/\s+/g,' '));
+   ['plato de ducha','lavabo','inodoro','bañera','ventana','puerta','zapata','solera','teja','enfoscado','pintura'].forEach(function(w){if(new RegExp(w,'i').test(txt))sale.push(w)});
+   window.__esPlano={que:sale};return []}}catch(e){}return r};
+ var ra0=window.renderArq;
+ window.renderArq=function(){var r=ra0.apply(this,arguments);try{var P=window.__esPlano;var box=document.getElementById('arqPanel');
+  if(P&&box&&!(ARQ.med||[]).length){box.style.display='';box.innerHTML='<div class="aviso" style="font-size:15px;line-height:1.45"><b>Este PDF es un plano, no una lista de partidas.</b> Trae el dibujo con las medidas'+(P.que.length?' ('+P.que.slice(0,8).join(', ')+')':'')+', pero no las partidas con sus cantidades, así que no meto nada a ciegas.<div class="row" style="margin-top:10px"><button class="ok" type="button" onclick="meterPor(\'voz\')">Contarlo con mis palabras</button><button class="sec" type="button" onclick="meterPor(\'mano\')">Buscarlas una a una</button></div><div style="font-size:13px;color:var(--muted);margin-top:8px">Si el arquitecto o el aparejador tiene las mediciones (el listado de partidas con cantidades), pídeselas: con ese PDF te lo hago solo.</div></div>';
+   var ai=document.getElementById('arqInfo');if(ai)ai.textContent=''}
+  window.__esPlano=null}catch(e){}return r};
+})();
