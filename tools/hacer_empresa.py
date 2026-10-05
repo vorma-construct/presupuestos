@@ -48,6 +48,10 @@ def idx(s):
     s=s[:i]+"var AJ_DEF={recargoZona:'15',subidaPrecios:'0',iban:'',webSeg:''};"+s[j:]
     for v in ('LOGO','LOGO_PIN','LOGO_T'):s=re.sub(r"var "+v+r"='data:[^']*';","var "+v+"='';",s,count=1)
     s=re.sub(r'(<div class="sheet" id="sh_dosier">.*?)(<div class="foot">)',lambda m:re.sub(r'src="data:image/[^"]*"','src="data:,"',m.group(1))+m.group(2),s,count=1,flags=re.S)
+    if os.path.exists(f'{SRC}/empresas/{ID}/tema.css'):
+        s=s.replace('</head>',f'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="empresas/{ID}/tema.css?{int(os.path.getmtime(f"{SRC}/empresas/{ID}/tema.css"))}"></head>',1)
+    if os.path.exists(f'{SRC}/empresas/{ID}/tema.js'):
+        k=s.rindex('</body>');s=s[:k]+f'<script src="empresas/{ID}/tema.js?{int(os.path.getmtime(f"{SRC}/empresas/{ID}/tema.js"))}"></script>'+s[k:]
     assert 'Y4429633P' not in s and 'Vornicu' not in s.split('</style>')[0]
     return s
 cambia('index.html',idx)

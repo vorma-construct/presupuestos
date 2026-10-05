@@ -1,0 +1,66 @@
+/* Diseño propio de la app de Reformas Lucas (solo pantallas de la app; los documentos del cliente no se tocan) */
+:root{--l-acc:#E04209;--l-acc2:#C23A08;--l-claro:#FDE8DE;--l-negro:#111214;--l-fondo:#F4F3F1;--l-linea:#E1DDD7;--l-gris:#5E5A55}
+html,body{background:var(--l-fondo);font-family:Figtree,system-ui,sans-serif;font-size:15px;color:#141414}
+.page h1:not(.sheet *),.page h2:not(.sheet *),.page h3:not(.sheet *),#login h2,.cli b{font-family:Montserrat,system-ui,sans-serif;font-stretch:normal;font-weight:800;letter-spacing:-.2px}
+.page h2:not(.sheet *){font-size:21px!important;line-height:1.2}
+button{border-radius:12px;min-height:44px;font-weight:700;background:var(--l-negro);font-family:inherit}
+button.ok,button.warn{background:var(--l-acc)}button.ok:active,button.warn:active{background:var(--l-acc2)}
+button.sec{background:#fff;color:#141414;border:1px solid var(--l-linea)}
+button.mini{min-height:34px;border-radius:10px;padding:6px 10px;font-size:13px}
+input,select,textarea{border:1px solid var(--l-linea);border-radius:12px;min-height:44px;padding:10px 12px;font-size:15px}
+textarea{min-height:60px}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--l-acc);border-color:var(--l-acc)}
+label.f{font-size:13px;color:var(--l-gris)}
+.card{border:1px solid var(--l-linea);border-radius:16px;padding:16px;box-shadow:none}
+.aviso{border-radius:12px;border-left:0;background:#FFF3EC;border:1px solid #F6C9B2}
+.chip{border-radius:999px;padding:3px 10px}
+/* cabecera: blanca con su logo; la fila de pestañas en negro */
+#topnav{background:#fff;color:#141414;border-bottom:1px solid var(--l-linea);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+#topnav{position:sticky}
+#topnav .brand{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:0}
+#topnav .brand img{height:34px;width:auto;display:block}
+#topnav .brand .lucasMarca{font-family:Montserrat,system-ui,sans-serif;font-weight:800;font-size:19px;letter-spacing:.2px;color:#141414}
+#syncDot{border-radius:50%;position:absolute;right:16px;top:23px}
+.tarifa-cat{font-family:Montserrat,system-ui,sans-serif!important;font-stretch:normal!important;font-size:16px!important;border-radius:12px!important;padding:10px 14px!important}
+#btnAtras{color:#141414!important}
+.ntab{color:var(--l-gris);min-height:46px;border-radius:0;background:transparent;font-weight:700}.ntab.on{color:#141414;border-bottom-color:var(--l-acc)}
+#topnav .acts{gap:8px}
+#topnav .acts button.sec{border-color:var(--l-linea)!important;color:#141414!important;background:#fff!important}
+/* listas */
+.cli{border-bottom:1px solid #EEEBE7;padding:12px 0}
+#arqPanel details.cyc{border-radius:14px;border-color:var(--l-linea)}
+#arqPanel details.cyc>summary{min-height:56px}
+#arqPanel .cyb,#arqPanel .cymini{border-radius:16px!important;border:1px solid var(--l-linea)!important;box-shadow:0 -6px 18px rgba(0,0,0,.07)!important}
+table.lines th{background:var(--l-negro)}
+/* movil: barra de abajo con iconos y partidas como tarjetas */
+#lucasNav{display:none}
+@media(max-width:760px){
+ body{padding-bottom:78px}
+ #topnav .ntab{display:none!important}
+ #topnav{flex-wrap:wrap}
+ #topnav .brand{flex:1}
+ #topnav .acts{width:100%;margin:0;padding:0 12px 10px}
+ #topnav .acts #btnEnviar{flex:1;min-height:48px;font-size:16px}
+ #lucasNav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--l-negro);padding:6px 6px 10px;gap:2px}
+ #lucasNav button{background:transparent;color:#B9B6B2;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;padding:6px 0;min-height:52px;border-radius:10px}
+ #lucasNav button svg{width:22px;height:22px;stroke:#B9B6B2}
+ #lucasNav button.on{color:#fff;font-weight:700}#lucasNav button.on svg{stroke:#FC4A0C}
+ .page{padding:12px}
+ table.lines thead{display:none}
+ table.lines,table.lines tbody,table.lines tr,table.lines td{display:block;width:100%}
+ #tb tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 44px;gap:8px;background:#fff;border:1px solid var(--l-linea);border-radius:14px;padding:12px;margin-bottom:10px}
+ #tb tr.cero{background:#FFF3EC;border-color:#F6C9B2}
+ #tb tr td{border:0;padding:0}
+ #tb tr td:nth-child(1){grid-column:1/-1}
+ #tb tr td:nth-child(1) textarea{min-height:64px}
+ #tb tr td:nth-child(2):before{content:"Cantidad";display:block;font-size:12px;color:var(--l-gris);margin-bottom:3px}
+ #tb tr td:nth-child(3):before{content:"Unidad";display:block;font-size:12px;color:var(--l-gris);margin-bottom:3px}
+ #tb tr td:nth-child(4):before{content:"Precio";display:block;font-size:12px;color:var(--l-gris);margin-bottom:3px}
+ #tb tr td:nth-child(5){grid-column:1/4;text-align:left;font-family:Montserrat,sans-serif;font-weight:800;font-size:16px;padding-top:4px}
+ #tb tr td:nth-child(5):before{content:"Importe  ";font-family:Figtree,sans-serif;font-weight:600;font-size:13px;color:var(--l-gris)}
+ #tb tr td:nth-child(6){grid-column:4;grid-row:3;align-self:center}
+ #tb tr td input.n{width:100%;text-align:right}
+}
+/* los documentos del cliente (dosier, presupuesto, contrato) se quedan con su letra y tamaño de siempre */
+.sheet{font-family:'TxtAzk',system-ui,sans-serif;font-size:14px;color:var(--ink)}
+.sheet input,.sheet textarea,.sheet select{min-height:0;border-radius:0;font-size:inherit;padding:inherit}
