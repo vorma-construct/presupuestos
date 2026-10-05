@@ -52,7 +52,20 @@ def idx(s):
     return s
 cambia('index.html',idx)
 cambia('oficio.js',lambda s:'\n'.join(l for l in s.split('\n') if 'Ioan cobra' not in l))
-cambia('obra.html',lambda s:s.replace('Vorma Construct',E['nombreApp']))
+def obra(s):
+    s=s.replace('Vorma Construct',E['nombreApp']).replace('icons/logo.svg',f'empresas/{ID}/logo_t.png')
+    C=E.get('colores')
+    if C:s=re.sub(r'--oro:#[0-9A-Fa-f]{6};--oro2:#[0-9A-Fa-f]{6}',f"--oro:{C['boton']};--oro2:{C['marca']}",s)
+    return s
+cambia('obra.html',obra)
+def colores(s):
+    C=E.get('colores')
+    if not C:return s
+    s=s.replace('--brick2:#F7EED9',f"--brick2:{C['claro']}")
+    for v,n in (('A87B18','boton'),('8A6A12','fuerte'),('C99A2E','marca'),('8B6914','fuerte')):s=re.sub('#'+v,C[n],s,flags=re.I)
+    return s
+for f in ('index.html','firma.html','obra.html','arquitecto.js'):cambia(f,colores)
+if os.path.exists(f'{OUT}/icons/logo.svg'):os.remove(f'{OUT}/icons/logo.svg')
 cambia('obra.webmanifest',lambda s:s.replace('Vorma Construct',E['nombreApp']))
 for f in ('firma.html','obra.html'):
     if os.path.exists(f'{OUT}/{f}'):cambia(f,lambda s:s.replace('icons/icon-192.png"',f'icons/icon-192.png?e={ID}"'))

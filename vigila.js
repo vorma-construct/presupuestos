@@ -53,4 +53,26 @@ window.mandarFirma=function(){if(window.__vigSilencio)return mandar0.apply(this,
 function aviso(html,rojo){var d=document.createElement('div');d.className='vigAviso';d.style.cssText='position:fixed;left:10px;right:10px;bottom:14px;z-index:9500;background:'+(rojo?'#FBE3E0':'#E6F3EA')+';border-left:5px solid '+(rojo?'#B3261E':'#1B7A3A')+';padding:12px 14px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.25);font-size:14px;color:#222';d.innerHTML=html+'<div style="text-align:right;margin-top:6px"><button class="mini sec" type="button">Vale</button></div>';d.querySelector('button').onclick=function(){d.remove()};document.body.appendChild(d)}
 window.avisoVigila=aviso;
 
+/* sin presupuestos repetidos: mismo cliente y misma obra, sin mandar -> uno solo (el numero mas antiguo, con lo ultimo que se hizo).
+   No toca los ya mandados ni las variantes (101-B...). */
+var VAC_D={calle:1,c:1,avenida:1,avda:1,plaza:1,barrio:1,piso:1,portal:1,bizkaia:1,vizcaya:1,the:1};
+function tokD(d){return norm(d||'').replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(function(w){return w.length>=3&&!VAC_D[w]||/^\d+$/.test(w)})}
+function mismaObra(a,b){var x=tokD(a),y=tokD(b);if(!x.length||!y.length)return true;var c=x.filter(function(w){return y.indexOf(w)>=0}).length;return c>=2||c/Math.min(x.length,y.length)>=0.6}
+function mandado(p){return !!(p.firmaTok||p.segTok||p.firmado||(p.estado&&p.estado!=='borrador'))}
+window.mismaObra=mismaObra;
+window.juntarRepes=function(){var map={};try{var P=DB.presus||{};var ks=Object.keys(P).filter(function(k){var p=P[k];return p&&p.nom&&!/-[A-Z]$/.test(k)&&!mandado(p)});
+ var hecho={};ks.forEach(function(k){if(hecho[k])return;var g=ks.filter(function(j){return !hecho[j]&&norm(P[j].nom).trim()===norm(P[k].nom).trim()&&mismaObra(P[j].dir,P[k].dir)});if(g.length<2)return;
+  g.forEach(function(j){hecho[j]=1});
+  var nuevo=g.slice().sort(function(a,b){return (P[b].ts||0)-(P[a].ts||0)})[0],viejo=g.slice().sort(function(a,b){return num(a)-num(b)})[0];
+  if(nuevo!==viejo){var c=JSON.parse(JSON.stringify(P[nuevo]));c.num=viejo;P[viejo]=c}
+  g.forEach(function(j){if(j===viejo)return;map[j]=viejo;delete P[j];try{borrarNube(j)}catch(_){}});
+  try{subirPresu(viejo)}catch(_){}});
+ if(Object.keys(map).length){save();if(cur&&map[cur.num]){try{abrir(map[cur.num])}catch(_){}}try{renderClientes()}catch(_){}}}catch(e){}return map};
+setTimeout(juntarRepes,4000);setTimeout(juntarRepes,15000);
+/* al hacer los presupuestos de los duenos desde el PDF: si ya existia el de ese cliente, se actualiza ese */
+var hacer0=window.hacerPresupuestos;
+if(hacer0)window.hacerPresupuestos=function(){var r=hacer0.apply(this,arguments);setTimeout(function(){var m=juntarRepes();var ks=Object.keys(m);if(!ks.length)return;
+ ['msg','arqInfo'].forEach(function(id){var e=document.getElementById(id);if(e)ks.forEach(function(k){e.innerHTML=e.innerHTML.split('nº '+k+' ').join('nº '+m[k]+' ')})});
+ var e=document.getElementById('arqInfo');if(e)e.insertAdjacentHTML('beforeend',' <b>Ya tenías presupuesto de este cliente para esta obra: lo he actualizado en vez de hacer otro.</b>')},2800);return r};
+
 })();
