@@ -289,9 +289,9 @@ window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{va
     var hechos=[],i=0;var ow=window.open;window.open=function(){return null};
     (function sig(){if(i>=A.presus.length){window.open=ow;var nv=A.presus.some(function(p){return p.nuevo});msg.innerHTML='<b style="color:#1b7a3a">Hecho.</b> '+hechos.join(' · ')+(nv?'<br>Te lo dejo abierto: revísalo y dale a <b>Enviar al cliente</b>.':'<br>Los clientes ya lo ven bien en su enlace.')+(nv?'<button class="ok" style="width:100%;margin-top:8px" onclick="document.getElementById(\'arrBox\').remove();window.scrollTo(0,0)">Ver el presupuesto</button>':'');if(nv&&window.__arrAbrir){try{abrir(window.__arrAbrir);document.querySelector("button.ntab[data-t=presupuesto]").click()}catch(_){}}b.style.display='none';try{history.replaceState({},'',location.pathname)}catch(_){}return}
      var P=A.presus[i++];msg.textContent='Corrigiendo el nº '+P.num+'…';
-     try{if(P.nuevo){nuevo()}else if(DB.presus[P.num])abrir(P.num);else{nuevo();cur.num=P.num}}catch(_){}
+     try{var ya=P.nuevo&&Object.keys(DB.presus).filter(function(k){var q=DB.presus[k];return q&&q.nom===P.nom&&(q.dir||'')===(P.dir||'')}).pop();if(ya){abrir(ya)}else if(P.nuevo){nuevo()}else if(DB.presus[P.num])abrir(P.num);else{nuevo();cur.num=P.num}}catch(_){}
      setTimeout(function(){try{
-      document.getElementById('f_nom').value=P.nom;if(P.dir)document.getElementById('f_dir').value=P.dir;if(P.asc!=null)document.getElementById('f_asc').value=P.asc;document.getElementById('f_obs').value=P.obs||'';
+      document.getElementById('f_nom').value=P.nom;if(P.dir)document.getElementById('f_dir').value=P.dir;if(P.asc!=null)document.getElementById('f_asc').value=P.asc;if(P.tel)document.getElementById('f_tel').value=P.tel;document.getElementById('f_obs').value=P.obs||'';
       cur.lineas=JSON.parse(JSON.stringify(P.lineas));if(P.arq)cur.arqLeidas=P.lineas.length;renderLineas();leer();
       if(P.nuevo){guardar();window.__arrAbrir=cur.num;var tt=cur.lineas.reduce(function(a,l){return a+l.q*l.p},0)*(1+num(cur.iva)/100);hechos.push('nº '+cur.num+' '+P.nom+': '+eur(tt)+', listo para mandar');return sig()}
       cur.firmaTok=P.tok;guardar();cur.firmaTok=P.tok;DB.presus[P.num].firmaTok=P.tok;save();
