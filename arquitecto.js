@@ -212,7 +212,7 @@ function aplicarEscritos(){if(!ARQ.escritos||!ARQ.escritos.length||!arqEsCype())
  Object.keys(porP).forEach(function(i){var p=ARQ.med[i],ms=porP[i];p.on=true;p.delEscrito=true;
   if(ms.some(function(m){return m.dueno==='comun'})||nd<2){p.para='comun'}
   else{var ds=ms.map(function(m){return m.dueno}).filter(function(d,k,a){return a.indexOf(d)===k});p.para=ds.length===1?String(ds[0]):'comun';if(ds.length>1)p.repartido=true}
-  if(!(p.q>0)){var a=ms.map(function(m){return m.area}).filter(Boolean)[0];if(a&&/^m2$/.test(p.u)){p.q=a;p.qEscrito=true}}});
+  var a=ms.map(function(m){return m.area}).filter(Boolean)[0];if(a&&/^m2$/.test(p.u)){if(!(p.q>0)){p.q=a;p.qEscrito=true}else if(p.q>a*1.05){p.qArq=p.q;p.q=a;p.qZona=true}}});
  ARQ.notas=todos.notas;ARQ.duenos=duenos;
  var ai=document.getElementById('arqInfo');if(ai)ai.textContent='He leído también lo que pide el cliente: '+Object.keys(porP).length+' partidas marcadas solas'+(duenos.length>1?', repartidas entre '+duenos.join(' y '):'')+'. Repásalas.'}
 /* pantalla: a quien va cada partida, lo que pide sin partida, y el boton de hacer los presupuestos */
@@ -221,6 +221,7 @@ window.renderCype=function(){ARQ.med=ARQ.med.filter(function(p){return p.cype});
  if(D.length>1)ARQ.med.forEach(function(p){var e=document.getElementById('cyp_'+p.i);if(!e)return;var v=e.querySelector('.cyv');if(!v)return;var s=document.createElement('span');
   s.innerHTML='Para <select onchange="ARQ.med['+p.i+'].para=this.value;cypeBarra()" style="padding:5px"><option value="comun">'+(D.length===2?'los dos, a medias':'todos, a partes iguales')+'</option>'+D.map(function(n,k){return '<option value="'+k+'"'+(String(p.para)===String(k)?' selected':'')+'>solo '+arqEsc(n.split(' ')[0]+' '+(n.split(' ')[1]||''))+'</option>'}).join('')+'</select>';v.appendChild(s);
   if(p.qEscrito){var n2=document.createElement('div');n2.className='cyn';n2.textContent='metros sacados de lo que pide el cliente (el arquitecto no lo midió), repásalos';e.appendChild(n2)}
+  if(p.qZona){var n4=document.createElement('div');n4.className='cyn';n4.textContent='el arquitecto mide '+arqNum(p.qArq)+' m² en todo el edificio; he puesto los '+arqNum(p.q)+' m² de la zona que dice el cliente';e.appendChild(n4)}
   if(p.repartido){var n3=document.createElement('div');n3.className='cyn';n3.textContent='lo piden los dos: la cantidad del arquitecto se reparte a partes iguales, ajústala a lo de cada uno';e.appendChild(n3)}});
  var N=ARQ.notas||[];if(N.length){var box=document.getElementById('arqPanel');var d=document.createElement('details');d.className='cyc';d.open=true;
   var grupos={};N.forEach(function(n){var k=String(n.dueno);(grupos[k]=grupos[k]||[]).push(n.t)});
