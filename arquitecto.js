@@ -52,7 +52,7 @@ window.parseMediciones=function(lineas){var c=null;try{c=parseCype(lineas)}catch
 if(c&&c.length){ARQ.dudosas=[];ARQ.cype={resumen:c.resumen,capitulos:c.capitulos,secciones:c.secciones};var a=[].slice.call(c);a.forEach(function(p){p.cype=true});return a}
 return _pm(lineas)};
 
-function arqEsCype(){return ARQ.med&&ARQ.med.length&&ARQ.med[0].cype}
+function arqEsCype(){return !!(ARQ.med&&ARQ.med.some(function(p){return p.cype}))}
 function arqUnidadIgual(a,b){a=(a||'').replace(/^pa$/,'ud');b=(b||'').replace(/^pa$/,'ud');return a===b||(/^ml?$/.test(a)&&/^ml?$/.test(b))}
 function arqPrecioTuyo(p){if(p.pr!=null)return p.pr;var ap=precioAprendido(p.largo||p.t);if(!(ap>0))ap=precioAprendido(p.t);if(ap>0){p.deMemoria=true;return ap}
 return 0}
@@ -171,3 +171,94 @@ b.innerHTML='<b style="font-size:12.5px">Así trabajamos su obra</b>'+
 '<div style="margin-top:5px">Véalo aquí: <a href="'+u+'" data-pdfurl="'+u+'" target="_blank" rel="noopener" style="color:var(--gold,#8B6914);font-weight:700;text-decoration:underline">'+uc+'</a></div>'}catch(e){}return r};
 var _msgCli=window.mensajeCliente;
 window.mensajeCliente=function(nom,num,url){var t=_msgCli.apply(this,arguments);try{if(esDeArquitecto())t=t.replace(/(\n\nCualquier duda)/,'\n\n📱 Cómo trabajamos y cómo seguirá su obra desde el móvil, con fotos: '+webSeguimiento()+'$1')}catch(_){}return t};
+
+/* ===== el escrito del cliente (lo que pide cada dueño) junto al PDF del arquitecto ===== */
+/* las lineas de un PDF que no es del arquitecto se guardan como "escrito" para leerlo despues */
+var _pmEsc=window.parseMediciones;
+window.parseMediciones=function(lineas){var r=_pmEsc.apply(this,arguments);
+ if(r&&r.length&&r[0].cype){try{ARQ.cabCype=parseCabecera(lineas)}catch(_){}return r}
+ ARQ.escritos=(ARQ.escritos||[]).concat([lineas]);return r};
+var _aplCab2=window.aplicarCabecera;
+window.aplicarCabecera=function(){if(ARQ.cabCype){var n=ARQ.cab&&ARQ.cab.nombres;ARQ.cab=JSON.parse(JSON.stringify(ARQ.cabCype));if(n){ARQ.cab.nombres=n}}return _aplCab2.apply(this,arguments)};
+function arqDuenos(){var c=ARQ.cab||ARQ.cabCype||{};var t=c.cliTodo||c.cli||'';var ns=c.nombres||t.split(/\s+(?:eta|y|e)\s+/i).map(function(s){return s.trim()}).filter(function(s){return s.split(/\s+/).length>=2});return ns.length>1?ns:[]}
+function arqPal(s){return norm(String(s||'')).replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(function(w){return w.length>2&&!VACIAS_E[w]})}
+var VACIAS_E={con:1,del:1,los:1,las:1,por:1,para:1,una:1,que:1,sus:1,mas:1,muy:1,este:1,esta:1,cada:1,sin:1,sobre:1,entre:1};
+/* lee el escrito: secciones (comun / de cada dueno), partidas que nombra, metros que da y lo que pide que no es partida */
+function leerEscrito(L,M,duenos){
+ var lin=L.map(function(l){return String(l).replace(/[​­]/g,'').replace(/\s+/g,' ').trim()}).filter(Boolean);
+ var cnt={};lin.forEach(function(l){cnt[l]=(cnt[l]||0)+1});
+ var balas=[],act=null;
+ lin.forEach(function(l){if(cnt[l]>=3&&l.length<70)return;if(/^\d{1,2}$/.test(l))return;
+  var m=l.match(/^[-–•·]\s*(.*)$/);if(m){act={t:m[1]};balas.push(act)}else if(act){act.t+=' '+l}});
+ var unicos=duenos.map(function(n,i){var mios=arqPal(n),otros=[].concat.apply([],duenos.filter(function(_,j){return j!==i}).map(arqPal));return mios.filter(function(w){return otros.indexOf(w)<0})});
+ var quien=function(t){var ws=arqPal(t);if(/comun/i.test(t))return 'comun';var hit=-1;unicos.forEach(function(u,i){if(ws.some(function(w){return w.length>=4&&u.some(function(x){return x.indexOf(w)===0||w.indexOf(x)===0})}))hit=i});return hit};
+ var claves=M.map(function(p){return arqPal(p.largo||p.t).slice(0,7)});
+ var sec=null,area=null,res={marcas:[],notas:[]};
+ balas.forEach(function(b){var t=b.t.trim();if(!t)return;
+  var h=t.match(/^[A-Z]\s*\.\s*-\s*(.+)$/);if(h){var q=quien(h[1]);sec={dueno:q===-1?'comun':q,t:h[1]};area=null;return}
+  if(!sec)return;
+  if(/^\d+(\.\d+)*\.-\s/.test(t))return;
+  var am=t.match(/(\d+(?:[.,]\d+)?)\s*m\s*2\b/i);if(am&&t.length<70&&!/suelo|pavimento|ceramic/i.test(t)){area=arqLee(am[1]);return}
+  var ws=arqPal(t.replace(/^#+\S*\s+\S+\s+/,'')).slice(0,30);var mejor=-1,mp=0;
+  var cod=(t.match(/^(\d+(?:\.\d+)+)\s/)||[])[1];
+  M.forEach(function(p,i){if(cod&&p.code===cod){mejor=i;mp=9;return}var k=claves[i];if(k.length<4)return;var ok=k.filter(function(w){return ws.indexOf(w)>=0}).length/k.length;if(ok>mp||(ok===mp&&mejor>=0&&p.cap<M[mejor].cap)){mp=ok;mejor=i}});
+  if(mejor>=0&&mp>=0.85){res.marcas.push({i:mejor,dueno:sec.dueno,area:area});return}
+  if(t.length>8)res.notas.push({dueno:sec.dueno,t:t.replace(/\s*…\s*$/,'')})});
+ return res}
+/* aplica el escrito a la lista del arquitecto */
+function aplicarEscritos(){if(!ARQ.escritos||!ARQ.escritos.length||!arqEsCype())return;var duenos=arqDuenos();var nd=Math.max(1,duenos.length);
+ var todos={marcas:[],notas:[]};ARQ.escritos.forEach(function(L){var r=leerEscrito(L,ARQ.med,duenos.length?duenos:['cliente']);todos.marcas=todos.marcas.concat(r.marcas);todos.notas=todos.notas.concat(r.notas)});ARQ.escritos=[];
+ var porP={};todos.marcas.forEach(function(m){(porP[m.i]=porP[m.i]||[]).push(m)});
+ Object.keys(porP).forEach(function(i){var p=ARQ.med[i],ms=porP[i];p.on=true;p.delEscrito=true;
+  if(ms.some(function(m){return m.dueno==='comun'})||nd<2){p.para='comun'}
+  else{var ds=ms.map(function(m){return m.dueno}).filter(function(d,k,a){return a.indexOf(d)===k});p.para=ds.length===1?String(ds[0]):'comun';if(ds.length>1)p.repartido=true}
+  if(!(p.q>0)){var a=ms.map(function(m){return m.area}).filter(Boolean)[0];if(a&&/^m2$/.test(p.u)){p.q=a;p.qEscrito=true}}});
+ ARQ.notas=todos.notas;ARQ.duenos=duenos;
+ var ai=document.getElementById('arqInfo');if(ai)ai.textContent='He leído también lo que pide el cliente: '+Object.keys(porP).length+' partidas marcadas solas'+(duenos.length>1?', repartidas entre '+duenos.join(' y '):'')+'. Repásalas.'}
+/* pantalla: a quien va cada partida, lo que pide sin partida, y el boton de hacer los presupuestos */
+var _renderCype=window.renderCype;
+window.renderCype=function(){ARQ.med=ARQ.med.filter(function(p){return p.cype});aplicarEscritos();if(!ARQ.duenos)ARQ.duenos=arqDuenos();var r=_renderCype.apply(this,arguments);var D=ARQ.duenos||[];
+ if(D.length>1)ARQ.med.forEach(function(p){var e=document.getElementById('cyp_'+p.i);if(!e)return;var v=e.querySelector('.cyv');if(!v)return;var s=document.createElement('span');
+  s.innerHTML='Para <select onchange="ARQ.med['+p.i+'].para=this.value;cypeBarra()" style="padding:5px"><option value="comun">'+(D.length===2?'los dos, a medias':'todos, a partes iguales')+'</option>'+D.map(function(n,k){return '<option value="'+k+'"'+(String(p.para)===String(k)?' selected':'')+'>solo '+arqEsc(n.split(' ')[0]+' '+(n.split(' ')[1]||''))+'</option>'}).join('')+'</select>';v.appendChild(s);
+  if(p.qEscrito){var n2=document.createElement('div');n2.className='cyn';n2.textContent='metros sacados de lo que pide el cliente (el arquitecto no lo midió), repásalos';e.appendChild(n2)}
+  if(p.repartido){var n3=document.createElement('div');n3.className='cyn';n3.textContent='lo piden los dos: la cantidad del arquitecto se reparte a partes iguales, ajústala a lo de cada uno';e.appendChild(n3)}});
+ var N=ARQ.notas||[];if(N.length){var box=document.getElementById('arqPanel');var d=document.createElement('details');d.className='cyc';d.open=true;
+  var grupos={};N.forEach(function(n){var k=String(n.dueno);(grupos[k]=grupos[k]||[]).push(n.t)});
+  d.innerHTML='<summary><span class="cyt">Lo que pide el cliente y no es una partida del arquitecto ('+N.length+')</span></summary><div style="padding:0 12px 10px;font-size:14px">'+Object.keys(grupos).map(function(k){return '<div style="margin-top:6px"><b>'+(k==='comun'?'Para los dos':'Para '+arqEsc(D[+k]||''))+'</b><ul style="margin:4px 0 0 18px;padding:0">'+grupos[k].map(function(t){return '<li style="margin-bottom:3px">'+arqEsc(t)+'</li>'}).join('')+'</ul></div>'}).join('')+'<p style="color:var(--muted);font-size:12px;margin:8px 0 0">Para que no se te olvide nada: añádelo tú en el presupuesto si lo haces.</p></div>';
+  box.insertBefore(d,document.getElementById('cyBarra'))}
+ return r};
+/* precios: X veces el del arquitecto, en las que no tengan el suyo */
+function cypeFactor(){var e=document.getElementById('cyFac');var k=arqLee(e&&e.value);if(!(k>0)){alert('Escribe cuántas veces el precio del arquitecto, por ejemplo 1,5');return}var n=0;ARQ.med.forEach(function(p){if(p.on&&!(p.pr>0)&&p.pa>0){var v=p.pa*k;p.pr=v>=20?Math.round(v):Math.round(v*100)/100;p.estimado=true;n++}});renderCype();var ai=document.getElementById('arqInfo');if(ai)ai.textContent=n+' precios puestos a '+String(k).replace('.',',')+' veces el del arquitecto. Repásalos.'}
+/* hacer un presupuesto por dueno de una vez */
+function hacerPresupuestos(){var D=ARQ.duenos||[];var M=ARQ.med.filter(function(p){return p.on});if(!M.length){alert('Marca primero las partidas');return}
+ var falt=M.filter(function(p){return !(p.pr>0)}).length;if(falt&&!confirm(falt+' partidas van sin precio (a cero). ¿Hago los presupuestos así?'))return;
+ leer();var dir=cur.dir||((ARQ.cab||{}).dir)||'',tel=cur.tel,email=cur.email;var cab=ARQ.cab,cype=ARQ.cype,med=ARQ.med,nombreDoc=ARQ.nombre;var hechos=[];
+ var primero=!(cur.lineas||[]).length;
+ D.forEach(function(nombre,k){if(!(primero&&k===0)){window.__sinPintarAnt=true;nuevo();window.__sinPintarAnt=false}
+  document.getElementById('f_nom').value=nombre;document.getElementById('f_dir').value=dir;try{rellenarDeAgenda()}catch(_){}leer();
+  M.forEach(function(p){var parte=p.para==='comun'?1/D.length:(String(p.para)===String(k)?1:0);if(p.repartido&&p.para==='comun')parte=1/D.length;if(!parte)return;
+   var q=Math.round((p.q>0?p.q:1)*parte*1000)/1000;cur.lineas.push({d:arqTexto(p),q:q,u:p.u,p:p.pr>0?p.pr:0,code:p.code,cap:p.secT||p.capT||''})});
+  cur.arqLeidas=M.length;renderLineas();guardar();
+  var b=cur.lineas.reduce(function(a,l){return a+l.q*l.p},0);hechos.push({n:cur.num,nom:nombre,b:b,l:cur.lineas.length})});
+ ARQ.cab=cab;ARQ.cype=cype;ARQ.med=med;ARQ.nombre=nombreDoc;M.forEach(function(p){p.metida=hechos.map(function(h){return h.n}).join(' y ')});
+ window.ULT_ARQ={med:ARQ.med,cype:ARQ.cype,cab:ARQ.cab,nombre:ARQ.nombre};
+ var htmlHechos='<b>Hechos los '+hechos.length+' presupuestos:</b> '+hechos.map(function(h){return 'nº '+h.n+' de '+arqEsc(h.nom)+' ('+h.l+' partidas, '+eur(h.b)+' + IVA)'}).join(' · ')+'. Estás en el último; los demás los tienes en <b>Clientes</b>. Revísalos y dale a «Enviar al cliente» en cada uno.';var pon=function(){var m=document.getElementById('msg');if(m)m.innerHTML=htmlHechos;var ai=document.getElementById('arqInfo');if(ai)ai.innerHTML=htmlHechos};pon();setTimeout(pon,2600);
+ try{renderCype()}catch(_){}document.getElementById('tb').scrollIntoView({behavior:'smooth',block:'start'})}
+var _barra2=window.cypeBarra;
+window.cypeBarra=function(){_barra2.apply(this,arguments);var b=document.getElementById('cyBarra');if(!b)return;var M=ARQ.med.filter(function(p){return p.on});var row=b.querySelector('.row');if(!row||!M.length)return;
+ if(!document.getElementById('cyFacBox')){var f=document.createElement('div');f.id='cyFacBox';f.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;width:100%;font-size:14px';f.innerHTML='Las que no tengan precio, a <input id="cyFac" inputmode="decimal" placeholder="1,5" style="width:64px;text-align:right;padding:6px"> veces el del arquitecto <button class="sec mini" onclick="cypeFactor()">Poner</button>';row.parentNode.insertBefore(f,row)}
+ var D=ARQ.duenos||[];var hb=document.getElementById('cyHacer');
+ if(D.length>1){var txt='Hacer los '+D.length+' presupuestos ('+D.map(function(n){return n.split(' ')[0]}).join(' y ')+')';if(!hb){hb=document.createElement('button');hb.id='cyHacer';hb.className='ok';hb.onclick=hacerPresupuestos;row.appendChild(hb)}if(hb.textContent!==txt)hb.textContent=txt;
+  var met=[].slice.call(row.querySelectorAll('button')).filter(function(x){return /^Meter las/.test(x.textContent)})[0];if(met){met.className='sec';met.textContent='Meter las '+M.length+' solo en este presupuesto'}}};
+var _pintAnt=window.pintarArqAnterior;window.pintarArqAnterior=function(){if(window.__sinPintarAnt)return;return _pintAnt.apply(this,arguments)};
+/* en el movil la barra entera tapaba media pantalla: va al final de la lista y arriba queda una tira fina */
+(function(){var s=document.createElement('style');s.textContent='#arqPanel .cyb{position:static!important;box-shadow:none!important}'+
+'#arqPanel .cymini{position:sticky;bottom:0;z-index:6;display:flex;gap:8px;align-items:center;justify-content:space-between;background:#fff;border:2px solid var(--gold,#8B6914);border-radius:10px;padding:8px 10px;margin-top:8px;box-shadow:0 -4px 14px rgba(0,0,0,.1);font-size:14px}'+
+'#arqPanel .cymini button{flex:0 0 auto;padding:8px 12px}';document.head.appendChild(s)})();
+var _barra3=window.cypeBarra;
+window.cypeBarra=function(){_barra3.apply(this,arguments);var b=document.getElementById('cyBarra');if(!b)return;var box=document.getElementById('arqPanel');var mi=document.getElementById('cyMini');
+ var M=ARQ.med.filter(function(p){return p.on});var tot=M.reduce(function(a,p){return a+(p.q||0)*(p.pr||0)},0);var falt=M.filter(function(p){return !(p.pr>0)}).length;
+ if(!mi){mi=document.createElement('div');mi.id='cyMini';mi.className='cymini';box.insertBefore(mi,b)}
+ var t=M.length?'<span><b>'+M.length+' marcadas</b> · '+eur(tot)+(falt?' · <span style="color:#b3261e">'+falt+' sin precio</span>':'')+'</span><button class="ok" onclick="document.getElementById(\'cyBarra\').scrollIntoView({behavior:\'smooth\',block:\'center\'})">Precios y presupuestos ↓</button>':'<span>Marca las partidas que vas a hacer tú.</span>';
+ if(mi.__t!==t){mi.__t=t;mi.innerHTML=t}
+ if((ARQ.duenos||[]).length>1)[].slice.call(b.querySelectorAll('button')).forEach(function(x){if(/^Cantidades a la mitad/.test(x.textContent))x.style.display='none'})};
