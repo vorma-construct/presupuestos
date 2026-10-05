@@ -22,7 +22,7 @@
      "d": "Excavación en interior de edificio, en suelo de arcilla semidura, con medios mecánicos, y carga a camión.",
      "q": 26.25,
      "u": "m3",
-     "p": 6.01,
+     "p": 35.48,
      "code": "1.1.2.1.5",
      "cap": "Movimientos de tierras",
      "precio": "real"
@@ -146,7 +146,7 @@
      "d": "Excavación en interior de edificio, en suelo de arcilla semidura, con medios mecánicos, y carga a camión.",
      "q": 26.25,
      "u": "m3",
-     "p": 6.01,
+     "p": 35.48,
      "code": "1.1.2.1.5",
      "cap": "Movimientos de tierras",
      "precio": "real"
