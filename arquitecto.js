@@ -61,7 +61,7 @@ function arqEsc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){ret
 function arqNum(n){return (Math.round(n*1000)/1000).toLocaleString('es-ES',{maximumFractionDigits:3})}
 
 /* pantalla: capitulos plegados, marcas lo que haces tu */
-function renderCype(){var box=document.getElementById('arqPanel');var M=ARQ.med,R=(ARQ.cype&&ARQ.cype.resumen)||{};
+function renderCype(){var box=document.getElementById('arqPanel');if(box&&box.querySelector('details.cyc'))abiertos();var AB=ARQ.__ab||{};var M=ARQ.med,R=(ARQ.cype&&ARQ.cype.resumen)||{};
 M.forEach(function(p){p.pr=arqPrecioTuyo(p)});
 var tot=M.reduce(function(a,p){return a+(p.imp!=null?p.imp:p.q*(p.pa||0))},0);
 var cuadra=R.total?Math.abs(tot-R.total)<0.05:null;
@@ -73,15 +73,15 @@ var h='<h3 style="font-size:19px;margin-bottom:4px">Presupuesto del arquitecto: 
 '<p style="margin:0 0 8px"><b>Marca solo lo que vas a hacer tú.</b> Toca un capítulo para abrirlo. Puedes cambiar la cantidad y poner tu precio.</p>'+
 '<div class="row" style="margin-bottom:8px"><button class="mini sec" onclick="cypeTodo(true)">Marcar todo</button><button class="mini sec" onclick="cypeTodo(false)">Desmarcar todo</button></div>';
 caps.forEach(function(C){var ps=[].concat.apply([],C.secs.map(function(s){return s.ps}));var imp=ps.reduce(function(a,p){return a+(p.imp||0)},0);
-h+='<details class="cyc"'+(C.abierto?' open':'')+' data-cap="'+arqEsc(C.n)+'" ontoggle="cypeAbre(this)"><summary><span class="cyt">'+arqEsc(C.n)+'. '+arqEsc(C.t)+'</span><span class="cym" id="cyc_'+arqEsc(C.n)+'"></span><span class="cyi">'+eur(imp)+'</span></summary>';
+h+='<details class="cyc"'+(AB[C.n]?' open':'')+' data-cap="'+arqEsc(C.n)+'" ontoggle="cypeAbre(this)"><summary><span class="cyt">'+arqEsc(C.n)+'. '+arqEsc(C.t)+'</span><span class="cym" id="cyc_'+arqEsc(C.n)+'"></span><span class="cyi">'+eur(imp)+'</span></summary>';
 h+='<label class="cys"><input type="checkbox" onchange="cypeGrupo(\'cap\',\''+arqEsc(C.n)+'\',this.checked)"> Todo el capítulo</label>';
 C.secs.forEach(function(S){h+='<div class="cyh"><label><input type="checkbox" onchange="cypeGrupo(\'sec\',\''+arqEsc(S.k)+'\',this.checked)"> <b>'+arqEsc(S.k)+' '+arqEsc(S.t)+'</b></label></div>';
 S.ps.forEach(function(p){var sinMed=!(p.q>0);
 h+='<div class="cyp'+(p.on?' on':'')+(p.metida?' ya':'')+'" id="cyp_'+p.i+'"><label class="cyl"><input type="checkbox" data-i="'+p.i+'" data-cap="'+arqEsc(p.cap)+'" data-sec="'+arqEsc(p.sec||p.cap)+'"'+(p.on?' checked':'')+' onchange="cypeMarca('+p.i+',this.checked)"><span>'+arqEsc(p.t)+'</span></label>'+
 '<div class="cyd">'+arqEsc(p.code)+' · arquitecto: '+(sinMed?'sin medición':arqNum(p.q)+' '+arqUd(p.u))+' a '+eur(p.pa||0)+(p.metida?' · <b>ya metida en el presupuesto '+arqEsc(p.metida)+'</b>':'')+'</div>'+
-'<div class="cyv"><span>Cantidad <input inputmode="decimal" value="'+(p.q>0?String(p.q).replace('.',','):'')+'" onchange="cypeCant('+p.i+',this.value)"> '+arqUd(p.u)+'</span>'+
-'<span>Tu precio <input inputmode="decimal" value="'+(p.pr>0?String(p.pr).replace('.',','):'')+'" placeholder="0" onchange="cypePrecio('+p.i+',this.value)"'+(p.pr>0?'':' class="falta"')+'> €</span></div>'+
-(p.mitad?'<div class="cyn ok">la mitad de lo que mide el arquitecto</div>':'')+(p.dePa?'<div class="cyn">precio del arquitecto, repásalo</div>':(p.deMemoria?'<div class="cyn ok">tu precio de otras veces</div>':(p.deTarifa?'<div class="cyn ok">de tu tarifa</div>':'')))+'</div>'})});
+'<div class="cyv"><span>Cantidad <input inputmode="decimal" value="'+(p.q>0?String(p.q).replace('.',','):'')+'" oninput="cypeCant('+p.i+',this.value)"> '+arqUd(p.u)+'</span>'+
+'<span>Tu precio <input inputmode="decimal" value="'+(p.pr>0?String(p.pr).replace('.',','):'')+'" placeholder="0" oninput="cypePrecio('+p.i+',this.value)"'+(p.pr>0?'':' class="falta"')+'> €</span></div>'+
+(p.mitad?'<div class="cyn ok">la mitad de lo que mide el arquitecto</div>':'')+(p.estimado?'<div class="cyn">sacado con tu proporción, repásalo</div>':'')+(p.dePa?'<div class="cyn">precio del arquitecto, repásalo</div>':(p.deMemoria?'<div class="cyn ok">tu precio de otras veces</div>':(p.deTarifa?'<div class="cyn ok">de tu tarifa</div>':'')))+'</div>'})});
 h+='</details>'});
 h+='<div class="cyb" id="cyBarra"></div>';
 box.style.display='block';box.innerHTML=h;cypeBarra();cypeContar();
@@ -89,9 +89,9 @@ setTimeout(function(){try{pintarContinuar();plegarDatos()}catch(_){}},60)}
 function cypeAbre(d){var c=d.getAttribute('data-cap');ARQ.med.forEach(function(p){if(p.cap===c)p.__ab=d.open});}
 function cypeContar(){var n={};ARQ.med.forEach(function(p){if(!n[p.cap])n[p.cap]=[0,0];n[p.cap][1]++;if(p.on)n[p.cap][0]++});Object.keys(n).forEach(function(c){var e=document.getElementById('cyc_'+c);if(e)e.textContent=n[c][0]?n[c][0]+' marcadas':''})}
 function cypeBarra(){var b=document.getElementById('cyBarra');if(!b)return;var M=ARQ.med.filter(function(p){return p.on});var tot=M.reduce(function(a,p){return a+(p.q||0)*(p.pr||0)},0);var falt=M.filter(function(p){return !(p.pr>0)}).length;var arq=M.reduce(function(a,p){return a+(p.imp!=null&&p.q===p.q0?p.imp:(p.q||0)*(p.pa||0))},0);
-b.innerHTML=M.length?'<div><b>'+M.length+' marcadas</b> · con tus precios <b>'+eur(tot)+'</b>'+(falt?' · <span style="color:#b3261e">'+falt+' sin tu precio</span>':'')+'<br><small>Lo mismo con los precios del arquitecto: '+eur(arq)+'</small></div>'+
+var __h=M.length?'<div><b>'+M.length+' marcadas</b> · con tus precios <b>'+eur(tot)+'</b>'+(falt?' · <span style="color:#b3261e">'+falt+' sin tu precio</span>':'')+'<br><small>Lo mismo con los precios del arquitecto: '+eur(arq)+'</small></div>'+
 '<div class="row" style="margin-top:6px"><button class="sec" onclick="cypeMitad()">Cantidades a la mitad (obra a medias entre dos dueños)</button>'+(falt?'<button class="sec" onclick="cypePonerArq()">Poner el precio del arquitecto a las '+falt+' sin precio</button>':'')+'<button class="ok" onclick="addCype()">Meter las '+M.length+' en el presupuesto</button></div>':
-'<div>Marca las partidas que vas a hacer tú.</div>'}
+'<div>Marca las partidas que vas a hacer tú.</div>';if(b.__h===__h)return;b.__h=__h;b.innerHTML=__h}
 function cypeMitad(){var n=0;ARQ.med.forEach(function(p){if(p.on&&p.q>0&&!p.mitad){p.q=Math.round(p.q/2*1000)/1000;p.mitad=true;n++}});abiertos();renderCype();var ai=document.getElementById('arqInfo');if(ai)ai.textContent=n?'Puesta la mitad de la cantidad en '+n+' partidas marcadas.':'Las marcadas ya estaban a la mitad.'}
 function cypeMarca(i,v){var p=ARQ.med[i];p.on=v;var e=document.getElementById('cyp_'+i);if(e)e.classList.toggle('on',v);cypeBarra();cypeContar()}
 function cypeGrupo(tipo,k,v){document.querySelectorAll('#arqPanel .cyl input[data-'+tipo+'="'+k+'"]').forEach(function(c){c.checked=v;cypeMarca(+c.getAttribute('data-i'),v)});
@@ -99,7 +99,7 @@ if(tipo==='cap')document.querySelectorAll('#arqPanel details[data-cap="'+k+'"] .
 function cypeTodo(v){ARQ.med.forEach(function(p){p.on=v&&!p.metida});renderCype()}
 function arqLee(v){v=String(v||'').trim();if(/,/.test(v))v=v.replace(/\./g,'').replace(',','.');return parseFloat(v)||0}
 function cypeCant(i,v){ARQ.med[i].q=arqLee(v);cypeBarra()}
-function cypePrecio(i,v){var p=ARQ.med[i];p.pr=arqLee(v);p.dePa=false;if(p.pr>0)aprendePrecio(p.largo||p.t,p.pr,p.u);var e=document.querySelector('#cyp_'+i+' .cyv span:nth-child(2) input');if(e)e.classList.toggle('falta',!(p.pr>0));cypeBarra()}
+function cypePrecio(i,v){var p=ARQ.med[i];p.pr=arqLee(v);p.dePa=false;p.estimado=false;if(p.pr>0)aprendePrecio(p.largo||p.t,p.pr,p.u);var e=document.querySelector('#cyp_'+i+' .cyv span:nth-child(2) input');if(e)e.classList.toggle('falta',!(p.pr>0));cypeBarra()}
 function cypePonerArq(){var n=0;ARQ.med.forEach(function(p){if(p.on&&!(p.pr>0)&&p.pa>0){p.pr=p.pa;p.dePa=true;n++}});abiertos();renderCype();var ai=document.getElementById('arqInfo');if(ai)ai.textContent=n+' partidas con el precio del arquitecto. Están marcadas para que las repases.'}
 function abiertos(){var o={};document.querySelectorAll('#arqPanel details.cyc').forEach(function(d){if(d.open)o[d.getAttribute('data-cap')]=1});ARQ.__ab=o}
 var _renderArq=window.renderArq;
@@ -147,3 +147,10 @@ if(c&&c.nombres)c.cli=c.nombres[c.idx||0];return _aplCab.apply(this,arguments)};
 var _usarAnt=window.usarArqAnterior;
 window.usarArqAnterior=function(){var U=window.ULT_ARQ;if(U&&U.cab){var c=JSON.parse(JSON.stringify(U.cab));if(c.nombres){c.idx=((c.idx||0)+1)%c.nombres.length;U.cab.idx=c.idx}ARQ.cab=c}
 var r=_usarAnt.apply(this,arguments);try{aplicarCabecera()}catch(_){}return r};
+/* su proporcion: con los precios que ya ha puesto el, cuantas veces cobra lo del arquitecto, y con eso rellena el resto */
+function cypeRatio(){var r=[];ARQ.med.forEach(function(p){if(p.pr>0&&p.pa>0&&!p.dePa&&!p.estimado)r.push(p.pr/p.pa)});r.sort(function(a,b){return a-b});if(r.length<2)return null;var m=Math.floor(r.length/2);return {k:r.length%2?r[m]:(r[m-1]+r[m])/2,n:r.length}}
+function cypeProporcion(){var R=cypeRatio();if(!R)return;var n=0;ARQ.med.forEach(function(p){if(p.on&&!(p.pr>0)&&p.pa>0){var v=p.pa*R.k;p.pr=v>=20?Math.round(v):Math.round(v*100)/100;p.estimado=true;n++}});abiertos();renderCype();
+var ai=document.getElementById('arqInfo');if(ai)ai.textContent=n+' precios sacados con tu proporción: cobras '+R.k.toFixed(2).replace('.',',')+' veces lo del arquitecto. Están marcados para que los repases.'}
+var _barra=window.cypeBarra;
+window.cypeBarra=function(){_barra.apply(this,arguments);var b=document.getElementById('cyBarra');if(!b)return;var R=cypeRatio();var falt=ARQ.med.filter(function(p){return p.on&&!(p.pr>0)&&p.pa>0}).length;if(!R||!falt){var v=document.getElementById('cyRatio');if(v)v.remove();return}
+var row=b.querySelector('.row');if(!row)return;var txt='Rellenar las '+falt+' sin precio con tu proporción ('+R.k.toFixed(2).replace('.',',')+' veces el arquitecto)';var ya=document.getElementById('cyRatio');if(ya&&ya.textContent===txt)return;if(ya)ya.remove();var bt=document.createElement('button');bt.id='cyRatio';bt.className='ok';bt.style.background='#5B4A12';bt.textContent=txt;bt.onclick=cypeProporcion;row.insertBefore(bt,row.firstChild)};
