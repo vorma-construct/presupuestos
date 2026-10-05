@@ -63,7 +63,7 @@ def idx(s):
     return s
 cambia('index.html',idx)
 if os.path.exists(f'{SRC}/empresas/{ID}/doc.css'):
-    cambia('index.html',lambda s:s.replace("backgroundColor:'#FAF6EC'","backgroundColor:'#FFFFFF'"))
+    cambia('index.html',lambda s:s.replace("backgroundColor:'#FAF6EC'","backgroundColor:'#FFFFFF'").replace("c2.fillStyle='#FAF6EC'","c2.fillStyle='#FFFFFF'").replace("Math.abs(d[x]-250)>6||Math.abs(d[x+1]-246)>6||Math.abs(d[x+2]-236)>6","Math.abs(d[x]-255)>6||Math.abs(d[x+1]-255)>6||Math.abs(d[x+2]-255)>6"))
     cambia('firma.html',lambda s:s.replace("'TitAzk','DejaVu Serif Condensed',Georgia,serif!important","'LucasTit',sans-serif!important"))
 cambia('oficio.js',lambda s:'\n'.join(l for l in s.split('\n') if 'Ioan cobra' not in l))
 def obra(s):
