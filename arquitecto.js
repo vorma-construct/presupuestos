@@ -195,7 +195,7 @@ function leerEscrito(L,M,duenos){
  var claves=M.map(function(p){return arqPal(p.largo||p.t).slice(0,7)});
  var sec=null,area=null,res={marcas:[],notas:[]};
  balas.forEach(function(b){var t=b.t.trim();if(!t)return;
-  var h=t.match(/^[A-Z]\s*\.\s*-\s*(.+)$/);if(h){var q=quien(h[1]);sec={dueno:q===-1?'comun':q,t:h[1]};area=null;return}
+  var h=t.match(/^([A-Z])\s*\.\s*-\s*(.+)$/);if(h){var q=quien(h[2]);sec={dueno:q===-1?'comun':q,t:h[2],letra:h[1]};area=null;return}
   if(!sec)return;
   if(/^\d+(\.\d+)*\.-\s/.test(t))return;
   var am=t.match(/(\d+(?:[.,]\d+)?)\s*m\s*2\b/i);if(am&&t.length<70&&!/suelo|pavimento|ceramic/i.test(t)){area=arqLee(am[1]);return}
@@ -203,18 +203,45 @@ function leerEscrito(L,M,duenos){
   var cod=(t.match(/^(\d+(?:\.\d+)+)\s/)||[])[1];
   M.forEach(function(p,i){if(cod&&p.code===cod){mejor=i;mp=9;return}var k=claves[i];if(k.length<4)return;var ok=k.filter(function(w){return ws.indexOf(w)>=0}).length/k.length;if(ok>mp||(ok===mp&&mejor>=0&&p.cap<M[mejor].cap)){mp=ok;mejor=i}});
   if(mejor>=0&&mp>=0.85){res.marcas.push({i:mejor,dueno:sec.dueno,area:area});return}
+  if(sec.dueno!=='comun'&&/\bresto de (las |los )?(instalaciones|partidas|trabajos)|todas las partidas/i.test(t))(res.resto=res.resto||[]).push({dueno:sec.dueno,letra:sec.letra,t:sec.t});
   if(t.length>8)res.notas.push({dueno:sec.dueno,t:t.replace(/\s*…\s*$/,'')})});
  return res}
 /* aplica el escrito a la lista del arquitecto */
 function aplicarEscritos(){if(!ARQ.escritos||!ARQ.escritos.length||!arqEsCype())return;var duenos=arqDuenos();var nd=Math.max(1,duenos.length);
- var todos={marcas:[],notas:[]};ARQ.escritos.forEach(function(L){var r=leerEscrito(L,ARQ.med,duenos.length?duenos:['cliente']);todos.marcas=todos.marcas.concat(r.marcas);todos.notas=todos.notas.concat(r.notas)});ARQ.escritos=[];
+ var todos={marcas:[],notas:[]};todos.resto=[];ARQ.escritos.forEach(function(L){var r=leerEscrito(L,ARQ.med,duenos.length?duenos:['cliente']);todos.marcas=todos.marcas.concat(r.marcas);todos.notas=todos.notas.concat(r.notas);todos.resto=todos.resto.concat(r.resto||[])});ARQ.escritos=[];
  var porP={};todos.marcas.forEach(function(m){(porP[m.i]=porP[m.i]||[]).push(m)});
  Object.keys(porP).forEach(function(i){var p=ARQ.med[i],ms=porP[i];p.on=true;p.delEscrito=true;
   if(ms.some(function(m){return m.dueno==='comun'})||nd<2){p.para='comun'}
   else{var ds=ms.map(function(m){return m.dueno}).filter(function(d,k,a){return a.indexOf(d)===k});p.para=ds.length===1?String(ds[0]):'comun';if(ds.length>1)p.repartido=true}
   var a=ms.map(function(m){return m.area}).filter(Boolean)[0];if(a&&/^m2$/.test(p.u)){if(!(p.q>0)){p.q=a;p.qEscrito=true}else if(p.q>a*1.05){p.qArq=p.q;p.q=a;p.qZona=true}}});
+ var nResto=arqResto(todos.resto,todos.notas);
  ARQ.notas=todos.notas;ARQ.duenos=duenos;
- var ai=document.getElementById('arqInfo');if(ai)ai.textContent='He leído también lo que pide el cliente: '+Object.keys(porP).length+' partidas marcadas solas'+(duenos.length>1?', repartidas entre '+duenos.join(' y '):'')+'. Repásalas.'}
+ var ai=document.getElementById('arqInfo');if(ai)ai.textContent='He leído también lo que pide el cliente: '+(Object.keys(porP).length+nResto)+' partidas marcadas solas'+(duenos.length>1?', repartidas entre '+duenos.join(' y '):'')+'. Repásalas.'}
+/* "resto de instalaciones y partidas para esta parte de la vivienda": se marcan las partidas del capitulo de su vivienda,
+   menos lo que el propio cliente dice que no (no hay baño, sin termos, lo que construye el, otro suelo, otro aislante) */
+function arqResto(R,N){if(!R||!R.length)return 0;var M=ARQ.med,n=0;
+ var caps=[];M.forEach(function(p){if(caps.indexOf(p.cap)<0&&/vivienda|piso|local|planta/i.test(p.capT||'')&&!/comun/i.test(norm(p.capT||'')))caps.push(p.cap)});if(!caps.length)return 0;
+ var usados={};
+ R.forEach(function(r,k){if(r.__h)return;r.__h=1;
+  var c=caps.filter(function(c){var t=(M.find(function(p){return p.cap===c})||{}).capT||'';return r.letra&&new RegExp('\\b'+r.letra+'\\s*$').test(t.trim())&&!usados[c]})[0]||caps.filter(function(c){return !usados[c]})[0];if(c==null)return;usados[c]=1;
+  var dice=N.filter(function(x){return String(x.dueno)===String(r.dueno)}).map(function(x){return norm(x.t)}).join(' | ');
+  var fuera=[];
+  if(/no hay ba[nñ]o|sin ba[nñ]o/.test(dice))fuera.push([/azulejo|alicatad|revestimiento interior con piezas|cuarto humedo|inodoro|lavabo|plato de ducha|mampara|banera/,'no hay baño']);
+  if(/sin (instalar )?termo|sin calentador/.test(dice))fuera.push([/\btermos?\b|termo electrico|\ba\.c\.s\b|agua caliente sanitaria/,'sin termos']);
+  var yo=dice.match(/(?:construire|hare yo|lo hare|la hare|la haremos|lo haremos)\s+(?:una|un|el|la|los|las)?\s*([a-z]{4,})/g)||[];
+  yo.forEach(function(x){var w=x.split(/\s+/).pop();var re=w==='estufa'?/estufa|chimenea/:new RegExp(w.slice(0,6));fuera.push([re,'lo hace el cliente ('+w+')'])});
+  if(/suelo[^|]{0,40}(ceramic|gres|baldosa)/.test(dice))fuera.push([/entarimado|tarima|parquet|tablas machihembradas/,'el suelo lo quiere de cerámica']);
+  if(/suelo[^|]{0,40}(tarima|madera|parquet)/.test(dice))fuera.push([/pavimento[^.]*(gres|ceramic)/,'el suelo lo quiere de madera']);
+  var mats=(dice.match(/aislante[^|]*/)||[''])[0];var MAT=['lana de roca','lana mineral','corcho','celulosa','poliestireno','xps','eps','poliuretano','fibra de madera','plastico'];var pide=MAT.filter(function(m){return mats.indexOf(m)>=0});
+  if(pide.length)fuera.push([function(t){return /^aislamiento/.test(t.trim())&&MAT.some(function(m){return t.indexOf(m)>=0})&&!pide.some(function(m){return t.indexOf(m)>=0})},'pide otro aislante']);
+  M.forEach(function(p){if(p.cap!==c||!(p.q>0)||p.on)return;var t=norm(p.largo||p.t||'');
+   var x=fuera.filter(function(f){return typeof f[0]==='function'?f[0](t):f[0].test(t)})[0];
+   if(x){p.fueraPor=x[1];return}
+   p.restoDe=String(r.dueno);n++});
+  var capT=(M.find(function(p){return p.cap===c})||{}).capT||'';(ARQ.restos=ARQ.restos||[]).push({dueno:r.dueno,cap:c,capT:capT,n:n,fuera:M.filter(function(p){return p.cap===c&&p.fueraPor}).length});n=0});
+ return 0}
+/* marcar las del resto, a peticion: con las cantidades del arquitecto (de toda la vivienda), para que ponga las de su parte */
+window.arqMarcarResto=function(k){var R=(ARQ.restos||[])[k];if(!R)return;abiertos();ARQ.med.forEach(function(p){if(p.cap===R.cap&&p.restoDe===String(R.dueno)&&!p.on){p.on=true;p.delResto=true;p.para=String(R.dueno)}});R.hecho=true;ARQ.__ab=ARQ.__ab||{};ARQ.__ab[R.cap]=1;renderCype()}
 /* pantalla: a quien va cada partida, lo que pide sin partida, y el boton de hacer los presupuestos */
 var _renderCype=window.renderCype;
 window.renderCype=function(){ARQ.med=ARQ.med.filter(function(p){return p.cype});aplicarEscritos();if(!ARQ.duenos)ARQ.duenos=arqDuenos();var r=_renderCype.apply(this,arguments);var D=ARQ.duenos||[];
@@ -222,7 +249,13 @@ window.renderCype=function(){ARQ.med=ARQ.med.filter(function(p){return p.cype});
   s.innerHTML='Para <select onchange="ARQ.med['+p.i+'].para=this.value;cypeBarra()" style="padding:5px"><option value="comun">'+(D.length===2?'los dos, a medias':'todos, a partes iguales')+'</option>'+D.map(function(n,k){return '<option value="'+k+'"'+(String(p.para)===String(k)?' selected':'')+'>solo '+arqEsc(n.split(' ')[0]+' '+(n.split(' ')[1]||''))+'</option>'}).join('')+'</select>';v.appendChild(s);
   if(p.qEscrito){var n2=document.createElement('div');n2.className='cyn';n2.textContent='metros sacados de lo que pide el cliente (el arquitecto no lo midió), repásalos';e.appendChild(n2)}
   if(p.qZona){var n4=document.createElement('div');n4.className='cyn';n4.textContent='el arquitecto mide '+arqNum(p.qArq)+' m² en todo el edificio; he puesto los '+arqNum(p.q)+' m² de la zona que dice el cliente';e.appendChild(n4)}
+  if(p.delResto){var n5=document.createElement('div');n5.className='cyn';n5.textContent='del «resto de partidas» que pide el cliente: la cantidad es la de toda la vivienda, pon la de su parte';e.appendChild(n5)}
+  if(p.fueraPor){var n6=document.createElement('div');n6.className='cyn';n6.textContent='sin marcar: '+p.fueraPor+', según lo que pide el cliente';e.appendChild(n6)}
   if(p.repartido){var n3=document.createElement('div');n3.className='cyn';n3.textContent='lo piden los dos: la cantidad del arquitecto se reparte a partes iguales, ajústala a lo de cada uno';e.appendChild(n3)}});
+ (ARQ.restos||[]).forEach(function(R,k){var box=document.getElementById('arqPanel');if(!box)return;var d=document.createElement('div');d.style.cssText='background:#FFF4E5;border-left:4px solid #C24A00;padding:10px;border-radius:6px;margin:8px 0;font-size:14px';
+  d.innerHTML=R.hecho?'<b>Marcadas las '+R.n+' partidas de «'+arqEsc(R.capT)+'» para '+arqEsc((D[+R.dueno]||'').split(' ').slice(0,2).join(' '))+'.</b> Las cantidades son las de toda la vivienda: cámbialas por las de su parte antes de hacer el presupuesto.':
+   '<b>'+arqEsc((D[+R.dueno]||'El cliente').split(' ').slice(0,2).join(' '))+' pide «el resto de partidas» de su parte de la vivienda.</b> En «'+arqEsc(R.capT)+'» hay '+R.n+' que encajan'+(R.fuera?' (y '+R.fuera+' que he dejado fuera por lo que dice: baño, termos, lo que hace él…)':'')+'. Ojo: el arquitecto las mide para toda la vivienda, así que tendrás que poner las medidas de su parte.<div style="margin-top:8px"><button class="sec" onclick="arqMarcarResto('+k+')">Marcar esas '+R.n+' partidas</button></div>';
+  box.insertBefore(d,document.getElementById('cyBarra'))});
  var N=ARQ.notas||[];if(N.length){var box=document.getElementById('arqPanel');var d=document.createElement('details');d.className='cyc';d.open=true;
   var grupos={};N.forEach(function(n){var k=String(n.dueno);(grupos[k]=grupos[k]||[]).push(n.t)});
   d.innerHTML='<summary><span class="cyt">Lo que pide el cliente y no es una partida del arquitecto ('+N.length+')</span></summary><div style="padding:0 12px 10px;font-size:14px">'+Object.keys(grupos).map(function(k){return '<div style="margin-top:6px"><b>'+(k==='comun'?'Para los dos':'Para '+arqEsc(D[+k]||''))+'</b><ul style="margin:4px 0 0 18px;padding:0">'+grupos[k].map(function(t){return '<li style="margin-bottom:3px">'+arqEsc(t)+'</li>'}).join('')+'</ul></div>'}).join('')+'<p style="color:var(--muted);font-size:12px;margin:8px 0 0">Para que no se te olvide nada: añádelo tú en el presupuesto si lo haces.</p></div>';

@@ -23,6 +23,7 @@ os.makedirs(f'{OUT}/arreglos',exist_ok=True);open(f'{OUT}/arreglos/auto.json','w
 # presupuestos preparados para esta empresa (enlace ?arreglo=<nombre>)
 if os.path.isdir(f'{SRC}/empresas/{ID}/arreglos'):
     for x in os.listdir(f'{SRC}/empresas/{ID}/arreglos'):shutil.copy2(f'{SRC}/empresas/{ID}/arreglos/{x}',f'{OUT}/arreglos/{x}')
+for a in E.get('arreglos',[]):shutil.copy2(f'{SRC}/arreglos/{a}.json',f'{OUT}/arreglos/{a}.json')
 # iconos: el suyo en todos los tamanos
 big=Image.open(f'{SRC}/empresas/{ID}/icon-512.png').convert('RGBA')
 for f in os.listdir(f'{OUT}/icons'):

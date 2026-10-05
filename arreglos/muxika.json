@@ -135,8 +135,7 @@
      "cap": "Gestión de residuos",
      "fuente": "tarifa del albañil"
     }
-   ],
-   "tel": "642 96 34 38"
+   ]
   },
   {
    "nuevo": true,
@@ -429,9 +428,8 @@
      "cap": "Gestión de residuos",
      "fuente": "tarifa del albañil"
     }
-   ],
-   "tel": "642 96 34 38"
+   ]
   }
  ],
- "ver": "2026-10-05-precios-reales"
+ "ver": "2026-10-05-precios-reales-sintel"
 }
