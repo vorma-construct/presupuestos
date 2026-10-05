@@ -4,6 +4,7 @@
 (function(){
 function espera(fn,ms){return new Promise(function(ok){var t0=Date.now();(function v(){if(fn())return ok(true);if(Date.now()-t0>ms)return ok(false);setTimeout(v,400)})()})}
 function aviso(h){if(window.avisoVigila)return avisoVigila(h);alert(h.replace(/<[^>]+>/g,''))}
+if(/[?&]arreglo=/.test(location.search))return;
 espera(function(){return !!(window.FB&&FB.uid&&FB.db&&window.DB&&DB.presus)},60000).then(function(ok){if(!ok)return;setTimeout(correr,4000)});
 function correr(){fetch('arreglos/auto.json?'+Date.now()).then(function(r){return r.json()}).then(function(L){
  (L.ids||[]).forEach(function(id){fetch('arreglos/'+id+'.json?'+Date.now()).then(function(r){return r.json()}).then(function(A){if(!A.ver)return;var hechos=[];
