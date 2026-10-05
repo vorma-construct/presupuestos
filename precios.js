@@ -83,6 +83,23 @@ window.quitarPdf=function(){if(!confirm('¿Quitar el PDF del arquitecto? Lo que 
  ['arqAnt','cyHoy'].forEach(function(id){var e=document.getElementById(id);if(e)e.remove()});
  var pa=document.getElementById('pdfArq');if(pa)pa.value='';var q=document.getElementById('btnQuitarPdf');if(q)q.style.display='none';
  var c=document.getElementById('cardPdf');if(c)c.querySelectorAll('.arqEscrito,#arqEsc').forEach(function(e){e.remove()})};
+
+/* Mis precios: debajo de cada trabajo, lo que se cobra de media en Bizkaia y cuánto se aleja el suyo */
+function mediaDe(t){if(!BASE)return null;try{var R=precioRealDe({t:t.d,u:t.u,q:1,pa:0});return R&&R.p>0&&!R.sinMercado?R:null}catch(e){return null}}
+function frase(mio,med){if(!(mio>0))return {t:'Sin tu precio: la media es '+eur(med)+'. Si no pones el tuyo, uso la media.',c:'#5E5A55'};var d=Math.round((mio/med-1)*100);
+ if(Math.abs(d)<=10)return {t:'En la media ('+(d>0?'+':'')+d+' %)',c:'#1B6B36'};
+ if(d<0)return {t:'Un '+(-d)+' % por debajo de la media: pierdes '+eur(med-mio)+' por '+(arguments[2]||'unidad'),c:'#B3261E'};
+ return {t:'Un '+d+' % por encima de la media',c:'#8F5A00'}}
+var rt0=window.renderTarifa;
+if(rt0)window.renderTarifa=function(){var r=rt0.apply(this,arguments);var pinta=function(){var box=document.getElementById('tarifaBox');if(!box)return;var T=tarifa(),bajo=0,con=0;
+ box.querySelectorAll('.tar').forEach(function(row){var inp=row.querySelector('input');if(!inp)return;var m=(inp.getAttribute('onchange')||'').match(/setPrecio\('([^']+)'/);if(!m)return;var t=T.find(function(x){return x.id===m[1]});if(!t)return;
+  var R=mediaDe(t);var old=row.querySelector('.tmed');if(old)old.remove();if(!R)return;con++;
+  var d=document.createElement('div');d.className='tmed';d.style.cssText='grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;margin-top:2px';
+  var dib=function(){var mio=num(inp.value),f=frase(mio,R.p,t.u);d.innerHTML='<span style="color:#5E5A55">Media en Bizkaia: <b style="color:#141414">'+eur(R.p)+'</b> / '+t.u+'</span><span style="color:'+f.c+';font-weight:600">'+f.t+'</span>';return mio>0&&mio<R.p*0.9};
+  if(dib())bajo++;inp.addEventListener('input',dib);row.appendChild(d)});
+ var cab=document.getElementById('tarMedRes');if(!cab){cab=document.createElement('div');cab.id='tarMedRes';box.parentNode.insertBefore(cab,box)}
+ cab.className='aviso';cab.style.fontSize='14px';cab.innerHTML=con?('<b>'+(bajo?bajo+' de tus precios están por debajo de lo que se cobra de media en Bizkaia.':'Tus precios están en la media de Bizkaia o por encima.')+'</b> Toca cada grupo para ver la media de cada trabajo y la diferencia con el tuyo.'):''};
+ if(BASE)pinta();else base().then(pinta);return r};
 })(typeof window!=='undefined'?window:globalThis);
 /* listas sin precio (estudios, otros albañiles, arquitectos que no son CYPE): lo que no tenga precio tuyo entra con el de mercado */
 (function(){if(typeof window==='undefined')return;var r0=window.renderArq;if(!r0)return;

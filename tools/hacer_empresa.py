@@ -48,6 +48,13 @@ def idx(s):
     s=s[:i]+"var AJ_DEF={recargoZona:'15',subidaPrecios:'0',iban:'',webSeg:''};"+s[j:]
     for v in ('LOGO','LOGO_PIN','LOGO_T'):s=re.sub(r"var "+v+r"='data:[^']*';","var "+v+"='';",s,count=1)
     s=re.sub(r'(<div class="sheet" id="sh_dosier">.*?)(<div class="foot">)',lambda m:re.sub(r'src="data:image/[^"]*"','src="data:,"',m.group(1))+m.group(2),s,count=1,flags=re.S)
+    if os.path.exists(f'{SRC}/empresas/{ID}/doc.css'):
+        import base64
+        d=open(f'{SRC}/empresas/{ID}/doc.css',encoding='utf-8').read()
+        for k,f in (('{{M800}}','montserrat-latin-800-normal.woff2'),('{{M700}}','montserrat-latin-700-normal.woff2')):
+            fp=f'{SRC}/empresas/{ID}/fonts/{f}'
+            if os.path.exists(fp):d=d.replace(k,base64.b64encode(open(fp,'rb').read()).decode())
+        k=s.index('</style>');s=s[:k]+'\n'+d+'\n'+s[k:]
     if os.path.exists(f'{SRC}/empresas/{ID}/tema.css'):
         s=s.replace('</head>',f'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Figtree:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="empresas/{ID}/tema.css?{int(os.path.getmtime(f"{SRC}/empresas/{ID}/tema.css"))}"></head>',1)
     if os.path.exists(f'{SRC}/empresas/{ID}/tema.js'):
@@ -55,6 +62,9 @@ def idx(s):
     assert 'Y4429633P' not in s and 'Vornicu' not in s.split('</style>')[0]
     return s
 cambia('index.html',idx)
+if os.path.exists(f'{SRC}/empresas/{ID}/doc.css'):
+    cambia('index.html',lambda s:s.replace("backgroundColor:'#FAF6EC'","backgroundColor:'#FFFFFF'"))
+    cambia('firma.html',lambda s:s.replace("'TitAzk','DejaVu Serif Condensed',Georgia,serif!important","'LucasTit',sans-serif!important"))
 cambia('oficio.js',lambda s:'\n'.join(l for l in s.split('\n') if 'Ioan cobra' not in l))
 def obra(s):
     s=s.replace('Vorma Construct',E['nombreApp']).replace('icons/logo.svg',f'empresas/{ID}/logo_t.png')

@@ -239,3 +239,18 @@ pintarTarjeta()};
 /* al abrir un presupuesto con estancias sin medir, vuelven las preguntas */
 var renderLineas0=window.renderLineas;
 })();
+/* Dictar con voz: pide permiso al micrófono, escribe mientras hablas y, si no puede escuchar, dice por qué y qué hacer */
+(function(){
+ function aviso(h){var b=document.getElementById('convInfo');if(b){b.innerHTML=h;b.style.display='block';b.style.marginTop='8px'}}
+ var SIN_PERMISO='<span style="color:#B3261E;font-weight:700">No tengo permiso para usar el micrófono.</span> Toca el candado o los tres puntos de arriba en Chrome, entra en «Permisos» y activa el micrófono. Mientras tanto, puedes tocar el micro del teclado y hablar igual.';
+ window.dictar=function(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;var b=document.getElementById('btnVoz'),ta=document.getElementById('dictado');
+  if(!SR){aviso('Este navegador no dicta. Toca el micro del teclado (al lado de la barra espaciadora) y habla igual; en Android, mejor con Chrome.');if(ta)ta.focus();return}
+  var arranca=function(){var r=new SR();r.lang='es-ES';r.continuous=true;r.interimResults=true;var base=ta.value,oido=false;
+   b.textContent='● Te escucho… (toca para parar)';b.classList.add('warn');aviso('Habla tranquilo: voy escribiendo lo que dices.');
+   r.onresult=function(e){var fin='',prov='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fin+=(fin?' ':'')+t;else prov+=t}oido=true;ta.value=(base?base+' ':'')+fin+(prov?' '+prov:'')};
+   r.onerror=function(e){var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed')aviso(SIN_PERMISO);else if(c==='no-speech')aviso('No te he oído. Vuelve a darle a «Dictar con voz» y habla cerca del móvil.');else if(c==='network')aviso('Para dictar hace falta internet. Si no tienes, toca el micro del teclado.');else if(c==='audio-capture')aviso('No encuentro el micrófono. Toca el micro del teclado y habla igual.');else if(c!=='aborted')aviso('No he podido escucharte ('+c+'). Toca el micro del teclado y habla igual.')};
+   r.onend=function(){b.textContent='Dictar con voz';b.classList.remove('warn');b.onclick=window.dictar;if(oido&&ta.value.trim()){aviso('');setTimeout(function(){try{convertir()}catch(_){}} ,300)}};
+   b.onclick=function(){try{r.stop()}catch(_){}};try{r.start()}catch(err){aviso('No he podido arrancar el micrófono. Toca el micro del teclado y habla igual.')}};
+  if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){try{s.getTracks().forEach(function(t){t.stop()})}catch(_){}arranca()}).catch(function(err){if(err&&(err.name==='NotAllowedError'||err.name==='SecurityError'))aviso(SIN_PERMISO);else arranca()})}
+  else arranca()};
+})();

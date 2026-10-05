@@ -1,0 +1,48 @@
+/* Documentos de Reformas Lucas (presupuesto, dosier, contrato): van dentro del documento que recibe el cliente */
+@font-face{font-family:'LucasTit';src:url(data:font/woff2;base64,{{M800}}) format('woff2');font-weight:800;font-style:normal;font-display:block}
+@font-face{font-family:'LucasTit';src:url(data:font/woff2;base64,{{M700}}) format('woff2');font-weight:700;font-style:normal;font-display:block}
+:root{--crema:#FFFFFF}
+.sheet{background:#fff}
+body.capturando .sheet{background:#fff!important}
+.sheet:before{content:"";position:absolute;left:0;right:0;top:0;height:2.6mm;background:#E04209;z-index:6}
+#sh_dosier:before{display:none}
+.sheet h1,.sheet h2,.sheet h3{font-family:'LucasTit',sans-serif;font-stretch:normal;letter-spacing:-.2px}
+.dochead{border-bottom:0;padding-bottom:0;margin-bottom:7mm;margin-top:2mm}
+.dochead .who{font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:800;font-size:16px;letter-spacing:.4px;color:#141414}
+.dochead .who img{height:21mm!important}
+.dochead .who small{font-size:10.5px;color:#5E5A55;letter-spacing:0;font-weight:400}
+.dochead .doc h2{font-family:'LucasTit',sans-serif;font-weight:800;font-size:27px;color:#141414;letter-spacing:.5px;text-transform:uppercase}
+.dochead .doc h2:after{content:"";display:block;width:16mm;height:1.6mm;background:#E04209;margin:2.6mm 0 2.6mm auto}
+.dochead .doc div{font-size:11px;color:#5E5A55;line-height:1.55}
+.dochead+div{background:#F6F5F3;border-radius:2.4mm;padding:4mm 5mm;gap:8mm!important;margin-bottom:6mm!important;font-size:12px!important;line-height:1.45}
+.dochead+div b{font-family:'LucasTit',sans-serif;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:#C23A08}
+.ptab{font-size:11.2px}
+.ptab th{background:#111214;font-family:'LucasTit',sans-serif;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:1px;padding:7px 8px}
+.ptab td{border-bottom:1px solid #ECE9E5;padding:6px 8px;line-height:1.4}
+.ptab td.r:last-child{font-weight:600;color:#141414}
+.ptab tr.cap td{background:#FFF3EC;font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:800;font-size:12px;color:#141414;border-left:1.3mm solid #E04209;border-bottom:0;padding:7px 9px;letter-spacing:.2px}
+.ptab tr.cap td .cnum{color:#E04209;margin-right:2.2mm}
+.ptab tr.sub td{font-family:'LucasTit',sans-serif;font-weight:700;font-size:10.5px;color:#5E5A55;text-align:right;border-bottom:0;padding:5px 8px 10px}
+.ptab tr.sub td b{color:#141414;margin-left:3mm}
+.tot{width:80mm!important}
+.tot div{border-bottom:1px solid #ECE9E5;font-size:12px;padding:6px 0}
+.tot .big{background:#111214;color:#fff;border:0!important;padding:4mm 5mm!important;margin-top:2.4mm;border-radius:2mm;font-family:'LucasTit',sans-serif!important;font-stretch:normal!important;font-weight:800;font-size:19px!important;align-items:center}
+.tot .big span{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:#FC4A0C}
+.tot .big b{font-family:'LucasTit',sans-serif}
+.condp{font-size:10.5px;line-height:1.55;color:#5E5A55}
+#p_obs{background:#F6F5F3;border-radius:2mm;padding:3.5mm 4.5mm;color:#3A3733;margin-top:7mm}
+#p_obs b{font-family:'LucasTit',sans-serif;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:#C23A08;display:block;margin-bottom:1mm}
+.foot{border-top:1px solid #ECE9E5;color:#8A857F}
+.foot span:first-child{font-family:'LucasTit',sans-serif;font-weight:700;color:#141414;letter-spacing:.4px}
+.ptag{font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:800;font-size:38px;letter-spacing:-.8px;line-height:1.04;color:#141414}
+.pline{background:#E04209}
+.pover{background:linear-gradient(to bottom,rgba(17,18,20,.55) 0%,rgba(17,18,20,.35) 26%,rgba(255,255,255,.6) 42%,rgba(255,255,255,.95) 56%,#fff 68%,#fff 100%)}
+.dos2 h3,.segui h3{font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:800;font-size:19px;letter-spacing:-.2px}
+.vals div b{font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:700;font-size:12.5px}
+.serv li:before{background:#E04209;border-radius:50%}
+.clausula b{font-family:'LucasTit',sans-serif;font-stretch:normal;font-weight:800;font-size:11.5px}
+.firmas div{border-top:1.5px solid #141414}
+h1,h2,h3,.dochead .who,.ptab tr.cap td,.tot .big,.ptag,.clausula b,.vals div b{font-stretch:normal}
+.dochead .who{font-size:0!important;line-height:0}
+.dochead .who small{display:block;font-size:10.5px!important;line-height:1.5;margin-top:1mm}
+.dochead .who small:first-line{font-family:'LucasTit',sans-serif;font-weight:800;font-size:12.5px;color:#141414;letter-spacing:.3px}
