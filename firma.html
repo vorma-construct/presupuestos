@@ -108,7 +108,7 @@ function verFirmado(D){
       var h='<div class="aviso" style="background:#fff"><b>Trabajos no previstos aprobados por ti</b><table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:14px">';
       fil.forEach(function(f){h+='<tr><td style="padding:6px 0;border-bottom:1px solid var(--line)">'+f.n.replace(/</g,'&lt;')+(f.fe?'<br><span style="color:var(--muted);font-size:12px">Aprobado el '+new Date(f.fe).toLocaleDateString('es-ES')+'</span>':'')+'</td><td style="text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)">'+eu(f.p)+' + IVA</td></tr>'});
       h+='<tr><td style="padding-top:8px"><b>Suman al presupuesto</b></td><td style="text-align:right;padding-top:8px"><b>'+eu(suma)+' + IVA</b></td></tr>';
-      if(D.base!=null){var b=Number(D.base)+suma;h+='<tr><td style="padding-top:10px">Presupuesto firmado</td><td style="text-align:right;padding-top:10px">'+eu(Number(D.base))+' + IVA</td></tr><tr><td><b>Total actualizado</b></td><td style="text-align:right"><b>'+eu(b)+' + IVA ('+eu(b*(1+iva/100))+' con IVA)</b></td></tr>'}
+      if(D.base!=null){var b=Number(D.base)+suma;h+='<tr><td style="padding-top:10px">Presupuesto firmado</td><td style="text-align:right;padding-top:10px">'+eu(Number(D.base))+' + IVA</td></tr><tr><td><b>Total actualizado</b></td><td style="text-align:right"><b>'+eu(b)+' + IVA ('+eu(Math.round((b+Math.round(b*iva)/100)*100)/100)+' con IVA)</b></td></tr>'}
       h+='</table></div>';extra.innerHTML=h})
   }).catch(function(){});
 }

@@ -1,10 +1,8 @@
-/* Revisa el presupuesto antes de que salga y lo vuelve a revisar solo a los quince minutos.
-   - Antes de mandar: arregla lo que es claramente un error (partidas repetidas, lineas vacias) y
-     no deja salir lo que esta mal (partidas a cero, estancias sin medir).
-   - A los quince minutos: relee lo que se mando. Si algo esta mal o no coincide, lo corrige y lo
-     actualiza en el MISMO enlace que tiene el cliente (si aun no ha firmado), y avisa de que ha cambiado. */
+/* Revisa el presupuesto DOS veces antes de que salga (una vez mandado ya es tarde):
+   1) las partidas: quita lo repetido y lo vacio, y no deja salir partidas a cero ni estancias sin medir.
+   2) el documento que va a recibir el cliente: que salgan todas las partidas, ninguna de mas,
+      la base y el total correctos, el nombre y la direccion. */
 (function(){
-var ESPERA=15*60*1000;
 
 /* arreglos seguros: no inventa nada, solo quita lo que sobra */
 function autoCorregir(c){var cambios=[];if(!c||!c.lineas)return cambios;
@@ -25,50 +23,34 @@ window.revisar=function(mostrar){var r=revisar0.apply(this,arguments);try{
  if(cur.dir&&(cur.dir.length>80||/\b(haremos|haremos|vamos a|queremos|autoconstruccion|presupuesto|solicitamos)\b/.test(norm(cur.dir)))){r.A.push('La dirección de la obra parece una frase, no una dirección: «'+cur.dir.slice(0,60)+'».')}
 }catch(e){}return r};
 
-/* antes de mandar: corrige lo seguro y para si hay algo mal */
+/* segunda revision: el documento tal como lo va a ver el cliente */
+function baseDe(c){return Math.round((c.lineas||[]).filter(function(l){return !l.imp}).reduce(function(a,l){return a+Math.round(num(l.q)*num(l.p)*100)/100},0)*100)/100}
+function revisarDocumento(){var P=[];try{pintarDocs();var el=document.getElementById('sh_presu');var txt=(el.innerText||el.textContent||'').replace(/\s+/g,' ');
+ var sin=function(x){return x.replace(/\./g,'')};var T=sin(txt);
+ var cuenta={};(cur.lineas||[]).forEach(function(l){var d=(l.d||'').replace(/\s+/g,' ').slice(0,28);if(!d)return;cuenta[d]=(cuenta[d]||0)+1});
+ Object.keys(cuenta).forEach(function(d){var veces=txt.split(d).length-1;if(veces<cuenta[d])P.push('la partida «'+d+'…» no sale en el documento');else if(veces>cuenta[d])P.push('la partida «'+d+'…» sale más veces de las que tiene el presupuesto')});
+ var base=baseDe(cur),iva=num((document.getElementById('f_iva')||{}).value||cur.iva||21);var tot=Math.round((base+Math.round(base*iva)/100)*100)/100;
+ if(base>0&&T.indexOf(sin(eur(base)))<0)P.push('la base del documento no es '+eur(base));
+ if(base>0&&T.indexOf(sin(eur(tot)))<0)P.push('el total del documento no es '+eur(tot));
+ if(cur.nom&&txt.indexOf(cur.nom.trim().slice(0,20))<0)P.push('no sale el nombre del cliente');
+ if(cur.dir&&txt.indexOf(cur.dir.trim().slice(0,20))<0)P.push('no sale la dirección de la obra');
+}catch(e){P.push('no he podido leer el documento')}return P}
+window.revisarDocumento=revisarDocumento;
+
+/* antes de mandar, dos veces: 1) las partidas  2) el documento que va a recibir el cliente */
 var mandar0=window.mandarFirma;
 window.mandarFirma=function(){if(window.__vigSilencio)return mandar0.apply(this,arguments);
  leer();var ch=autoCorregir(cur);if(ch.length){renderLineas();leer()}
  var r=revisar(true);
  if(r.E.length){var b=document.getElementById('revBox');if(b)b.scrollIntoView({behavior:'smooth',block:'center'});aviso('<b>No lo mando todavía.</b> Hay '+r.E.length+' cosa(s) que arreglar: están marcadas en rojo, en «Revisar el presupuesto».',true);return}
- cur.revisarEn=Date.now()+ESPERA;cur.revHecha=false;
+ var P=revisarDocumento();if(P.length){P=revisarDocumento()}/* si falla, se pinta otra vez y se vuelve a mirar */
+ if(P.length){aviso('<b>No lo mando todavía.</b> Al leer el documento que va a recibir el cliente he visto: '+P.join('; ')+'.',true);return}
  var res=mandar0.apply(this,arguments);
- var t0=Date.now();(function mira(){var m=document.getElementById('msg');if(m&&/Enlace (actualizado|mandado)/.test(m.textContent)&&!m.querySelector('.vig15')){m.insertAdjacentHTML('beforeend','<div class="vig15" style="margin-top:6px;font-size:13px;color:#2B6CB0"><b>En quince minutos lo vuelvo a revisar yo solo.</b> Si encuentro algo, lo corrijo en el mismo enlace y te aviso.'+(ch.length?'<br>Antes de mandarlo he corregido: '+ch.join('; ')+'.':'')+'</div>');return}if(Date.now()-t0<30000)setTimeout(mira,500)})();
+ var t0=Date.now();(function mira(){var m=document.getElementById('msg');if(m&&/Enlace (actualizado|mandado)/.test(m.textContent)&&!m.querySelector('.vig2')){m.insertAdjacentHTML('beforeend','<div class="vig2" style="margin-top:6px;font-size:13px;color:#1B7A3A"><b>Revisado dos veces antes de salir:</b> las partidas, cantidades y precios, y el documento tal como lo ve el cliente.'+(ch.length?'<br>He corregido: '+ch.join('; ')+'.':'')+'</div>');return}if(Date.now()-t0<30000)setTimeout(mira,500)})();
  return res};
 
 /* aviso que se queda hasta que lo tocas */
 function aviso(html,rojo){var d=document.createElement('div');d.className='vigAviso';d.style.cssText='position:fixed;left:10px;right:10px;bottom:14px;z-index:9500;background:'+(rojo?'#FBE3E0':'#E6F3EA')+';border-left:5px solid '+(rojo?'#B3261E':'#1B7A3A')+';padding:12px 14px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.25);font-size:14px;color:#222';d.innerHTML=html+'<div style="text-align:right;margin-top:6px"><button class="mini sec" type="button">Vale</button></div>';d.querySelector('button').onclick=function(){d.remove()};document.body.appendChild(d)}
 window.avisoVigila=aviso;
 
-function baseDe(c){return Math.round((c.lineas||[]).filter(function(l){return !l.imp}).reduce(function(a,l){return a+num(l.q)*num(l.p)},0)*100)/100}
-function ocupado(n){/* no le quito de delante el presupuesto que esta tocando */
- var enPresu=document.querySelector('.ntab.on')&&document.querySelector('.ntab.on').dataset.t==='presupuesto';
- return enPresu&&cur&&cur.num!==n&&cur.lineas&&cur.lineas.length>0}
-
-/* la segunda revision */
-var enMarcha=false;
-function vigilar(){if(enMarcha||!window.DB||!DB.presus||!window.FB||!FB.uid||!FB.db)return;var ahora=Date.now();
- var p=Object.keys(DB.presus).map(function(k){return DB.presus[k]}).find(function(p){return p&&p.firmaTok&&p.revisarEn&&p.revisarEn<=ahora&&!p.revHecha});
- if(!p)return;if(ocupado(p.num))return;enMarcha=true;
- FB.db.collection('firmas').doc(p.firmaTok).get().then(function(d){var f=d.exists?d.data():null;
-  var copia=JSON.parse(JSON.stringify(p));var ch=autoCorregir(copia);
-  var nube=f?Math.round(num(f.base)*100)/100:null,aqui=baseDe(copia);
-  if(f&&Math.abs(nube-baseDe(p))>0.01)ch.push('lo que ve el cliente ('+eur(nube)+' sin IVA) no coincide con lo guardado ('+eur(baseDe(p))+')');
-  if(!f)ch.push('el enlace no estaba en la nube');
-  if(!ch.length){DB.presus[p.num].revHecha=true;save();aviso('<b>Revisado otra vez el nº '+p.num+' de '+(p.nom||'')+':</b> todo bien, el cliente lo ve correcto.');enMarcha=false;return}
-  if(f&&f.firma){DB.presus[p.num].revHecha=true;save();aviso('<b>El nº '+p.num+' de '+(p.nom||'')+' ya está firmado</b>, así que no lo toco. He visto esto: '+ch.join('; ')+'. Si hace falta, mándale un imprevisto.',true);enMarcha=false;return}
-  /* corregir y actualizar el mismo enlace */
-  var volver=cur&&cur.num!==p.num&&DB.presus[cur.num]?cur.num:null;
-  abrir(p.num);setTimeout(function(){try{leer();autoCorregir(cur);renderLineas();leer();cur.revHecha=true;cur.revisarEn=0;guardar();
-   var ow=window.open;window.open=function(){return null};window.__vigSilencio=true;
-   mandarFirma();window.__vigSilencio=false;
-   var t0=Date.now();(function mira(){var m=document.getElementById('msg');var ok=m&&/Enlace (actualizado|mandado)/.test(m.textContent);
-    if(ok||Date.now()-t0>25000){window.open=ow;DB.presus[p.num].revHecha=true;DB.presus[p.num].revisarEn=0;save();
-     aviso(ok?'<b>He corregido el nº '+p.num+' de '+(p.nom||'')+'</b> en la revisión de los quince minutos: '+ch.join('; ')+'. El cliente ya lo ve bien en el mismo enlace; no hace falta mandarle otro.':'<b>No he podido actualizar el enlace del nº '+p.num+'.</b> Ábrelo y dale a «Enviar al cliente».',!ok);
-     if(volver)setTimeout(function(){try{abrir(volver)}catch(_){}},400);enMarcha=false;return}
-    setTimeout(mira,500)})()}catch(e){enMarcha=false}},300)
- }).catch(function(){enMarcha=false})}
-window.vigilarAhora=vigilar;
-setInterval(vigilar,60000);setTimeout(vigilar,8000);
-document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(vigilar,1500)});
 })();
