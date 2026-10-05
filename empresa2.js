@@ -5,9 +5,10 @@ var E=window.EMP;
 window.__empCuenta=function(aj){var mia=E?E.id:'',suya=(aj&&aj.emp)||'';if(mia===suya)return false;
  try{firebase.auth().signOut()}catch(e){}
  setTimeout(function(){var m=document.getElementById('lg_msg');if(m)m.textContent=suya?'Esta cuenta es de otra empresa: entra desde su propio enlace.':'Esta cuenta no es de '+(E?E.aj.marca:'esta app')+'.'},400);return true};
-/* el movil ya tenia la app de otra empresa: se avisa y no se mezcla */
-if(window.__empOtra)setTimeout(function(){alert('Este móvil ya tiene presupuestos de otra empresa, así que no lo cambio. Abre el enlace en otro móvil o en otro navegador.')},600);
 if(!E)return;
+/* sus colores: en la app, en los documentos y en la pagina donde firma el cliente (va en el primer <style>) */
+var C=E.colores;if(C){var st=document.querySelector('style');var css='\n:root{--brick:'+C.boton+';--ok:'+C.fuerte+';--brick2:'+C.claro+';--gold:'+C.fuerte+';--oro:'+C.boton+';--oro2:'+C.marca+'}';
+ if(st&&st.textContent.indexOf('--brick:'+C.boton)<0)st.textContent+=css}
 var T=E.tarifa||{};
 TARIFA_BASE.forEach(function(t){if(!(t.p>0)&&T[t.id]>0)t.p=T[t.id]});/* las partidas que se añaden despues (oficio.js) */
 function marca(){var lt=document.getElementById('loginTitle');if(lt)lt.textContent=AJ.marca;var li=document.querySelector('#login img');if(li)li.src='empresas/'+E.id+'/icon-192.png';
