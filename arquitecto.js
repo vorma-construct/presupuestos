@@ -293,7 +293,7 @@ window.parseCabecera=function(ls){var out=_parseCab.apply(this,arguments);try{va
      setTimeout(function(){try{
       document.getElementById('f_nom').value=P.nom;if(P.dir)document.getElementById('f_dir').value=P.dir;if(P.asc!=null)document.getElementById('f_asc').value=P.asc;if(P.tel)document.getElementById('f_tel').value=P.tel;document.getElementById('f_obs').value=P.obs||'';
       cur.lineas=JSON.parse(JSON.stringify(P.lineas));if(P.arq)cur.arqLeidas=P.lineas.length;renderLineas();leer();
-      if(P.nuevo){guardar();window.__arrAbrir=cur.num;var tt=cur.lineas.reduce(function(a,l){return a+l.q*l.p},0)*(1+num(cur.iva)/100);hechos.push('nº '+cur.num+' '+P.nom+': '+eur(tt)+', listo para mandar');return sig()}
+      if(P.nuevo){guardar();window.__arrAbrir=cur.num;var tt=totalCon(cur.lineas,cur.iva);hechos.push('nº '+cur.num+' '+P.nom+': '+eur(tt)+', listo para mandar');return sig()}
       cur.firmaTok=P.tok;guardar();cur.firmaTok=P.tok;DB.presus[P.num].firmaTok=P.tok;save();
       var m=document.getElementById('msg');if(m)m.innerHTML='';
       mandarFirma();
