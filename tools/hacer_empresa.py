@@ -20,6 +20,9 @@ for x in os.listdir(SRC):
     shutil.copytree(s,d) if os.path.isdir(s) else shutil.copy2(s,d)
 shutil.copytree(f'{SRC}/empresas/{ID}',f'{OUT}/empresas/{ID}')
 os.makedirs(f'{OUT}/arreglos',exist_ok=True);open(f'{OUT}/arreglos/auto.json','w').write('{"ids":[]}')
+# presupuestos preparados para esta empresa (enlace ?arreglo=<nombre>)
+if os.path.isdir(f'{SRC}/empresas/{ID}/arreglos'):
+    for x in os.listdir(f'{SRC}/empresas/{ID}/arreglos'):shutil.copy2(f'{SRC}/empresas/{ID}/arreglos/{x}',f'{OUT}/arreglos/{x}')
 # iconos: el suyo en todos los tamanos
 big=Image.open(f'{SRC}/empresas/{ID}/icon-512.png').convert('RGBA')
 for f in os.listdir(f'{OUT}/icons'):
