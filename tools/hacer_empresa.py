@@ -1,0 +1,55 @@
+"""Saca la app de una empresa como pagina aparte (su propio enlace, su icono, nada de Vorma).
+Uso: python3 tools/hacer_empresa.py <id> <url_publica> <carpeta_salida>
+Ej.:  python3 tools/hacer_empresa.py lucas https://reformas-lucas.github.io/ /tmp/salida
+Copia la app, deja solo la carpeta de esa empresa, pone su icono en todos los tamanos,
+su manifest, y quita del codigo los precios y datos de Vorma (la tarifa de Ioan no viaja)."""
+import sys,os,re,json,shutil
+from PIL import Image
+ID,URL,OUT=sys.argv[1],sys.argv[2].rstrip('/')+'/',sys.argv[3]
+SRC=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+E=json.load(open(f'{SRC}/empresas/{ID}/empresa.json'))
+FUERA={'.git','.github','tools','README.md','revision.py','firestore.rules','empresas','arreglos'}
+if os.path.exists(OUT):
+    for x in os.listdir(OUT):
+        if x in ('.git','.github','CNAME','empresa.txt','_app'):continue
+        p=os.path.join(OUT,x);shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
+os.makedirs(OUT,exist_ok=True)
+for x in os.listdir(SRC):
+    if x in FUERA or x.startswith('copia-seguridad') or os.path.abspath(os.path.join(SRC,x))==os.path.abspath(OUT):continue
+    s,d=os.path.join(SRC,x),os.path.join(OUT,x)
+    shutil.copytree(s,d) if os.path.isdir(s) else shutil.copy2(s,d)
+shutil.copytree(f'{SRC}/empresas/{ID}',f'{OUT}/empresas/{ID}')
+os.makedirs(f'{OUT}/arreglos',exist_ok=True);open(f'{OUT}/arreglos/auto.json','w').write('{"ids":[]}')
+# iconos: el suyo en todos los tamanos
+big=Image.open(f'{SRC}/empresas/{ID}/icon-512.png').convert('RGBA')
+for f in os.listdir(f'{OUT}/icons'):
+    m=re.match(r'icon-(\d+)\.png$',f)
+    if m:n=int(m.group(1));big.resize((n,n),Image.LANCZOS).save(f'{OUT}/icons/{f}')
+C=(E.get('colores') or {}).get('oscuro','#111214')
+man={"name":E['nombreApp']+' · Presupuestos',"short_name":E['nombreApp'],"start_url":"./","scope":"./","display":"standalone",
+     "background_color":C,"theme_color":C,"icons":[{"src":f"icons/icon-{n}.png?e={ID}","sizes":f"{n}x{n}","type":"image/png"} for n in (72,96,128,144,152,192,384,512)]+[{"src":f"icons/icon-512.png?e={ID}","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
+json.dump(man,open(f'{OUT}/manifest.json','w'),ensure_ascii=False)
+def cambia(f,fn):
+    p=f'{OUT}/{f}';s=open(p,encoding='utf-8').read();s2=fn(s);open(p,'w',encoding='utf-8').write(s2)
+def idx(s):
+    s=s.replace('?v=80"',f'?e={ID}"')
+    s=re.sub(r'<title>[^<]*</title>',f"<title>{E['nombreApp']} · Presupuestos</title>",s,count=1)
+    s=s.replace('<script src="empresa.js',f"<script>window.EMP_FIJA='{ID}'</script><script src=\"empresa.js",1)
+    s=re.sub(r"PUB_CLIENTES='[^']*'",f"PUB_CLIENTES='{URL}'",s)
+    # los precios de la tarifa de Vorma no viajan: a cero (la empresa trae los suyos)
+    i=s.index('var TARIFA_BASE=[');j=s.index('\n];',i)
+    s=s[:i]+re.sub(r",p:[0-9.]+,",",p:0,",s[i:j])+s[j:]
+    # los datos y logos de Vorma tampoco
+    i=s.index('var AJ_DEF={');j=s.index('};',i)+2
+    s=s[:i]+"var AJ_DEF={recargoZona:'15',subidaPrecios:'0',iban:'',webSeg:''};"+s[j:]
+    for v in ('LOGO','LOGO_PIN','LOGO_T'):s=re.sub(r"var "+v+r"='data:[^']*';","var "+v+"='';",s,count=1)
+    s=re.sub(r'(<div class="sheet" id="sh_dosier">.*?)(<div class="foot">)',lambda m:re.sub(r'src="data:image/[^"]*"','src="data:,"',m.group(1))+m.group(2),s,count=1,flags=re.S)
+    assert 'Y4429633P' not in s and 'Vornicu' not in s.split('</style>')[0]
+    return s
+cambia('index.html',idx)
+cambia('oficio.js',lambda s:'\n'.join(l for l in s.split('\n') if 'Ioan cobra' not in l))
+cambia('obra.html',lambda s:s.replace('Vorma Construct',E['nombreApp']))
+cambia('obra.webmanifest',lambda s:s.replace('Vorma Construct',E['nombreApp']))
+for f in ('firma.html','obra.html'):
+    if os.path.exists(f'{OUT}/{f}'):cambia(f,lambda s:s.replace('icons/icon-192.png"',f'icons/icon-192.png?e={ID}"'))
+print('hecho',OUT)

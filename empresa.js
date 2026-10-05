@@ -6,7 +6,7 @@
    Sin ?e= la app es la de siempre (Vorma), salvo en un movil que solo tiene la otra empresa. */
 (function(){
 var LS=window.localStorage,G=Storage.prototype.getItem,S=Storage.prototype.setItem,R=Storage.prototype.removeItem;
-var q=new URLSearchParams(location.search),pid=(q.get('e')||'').replace(/[^a-z0-9_-]/gi,'').toLowerCase();
+var q=new URLSearchParams(location.search),pid=(window.EMP_FIJA||q.get('e')||'').replace(/[^a-z0-9_-]/gi,'').toLowerCase();
 var guardado=null;try{guardado=JSON.parse(G.call(LS,'vr_emp_cfg')||'null')}catch(e){}
 function bajar(id){try{var x=new XMLHttpRequest();x.open('GET','empresas/'+id+'/empresa.json?'+Date.now(),false);x.send();if(x.status===200){var j=JSON.parse(x.responseText);if(j&&j.id===id)return j}}catch(e){}return null}
 var E=null;
@@ -30,6 +30,6 @@ window.__fbInit=function(cfg){var app=firebase.initializeApp(cfg,'emp_'+E.id);if
 if(!pid){try{fetch('empresas/'+E.id+'/empresa.json?'+Math.floor(Date.now()/36e5)).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.id===E.id)try{S.call(LS,'vr_emp_cfg',JSON.stringify(j))}catch(e){}}).catch(function(){})}catch(e){}}
 document.title=E.nombreApp+' · Presupuestos';
 var setL=function(rel,href){var l=document.querySelector('link[rel="'+rel+'"]');if(l)l.href=href};
-setL('manifest','empresas/'+E.id+'/manifest.json');setL('apple-touch-icon','empresas/'+E.id+'/icon-192.png');setL('icon','empresas/'+E.id+'/icon-192.png');
+if(!window.EMP_FIJA)setL('manifest','empresas/'+E.id+'/manifest.json');setL('apple-touch-icon','empresas/'+E.id+'/icon-192.png');setL('icon','empresas/'+E.id+'/icon-192.png');
 var C=E.colores;if(C){var m=document.querySelector('meta[name="theme-color"]');if(m&&C.oscuro)m.content=C.oscuro}
 })();

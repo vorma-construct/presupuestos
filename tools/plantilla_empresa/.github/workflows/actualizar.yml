@@ -1,0 +1,20 @@
+# Cada hora (y a mano) coge la ultima version de la app y la saca con la marca de esta empresa.
+name: actualizar
+on:
+  schedule: [{cron: '17 * * * *'}]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  act:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: {repository: vorma-construct/presupuestos, path: _app}
+      - run: pip install pillow
+      - run: |
+          EMP=$(cat empresa.txt)
+          python3 _app/tools/hacer_empresa.py $EMP "https://${GITHUB_REPOSITORY_OWNER}.github.io/" .
+          rm -rf _app
+          git config user.name "actualizar"; git config user.email "actions@github.com"
+          git add -A; git diff --cached --quiet || (git commit -m "app al día" && git push)
