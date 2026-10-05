@@ -17,7 +17,17 @@
     "https://www.habitissimo.es/presupuestos/quitar-tejado"
    ],
    "nota": "Solo mano de obra (no hay material). CYPE 14,87 €/m2 (teja curva, faldon 30%, manual, incluye carga a contenedor; sin transporte/vertedero ni IVA). Motordepresupuestos 17,00 €/m2 sin IVA, contenedor aparte (200-600 €/ud). 99manos repite 14,87 sin IVA. Habitissimo da 25-60 €/m2 (media 40) pero para q",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "desmontaje de cobertura de teja",
+    "desmontaje de tejas",
+    "levantado de teja",
+    "retirada de teja",
+    "quitar las tejas",
+    "desmontaje de tejado",
+    "levantado de cobertura de teja"
+   ],
+   "desc": "Desmontaje de tejado de teja cerámica (retirar tejas y mortero) en vivienda"
   },
   {
    "id": "d_tarima",
@@ -31,7 +41,17 @@
     "https://www.cronoshare.com/cuanto-cuesta/quitar-parque"
    ],
    "nota": "CYPE 4,21 €/m2 sin IVA (entarimado clavado a rastreles, manual, con carga). Cronoshare quitar parque 5-10 €/m2 de media (IVA incluido segun la pagina; extremos 3-4 y >50 segun tipo; encolado mas caro). Mezcla de fuentes con y sin IVA -> null. Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "desmontaje de tarima",
+    "levantado de tarima",
+    "levantado de entarimado",
+    "desmontaje de pavimento de madera",
+    "levantado de pavimento de madera",
+    "quitar la tarima",
+    "arranque de tarima"
+   ],
+   "desc": "Desmontaje / levantado de suelo de madera, tarima o entarimado clavado"
   },
   {
    "id": "d_viga",
@@ -45,7 +65,16 @@
     "https://99manos.es/blog/precio-desmontar-tejado-de-madera"
    ],
    "nota": "Solo precios de base de costes, no guias de mercado. CYPE 17,84 €/m (seccion hasta 1000 cm2, hasta 4 m, motosierra, carga manual incluida, sin IVA). 99manos 13,86 €/m recuperando la viga entera sin romperla, sin IVA; demoler estructura de cubierta troceada 28,49 €/m2. No encontre guia de mercado (ha",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "desmontaje de vigas de madera",
+    "desmontaje de viga",
+    "levantado de vigueria de madera",
+    "desmontaje de estructura de madera",
+    "retirada de vigas",
+    "quitar vigas de madera"
+   ],
+   "desc": "Desmontaje de vigas de madera de forjado o cubierta"
   },
   {
    "id": "d_tabique",
@@ -61,7 +90,17 @@
     "https://www.fixr.es/guias-de-precios/tirar-tabique"
    ],
    "nota": "Motordepresupuestos 15-35 €/m2 sin IVA (partida unitaria 15,39 ladrillo hueco doble), escombro aparte. Habitissimo 5-18 €/m2 (simple 10-12), +2-3 €/m2 retirada de escombros. Cronoshare con IVA: ladrillo hueco 4-5 demolicion / 10-12 'final'; macizo 6-7 / 12-15. Fixr 4-8 €/m2. Reformashoy (Madrid 2022",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "demolicion de tabique",
+    "demolicion de particion interior",
+    "derribo de tabique",
+    "tirar tabique",
+    "tirar pared",
+    "demolicion de tabiqueria",
+    "derribo de pared interior"
+   ],
+   "desc": "Demolición (derribo) de tabique o pared interior de ladrillo"
   },
   {
    "id": "d_muro_piedra",
@@ -75,7 +114,16 @@
     "https://www.habitissimo.es/presupuestos/derribar-muro"
    ],
    "nota": "CYPE 156,04 €/m3 sin IVA (mamposteria arenisca en seco, medios manuales, 6,56 h peon/m3, carga manual incluida). Habitissimo: muro de piedra 10x3x0,3 m = 1.000 € -> convertido por mi a ~111 €/m3 (9 m3; IVA no especificado; no dice si es a mano). Tipico = punto medio. Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "demolicion de muro de mamposteria",
+    "demolicion de muro de piedra",
+    "desmontaje de muro de piedra",
+    "derribo de muro de piedra",
+    "desmontaje de mamposteria",
+    "tirar muro de piedra"
+   ],
+   "desc": "Demolición o desmontaje a mano de muro de mampostería de piedra"
   },
   {
    "id": "d_solera",
@@ -90,7 +138,17 @@
     "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
    ],
    "nota": "Ninguna fuente da baldosa+solera juntas. Motordepresupuestos: solera hormigon <15 cm 20,36 €/m2 + solado ceramico 12,16 €/m2 = 32,52 (suma mia), sin IVA. CYPE solera 10 cm con martillo 8,28 €/m2 sin IVA (solo solera; +baldosa CYPE no consultada). Reformashoy (Madrid) solera/pavimentos 14-15 €/m2 sin",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "demolicion de solera",
+    "demolicion de losa de hormigon",
+    "picado de solera",
+    "levantado de solera",
+    "romper solera",
+    "demolicion de pavimento de hormigon",
+    "demolicion de suelo y solera"
+   ],
+   "desc": "Demolición de suelo de baldosa más solera de hormigón/cemento con martillo, interior"
   },
   {
    "id": "d_alicatado",
@@ -105,7 +163,17 @@
     "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
    ],
    "nota": "Habitissimo 12-35/40 €/m2, media 20 (bano 34, cocina 25, altura parcial 12); IVA no aclarado. Motordepresupuestos 11,65 €/m2 sin IVA. Reformashoy (Madrid) 11 €/m2 sin escombro. Tipico 15 = mediana aprox. entre 11,65 y 20.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "demolicion de alicatado",
+    "picado de alicatado",
+    "picar alicatado",
+    "picar azulejo",
+    "levantado de alicatado",
+    "quitar azulejos",
+    "arranque de alicatado"
+   ],
+   "desc": "Picar / demoler alicatado (azulejo) de paredes"
   },
   {
    "id": "d_solado",
@@ -120,7 +188,18 @@
     "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
    ],
    "nota": "Motordepresupuestos solado y base mortero 10-25 €/m2 (unitaria 12,16) sin IVA, escombro aparte. Cronoshare retirada suelo ceramico + escombro 10-35 €/m2 con IVA. Reformashoy (Madrid) 14-15 €/m2 sin escombro. IVA mezclado.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "demolicion de pavimento ceramico",
+    "levantado de solado",
+    "picado de solado",
+    "picar suelo",
+    "levantar baldosa",
+    "demolicion de solado",
+    "quitar el suelo ceramico",
+    "levantado de pavimento ceramico"
+   ],
+   "desc": "Picar / levantar suelo cerámico (baldosa) con su recrecido"
   },
   {
    "id": "hueco_piedra",
@@ -134,7 +213,16 @@
     "https://www.habitissimo.es/presupuestos/abrir-ventana"
    ],
    "nota": "Solo CYPE da €/m3: 173,04 €/m3 sin IVA (mamposteria arenisca, manual, corte de contorno y carga incluidos; NO incluye apeo ni dintel). Habitissimo: ventana 1,2x1,2 en muro de carga ~600 € y piedra '>50 €/m2' de demolicion; no convertible a m3 de forma fiable (no da espesor). Dintel y apeo aparte.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "apertura de hueco en muro de mamposteria",
+    "hueco en muro de piedra",
+    "abrir hueco en muro de piedra",
+    "apertura de hueco en muro de carga",
+    "apertura de hueco de fachada",
+    "rasgado de hueco"
+   ],
+   "desc": "Abrir hueco (puerta o ventana) en muro de piedra / mampostería de 50 cm, a mano"
   },
   {
    "id": "hueco_ladrillo",
@@ -149,7 +237,16 @@
     "https://www.cronoshare.com/cuanto-cuesta/tirar-tabique"
    ],
    "nota": "Habitissimo 170-700 €, media 400, tipico 200-500; tabique 2,1x0,8 m ~200 €; muro de carga 350+. Cronoshare tabique 150-600 € (ventana ~300); en otra pagina 150-300 € sin la puerta. Muro de carga cronoshare 3.000-4.200 € (no incluido). Ninguna desglosa el dintel; IVA no claro (cronoshare suele dar co",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "apertura de hueco en particion",
+    "apertura de hueco en tabique",
+    "abrir hueco de puerta",
+    "apertura de hueco en fabrica de ladrillo",
+    "hueco de paso en tabique",
+    "abrir puerta en pared"
+   ],
+   "desc": "Abrir hueco de puerta en pared de ladrillo, con dintel"
   },
   {
    "id": "t_desbroce",
@@ -165,7 +262,16 @@
     "https://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/AD_Movimiento_de_tierras_en_edifi/Desbroce_y_limpieza/Desbroce_y_limpieza_del_terreno.html"
    ],
    "nota": "Madrid 2026 con maquina 0,40-2,50 (hierba 0,40-0,80; maleza densa 0,80-1,40; con tocones 1,20-2,00) + minimo por salida 350-600 EUR. Habitissimo 0,25-3. Cronoshare 0,25-5 IVA incluido. CYPE 1,20 (25 cm, carga a camion, sin transporte). Autopromotor 3 sin IVA. Preciom2 da mas alto: mecanico 2-8, con ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "desbroce y limpieza",
+    "desbroce del terreno",
+    "limpieza del terreno",
+    "desbrozar parcela",
+    "limpieza de parcela",
+    "desbroce de maleza"
+   ],
+   "desc": "Desbroce y limpieza de terreno con máquina"
   },
   {
    "id": "t_zanja",
@@ -181,7 +287,16 @@
     "https://generadordeprecios.info/espacios_urbanos/Acondicionamiento_del_terreno/AC_Movimiento_de_tierras_en_obra_/Excavaciones/ACE040_Excavacion_de_zanjas__con_medios_me_0_0_1_0_0_1.html"
    ],
    "nota": "Habitissimo: media 32 EUR/m3, rango 11-47 (tambien cita ~40). Autopromotor: 33,66 sin IVA. Cronoshare: 5-15 IVA incluido (terreno blando), roca 20-70. CYPE 56,37 en terreno de transito duro con martillo, carga a camion, sin transporte. Diputacion Palencia 2024 (licitacion publica): 5,48-11,00. Habit",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "excavacion en zanja",
+    "excavacion de zanjas",
+    "zanja para cimentacion",
+    "zanja para instalaciones",
+    "apertura de zanja",
+    "excavacion para cimentacion"
+   ],
+   "desc": "Excavación de zanjas para cimentación o instalaciones con máquina"
   },
   {
    "id": "t_excav_interior",
@@ -196,7 +311,17 @@
     "https://generadordeprecios.info/rehabilitacion/Acondicionamiento_del_terreno/AD_Movimiento_de_tierras_en_edifi/Excavaciones/Excavacion_en_el_interior_del_edificio.html"
    ],
    "nota": "Habitissimo: excavacion manual 40-60 EUR/m3 segun dureza; movimiento de tierras manual ~30. Tipico = punto medio del rango manual. CYPE da solo 5,05 EUR/m3 con miniexcavadora en interior (arcilla semidura, carga a camion, sin transporte) - cifra teorica muy baja para obra pequena. CYPE excavacion ma",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "vaciado interior",
+    "excavacion en interior",
+    "excavacion bajo forjado",
+    "rebaje de suelo",
+    "vaciado de tierras interior",
+    "excavacion a mano en interior",
+    "bajar el suelo de la cuadra"
+   ],
+   "desc": "Excavación / vaciado en interior de edificio (bajo forjado o dentro de una cuadra), con miniexcavadora o a mano"
   },
   {
    "id": "t_tierras_vertedero",
@@ -212,7 +337,19 @@
     "https://autopromotor.info/excavaciones/precio-excavaciones-movimiento-tierras/"
    ],
    "nota": "Madrid 2026: transporte 6-12 EUR/m3 + canon tierra limpia desde 4 (RCD mezclado desde 12) => 10-16 sumados; camion 12-16 m3 entre 180 y 350 EUR el viaje (=> 11-29 EUR/m3, calculado con los datos de la pagina). CYPE: transporte 6,03 + canon 2,23 = 8,26 (sin carga). Autopromotor: transporte a verteder",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "transporte de tierras",
+    "tierras a vertedero",
+    "canon de vertido de tierras",
+    "carga y transporte de tierras",
+    "retirada de tierras",
+    "tierras sobrantes",
+    "transporte vertedero tierras",
+    "canon vertido tierras",
+    "tierras de la excavacion"
+   ],
+   "desc": "Transporte de tierras a vertedero más canon de vertido"
   },
   {
    "id": "s_arqueta",
@@ -227,7 +364,17 @@
     "http://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Arquetas/Arqueta_de_fabrica.html"
    ],
    "nota": "CYPE: prefabricada hormigon 40x40x50 = 80,26; de ladrillo 50x50x50 con tapa = 161,58 (ambas sin excavacion ni relleno). Habitissimo: prefabricada 40x40x50 instalada 90; arqueta de obra con tapa registrable 400; rango general 150-900, media 400. Diputacion Palencia 2024: 40x40 79,61 / 50x50 130,96. T",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "arqueta de saneamiento",
+    "arqueta registrable",
+    "arqueta prefabricada",
+    "arqueta de paso",
+    "arqueta sifonica",
+    "arqueta a pie de bajante",
+    "arqueta de ladrillo"
+   ],
+   "desc": "Arqueta de saneamiento registrable de ladrillo o prefabricada, colocada"
   },
   {
    "id": "s_colector",
@@ -242,7 +389,17 @@
     "https://www.habitissimo.es/presupuestos/hacer-acometidas"
    ],
    "nota": "CYPE: PVC liso SN-4 160 mm con cama y relleno lateral de arena = 26,20 EUR/m, SIN excavacion ni relleno principal. Diputacion Palencia 2024: PVC 160 = 20,49; PVC 200 = 28,82. Habitissimo: acometida de saneamiento 60-80 EUR (la pagina pone EUR/m2, se entiende por metro, con obra). Si el precio debe i",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "colector enterrado",
+    "red de saneamiento enterrada",
+    "tuberia de saneamiento enterrada",
+    "colector de pvc",
+    "acometida de saneamiento",
+    "red horizontal de saneamiento",
+    "tubo de saneamiento en zanja"
+   ],
+   "desc": "Tubería de saneamiento enterrada (colector PVC/PP 110-160 mm) en zanja, colocada"
   },
   {
    "id": "s_drenaje",
@@ -256,7 +413,16 @@
     "http://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Drenajes/ASD015_Zanja_drenante_en_perimetro_de_muro.html"
    ],
    "nota": "Habitissimo: drenaje perimetral 29-45 EUR/m, media 35; zanja drenante 37; vivienda unifamiliar 30. CYPE zanja drenante en perimetro de muro (tubo PVC 200 mm, solera 10 cm, grava filtrante, geotextil) = 44,98 EUR/m SIN excavacion ni relleno principal. Solo tubo dren (Palencia): 11,45-13,88 EUR/m.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "zanja drenante",
+    "tubo dren",
+    "drenaje perimetral",
+    "tubo drenante",
+    "drenaje de muro",
+    "red de drenaje"
+   ],
+   "desc": "Zanja drenante con tubo dren y grava junto a muro"
   },
   {
    "id": "c_encachado",
@@ -271,7 +437,16 @@
     "https://www.cronoshare.com/cuanto-cuesta/poner-solera-hormigon"
    ],
    "nota": "CYPE: encachado 20 cm grava caliza 40/80 compactado con bandeja = 11,25 EUR/m2 (material 4,13). Preciom2: base de encachado/zahorra 15-20 cm 4-9 EUR/m2 con mano de obra. Cronoshare: base zahorra + compactacion 8-18 EUR/m2 (IVA incluido).",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "encachado de grava",
+    "encachado de piedra",
+    "capa de grava bajo solera",
+    "encachado bajo solera",
+    "lecho de grava compactada",
+    "sub-base de grava"
+   ],
+   "desc": "Encachado de grava (15-20 cm) bajo solera, extendido y compactado"
   },
   {
    "id": "c_solera_ventilada",
@@ -286,7 +461,17 @@
     "https://www.habitissimo.es/presupuestos/forjado-sanitario"
    ],
    "nota": "CYPE: Caviti C-20 con capa de compresion 5 cm, mallazo y zunchos = 34,95 EUR/m2 (sin hormigon de limpieza). Preciom2: Caviti instalado 25-50 (C-15/C-20 25-42; C-25/35 30-48); excluye preparacion base 8-15 EUR/m2 y tubos de ventilacion 150-400 EUR/ud. Habitissimo: Caviti 50-80 EUR/m2 sin IVA (solo es",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "forjado sanitario",
+    "solera ventilada",
+    "caviti",
+    "casetones de plastico",
+    "encofrado perdido de polipropileno",
+    "forjado sanitario ventilado",
+    "modulos tipo cupolex"
+   ],
+   "desc": "Solera / forjado sanitario ventilado tipo cáviti (casetones de plástico) con hormigón y mallazo"
   },
   {
    "id": "c_solera",
@@ -302,7 +487,16 @@
     "https://www.durasol.es/solera-hormigon-precio-m2-en-espana/"
    ],
    "nota": "Habitissimo: armada 13 (10 cm) a 26 (20 cm), media 20. Cronoshare (IVA incluido): armada 12-20 cm 20-40; mallazo aparte 3-8 material + 2-5 colocacion. Preciom2: HM-20 15 cm con mallazo 25-35 ejecutada. Durasol: PAIS VASCO (zona Norte) solera armada 12-15 cm fratasada 36-46 EUR/m2. Preciom2 guia: Mad",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "solera de hormigon",
+    "solera con mallazo",
+    "solera armada",
+    "losa de hormigon de solera",
+    "hormigonado de solera",
+    "solera de 15 cm"
+   ],
+   "desc": "Solera de hormigón de 10-15 cm con mallazo"
   },
   {
    "id": "c_zapata",
@@ -316,7 +510,16 @@
     "https://www.preciom2.com/reformas/zapata-hormigon/"
    ],
    "nota": "CYPE 200,88 €/m3 sin IVA (HA-25 + acero B500S, sin encofrado). preciom2 150-260 €/m3 ejecutada (sin excavación, transporte de tierras ni bombeo; IVA no indicado). Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "zapata de cimentacion",
+    "zapata corrida",
+    "zapata aislada",
+    "hormigon para zapata",
+    "cimentacion con zapata",
+    "zapatas de hormigon armado"
+   ],
+   "desc": "Zapata de cimentación de hormigón, ejecutada"
   },
   {
    "id": "a_xps_solera",
@@ -331,7 +534,16 @@
     "https://presupuestos.caloryfrio.com/cuanto-cuesta-precios/precio-m2-aislamiento-termico-poliestireno-extruido.html"
    ],
    "nota": "CYPE 16,95 €/m2 (XPS 40 mm bajo solera; material 9,21 + MO 7,41). preciom2: solera 14-20 (40 mm), 16-24 (50 mm); muro 16-24 (50 mm), 18-28 (60 mm). caloryfrio: solo material 7-10 €/m2 (40 mm). IVA no claro. preciom2 indica PAÍS VASCO +15-25% sobre la media nacional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "poliestireno extruido",
+    "aislamiento xps",
+    "panel xps",
+    "aislamiento bajo solera",
+    "aislamiento de muro con xps",
+    "aislamiento de solera"
+   ],
+   "desc": "Aislamiento de poliestireno extruido (XPS) bajo solera o en muro, colocado"
   },
   {
    "id": "a_lana",
@@ -346,7 +558,16 @@
     "https://rockwool.generadordeprecios.info/rehabilitacion/Aislamientos_e_impermeabilizaciones/Aislamientos_termicos/Trasdosados/NAO030_Aislamiento_termico_entre_montantesc5_0_3c5_0_1c4_0.html"
    ],
    "nota": "Solo el aislante entre montantes (sin placa). cronoshare 5-40, media 8-10 €/m2 IVA incl. habitissimo 9-40 (media general 20), trasdosado interior ~10 €/m2. CYPE Rockwool 30 mm 13,40 €/m2 sin IVA. Máximo 40 = opciones de alta gama. Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "lana de roca",
+    "lana mineral",
+    "lana de vidrio",
+    "aislamiento en trasdosado",
+    "aislamiento de tabique",
+    "panel de lana mineral"
+   ],
+   "desc": "Aislamiento de lana de roca o lana mineral en tabique/trasdosado, colocado"
   },
   {
    "id": "a_insuflado",
@@ -362,7 +583,17 @@
     "http://www.generadordeprecios.info/obra_nueva/Aislamientos_e_impermeabilizaciones/NV_Aislamientos_termicos_de_orige/Inyeccion_e_insuflacion/NVE030_Aislamiento_termico_en_camaras_de_a.html"
    ],
    "nota": "Celulosa: cronoshare 10-15 (IVA aparentemente incl), humedades.com 10-18 (sin IVA), habitissimo 13-15. Corcho granulado CYPE 14,37 €/m2 sin IVA (cámara 48 mm). Lana de roca insuflada más cara: 15-30. cronoshare: <40 m2 +10-20%. Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "aislamiento insuflado",
+    "insuflado de celulosa",
+    "insuflado en camara",
+    "corcho granulado",
+    "celulosa insuflada",
+    "relleno de camara",
+    "inyeccion de aislamiento"
+   ],
+   "desc": "Aislamiento insuflado (celulosa, corcho granulado) en cámara o forjado"
   },
   {
    "id": "e_muro_piedra",
@@ -377,7 +608,17 @@
     "https://preciom2.com/guias/hormigon-estructuras/muro-mamposteria/"
    ],
    "nota": "CYPE 236,21 €/m3 sin IVA (mampostería ordinaria a una cara vista, arenisca, en seco; 74% MO). cronoshare 160-460 €/m3 IVA incl. preciom2 da €/m2: ordinaria 80-110, con juntas vistas 95-130, concertada 115-155, a 40-60 cm de espesor => conversión propia ~133-275 €/m3 (ordinaria). preciom2: ±25% según",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "ejecucion de muro de mamposteria",
+    "muro de mamposteria nuevo",
+    "muro de piedra nuevo",
+    "fabrica de mamposteria",
+    "levantar muro de piedra",
+    "muro de piedra concertada",
+    "construccion de muro de piedra"
+   ],
+   "desc": "Construcción de muro de mampostería de piedra nuevo"
   },
   {
    "id": "e_limpieza_piedra",
@@ -391,7 +632,16 @@
     "https://www.habitissimo.es/presupuestos/limpieza-fachada"
    ],
    "nota": "No hay guía específica de limpieza interior de piedra; se usan datos de limpieza manual con cepillo de fachada. CYPE 17,33 €/m2 sin IVA (solo mano de obra, cepillado en seco). habitissimo: manual con cepillo y agua ~10 €/m2, rango general 10-30; BILBAO 10-40 €/m2. Típico = punto medio entre 10 y 17,",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "limpieza de muro de piedra",
+    "limpieza de piedra",
+    "cepillado de piedra",
+    "limpieza de fabrica de piedra",
+    "limpieza de mamposteria",
+    "cepillado de muro"
+   ],
+   "desc": "Limpieza de muro de piedra por el interior (cepillado, sin chorro)"
   },
   {
    "id": "e_rejuntado",
@@ -406,7 +656,17 @@
     "https://preciom2.com/guias/revestimientos/rejuntar-piedra-natural/"
    ],
    "nota": "CYPE mortero de cal NHL 3,5 a paleta: 20,69 €/m2 sin IVA (material 8,43 + MO 11,85). habitissimo: rejuntar piedra natural 15-30; picar y rejuntar pared de piedra >48 €/m2; restaurar pared de piedra interior 50-80 €/m2. preciom2 (más orientado a mortero de cemento): piedra irregular exterior 14-18, r",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "rejuntado de piedra",
+    "llagueado",
+    "rejuntado con mortero de cal",
+    "rejuntado de mamposteria",
+    "rejuntado de muro",
+    "sellado de juntas de piedra",
+    "rejuntar la piedra"
+   ],
+   "desc": "Rejuntado / llagueado de muro de piedra con mortero de cal"
   },
   {
    "id": "e_madera_estructura",
@@ -421,7 +681,17 @@
     "https://www.preciom2.com/reformas/forjado-madera/"
    ],
    "nota": "Solo CYPE da €/m3: pino silvestre aserrado C18 608,05 €/m3 sin IVA (material 377 + MO 219); laminada GL-24h 1.554,96 €/m3 sin IVA. Las guías de contratistas solo dan €/m2: preciom2 forjado de madera obra nueva 60-160, rehabilitación 80-220 €/m2 (incluye vigas, viguetas y tablero); no convertible a m",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "estructura de madera aserrada",
+    "suministro de vigas de madera",
+    "viguetas de madera",
+    "colocacion de vigueria",
+    "viga de madera laminada",
+    "forjado de madera",
+    "colocacion de vigas"
+   ],
+   "desc": "Estructura de madera (vigas, viguetas) suministrada y colocada"
   },
   {
    "id": "e_entablado",
@@ -435,7 +705,16 @@
     "https://www.habitissimo.es/presupuestos/techos-madera"
    ],
    "nota": "CYPE entablado visto pino silvestre 22 mm machihembrado: 50,29 €/m2 sin IVA (material 33,68 + MO 15,62). habitissimo techo de madera 30-85, media 60 €/m2 (IVA no indicado). Típico = mediana de 50,29 y 60. Sin dato regional.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "entablado de madera",
+    "tablero machihembrado",
+    "entablado machihembrado",
+    "tablazon de madera",
+    "forjado de tablas",
+    "tabla machihembrada"
+   ],
+   "desc": "Entablado de madera machihembrada para forjado o techo, colocado"
   },
   {
    "id": "k_cubierta_teja",
@@ -451,7 +730,18 @@
     "http://www.generadordeprecios.info/obra_nueva/Cubiertas/Inclinadas/Tejas/QTT210_Cubierta_inclinada_con_cobertura_de.html"
    ],
    "nota": "Sin estructura. motordepresupuestos 55-110 €/m2 SIN IVA (±20% entre capitales). preciom2 65-100 €/m2 completa (lámina+aislamiento+rastreles+teja); con estructura de madera nueva 110-160. cronoshare IVA incl: un agua 70-113, dos aguas 90-120. CYPE teja curva cerámica 92,33 €/m2 sin IVA (sin rastreles",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "cubierta de teja",
+    "cobertura de tejas ceramicas mixtas",
+    "cobertura de tejas curvas",
+    "teja curva",
+    "retejado",
+    "tejado nuevo",
+    "colocacion de teja",
+    "rastreles para teja"
+   ],
+   "desc": "Cubierta de teja nueva sobre estructura (rastreles, teja), colocada"
   },
   {
    "id": "k_aislamiento_cubierta",
@@ -467,7 +757,16 @@
     "https://www.cronoshare.com/cuanto-cuesta/panel-sandwich"
    ],
    "nota": "Habitissimo: aislar tejado por fuera desde 42 €/m2, puede superar 100, media ~60 (100 m2 con panel sandwich ~4.200 €, hasta 10.000 €); IVA no indicado. Cronoshare (IVA incl.): por el exterior desde 50-70 €/m2; panel sandwich instalado 45-65 basico, 75-100 especiales. CYPE: 50,41 €/m2 SIN IVA (fibra ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "aislamiento de cubierta",
+    "panel sandwich de cubierta",
+    "aislamiento de tejado",
+    "panel de cubierta",
+    "aislamiento por el exterior de cubierta",
+    "panel termochip"
+   ],
+   "desc": "Aislamiento de cubierta inclinada por el exterior (panel) colocado"
   },
   {
    "id": "k_canalon",
@@ -482,7 +781,16 @@
     "https://www.canalonesvitoria.com/precio-del-metro-de-canalon-instalado"
    ],
    "nota": "Cronoshare (IVA incl., suministro+fijacion): aluminio 15-35, acero galvanizado 15-25, zinc 23-30 €/m; retirada del viejo +2-6 €/m; andamio/elevador 250-500 €/jornada aparte. Habitissimo: aluminio 20-25 €/m con MO (IVA no indicado). Instalador de Vitoria (Alava): aluminio continuo 15-35, galvanizado ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "canalon",
+    "canalon de aluminio",
+    "canalon de chapa",
+    "canalon de zinc",
+    "canalon visto",
+    "canaleta de tejado"
+   ],
+   "desc": "Canalón de chapa/aluminio colocado"
   },
   {
    "id": "k_bajante",
@@ -496,7 +804,16 @@
     "https://generadordeprecios.info/obra_nueva/Instalaciones/Evacuacion_de_aguas/Bajantes/ISB020_Bajante_vista_en_el_exterior_del_ed.html"
    ],
    "nota": "Cronoshare (IVA incl.): bajantes PVC/aluminio 10-25 €/m. CYPE: bajante vista exterior PVC Ø80 15,46 €/m SIN IVA (mat 10,20 / MO 4,96), ~17 con 10% IVA. Tipico = mediana de ambas. Solo 2 fuentes; sin dato País Vasco.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "bajante pluvial",
+    "bajante de aguas pluviales",
+    "bajante exterior",
+    "bajante de chapa",
+    "bajante de aluminio",
+    "tubo bajante"
+   ],
+   "desc": "Bajante pluvial colocada"
   },
   {
    "id": "p_ventana",
@@ -510,7 +827,17 @@
     "https://www.habitissimo.es/presupuestos/cambiar-ventanas"
    ],
    "nota": "Ventana 120x120 colocada. Cronoshare (IVA incl.): aluminio 260-480 €, madera 240-580 €; grandes ciudades +5-15%. Habitissimo: aluminio 200-400 €, PVC 250-450, madera 400-550 €; MO sola 80-200 €/ventana; vivienda con 7 ventanas 3.500-4.000 €; oscilobatiente ~+20%. Tipico = mediana de los puntos medio",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "carpinteria exterior",
+    "ventana de aluminio",
+    "ventana de madera",
+    "ventana de pvc",
+    "ventana practicable",
+    "ventana oscilobatiente",
+    "cambiar ventanas"
+   ],
+   "desc": "Ventana de madera o aluminio de 1-2 hojas, colocada"
   },
   {
    "id": "p_puerta_exterior",
@@ -524,7 +851,16 @@
     "https://www.habitissimo.es/presupuestos/puertas-aluminio"
    ],
    "nota": "Cronoshare (IVA incl.): puerta de terraza/balconera de aluminio instalada entre 800 y mas de 1.000 €. Habitissimo: balconera 2 hojas 80x200 imitacion madera con RPT ~800 €; puertas exteriores de aluminio 230-1.300 € (IVA no indicado). Max tomado de habitissimo.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "puerta balconera",
+    "puertaventana",
+    "puerta ventana",
+    "puerta exterior",
+    "puerta de terraza",
+    "puerta de balcon"
+   ],
+   "desc": "Puerta exterior / puerta-ventana balconera, colocada"
   },
   {
    "id": "p_puerta_entrada",
@@ -539,7 +875,16 @@
     "https://tarimasdiamond.es/guias-compra/puertas/precio/"
    ],
    "nota": "Cronoshare (IVA incl.): blindada 500-1.000 €, seguridad 550-1.000, acorazada 650-2.200; grandes ciudades +10-15%. Cronoshare blindada: tipico 700-1.000 € (puerta 250-600 + MO 300-400). Tarimas Diamond (Madrid, IVA aparte): blindada instalada 920-1.300, acorazada 850-1.660.",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "puerta de entrada",
+    "puerta blindada",
+    "puerta acorazada",
+    "puerta de acceso a vivienda",
+    "puerta principal",
+    "puerta de calle"
+   ],
+   "desc": "Puerta de entrada a vivienda, colocada"
   },
   {
    "id": "p_puerta_interior",
@@ -554,7 +899,17 @@
     "https://tarimasdiamond.es/guias-compra/puertas/precio/"
    ],
    "nota": "Cronoshare (IVA incl., con marco y MO): ronda 300-320 €, rango habitual 300-900, extremos 120-1.100. Habitissimo: media 350 €, rango 150-2.000; 'cambiar una puerta interior sencilla en Bilbao' desde 200 € puerta+MO. Tarimas Diamond (Madrid, IVA aparte): 273-350 € instalada, hasta 530 € madera barniz",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "puerta de paso",
+    "puerta interior",
+    "block de puerta",
+    "puerta abatible",
+    "puerta lacada",
+    "puerta corredera interior",
+    "carpinteria interior"
+   ],
+   "desc": "Puerta interior de paso de madera, colocada con marco"
   },
   {
    "id": "r_enfoscado",
@@ -570,7 +925,16 @@
     "https://motordepresupuestos.com/cuanto-cobra/albaniles"
    ],
    "nota": "preciom2 interior: 8-28 €/m2, tipico 13-18 (mat+MO). preciom2 maestreado (IVA y material incl.): 8-22, habitual 12-16; 'País Vasco ... tarifas un 10-20% superiores a la media estatal'. Habitissimo: enfoscado basico 10-15 €/m2 (IVA no indicado). Motordepresupuestos: enfoscado pared exterior 18-35 €/m",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "enfoscado de cemento",
+    "enfoscado de mortero",
+    "enfoscado maestreado",
+    "enfoscado de paredes",
+    "revoco de cemento",
+    "raseo de paredes"
+   ],
+   "desc": "Enfoscado de mortero de cemento en paredes"
   },
   {
    "id": "r_trasdosado",
@@ -585,7 +949,16 @@
     "https://preciom2.com/guias/pladur/pladur-instalado/"
    ],
    "nota": "Habitissimo (IVA y material incl.): 20-45, media 30 €/m2; autoportante ~25, con aislamiento 30-40. Motordepresupuestos: trasdosado autoportante 22-40 €/m2 SIN IVA; pladurista Bilbao 39-44 €/h (+54% vs media). preciom2 (IVA incl.): autoportante 35-50 €/m2, ±20% segun comunidad. Precios para placa de ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "trasdosado con perfileria",
+    "trasdosado autoportante",
+    "trasdosado de placa de yeso",
+    "trasdosado de pladur",
+    "trasdosado directo",
+    "trasdosado de fermacell"
+   ],
+   "desc": "Trasdosado de placa de yeso o fibroyeso (pladur/fermacell) con perfilería, colocado"
   },
   {
    "id": "r_tabique_placa",
@@ -600,7 +973,17 @@
     "https://preciom2.com/guias/pladur/pladur-instalado/"
    ],
    "nota": "Cronoshare (IVA y material incl.): 25-40 €/m2 (extremos 20-50); sin pintar 20-30, con aislamiento acustico 30-40. Motordepresupuestos: tabique sencillo 28-48 €/m2 SIN IVA, doble 42-68; Bilbao 39-44 €/h (+54%). preciom2 (IVA incl.): tabique simple 25-32 €/m2. Placa de yeso; sin precio colocado de Fer",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "tabique de placa de yeso",
+    "tabique de pladur",
+    "tabique de fermacell",
+    "tabique autoportante",
+    "tabique de yeso laminado",
+    "tabiqueria seca",
+    "tabique de carton yeso"
+   ],
+   "desc": "Tabique de placa de yeso o fibroyeso de dos caras con estructura, colocado"
   },
   {
    "id": "r_pintura",
@@ -615,7 +998,17 @@
     "https://www.habitissimo.es/presupuestos/pintar-casa"
    ],
    "nota": "motordepresupuestos 8-12-16 €/m2, mano de obra + material, IVA aparte (10% vivienda >2 años). trustlocal 8-12 básico, 10-15 grandes ciudades (IVA/material sin aclarar). habitissimo 3-5 €/m2 (plástica color ~3,5; Madrid 4,5-5,5; 10-12 con reparación de paredes), IVA sin aclarar. País Vasco: motordepr",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "pintura plastica",
+    "pintar paredes",
+    "pintura de paredes y techos",
+    "pintura interior",
+    "pintado de vivienda",
+    "pintura lisa",
+    "pintura al temple"
+   ],
+   "desc": "Pintura plástica de paredes y techos (dos manos), interior"
   },
   {
    "id": "r_lasur",
@@ -631,7 +1024,17 @@
     "https://www.decoracionesdiaz.es/copia-de-lista-de-precios"
    ],
    "nota": "habitissimo: techo de madera ~15 €/m2; vigas 10 €/m LINEAL (hasta 30 €/m lineal con sellado). preciom2 (may-2026): lasur decorativo 12-22 €/m2, barniz interior 8-18; lijado previo +4-10 €/m2. CYPE lasur sintético 14,62 €/m2 coste directo sin IVA (6,92 material + 7,41 mano de obra). Decoraciones Díaz",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "lasur",
+    "barniz para madera",
+    "barnizado de vigas",
+    "barnizado de madera",
+    "tratamiento de madera",
+    "protector de madera",
+    "lasur para vigas"
+   ],
+   "desc": "Lasur / barniz de madera (vigas, entablado)"
   },
   {
    "id": "r_alicatado",
@@ -646,7 +1049,17 @@
     "https://preciom2.com/guias/revestimientos/alicatar/"
    ],
    "nota": "habitissimo: media 40 €/m2 con material medio (30-55); solo mano de obra Madrid 15 €/m2; quitar alicatado viejo +10 €/m2. cronoshare: 40-60 €/m2 IVA incluido (cerámico 33-60, porcelánico 40-70); mano de obra 15-17 €/m2; grandes ciudades +10-15%. preciom2: 18-75 €/m2, gama media 30-52; mano de obra 1",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "alicatado con gres",
+    "alicatado con azulejo",
+    "alicatado de paredes",
+    "colocacion de azulejo",
+    "revestimiento ceramico de paredes",
+    "alicatar bano",
+    "alicatado de cocina"
+   ],
+   "desc": "Alicatado de paredes con azulejo, colocado (mano de obra + material medio)"
   },
   {
    "id": "r_autonivelante",
@@ -660,7 +1073,17 @@
     "https://www.habitissimo.es/presupuestos/morteros-autonivelantes"
    ],
    "nota": "Presupuestos reales en BILBAO (tenders.es, 123-125 m2, 6 cm): 10 €/m2, 22 €/m2 material incluido, 34 €/m2 material incluido neto; otros totales 2.370 € sin IVA (~19 €/m2) y 3.750 € (~30 €/m2), convertidos dividiendo por 125 m2; un outlier de 94 €/m2 descartado. Un contratista avisa que el autonivela",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "mortero autonivelante",
+    "recrecido de mortero",
+    "autonivelante",
+    "recrecido de suelo",
+    "capa de regularizacion",
+    "nivelado de suelo",
+    "solera de mortero"
+   ],
+   "desc": "Recrecido / mortero autonivelante de suelo 3-5 cm"
   },
   {
    "id": "r_gres",
@@ -675,7 +1098,17 @@
     "https://preciom2.com/guias/suelos/"
    ],
    "nota": "habitissimo: media 45 €/m2 (28-60; típico 35-50), material+mano de obra; ejemplo salón 30 m2 = 1.630 € con rodapié. cronoshare (IVA incluido): 22-60 €/m2 con material, punto medio 34; solo mano de obra 13-25 €/m2. preciom2: 25-60 €/m2 (60x60 rectificado 30-42; gran formato 50-70); indica que Bilbao ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "solado de gres",
+    "gres porcelanico",
+    "solado con baldosa",
+    "pavimento de gres",
+    "solado ceramico",
+    "poner suelo de gres",
+    "embaldosado"
+   ],
+   "desc": "Solado de suelo con gres porcelánico, colocado (mano de obra + material medio)"
   },
   {
    "id": "r_tarima_maciza",
@@ -691,7 +1124,16 @@
     "https://preguntas.habitissimo.es/pregunta/tarima-maciza-sobre-rastrel"
    ],
    "nota": "Parquets Bilbao (precio real, SIN IVA): instalación 30 €/m2 + suministro eucalipto 61, sucupira 77, roble 94, nogal 148 => 91-178 €/m2 colocado. preciom2: parquet macizo clavado sobre rastreles 40-90 €/m2 (pino 38-55, roble 45-65, iroko 60-85); Bilbao/San Sebastián +10-20%. habitissimo: macizo 35->1",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "tarima maciza",
+    "tarima de madera maciza",
+    "entarimado de madera maciza",
+    "tarima clavada sobre rastreles",
+    "parquet macizo",
+    "pavimento de madera maciza"
+   ],
+   "desc": "Tarima de madera maciza clavada, colocada"
   },
   {
    "id": "r_vierteaguas",
@@ -706,7 +1148,16 @@
     "http://www.generadordeprecios.info/obra_nueva/Remates_y_ayudas/Remates/De_piedra_natural/Vierteaguas_de_piedra_natural.html"
    ],
    "nota": "habitissimo: media ~40 € material + mano de obra; caliza desde 20 €/m, piedra natural 30-100 €/m, granito 45-108 €/m. cronoshare: 20-70 €/m habitual (18->100), IVA incluido; sustitución 30-40 €/m por la retirada. CYPE mármol blanco Macael 20 mm: 24,81 €/m coste directo sin IVA (14,69 material + 9,63",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "vierteaguas",
+    "vierteaguas de piedra",
+    "vierteaguas de marmol",
+    "alfeizar",
+    "vierteaguas de granito",
+    "vierteaguas de ventana"
+   ],
+   "desc": "Vierteaguas de piedra o mármol para ventana, colocado"
   },
   {
    "id": "f_acometida",
@@ -722,7 +1173,16 @@
     "https://trustlocal.es/coste/fontanero-coste/"
    ],
    "nota": "Habitissimo: 300-2.000 € (hasta 3.000), media 1.500 €; Madrid 3.000, Barcelona 2.800, Valencia 2.700; sin dato País Vasco. Ferhogar: alta de acometida 300-1.000 €. CYPE: 307,34 € por acometida de 2 m PE32 con llave y arqueta (mat 216,16, MO 73,97), sin IVA. Trustlocal: 40-90 €/m lineal. Típico = med",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "acometida de agua",
+    "acometida a la red de abastecimiento",
+    "acometida de abastecimiento",
+    "enganche de agua",
+    "toma de agua general",
+    "contador de agua"
+   ],
+   "desc": "Acometida de agua a vivienda"
   },
   {
    "id": "v_extractor",
@@ -738,7 +1198,16 @@
     "https://www.habitissimo.es/presupuestos/instalar-o-cambiar-campana-extractora"
    ],
    "nota": "Habitissimo extractor de baño: 170-195-280 € (mat+MO; manual 150, con higrostato 220); BILBAO 180 €. Cosentino (presupuesto ejemplo baño): extractor CATA suministro e instalación 250 €. CYPE: 43,53 € (helicoidal 80 m3/h, mat 34,80 + MO 7,88, sin IVA). Campana de cocina (Habitissimo): mano de obra bá",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "extractor de bano",
+    "extractor de cocina",
+    "ventilador extractor",
+    "extractor helicoidal",
+    "extractor de aire",
+    "aspirador de bano"
+   ],
+   "desc": "Extractor de baño o cocina instalado"
   },
   {
    "id": "el_cuadro",
@@ -754,7 +1223,17 @@
     "https://www.habitissimo.es/presupuestos/cambiar-instalacion-electrica"
    ],
    "nota": "Zaask: 300-400 € instalación básica con cuadro, diferenciales, magnetotérmicos, sobretensiones y MO (rango total 500-3.800 € con otros servicios; boletín 70-150 € aparte). Papernest: monofásico 300-800 €, trifásico 500-1.200 € con instalación. FincaVolt: renovación de cuadro 400-900 €. Habitissimo: ",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "cuadro electrico",
+    "cuadro general de mando",
+    "cuadro de proteccion",
+    "cuadro de distribucion",
+    "caja de proteccion",
+    "cambiar el cuadro de luz",
+    "cuadro de mando y proteccion"
+   ],
+   "desc": "Cuadro eléctrico de vivienda instalado"
   },
   {
    "id": "x_contenedor",
@@ -770,7 +1249,3761 @@
     "https://goodcollect.es/soluciones/alquiler-de-contenedores/alquiler-contenedores-residuos-pais-vasco/bizkaia-48"
    ],
    "nota": "Cronoshare todo incluido (ida/vuelta + 1 semana + tasas): 3 m3 160-230, 5-6 m3 240-300, 9-10 m3 300-420 €; tasa municipal 20-150 € aparte según municipio. Habitissimo: ~260 € con servicios (contenedor pequeño). GoodCollect nacional: 3 m3 120 €, 6 m3 175 € (inerte), +IVA, canon vertedero 9-30 €/t apa",
-   "minimo": null
+   "minimo": null,
+   "claves": [
+    "contenedor de escombros",
+    "alquiler de contenedor",
+    "transporte de residuos con contenedor",
+    "contenedor de residuos",
+    "gestion de residuos de obra",
+    "saca de escombros",
+    "cuba de escombros"
+   ],
+   "desc": "Contenedor de escombros (alquiler, transporte y vertido)"
+  },
+  {
+   "id": "p_tabique_ladrillo",
+   "re": null,
+   "claves": [
+    "tabique de ladrillo",
+    "tabique ladrillo hueco",
+    "ladrillo hueco doble",
+    "ladrillo hueco sencillo",
+    "tabique de rasilla",
+    "tabicon de ladrillo",
+    "particion interior de fabrica",
+    "hoja de particion interior",
+    "levantar tabique de ladrillo",
+    "fabrica de ladrillo ceramico hueco"
+   ],
+   "u": "m2",
+   "tipico": 25,
+   "min": 12,
+   "max": 48,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/construir-tabique",
+    "https://preciom2.com/guias/ladrillo/",
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles",
+    "https://www.cronoshare.com/cuanto-cuesta/hacer-tabique"
+   ],
+   "nota": "Habitissimo 15-45 (media 25); preciom2 hueco doble 18-22 sin revestir, 24-30 con yeso dos caras; motordepresupuestos 28-48 sin IVA; cronoshare 12-40 IVA incl. sin enlucido; CYPE FFQ010 (7 cm, 33x16x7) 22,21 coste directo. Sin guarnecido salvo indicacion; IVA mixto entre fuentes (mayoria sin IVA).",
+   "minimo": null,
+   "desc": "Tabique de ladrillo hueco doble o sencillo"
+  },
+  {
+   "id": "p_tabique_ladrillo_gran",
+   "re": null,
+   "claves": [
+    "ladrillo de gran formato",
+    "ladrillo ceramico gran formato",
+    "tabique gran formato",
+    "rasillon",
+    "ladrillo machihembrado",
+    "tabique cerapas",
+    "ladrillo hueco gran formato",
+    "panel ceramico gran formato"
+   ],
+   "u": "m2",
+   "tipico": 25,
+   "min": 15,
+   "max": 45,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/construir-tabique",
+    "https://www.cronoshare.com/cuanto-cuesta/hacer-tabique",
+    "https://grupopastrana.com/cerapas/"
+   ],
+   "nota": "No se encontro pagina 2025-26 con precio especifico de gran formato (preciom2 gran formato da 410). Se usa el rango general de tabique de ladrillo (habitissimo 15-45, media 25; cronoshare 12-40). Pastrana Cerapas: piezas 70 cm de largo, 4-11 cm espesor, sin precio. Dato orientativo, revisar.",
+   "minimo": null,
+   "desc": "Tabique de ladrillo de gran formato (rasillón / tabicón)"
+  },
+  {
+   "id": "p_cerrar_hueco",
+   "re": null,
+   "claves": [
+    "cerrar hueco de puerta",
+    "tapiar hueco",
+    "tapiar puerta",
+    "cegado de hueco",
+    "cegar hueco",
+    "tabicar hueco",
+    "condenar puerta",
+    "reconstruccion de hueco",
+    "cerramiento de hueco con ladrillo"
+   ],
+   "u": "ud",
+   "tipico": 170,
+   "min": 120,
+   "max": 200,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/tapiar-puertas-y-ventanas",
+    "https://preguntas.habitissimo.es/pregunta/tabicar-para-cerrar-un-hueco-de-puerta",
+    "https://www.generadordeprecios.info/rehabilitacion/Fachadas_y_particiones/Fabrica_no_estructural/FFY_Reconstrucciones__reparaciones/FFY020_Reconstruccion_de_hueco_provisional.html"
+   ],
+   "nota": "Habitissimo guia: 150 mano de obra + ~50 material, sin remates; profesionales habitissimo: 120-200, y 170 cerrar y enlucir con material. CYPE FFY020 solo fabrica 15,57 EUR/m2 (coste directo, sin enlucido). IVA no especificado.",
+   "minimo": null,
+   "desc": "Cerrar / tapiar hueco de puerta con ladrillo, raseado y lucido"
+  },
+  {
+   "id": "p_premarco",
+   "re": null,
+   "claves": [
+    "premarco de madera",
+    "precerco de madera",
+    "colocacion de premarco",
+    "recibido de precerco",
+    "recibido de premarco",
+    "precerco puerta de paso",
+    "premarco puerta interior"
+   ],
+   "u": "ud",
+   "tipico": 45,
+   "min": 27,
+   "max": 90,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles",
+    "https://generadordeprecios.info/obra_nueva/Remates_y_ayudas/Ayudas_de_albanileria/Para_oficios/HYO040_Colocacion_y_fijacion_de_precerco_d.html",
+    "https://www.bauhaus.es/marcos-de-madera/premarco-de-madera-para-puerta-de-203cm/p/25100231"
+   ],
+   "nota": "Motordepresupuestos recibido de cercos/premarcos 45-90 EUR/ud sin IVA; CYPE HYO040 colocacion precerco 12,42 (solo mano de obra) + premarco Bauhaus 14,99 IVA incl. = ~27 minimo.",
+   "minimo": null,
+   "desc": "Premarco de madera para puerta"
+  },
+  {
+   "id": "p_cajon_corredera",
+   "re": null,
+   "claves": [
+    "armazon metalico para puerta corredera",
+    "casoneto",
+    "cajon puerta corredera",
+    "armazon puerta corredera",
+    "cassonetto",
+    "kit corredera empotrada",
+    "bastidor corredera empotrada",
+    "corredera oculta en tabique"
+   ],
+   "u": "ud",
+   "tipico": 245,
+   "min": 227,
+   "max": 600,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/L_Carpinteria__cerrajeria__vidrios_y_/Puertas_interiores/De_madera/LPM020_Armazon_metalico_para_puerta_corred.html",
+    "https://securfix.es/collections/casoneto-puerta-corredera",
+    "https://www.habitissimo.es/presupuestos/instalar-puerta-corredera-empotrada"
+   ],
+   "nota": "CYPE LPM020 armazon 60x200 colocado en fabrica 245,43 (192 material + 48,6 mano de obra), sin IVA; Securfix casoneto tabique/pladur desde 226-244 IVA incl. solo material; habitissimo: albanileria para abrir hueco en pared existente 400-600 aparte (max).",
+   "minimo": null,
+   "desc": "Armazón / cajón para puerta corredera empotrada"
+  },
+  {
+   "id": "p_falso_techo_pladur",
+   "re": null,
+   "claves": [
+    "falso techo de pladur",
+    "falso techo continuo",
+    "techo continuo de placa de yeso laminado",
+    "falso techo de placas de yeso laminado",
+    "techo de pladur",
+    "falso techo de carton yeso",
+    "bajar techo con pladur",
+    "falso techo pyl"
+   ],
+   "u": "m2",
+   "tipico": 30,
+   "min": 18,
+   "max": 45,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-falso-techo-pladur",
+    "https://preciom2.com/guias/pladur/falso-techo-pladur/",
+    "https://motordepresupuestos.com/cuanto-cobra/pladuristas",
+    "https://www.escayolistasvalencia.es/pide-tu-presupuesto/precios-por-metro/"
+   ],
+   "nota": "Cronoshare pladur 20-45 (continuo 18-20 base, 40-45 con aislamiento) sin IVA; preciom2 continuo placa 13 mm 25-35 (con lana 32-45); motordepresupuestos 20-38 sin IVA; Escayolistas Valencia desde 35 + 21% IVA. Sin pintura (2-4 EUR/m2).",
+   "minimo": null,
+   "desc": "Falso techo continuo de placa de yeso laminado (pladur)"
+  },
+  {
+   "id": "p_falso_techo_registrable",
+   "re": null,
+   "claves": [
+    "falso techo registrable",
+    "techo registrable",
+    "placas 60x60",
+    "techo desmontable",
+    "perfileria vista",
+    "placas de fibra mineral",
+    "falso techo registrable de placas",
+    "techo de placas registrables"
+   ],
+   "u": "m2",
+   "tipico": 25,
+   "min": 18,
+   "max": 45,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-falso-techo-pladur",
+    "https://preciom2.com/guias/pladur/falso-techo-pladur/",
+    "https://motordepresupuestos.com/cuanto-cobra/pladuristas",
+    "https://www.escayolistasvalencia.es/pide-tu-presupuesto/precios-por-metro/"
+   ],
+   "nota": "Cronoshare registrable 18-45 (fibra mineral 20-25) sin IVA; preciom2 registrable 60x60 perfileria vista 20-30; motordepresupuestos 18-32 sin IVA; Escayolistas Valencia desde 25 + IVA.",
+   "minimo": null,
+   "desc": "Falso techo registrable de placas 60x60"
+  },
+  {
+   "id": "p_falso_techo_escayola",
+   "re": null,
+   "claves": [
+    "falso techo de escayola",
+    "techo de escayola",
+    "placas de escayola",
+    "escayola lisa",
+    "techo continuo de escayola",
+    "escayola con estopa",
+    "bajar techo de escayola"
+   ],
+   "u": "m2",
+   "tipico": 23,
+   "min": 12,
+   "max": 40,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-falso-techo-pladur",
+    "https://www.cronoshare.com/cuanto-cuesta/escayolista",
+    "https://www.escayolistasvalencia.es/pide-tu-presupuesto/precios-por-metro/",
+    "https://preguntas.habitissimo.es/pregunta/pladur-luz-indirecta"
+   ],
+   "nota": "Cronoshare falso techo escayola 15-40 sin IVA; cronoshare escayolista falso techo 15-30; Escayolistas Valencia desde 23 + 21% IVA; profesional habitissimo ~12 (escayola) / 14 (suspendido).",
+   "minimo": null,
+   "desc": "Falso techo de escayola"
+  },
+  {
+   "id": "p_foseado",
+   "re": null,
+   "claves": [
+    "foseado",
+    "foseado perimetral",
+    "tabica de pladur",
+    "tabica de escayola",
+    "cortineros de pladur",
+    "luz indirecta",
+    "foseado para tira led",
+    "cajeado para luz indirecta",
+    "candileja"
+   ],
+   "u": "m",
+   "tipico": 35,
+   "min": 20,
+   "max": 75,
+   "fuentes": [
+    "https://www.escayolistasvalencia.es/pide-tu-presupuesto/precios-por-metro/",
+    "https://reformasalannita.es/foseado-led-pladur-ourense-2026/",
+    "https://preguntas.habitissimo.es/pregunta/pladur-luz-indirecta"
+   ],
+   "nota": "Escayolistas Valencia foseado desde 22 EUR/m, tabica pladur 30, escayola 25 (+IVA); Reformas Alannita Ourense 2026 economico 35-50, estandar 50-75, premium 75-110 EUR/ml solo pladur (LED aparte 22-90/ml); habitissimo: ml de foseado ~ precio del m2 de techo (~20). Sin LED.",
+   "minimo": null,
+   "desc": "Foseado / tabica de pladur para luz indirecta"
+  },
+  {
+   "id": "p_trasdosado_directo",
+   "re": null,
+   "claves": [
+    "trasdosado directo",
+    "trasdosado pegado",
+    "placa pegada",
+    "trasdosado con pasta de agarre",
+    "trasdosado semidirecto",
+    "forrar pared con pladur",
+    "chapado de pladur",
+    "trasdosado adherido"
+   ],
+   "u": "m2",
+   "tipico": 25,
+   "min": 20,
+   "max": 33,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/poner-trasdosado",
+    "https://preciom2.com/guias/pladur/pladur-instalado/",
+    "https://www.escayolistasvalencia.es/pide-tu-presupuesto/precios-por-metro/"
+   ],
+   "nota": "Habitissimo directo ~20 EUR/m2; preciom2 directo 22-28; Escayolistas Valencia directo 33 + 21% IVA (autoportante 44, semidirecto 40).",
+   "minimo": null,
+   "desc": "Trasdosado directo de placa pegada a pared"
+  },
+  {
+   "id": "p_mueble_pladur",
+   "re": null,
+   "claves": [
+    "mueble de pladur",
+    "estanteria de pladur",
+    "libreria de pladur",
+    "chimenea de pladur",
+    "mueble tv de pladur",
+    "hornacina de pladur",
+    "balda de pladur",
+    "mueble de obra en pladur"
+   ],
+   "u": "ud",
+   "tipico": 500,
+   "min": 250,
+   "max": 1500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/estanterias-pladur",
+    "https://www.cuanto-cuesta.info/mueble-pladur-tv-precio.html",
+    "https://www.cronoshare.com/cuanto-cuesta/estanteria-pladur"
+   ],
+   "nota": "Habitissimo estanteria 250-650 (media 380; libreria 3 m ~1300); cuanto-cuesta mueble TV 500-1000 (pared completa 1800); cronoshare 300-1500 o 35-70 EUR/ml de balda. Escayolistas Valencia 80 EUR/ml de estante. IVA no claro.",
+   "minimo": null,
+   "desc": "Mueble / estantería / chimenea de pladur"
+  },
+  {
+   "id": "p_ayudas_albanileria",
+   "re": null,
+   "claves": [
+    "ayudas de albanileria",
+    "ayudas a instalaciones",
+    "ayudas a gremios",
+    "rozas y tapado",
+    "apertura y tapado de rozas",
+    "ayudas albanileria electricidad",
+    "ayudas albanileria fontaneria",
+    "recibido de cajas y mecanismos"
+   ],
+   "u": "ud",
+   "tipico": 1300,
+   "min": 500,
+   "max": 3000,
+   "fuentes": [
+    "https://www.macroza.com/precio-hacer-rozas-pared/",
+    "https://www.soloarquitectura.com/foros/threads/horas-de-ayudas-a-albanileria.128671/",
+    "https://www.cronoshare.com/cuanto-cuesta/hacer-rozas",
+    "https://generadordeprecios.info/rehabilitacion/Remates_y_ayudas/Ayudas_de_albanileria/Para_instalaciones/HYA020_Ayudas_de_albanileria_para_reposici.html"
+   ],
+   "nota": "Macroza rozas piso completo 500-600 (5-20 EUR/ml); Soloarquitectura: 1300 + IVA casa 140 m2 (pladur), presupuesto 3000 casa 120 m2 (real 6500); regla 5-20% del coste de instalaciones; cronoshare roza 5-10 EUR/ml + tapado 5 EUR/ml IVA incl.; CYPE HYA020 5,49 EUR/m2 construido. Muy variable segun tama",
+   "minimo": null,
+   "desc": "Ayudas de albañilería a instalaciones (rozas y tapado) por vivienda"
+  },
+  {
+   "id": "t_vaciado",
+   "re": null,
+   "claves": [
+    "vaciado de sotano",
+    "excavacion a cielo abierto",
+    "excavacion mecanica a cielo abierto",
+    "vaciado del terreno",
+    "vaciado con medios mecanicos",
+    "excavacion con retroexcavadora",
+    "vaciado de solar",
+    "desmonte de tierras"
+   ],
+   "u": "m3",
+   "tipico": 8,
+   "min": 3,
+   "max": 40,
+   "fuentes": [
+    "https://www.generadordeprecios.info/rehabilitacion/Acondicionamiento_del_terreno/Movimiento_de_tierras/Vaciados/Vaciado.html",
+    "http://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/AD_Movimiento_de_tierras_en_edifi/Excavaciones/Excavacion_mecanica_a_cielo_abierto_0_0_0_2_0_1_0_0_0_0_0_0_0.html",
+    "https://www.cronoshare.com/cuanto-cuesta/movimiento-tierras",
+    "https://www.habitissimo.es/presupuestos/excavaciones"
+   ],
+   "nota": "CYPE ADV010 vaciado 8,08 €/m3 y ADE002 3,34 €/m3 (coste ejecucion material, sin IVA ni GG/BI). Cronoshare vaciado 3-6 €/m3, excavacion 2-15 €/m3 (IVA incl). Habitissimo excavacion 15-70 €/m3, media 40 (trabajos pequenos). No incluye transporte a vertedero ni canon salvo que se indique. Roca: 20-70 €",
+   "minimo": null,
+   "desc": "Vaciado / excavación a cielo abierto con máquina"
+  },
+  {
+   "id": "t_pozo",
+   "re": null,
+   "claves": [
+    "excavacion de pozos",
+    "excavacion de zanjas y pozos",
+    "pozos de cimentacion",
+    "excavacion para zapatas",
+    "apertura de pozos",
+    "excavacion de pozos con medios mecanicos",
+    "hoyos para zapatas"
+   ],
+   "u": "m3",
+   "tipico": 32,
+   "min": 24,
+   "max": 82,
+   "fuentes": [
+    "https://www.generadordeprecios.info/espacios_urbanos/Acondicionamiento_del_terreno/AC_Movimiento_de_tierras_en_obra_/Excavaciones/ACE030_Excavacion_de_pozos__con_medios_mec_0_0_0_0_0_0.html",
+    "https://cotydemoliciones.com/zanjas-cimentaciones-pozos-zapatas-movimiento-tierras/",
+    "https://www.habitissimo.es/presupuestos/excavar-zanjas"
+   ],
+   "nota": "CYPE ACE030 81,84 €/m3 (sin IVA). Coty Demoliciones Madrid 2026: apertura de pozos de cimentacion 24-38 €/m3, zanjas 14,5-19,5 €/m3 (IVA no indicado). Habitissimo zanjas media 32 €/m3, rango 11-47 (IVA no indicado). Solo mano de obra y maquinaria; no hay material.",
+   "minimo": null,
+   "desc": "Excavación de pozos para cimentación"
+  },
+  {
+   "id": "t_relleno",
+   "re": null,
+   "claves": [
+    "relleno de zanjas",
+    "relleno y compactacion",
+    "relleno de trasdos",
+    "relleno con zahorra",
+    "relleno con tierras de la excavacion",
+    "relleno de zanjas y pozos",
+    "compactacion en tongadas",
+    "terraplenado y compactacion"
+   ],
+   "u": "m3",
+   "tipico": 18,
+   "min": 7,
+   "max": 40,
+   "fuentes": [
+    "https://www.generadordeprecios.info/espacios_urbanos/Acondicionamiento_del_terreno/AC_Movimiento_de_tierras_en_obra_/ACR_Extendidos__rellenos_y_compact/Relleno_de_zanjas.html",
+    "https://www.generadordeprecios.info/rehabilitacion/Acondicionamiento_del_terreno/AD_Movimiento_de_tierras_en_edifi/Rellenos_y_compactaciones/ADR040_Relleno_de_zanjas_y_pozos__en_inter.html",
+    "https://www.cronoshare.com/cuanto-cuesta/movimiento-tierras",
+    "https://www.preciom2.com/materiales/zahorra/"
+   ],
+   "nota": "Con tierras propias: CYPE ACR020 6,65 €/m3. Con zahorra aportada: CYPE ADR040 28,99 €/m3 (22 € es material), preciom2 zahorra extendida y compactada 25-40 €/m3. Cronoshare terraplenado 2-16 €/m3 IVA incl. CYPE sin IVA.",
+   "minimo": null,
+   "desc": "Relleno y compactación de zanjas o trasdós con tierras o zahorra"
+  },
+  {
+   "id": "t_zahorra",
+   "re": null,
+   "claves": [
+    "sub-base de zahorra",
+    "base de zahorra compactada",
+    "encachado de zahorra",
+    "zahorra artificial compactada",
+    "subbase granular",
+    "capa de zahorra",
+    "base granular compactada"
+   ],
+   "u": "m2",
+   "tipico": 9,
+   "min": 4,
+   "max": 18,
+   "fuentes": [
+    "https://www.preciom2.com/materiales/zahorra/",
+    "https://www.cronoshare.com/cuanto-cuesta/poner-solera-hormigon",
+    "https://generadordeprecios.info/espacios_urbanos/Firmes_y_pavimentos_urbanos/Bases_y_subbases/Granulares/Subbase_granular_0_0_3_2.html"
+   ],
+   "nota": "preciom2: 15 cm 4-6 €/m2 en volumen y 8-12 en obra pequena (<50 m2); 20 cm 5-8 / 10-15 (IVA no indicado). Cronoshare base de grava/compactacion 8-18 €/m2 IVA incl. CYPE MBG020 36,02 €/m3 sin IVA (unos 5,4 €/m2 a 15 cm). Tipico para obra de reforma pequena.",
+   "minimo": null,
+   "desc": "Sub-base de zahorra compactada"
+  },
+  {
+   "id": "c_hormigon_limpieza",
+   "re": null,
+   "claves": [
+    "hormigon de limpieza",
+    "capa de hormigon de limpieza",
+    "solera de limpieza",
+    "hl-150",
+    "solado de limpieza",
+    "hormigon de limpieza y nivelado"
+   ],
+   "u": "m2",
+   "tipico": 10,
+   "min": 7,
+   "max": 15,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Cimentaciones/Regularizacion/Hormigon_de_limpieza/Capa_de_hormigon_de_limpieza.html",
+    "https://www.cronoshare.com/cuanto-cuesta/poner-solera-hormigon"
+   ],
+   "nota": "CYPE CRL010 10 cm HL-150/B/20: 8,84 €/m2 sin IVA. Cronoshare solera de limpieza 7-15 €/m2 IVA incl.",
+   "minimo": null,
+   "desc": "Capa de hormigón de limpieza 10 cm"
+  },
+  {
+   "id": "c_losa",
+   "re": null,
+   "claves": [
+    "losa de cimentacion",
+    "losa de hormigon armado",
+    "losa armada de cimentacion",
+    "cimentacion por losa",
+    "losa de cimentacion ha-25",
+    "placa de cimentacion",
+    "losa maciza de cimentacion"
+   ],
+   "u": "m3",
+   "tipico": 240,
+   "min": 150,
+   "max": 300,
+   "fuentes": [
+    "https://carm.generadordeprecios.info/obra_nueva/Cimentaciones/Superficiales/Losas/Losa_de_cimentacion.html",
+    "https://preciom2.com/guias/hormigon-estructuras/losa-hormigon-armado/",
+    "https://preciom2.com/guias/hormigon-estructuras/"
+   ],
+   "nota": "CYPE CSL010 HA-25 con bomba y acero: 255,56 €/m3 (base Murcia, IVA no indicado). preciom2 2026: losa de cimentacion 85-120 €/m2 con espesor 40-60 cm (=aprox 170-300 €/m3), incluye encofrado perimetral, hormigon de limpieza y doble emparrillado; zapatas 150-260 €/m3. IVA no indicado.",
+   "minimo": null,
+   "desc": "Losa de cimentación de hormigón armado"
+  },
+  {
+   "id": "c_muro_hormigon",
+   "re": null,
+   "claves": [
+    "muro de sotano",
+    "muro de hormigon armado",
+    "muro de contencion",
+    "muro de contencion de hormigon",
+    "muro de sotano ha-25",
+    "muro a dos caras",
+    "muro de hormigon encofrado"
+   ],
+   "u": "m3",
+   "tipico": 250,
+   "min": 200,
+   "max": 460,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Cimentaciones/Contenciones/Muros_de_sotano/Muro_de_sotano.html",
+    "https://preciom2.com/guias/hormigon-estructuras/muro-contencion/",
+    "https://www.cronoshare.com/cuanto-cuesta/movimiento-tierras",
+    "https://autopromotor.info/estructuristas/precio-muro-de-hormigon-visto/"
+   ],
+   "nota": "CYPE CCS010 muro de sotano HA-25, 50 kg/m3: 213,28 €/m3 sin IVA. preciom2 2026: muro en mensula armado 200-290 €/m3, con contrafuertes 240-320. Cronoshare muros de contencion 60-460 €/m3 IVA incl. Autopromotor muro de hormigon visto 630,70 €/m3 a coste sin IVA (acabado visto, caso alto).",
+   "minimo": null,
+   "desc": "Muro de hormigón armado (sótano / contención)"
+  },
+  {
+   "id": "c_impermeabilizacion_muro",
+   "re": null,
+   "claves": [
+    "impermeabilizacion de muro",
+    "impermeabilizacion exterior de muro",
+    "muro en contacto con el terreno",
+    "lamina asfaltica en muro",
+    "pintura bituminosa en muro",
+    "emulsion bituminosa muro",
+    "impermeabilizacion de muro de sotano",
+    "impermeabilizacion de trasdos"
+   ],
+   "u": "m2",
+   "tipico": 20,
+   "min": 8,
+   "max": 30,
+   "fuentes": [
+    "http://www.generadordeprecios.info/obra_nueva/Aislamientos_e_impermeabilizaciones/Impermeabilizaciones/Muros_en_contacto_con_el_terreno/NIM011_Impermeabilizacion_exterior_de_muro.html",
+    "https://www.habitissimo.es/presupuestos/impermeabilizar-paredes"
+   ],
+   "nota": "CYPE NIM011 laminas asfalticas 11,93 €/m2. Habitissimo: pinturas impermeabilizantes 8-12 €/m2, membranas unos 20, muros unos 30, sotano 1.300 € por 100 m2; rango general 20-80 €/m2 media 50 (IVA no indicado). Sin drenaje ni lamina nodular.",
+   "minimo": null,
+   "desc": "Impermeabilización de muro enterrado con lámina o emulsión"
+  },
+  {
+   "id": "c_lamina_solera",
+   "re": null,
+   "claves": [
+    "lamina de polietileno",
+    "film de polietileno",
+    "capa separadora de polietileno",
+    "barrera de vapor bajo solera",
+    "lamina separadora bajo solera",
+    "plastico bajo solera",
+    "galga 800"
+   ],
+   "u": "m2",
+   "tipico": 2,
+   "min": 1,
+   "max": 3,
+   "fuentes": [
+    "https://carm.generadordeprecios.info/obra_nueva/Aislamientos_e_impermeabilizaciones/Geosinteticos/Cimentaciones/NGI010_Capa_separadora_en_cimentacion__lam_0_0_4.html",
+    "https://www.cronoshare.com/cuanto-cuesta/poner-solera-hormigon"
+   ],
+   "nota": "CYPE NGI010 film PE 0,25 mm: 2,18 €/m2. Cronoshare film de polietileno 1-3 €/m2 IVA incl.",
+   "minimo": null,
+   "desc": "Lámina de polietileno / barrera de vapor bajo solera"
+  },
+  {
+   "id": "c_mallazo",
+   "re": null,
+   "claves": [
+    "malla electrosoldada",
+    "mallazo electrosoldado",
+    "me 15x15",
+    "mallazo 15x15",
+    "armado con mallazo",
+    "malla de reparto",
+    "colocacion de mallazo"
+   ],
+   "u": "m2",
+   "tipico": 8,
+   "min": 5,
+   "max": 13,
+   "fuentes": [
+    "https://www.generadordeprecios.info/espacios_urbanos/Cimentaciones/Hormigones__aceros_y_encofrados/Aceros/Malla_electrosoldada_0_0_0_0_0_1.html",
+    "https://www.cronoshare.com/cuanto-cuesta/poner-solera-hormigon"
+   ],
+   "nota": "CYPE CHA020 ME 15x15 d5-5: 5,68 €/m2 sin IVA. Cronoshare mallazo 15x15 d6: 3-8 €/m2 material + 2-5 €/m2 colocacion (IVA incl), es decir 5-13 colocado.",
+   "minimo": null,
+   "desc": "Mallazo electrosoldado colocado"
+  },
+  {
+   "id": "c_forjado_sanitario",
+   "re": null,
+   "claves": [
+    "forjado sanitario",
+    "forjado sanitario ventilado",
+    "camara sanitaria",
+    "forjado sobre murete",
+    "forjado sanitario de viguetas",
+    "viguetas y bovedillas sanitario",
+    "forjado sanitario caviti",
+    "forjado sobre viga de arranque"
+   ],
+   "u": "m2",
+   "tipico": 78,
+   "min": 42,
+   "max": 130,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Forjados_unidireccionales/EHU005_Forjado_sanitario_sobre_murete_de_f.html",
+    "https://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Forjados_unidireccionales/EHU006_Forjado_sanitario_ventilado_sobre_v.html",
+    "https://www.habitissimo.es/presupuestos/forjado-sanitario",
+    "https://preciom2.com/guias/hormigon-estructuras/forjado-sanitario-ventilado/"
+   ],
+   "nota": "CYPE EHU005 77,59 €/m2 y EHU006 58,56 €/m2 (sin IVA). Habitissimo media 80 €/m2, ventilado 60-100, vigueta-bovedilla 40. preciom2 2026 bovedilla ceramica sobre viguetas 42-65 €/m2. Autopromotor coste 87,33 €/m2 sin IVA ni BI; comentario 2025: 117-130 €/m2. IVA no indicado en habitissimo/preciom2.",
+   "minimo": null,
+   "desc": "Forjado sanitario de viguetas y bovedillas"
+  },
+  {
+   "id": "s_pozo_registro",
+   "re": null,
+   "claves": [
+    "pozo de registro",
+    "pozo de registro prefabricado",
+    "pozo de registro de fabrica",
+    "pozo de registro de hormigon",
+    "pozo de saneamiento",
+    "registro de alcantarillado",
+    "pozo de polietileno"
+   ],
+   "u": "ud",
+   "tipico": 930,
+   "min": 830,
+   "max": 1177,
+   "fuentes": [
+    "https://www.generadordeprecios.info/rehabilitacion/Urbanizacion_interior_de_la_parcela/Alcantarillado/Pozos_de_registro/Pozo_de_registro.html",
+    "https://generadordeprecios.info/obra_nueva/Urbanizacion_interior_de_la_parcela/Alcantarillado/Pozos_de_registro/UAP013_Pozo_de_registro_prefabricado_de_po.html",
+    "https://generadordeprecios.info/espacios_urbanos/Instalaciones/Urbanas/Redes_de_saneamiento/Pozo_de_registro_de_fabrica.html",
+    "https://generadordeprecios.info/espacios_urbanos/Instalaciones/Urbanas/Redes_de_saneamiento/IUS055_Pozo_de_registro_prefabricado_de_ho.html"
+   ],
+   "nota": "Solo CYPE (no se encontro pagina de marketplace): UAP010 ladrillo d1,0 m h1,6 m 830,51 €; UAP013 polietileno d800 h1,5 927,93 €; IUS060 fabrica d0,8 1.072,41 €; IUS055 prefabricado HA d1,2 h3 m 1.176,66 €. Sin IVA, con tapa de fundicion. Excavacion aparte.",
+   "minimo": null,
+   "desc": "Pozo de registro de saneamiento"
+  },
+  {
+   "id": "s_sumidero",
+   "re": null,
+   "claves": [
+    "sumidero sifonico",
+    "rejilla de recogida",
+    "sumidero de patio",
+    "sumidero con rejilla",
+    "sumidero de pvc",
+    "sumidero de fundicion",
+    "caldereta sifonica"
+   ],
+   "u": "ud",
+   "tipico": 38,
+   "min": 28,
+   "max": 48,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Sistemas_de_evacuacion_de_suelos/Sumidero_sifonico.html",
+    "https://carm.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Sistemas_de_evacuacion_de_suelos/Sumidero_sifonico_2_0_0_1_1.html"
+   ],
+   "nota": "Solo CYPE ASI020: PVC 75 mm rejilla 20x20 28,41 €/ud; fundicion ductil 20x20 47,50 €/ud (sin IVA). No se encontro pagina de marketplace con precio por unidad; canaletas lineales no incluidas.",
+   "minimo": null,
+   "desc": "Sumidero sifónico / rejilla de recogida de aguas"
+  },
+  {
+   "id": "s_acometida_saneamiento",
+   "re": null,
+   "claves": [
+    "acometida de saneamiento",
+    "acometida general de saneamiento",
+    "acometida a red municipal",
+    "conexion a la red general de saneamiento",
+    "acometida de alcantarillado",
+    "enganche al alcantarillado",
+    "entronque a colector"
+   ],
+   "u": "ud",
+   "tipico": 900,
+   "min": 200,
+   "max": 3000,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Acometidas/Acometida_general_de_saneamiento.html",
+    "https://generadordeprecios.info/obra_nueva/Acondicionamiento_del_terreno/Red_de_saneamiento_horizontal/Acometidas/ASB020_Conexion_de_la_acometida_del_edific.html",
+    "https://www.habitissimo.es/presupuestos/hacer-acometidas"
+   ],
+   "nota": "Depende de la longitud. CYPE ASB010 tubo PVC 200 mm 98 €/m + ASB020 conexion a pozo 236,14 €/ud (sin IVA). Habitissimo: 10 m 600 €, 20 m 1.200, 50 m 3.000; rango 200 a mas de 1.500 € (IVA no indicado). Tipico para unos 10 m. Tasas y licencia municipal aparte.",
+   "minimo": null,
+   "desc": "Acometida de saneamiento a red municipal"
+  },
+  {
+   "id": "s_fosa",
+   "re": null,
+   "claves": [
+    "fosa septica",
+    "fosa septica prefabricada",
+    "depuradora de oxidacion total",
+    "depuradora compacta",
+    "fosa septica de polietileno",
+    "fosa con filtro biologico",
+    "pozo septico"
+   ],
+   "u": "ud",
+   "tipico": 2000,
+   "min": 1000,
+   "max": 6000,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-fosa-septica",
+    "https://www.habitissimo.es/presupuestos/fosas-septicas",
+    "https://carm.generadordeprecios.info/obra_nueva/Urbanizacion_interior_de_la_parcela/US_Depuracion_de_aguas_residuales/Fosas_septicas_y_filtros/USS010_Fosa_septica_de_polietileno_de_alta_0_0_2.html",
+    "https://www.generadordeprecios.info/obra_nueva/Urbanizacion_interior_de_la_parcela/US_Depuracion_de_aguas_residuales/Fosas_septicas_y_filtros/USS040_Fosa_septica_compacta__de_polietile_0_0_6.html"
+   ],
+   "nota": "Habitissimo instalar fosa: 1.000-6.000 €, media 4.000; prefabricada dos camaras 1.300 €; 4 personas 600-1.500, vivienda unifamiliar 1.500-5.000 (IVA no indicado). CYPE USS010 PEAD 2.000 L 10 usuarios 1.291,53 €; USS040 compacta 12.000 L 40 usuarios 7.954,68 € (sin IVA). Excavacion y permisos aparte ",
+   "minimo": null,
+   "desc": "Fosa séptica / depuradora pequeña instalada"
+  },
+  {
+   "id": "el_vivienda_completa",
+   "re": null,
+   "claves": [
+    "instalacion electrica completa",
+    "instalacion electrica vivienda",
+    "renovacion instalacion electrica",
+    "reforma electrica completa",
+    "cambiar instalacion electrica",
+    "electricidad completa vivienda",
+    "instalacion electrica interior vivienda",
+    "red electrica interior vivienda",
+    "recablear piso entero",
+    "electrificacion basica vivienda"
+   ],
+   "u": "ud",
+   "tipico": 3500,
+   "min": 2000,
+   "max": 7000,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/reformar-instalacion-electrica",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-electrica-obra-nueva",
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas",
+    "https://reformai.app/articulos/precios/precio-instalacion-electrica-2026"
+   ],
+   "nota": "Piso 80-90 m2. Cronoshare 2200-2500 EUR (90 m2, IVA incl.); habitissimo 2000 (80 m2) / 2250 (90 m2); motordepresupuestos 2500-4500 (80 m2, sin IVA); reformai 3800-5800 (80 m2 basica, sin IVA); FincaVolt 4000-7000 (80-90 m2). Tipico = mediana (~3500). Con rozas nuevas sube; boletin a veces aparte.",
+   "minimo": null,
+   "desc": "Instalación eléctrica completa de una vivienda de 80-90 m2 (con cuadro y boletín)"
+  },
+  {
+   "id": "el_enchufe",
+   "re": null,
+   "claves": [
+    "toma de corriente",
+    "base de enchufe",
+    "enchufe nuevo",
+    "punto de enchufe",
+    "base schuko",
+    "toma de corriente empotrada",
+    "poner enchufe",
+    "base de toma de corriente"
+   ],
+   "u": "ud",
+   "tipico": 75,
+   "min": 27,
+   "max": 350,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-enchufes",
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas",
+    "https://reformai.app/articulos/precios/precio-instalacion-electrica-2026",
+    "https://fincavolt.es/blog/precio-instalacion-electrica-vivienda/"
+   ],
+   "nota": "Habitissimo 40 EUR/ud (doble 60); motordepresupuestos base doble 55-100 sin IVA; reformai enchufe con tubo 70-130 sin IVA; FincaVolt 150-350 con linea desde cuadro; proelectricistas 27 EUR dentro de reforma completa. Tipico = mediana.",
+   "minimo": null,
+   "desc": "Toma de corriente / enchufe nuevo con su línea"
+  },
+  {
+   "id": "el_punto_luz",
+   "re": null,
+   "claves": [
+    "punto de luz",
+    "punto de luz sencillo",
+    "punto de luz conmutado",
+    "punto de luz con interruptor",
+    "punto de luz cruzamiento",
+    "punto luz simple",
+    "poner punto de luz",
+    "punto de iluminacion"
+   ],
+   "u": "ud",
+   "tipico": 90,
+   "min": 18,
+   "max": 350,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-punto-luz",
+    "https://www.cronoshare.com/cuanto-cuesta/reformar-instalacion-electrica",
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas",
+    "https://reformai.app/articulos/precios/precio-instalacion-electrica-2026"
+   ],
+   "nota": "Cronoshare 18-50 (IVA incl., material dudoso) y 40-70 en reforma; motordepresupuestos punto de luz completo 60-120 sin IVA; reformai con tubo 80-150 sin IVA; FincaVolt nuevo con interruptor/conmutado 180-350. Tipico = mediana.",
+   "minimo": null,
+   "desc": "Punto de luz (con interruptor) nuevo"
+  },
+  {
+   "id": "el_mecanismo",
+   "re": null,
+   "claves": [
+    "cambio de mecanismo",
+    "cambiar mecanismos",
+    "sustitucion de mecanismos",
+    "cambiar enchufe",
+    "cambiar interruptor",
+    "sustitucion de interruptor",
+    "cambio de embellecedores",
+    "mecanismos electricos serie"
+   ],
+   "u": "ud",
+   "tipico": 30,
+   "min": 8,
+   "max": 60,
+   "fuentes": [
+    "https://fincavolt.es/blog/precio-cambiar-enchufes-e-interruptores/",
+    "https://www.habitissimo.es/presupuestos/cambiar-enchufes"
+   ],
+   "nota": "FincaVolt 25-35 EUR mismo modelo, 40-60 cambiando serie (mano de obra+material, IVA incl.); habitissimo 30-60 por punto (basico desde 8), minimo de salida ~50 EUR.",
+   "minimo": null,
+   "desc": "Cambio de mecanismo (interruptor o enchufe)"
+  },
+  {
+   "id": "el_boletin",
+   "re": null,
+   "claves": [
+    "boletin electrico",
+    "certificado de instalacion electrica",
+    "certificado instalacion baja tension",
+    "legalizacion instalacion electrica",
+    "boletin de la luz",
+    "tramitacion boletin",
+    "cie instalacion electrica",
+    "certificado electrico industria"
+   ],
+   "u": "ud",
+   "tipico": 180,
+   "min": 70,
+   "max": 300,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/reformar-instalacion-electrica",
+    "https://selectra.es/energia/info/boletin-electrico",
+    "https://motordepresupuestos.com/boletin-electricidad-cie",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-electrica-obra-nueva"
+   ],
+   "nota": "Cronoshare 80-300 (IVA incl.); Selectra 70-300, media 186; motordepresupuestos vivienda <10 kW 120-250 + tasa autonomica 20-80; habitissimo media 150. Solo certificado y tramite, sin obra.",
+   "minimo": null,
+   "desc": "Boletín / certificado de instalación eléctrica (CIE)"
+  },
+  {
+   "id": "el_derivacion",
+   "re": null,
+   "claves": [
+    "derivacion individual",
+    "linea general de alimentacion",
+    "linea del contador al cuadro",
+    "cable de contador a cuadro",
+    "cambio derivacion individual",
+    "linea de acometida interior",
+    "derivacion monofasica",
+    "derivacion trifasica"
+   ],
+   "u": "m",
+   "tipico": 20,
+   "min": 13.76,
+   "max": 78,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Instalaciones/Electricas/Derivaciones_individuales/Derivacion_individual.html",
+    "https://generadordeprecios.info/rehabilitacion/Instalaciones/Electricas/Derivaciones_individuales/Derivacion_individual.html",
+    "https://generadordeprecios.info/obra_nueva/Instalaciones/Electricas/Lineas_generales_de_alimentacion/Linea_general_de_alimentacion.html",
+    "https://www.fuberelectricista.es/acometidaelectrica.html"
+   ],
+   "nota": "Escasean precios de mercado por metro. CYPE: DI 3G6 mm2 superficie 13,76 EUR/m (obra nueva) y 14,01 (rehabilitacion); LGA 5G10 enterrada 24,46 EUR/m; Fuber 390 EUR+IVA hasta 5 m con fusibles, caja y boletin (~78 EUR/m, max). Tipico ~20 es mediana aproximada; sin IVA. Cronoshare da 150-350 EUR global",
+   "minimo": null,
+   "desc": "Derivación individual / línea general"
+  },
+  {
+   "id": "el_toma_tierra",
+   "re": null,
+   "claves": [
+    "toma de tierra",
+    "puesta a tierra",
+    "pica de tierra",
+    "pica de toma de tierra",
+    "instalacion de toma de tierra",
+    "red de tierra",
+    "linea de tierra"
+   ],
+   "u": "ud",
+   "tipico": 157,
+   "min": 100,
+   "max": 700,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-toma-de-tierra",
+    "https://generadordeprecios.info/obra_nueva/Instalaciones/Electricas/Puesta_a_tierra/Toma_de_tierra_con_pica.html",
+    "https://reformai.app/articulos/precios/precio-instalacion-electrica-2026"
+   ],
+   "nota": "Habitissimo 100-300, media 150 (sin excavacion); CYPE toma de tierra con 1 pica 2 m 157,40 EUR sin IVA; reformai instalacion de tierra 300-700 sin IVA (vivienda sin tierra, con recableado). Edificio completo puede superar el max.",
+   "minimo": null,
+   "desc": "Toma de tierra de vivienda o edificio"
+  },
+  {
+   "id": "el_tv_datos",
+   "re": null,
+   "claves": [
+    "toma de television",
+    "toma de tv",
+    "toma de antena",
+    "toma de datos",
+    "toma rj45",
+    "punto de red",
+    "toma tv sat",
+    "punto de tv datos",
+    "toma de telecomunicaciones"
+   ],
+   "u": "ud",
+   "tipico": 50,
+   "min": 30,
+   "max": 150,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas",
+    "https://www.habitissimo.es/presupuestos/instalar-tomas-antena-en-habitaciones",
+    "https://generadordeprecios.info/obra_nueva/Instalaciones/Electricas/Mecanismos/IEM115_Toma_de_audio__video__voz_y_datos__.html",
+    "https://proelectricistas.com/precio-cambiar-instalacion-electrica/"
+   ],
+   "nota": "Motordepresupuestos punto TV/datos 50-90 sin IVA; habitissimo toma antena 40-150, media 100 con tirada de cable; CYPE toma RJ45 cat 5e empotrada 45,67; proelectricistas 30 (antena) y 35 (datos) en reforma completa.",
+   "minimo": null,
+   "desc": "Toma de televisión o datos"
+  },
+  {
+   "id": "el_portero",
+   "re": null,
+   "claves": [
+    "portero automatico",
+    "videoportero",
+    "portero electronico",
+    "telefonillo",
+    "kit videoportero",
+    "monitor videoportero",
+    "placa de calle portero",
+    "interfono vivienda"
+   ],
+   "u": "ud",
+   "tipico": 250,
+   "min": 70,
+   "max": 400,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-portero-automatico",
+    "https://www.habitissimo.es/presupuestos/instalar-videoportero"
+   ],
+   "nota": "Por vivienda. Cronoshare (IVA incl.) portero 90-200, videoportero 130-350, unifamiliar desde 70; habitissimo videoportero 150-400, media 250 (+100-150 si hay obra). Instalacion comunitaria completa es otra partida.",
+   "minimo": null,
+   "desc": "Portero automático / videoportero"
+  },
+  {
+   "id": "el_luminaria",
+   "re": null,
+   "claves": [
+    "foco empotrable",
+    "downlight led",
+    "foco led empotrado",
+    "luminaria empotrable",
+    "ojo de buey",
+    "aro empotrable",
+    "colocacion de luminaria",
+    "plafon led",
+    "instalacion de focos"
+   ],
+   "u": "ud",
+   "tipico": 50,
+   "min": 18,
+   "max": 150,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-iluminacion-led",
+    "https://servimaxi.casa/precios-de-focos-empotrables/",
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas"
+   ],
+   "nota": "Habitissimo ~18 EUR/foco (mano de obra, regulable 32); servimaxi 50-100 por foco en varios, 50-150 uno solo (equipo+material+mano de obra); motordepresupuestos instalacion de luminaria 35-65 sin IVA. Tipico ~50 con foco basico incluido.",
+   "minimo": null,
+   "desc": "Luminaria / foco empotrable LED colocado"
+  },
+  {
+   "id": "el_extractor_cocina",
+   "re": null,
+   "claves": [
+    "campana extractora",
+    "instalacion campana extractora",
+    "campana de cocina",
+    "salida de humos cocina",
+    "tubo campana extractora",
+    "extractor de cocina",
+    "conducto extraccion cocina",
+    "campana decorativa"
+   ],
+   "u": "ud",
+   "tipico": 900,
+   "min": 130,
+   "max": 2100,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-campana-extractora",
+    "https://www.habitissimo.es/presupuestos/instalar-o-cambiar-campana-extractora",
+    "https://www.cronoshare.com/cuanto-cuesta/hacer-salida-humos"
+   ],
+   "nota": "Incluye aparato. Cronoshare: mano de obra 60-100, total pared 130-1060 EUR con campana (IVA incl.); habitissimo media 1200, rango 800-2100 (convencional 900); solo hacer salida de humos nueva 500-2000 (cronoshare). Sin campana: solo colocacion 60-100 EUR.",
+   "minimo": null,
+   "desc": "Campana extractora de cocina instalada con salida"
+  },
+  {
+   "id": "el_cocina_linea",
+   "re": null,
+   "claves": [
+    "linea de cocina",
+    "circuito de cocina y horno",
+    "linea placa induccion",
+    "circuito placa induccion",
+    "circuito horno",
+    "linea horno",
+    "circuito independiente cocina",
+    "linea de fuerza cocina",
+    "circuito c3"
+   ],
+   "u": "ud",
+   "tipico": 300,
+   "min": 200,
+   "max": 600,
+   "fuentes": [
+    "https://fincavolt.es/blog/precio-instalacion-electrica-vivienda/",
+    "https://reformai.app/articulos/precios/precio-instalacion-electrica-2026",
+    "https://motordepresupuestos.com/cuanto-cobra/electricistas"
+   ],
+   "nota": "Circuito nuevo desde cuadro: FincaVolt 200-500; reformai 250-600 sin IVA; motordepresupuestos linea de fuerza trifasica 200-450 sin IVA. Conexion de la placa aparte (habitissimo mano de obra ~60).",
+   "minimo": null,
+   "desc": "Línea de cocina/horno/placa de inducción"
+  },
+  {
+   "id": "k_tejado_reparacion",
+   "re": null,
+   "claves": [
+    "retejado de cubierta",
+    "retejar tejado",
+    "reparacion de tejado",
+    "revision de tejado",
+    "sustitucion de tejas",
+    "reposicion de tejas rotas",
+    "cambio de tejas",
+    "arreglo de tejado",
+    "limpieza y retejado",
+    "repaso de tejado"
+   ],
+   "u": "m2",
+   "tipico": 70,
+   "min": 20,
+   "max": 120,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/retejar-tejado",
+    "https://www.cronoshare.com/cuanto-cuesta/arreglar-tejado",
+    "https://humedades.com/guia-precios/tejados/arreglar-tejado/"
+   ],
+   "nota": "habitissimo 30/70/110 (IVA no indicado); cronoshare 20 / 70-100 / 100 IVA incl.; humedades 60-120. Depende de tipo de teja y acceso.",
+   "minimo": null,
+   "desc": "Reparación / retejado de tejado (revisión y sustitución de tejas)"
+  },
+  {
+   "id": "k_impermeabilizacion_cubierta",
+   "re": null,
+   "claves": [
+    "impermeabilizacion de cubierta plana",
+    "lamina asfaltica",
+    "tela asfaltica",
+    "lamina de betun modificado",
+    "impermeabilizacion bicapa",
+    "membrana asfaltica",
+    "lamina autoprotegida",
+    "cubierta plana no transitable",
+    "impermeabilizacion con lamina"
+   ],
+   "u": "m2",
+   "tipico": 24,
+   "min": 12,
+   "max": 60,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/tela-asfaltica",
+    "https://preciom2.com/guias/cubiertas-impermeabilizacion/",
+    "https://motordepresupuestos.com/cuanto-cobra/impermeabilizacion",
+    "https://www.cronoshare.com/cuanto-cuesta/construir-tejado"
+   ],
+   "nota": "habitissimo 12/15/40; preciom2 lamina bituminosa 12-25 sin IVA; motordepresupuestos cubierta plana no transitable 28-60 (transitable 35-75) sin IVA; cronoshare impermeabilizacion 20-40 IVA incl. Tipico = mediana de puntos medios.",
+   "minimo": null,
+   "desc": "Impermeabilización de cubierta plana con lámina asfáltica"
+  },
+  {
+   "id": "k_cubierta_panel",
+   "re": null,
+   "claves": [
+    "panel sandwich",
+    "cubierta de panel sandwich",
+    "panel sandwich de cubierta",
+    "panel sandwich imitacion teja",
+    "panel sandwich tres grecas",
+    "panel sandwich 3 grecas",
+    "chapa sandwich con aislamiento",
+    "cubierta de chapa sandwich"
+   ],
+   "u": "m2",
+   "tipico": 43,
+   "min": 20,
+   "max": 150,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/panel-sandwich",
+    "https://www.habitissimo.es/presupuestos/instalar-panel-sandwich-tejado",
+    "https://preciom2.com/guias/cubiertas-impermeabilizacion/"
+   ],
+   "nota": "cronoshare instalado 30-70 (min 20, max 150; 3 grecas 45-65; imitacion teja 55-85) IVA incl.; habitissimo 20-120, media ~35; preciom2 30-55 sin IVA.",
+   "minimo": null,
+   "desc": "Cubierta de panel sándwich"
+  },
+  {
+   "id": "k_estructura_madera_cubierta",
+   "re": null,
+   "claves": [
+    "estructura de madera de cubierta",
+    "cerchas de madera",
+    "vigas de madera de cubierta",
+    "correas de madera",
+    "pares de madera",
+    "madera laminada encolada",
+    "armadura de cubierta de madera",
+    "estructura de tejado de madera",
+    "cubierta de madera"
+   ],
+   "u": "m2",
+   "tipico": 45,
+   "min": 18,
+   "max": 160,
+   "fuentes": [
+    "https://preciom2.com/guias/cubiertas-impermeabilizacion/estructura-madera-para-cubierta/",
+    "https://www.habitissimo.es/presupuestos/tejados-madera"
+   ],
+   "nota": "preciom2 solo estructura 18-65 (pino vigas 24, cerchas 32, laminada 45 tipico); habitissimo 60-160 media 110 pero es tejado de madera completo con cobertura. Tipico tomado de laminada/cerchas + tablero; habitissimo solo para el maximo.",
+   "minimo": null,
+   "desc": "Estructura de madera de cubierta (cerchas/vigas y tablero) por m2"
+  },
+  {
+   "id": "k_tablero",
+   "re": null,
+   "claves": [
+    "entablado de cubierta",
+    "tablero de cubierta",
+    "entablado base de tablero",
+    "tablero hidrofugo",
+    "tablero aglomerado hidrofugo",
+    "tablero osb cubierta",
+    "tablero osb 18",
+    "tablero fenolico cubierta",
+    "tablero de madera para cubierta"
+   ],
+   "u": "m2",
+   "tipico": 14,
+   "min": 10,
+   "max": 15,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Estructuras/Madera/Entablados/Entablado_base_de_tablero_de_madera_0_0_0_1.html",
+    "http://www.generadordeprecios.info/obra_nueva/Estructuras/Madera/Entablados/EMT011_Entablado_base_de_tablero_estructur_0_0_1_0_0_0_1_0_0_0_0_1.html",
+    "https://www.habitissimo.es/presupuestos/instalar-tableros-osb"
+   ],
+   "nota": "CYPE aglomerado hidrofugo 22mm 14,10; CYPE OSB 18mm cubierta inclinada 14,97 (precios de coste sin IVA ni beneficio); habitissimo OSB 10/12/15. Precio de coste CYPE: un contratista suele cobrar algo mas.",
+   "minimo": null,
+   "desc": "Tablero / entablado de cubierta"
+  },
+  {
+   "id": "k_lucernario",
+   "re": null,
+   "claves": [
+    "ventana de tejado",
+    "ventana velux",
+    "ventana de cubierta",
+    "ventana para tejado inclinado",
+    "ventana tipo velux",
+    "claraboya practicable",
+    "lucernario de cubierta",
+    "sustitucion de velux"
+   ],
+   "u": "ud",
+   "tipico": 1000,
+   "min": 600,
+   "max": 2500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-ventana-velux",
+    "https://liser-cubiertas.es/ventanas-tejado-velux-precios/",
+    "https://www.velux.es/magazine/sustitucion-ventanas-presupuesto-e-estimacion-de-costes"
+   ],
+   "nota": "habitissimo 600-2500 media 800 con ventana; LISER nueva instalacion 600/1200/1800, hueco nuevo 1000-2000; velux.es solo ventana 400-1500 sin IVA + kit 100-150 + mano de obra hueco nuevo 600-900.",
+   "minimo": null,
+   "desc": "Ventana de tejado tipo Velux colocada"
+  },
+  {
+   "id": "k_chimenea",
+   "re": null,
+   "claves": [
+    "remate de chimenea",
+    "encuentro con chimenea",
+    "encuentro de faldon con chimenea",
+    "babero de chimenea",
+    "babero de plomo",
+    "sellado de chimenea",
+    "chimenea en tejado",
+    "albardilla de chimenea"
+   ],
+   "u": "ud",
+   "tipico": 290,
+   "min": 128,
+   "max": 600,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Cubiertas/Remates/Encuentros/QRE010_Encuentro_de_faldon_con_chimeneas_o.html",
+    "https://humedades.com/guia-precios/impermeabilizacion/presupuesto-arreglar-goteras/"
+   ],
+   "nota": "CYPE encuentro faldon-chimenea 60x60 obra nueva 127,89 (coste); humedades reparacion (retirar babero, nuevo y sellado) 300-600 sin IVA. Solo 2 fuentes; tipico = media.",
+   "minimo": null,
+   "desc": "Remate de chimenea / encuentro con tejado"
+  },
+  {
+   "id": "x_limpieza_final",
+   "re": null,
+   "claves": [
+    "limpieza final de obra",
+    "limpieza fin de obra",
+    "limpieza de obra",
+    "limpieza post obra",
+    "limpieza tras reforma",
+    "limpieza general final",
+    "limpieza final de vivienda"
+   ],
+   "u": "ud",
+   "tipico": 285,
+   "min": 150,
+   "max": 600,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/servicio-limpieza-fin-obra",
+    "https://www.habitissimo.es/presupuestos/limpieza-fin-de-obra"
+   ],
+   "nota": "cronoshare 2-5 EUR/m2, 200-400 (hasta 600 fuerte), 70 m2 210-280, IVA incl.; habitissimo 2-7 EUR/m2, media 270, 70 m2 ~150, 100 m2 400-500 (IVA no indicado).",
+   "minimo": null,
+   "desc": "Limpieza final de obra de una vivienda"
+  },
+  {
+   "id": "x_proteccion",
+   "re": null,
+   "claves": [
+    "proteccion de zonas comunes",
+    "proteccion de suelos",
+    "proteccion de ascensor",
+    "proteccion de escalera",
+    "protecciones provisionales",
+    "proteccion de pavimentos",
+    "proteccion de portal",
+    "trabajos previos proteccion"
+   ],
+   "u": "ud",
+   "tipico": 240,
+   "min": 130,
+   "max": 350,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/reforma-integral",
+    "https://www.generadordeprecios.info/rehabilitacion/Actuaciones_previas/Protecciones_provisionales/Instalaciones/Proteccion_de_ascensor.html",
+    "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Protecciones_provisionales/Pavimentos_y_escaleras/Proteccion_de_suelos.html"
+   ],
+   "nota": "cronoshare 'trabajos previos' (proteccion zonas comunes) ~350 en reforma integral; CYPE proteccion de ascensor 130,17 ud; CYPE proteccion de suelos 1,08 EUR/m2 (coste). Tipico = media de 130 y 350.",
+   "minimo": null,
+   "desc": "Protección de zonas comunes / suelos durante la obra"
+  },
+  {
+   "id": "x_licencia",
+   "re": null,
+   "claves": [
+    "gestion de licencia",
+    "tramitacion de licencia",
+    "licencia de obras",
+    "licencia de obra menor",
+    "comunicacion previa",
+    "declaracion responsable",
+    "permiso de obra",
+    "tramites municipales"
+   ],
+   "u": "ud",
+   "tipico": null,
+   "min": null,
+   "max": null,
+   "fuentes": [
+    "https://reformai.app/articulos/guias/licencias-obras-cuando-necesitas-como-obtener",
+    "https://motordepresupuestos.com/cuanto-cuesta-licencia-obra",
+    "https://certicalia.com/precio/licencia-de-obras/comunidad-valenciana"
+   ],
+   "nota": "No se encontro tarifa publicada solo de gestion/tramitacion sin tasas. Referencias leidas: visado colegial 100-400; proyecto tecnico 1500-5000; direccion de obra 1000-3000 (reformai); tasas municipales 50-800 (excluidas); certicalia 50-3000 todo incluido. Precio a decidir por Asier.",
+   "minimo": null,
+   "desc": "Gestión de licencia de obras / tasas (sin tasas)"
+  },
+  {
+   "id": "x_seguridad_salud",
+   "re": null,
+   "claves": [
+    "seguridad y salud",
+    "equipos de proteccion individual",
+    "proteccion individual epis",
+    "senalizacion de obra",
+    "estudio basico de seguridad",
+    "medidas de seguridad en obra",
+    "botiquin de obra",
+    "plan de seguridad y salud"
+   ],
+   "u": "ud",
+   "tipico": null,
+   "min": null,
+   "max": null,
+   "fuentes": [
+    "https://preguntas.habitissimo.es/pregunta/que-es-el-apartado-de-seguridad-y-salud-que-incluyen-en-el-proyecto-de-la-construccion-de-nuestra-vivienda",
+    "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso28166/es_doc/adjuntos/otros2.pdf"
+   ],
+   "nota": "No hay precio de mercado publicado para obra pequena. Leido: suele ser 2-3% del presupuesto (habitissimo, profesionales); reforma de vivienda publica en Euskadi: capitulo seguridad y salud 2115 EUR. Calcular como % del PEM.",
+   "minimo": null,
+   "desc": "Seguridad y salud de una obra pequeña (EPIs, señalización)"
+  },
+  {
+   "id": "x_gestion_residuos",
+   "re": null,
+   "claves": [
+    "gestion de residuos",
+    "residuos de construccion",
+    "gestion de rcd",
+    "canon de vertido",
+    "transporte a vertedero",
+    "gestor autorizado",
+    "contenedor de escombros",
+    "retirada de escombros"
+   ],
+   "u": "m3",
+   "tipico": 39,
+   "min": 7.71,
+   "max": 75.9,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Gestion_de_residuos/Gestion_de_residuos_inertes/GRB_Entrega_de_residuos_inertes_a_/GRB020_Canon_de_vertido_por_entrega_de_res.html",
+    "https://goodcollect.es/blog/cual-es-el-precio-de-la-retirada-de-escombros-en-2026",
+    "https://goodcollect.es/soluciones/alquiler-big-bag-escombros"
+   ],
+   "nota": "CYPE canon de vertido inertes 7,71 EUR/m3 (solo canon, sin transporte); contenedor 5-7 m3 150-280 servicio completo (= ~21-56 EUR/m3); goodcollect retirada sacos desde 75,90 EUR/m3 sin IVA. Tipico = punto medio contenedor.",
+   "minimo": null,
+   "desc": "Gestión de residuos de obra (RCD) por m3"
+  },
+  {
+   "id": "x_saco_escombro",
+   "re": null,
+   "claves": [
+    "saco big bag",
+    "big bag escombro",
+    "saca de escombro",
+    "saco de escombro",
+    "telesaco de escombro",
+    "retirada de saco",
+    "saco de obra con recogida"
+   ],
+   "u": "ud",
+   "tipico": 76,
+   "min": 34.5,
+   "max": 95,
+   "fuentes": [
+    "https://goodcollect.es/blog/cual-es-el-precio-de-la-retirada-de-escombros-en-2026",
+    "https://goodcollect.es/soluciones/alquiler-big-bag-escombros",
+    "https://www.sluciaconstruccion.com/tele-saco-recogida-de-escombro-big-bag"
+   ],
+   "nota": "goodcollect retirada de saco 60-95 con transporte y tratamiento; desde 75,90 sin IVA; S. Lucia (Madrid) telesaco con retirada 34,50. Sin dato especifico de Bizkaia.",
+   "minimo": null,
+   "desc": "Saco big-bag de escombro con recogida"
+  },
+  {
+   "id": "x_hora_oficial",
+   "re": null,
+   "claves": [
+    "hora de oficial",
+    "oficial de primera",
+    "oficial 1a albanil",
+    "oficial de 1a",
+    "hora oficial albanil",
+    "mano de obra oficial",
+    "oficial primera construccion"
+   ],
+   "u": "h",
+   "tipico": 27,
+   "min": 20,
+   "max": 44,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles",
+    "https://motordepresupuestos.com/cuanto-cobra/reformas/bilbao",
+    "https://www.cronoshare.com/cuanto-cuesta/albanil-hora"
+   ],
+   "nota": "motordepresupuestos nacional 22-32 sin IVA, Bilbao/Bizkaia 39-44 sin IVA (segun convenio Bizkaia BOB 2-feb-2026); cronoshare oficial 20-30 IVA incl. (Bizkaia 20-30). Tipico = mediana; Bilbao tira a 39-44.",
+   "minimo": null,
+   "desc": "Hora de oficial de 1ª albañil"
+  },
+  {
+   "id": "x_hora_peon",
+   "re": null,
+   "claves": [
+    "hora de peon",
+    "peon ordinario",
+    "peon especializado",
+    "ayudante de albanil",
+    "hora de ayudante",
+    "peon de construccion",
+    "peon de obra"
+   ],
+   "u": "h",
+   "tipico": 19,
+   "min": 14,
+   "max": 37,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles",
+    "https://motordepresupuestos.com/cuanto-cobra/reformas/bilbao",
+    "https://www.cronoshare.com/cuanto-cuesta/albanil-hora"
+   ],
+   "nota": "motordepresupuestos nacional 15-21 sin IVA, Bilbao 33-37 sin IVA; cronoshare 14-22 IVA incl. (Bizkaia 16-22). Tipico = mediana.",
+   "minimo": null,
+   "desc": "Hora de peón"
+  },
+  {
+   "id": "x_desplazamiento",
+   "re": null,
+   "claves": [
+    "desplazamiento a obra",
+    "gastos de desplazamiento",
+    "salida minima",
+    "servicio minimo",
+    "coste de desplazamiento",
+    "visita y desplazamiento",
+    "cargo por desplazamiento"
+   ],
+   "u": "ud",
+   "tipico": 30,
+   "min": 15,
+   "max": 50,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/albanil-hora",
+    "https://trustlocal.es/coste/fontanero-coste/",
+    "https://www.habitissimo.es/presupuestos/fontaneros"
+   ],
+   "nota": "cronoshare albanil 15-30 (o 0,30-0,50 EUR/km); trustlocal 20-40, servicio minimo con primera hora 60-90 (21% IVA); habitissimo 30-50 Madrid/BCN, fijo hasta 15-25 km y 0,50-2 EUR/km extra.",
+   "minimo": null,
+   "desc": "Desplazamiento / salida mínima"
+  },
+  {
+   "id": "d_bano_completo",
+   "re": null,
+   "claves": [
+    "demolicion de bano",
+    "demolicion completa de bano",
+    "desescombro de bano",
+    "derribo de bano",
+    "picado de bano completo",
+    "demolicion de alicatado y solado de bano",
+    "levantado de revestimientos y sanitarios",
+    "vaciado de bano",
+    "tirar el bano"
+   ],
+   "u": "ud",
+   "tipico": 600,
+   "min": 400,
+   "max": 700,
+   "fuentes": [
+    "https://www.caloryfrio.com/bano-agua/instalaciones-sanitarios/ejemplo-presupuesto-reforma-bano.html",
+    "https://www.habitissimo.es/presupuestos/reformas-banos",
+    "https://reformatch.es/presupuestos/reformas-banos/"
+   ],
+   "nota": "caloryfrio: retirada revestimientos y sanitarios 300-400 + carga y transporte escombros 200-300 (total 500-700); habitissimo ~600 incl. desescombro a vertedero; reformatch 400-700 (ejemplo Madrid 550), IVA aparte (10% vivienda >2 anos). IVA no detallado en caloryfrio/habitissimo.",
+   "minimo": null,
+   "desc": "Desescombro / demolición completa de un baño (alicatado, solado, sanitarios), con retirada"
+  },
+  {
+   "id": "d_cocina_completa",
+   "re": null,
+   "claves": [
+    "demolicion de cocina",
+    "desescombro de cocina",
+    "desmontaje de mobiliario de cocina",
+    "desmontaje de muebles de cocina",
+    "derribo de cocina",
+    "demolicion de alicatado y solado de cocina",
+    "vaciado de cocina",
+    "quitar la cocina vieja"
+   ],
+   "u": "ud",
+   "tipico": 500,
+   "min": 400,
+   "max": 1200,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/reformar-cocina",
+    "https://www.habitissimo.es/presupuestos/reformar-cocina",
+    "https://reformatch.es/presupuestos/reformar-cocina/"
+   ],
+   "nota": "cronoshare ~500 (cocina 9 m2, demolicion alicatado/suelo, desmontaje muebles, vertedero); habitissimo 500 (cocina 6 m2); reformatch 400-1200 incl. muebles, electrodomesticos, alicatado, suelo, falso techo y contenedor. IVA no desglosado.",
+   "minimo": null,
+   "desc": "Desescombro / demolición completa de una cocina (muebles, alicatado, solado), con retirada"
+  },
+  {
+   "id": "d_puerta",
+   "re": null,
+   "claves": [
+    "levantado de puerta interior",
+    "desmontaje de puerta interior",
+    "desmontaje de hoja de puerta",
+    "levantado de carpinteria interior",
+    "desmontaje de puerta de paso",
+    "retirada de puerta existente",
+    "arranque de precerco",
+    "quitar puerta y marco"
+   ],
+   "u": "ud",
+   "tipico": 60,
+   "min": 45,
+   "max": 100,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/carpinteros",
+    "https://www.habitissimo.es/presupuestos/cambiar-puertas-casa",
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/DL_Carpinteria__vidrios_y_protecc/Puertas/Levantado_de_puerta_interior.html"
+   ],
+   "nota": "motordepresupuestos: demolicion y retirada de puerta preexistente +45-75 EUR/ud (sin IVA); habitissimo: retirar las antiguas 'al menos 100 EUR' mas; CYPE levantado de puerta interior con marco y tapajuntas 4,72 EUR/m2 (solo mano de obra, coste de base).",
+   "minimo": null,
+   "desc": "Desmontaje de puerta interior con marco/premarco"
+  },
+  {
+   "id": "d_ventana",
+   "re": null,
+   "claves": [
+    "levantado de carpinteria exterior",
+    "desmontaje de ventana",
+    "levantado de ventana",
+    "desmontaje de carpinteria exterior",
+    "retirada de ventana existente",
+    "arranque de carpinteria de fachada",
+    "quitar ventana vieja"
+   ],
+   "u": "ud",
+   "tipico": 17.56,
+   "min": 17.56,
+   "max": 80,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/DL_Carpinteria__vidrios_y_protecc/Carpinteria/Levantado_de_carpinteria_exterior_0_0_1_2_0.html",
+    "https://www.generadordeprecios.info/obra_nueva/Demoliciones/DL_Carpinteria__vidrios_y_protecc/Carpinteria/Levantado_de_carpinteria_exterior_0_0_3_0_0.html",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-ventanas-casa"
+   ],
+   "nota": "Pocos datos de mercado aislados. CYPE: levantado carpinteria madera >6 m2 17,56 EUR/ud; aluminio 5,54 EUR/m2 (solo mano de obra). Cronoshare/habitissimo: mano de obra 80-200 EUR/ventana INCLUYE retirada + colocacion de la nueva (max=cota).",
+   "minimo": null,
+   "desc": "Desmontaje de ventana o carpintería exterior"
+  },
+  {
+   "id": "d_rodapie",
+   "re": null,
+   "claves": [
+    "demolicion de rodapie",
+    "levantado de rodapie",
+    "arranque de rodapie",
+    "desmontaje de rodapie",
+    "picado de rodapie",
+    "retirada de rodapie",
+    "quitar rodapie"
+   ],
+   "u": "m",
+   "tipico": 5,
+   "min": 0.98,
+   "max": 12,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Revestimientos_y_trasdosados/Suelos_y_pavimentos/Demolicion_de_rodapie_ceramico.html",
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Revestimientos_y_trasdosados/Suelos_y_pavimentos/Levantado_de_rodapie_de_madera.html",
+    "https://preguntas.habitissimo.es/pregunta/cuanto-costaria-demoler-un-rodapie-de-marmol"
+   ],
+   "nota": "CYPE: ceramico 1,48 EUR/m, madera 0,98 EUR/m (coste base mano de obra). Profesionales en habitissimo (rodapie marmol): 5 EUR/ml, 10 EUR/ml con pared rematada, 9-12 EUR/ml + IVA.",
+   "minimo": null,
+   "desc": "Arranque de rodapié (cerámico o madera)"
+  },
+  {
+   "id": "d_falso_techo",
+   "re": null,
+   "claves": [
+    "demolicion de falso techo",
+    "derribo de falso techo",
+    "desmontaje de falso techo",
+    "demolicion de techo de escayola",
+    "picado de falso techo",
+    "levantado de falso techo de placas",
+    "quitar techo de pladur"
+   ],
+   "u": "m2",
+   "tipico": 12,
+   "min": 7.8,
+   "max": 18,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Revestimientos_y_trasdosados/Falsos_techos/DRT020_Demolicion_de_falso_techo_continuo_.html",
+    "https://motordepresupuestos.com/cuanto-cobra/demoliciones",
+    "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
+   ],
+   "nota": "CYPE continuo yeso/escayola 7,80 EUR/m2 (con carga, sin transporte); motordepresupuestos 8-18 EUR/m2 sin IVA; reformashoy ~12 EUR/m2 sin escombro.",
+   "minimo": null,
+   "desc": "Demolición de falso techo (escayola o pladur)"
+  },
+  {
+   "id": "d_tabique_m2",
+   "re": null,
+   "claves": [
+    "demolicion de tabique",
+    "derribo de tabique",
+    "demolicion de tabiqueria",
+    "demolicion de particion",
+    "tirar tabique",
+    "tirar pared",
+    "demolicion de fabrica de ladrillo hueco"
+   ],
+   "u": "m2",
+   "tipico": 12,
+   "min": 5,
+   "max": 35,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/tirar-tabique",
+    "https://www.habitissimo.es/presupuestos/tirar-tabique",
+    "https://motordepresupuestos.com/cuanto-cobra/demoliciones",
+    "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
+   ],
+   "nota": "cronoshare: final con proteccion y gestion residuos 10-12 (hueco), 12-15 (macizo) EUR/m2; habitissimo 5-18, simple 10-12 EUR/m2 (+2-3 EUR/m2 escombro); motordepresupuestos 15-35 EUR/m2 (<10 m2) sin IVA, CYPE doble hueco 15,39; reformashoy 9-10 sin escombro.",
+   "minimo": null,
+   "desc": "Derribo de tabique de ladrillo por m2 (tabiquería), con escombro"
+  },
+  {
+   "id": "d_muro_ladrillo",
+   "re": null,
+   "claves": [
+    "demolicion de muro de fabrica",
+    "demolicion de muro de ladrillo",
+    "derribo de muro de ladrillo macizo",
+    "demolicion de fabrica de ladrillo macizo",
+    "demolicion de pared de carga",
+    "derribo de muro de carga"
+   ],
+   "u": "m3",
+   "tipico": 73.77,
+   "min": 73.77,
+   "max": 73.77,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Estructuras/Fabrica/Demolicion_de_muro_de_fabrica.html"
+   ],
+   "nota": "Una sola fuente: CYPE muro de fabrica de ladrillo hueco, medios manuales, carga sobre camion 73,77 EUR/m3 (coste de base, sin IVA). Macizo sera mas caro; no se encontro dato de mercado por m3.",
+   "minimo": null,
+   "desc": "Demolición de muro de ladrillo macizo / fábrica"
+  },
+  {
+   "id": "d_sanitarios",
+   "re": null,
+   "claves": [
+    "desmontaje de aparato sanitario",
+    "desmontaje de sanitarios",
+    "levantado de aparatos sanitarios",
+    "desmontaje de inodoro",
+    "desmontaje de lavabo",
+    "retirada de sanitarios",
+    "quitar inodoro"
+   ],
+   "u": "ud",
+   "tipico": 50,
+   "min": 40,
+   "max": 60,
+   "fuentes": [
+    "https://1reformas.com/reformas-banos/precios-mano-de-obra/"
+   ],
+   "nota": "1reformas (sin IVA): desmontaje inodoro/bide 60 EUR/ud, lavabo 40 EUR/ud. Banera va en d_banera. CYPE 77,45 corresponde a desmontaje + posterior montaje, no aplicable.",
+   "minimo": null,
+   "desc": "Desmontaje de sanitarios (inodoro, lavabo, bidé) y bañera"
+  },
+  {
+   "id": "d_banera",
+   "re": null,
+   "claves": [
+    "desmontaje de banera",
+    "levantado de banera",
+    "retirada de banera",
+    "demolicion de banera",
+    "arranque de banera",
+    "quitar banera"
+   ],
+   "u": "ud",
+   "tipico": 80,
+   "min": 47.92,
+   "max": 120,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Demoliciones/Equipamiento/Banos/Desmontaje_de_aparato_sanitario_0_0_0_3_0.html",
+    "https://www.habitissimo.es/presupuestos/cambiar-banera-por-otra-nueva",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-banera-plato-ducha",
+    "https://1reformas.com/reformas-banos/precios-mano-de-obra/"
+   ],
+   "nota": "CYPE banera acrilica 47,92; habitissimo retirada y escombro 50-80; cronoshare retirar banera 90; 1reformas 120 sin IVA. Banera de obra/hierro fundido mas cara.",
+   "minimo": null,
+   "desc": "Desmontaje / retirada de bañera"
+  },
+  {
+   "id": "d_instalacion",
+   "re": null,
+   "claves": [
+    "desmontaje de instalacion electrica",
+    "levantado de instalacion electrica",
+    "desmontaje de instalacion de fontaneria",
+    "levantado de instalacion de fontaneria",
+    "retirada de cableado antiguo",
+    "desmontaje de red de saneamiento",
+    "arranque de tuberias antiguas"
+   ],
+   "u": "ud",
+   "tipico": null,
+   "min": null,
+   "max": null,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/cambiar-tuberias",
+    "https://www.habitissimo.es/presupuestos/cambiar-instalacion-electrica"
+   ],
+   "nota": "SIN precio por ud verificado: las fuentes lo incluyen en la renovacion completa. Unico dato: habitissimo 'albanileria para quitar tuberias antiguas' 5-10 EUR/ml. Renovacion completa electrica 1500-5500 EUR (media 2500).",
+   "minimo": null,
+   "desc": "Desmontaje de instalación eléctrica o de fontanería antigua de una vivienda"
+  },
+  {
+   "id": "d_gotele",
+   "re": null,
+   "claves": [
+    "quitar gotele",
+    "eliminacion de gotele",
+    "rascado de gotele",
+    "alisado de paredes",
+    "alisado de paramentos",
+    "quitar gotele y alisar",
+    "eliminacion de pintura en relieve"
+   ],
+   "u": "m2",
+   "tipico": 12,
+   "min": 5,
+   "max": 20,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/quitar-gotele",
+    "https://www.habitissimo.es/presupuestos/quitar-o-poner-gotele",
+    "https://www.zaask.es/cuanto-cuesta/quitar-gotele"
+   ],
+   "nota": "cronoshare 8-15 (temple), 10-18 (plastico con pasta); habitissimo 7-18, media 15 (temple 10, plastico 12, techo 14); zaask 5-20, media 9. Sin pintar. IVA: calculadora cronoshare dice IVA incluido; otras no lo indican.",
+   "minimo": null,
+   "desc": "Quitar gotelé (rascado/alisado de paredes)"
+  },
+  {
+   "id": "d_papel",
+   "re": null,
+   "claves": [
+    "quitar papel pintado",
+    "retirada de papel pintado",
+    "arranque de papel pintado",
+    "eliminacion de papel pintado",
+    "despegado de papel pintado",
+    "levantado de papel pintado"
+   ],
+   "u": "m2",
+   "tipico": 12,
+   "min": 7,
+   "max": 20,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/quitar-papel"
+   ],
+   "nota": "Una fuente: habitissimo media 12, rango 7-20 EUR/m2 (vinilico 8, TNT 9, encolado 10, base textil 15, con lijado 14, con pintura 20). IVA no especificado.",
+   "minimo": null,
+   "desc": "Quitar papel pintado de paredes"
+  },
+  {
+   "id": "d_enlucido",
+   "re": null,
+   "claves": [
+    "picado de enlucido",
+    "picado de yeso",
+    "picado de guarnecido",
+    "picado de revoco",
+    "picado de enfoscado",
+    "demolicion de revestimiento de yeso",
+    "picar paredes"
+   ],
+   "u": "m2",
+   "tipico": 8,
+   "min": 8,
+   "max": 8,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/cambiar-tuberias"
+   ],
+   "nota": "Dato debil, una fuente: habitissimo 'quitar acabados de pared' ~8 EUR/m2. No se encontro guia especifica de picado de enlucido.",
+   "minimo": null,
+   "desc": "Picado de enlucido / revoco de paredes"
+  },
+  {
+   "id": "d_forjado",
+   "re": null,
+   "claves": [
+    "demolicion de forjado",
+    "derribo de forjado",
+    "demolicion de losa de hormigon",
+    "demolicion de forjado de viguetas",
+    "demolicion de forjado de madera",
+    "apertura de hueco en forjado"
+   ],
+   "u": "m2",
+   "tipico": 55.67,
+   "min": 22.59,
+   "max": 56.14,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Estructuras/Hormigon/DEH020_Demolicion_de_forjado_de_hormigon_a.html",
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Estructuras/Madera/Demolicion_de_forjado_de_madera.html",
+    "https://www.habitissimo.es/presupuestos/derribos"
+   ],
+   "nota": "CYPE: losa HA manual 56,14 EUR/m2; forjado madera 22,59 EUR/m2. habitissimo: demoler forjado 300 m2 = 16.700 EUR (=55,67 EUR/m2, calculado).",
+   "minimo": null,
+   "desc": "Demolición de forjado"
+  },
+  {
+   "id": "d_cubierta_completa",
+   "re": null,
+   "claves": [
+    "demolicion de cubierta",
+    "desmontaje de tejado",
+    "demolicion de tejado",
+    "levantado de cubierta de teja",
+    "demolicion de cobertura de teja",
+    "desmontaje de cubierta completa",
+    "quitar tejado"
+   ],
+   "u": "m2",
+   "tipico": 40,
+   "min": 25,
+   "max": 60,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/quitar-tejado",
+    "https://motordepresupuestos.com/cuanto-cobra/demoliciones"
+   ],
+   "nota": "habitissimo desmontar tejado media 40, rango 25-60 EUR/m2 (tejado antiguo desde 40, edificio desde 50). motordepresupuestos: solo cobertura de teja ceramica 17 EUR/m2 sin IVA (sin tablero ni estructura).",
+   "minimo": null,
+   "desc": "Demolición de cubierta completa (teja, tablero y estructura)"
+  },
+  {
+   "id": "d_chimenea",
+   "re": null,
+   "claves": [
+    "demolicion de chimenea",
+    "derribo de chimenea",
+    "desmontaje de chimenea",
+    "quitar chimenea de obra",
+    "demolicion de conducto de chimenea",
+    "desmontaje de chimenea modular"
+   ],
+   "u": "ud",
+   "tipico": 800,
+   "min": 300,
+   "max": 4000,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/quitar-chimenea"
+   ],
+   "nota": "Una fuente: habitissimo media 1230, rango 890-4000; tejado 300, salon 350, piso 800, chimenea de obra 1200; Bilbao ~2000. IVA no especificado.",
+   "minimo": null,
+   "desc": "Demolición de chimenea"
+  },
+  {
+   "id": "d_escalera",
+   "re": null,
+   "claves": [
+    "demolicion de escalera",
+    "demolicion de losa de escalera",
+    "derribo de escalera",
+    "desmontaje de escalera",
+    "demolicion de peldanos",
+    "quitar escalera"
+   ],
+   "u": "ud",
+   "tipico": 225,
+   "min": 98.5,
+   "max": 267,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Demoliciones/Estructuras/Hormigon/DEH060_Demolicion_de_losa_de_escalera_de_h.html",
+    "https://generadordeprecios.info/rehabilitacion/Demoliciones/Estructuras/Madera/Demolicion_de_escalera_de_madera.html",
+    "https://www.habitissimo.es/presupuestos/eliminar-escaleras-portal-comunidad",
+    "https://reformashoy.com/blog/precio-m2-de-demoliciones-de-tabique-alicatado-falso-techo/"
+   ],
+   "nota": "OJO: precios publicados por m2/peldano; ud CALCULADA suponiendo ~5 m2 de escalera. CYPE losa HA 53,36 EUR/m2, madera 19,70 EUR/m2; habitissimo HA 45 EUR/m2, vigueta 30 EUR/m2; reformashoy 8 EUR/peldano sin escombro.",
+   "minimo": null,
+   "desc": "Demolición de escalera interior"
+  },
+  {
+   "id": "d_amianto",
+   "re": null,
+   "claves": [
+    "retirada de amianto",
+    "retirada de fibrocemento",
+    "desmontaje de cubierta de fibrocemento",
+    "retirada de uralita",
+    "desamiantado",
+    "retirada de placas de amianto",
+    "quitar uralita"
+   ],
+   "u": "m2",
+   "tipico": 35,
+   "min": 20,
+   "max": 60,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/retirar-tejado-uralita-amianto",
+    "https://www.habitissimo.es/presupuestos/retirar-tejados-fibrocemento-uralita"
+   ],
+   "nota": "cronoshare 25-40 (20-50) EUR/m2 + transporte/residuo 90-100 EUR/m3 + plan de trabajo 300->1000 EUR; habitissimo 20-50 EUR/m2, Vizcaya 25-60. IVA no especificado.",
+   "minimo": null,
+   "desc": "Retirada de fibrocemento/amianto por empresa autorizada (RERA)"
+  },
+  {
+   "id": "d_mamparas",
+   "re": null,
+   "claves": [
+    "desmontaje de mampara de bano",
+    "desmontaje de mampara de ducha",
+    "retirada de mampara",
+    "levantado de mampara de ducha",
+    "quitar mampara"
+   ],
+   "u": "ud",
+   "tipico": 40,
+   "min": 20,
+   "max": 65,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-o-cambiar-mampara-de-bano",
+    "https://mamparas-ducha.es/content/163-tarifas-de-instalaciones"
+   ],
+   "nota": "habitissimo desmontar mampara existente ~20-25 EUR (algunos no lo cobran si montan nueva); mamparas-ducha.es 50-65 EUR.",
+   "minimo": null,
+   "desc": "Desmontaje de mampara de baño"
+  },
+  {
+   "id": "e_pilar_hormigon",
+   "re": null,
+   "claves": [
+    "pilar de hormigon armado",
+    "pilar de hormigon",
+    "pilares de hormigon",
+    "soporte de hormigon armado",
+    "pilar ha-25",
+    "pilar rectangular de hormigon",
+    "pilar circular de hormigon",
+    "hormigon armado en pilares"
+   ],
+   "u": "m3",
+   "tipico": 449,
+   "min": 446.55,
+   "max": 889,
+   "fuentes": [
+    "http://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Pilares/Pilar_de_hormigon_armado.html",
+    "https://generadordeprecios.info/rehabilitacion/Estructuras/Hormigon_armado/Pilares/Pilar_de_hormigon_armado.html",
+    "https://preciom2.com/guias/hormigon-estructuras/",
+    "https://motordepresupuestos.com/cuanto-cobra/estructuras"
+   ],
+   "nota": "CYPE 30x30 cm, 120 kg/m3, encofrado metalico: 446,55 (obra nueva) y 449,12 €/m3 (rehab), sin IVA. preciom2 da 55-80 €/ml para 30x30 (0,09 m3/ml => ~611-889 €/m3, conversion propia); motordepresupuestos 150-300 €/ml sin IVA. Pilares sueltos en reforma tienden al alto.",
+   "minimo": null,
+   "desc": "Pilar de hormigón armado"
+  },
+  {
+   "id": "e_viga_hormigon",
+   "re": null,
+   "claves": [
+    "viga de hormigon armado",
+    "viga descolgada",
+    "viga plana de hormigon",
+    "zuncho de hormigon armado",
+    "zuncho de apoyo de forjado",
+    "jacena de hormigon",
+    "viga ha-25",
+    "hormigon armado en vigas"
+   ],
+   "u": "m3",
+   "tipico": 720,
+   "min": 584.05,
+   "max": 855.28,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Vigas/Viga_de_hormigon_armado.html",
+    "https://www.generadordeprecios.info/rehabilitacion/Estructuras/Hormigon_armado/Vigas/Zuncho_de_hormigon_armado.html"
+   ],
+   "nota": "CYPE viga descolgada 40x60 HA-25: 584,05 €/m3; zuncho de apoyo de forjado (rehab, encofrado con puntales): 855,28 €/m3; sin IVA. Tipico = punto medio de las dos. Solo fuente CYPE: no se encontro precio de mercado por m3 en portales.",
+   "minimo": null,
+   "desc": "Viga de hormigón armado"
+  },
+  {
+   "id": "e_forjado_unidireccional",
+   "re": null,
+   "claves": [
+    "forjado unidireccional",
+    "vigueta y bovedilla",
+    "viguetas y bovedillas",
+    "viguetas prefabricadas",
+    "forjado de viguetas",
+    "bovedilla de hormigon",
+    "bovedilla ceramica",
+    "forjado de vigueta"
+   ],
+   "u": "m2",
+   "tipico": 70,
+   "min": 55,
+   "max": 160,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Forjados_unidireccionales/EHU024_Forjado_unidireccional_con_viguetas.html",
+    "https://preciom2.com/guias/hormigon-estructuras/forjado-vigueta-bovedilla/",
+    "https://motordepresupuestos.com/cuanto-cobra/estructuras"
+   ],
+   "nota": "CYPE 64,34 €/m2; preciom2 55-85 €/m2 (incluye viguetas, bovedilla, mallazo, capa de compresion, apuntalado); motordepresupuestos 80-160 €/m2 sin IVA. Sin pilares ni acabados.",
+   "minimo": null,
+   "desc": "Forjado unidireccional de viguetas y bovedillas"
+  },
+  {
+   "id": "e_losa_hormigon",
+   "re": null,
+   "claves": [
+    "losa maciza",
+    "forjado de losa maciza",
+    "losa de hormigon armado",
+    "losa maciza de hormigon",
+    "forjado de losa",
+    "losa armada",
+    "losa de escalera de hormigon"
+   ],
+   "u": "m2",
+   "tipico": 95,
+   "min": 60,
+   "max": 220,
+   "fuentes": [
+    "http://www.generadordeprecios.info/obra_nueva/Estructuras/Hormigon_armado/Forjados_de_losa_maciza/Forjado_de_losa_maciza.html",
+    "https://preciom2.com/guias/hormigon-estructuras/",
+    "https://motordepresupuestos.com/cuanto-cobra/estructuras"
+   ],
+   "nota": "CYPE losa maciza canto 24 cm, 22 kg/m2, encofrado de madera: 78,55 €/m2 sin pilares; preciom2 60-130 €/m2; motordepresupuestos 120-220 €/m2 sin IVA. Tipico = mediana de los centros (78,55 / 95 / 170).",
+   "minimo": null,
+   "desc": "Losa maciza de hormigón / forjado de losa"
+  },
+  {
+   "id": "e_acero",
+   "re": null,
+   "claves": [
+    "acero en perfiles laminados",
+    "perfiles laminados en caliente",
+    "acero s275jr",
+    "acero laminado",
+    "perfil ipe",
+    "perfil heb",
+    "perfil ipn",
+    "acero en vigas",
+    "acero en pilares",
+    "estructura metalica"
+   ],
+   "u": "kg",
+   "tipico": 2.4,
+   "min": 2.4,
+   "max": 4.81,
+   "fuentes": [
+    "https://generadordeprecios.info/obra_nueva/Estructuras/Acero/Perfiles_estructurales/Acero_en_perfiles_laminados_en_caliente.html",
+    "https://generadordeprecios.info/obra_nueva/Estructuras/Acero/Pilares/Acero_en_pilares.html",
+    "https://generadordeprecios.info/rehabilitacion/Estructuras/Acero/Refuerzos/EAZ010_Acero_laminado_en_caliente_para_ref.html"
+   ],
+   "nota": "CYPE S275JR IPN/IPE/HEB/UPN con imprimacion, soldado en obra: 2,40 €/kg (perfiles y pilares, obra nueva); acero laminado para refuerzo estructural en rehabilitacion: 4,81 €/kg; sin IVA. En reforma con poca cantidad usar mas cerca del max. Ojo: 'estructura metalica' puede chocar con partidas por m2.",
+   "minimo": null,
+   "desc": "Acero estructural en perfiles laminados (vigas, pilares) colocado"
+  },
+  {
+   "id": "e_dintel",
+   "re": null,
+   "claves": [
+    "dintel de perfil laminado",
+    "cargadero metalico",
+    "cargadero de hormigon",
+    "dintel metalico",
+    "colocacion de cargadero",
+    "abrir hueco en muro de carga",
+    "hueco en muro de carga",
+    "dintel con apeo",
+    "viga ipn en hueco"
+   ],
+   "u": "ud",
+   "tipico": 900,
+   "min": 350,
+   "max": 3500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/abrir-hueco-para-hacer-puerta",
+    "https://www.habitissimo.es/presupuestos/sustitucion-vigas",
+    "https://www.reformadisimo.es/blog/tirar-un-muro-de-carga-en-una-reforma-es-posible/",
+    "https://www.generadordeprecios.info/obra_nueva/Fachadas_y_particiones/FC_Dinteles__cargaderos_y_cajones/De_acero/Dintel_de_perfil_laminado_simple.html"
+   ],
+   "nota": "habitissimo: abrir hueco en muro de carga para puerta corredera 2,1x0,8 m 350 €; viga de carga ~900 €; viga de hierro ~370 €/ud minimo. reformadisimo (Madrid): IPN-200/300 hueco 2-3 m 1.500-3.500 €. cronoshare: hueco en muro de carga 3.000-4.200 € IVA incl. con arquitecto y licencia (no incluido aqu",
+   "minimo": null,
+   "desc": "Dintel / cargadero metálico o de hormigón en hueco de puerta o ventana, con apeo"
+  },
+  {
+   "id": "e_apeo",
+   "re": null,
+   "claves": [
+    "apeo de forjado",
+    "apeo de viga",
+    "apeo de dintel",
+    "apuntalamiento provisional",
+    "apuntalamiento de forjado",
+    "puntales metalicos telescopicos",
+    "apuntalar forjado",
+    "apeo de fachada"
+   ],
+   "u": "ud",
+   "tipico": 300,
+   "min": 35,
+   "max": 2500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/apuntalamiento",
+    "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Encofrados__apeos_y_cimbras/0PC_Elementos_estructurales_horizo/Apeo_de_forjado.html",
+    "https://www.generadordeprecios.info/rehabilitacion/Actuaciones_previas/Encofrados__apeos_y_cimbras/Elementos_estructurales_verticales/0PB020_Apeo_de_dintel_de_hueco_en_muro__co.html"
+   ],
+   "nota": "Las fuentes dan precio por m2 o m, no por ud: habitissimo apuntalamiento 5-35 €/m2 (medio 20), apeo de forjado 25,93 €/m2, apeo de viga 15,89 €/m, vivienda de 100 m2 ~2.500 €; CYPE apeo de forjado 29,69 €/m2, apeo de dintel 14 €/m. Cifras por ud DERIVADAS: min = apeo de dintel ~2,5 m x 14 €/m; tipic",
+   "minimo": null,
+   "desc": "Apeo / apuntalamiento provisional"
+  },
+  {
+   "id": "e_refuerzo_viga",
+   "re": null,
+   "claves": [
+    "refuerzo de viga",
+    "refuerzo de viga de madera",
+    "refuerzo de vigueta",
+    "refuerzo con perfiles metalicos",
+    "refuerzo con pletinas",
+    "refuerzo de viga metalica",
+    "reforzar vigas",
+    "refuerzo estructural de viga"
+   ],
+   "u": "m",
+   "tipico": 105,
+   "min": 54.8,
+   "max": 276.67,
+   "fuentes": [
+    "https://generadordeprecios.info/rehabilitacion/Estructuras/Madera/Refuerzos/EMZ010_Refuerzo_de_pilar_o_viga_de_madera_.html",
+    "https://generadordeprecios.info/rehabilitacion/Estructuras/Madera/Refuerzos/EMZ220_Refuerzo_de_viga_o_vigueta_de_mader.html",
+    "https://motordepresupuestos.com/cuanto-cobra/estructuras",
+    "https://www.habitissimo.es/presupuestos/reforzar-estructuras-metalicas"
+   ],
+   "nota": "CYPE refuerzo viga de madera 10x10 con pletinas y pernos: 54,80 €/m; CYPE refuerzo de viga de madera por cara inferior con perfil IPE140+UPN240: 1.106,69 €/ud para 4 m (=276,67 €/m, conversion propia); motordepresupuestos viga acero HEB/IPE 60-150 €/ml sin IVA; habitissimo refuerzo de viga de hierro",
+   "minimo": null,
+   "desc": "Refuerzo de viga de madera o metálica"
+  },
+  {
+   "id": "e_escalera",
+   "re": null,
+   "claves": [
+    "escalera de madera",
+    "escalera metalica",
+    "escalera interior",
+    "escalera de caracol",
+    "escalera a medida",
+    "peldanos de madera",
+    "zanca metalica",
+    "escalera de un tramo"
+   ],
+   "u": "ud",
+   "tipico": 2800,
+   "min": 1200,
+   "max": 6000,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/escalera-madera",
+    "https://www.habitissimo.es/presupuestos/construir-escalera-de-madera",
+    "https://www.habitissimo.es/presupuestos/escalera-metalica"
+   ],
+   "nota": "cronoshare madera 1.500-4.000 € (IVA incl., barandilla aparte); habitissimo madera 1.600-6.000 € medio 3.200 €; habitissimo metalica 1.200-6.000 € medio 2.800 € (IVA no indicado). Escalera recta ~16 peldanos.",
+   "minimo": null,
+   "desc": "Escalera de madera o metálica interior"
+  },
+  {
+   "id": "f_ladrillo_cara_vista",
+   "re": null,
+   "claves": [
+    "ladrillo cara vista",
+    "ladrillo caravista",
+    "fabrica de ladrillo visto",
+    "ladrillo visto",
+    "hoja exterior cara vista",
+    "ladrillo perforado cara vista",
+    "fachada de ladrillo visto"
+   ],
+   "u": "m2",
+   "tipico": 50,
+   "min": 29.9,
+   "max": 76.68,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Fachadas_y_particiones/Fabrica_no_estructural/FFX_Hoja_exterior_cara_vista_en_fa/FFX010_Hoja_exterior_de_fachada_de_dos_hoj.html",
+    "https://generadordeprecios.info/obra_nueva/Fachadas_y_particiones/Fachadas_ventiladas/FAX_Hoja_exterior_de_ladrillo_cara/FAX010_Hoja_exterior_de_ladrillo_ceramico_.html",
+    "https://preciom2.com/guias/ladrillo/",
+    "https://preguntas.habitissimo.es/pregunta/precios-ladrillo-visto"
+   ],
+   "nota": "CYPE hoja exterior cara vista fachada dos hojas 66,80 €/m2; autoportante ventilada 76,68 €/m2 (sin IVA). preciom2 35-65 €/m2 (tipico 42-58). Profesionales en habitissimo: 29,90-45 €/m2 medio pie (algunos solo colocacion; material ~21,78 €/m2 aparte).",
+   "minimo": null,
+   "desc": "Fachada de ladrillo cara vista"
+  },
+  {
+   "id": "f_bloque",
+   "re": null,
+   "claves": [
+    "bloque de hormigon",
+    "muro de bloque",
+    "fabrica de bloque de hormigon",
+    "bloque 40x20",
+    "muro de bloques",
+    "bloque gris",
+    "bloque de hormigon para revestir"
+   ],
+   "u": "m2",
+   "tipico": 33,
+   "min": 20,
+   "max": 150,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Fachadas_y_particiones/Fabrica_estructural/Muros_de_fabrica_sin_armar/FEF020_Muro_de_carga_de_fabrica__de_bloque.html",
+    "https://preciom2.com/guias/ladrillo/",
+    "https://www.cronoshare.com/cuanto-cuesta/hacer-muro-bloques",
+    "https://www.habitissimo.es/presupuestos/construir-muro-bloque"
+   ],
+   "nota": "CYPE muro de carga bloque 40x20x15: 22,84 €/m2 sin IVA; preciom2 20-35 (tipico 20-28); cronoshare 35-50 €/m2 IVA incl. (hasta 80-150); habitissimo 40-150 medio 100 €/m2 (muros de cerramiento con cimentacion). Tipico = mediana de 22,84 / 24 / 42,5 / 100.",
+   "minimo": null,
+   "desc": "Muro de bloque de hormigón"
+  },
+  {
+   "id": "f_ladrillo_perforado",
+   "re": null,
+   "claves": [
+    "ladrillo perforado",
+    "medio pie",
+    "1/2 pie",
+    "ladrillo ceramico perforado",
+    "fabrica de ladrillo perforado",
+    "ladrillo macizo perforado",
+    "hoja de medio pie",
+    "ladrillo para revestir"
+   ],
+   "u": "m2",
+   "tipico": 31,
+   "min": 20.13,
+   "max": 40,
+   "fuentes": [
+    "https://preciom2.com/guias/ladrillo/",
+    "http://www.generadordeprecios.info/obra_nueva/Fachadas_y_particiones/Fabrica_no_estructural/FFZ_Hoja_exterior_para_revestir_en/FFZ010_Hoja_exterior_de_fachada__de_fabric.html",
+    "https://preguntas.habitissimo.es/pregunta/precios-ladrillo-visto"
+   ],
+   "nota": "preciom2 ladrillo perforado 25-40 €/m2 (tipico 26-36); CYPE hoja exterior de fachada de ladrillo para revestir 11 cm (hueco triple) 20,13 €/m2 sin IVA; habitissimo medio pie perforado ~29,90-34,78 €/m2. 'para revestir' puede chocar con f_termoarcilla/f_bloque: priorizar 'perforado'/'medio pie'.",
+   "minimo": null,
+   "desc": "Hoja de ladrillo perforado / medio pie"
+  },
+  {
+   "id": "f_termoarcilla",
+   "re": null,
+   "claves": [
+    "termoarcilla",
+    "bloque de termoarcilla",
+    "bloque ceramico aligerado",
+    "muro de termoarcilla",
+    "porotherm",
+    "fabrica de termoarcilla"
+   ],
+   "u": "m2",
+   "tipico": 36,
+   "min": 25.15,
+   "max": 52,
+   "fuentes": [
+    "http://www.generadordeprecios.info/obra_nueva/Fachadas_y_particiones/Fabrica_estructural/Muros_de_fabrica_sin_armar/FEF030_Muro_de_carga_de_fabrica__de_bloque.html",
+    "https://preciom2.com/guias/ladrillo/",
+    "https://preciom2.com/guias/ladrillo/termoarcilla/"
+   ],
+   "nota": "CYPE muro de carga de bloque de termoarcilla 25,15 €/m2 sin IVA; preciom2 28-45 €/m2 (tipico 30-42, Porotherm 30); por espesor: 14 cm 28-35, 19 cm 32-40, 24 cm 38-45, 29 cm 42-50, 30 machihembrado 44-52 €/m2 colocado.",
+   "minimo": null,
+   "desc": "Muro de bloque de termoarcilla"
+  },
+  {
+   "id": "f_sate",
+   "re": null,
+   "claves": [
+    "sate",
+    "aislamiento termico por el exterior",
+    "sistema sate",
+    "etics",
+    "aislamiento exterior de fachada",
+    "sate con eps",
+    "sate con lana mineral",
+    "revestimiento sate"
+   ],
+   "u": "m2",
+   "tipico": 83,
+   "min": 55,
+   "max": 120,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/aislamiento-sate",
+    "https://www.cronoshare.com/cuanto-cuesta/rehabilitar-fachada-edificio",
+    "https://motordepresupuestos.com/cuanto-cobra/rehabilitacion-fachadas"
+   ],
+   "nota": "habitissimo 60-120 medio 90 €/m2 sin IVA ni andamio (EPS 72, XPS 81, grafito 84, lana de roca 90); cronoshare EPS 8-10 cm 65-95, lana mineral 80-100 €/m2 IVA incl.; motordepresupuestos 55-110 €/m2 sin IVA (alto rendimiento 110-150). Andamio aparte.",
+   "minimo": null,
+   "desc": "Aislamiento térmico por el exterior SATE con acabado"
+  },
+  {
+   "id": "f_monocapa",
+   "re": null,
+   "claves": [
+    "mortero monocapa",
+    "monocapa",
+    "revestimiento monocapa",
+    "monocapa raspado",
+    "monocapa piedra proyectada",
+    "revoco monocapa",
+    "fachada monocapa"
+   ],
+   "u": "m2",
+   "tipico": 27,
+   "min": 16,
+   "max": 48,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/aplicar-mortero-monocapa",
+    "https://www.habitissimo.es/presupuestos/revestir-fachada-con-monocapa",
+    "https://www.cronoshare.com/cuanto-cuesta/rehabilitar-fachada-edificio"
+   ],
+   "nota": "cronoshare 20-40 €/m2, medio 25-30, IVA incl.; habitissimo 16-30 medio 26 €/m2 (raspado 20-24, piedra proyectada ~26; IVA no indicado); cronoshare rehabilitacion monocapa estandar 25-48 €/m2 IVA incl. Andamio aparte.",
+   "minimo": null,
+   "desc": "Revestimiento de fachada con mortero monocapa"
+  },
+  {
+   "id": "f_pintura_fachada",
+   "re": null,
+   "claves": [
+    "pintura de fachada",
+    "pintar fachada",
+    "pintura exterior",
+    "pintura siloxanica",
+    "pintura elastica de fachada",
+    "pintura pliolite",
+    "pintura acrilica para exteriores"
+   ],
+   "u": "m2",
+   "tipico": 20,
+   "min": 8,
+   "max": 35,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/pintar-fachada",
+    "https://www.cronoshare.com/cuanto-cuesta/pintar-fachada",
+    "https://motordepresupuestos.com/cuanto-cobra/rehabilitacion-fachadas"
+   ],
+   "nota": "habitissimo 14-35 medio 20 €/m2 (otro dato 15 €/m2; andamio aparte 1.800-2.500 € para 250 m2); cronoshare 10-35 €/m2 IVA incl.; motordepresupuestos 8-18 €/m2 dos manos con imprimacion, sin IVA.",
+   "minimo": null,
+   "desc": "Pintura de fachada"
+  },
+  {
+   "id": "f_andamio",
+   "re": null,
+   "claves": [
+    "andamio tubular",
+    "andamio europeo",
+    "montaje y desmontaje de andamio",
+    "alquiler de andamio",
+    "andamio de fachada",
+    "andamio multidireccional",
+    "andamio colgante"
+   ],
+   "u": "m2",
+   "tipico": 14,
+   "min": 8,
+   "max": 40,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/alquiler-andamios",
+    "https://www.milandamios.com/precio-m2/",
+    "https://motordepresupuestos.com/cuanto-cobra/rehabilitacion-fachadas"
+   ],
+   "nota": "milandamios (andamio europeo): montaje 4,03 + desmontaje 2,73 + transporte 3,51 €/m2 + 0,0715 €/m2/dia; 200 m2 x 30 dias = 2.619,50 € sin IVA (~13,10 €/m2). motordepresupuestos montaje/desmontaje 8-20 €/m2 sin IVA. habitissimo alquiler 18-40 medio 20 €/m2 (tubular 30, europeo 40, colgante 18). Tipic",
+   "minimo": null,
+   "desc": "Andamio tubular de fachada (montaje y alquiler)"
+  },
+  {
+   "id": "f_limpieza_fachada",
+   "re": null,
+   "claves": [
+    "limpieza de fachada",
+    "limpieza con agua a presion",
+    "hidrolimpieza de fachada",
+    "chorro de arena",
+    "limpieza por proyeccion",
+    "limpieza con chorro",
+    "decapado de fachada"
+   ],
+   "u": "m2",
+   "tipico": 15,
+   "min": 5,
+   "max": 35,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/limpieza-fachada",
+    "https://www.habitissimo.es/presupuestos/limpieza-agua-presion",
+    "https://www.zaask.es/cuanto-cuesta/limpieza-con-chorro-de-arena",
+    "https://www.cronoshare.com/cuanto-cuesta/limpieza-fachadas"
+   ],
+   "nota": "habitissimo 10-30 medio 15 €/m2 (agua a presion 13, chorro de arena 27; sin IVA); habitissimo agua a presion 12-15 €/m2; zaask chorro de arena 5-35 medio 15; cronoshare 5-30 €/m2 IVA incl.; motordepresupuestos 5-12 €/m2 sin IVA. Andamio aparte.",
+   "minimo": null,
+   "desc": "Limpieza de fachada (agua a presión o chorro)"
+  },
+  {
+   "id": "i_fontaneria_bano",
+   "re": null,
+   "claves": [
+    "instalacion interior para cuarto de bano",
+    "instalacion de fontaneria de bano",
+    "fontaneria completa bano",
+    "red interior de evacuacion para cuarto de bano",
+    "fontaneria y desagues bano",
+    "instalacion fontaneria aseo",
+    "tomas de agua y desagues del bano",
+    "renovacion fontaneria bano"
+   ],
+   "u": "ud",
+   "tipico": 1200,
+   "min": 600,
+   "max": 2200,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalacion-fontaneria-casa",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros",
+    "https://trustlocal.es/coste/fontanero-coste/",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-completa-fontaneria"
+   ],
+   "nota": "Sin sanitarios ni griferia. Cronoshare 1500-2200 IVA incl.; Motor 800-1800 sin IVA; Trustlocal 600-1200 sin IVA; Habitissimo bano 5-6 m2 1000-1800; CYPE agua PE-X 605,38 + desagues PVC 418,00 = ~1023 sin IVA.",
+   "minimo": null,
+   "desc": "Instalación de fontanería completa de un baño (agua y desagües)"
+  },
+  {
+   "id": "i_fontaneria_cocina",
+   "re": null,
+   "claves": [
+    "instalacion interior para cocina",
+    "instalacion de fontaneria de cocina",
+    "fontaneria cocina",
+    "toma de lavadora y lavavajillas",
+    "agua y desague fregadero",
+    "red interior de evacuacion para cocina",
+    "fontaneria completa cocina"
+   ],
+   "u": "ud",
+   "tipico": 1900,
+   "min": 1600,
+   "max": 2000,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalacion-fontaneria-casa",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-completa-fontaneria"
+   ],
+   "nota": "Cronoshare 1600-2000 IVA incl.; Habitissimo cocina 8-10 m2 ~2000 (IVA no indicado). Cifras de reforma de cocina completa; una cocina sencilla (fregadero+lavavajillas+lavadora) suele quedar por debajo: punto agua ~120 y desague 80-300 (ver i_punto_agua/i_punto_desague). Trustlocal: conexion lavavajil",
+   "minimo": null,
+   "desc": "Instalación de fontanería de cocina (fregadero, lavavajillas, lavadora)"
+  },
+  {
+   "id": "i_punto_agua",
+   "re": null,
+   "claves": [
+    "punto de agua",
+    "toma de agua fria",
+    "toma de agua caliente",
+    "punto de agua fria y caliente",
+    "toma de agua",
+    "nuevo punto de agua",
+    "alimentacion de agua a aparato"
+   ],
+   "u": "ud",
+   "tipico": 150,
+   "min": 70,
+   "max": 180,
+   "fuentes": [
+    "https://trustlocal.es/coste/fontanero-coste/",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-completa-fontaneria",
+    "https://nortexpres.com/cobra-fontanero-punto-agua/",
+    "https://www.cronoshare.com/cuanto-cuesta/poner-contador-agua-individual"
+   ],
+   "nota": "Trustlocal 120-180 sin IVA; Habitissimo 120 (+50 rozas por punto); Nortexpres 120 obra nueva, 150-180 reforma; Cronoshare 70-180 IVA incl. Sin grifo ni sanitario.",
+   "minimo": null,
+   "desc": "Punto / toma de agua fría o caliente"
+  },
+  {
+   "id": "i_punto_desague",
+   "re": null,
+   "claves": [
+    "punto de desague",
+    "toma de desague",
+    "desague de pvc",
+    "nuevo desague",
+    "conexion a red de saneamiento",
+    "desague de aparato sanitario",
+    "punto de evacuacion"
+   ],
+   "u": "ud",
+   "tipico": 130,
+   "min": 80,
+   "max": 300,
+   "fuentes": [
+    "https://trustlocal.es/coste/fontanero-coste/",
+    "https://www.habitissimo.es/presupuestos/hacer-instalacion-completa-fontaneria"
+   ],
+   "nota": "Trustlocal 80-130 sin IVA; Habitissimo 300 por punto de desague (IVA no indicado, probablemente con rozas/obra).",
+   "minimo": null,
+   "desc": "Punto de desagüe"
+  },
+  {
+   "id": "i_inodoro",
+   "re": null,
+   "claves": [
+    "inodoro",
+    "taza de inodoro",
+    "inodoro con cisterna",
+    "inodoro suspendido",
+    "wc de tanque bajo",
+    "colocacion de wc",
+    "inodoro de porcelana sanitaria",
+    "cambiar el water"
+   ],
+   "u": "ud",
+   "tipico": 220,
+   "min": 80,
+   "max": 500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-sanitarios",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros",
+    "https://www.habitissimo.es/presupuestos/fontaneria-bano"
+   ],
+   "nota": "Suministro y colocacion: Cronoshare 80-500 IVA incl. (solo mano de obra 50-100); Motor 120-220 sin IVA; Habitissimo ~100 colocacion, suspendido 400-500. Suspendido con bastidor va al maximo.",
+   "minimo": null,
+   "desc": "Inodoro suministrado y colocado"
+  },
+  {
+   "id": "i_lavabo",
+   "re": null,
+   "claves": [
+    "lavabo",
+    "mueble de lavabo",
+    "mueble de bano con lavabo",
+    "lavabo con encimera",
+    "lavabo sobre encimera",
+    "lavabo de pedestal",
+    "mueble base para lavabo",
+    "conjunto mueble y lavabo"
+   ],
+   "u": "ud",
+   "tipico": 400,
+   "min": 90,
+   "max": 1200,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-sanitarios",
+    "https://www.habitissimo.es/presupuestos/instalar-mueble-de-lavabo",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros"
+   ],
+   "nota": "Cronoshare lavabo pedestal 90-600, mueble con lavabo 90-1100 IVA incl.; Habitissimo mueble melamina 200-300, madera+piedra 600-900, doble hasta 1200; Motor colocacion lavabo 100-190 sin IVA.",
+   "minimo": null,
+   "desc": "Lavabo o mueble de lavabo con encimera suministrado y colocado"
+  },
+  {
+   "id": "i_plato_ducha",
+   "re": null,
+   "claves": [
+    "plato de ducha",
+    "plato de ducha de resina",
+    "plato de ducha extraplano",
+    "plato de ducha de carga mineral",
+    "colocacion de plato de ducha",
+    "plato ducha acrilico"
+   ],
+   "u": "ud",
+   "tipico": 300,
+   "min": 180,
+   "max": 500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-sanitarios",
+    "https://www.habitissimo.es/presupuestos/cambiar-plato-ducha",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros"
+   ],
+   "nota": "Cronoshare 215-500 IVA incl.; Habitissimo 250-450 media 300; Motor 180-380 sin IVA. Sin mampara ni demolicion del anterior (~80).",
+   "minimo": null,
+   "desc": "Plato de ducha suministrado y colocado"
+  },
+  {
+   "id": "i_banera",
+   "re": null,
+   "claves": [
+    "banera",
+    "banera acrilica",
+    "banera de acero",
+    "banera de hidromasaje",
+    "colocacion de banera",
+    "banera exenta",
+    "banera empotrada"
+   ],
+   "u": "ud",
+   "tipico": 380,
+   "min": 180,
+   "max": 550,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-sanitarios",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros",
+    "https://www.habitissimo.es/presupuestos/cambiar-banera-por-otra-nueva"
+   ],
+   "nota": "Cronoshare 215-550 IVA incl.; Motor 180-380 sin IVA; Habitissimo acrilica estandar ~530 (cambiar banera completa 700-2500 con obra). Exenta o hidromasaje muy por encima.",
+   "minimo": null,
+   "desc": "Bañera suministrada y colocada"
+  },
+  {
+   "id": "i_griferia",
+   "re": null,
+   "claves": [
+    "griferia monomando",
+    "grifo monomando",
+    "monomando de lavabo",
+    "grifo de fregadero",
+    "griferia de ducha",
+    "griferia termostatica",
+    "columna de ducha",
+    "mezclador monomando"
+   ],
+   "u": "ud",
+   "tipico": 125,
+   "min": 70,
+   "max": 230,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-grifo",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros",
+    "https://www.habitissimo.es/presupuestos/fontaneria-bano",
+    "https://trustlocal.es/coste/fontanero-coste/"
+   ],
+   "nota": "Cronoshare con grifo estandar 90-160 IVA incl. (solo mano de obra 70-120); Motor 80-160 sin IVA; Habitissimo 70-230 segun tipo; Trustlocal 70-120 sin IVA. Termostatica o columna de gama alta por encima.",
+   "minimo": null,
+   "desc": "Grifería (monomando lavabo, ducha o fregadero) colocada"
+  },
+  {
+   "id": "i_termo",
+   "re": null,
+   "claves": [
+    "termo electrico",
+    "termo de agua caliente",
+    "acumulador electrico de acs",
+    "calentador electrico",
+    "termo de 80 litros",
+    "cambiar el termo"
+   ],
+   "u": "ud",
+   "tipico": 400,
+   "min": 120,
+   "max": 730,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-termo-electrico",
+    "https://www.habitissimo.es/presupuestos/instalar-o-cambiar-termo-electrico",
+    "https://motordepresupuestos.com/cuanto-cobra/fontaneros"
+   ],
+   "nota": "Con aparato: Cronoshare 50 L 150-520, 80 L 165-620, 100 L 220-730 IVA incl.; Habitissimo 180-600 media 430; Motor instalacion 120-280 sin IVA (Trustlocal 120-180 sin IVA, solo instalacion).",
+   "minimo": null,
+   "desc": "Termo eléctrico instalado"
+  },
+  {
+   "id": "i_caldera",
+   "re": null,
+   "claves": [
+    "caldera de condensacion",
+    "caldera mural de gas",
+    "caldera de gas natural",
+    "caldera estanca de condensacion",
+    "sustitucion de caldera",
+    "caldera mixta",
+    "cambio de caldera"
+   ],
+   "u": "ud",
+   "tipico": 2150,
+   "min": 1200,
+   "max": 3000,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-caldera-gas",
+    "https://www.habitissimo.es/presupuestos/instalar-caldera",
+    "https://hogarconfort.com/guia-precios/calderas/precio-instalar-caldera/"
+   ],
+   "nota": "Cronoshare 24-25 kW 1200-1700, 28-30 kW 1400-2000, 33-35 kW 1600-2500 IVA incl. (solo mano de obra 200-770); Habitissimo 1300-3000; Hogarconfort 1200-2800 tipico 2200 sin IVA (sustitucion con gas y salida existentes).",
+   "minimo": null,
+   "desc": "Caldera de gas de condensación instalada"
+  },
+  {
+   "id": "i_radiador",
+   "re": null,
+   "claves": [
+    "radiador de aluminio",
+    "radiador de aluminio inyectado",
+    "emisor de calefaccion",
+    "radiador por elementos",
+    "radiador con valvula termostatica",
+    "instalar radiador",
+    "radiador de agua"
+   ],
+   "u": "ud",
+   "tipico": 175,
+   "min": 100,
+   "max": 250,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Instalaciones/IC_Calefaccion__climatizacion_y_A/ICE_Emisores_por_agua_para_climati/Radiador.html",
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-calefaccion-gas-natural",
+    "https://www.gasfriocalor.com/blog/calefaccion/cuanto-cuesta-el-precio-instalar-radiadores-en-casa/"
+   ],
+   "nota": "CYPE radiador aluminio 6 elementos con valvuleria 130,34 sin IVA (sin tuberia de distribucion); Cronoshare 100-250 por radiador IVA incl. (6 uds 700-1200); Gasfriocalor instalacion 100-150 + radiador 150-300. Con tuberia nueva tiende a la parte alta.",
+   "minimo": null,
+   "desc": "Radiador de aluminio instalado (con su tubería)"
+  },
+  {
+   "id": "i_calefaccion_vivienda",
+   "re": null,
+   "claves": [
+    "instalacion de calefaccion completa",
+    "calefaccion por radiadores",
+    "instalacion de calefaccion con caldera",
+    "calefaccion de gas natural vivienda",
+    "circuito de calefaccion bitubo",
+    "poner calefaccion en el piso"
+   ],
+   "u": "ud",
+   "tipico": 3300,
+   "min": 2200,
+   "max": 5000,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/calefaccion",
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-calefaccion-gas-natural",
+    "https://www.habitissimo.es/presupuestos/instalar-radiadores"
+   ],
+   "nota": "Habitissimo 100 m2 2200-3500 (gas natural 3300), 5 radiadores + caldera ~3000; Cronoshare piso 60-80 m2 con 6-8 radiadores y caldera condensacion 3300-5000 IVA incl. (con acometida de gas existente).",
+   "minimo": null,
+   "desc": "Instalación de calefacción completa de una vivienda (caldera y radiadores)"
+  },
+  {
+   "id": "i_suelo_radiante",
+   "re": null,
+   "claves": [
+    "suelo radiante",
+    "suelo radiante por agua",
+    "suelo radiante refrescante",
+    "calefaccion por suelo radiante",
+    "sistema de calefaccion por suelo radiante",
+    "panel aislante portatubos",
+    "tubo pe-x suelo radiante"
+   ],
+   "u": "m2",
+   "tipico": 60,
+   "min": 50,
+   "max": 80,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/poner-suelo-radiante",
+    "https://www.habitissimo.es/presupuestos/calefaccion",
+    "https://guiareformas.es/rehabilitacion-energetica/suelo-radiante/precio/"
+   ],
+   "nota": "Cronoshare 50-75 IVA incl.; Habitissimo 50-80; Guiareformas 50-70. Incluye panel, tubo, colector y mortero; NO incluye pavimento ni generador (caldera/aerotermia).",
+   "minimo": null,
+   "desc": "Suelo radiante instalado"
+  },
+  {
+   "id": "i_aerotermia",
+   "re": null,
+   "claves": [
+    "aerotermia",
+    "bomba de calor aire-agua",
+    "bomba de calor aerotermica",
+    "aerotermia para acs",
+    "equipo de aerotermia",
+    "bomba de calor para acs y calefaccion",
+    "sistema aerotermico"
+   ],
+   "u": "ud",
+   "tipico": 9300,
+   "min": 1943,
+   "max": 18000,
+   "fuentes": [
+    "https://climate.selectra.com/es/aerotermia/precio",
+    "https://www.naturclima.energy/precio-aerotermia/"
+   ],
+   "nota": "Selectra calefaccion+ACS 8000-18000 (piso 100 m2 7000-12000); Naturclima solo ACS 1943-2318, calefaccion+ACS 7713-10843. IVA no indicado. El minimo corresponde a equipo solo ACS (sustituto de termo).",
+   "minimo": null,
+   "desc": "Bomba de calor aerotermia para ACS/calefacción instalada"
+  },
+  {
+   "id": "i_aire_acondicionado",
+   "re": null,
+   "claves": [
+    "aire acondicionado split",
+    "split 1x1",
+    "equipo de aire acondicionado",
+    "bomba de calor split",
+    "climatizacion split pared",
+    "instalacion de aire acondicionado",
+    "unidad interior split"
+   ],
+   "u": "ud",
+   "tipico": 1000,
+   "min": 550,
+   "max": 1500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-aire-acondicionado",
+    "https://climajobs.com/blog/guias-instalacion/precio-instalar-aire-split-guia-completa-espana"
+   ],
+   "nota": "Cronoshare split 1x1 instalado 550-1500 IVA incl. (solo instalacion 220-300); Climajobs 650-1500, habitual 850-1200 (IVA no indicado). Lineas largas, andamio o electricidad aparte.",
+   "minimo": null,
+   "desc": "Aire acondicionado split instalado"
+  },
+  {
+   "id": "i_bajante",
+   "re": null,
+   "claves": [
+    "bajante de pvc",
+    "bajante interior",
+    "bajante de aguas residuales",
+    "bajante de pvc 110",
+    "bajante insonorizada",
+    "cambio de bajante",
+    "tubo de pvc serie b"
+   ],
+   "u": "m",
+   "tipico": 20,
+   "min": 15,
+   "max": 25,
+   "fuentes": [
+    "https://www.generadordeprecios.info/obra_nueva/Instalaciones/Evacuacion_de_aguas/Bajantes/ISB010_Bajante_en_el_interior_del_edificio.html",
+    "https://www.habitissimo.es/presupuestos/cambiar-bajantes"
+   ],
+   "nota": "CYPE bajante interior PVC serie B 110 mm 15,26/m sin IVA; Habitissimo sustituir bajante 20-25/m (IVA no indicado). Sin demolicion ni andamios; vivienda unifamiliar ~500 total.",
+   "minimo": null,
+   "desc": "Bajante interior de PVC"
+  },
+  {
+   "id": "i_contador_agua",
+   "re": null,
+   "claves": [
+    "contador de agua",
+    "bateria de contadores",
+    "contador divisionario",
+    "centralizacion de contadores de agua",
+    "preinstalacion de contador",
+    "armario de contador de agua",
+    "contador individual de agua"
+   ],
+   "u": "ud",
+   "tipico": 250,
+   "min": 100,
+   "max": 1337,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/poner-contador-agua-individual",
+    "https://www.generadordeprecios.info/obra_nueva/Instalaciones/Fontaneria/Contadores/IFC020_Bateria_de_contadores_divisionarios.html"
+   ],
+   "nota": "Contador individual suministro e instalacion 100-400 IVA incl. (Cronoshare); bateria de contadores divisionarios para 18 contadores 1336,90 sin IVA (CYPE). Tipico = contador individual; una bateria va al maximo.",
+   "minimo": null,
+   "desc": "Contador / batería de contadores de agua"
+  },
+  {
+   "id": "l_puerta_corredera",
+   "re": null,
+   "claves": [
+    "puerta corredera",
+    "puerta interior corredera",
+    "corredera de madera",
+    "corredera vista",
+    "corredera empotrada",
+    "corredera en casoneto",
+    "armazon metalico corredera",
+    "puerta corredera lacada",
+    "hoja corredera",
+    "kit corredera"
+   ],
+   "u": "ud",
+   "tipico": 450,
+   "min": 150,
+   "max": 1050,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-puerta-corredera",
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-puerta-corredera",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-puertas-interior-casa"
+   ],
+   "nota": "habitissimo 150-850 media 450; cronoshare vista 300-400, empotrada 600-1050; hueca 220-700. Empotrada con casoneto exige albanileria aparte.",
+   "minimo": null,
+   "desc": "Puerta corredera interior colocada"
+  },
+  {
+   "id": "l_puerta_cristal",
+   "re": null,
+   "claves": [
+    "puerta vidriera",
+    "puerta acristalada",
+    "puerta de paso vidriera",
+    "vidriera lacada",
+    "puerta con cristal",
+    "puerta de cristal templado",
+    "hoja vidriera",
+    "puerta interior vidriera"
+   ],
+   "u": "ud",
+   "tipico": 489,
+   "min": 300,
+   "max": 817,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/carpinteros",
+    "https://www.cronoshare.com/cuanto-cuesta/puerta-corredera-cristal",
+    "https://www.habitissimo.es/presupuestos/instalar-puertas"
+   ],
+   "nota": "motordepresupuestos puerta acristalada 489-817 instalada; cronoshare corredera de cristal 300-900 media 560; habitissimo 130-300 solo puerta sin instalar (no usado para min).",
+   "minimo": null,
+   "desc": "Puerta interior vidriera / con cristal colocada"
+  },
+  {
+   "id": "l_armario_empotrado",
+   "re": null,
+   "claves": [
+    "frente de armario",
+    "armario empotrado",
+    "puertas de armario",
+    "frente armario corredero",
+    "frente armario abatible",
+    "puerta de armario de madera",
+    "armario a medida",
+    "modulo de armario"
+   ],
+   "u": "ud",
+   "tipico": 800,
+   "min": 380,
+   "max": 2500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/armarios-empotrados-medida",
+    "https://yotu.pro/blog/precio-armario-a-medida",
+    "https://vettadeco.es/cuanto-cuesta-armario-empotrado-medida/",
+    "https://generadordeprecios.info/rehabilitacion/L_Carpinteria__cerrajeria__vidrios_y_/Armarios/Frentes_de_armario__de_madera/Puerta_de_armario__de_madera.html"
+   ],
+   "nota": "cronoshare 250-2500 media 850 (ref 170x85); yotu mediana 780 (380-1160), frente melamina 250-450 EUR/ml; vettadeco 350-1100 EUR/ml sin IVA; CYPE LAH010 puerta armario 2 hojas melamina 254,44. Varia mucho con el ancho: mejor por ml.",
+   "minimo": null,
+   "desc": "Frente de armario empotrado (puertas correderas o batientes)"
+  },
+  {
+   "id": "l_ventana_aluminio",
+   "re": null,
+   "claves": [
+    "ventana de aluminio",
+    "aluminio con rotura",
+    "rotura de puente termico",
+    "carpinteria de aluminio",
+    "ventana aluminio rpt",
+    "ventana oscilobatiente aluminio",
+    "ventana corredera aluminio",
+    "carpinteria exterior aluminio"
+   ],
+   "u": "ud",
+   "tipico": 450,
+   "min": 350,
+   "max": 700,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/ventanas-puente-termico",
+    "https://www.habitissimo.es/presupuestos/ventanas-aluminio",
+    "https://preciom2.com/guias/vidrio/"
+   ],
+   "nota": "habitissimo RPT 350-700 media 450 (instalacion ~200); habitissimo RPT 1,2x1,2 = 570; preciom2 RPT 220-300 EUR/m2 hueco instalado. Referencia ventana ~1,2x1,2 m.",
+   "minimo": null,
+   "desc": "Ventana de aluminio con rotura de puente térmico colocada"
+  },
+  {
+   "id": "l_ventana_pvc",
+   "re": null,
+   "claves": [
+    "ventana de pvc",
+    "carpinteria de pvc",
+    "ventana pvc oscilobatiente",
+    "ventana corredera pvc",
+    "perfil de pvc",
+    "carpinteria exterior pvc",
+    "ventana pvc practicable"
+   ],
+   "u": "ud",
+   "tipico": 400,
+   "min": 220,
+   "max": 900,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-ventanas-pvc",
+    "https://www.habitissimo.es/presupuestos/ventanas-pvc",
+    "https://preciom2.com/guias/vidrio/"
+   ],
+   "nota": "cronoshare 220-900, habitual 330-550; habitissimo 250-600 media 350; preciom2 180-400 EUR/m2. tipico = punto medio entre medias (350 y 330-550). Balconera 400-700.",
+   "minimo": null,
+   "desc": "Ventana de PVC colocada"
+  },
+  {
+   "id": "l_puerta_garaje",
+   "re": null,
+   "claves": [
+    "puerta de garaje",
+    "puerta seccional",
+    "seccional para garaje",
+    "puerta basculante",
+    "puerta garaje enrollable",
+    "puerta de garaje motorizada",
+    "paneles sandwich garaje",
+    "porton de garaje"
+   ],
+   "u": "ud",
+   "tipico": 1426,
+   "min": 800,
+   "max": 3300,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/puerta-garaje-seccional",
+    "https://www.habitissimo.es/presupuestos/instalar-puerta-garaje",
+    "https://generadordeprecios.info/obra_nueva/L_Carpinteria__cerrajeria__vidrios_y_/Puertas_de_garaje/LGS_De_paneles_sandwich_aislantes_/LGS031_Puerta_seccional_para_garaje__de_pa.html",
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-puerta-garaje"
+   ],
+   "nota": "habitissimo seccional 900-2500 media 1850, seccional 3x2,5 alu 1400; CYPE LGS031 300x250 manual 1425,86; cronoshare 800-2500 manual, 1000-3000 automatica. Motor aparte 300-700.",
+   "minimo": null,
+   "desc": "Puerta de garaje / seccional"
+  },
+  {
+   "id": "l_persiana",
+   "re": null,
+   "claves": [
+    "persiana enrollable",
+    "persiana con cajon",
+    "cajon monoblock",
+    "lamas de pvc",
+    "lamas de aluminio",
+    "persiana motorizada",
+    "persiana electrica",
+    "motor de persiana",
+    "cajon de persiana"
+   ],
+   "u": "ud",
+   "tipico": 230,
+   "min": 108,
+   "max": 900,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-persiana",
+    "https://www.habitissimo.es/presupuestos/persianas-electricas",
+    "https://generadordeprecios.info/obra_nueva/L_Carpinteria__cerrajeria__vidrios_y_/Protecciones_solares/Persianas_enrollables/LSP020_Persiana_enrollable_con_cajon_(mono.html"
+   ],
+   "nota": "Manual con cinta: cronoshare 1,2x1 alu 108 instalada; CYPE LSP020 monoblock PVC cinta 71,80 EUR/m2. Motorizada: habitissimo 230-900 media 350 (PVC 230). tipico = motorizada PVC; manual ~108.",
+   "minimo": null,
+   "desc": "Persiana enrollable con cajón y motor/cinta"
+  },
+  {
+   "id": "l_vidrio",
+   "re": null,
+   "claves": [
+    "doble acristalamiento",
+    "vidrio climalit",
+    "climalit",
+    "vidrio de camara",
+    "acristalamiento 4/16/4",
+    "vidrio bajo emisivo",
+    "vidrio aislante",
+    "unidad de vidrio aislante"
+   ],
+   "u": "m2",
+   "tipico": 90,
+   "min": 60,
+   "max": 176,
+   "fuentes": [
+    "https://preciom2.com/guias/vidrio/",
+    "https://motordepresupuestos.com/cuanto-cobra/cristaleros",
+    "https://www.habitissimo.es/presupuestos/cambiar-cristales-en-puertas-y-ventanas"
+   ],
+   "nota": "preciom2 60-120 (4/16/4 aire 60-85, bajo emisivo 85-120); motordepresupuestos 4/16/4 argon BE 101-176 media ~135; habitissimo desde 80. tipico = punto medio preciom2.",
+   "minimo": null,
+   "desc": "Vidrio doble acristalamiento (climalit) colocado"
+  },
+  {
+   "id": "l_mampara",
+   "re": null,
+   "claves": [
+    "mampara de ducha",
+    "mampara de bano",
+    "mampara de banera",
+    "mampara corredera",
+    "mampara fija",
+    "mampara abatible",
+    "panel fijo ducha",
+    "frente de ducha"
+   ],
+   "u": "ud",
+   "tipico": 600,
+   "min": 300,
+   "max": 1500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-o-cambiar-mampara-de-bano",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-mampara-ducha",
+    "https://motordepresupuestos.com/cuanto-cobra/cristaleros"
+   ],
+   "nota": "habitissimo 300-1500 media 600 (fija 300, corredera 450); cronoshare 500-900 media 700; motordepresupuestos fijo+abatible 350-750.",
+   "minimo": null,
+   "desc": "Mampara de ducha o bañera colocada"
+  },
+  {
+   "id": "l_barandilla",
+   "re": null,
+   "claves": [
+    "barandilla",
+    "barandilla de acero",
+    "barandilla de vidrio",
+    "barandilla de cristal",
+    "barandilla inox",
+    "pasamanos de acero",
+    "antepecho de vidrio",
+    "baranda metalica",
+    "barandilla de escalera"
+   ],
+   "u": "m",
+   "tipico": 210,
+   "min": 95,
+   "max": 420,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-barandillas",
+    "https://www.habitissimo.es/presupuestos/barandillas-metalicas",
+    "https://www.cronoshare.com/cuanto-cuesta/barandilla-cristal"
+   ],
+   "nota": "habitissimo instalada 95-300 media 180 (metalica 80-120); habitissimo metalicas 40-340 media 210 (solo material); cronoshare vidrio 145-420 EUR/m, pinza/fijapuntos 350-500.",
+   "minimo": null,
+   "desc": "Barandilla metálica o de vidrio"
+  },
+  {
+   "id": "l_tapajuntas",
+   "re": null,
+   "claves": [
+    "tapajuntas",
+    "tapeta de puerta",
+    "tapetas de mdf",
+    "jambas de puerta",
+    "cambiar tapetas",
+    "tapajuntas lacado",
+    "moldura de puerta"
+   ],
+   "u": "m",
+   "tipico": 11,
+   "min": 8,
+   "max": 14,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/carpinteros",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-puertas-interior-casa"
+   ],
+   "nota": "Unica fuente por ml: motordepresupuestos 8-14 EUR/m como partida independiente (suele ir incluido en la puerta). cronoshare: juego de tapajuntas/jambas 26-60 EUR por puerta, solo material. tipico = punto medio.",
+   "minimo": null,
+   "desc": "Tapajuntas / jambas de puerta"
+  },
+  {
+   "id": "l_tarima_rodapie",
+   "re": null,
+   "claves": [
+    "rodapie de madera",
+    "rodapie lacado",
+    "rodapie de dm",
+    "rodapie mdf",
+    "rodapie blanco",
+    "zocalo de madera",
+    "rodapie hidrofugo"
+   ],
+   "u": "m",
+   "tipico": 10,
+   "min": 6,
+   "max": 14,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/poner-rodapie",
+    "https://motordepresupuestos.com/cuanto-cobra/carpinteros"
+   ],
+   "nota": "habitissimo MDF lacado blanco 8 cm 8 EUR/ml, 12 cm 11 EUR/ml; motordepresupuestos 6-14 EUR/m. tipico = punto medio aprox. de ambas.",
+   "minimo": null,
+   "desc": "Rodapié de madera o DM lacado colocado"
+  },
+  {
+   "id": "l_puerta_blindada",
+   "re": null,
+   "claves": [
+    "puerta blindada",
+    "puerta acorazada",
+    "puerta de entrada blindada",
+    "puerta de seguridad",
+    "blindaje de puerta",
+    "puerta de entrada a vivienda",
+    "cerradura de seguridad"
+   ],
+   "u": "ud",
+   "tipico": 950,
+   "min": 550,
+   "max": 2500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-puerta-blindada",
+    "https://www.habitissimo.es/presupuestos/instalar-puertas",
+    "https://puertassarmiento.com/precio-de-puertas-de-interior-colocadas/",
+    "https://tarimasdiamond.es/guias-compra/puertas/precio/"
+   ],
+   "nota": "cronoshare 550-2500+ media 700-1000; habitissimo blindada 600-800, acorazada 900-1200; puertassarmiento blindada colocada 950 sin IVA; tarimasdiamond 920-1300 instalada Madrid.",
+   "minimo": null,
+   "desc": "Puerta blindada o acorazada de entrada colocada"
+  },
+  {
+   "id": "r_raseo",
+   "re": null,
+   "claves": [
+    "enfoscado maestreado",
+    "enfoscado de cemento",
+    "enfoscado a buena vista",
+    "raseo de paredes",
+    "rasear paredes",
+    "enfoscado con mortero",
+    "revoco de mortero de cemento",
+    "enfoscado fratasado",
+    "maestreado de paredes"
+   ],
+   "u": "m2",
+   "tipico": 16,
+   "min": 8,
+   "max": 35,
+   "fuentes": [
+    "https://preciom2.com/guias/revestimientos/enfoscado-maestreado/",
+    "https://preciom2.com/guias/revestimientos/",
+    "https://saberpreciode.com/enfoscado-maestreado/",
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles"
+   ],
+   "nota": "preciom2: 8-22 (cemento M-10 maestreado 10-16; guia revestimientos maestreado 16-22), MO+material sin andamio; saberpreciode 15; motordepresupuestos enfoscado 18-35 sin IVA. IVA no explicitado en preciom2.",
+   "minimo": null,
+   "desc": "Raseo / enfoscado regleado con maestras de paredes"
+  },
+  {
+   "id": "r_lucido_yeso",
+   "re": null,
+   "claves": [
+    "guarnecido de yeso",
+    "enlucido de yeso",
+    "guarnecido y enlucido",
+    "perliescayola",
+    "lucido de yeso",
+    "yeso maestreado",
+    "yeso a buena vista",
+    "yeso proyectado",
+    "dar yeso a paredes"
+   ],
+   "u": "m2",
+   "tipico": 18,
+   "min": 10,
+   "max": 30,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/enlucir-paredes",
+    "https://www.habitissimo.es/presupuestos/enlucido-yeso",
+    "https://motordepresupuestos.com/cuanto-cobra/yeseros",
+    "https://motordepresupuestos.com/cuanto-cobra/albaniles"
+   ],
+   "nota": "cronoshare 10-30 IVA incl. (buena vista 7-16, maestreado 14-25); habitissimo 15-30 media 20; motordepresupuestos guarnecido+enlucido 14-25/14-26 sin IVA. Mezcla de criterios de IVA.",
+   "minimo": null,
+   "desc": "Lucido / guarnecido de yeso (perliescayola) de paredes"
+  },
+  {
+   "id": "r_alisado",
+   "re": null,
+   "claves": [
+    "alisado de paredes",
+    "alisar paredes",
+    "tendido de pasta",
+    "tendido de paredes",
+    "plaste de paredes",
+    "emplastecido de paredes",
+    "alisado con pasta",
+    "enlucido de pasta para pintar"
+   ],
+   "u": "m2",
+   "tipico": 13,
+   "min": 8,
+   "max": 20,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/alisar-paredes",
+    "https://humedades.com/guia-precios/pintores/precio-alisar-paredes/",
+    "https://preciom2.com/guias/pintura/"
+   ],
+   "nota": "habitissimo 8-20 media 15; humedades.com 8-15 media 12 sin IVA, sin pintura final; preciom2 8-18 sobre pintura. Quitar gotele+alisar sube a 15-28 (motordepresupuestos pintores).",
+   "minimo": null,
+   "desc": "Alisado de paredes (tendido de pasta) para pintar"
+  },
+  {
+   "id": "r_pintura_techo",
+   "re": null,
+   "claves": [
+    "pintura plastica en techos",
+    "pintura de techos",
+    "pintar techos",
+    "pintura plastica sobre paramento horizontal",
+    "pintura plastica lisa en techo",
+    "pintura techo",
+    "pintado de techos"
+   ],
+   "u": "m2",
+   "tipico": 10,
+   "min": 5,
+   "max": 15,
+   "fuentes": [
+    "https://preciom2.com/guias/pintura/",
+    "https://hogarassist.com/blog/pintura-vivienda-precio-m2",
+    "https://motordepresupuestos.com/cuanto-cobra/pintores",
+    "https://saberpreciode.com/pintura-techo/"
+   ],
+   "nota": "preciom2 7-14 (liso 7-11); hogarassist 5-10 (con vigas 8-15); motordepresupuestos paredes y techos 8-16 sin IVA; saberpreciode 15.",
+   "minimo": null,
+   "desc": "Pintura plástica de techos"
+  },
+  {
+   "id": "r_pintura_esmalte",
+   "re": null,
+   "claves": [
+    "esmalte sintetico",
+    "pintura al esmalte",
+    "lacado de carpinteria",
+    "esmaltado de carpinteria",
+    "esmaltado de radiadores",
+    "pintar radiadores",
+    "lacar puertas",
+    "esmalte sobre carpinteria de madera",
+    "esmalte sobre superficie metalica"
+   ],
+   "u": "m2",
+   "tipico": 18,
+   "min": 12,
+   "max": 40,
+   "fuentes": [
+    "https://preciom2.com/guias/pintura/",
+    "https://hogarassist.com/blog/pintura-vivienda-precio-m2",
+    "https://generadordeprecios.info/obra_nueva/Revestimientos_y_trasdosados/RM_Pinturas_y_tratamientos_sobre_/Esmaltes/Esmalte_sintetico_para_madera.html"
+   ],
+   "nota": "preciom2 esmalte 12-25/m2 (radiador 35-70/ud, lacado puerta 60-130/hoja); hogarassist esmalte puertas/rodapies 25-40/m2; CYPE esmalte sintetico madera 12,86/m2 (coste ejecucion, sin IVA). Por unidad: motordepresupuestos puerta 80-160, radiador 35-70 sin IVA.",
+   "minimo": null,
+   "desc": "Esmalte / lacado de carpintería o radiadores"
+  },
+  {
+   "id": "r_microcemento",
+   "re": null,
+   "claves": [
+    "microcemento",
+    "revestimiento de microcemento",
+    "pavimento de microcemento",
+    "microcemento en suelo",
+    "microcemento en paredes",
+    "microcemento sobre azulejo",
+    "mortero cementoso decorativo",
+    "microcemento alisado"
+   ],
+   "u": "m2",
+   "tipico": 65,
+   "min": 35,
+   "max": 100,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/microcemento",
+    "https://preciom2.com/guias/microcemento/",
+    "https://preciom2.com/guias/revestimientos/"
+   ],
+   "nota": "habitissimo 35-100 media 60; preciom2 suelo 50-90 media 70, pared 45-80 media 62,5, sin IVA 21%; ducha/bano 80-110.",
+   "minimo": null,
+   "desc": "Microcemento en suelo o pared"
+  },
+  {
+   "id": "r_alicatado_mano_obra",
+   "re": null,
+   "claves": [
+    "mano de obra alicatado",
+    "colocacion de alicatado",
+    "colocacion de azulejos",
+    "alicatar paredes",
+    "alicatado con adhesivo",
+    "colocar azulejo",
+    "alicatado ceramico",
+    "alicatado material aportado por cliente"
+   ],
+   "u": "m2",
+   "tipico": 18,
+   "min": 12,
+   "max": 35,
+   "fuentes": [
+    "https://www.preciom2.com/reformas/alicatado-mano-obra/",
+    "https://presupix.com/blog/presupuesto-alicatado-azulejos",
+    "https://www.cronoshare.com/cuanto-cuesta/alicatar-bano"
+   ],
+   "nota": "Solo MO. preciom2 12-35 (bano estandar 14-22) + IVA; presupix ceramica estandar 15-24, rectificado 20-32, gran formato 28-45; cronoshare 15-17 IVA incl.",
+   "minimo": null,
+   "desc": "Colocación de alicatado (solo mano de obra, material del cliente)"
+  },
+  {
+   "id": "r_solado_mano_obra",
+   "re": null,
+   "claves": [
+    "mano de obra solado",
+    "colocacion de solado",
+    "colocacion de baldosas",
+    "solado ceramico",
+    "solado de gres",
+    "colocar suelo porcelanico",
+    "embaldosar suelo",
+    "pavimento ceramico colocado",
+    "solar suelo"
+   ],
+   "u": "m2",
+   "tipico": 20,
+   "min": 12,
+   "max": 35,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/solar",
+    "https://gutierrezconstruccion.com/precio-m2-solado-mano-de-obra/",
+    "https://motordepresupuestos.com/cuanto-cobra/soladores",
+    "https://www.habitissimo.es/presupuestos/suelo-porcelanico"
+   ],
+   "nota": "Solo MO. habitissimo 12-25; gutierrezconstruccion ceramico 15-25, porcelanico 20-35 (datos 2024); motordepresupuestos 24-35 sin IVA; habitissimo porcelanico desde 15.",
+   "minimo": null,
+   "desc": "Colocación de solado cerámico (solo mano de obra)"
+  },
+  {
+   "id": "r_suelo_laminado",
+   "re": null,
+   "claves": [
+    "suelo laminado",
+    "tarima flotante",
+    "pavimento laminado",
+    "parquet flotante",
+    "tarima laminada",
+    "laminado ac4",
+    "laminado ac5",
+    "instalacion de tarima"
+   ],
+   "u": "m2",
+   "tipico": 28,
+   "min": 15,
+   "max": 50,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/suelo-laminado",
+    "https://preciom2.com/guias/suelos/",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-suelo-casa"
+   ],
+   "nota": "habitissimo 20-65 media 30 (calidad media 25-30, MO ~10) con IVA; preciom2 laminado 15-35 media 25, tarima flotante 20-50; cronoshare laminado 20-40 IVA incl. Solo MO 12-22 sin IVA (motordepresupuestos carpinteros).",
+   "minimo": null,
+   "desc": "Suelo laminado / tarima flotante colocada"
+  },
+  {
+   "id": "r_suelo_vinilico",
+   "re": null,
+   "claves": [
+    "suelo vinilico",
+    "pavimento vinilico",
+    "vinilo spc",
+    "suelo spc",
+    "lamas vinilicas",
+    "vinilico click",
+    "suelo de vinilo",
+    "vinilo pegado lvt"
+   ],
+   "u": "m2",
+   "tipico": 32,
+   "min": 15,
+   "max": 45,
+   "fuentes": [
+    "https://preciom2.com/guias/suelos/",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-suelo-casa"
+   ],
+   "nota": "preciom2 vinilico/SPC 20-45 media 32,5; cronoshare total 15-100 IVA incl. (MO 10-30; gama alta hasta 100).",
+   "minimo": null,
+   "desc": "Suelo vinílico / SPC colocado"
+  },
+  {
+   "id": "r_parquet_acuchillado",
+   "re": null,
+   "claves": [
+    "acuchillado de parquet",
+    "acuchillar parquet",
+    "acuchillado y barnizado",
+    "lijado y barnizado de parquet",
+    "barnizado de parquet",
+    "pulido de parquet",
+    "restauracion de parquet"
+   ],
+   "u": "m2",
+   "tipico": 15,
+   "min": 8,
+   "max": 30,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/acuchillar-parquet",
+    "https://www.habitissimo.es/presupuestos/acuchillar-parquet"
+   ],
+   "nota": "cronoshare 10-30 (habitual 14-20) IVA incl.; habitissimo 8-20 media ~15 (Madrid 14-25).",
+   "minimo": null,
+   "desc": "Acuchillado y barnizado de parquet"
+  },
+  {
+   "id": "r_recrecido",
+   "re": null,
+   "claves": [
+    "recrecido de mortero",
+    "recrecido de suelo",
+    "nivelacion de suelo",
+    "capa de nivelacion",
+    "mortero autonivelante",
+    "regularizacion de solera",
+    "recrecido con mortero de cemento",
+    "nivelar suelo"
+   ],
+   "u": "m2",
+   "tipico": 16,
+   "min": 8,
+   "max": 32,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/nivelar-suelo",
+    "https://motordepresupuestos.com/cuanto-cobra/soladores",
+    "https://preciom2.com/guias/suelos/"
+   ],
+   "nota": "habitissimo mortero 8-12 (todas tecnicas 12-30, media 15); motordepresupuestos recrecido 12-22 sin IVA; preciom2 nivelacion 10-20, espesores mayores 18-32. 5 cm se situa en la parte media-alta. Ninguna fuente fija espesor exacto.",
+   "minimo": null,
+   "desc": "Recrecido de mortero / nivelación de suelo 5 cm"
+  },
+  {
+   "id": "r_impermeabilizacion_ducha",
+   "re": null,
+   "claves": [
+    "impermeabilizacion de ducha",
+    "impermeabilizacion bajo baldosa",
+    "lamina impermeabilizante bajo alicatado",
+    "impermeabilizacion zona humeda",
+    "mortero impermeabilizante",
+    "membrana liquida impermeabilizante",
+    "impermeabilizacion plato de obra",
+    "impermeabilizar ducha de obra"
+   ],
+   "u": "m2",
+   "tipico": 30,
+   "min": 20,
+   "max": 60,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/impermeabilizacion",
+    "https://preciom2.com/guias/cubiertas-impermeabilizacion/",
+    "https://www.habitissimo.es/presupuestos/impermeabilizar-terraza",
+    "https://www.cronoshare.com/cuanto-cuesta/impermeabilizar-terraza"
+   ],
+   "nota": "motordepresupuestos bano (base ducha) 30-60 sin IVA; preciom2 poliuretano liquido 22-35; habitissimo terraza 20-40 sin IVA; cronoshare 20-40 IVA incl. Sin solado.",
+   "minimo": null,
+   "desc": "Impermeabilización de zona de ducha / terraza (lámina o mortero)"
+  },
+  {
+   "id": "r_terraza",
+   "re": null,
+   "claves": [
+    "impermeabilizacion y solado de terraza",
+    "solado de terraza",
+    "terraza transitable",
+    "rehabilitacion de terraza",
+    "impermeabilizar y embaldosar terraza",
+    "cubierta plana transitable",
+    "gres antideslizante en terraza"
+   ],
+   "u": "m2",
+   "tipico": 75,
+   "min": 45,
+   "max": 140,
+   "fuentes": [
+    "https://preciom2.com/guias/cubiertas-impermeabilizacion/",
+    "https://motordepresupuestos.com/cuanto-cobra/impermeabilizacion",
+    "https://www.cronoshare.com/cuanto-cuesta/impermeabilizar-terraza"
+   ],
+   "nota": "preciom2 lamina+baldosa ceramica 60-90 media 75, demolicion+lamina+pavimento 45-90 media 67; motordepresupuestos combinado 70-140 sin IVA; cronoshare con levantado de pavimento desde 60 hasta >200.",
+   "minimo": null,
+   "desc": "Impermeabilización y solado de terraza"
+  },
+  {
+   "id": "r_piedra_suelo",
+   "re": null,
+   "claves": [
+    "pavimento de marmol",
+    "suelo de marmol",
+    "pavimento de piedra natural",
+    "solado de granito",
+    "baldosas de piedra natural",
+    "suelo de granito",
+    "pavimento de travertino",
+    "suelo de pizarra"
+   ],
+   "u": "m2",
+   "tipico": 60,
+   "min": 30,
+   "max": 160,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/suelo-marmol",
+    "https://preciom2.com/guias/revestimientos/piedra-natural/",
+    "https://www.cronoshare.com/cuanto-cuesta/cambiar-suelo-casa"
+   ],
+   "nota": "habitissimo marmol 30-80 media 50; preciom2 piedra natural 40-220 (marmol nacional 80-160, granito 70-130, importado 110-220); cronoshare marmol/piedra 50-60 (30-70) IVA incl.",
+   "minimo": null,
+   "desc": "Pavimento de piedra natural / mármol colocado"
+  },
+  {
+   "id": "r_peldano",
+   "re": null,
+   "claves": [
+    "revestimiento de peldano",
+    "peldano de marmol",
+    "peldano de granito",
+    "huella y tabica",
+    "forrado de escalera",
+    "revestimiento de escalera",
+    "peldano de madera",
+    "peldano ceramico",
+    "peldano porcelanico"
+   ],
+   "u": "ud",
+   "tipico": 78,
+   "min": 77,
+   "max": 79,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/soladores"
+   ],
+   "nota": "Una sola fuente con cifra: motordepresupuestos peldano ceramico 77,47 y granito 78,94 por ud sin IVA (MO ~48%). Rango real seguramente mas amplio (madera noble o marmol importado mas caro); otras paginas no devolvieron precio.",
+   "minimo": null,
+   "desc": "Peldaño de escalera revestido (piedra, madera o cerámico)"
+  },
+  {
+   "id": "r_encimera",
+   "re": null,
+   "claves": [
+    "encimera de cocina",
+    "encimera de cuarzo",
+    "encimera de silestone",
+    "encimera de granito",
+    "encimera laminada",
+    "encimera postformada",
+    "encimera compac",
+    "encimera porcelanica dekton"
+   ],
+   "u": "m",
+   "tipico": 300,
+   "min": 25,
+   "max": 500,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-encimera-cocina",
+    "https://www.habitissimo.es/presupuestos/muebles-cocina"
+   ],
+   "nota": "cronoshare (IVA incl.): laminado 25-150 media ~87, cuarzo 200-450 media ~325, granito 100-500 media ~300 por ml; solo instalacion 55-80/ml. habitissimo ~300/ml. Laminado es mucho mas barato: tipico 300 vale para piedra/cuarzo.",
+   "minimo": null,
+   "desc": "Encimera de cocina (laminado, cuarzo o granito) colocada"
+  },
+  {
+   "id": "r_muebles_cocina",
+   "re": null,
+   "claves": [
+    "muebles de cocina",
+    "mobiliario de cocina",
+    "muebles altos y bajos",
+    "modulos de cocina",
+    "montaje de muebles de cocina",
+    "amueblamiento de cocina",
+    "muebles de cocina por metro lineal",
+    "frentes de cocina"
+   ],
+   "u": "m",
+   "tipico": 550,
+   "min": 500,
+   "max": 662,
+   "fuentes": [
+    "https://motordepresupuestos.com/cuanto-cobra/carpinteros",
+    "https://www.habitissimo.es/presupuestos/muebles-cocina",
+    "https://www.cronoshare.com/cuanto-cuesta/montar-cocina"
+   ],
+   "nota": "motordepresupuestos 536,20-662,34/ml sin IVA; habitissimo ~500/ml laminado basico (1.500 por 3 ml); cronoshare solo montaje 60-70/ml IVA incl. Sin encimera ni electrodomesticos.",
+   "minimo": null,
+   "desc": "Muebles de cocina montados (por metro lineal)"
+  },
+  {
+   "id": "f_desague",
+   "re": null,
+   "claves": [
+    "red de desagues",
+    "desague de pvc",
+    "punto de desague",
+    "tuberia de desague",
+    "red de evacuacion",
+    "evacuacion de aparatos",
+    "desague de lavabo"
+   ],
+   "u": "ud",
+   "tipico": 180,
+   "min": 150,
+   "max": 300,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/instalar-desague",
+    "https://generadordeprecios.info/obra_nueva/Instalaciones/Evacuacion_de_aguas/Derivaciones_individuales/Red_de_pequena_evacuacion__empotrada.html"
+   ],
+   "nota": "Precio POR PUNTO (no por metro). habitissimo: media 180 €/punto; fregadero 150, lavabo 200, ducha/lavadora/lavavajillas 300; casos complejos hasta 800; PVC sencillo desde 150, recorrido largo 280. Por metro solo hay CYPE: PVC 32 mm empotrado 5,46 €/m coste directo sin IVA obra nueva (2,97 material +",
+   "minimo": null,
+   "desc": "Tubería de desagüe (PVC/PP 32-110 mm) empotrada en baño o cocina; o precio por punto de desagüe"
+  },
+  {
+   "id": "f_tuberia",
+   "re": null,
+   "claves": [
+    "tuberia multicapa",
+    "tuberia de pex",
+    "tuberia de agua",
+    "punto de agua",
+    "instalacion de fontaneria",
+    "red de agua fria y caliente",
+    "tuberia de polietileno reticulado"
+   ],
+   "u": "ud",
+   "tipico": 165,
+   "min": 120,
+   "max": 180,
+   "fuentes": [
+    "https://www.lomills.com/blog/punto-agua/",
+    "https://nortexpres.com/cobra-fontanero-punto-agua/",
+    "https://generadordeprecios.info/obra_nueva/Instalaciones/Tuberias_para_fluidos/Tuberias_multicapa/IHM120_Tuberia_multicapa_de_polietileno_re.html"
+   ],
+   "nota": "Precio POR PUNTO de agua. LoMills: 120-180 €/punto en reforma, material incluido (obra nueva mucho menos). Norte Exprés (zona Vitoria-Gasteiz/Álava, artículo de 2018): ~120 €/punto obra nueva, 150-180 en reforma con mano de obra y desplazamiento; colocar grifería/sanitario +20-30 €/punto. Típico = p",
+   "minimo": null,
+   "desc": "Tubería de agua (multicapa/PEX) instalada; o precio por punto de agua"
+  },
+  {
+   "id": "el_punto",
+   "re": null,
+   "claves": [
+    "punto de luz",
+    "punto de enchufe",
+    "toma de corriente",
+    "mecanismo electrico",
+    "base de enchufe",
+    "punto de iluminacion",
+    "interruptor conmutado"
+   ],
+   "u": "ud",
+   "tipico": 40,
+   "min": 18,
+   "max": 350,
+   "fuentes": [
+    "https://www.cronoshare.com/cuanto-cuesta/instalar-punto-luz",
+    "https://www.habitissimo.es/presupuestos/instalar-enchufes",
+    "https://fincavolt.es/blog/precio-instalacion-electrica-vivienda/"
+   ],
+   "nota": "Cronoshare: 18-50 €/punto (media 20-40), IVA incluido. Habitissimo: enchufe 40 € (35-90; enchufe+interruptor 50, doble 60); cableado empotrado aparte 80 €/m; por ciudad Bilbao 62-200 € vs Valencia 50-220 (sin recargo claro). FincaVolt: punto de luz o enchufe con línea nueva desde cuadro y rozas 150-",
+   "minimo": null,
+   "desc": "Punto de luz o enchufe de instalación eléctrica (mecanismo + cableado)"
+  },
+  {
+   "id": "el_zona",
+   "re": null,
+   "claves": [
+    "instalacion electrica completa",
+    "instalacion electrica de vivienda",
+    "red electrica interior",
+    "instalacion interior de electricidad",
+    "electricidad completa",
+    "rehacer la electricidad",
+    "instalacion electrica de cocina",
+    "instalacion electrica de la zona",
+    "electrica cocina salon",
+    "electricidad cocina salon habitacion",
+    "instalacion electrica parcial"
+   ],
+   "u": "ud",
+   "tipico": 1800,
+   "min": 1100,
+   "max": 3500,
+   "fuentes": [
+    "https://www.habitissimo.es/presupuestos/cambiar-instalacion-electrica",
+    "https://www.cronoshare.com/cuanto-cuesta/reformar-instalacion-electrica",
+    "https://fincavolt.es/blog/precio-instalacion-electrica-vivienda/",
+    "https://www.elespanol.com/mujer/interiorismo/20251030/especialista-reformas-cambiar-instalacion-electrica-casa-euros-ahora/1003743983102_0.html"
+   ],
+   "nota": "CONVERTIDO por mí: mitad del precio de vivienda completa de ~90 m2. Habitissimo 90 m2 = 2.300 € (35-40 €/m2) -> 1.150; Cronoshare 90 m2 = 2.200-2.500 -> 1.100-1.250; El Español 70-100 m2 = 3.500-6.500 -> ~2.500; FincaVolt 60-90 m2 = 4.000-7.000 (44-78 €/m2) -> 2.000-3.500. Solo cocina: Cronoshare 50",
+   "minimo": null,
+   "desc": "Instalación eléctrica completa de cocina + salón + dormitorio (media vivienda)"
   }
  ],
  "cype": [
