@@ -111,7 +111,7 @@ var falt=M.filter(function(p){return !(p.pr>0)}).length;
 if(falt&&!confirm(falt+' partidas van sin precio (a cero). Puedes ponérselo luego en el presupuesto. ¿Las meto así?'))return;
 M.forEach(function(p){cur.lineas.push({d:arqTexto(p),q:p.q>0?p.q:1,u:p.u,p:p.pr>0?p.pr:0,code:p.code,cap:p.secT||p.capT||''});
 cur.arq=cur.arq||[];cur.arq.push({code:p.code,t:p.t,q:p.q,u:p.u,pa:p.pa});p.metida=cur.num;p.on=false});
-cur.arqLeidas=(cur.arqLeidas||0)+M.length;window.ULT_ARQ={med:ARQ.med,cype:ARQ.cype,cab:ARQ.cab,nombre:ARQ.nombre};
+cur.arqLeidas=(cur.arqLeidas||0)+M.length;window.ULT_ARQ={med:ARQ.med,cype:ARQ.cype,cab:ARQ.cab||(window.ULT_ARQ&&ULT_ARQ.cab),nombre:ARQ.nombre};
 abiertos();renderCype();renderLineas();try{autoGuardar()}catch(_){}
 document.getElementById('msg').textContent=M.length+' partidas del arquitecto metidas en el presupuesto '+cur.num+'. Para hacer otro presupuesto con este mismo PDF (por ejemplo, para el otro dueño), dale a «Nuevo presupuesto» y luego a «Usar el PDF de antes».';
 document.getElementById('tb').scrollIntoView({behavior:'smooth',block:'start'})}
@@ -140,3 +140,10 @@ b.innerHTML='<button class="ok" style="width:100%" onclick="usarArqAnterior()">U
 '#arqPanel .cyb button{flex:1;min-width:160px}'+
 '@media(max-width:640px){#arqPanel table.lines,#arqPanel table.lines tbody,#arqPanel table.lines tr,#arqPanel table.lines td{display:block;width:100%}#arqPanel table.lines thead{display:none}#arqPanel table.lines tr{border-bottom:1px solid var(--line);padding:6px 0}#arqPanel table.lines td input,#arqPanel table.lines td select{width:100%}#arqPanel table.lines td{padding:3px 0;border:0;white-space:normal}#arqPanel table.lines td b{white-space:normal;word-break:break-word}#arqPanel table.lines td:nth-child(2):before{content:"Cantidad";font-size:12px;color:var(--muted)}#arqPanel table.lines td:nth-child(3):before{content:"Tu partida";font-size:12px;color:var(--muted)}#arqPanel table.lines td:nth-child(4):before{content:"Tu precio";font-size:12px;color:var(--muted)}}';
 document.head.appendChild(s)})();
+/* dos duenos en el PDF ("Fulano eta Mengana", "Fulano y Mengana"): cada presupuesto se lleva su nombre */
+var _aplCab=window.aplicarCabecera;
+window.aplicarCabecera=function(){var c=ARQ.cab;if(c&&c.cli&&!c.nombres){var ns=c.cli.split(/\s+(?:eta|y|e)\s+/i).map(function(s){return s.trim()}).filter(function(s){return s.split(/\s+/).length>=2});if(ns.length>1){c.nombres=ns;c.idx=0;c.cliTodo=c.cli}}
+if(c&&c.nombres)c.cli=c.nombres[c.idx||0];return _aplCab.apply(this,arguments)};
+var _usarAnt=window.usarArqAnterior;
+window.usarArqAnterior=function(){var U=window.ULT_ARQ;if(U&&U.cab){var c=JSON.parse(JSON.stringify(U.cab));if(c.nombres){c.idx=((c.idx||0)+1)%c.nombres.length;U.cab.idx=c.idx}ARQ.cab=c}
+var r=_usarAnt.apply(this,arguments);try{aplicarCabecera()}catch(_){}return r};
