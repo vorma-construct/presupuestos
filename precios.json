@@ -1972,7 +1972,9 @@
     "instalacion electrica interior vivienda",
     "red electrica interior vivienda",
     "recablear piso entero",
-    "electrificacion basica vivienda"
+    "electrificacion basica vivienda",
+    "instalacion electrica nueva de todo el piso",
+    "electrica nueva de todo el piso"
    ],
    "u": "ud",
    "tipico": 3500,
@@ -2904,7 +2906,9 @@
     "desmontaje de inodoro",
     "desmontaje de lavabo",
     "retirada de sanitarios",
-    "quitar inodoro"
+    "quitar inodoro",
+    "quitar los sanitarios",
+    "quitar sanitarios"
    ],
    "u": "ud",
    "tipico": 50,
@@ -3956,7 +3960,9 @@
     "instalacion de calefaccion con caldera",
     "calefaccion de gas natural vivienda",
     "circuito de calefaccion bitubo",
-    "poner calefaccion en el piso"
+    "poner calefaccion en el piso",
+    "calefaccion con colector individual",
+    "calefaccion por colector"
    ],
    "u": "ud",
    "tipico": 3300,
@@ -4471,7 +4477,8 @@
     "yeso maestreado",
     "yeso a buena vista",
     "yeso proyectado",
-    "dar yeso a paredes"
+    "dar yeso a paredes",
+    "rayado del yeso"
    ],
    "u": "m2",
    "tipico": 18,
@@ -4498,7 +4505,9 @@
     "plaste de paredes",
     "emplastecido de paredes",
     "alisado con pasta",
-    "enlucido de pasta para pintar"
+    "enlucido de pasta para pintar",
+    "lijado y decapado",
+    "lijado de paredes"
    ],
    "u": "m2",
    "tipico": 13,
@@ -4657,7 +4666,8 @@
     "tarima laminada",
     "laminado ac4",
     "laminado ac5",
-    "instalacion de tarima"
+    "instalacion de tarima",
+    "suelo flotante"
    ],
    "u": "m2",
    "tipico": 28,
@@ -4707,7 +4717,9 @@
     "lijado y barnizado de parquet",
     "barnizado de parquet",
     "pulido de parquet",
-    "restauracion de parquet"
+    "restauracion de parquet",
+    "acuchillado del suelo",
+    "acuchillado de suelo"
    ],
    "u": "m2",
    "tipico": 15,

@@ -156,7 +156,7 @@ window.cypeBarra=function(){_barra.apply(this,arguments);var b=document.getEleme
 var row=b.querySelector('.row');if(!row)return;var txt='Rellenar las '+falt+' sin precio con tu proporción ('+R.k.toFixed(2).replace('.',',')+' veces el arquitecto)';var ya=document.getElementById('cyRatio');if(ya&&ya.textContent===txt)return;if(ya)ya.remove();var bt=document.createElement('button');bt.id='cyRatio';bt.className='ok';bt.style.background='#5B4A12';bt.textContent=txt;bt.onclick=cypeProporcion;row.insertBefore(bt,row.firstChild)};
 /* presupuesto que viene de un proyecto de arquitecto: se explica como se trabaja y se enlaza a la web */
 function esDeArquitecto(c){c=c||cur;return !!(c&&((c.arqLeidas||0)>0||(c.lineas||[]).some(function(l){return /^\d+(\.\d+)+$/.test(l.code||'')})))}
-function webSeguimiento(){return (AJ.webSeg||'https://reformas-en-bilbao.es/seguimiento-de-obra')}
+function webSeguimiento(){return window.EMP?(AJ.webSeg||''):(AJ.webSeg||'https://reformas-en-bilbao.es/seguimiento-de-obra')}
 var _pintarDocs=window.pintarDocs;
 window.pintarDocs=function(){var r=_pintarDocs.apply(this,arguments);try{var obs=document.getElementById('p_obs');if(!obs)return r;var b=document.getElementById('p_como');
 if(!esDeArquitecto()){if(b)b.style.display='none';return r}
@@ -168,9 +168,9 @@ b.innerHTML='<b style="font-size:12.5px">Así trabajamos su obra</b>'+
 '<div>· El contrato se firma desde el móvil, sin papeles.</div>'+
 '<div>· Al empezar le damos un enlace privado con su obra: las fases y fotos cada semana y en cada avance. No hace falta ir a la obra para saber cómo va.</div>'+
 '<div>· Si aparece algo que no estaba previsto, le llega con su foto, su explicación y su precio. No se hace nada sin que usted lo apruebe, y queda por escrito.</div>'+
-'<div style="margin-top:5px">Véalo aquí: <a href="'+u+'" data-pdfurl="'+u+'" target="_blank" rel="noopener" style="color:var(--gold,#8B6914);font-weight:700;text-decoration:underline">'+uc+'</a></div>'}catch(e){}return r};
+(u?'':'<!--')+'<div style="margin-top:5px">Véalo aquí: <a href="'+u+'" data-pdfurl="'+u+'" target="_blank" rel="noopener" style="color:var(--gold,#8B6914);font-weight:700;text-decoration:underline">'+uc+'</a></div>'+(u?'':'-->')}catch(e){}return r};
 var _msgCli=window.mensajeCliente;
-window.mensajeCliente=function(nom,num,url){var t=_msgCli.apply(this,arguments);try{if(esDeArquitecto())t=t.replace(/(\n\nCualquier duda)/,'\n\n📱 Cómo trabajamos y cómo seguirá su obra desde el móvil, con fotos: '+webSeguimiento()+'$1')}catch(_){}return t};
+window.mensajeCliente=function(nom,num,url){var t=_msgCli.apply(this,arguments);try{if(esDeArquitecto()&&webSeguimiento())t=t.replace(/(\n\nCualquier duda)/,'\n\n📱 Cómo trabajamos y cómo seguirá su obra desde el móvil, con fotos: '+webSeguimiento()+'$1')}catch(_){}return t};
 
 /* ===== el escrito del cliente (lo que pide cada dueño) junto al PDF del arquitecto ===== */
 /* las lineas de un PDF que no es del arquitecto se guardan como "escrito" para leerlo despues */
