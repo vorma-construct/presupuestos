@@ -1,0 +1,22 @@
+name: Indice de costes de la construccion (Eustat)
+on:
+  schedule:
+    - cron: '17 6 1,10,20,28 * *'
+  workflow_dispatch:
+  push:
+    paths: ['tools/indices.py', '.github/workflows/indices.yml']
+permissions:
+  contents: write
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bajar y leer el indice
+        run: python3 tools/indices.py
+      - name: Guardar si ha cambiado
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add indices.json tools/icce_ultimo.csv
+          git diff --cached --quiet || (git commit -m "Indice de costes de la construccion actualizado" && git push)
