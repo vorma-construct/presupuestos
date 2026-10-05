@@ -36,3 +36,14 @@ var pdf0=window.pdfSinMargenes;if(pdf0)window.pdfSinMargenes=function(){var a=ar
 var mf0=window.mandarFirma;if(mf0)window.mandarFirma=function(){var a=arguments,self=this;if(window.__mapaListo)return mf0.apply(self,a);try{pintarDocs()}catch(_){}
  var m=document.getElementById('msg');if(m)m.textContent='Preparando el presupuesto…';return esperaMapa().then(function(){window.__mapaListo=true;try{return mf0.apply(self,a)}finally{window.__mapaListo=false}})};
 })();
+/* buscar la dirección de la obra: Photon (sin «lang=es», que lo rechaza), luego Nominatim de OpenStreetMap;
+   y si no encuentra la calle, por lo menos el pueblo */
+(function(){
+ function photon(q){return fetch('https://photon.komoot.io/api/?limit=1&lat=43.26&lon=-2.93&q='+encodeURIComponent(q)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.features||!j.features.length)return null;var c=j.features[0].geometry.coordinates;return {lat:c[1],lon:c[0]}})}
+ function nomi(q){return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&accept-language=es&q='+encodeURIComponent(q)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.length)return null;return {lat:parseFloat(j[0].lat),lon:parseFloat(j[0].lon)}})}
+ var nada=function(){return null};
+ window.buscarNominatim=function(q){q=String(q||'').replace(/[()]/g,' ').replace(/\s{2,}/g,' ').trim();return photon(q).catch(nada).then(function(p){return p||nomi(q).catch(nada)}).then(function(p){return p||(window.buscarMapsCo?buscarMapsCo(q).catch(nada):null)})};
+ var v0=window.variantes;
+ if(v0)window.variantes=function(d){var out=v0.apply(this,arguments)||[];var s=String(d||'').replace(/[()]/g,',').split(',').map(function(x){return x.trim()}).filter(Boolean);
+  if(s.length>1){var pueblo=s.slice(1).join(', ');out.push(pueblo)}return out.filter(function(v,i,a){return v&&a.indexOf(v)===i})};
+})();
