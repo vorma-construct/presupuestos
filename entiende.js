@@ -62,7 +62,8 @@ var REGLAS=[
 [/\b(?:cambiar|poner|colocar|montar)\s+(?:la\s+|una\s+)?puerta\s+(?:de\s+)?(?:la\s+)?(?:entrada|calle|principal|casa)\b|\bpuerta\s+(?:blindada|acorazada)\b/g,' puerta de entrada '],
 /* baño suelto */
 [/\bpicar\s+(?:todo\s+)?(?:el\s+)?(bano|aseo)\b/g,' quitar alicatado de las paredes del bano, picar suelo del bano '],
-[/\b(?:cambiar|poner|colocar)\s+(?:el\s+|un\s+)?(?:vater|water|inodoro|retrete)\b/g,' quitar sanitarios, colocar inodoro nuevo '],
+[/\b(?:cambiar|poner|colocar|montar|meter)\s+(?:el\s+|un\s+|uno\s+)?(?:vater|water|inodoro|retrete)(?:\s+nuev[oa]s?)?\b/g,' quitar sanitarios, colocar inodoro nuevo '],
+[/(^|[,;.]|\by\b)\s*(?:un\s+|el\s+)?(?:vater|water|inodoro|retrete)\s+nuev[oa]s?\b/g,'$1 quitar sanitarios, colocar inodoro nuevo '],
 [/\bno tiene ventana\b|\bsin ventana\b/g,' extractor '],
 [/\bmueble\b(?!\s+(?:de\s+|del\s+)?(?:cocina|pladur|tele|television|bano|lavabo))/g,function(m,o,all){return /\b(bano|aseo|lavabo|ducha|plato)\b/.test(all)?'mueble de bano':m}]
 ];
