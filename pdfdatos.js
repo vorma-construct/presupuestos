@@ -82,3 +82,17 @@ if(la0)window.leerArquitecto=function(files){var lista=[].slice.call(files||[]);
   if(av&&/es un plano/.test(av.textContent)&&!document.getElementById('iaPlano')){
    cfg().then(function(C){if(document.getElementById('iaPlano'))return;av.insertAdjacentHTML('afterbegin','<div id="iaPlano" style="margin-bottom:10px">'+(C.url?'<b>Puedo sacarte el presupuesto de este plano.</b> La IA mide cada trabajo con las cotas del dibujo y yo le pongo el precio real de mercado.<div style="margin-top:8px"><button class="ok" type="button" onclick="planoConIA()">Sacar el presupuesto del plano</button></div>':'')+'</div>')})}}catch(e){}return r};
 })();
+/* El enlace del cliente se guarda en la nube en un bloque de 1 MB como mucho:
+   si con las fotos no cabe, se comprimen las imágenes del documento (sin que se note) hasta que quepa */
+(function(){
+ var TOPE=880000;
+ function tam(d){try{return new Blob([JSON.stringify(d)]).size}catch(e){return JSON.stringify(d).length}}
+ function reduce(src,maxW,q){return new Promise(function(ok){var im=new Image();im.onload=function(){try{var w=im.naturalWidth,h=im.naturalHeight,k=Math.min(1,maxW/w);var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*k));c.height=Math.max(1,Math.round(h*k));var x=c.getContext('2d');
+   var png=/^data:image\/png/.test(src);if(!png){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height)}x.drawImage(im,0,0,c.width,c.height);var out=png?c.toDataURL('image/png'):c.toDataURL('image/jpeg',q);ok(out.length<src.length?out:src)}catch(e){ok(src)}};im.onerror=function(){ok(src)};im.src=src})}
+ window.achicarDoc=function(d){if(!d||!d.html||tam(d)<TOPE)return Promise.resolve(d);
+  var pasos=[[1200,0.74],[950,0.66],[760,0.58],[600,0.5],[460,0.45]],i=0;
+  var paso=function(){if(i>=pasos.length||tam(d)<TOPE)return Promise.resolve(d);var P=pasos[i++];
+   var urls=(d.html.match(/data:image\/(?:jpeg|jpg|png|webp);base64,[A-Za-z0-9+\/=]+/g)||[]).filter(function(u,k,a){return u.length>15000&&a.indexOf(u)===k});
+   return Promise.all(urls.map(function(u){return reduce(u,P[0],P[1]).then(function(n){return [u,n]})})).then(function(par){par.forEach(function(x){if(x[0]!==x[1])d.html=d.html.split(x[0]).join(x[1])});return paso()})};
+  return paso()};
+})();
