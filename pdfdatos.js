@@ -33,3 +33,22 @@ if(la0)window.leerArquitecto=function(files){var lista=[].slice.call(files||[]);
   if(resto.length)la0.call(window,resto);
   setTimeout(function(){var ai=document.getElementById('arqInfo');if(!msgs.length)return;var prev=resto.length&&ai?ai.innerHTML:'';info('<div class="aviso" style="font-size:14.5px;line-height:1.45">'+msgs.join('<br><br>')+'</div>'+(prev&&!/Leyendo/.test(prev)?prev:''))},resto.length?1500:0)})};
 })();
+/* «Quitar el PDF» siempre a mano en cuanto se elige un archivo (también si es un plano o uno equivocado) */
+(function(){
+ function boton(v){var q=document.getElementById('btnQuitarPdf');if(q)q.style.display=v?'':'none'}
+ document.addEventListener('change',function(e){if(e.target&&e.target.id==='pdfArq')boton(e.target.files&&e.target.files.length)},true);
+ var q0=window.quitarPdf;
+ window.quitarPdf=function(){var ap=document.getElementById('arqPanel'),pa=document.getElementById('pdfArq');
+  if(!(ARQ&&ARQ.med&&ARQ.med.length)){ARQ={med:[],plano:null,cab:null,dudosas:[]};window.ULT_ARQ=null;if(ap){ap.innerHTML='';ap.style.display='none'}var ai=document.getElementById('arqInfo');if(ai)ai.innerHTML='';if(pa)pa.value='';boton(false);return}
+  return q0&&q0.apply(this,arguments)};
+})();
+/* un plano para el que ya hay presupuesto preparado (por su número de expediente): se ofrece meterlo de un toque */
+(function(){
+ var ra=window.renderArq;
+ window.renderArq=function(){var P=window.__esPlano,txt=window.__planoTxt||'';var r=ra.apply(this,arguments);try{
+  var E=window.EMP||{},M=E.planos||{},box=document.getElementById('arqPanel');var id=null;Object.keys(M).forEach(function(k){if(txt.indexOf(k)>=0)id=M[k]});
+  if(id&&box&&box.querySelector('.aviso')&&!box.querySelector('#planoListo')){box.querySelector('.aviso').insertAdjacentHTML('afterbegin','<div id="planoListo" style="margin-bottom:10px"><b>Para este plano ya tienes el presupuesto hecho</b>, con las medidas sacadas del dibujo y precios de mercado.<div style="margin-top:8px"><button class="ok" type="button" onclick="location.href=location.pathname+\'?arreglo='+id+'\'">Meter el presupuesto de este plano</button></div></div>')}
+ }catch(e){}window.__planoTxt='';return r};
+ var pm=window.parseMediciones;
+ window.parseMediciones=function(ls){try{window.__planoTxt=(window.__planoTxt||'')+' '+(ls||[]).join(' ')}catch(e){}return pm.apply(this,arguments)};
+})();
