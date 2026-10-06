@@ -34,7 +34,7 @@ window.pintarMapaDoc=function(){ultimo=Promise.resolve(pm0.apply(this,arguments)
 function esperaMapa(ms){var t=new Promise(function(ok){setTimeout(ok,ms||7000)});return Promise.race([ultimo||Promise.resolve(),t])}
 var pdf0=window.pdfSinMargenes;if(pdf0)window.pdfSinMargenes=function(){var a=arguments,self=this;try{pintarDocs()}catch(_){}return esperaMapa().then(function(){return pdf0.apply(self,a)})};
 var mf0=window.mandarFirma;if(mf0)window.mandarFirma=function(){var a=arguments,self=this;if(window.__mapaListo)return mf0.apply(self,a);try{pintarDocs()}catch(_){}
- var m=document.getElementById('msg');if(m)m.textContent='Preparando el presupuesto…';return esperaMapa().then(function(){window.__mapaListo=true;try{return mf0.apply(self,a)}finally{window.__mapaListo=false}})};
+ var m=document.getElementById('msg');if(m)m.textContent='Preparando el presupuesto…';return esperaMapa().then(function(){window.__mapaListo=true;try{return mf0.apply(self,a)}finally{window.__mapaListo=false;var mm=document.getElementById('msg');if(mm&&mm.textContent==='Preparando el presupuesto…')mm.textContent=''}})};
 })();
 /* buscar la dirección de la obra: Photon (sin «lang=es», que lo rechaza), luego Nominatim de OpenStreetMap;
    y si no encuentra la calle, por lo menos el pueblo */
