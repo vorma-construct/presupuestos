@@ -14,8 +14,11 @@
  var t=null;
  function subir(){clearTimeout(t);t=setTimeout(function(){try{if(!(window.FB&&FB.uid&&FB.db))return;var u=(window.firebase&&firebase.auth&&firebase.auth().currentUser)||{};
    var nP=0,nM=0;try{Object.keys(DB.presus||{}).forEach(function(k){nP++;if(DB.presus[k].firmaTok)nM++})}catch(e){}
+   /* como quedo lo ultimo que tocaron: cuantas partidas, cuantas a cero y cuantos avisos de la revision (sin guardar textos) */
+   var est={};try{if(window.cur&&cur.lineas){est.partidas=cur.lineas.length;est.aCero=cur.lineas.filter(function(l){return !(num(l.p)>0)}).length;est.total=Math.round((cur.lineas.reduce(function(a,l){return a+num(l.q)*num(l.p)},0))||0);
+     try{var rv=window.revisar?revisar(false):null;if(rv&&rv.E)est.avisos=rv.E.length}catch(e){}}}catch(e){}
    FB.db.collection('seguimiento').doc('uso_'+EMP.id+'_'+dev).set({tipo:'uso',empresa:EMP.id,marca:(window.AJ&&AJ.marca)||EMP.nombreApp||EMP.id,cuenta:u.email||'',uid:FB.uid,mio:MIO,disp:DISP,instalada:instalada(),ver:window.APP_VERSION||'',
-    ultimo:o.ultimo||Date.now(),ultimoQue:o.ultimoQue||'',dias:o.dias,total:o.total,presupuestos:nP,mandados:nM,error:o.error||'',errorTs:o.errorTs||0,ts:Date.now()},{merge:false}).catch(function(){})}catch(e){}},2500)}
+    ultimo:o.ultimo||Date.now(),ultimoQue:o.ultimoQue||'',dias:o.dias,total:o.total,presupuestos:nP,mandados:nM,error:o.error||'',errorTs:o.errorTs||0,estado:est,ts:Date.now()},{merge:false}).catch(function(){})}catch(e){}},2500)}
  function apunta(q){var d=hoy();o.dias[d]=o.dias[d]||{};o.dias[d][q]=(o.dias[d][q]||0)+1;o.total[q]=(o.total[q]||0)+1;o.ultimo=Date.now();o.ultimoQue=q;
   var ks=Object.keys(o.dias).sort();while(ks.length>90)delete o.dias[ks.shift()];
   try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}subir()}
