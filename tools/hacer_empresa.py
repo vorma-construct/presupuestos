@@ -32,6 +32,7 @@ for f in os.listdir(f'{OUT}/icons'):
 C=(E.get('colores') or {}).get('oscuro','#111214')
 man={"name":E['nombreApp']+' · Presupuestos',"short_name":E['nombreApp'],"start_url":"./","scope":"./","display":"standalone",
      "background_color":C,"theme_color":C,"icons":[{"src":f"icons/icon-{n}.png?e={ID}","sizes":f"{n}x{n}","type":"image/png"} for n in (72,96,128,144,152,192,384,512)]+[{"src":f"icons/icon-512.png?e={ID}","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
+man["share_target"]={"action": "./?compartir=1", "method": "POST", "enctype": "multipart/form-data", "params": {"title": "title", "text": "text", "files": [{"name": "archivos", "accept": ["application/pdf", ".pdf"]}]}}
 json.dump(man,open(f'{OUT}/manifest.json','w'),ensure_ascii=False)
 def cambia(f,fn):
     p=f'{OUT}/{f}';s=open(p,encoding='utf-8').read();s2=fn(s);open(p,'w',encoding='utf-8').write(s2)
