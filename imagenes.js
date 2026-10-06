@@ -226,6 +226,12 @@
   for(var i=0;i<REGLAS.length;i++){if(REGLAS[i][0].test(n)){var o=REGLAS[i][1](n,p,ctx);o.forEach(function(x){x.orig=t});return o}}
   var g=generica(n,p);g.forEach(function(x){x.orig=t;x.generica=true});return g}
 
+ /* capítulo del presupuesto: el de su partida de tarifa, o por el tipo de trabajo */
+ function capDe(x){var fam=familia(x.d);
+  if(fam==='proteccion'||(fam==='traslado'&&/^retirada/i.test(x.d)))return 'Trabajos previos';
+  if(fam==='traslado')return 'Otros trabajos';
+  try{if(x.tar&&window.tarifa){var t=tarifa().find(function(y){return y.id===x.tar});if(t&&t.c)return t.c}}catch(e){}
+  return {demolicion:'Demoliciones',tabiqueria:'Albañilería',rozas:'Albañilería',yeso:'Revestimientos',pintura:'Revestimientos',papel:'Revestimientos',escayola:'Revestimientos',carpinteria:'Carpintería y sanitarios'}[fam]||''}
  function ponerPrecio(x){var fam=familia(x.d),obj=objeto(x.d),s=null,p0=0;
   var a=aprendido([x.d,x.orig],x.u,fam,obj);if(a){x.p=a.p;x.src='tuyo';return}
   if(x.tar){p0=deTarifa(x.tar,x.u);if(p0>0)s='tarifa'}
@@ -259,7 +265,7 @@
    var ctx=contexto(items),notas=[],faltan=[],aj=[],n={tuyo:0,tarifa:0,mercado:0,cero:0},total=0;
    items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){ponerPrecio(x);if(x.nota)notas.push(x.nota);if(!(x.q>0)&&x.falta)faltan.push(x.falta);
      if(x.p>0)n[x.src]++;else n.cero++;total++;if(x.r&&x.r!==1){aj.push(x.r)}
-     var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;cur.lineas.push(l)})});
+     var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;var c=capDe(x);if(c)l.cap=c;cur.lineas.push(l)})});
    try{renderLineas()}catch(e){}
    try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display='';try{sessionStorage.setItem('vr_meter','mano')}catch(_){}}catch(e){}
    var conP=n.tuyo+n.tarifa+n.mercado;
