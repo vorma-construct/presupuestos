@@ -95,9 +95,18 @@ G.leerPlanoTexto=function(T){
   add(C,'Grifería',(lav?1:0)+(ducha||banera?1:0),'ud','i_griferia','lavabo y ducha');
   add(C,'Punto de luz con interruptor',1,'ud','el_punto_luz','el plano no lo dice: lo mínimo',true);add(C,'Enchufe con su línea',1,'ud','el_enchufe','el plano no lo dice: lo mínimo',true)}
  if(P.some(function(p){return /Excavaci|Retirada|Apertura/.test(p.descripcion)}))add('Residuos','Saco big-bag de escombro con recogida',2,'ud','x_saco_escombro','escombro de la obra',true);
- var exp=(t.match(/Exp\.?\s*([0-9]{4,}[A-Z]?)/)||[])[1]||'',obra=(t.match(/OBRA:\s*([^·|]{4,80}?)\s*(?:·|Exp|PLANO)/i)||[])[1]||'';
- var dir=(t.match(/OBRA:\s*[^·]*·\s*([^·]{3,60}?)\s*·/i)||[])[1]||'';
- return {obra:obra.trim(),direccion:dir.trim(),expediente:exp,leido:leido,falta:falta,partidas:P}};
+ var exp=(t.match(/Exp(?:ediente)?\.?\s*(?:n[º°o]\.?\s*)?:?\s*([0-9]{3,}[\/-]?[0-9A-Z]*)/i)||[])[1]||'',obra=(t.match(/OBRA:\s*([^·|]{4,80}?)\s*(?:·|Exp|PLANO)/i)||[])[1]||'';
+ /* datos del cliente que traiga el plano */
+ var tU=t.replace(/\b(promotor(?:a|es)?|propiedad|propietari[oa]s?|cliente|titular|peticionari[oa]|encargante)\s*:/gi,function(m){return m.toUpperCase()});
+ var et=function(re){var m=tU.match(re);return m?m[1].replace(/\s{2,}/g,' ').replace(/[,;·\s]+$/,'').trim():''};
+ var cliente=et(/(?:PROMOTOR(?:A|ES)?|PROPIEDAD|PROPIETARI[OA]S?|CLIENTE|TITULAR|PETICIONARI[OA]|ENCARGANTE)\s*:?\s*((?:D\.?ª?|Dña\.?|Don|Doña)?\s*[A-ZÁÉÍÓÚÑ][A-Za-zÁÉÍÓÚÑáéíóúñ.]+(?:\s+(?:y|eta|e|de|del|la)?\s*[A-ZÁÉÍÓÚÑ][A-Za-zÁÉÍÓÚÑáéíóúñ.]+){1,9})/);
+ cliente=cliente.replace(/\s+(?:SITUACI[ÓO]N|EMPLAZAMIENTO|DIRECCI[ÓO]N|UBICACI[ÓO]N|ESCALA|PLANO|FECHA|OBRA|EXP\w*|TEL\w*|DNI|NIF)\b.*$/i,'').replace(/\s+[A-ZÁÉÍÓÚÑ]{4,}$/,'').trim();
+ var tel=(t.match(/(?:\+34\s?)?\b[6789]\d{2}[\s.]?\d{2,3}[\s.]?\d{2,3}[\s.]?\d{0,3}\b/)||[''])[0].replace(/[^\d+]/g,'');if(tel.replace('+34','').length!==9)tel='';
+ var email=(t.match(/[\w.+-]+@[\w-]+\.[\w.]{2,}/)||[''])[0];
+ var dir=et(/(?:SITUACI[ÓO]N|EMPLAZAMIENTO|DIRECCI[ÓO]N(?: DE LA OBRA)?|UBICACI[ÓO]N)\s*:\s*([^|]{4,90}?)(?=\s+(?:[A-ZÁÉÍÓÚÑ]{4,}\s*:|Exp|PLANO|ESCALA|FECHA)|$)/i);
+ if(!dir){var dm=t.match(/OBRA:\s*([^·]{3,80}?)\s*·\s*([^·]{3,60}?)\s*·/i);if(dm){var lugar=dm[1].replace(/^.*?\b(?:en|de)\s+/i,'').trim();dir=(lugar&&lugar!==dm[1]?lugar+', ':'')+dm[2].trim()}}
+ var autor=et(/^(?:.*?)([A-ZÁÉÍÓÚÑ ]{3,40}\s(?:ARQUITECT[OA]S?|APAREJADOR(?:ES)?|INGENIER[OA]S?|ESTUDIO))\b/);
+ return {obra:obra.trim(),direccion:dir,expediente:exp,cliente:cliente,tel:tel,email:email,autor:autor,leido:leido,falta:falta,partidas:P}};
 })(typeof window!=='undefined'?window:globalThis);
 /* en la app: botón en el aviso de plano */
 (function(){if(typeof document==='undefined')return;
@@ -110,10 +119,13 @@ G.leerPlanoTexto=function(T){
    if(!R.partidas.length){box.innerHTML='<b style="color:#B3261E">De este plano no puedo sacar partidas:</b> no trae las medidas escritas, solo dibujadas'+(R.falta.length?' (me falta: '+arqEsc(R.falta.join('; '))+')':'')+'. Pide al arquitecto las mediciones (el listado de partidas) y con ese PDF te lo hago solo, o cuéntalo con tus palabras.';return}
    try{leer()}catch(_){}var sup=0;
    R.partidas.forEach(function(p){var pr=precio(p.familia);if(p.supuesto)sup++;cur.lineas.push({d:p.descripcion+(p.supuesto?' (supuesto: compruébalo)':''),q:p.cantidad,u:p.unidad,p:pr?pr.p:0,cap:p.capitulo,fuente:pr?pr.f:'',calculo:p.calculo})});
-   var pon=function(id,v){var e=document.getElementById(id);if(e&&!e.value&&v)e.value=v};pon('f_dir',R.direccion);var fd=document.getElementById('f_dir');if(fd&&/·\s*Exp\.?/i.test(fd.value))fd.value=fd.value.replace(/\s*·\s*Exp\.?.*$/i,'').trim();pon('f_nom',R.obra);
-   var o=document.getElementById('f_obs');if(o&&!o.value)o.value='Cantidades sacadas de las cotas escritas en el plano'+(R.expediente?' (exp. '+R.expediente+')':'')+': '+R.leido.join(', ')+'.'+(sup?' Las partidas marcadas como supuesto no vienen en el plano y hay que confirmarlas.':'')+' No incluye la comprobación de normativa ni el cálculo estructural.';
+   var pon=function(id,v){var e=document.getElementById(id);if(e&&v&&(!e.value||/·\s*Exp|OBRA:/i.test(e.value)))e.value=v};pon('f_dir',R.direccion);pon('f_tel',R.tel);pon('f_email',R.email);var fd=document.getElementById('f_dir');if(fd&&/·\s*Exp\.?/i.test(fd.value))fd.value=fd.value.replace(/\s*·\s*Exp\.?.*$/i,'').trim();pon('f_nom',R.cliente);
+   var o=document.getElementById('f_obs');if(o&&!o.value)o.value=(R.obra?R.obra+'. ':'')+'Cantidades sacadas de las cotas escritas en el plano'+(R.autor?' de '+R.autor.toLowerCase().replace(/(^|\s)\S/g,function(c){return c.toUpperCase()}):'')+(R.expediente?' (exp. '+R.expediente+')':'')+': '+R.leido.join(', ')+'.'+(sup?' Las partidas marcadas como supuesto no vienen en el plano y hay que confirmarlas.':'')+' No incluye la comprobación de normativa ni el cálculo estructural.';
    try{renderLineas();leer();autoGuardar&&autoGuardar()}catch(_){}
-   box.innerHTML='<b style="color:#1B6B36">Hecho: '+R.partidas.length+' partidas sacadas de lo que trae escrito el plano</b>, con su precio real. He leído: '+arqEsc(R.leido.join(', '))+'.'+(sup?' '+sup+' van marcadas como «supuesto» porque el plano no las dice: compruébalas.':'')+(R.falta.length?' <b>Me falta:</b> '+arqEsc(R.falta.join('; '))+'.':'')+' Cada partida lleva su cálculo: repásalas antes de mandarlo.';
+   var dc=[];if(R.cliente)dc.push('cliente '+R.cliente);if(R.tel)dc.push('teléfono '+R.tel);if(R.email)dc.push('correo '+R.email);if(R.direccion)dc.push('dirección '+R.direccion);
+   var cli=dc.length?' <b>Datos del cliente:</b> '+arqEsc(dc.join(', '))+'.':'';if(!R.cliente)cli+=' <b style="color:#B3261E">El plano no trae el nombre del cliente:</b> escríbelo arriba antes de mandarlo.';
+   box.innerHTML='<b style="color:#1B6B36">Hecho: '+R.partidas.length+' partidas sacadas de lo que trae escrito el plano</b>, con su precio real. He leído: '+arqEsc(R.leido.join(', '))+'.'+(sup?' '+sup+' van marcadas como «supuesto» porque el plano no las dice: compruébalas.':'')+(R.falta.length?' <b>Me falta:</b> '+arqEsc(R.falta.join('; '))+'.':'')+cli+' Cada partida lleva su cálculo: repásalas antes de mandarlo.';
+   if(!R.cliente){var fn=document.getElementById('f_nom');if(fn){fn.style.outline='3px solid #E04209';fn.placeholder='Escribe el nombre del cliente';setTimeout(function(){fn.style.outline=''},8000)}}
    var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'start'})})};
  var ra=window.renderArq;window.renderArq=function(){var r=ra.apply(this,arguments);try{var box=document.getElementById('arqPanel');var av=box&&box.querySelector('.aviso');
   if(av&&/es un plano/.test(av.textContent)&&!document.getElementById('codPlano')){var pl=document.getElementById('planoListo');if(pl)pl.remove();
