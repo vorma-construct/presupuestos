@@ -111,13 +111,13 @@ G.leerPlanoTexto=function(T){
 /* en la app: botón en el aviso de plano */
 (function(){if(typeof document==='undefined')return;
  var TXT='';var pm=window.parseMediciones;window.parseMediciones=function(ls){try{TXT+=' '+(ls||[]).join(' ')}catch(e){}return pm.apply(this,arguments)};
- var la=window.leerArquitecto;window.leerArquitecto=function(){TXT='';return la.apply(this,arguments)};
+ var la=window.leerArquitecto;window.leerArquitecto=function(){TXT='';window.__planoAuto=0;return la.apply(this,arguments)};
  var BASE=null;function precio(fam){var F=BASE&&(BASE.familias||[]).find(function(x){return x.id===fam});if(!F||!(F.tipico>0))return null;var A=window.AJ||{};
   var z=A.recargoZona===''||A.recargoZona==null?15:Number(String(A.recargoZona).replace(',','.'))||0,s=Number(String(A.subidaPrecios||0).replace(',','.'))||0;return {p:Math.round(F.tipico*(1+z/100)*(1+s/100)*100)/100,f:'mercado + '+z+' % zona'}}
  window.planoPorCodigo=function(){var box=document.getElementById('codPlano');if(!box)return;var R=leerPlanoTexto(TXT);
   (window.basePrecios?basePrecios():Promise.resolve(null)).then(function(B){BASE=B;
    if(!R.partidas.length){box.innerHTML='<b style="color:#B3261E">De este plano no puedo sacar partidas:</b> no trae las medidas escritas, solo dibujadas'+(R.falta.length?' (me falta: '+arqEsc(R.falta.join('; '))+')':'')+'. Pide al arquitecto las mediciones (el listado de partidas) y con ese PDF te lo hago solo, o cuéntalo con tus palabras.';return}
-   try{leer()}catch(_){}var sup=0;
+   try{leer()}catch(_){}var sup=0;cur.lineas=(cur.lineas||[]).filter(function(l){return !l.calculo});
    R.partidas.forEach(function(p){var pr=precio(p.familia);if(p.supuesto)sup++;cur.lineas.push({d:p.descripcion+(p.supuesto?' (supuesto: compruébalo)':''),q:p.cantidad,u:p.unidad,p:pr?pr.p:0,cap:p.capitulo,fuente:pr?pr.f:'',calculo:p.calculo})});
    var pon=function(id,v){var e=document.getElementById(id);if(e&&v&&(!e.value||/·\s*Exp|OBRA:/i.test(e.value)))e.value=v};pon('f_dir',R.direccion);pon('f_tel',R.tel);pon('f_email',R.email);var fd=document.getElementById('f_dir');if(fd&&/·\s*Exp\.?/i.test(fd.value))fd.value=fd.value.replace(/\s*·\s*Exp\.?.*$/i,'').trim();pon('f_nom',R.cliente);
    var o=document.getElementById('f_obs');if(o&&!o.value)o.value=(R.obra?R.obra+'. ':'')+'Cantidades sacadas de las cotas escritas en el plano'+(R.autor?' de '+R.autor.toLowerCase().replace(/(^|\s)\S/g,function(c){return c.toUpperCase()}):'')+(R.expediente?' (exp. '+R.expediente+')':'')+': '+R.leido.join(', ')+'.'+(sup?' Las partidas marcadas como supuesto no vienen en el plano y hay que confirmarlas.':'')+' No incluye la comprobación de normativa ni el cálculo estructural.';
@@ -125,10 +125,13 @@ G.leerPlanoTexto=function(T){
    var dc=[];if(R.cliente)dc.push('cliente '+R.cliente);if(R.tel)dc.push('teléfono '+R.tel);if(R.email)dc.push('correo '+R.email);if(R.direccion)dc.push('dirección '+R.direccion);
    var cli=dc.length?' <b>Datos del cliente:</b> '+arqEsc(dc.join(', '))+'.':'';if(!R.cliente)cli+=' <b style="color:#B3261E">El plano no trae el nombre del cliente:</b> escríbelo arriba antes de mandarlo.';
    box.innerHTML='<b style="color:#1B6B36">Hecho: '+R.partidas.length+' partidas sacadas de lo que trae escrito el plano</b>, con su precio real. He leído: '+arqEsc(R.leido.join(', '))+'.'+(sup?' '+sup+' van marcadas como «supuesto» porque el plano no las dice: compruébalas.':'')+(R.falta.length?' <b>Me falta:</b> '+arqEsc(R.falta.join('; '))+'.':'')+cli+' Cada partida lleva su cálculo: repásalas antes de mandarlo.';
+   try{[].slice.call(box.parentNode.childNodes).forEach(function(ch){if(ch!==box)box.parentNode.removeChild(ch)})}catch(_){}
    if(!R.cliente){var fn=document.getElementById('f_nom');if(fn){fn.style.outline='3px solid #E04209';fn.placeholder='Escribe el nombre del cliente';setTimeout(function(){fn.style.outline=''},8000)}}
    var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'start'})})};
  var ra=window.renderArq;window.renderArq=function(){var r=ra.apply(this,arguments);try{var box=document.getElementById('arqPanel');var av=box&&box.querySelector('.aviso');
   if(av&&/es un plano/.test(av.textContent)&&!document.getElementById('codPlano')){var pl=document.getElementById('planoListo');if(pl)pl.remove();
    av.insertAdjacentHTML('afterbegin','<div id="codPlano" style="margin-bottom:10px"><b>Puedo sacarte el presupuesto de lo que trae escrito este plano</b>: medidas, elementos y materiales, con reglas fijas y precios reales.<div style="margin-top:8px"><button class="ok" type="button" onclick="planoPorCodigo()">Sacar el presupuesto del plano</button></div></div>');
-   var ia=document.getElementById('iaPlano');if(ia)ia.remove()}}catch(e){}return r};
+   var ia=document.getElementById('iaPlano');if(ia)ia.remove();
+   /* v201: sin pulsar nada — el plano se convierte solo en Trabajos en cuanto se lee */
+   if(!window.__planoAuto){window.__planoAuto=1;setTimeout(function(){try{planoPorCodigo()}catch(e){}},50)}}}catch(e){}return r};
 })();
