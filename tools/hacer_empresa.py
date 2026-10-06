@@ -19,7 +19,7 @@ for x in os.listdir(SRC):
     s,d=os.path.join(SRC,x),os.path.join(OUT,x)
     shutil.copytree(s,d) if os.path.isdir(s) else shutil.copy2(s,d)
 shutil.copytree(f'{SRC}/empresas/{ID}',f'{OUT}/empresas/{ID}')
-os.makedirs(f'{OUT}/arreglos',exist_ok=True);open(f'{OUT}/arreglos/auto.json','w').write('{"ids":[]}')
+os.makedirs(f'{OUT}/arreglos',exist_ok=True);open(f'{OUT}/arreglos/auto.json','w').write(json.dumps({"ids":E.get('auto',[])}))
 # presupuestos preparados para esta empresa (enlace ?arreglo=<nombre>)
 if os.path.isdir(f'{SRC}/empresas/{ID}/arreglos'):
     for x in os.listdir(f'{SRC}/empresas/{ID}/arreglos'):shutil.copy2(f'{SRC}/empresas/{ID}/arreglos/{x}',f'{OUT}/arreglos/{x}')
