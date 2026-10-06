@@ -133,5 +133,5 @@ G.leerPlanoTexto=function(T){
    av.insertAdjacentHTML('afterbegin','<div id="codPlano" style="margin-bottom:10px"><b>Puedo sacarte el presupuesto de lo que trae escrito este plano</b>: medidas, elementos y materiales, con reglas fijas y precios reales.<div style="margin-top:8px"><button class="ok" type="button" onclick="planoPorCodigo()">Sacar el presupuesto del plano</button></div></div>');
    var ia=document.getElementById('iaPlano');if(ia)ia.remove();
    /* v201: sin pulsar nada — el plano se convierte solo en Trabajos en cuanto se lee */
-   if(!window.__planoAuto){window.__planoAuto=1;setTimeout(function(){try{planoPorCodigo()}catch(e){}},50)}}}catch(e){}return r};
+   if(!window.__planoAuto){window.__planoAuto=1;/* solo si el plano trae medidas escritas; si no, queda el botón y no se mete nada a ciegas */var RR=null;try{RR=leerPlanoTexto(TXT)}catch(e){}if(RR&&RR.partidas.length&&RR.leido.some(function(x){return !/^altura/.test(x)}))setTimeout(function(){try{planoPorCodigo()}catch(e){}},50)}}}catch(e){}return r};
 })();
