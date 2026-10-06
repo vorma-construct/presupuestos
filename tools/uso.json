@@ -1,0 +1,111 @@
+{
+ "generado": 1791309212261,
+ "aparatos": [
+  {
+   "empresa": "lucas",
+   "marca": "REFORMAS LUCAS",
+   "disp": "iPhone",
+   "instalada": true,
+   "ver": "v200",
+   "ultimo": 1791285221778,
+   "ultimoQue": "plano",
+   "dias": {
+    "2026-10-06": {
+     "abre": 1,
+     "nuevo": 1,
+     "pdfArquitecto": 1,
+     "plano": 1
+    }
+   },
+   "total": {
+    "abre": 1,
+    "nuevo": 1,
+    "pdfArquitecto": 1,
+    "plano": 1
+   },
+   "presupuestos": 4,
+   "mandados": 0,
+   "fallo": false,
+   "falloTs": 0
+  },
+  {
+   "empresa": "lucas",
+   "marca": "REFORMAS LUCAS",
+   "disp": "Android",
+   "instalada": true,
+   "ver": "v200",
+   "ultimo": 1791284224647,
+   "ultimoQue": "plano",
+   "dias": {
+    "2026-10-06": {
+     "abre": 1,
+     "nuevo": 2,
+     "pdfArquitecto": 2,
+     "plano": 2
+    }
+   },
+   "total": {
+    "abre": 1,
+    "nuevo": 2,
+    "pdfArquitecto": 2,
+    "plano": 2
+   },
+   "presupuestos": 3,
+   "mandados": 0,
+   "fallo": false,
+   "falloTs": 0
+  },
+  {
+   "empresa": "lucas",
+   "marca": "REFORMAS LUCAS",
+   "disp": "Android",
+   "instalada": false,
+   "ver": "v201",
+   "ultimo": 1791304853576,
+   "ultimoQue": "pdfArquitecto",
+   "dias": {
+    "2026-10-06": {
+     "abre": 1,
+     "pdfArquitecto": 3
+    }
+   },
+   "total": {
+    "abre": 1,
+    "pdfArquitecto": 3
+   },
+   "presupuestos": 1,
+   "mandados": 0,
+   "fallo": false,
+   "falloTs": 0
+  },
+  {
+   "empresa": "lucas",
+   "marca": "REFORMAS LUCAS",
+   "disp": "iPhone",
+   "instalada": false,
+   "ver": "v201",
+   "ultimo": 1791305134323,
+   "ultimoQue": "dicta",
+   "dias": {
+    "2026-10-06": {
+     "abre": 1,
+     "nuevo": 1,
+     "agenda": 1,
+     "voz": 1,
+     "dicta": 4
+    }
+   },
+   "total": {
+    "abre": 1,
+    "nuevo": 1,
+    "agenda": 1,
+    "voz": 1,
+    "dicta": 4
+   },
+   "presupuestos": 8,
+   "mandados": 0,
+   "fallo": false,
+   "falloTs": 0
+  }
+ ]
+}
