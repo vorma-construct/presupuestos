@@ -5109,5 +5109,80 @@
    "precio": 261.22,
    "minimo": true
   }
- ]
+ ],
+ "cype_gg": 1.19,
+ "cype_mas": 1.07,
+ "cype_nota": "Precio de CYPE (generadordeprecios.info, rehabilitación, España) leído el 6-10-2026, más 19 % de gastos generales y beneficio, más 7 %.",
+ "cyperef": {
+  "proteccion_ascensor": {
+   "c": "0CI010",
+   "u": "ud",
+   "p": 130.17,
+   "d": "Protección de ascensor con tablero de madera, plástico y cinta adhesiva durante la obra, y retirada",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Protecciones_provisionales/Instalaciones/Proteccion_de_ascensor.html"
+  },
+  "proteccion_mobiliario": {
+   "c": "0MP011",
+   "u": "m3",
+   "p": 7.45,
+   "d": "Protección de mobiliario con lámina de polietileno durante la obra",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Equipamiento/Proteccion/Proteccion_de_mobiliario.html"
+  },
+  "embalaje_mobiliario": {
+   "c": "0ME011",
+   "u": "m3",
+   "p": 18.19,
+   "d": "Embalaje de mobiliario para su transporte hasta el almacén",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Equipamiento/Embalaje/Embalaje_de_mobiliario.html"
+  },
+  "traslado_mobiliario": {
+   "c": "0MT011",
+   "u": "m3",
+   "p": 15.53,
+   "d": "Traslado de mobiliario dentro del edificio",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Equipamiento/Traslado_y_transporte/0MT011_Traslado_dentro_del_mismo_edificio_.html"
+  },
+  "transporte_mobiliario": {
+   "c": "0MT021",
+   "u": "m3",
+   "p": 27.62,
+   "d": "Transporte de mobiliario en camión, hasta 5 km",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Equipamiento/Traslado_y_transporte/Transporte_de_mobiliario.html"
+  },
+  "papel_vinilo": {
+   "c": "RDP010",
+   "u": "m2",
+   "p": 9.63,
+   "d": "Revestimiento mural con papel de vinilo, con cola celulósica",
+   "url": "https://generadordeprecios.info/rehabilitacion/Revestimientos_y_trasdosados/Decorativos/De_papel/Revestimiento_mural_con_papel_de_vinilo.html"
+  },
+  "moldura_escayola": {
+   "c": "RTP010",
+   "u": "m",
+   "p": 7.14,
+   "d": "Moldura lisa de escayola para solución perimetral de techo",
+   "url": "https://generadordeprecios.info/rehabilitacion/Revestimientos_y_trasdosados/Falsos_techos_en_interiores/Prefabricados_de_escayola/RTP010_Moldura_de_escayola__para_solucion_.html"
+  },
+  "esmalte_madera": {
+   "c": "RME020",
+   "u": "m2",
+   "p": 15.24,
+   "d": "Esmalte sintético, dos manos, sobre madera en interiores, con lijado",
+   "url": "https://generadordeprecios.info/rehabilitacion/Revestimientos_y_trasdosados/RM_Pinturas_y_tratamientos_sobre_/Esmaltes/Esmalte_sintetico.html"
+  },
+  "proteccion_suelos": {
+   "c": "0CS010",
+   "u": "m2",
+   "p": 1.08,
+   "d": "Protección de solado con lámina de plástico y cartón rizado durante la obra",
+   "url": "https://generadordeprecios.info/rehabilitacion/Actuaciones_previas/Protecciones_provisionales/Pavimentos_y_escaleras/Proteccion_de_suelos.html"
+  },
+  "limpieza_final": {
+   "c": "HYL020",
+   "u": "m2",
+   "p": 6.61,
+   "d": "Limpieza final de obra (594,68 € para una vivienda de 90 m², por m²)",
+   "url": "https://generadordeprecios.info/rehabilitacion/Remates_y_ayudas/Ayudas_de_albanileria/Limpieza_de_obra/Limpieza_final_de_obra.html"
+  }
+ }
 }
