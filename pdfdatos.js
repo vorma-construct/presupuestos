@@ -52,3 +52,33 @@ if(la0)window.leerArquitecto=function(files){var lista=[].slice.call(files||[]);
  var pm=window.parseMediciones;
  window.parseMediciones=function(ls){try{window.__planoTxt=(window.__planoTxt||'')+' '+(ls||[]).join(' ')}catch(e){}return pm.apply(this,arguments)};
 })();
+/* Plano → presupuesto con IA: el servidor lee el dibujo y saca las partidas medidas; aquí se les pone el precio real */
+(function(){
+ var CFG=null;function cfg(){if(CFG)return Promise.resolve(CFG);return fetch('ia.json?'+Math.floor(Date.now()/6e5)).then(function(r){return r.json()}).then(function(j){CFG=j||{};return CFG}).catch(function(){CFG={};return CFG})}
+ cfg();
+ document.addEventListener('change',function(e){if(e.target&&e.target.id==='pdfArq'&&e.target.files&&e.target.files.length)window.__ultimoPdf=[].slice.call(e.target.files)},true);
+ function b64(f){return f.arrayBuffer().then(function(buf){var s='',u=new Uint8Array(buf),k=0x8000;for(var i=0;i<u.length;i+=k)s+=String.fromCharCode.apply(null,u.subarray(i,i+k));return btoa(s)})}
+ var BASEP=null;
+ function precio(p){try{var R=window.precioRealDe&&precioRealDe({t:p.descripcion,u:p.unidad,q:p.cantidad,pa:0});if(R&&R.p>0&&!R.sinMercado)return R}catch(e){}
+  try{var F=BASEP&&(BASEP.familias||[]).find(function(x){return x.id===p.familia});if(F&&F.tipico>0){var A=window.AJ||{};var z=A.recargoZona===''||A.recargoZona==null?15:Number(String(A.recargoZona).replace(',','.'))||0;var sub=Number(String(A.subidaPrecios||0).replace(',','.'))||0;
+   return {p:Math.round(F.tipico*(1+z/100)*(1+sub/100)*100)/100,fuente:'mercado + '+z+' % zona ('+F.id+')'}}}catch(e){}return null}
+ window.planoConIA=function(){var f=(window.__ultimoPdf||[])[0];var box=document.getElementById('iaPlano');if(!f||!box)return;
+  box.innerHTML='<b>Leyendo el plano…</b> Tarda entre veinte segundos y un minuto: la IA mide cada trabajo con las cotas del dibujo.';
+  Promise.all([cfg(),b64(f),window.basePrecios?basePrecios():null]).then(function(a){var C=a[0];if(!C.url)throw new Error('sin servidor');
+   return fetch(C.url.replace(/\/$/,'')+'/plano',{method:'POST',headers:{'Content-Type':'application/json','X-Clave':C.clave||''},body:JSON.stringify({pdf:a[1],nombre:f.name,catalogo:((a[2]&&a[2].familias)||[]).map(function(x){return x.id+' | '+x.u+' | '+(x.desc||'')}).join('\n')})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||('error '+r.status));return j})})})
+  
+  .then(function(J){return (window.basePrecios?basePrecios():Promise.resolve(null)).then(function(B){BASEP=B;return J})})
+  .then(function(J){var P=(J.partidas||[]).filter(function(p){return p&&p.descripcion&&p.cantidad>0});if(!P.length)throw new Error('no he sacado partidas del plano');
+   try{leer()}catch(_){}var sinP=0;
+   P.forEach(function(p){var R=precio(p);if(!R)sinP++;cur.lineas.push({d:p.descripcion+(p.supuesto?' (medida supuesta: compruébala)':''),q:Math.round(p.cantidad*100)/100,u:(p.unidad||'ud').replace('²','2').replace('³','3'),p:R?R.p:0,cap:p.capitulo||'',fuente:R?R.fuente:'sin precio de mercado',calculo:p.calculo||''})});
+   var pon=function(id,v){var e=document.getElementById(id);if(e&&!e.value&&v)e.value=v};pon('f_dir',J.direccion);pon('f_nom',J.cliente||J.obra);
+   var o=document.getElementById('f_obs');if(o&&!o.value){o.value=(J.resumen?J.resumen+' ':'')+'Cantidades sacadas de las cotas del plano'+(J.expediente?' (exp. '+J.expediente+')':'')+'.'+((J.supuestos||[]).length?' Supuestos a confirmar: '+J.supuestos.join('; ')+'.':'')}
+   try{renderLineas();leer();autoGuardar&&autoGuardar()}catch(_){}
+   box.innerHTML='<b style="color:#1B6B36">Hecho: '+P.length+' partidas sacadas del plano</b>, con su precio real de mercado'+(sinP?' (' +sinP+' sin precio de mercado: pon el tuyo, salen en color)':'')+'. Las medidas las ha calculado la IA con las cotas del dibujo: repásalas antes de mandarlo.';
+   var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'start'})})
+  .catch(function(e){box.innerHTML='<b style="color:#B3261E">No he podido leer el plano'+(/sin servidor/.test(e.message)?' todavía: falta activar el lector de planos.':': '+arqEsc(e.message)+'.')+'</b> Mientras, puedes contarlo con tus palabras o buscar las partidas una a una.'})};
+ var ra=window.renderArq;
+ window.renderArq=function(){var r=ra.apply(this,arguments);try{var box=document.getElementById('arqPanel');var av=box&&box.querySelector('.aviso');
+  if(av&&/es un plano/.test(av.textContent)&&!document.getElementById('iaPlano')){
+   cfg().then(function(C){if(document.getElementById('iaPlano'))return;av.insertAdjacentHTML('afterbegin','<div id="iaPlano" style="margin-bottom:10px">'+(C.url?'<b>Puedo sacarte el presupuesto de este plano.</b> La IA mide cada trabajo con las cotas del dibujo y yo le pongo el precio real de mercado.<div style="margin-top:8px"><button class="ok" type="button" onclick="planoConIA()">Sacar el presupuesto del plano</button></div>':'')+'</div>')})}}catch(e){}return r};
+})();

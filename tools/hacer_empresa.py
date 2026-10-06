@@ -8,7 +8,7 @@ from PIL import Image
 ID,URL,OUT=sys.argv[1],sys.argv[2].rstrip('/')+'/',sys.argv[3]
 SRC=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 E=json.load(open(f'{SRC}/empresas/{ID}/empresa.json'))
-FUERA={'.git','.github','tools','README.md','revision.py','firestore.rules','empresas','arreglos'}
+FUERA={'.git','.github','tools','servidor','README.md','revision.py','firestore.rules','empresas','arreglos'}
 if os.path.exists(OUT):
     for x in os.listdir(OUT):
         if x in ('.git','.github','CNAME','empresa.txt','_app'):continue

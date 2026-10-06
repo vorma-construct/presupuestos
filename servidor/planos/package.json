@@ -1,0 +1,1 @@
+{"name":"planos-ia","version":"1.0.0","private":true,"description":"Lee un plano en PDF y devuelve las partidas con sus medidas para la app de presupuestos","main":"server.js","scripts":{"start":"node server.js"},"engines":{"node":">=18"}}
