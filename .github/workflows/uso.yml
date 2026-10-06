@@ -1,0 +1,43 @@
+# Dos veces al dia saca de la nube el recuento de uso de las apps de otras empresas
+# (solo cuando se abren y que hacen; nunca lo que escriben) y lo deja en tools/uso.json
+# para que el aviso diario de Asier lo pueda leer. No guarda cuentas ni correos.
+name: uso
+on:
+  schedule: [{cron: '35 6,18 * * *'}]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  uso:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,time
+          KEY="AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q"
+          url="https://firestore.googleapis.com/v1/projects/reformas-ioan/databases/(default)/documents:runQuery?key="+KEY
+          q={"structuredQuery":{"from":[{"collectionId":"seguimiento"}],"where":{"fieldFilter":{"field":{"fieldPath":"tipo"},"op":"EQUAL","value":{"stringValue":"uso"}}},"limit":100}}
+          req=urllib.request.Request(url,data=json.dumps(q).encode(),headers={"Content-Type":"application/json"})
+          r=json.load(urllib.request.urlopen(req,timeout=60))
+          def val(v):
+              if "stringValue" in v: return v["stringValue"]
+              if "integerValue" in v: return int(v["integerValue"])
+              if "doubleValue" in v: return v["doubleValue"]
+              if "booleanValue" in v: return v["booleanValue"]
+              if "mapValue" in v: return {k:val(x) for k,x in v["mapValue"].get("fields",{}).items()}
+              return None
+          out=[]
+          for x in r:
+              d=x.get("document");
+              if not d: continue
+              f={k:val(v) for k,v in d["fields"].items()}
+              dias=f.get("dias") or {}
+              ks=sorted(dias.keys())[-14:]
+              out.append({"empresa":f.get("empresa"),"marca":f.get("marca"),"disp":f.get("disp"),"instalada":f.get("instalada"),"ver":f.get("ver"),
+                          "ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
+                          "presupuestos":f.get("presupuestos"),"mandados":f.get("mandados"),"fallo":bool(f.get("error")),"falloTs":f.get("errorTs")})
+          json.dump({"generado":int(time.time()*1000),"aparatos":out},open("tools/uso.json","w"),ensure_ascii=False,indent=1)
+          print("aparatos:",len(out))
+          PY
+          git config user.name "uso"; git config user.email "actions@github.com"
+          git add tools/uso.json; git diff --cached --quiet || (git commit -m "recuento de uso" && git push)
