@@ -14,19 +14,34 @@
  function cargarTess(){return new Promise(function(ok,ko){if(window.Tesseract)return ok();var s=document.createElement('script');s.src=RAIZ+'ocr/tesseract.min.js';s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
  /* la imagen se agranda y se pasa a blanco y negro (y se invierte si es modo oscuro): el lector acierta mucho mas */
  function preparar(file){return new Promise(function(ok,ko){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){
-   var esc=Math.min(3,Math.max(1,1800/Math.max(im.width,1)));var w=Math.round(im.width*esc),h=Math.round(im.height*esc);
+   var esc=im.width>2000?2000/im.width:Math.min(2.5,Math.max(1,1300/Math.max(im.width,1)));var w=Math.round(im.width*esc),h=Math.round(im.height*esc);
    var cv=document.createElement('canvas');cv.width=w;cv.height=h;var c=cv.getContext('2d');c.drawImage(im,0,0,w,h);
    var d=c.getImageData(0,0,w,h),p=d.data,suma=0;
    for(var i=0;i<p.length;i+=4){var g=0.299*p[i]+0.587*p[i+1]+0.114*p[i+2];p[i]=p[i+1]=p[i+2]=g;suma+=g}
    var oscuro=suma/(p.length/4)<110;
    for(var j=0;j<p.length;j+=4){var v=p[j];if(oscuro)v=255-v;v=v>150?255:(v<90?0:v);p[j]=p[j+1]=p[j+2]=v}
    c.putImageData(d,0,0);ok(cv)};im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
+ /* Un solo lector para capturas y planos: se empieza a preparar en cuanto se abre «Capturas, fotos, plano o PDF»
+    (así, cuando se eligen las capturas, ya está listo), se reutiliza y se cierra a los cinco minutos sin usarlo.
+    Mientras trabaja, dice en qué va: bajándose (solo la primera vez), preparando o leyendo, con su tanto por ciento. */
+ var LECTOR=null,lectorT=null,LEE=null;
+ function pinta(t,pc){if(!LEE||!LEE.info)return;LEE.info.innerHTML='<b>'+t+'</b>'+(pc!=null?'<div style="height:7px;background:rgba(0,0,0,.08);border-radius:4px;margin-top:6px;overflow:hidden"><div style="height:7px;width:'+Math.max(3,Math.min(100,pc))+'%;background:#1B6B36;border-radius:4px;transition:width .3s"></div></div>':'')}
+ function alLog(m){if(!LEE)return;var st=String(m&&m.status||''),p=Math.round(((m&&m.progress)||0)*100);
+  if(/recognizing/.test(st))pinta((LEE.tipo==='plano'?'Leyendo el plano':LEE.n>1?'Leyendo la captura '+LEE.i+' de '+LEE.n:'Leyendo la captura')+'… '+p+' %',p);
+  else if(/tesseract core/.test(st))pinta('Bajando el lector de texto… (solo la primera vez)',p<100?10:25);
+  else if(/traineddata/.test(st))pinta('Bajando el diccionario de español… (solo la primera vez)',p<100?40:85);
+  else if(/initializ/.test(st))pinta('Preparando el lector…',90)}
+ function lector(){if(LECTOR)return LECTOR;
+  LECTOR=cargarTess().then(function(){return Tesseract.createWorker('spa',1,{workerPath:RAIZ+'ocr/worker.min.js',corePath:RAIZ+'ocr/',langPath:RAIZ+'ocr/',gzip:true,logger:alLog})});
+  LECTOR.catch(function(){LECTOR=null});return LECTOR}
+ function soltarLector(){clearTimeout(lectorT);lectorT=setTimeout(function(){var L=LECTOR;LECTOR=null;if(L)L.then(function(w){return w.terminate()}).catch(function(){})},300000)}
+ window.__preparaLector=function(){try{clearTimeout(lectorT);lector().then(soltarLector).catch(function(){})}catch(e){}};
  function leerImagenes(files,info){
-  if(info)info.innerHTML='<b>Preparando el lector de capturas…</b> La primera vez tarda un poco más, porque se lo baja al móvil.';
-  return cargarTess().then(function(){return Tesseract.createWorker('spa',1,{workerPath:RAIZ+'ocr/worker.min.js',corePath:RAIZ+'ocr/',langPath:RAIZ+'ocr/',gzip:true})}).then(function(w){
+  clearTimeout(lectorT);LEE={tipo:'captura',n:files.length,i:1,info:info};pinta('Preparando el lector de capturas…',5);
+  return lector().then(function(w){
    var textos=[],cadena=Promise.resolve();
-   [].forEach.call(files,function(f,i){cadena=cadena.then(function(){if(info)info.innerHTML='<b>Leyendo la captura '+(i+1)+' de '+files.length+'…</b>';return preparar(f)}).then(function(cv){return w.recognize(cv)}).then(function(r){textos.push(r.data.text||'')})});
-   return cadena.then(function(){return w.terminate()}).then(function(){return textos})})}
+   [].forEach.call(files,function(f,i){cadena=cadena.then(function(){LEE={tipo:'captura',n:files.length,i:i+1,info:info};pinta(files.length>1?'Leyendo la captura '+(i+1)+' de '+files.length+'…':'Leyendo la captura…',0);return preparar(f)}).then(function(cv){return w.recognize(cv)}).then(function(r){textos.push(r.data.text||'')})});
+   return cadena.then(function(){LEE=null;soltarLector();return textos},function(e){LEE=null;soltarLector();throw e})})}
 
  /* ---------------- utilidades ---------------- */
  function sa(s){return String(s||'').normalize('NFC').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
@@ -42,6 +57,7 @@
  var TILDES=[['salon','salón'],['sofa','sofá'],['sofas','sofás'],['almacen','almacén'],['rodapies','rodapiés'],['rodapie','rodapié'],['habitacion','habitación'],['bano','baño'],['banos','baños'],['cajon','cajón'],['electrica','eléctrica'],['electrico','eléctrico'],['instalacion','instalación'],['proteccion','protección'],['demolicion','demolición'],['colocacion','colocación'],['reparacion','reparación'],['jardin','jardín'],['balcon','balcón'],['segun','según'],['tambien','también'],['metalico','metálico'],['ceramico','cerámico'],['plastica','plástica'],['valvula','válvula'],['ultimo','último']];
  function pulir(t){
   t=String(t||'').normalize('NFC');
+  t=t.replace(/(\d)[dD](?=[0-9OoQ])/g,'$1').replace(/(\d)[OoQ](?=\s*(?:m\?|m2|m²|ml|m\b|cm|uds?\b|%))/g,'$10');
   t=t.replace(/[.…]{2,}/g,', ').replace(/\+\s*-(?!\d)|\+\/-|±/g,' ');
   t=t.replace(/\b([A-ZÁÉÍÓÚÑ]{2,})\b/g,function(w){return /^(PVC|LED|DM|WC|IVA)$/.test(w)?w:w.toLowerCase()});
   t=t.replace(/\bdorm\b\.?/gi,'dormitorio').replace(/\bhab\b\.?/gi,'habitación').replace(/\b(\d+)\s*[l1]?uds?\b/gi,'$1 ud').replace(/\b[l1]uds?\b/gi,'1 ud');
@@ -49,7 +65,7 @@
   t=t.replace(/\bque esta\b/gi,'que está').replace(/\bde lato\b/gi,'de alto').replace(/\bsera\b/gi,'será').replace(/\bcuanto\b/gi,'cuánto');
   /* medidas en centimetros a metros, como en un presupuesto: 146cm -> 1,46 m; 2,26cm (errata) -> 2,26 m */
   t=t.replace(/(\d+(?:,\d+)?)\s*(?:cm|cem|centimetros?)\b/gi,function(all,n){if(n.indexOf(',')>0&&nm(n)>=1)return n+' m';var v=nm(n);return v>=10?(v/100).toFixed(2).replace('.',',')+' m':all});
-  t=t.replace(/m\?\s*2/g,'m2').replace(/(techo)(\d)/gi,'$1 $2').replace(/(\d)\s*\+\s*(\d)/g,'$1 + $2');
+  t=t.replace(/m\?\s*2/g,'m2').replace(/(\d)\s*m\?(?!\s*2)/g,'$1 m2').replace(/(techo)(\d)/gi,'$1 $2').replace(/(\d)\s*\+\s*(\d)/g,'$1 + $2');
   t=t.replace(/\(\s+/g,'(').replace(/\s+\)/g,')').replace(/\s+([,.;:])/g,'$1').replace(/,(?=[^\s\d])/g,', ').replace(/\s{2,}/g,' ').trim();
   return t.replace(/[\s.,;:]+$/,'')}
 
@@ -74,9 +90,10 @@
   if(act)items.push(act);
   items=items.map(function(t){return t.replace(/\s*(€\s*)?(Responder|Reenviar).*$/i,'').replace(/\s+\d{1,2}:\d{2}\b.*$/,'').trim()}).filter(function(t){return t&&!esMorralla(t)});
   return {items:items,firma:firma.concat(lineas.slice(-14).map(function(x){return x.trim()}))}}
+ function medidas(t){var n=0,re=/(^|[^A-Za-zÀ-ÿ\d])(\d+(?:,\d+)?)\s*(?:m2|m²|ml|m|ud|uds|rollos?)\b/gi,m;while((m=re.exec(String(t))))if(nm(m[2])>0)n++;return n}
  function unirItems(listas){var out=[],vistos={};
   listas.forEach(function(L){L.forEach(function(t){var k=sa(t).replace(/[^a-z]+/g,' ').trim().slice(0,40);
-   if(vistos[k]!=null){if(t.length>out[vistos[k]].length)out[vistos[k]]=t;return}vistos[k]=out.length;out.push(t)})});
+   if(vistos[k]!=null){var o=out[vistos[k]],a=medidas(t),b=medidas(o);if(a>b||(a===b&&t.length>o.length))out[vistos[k]]=t;return}vistos[k]=out.length;out.push(t)})});
   return out}
 
  /* nombre, empresa, telefono y correo de la firma */
@@ -240,19 +257,78 @@
    if(!s){try{var R=window.precioRealDe?precioRealDe({t:x.d,u:x.u,q:x.q||1,pa:0}):null;if(R&&R.p>0&&!R.sinMercado&&R.famDesc&&familia(R.famDesc)===fam&&objeto(R.famDesc)===obj){p0=r2(R.p);s='mercado'}}catch(e){}}}
   if(s){x.p0=p0;x.r=ratio(fam);x.p=r2(p0*x.r);x.src=s;if(s==='tarifa'&&x.notaTar)x.nota=(x.nota?x.nota+'; ':'')+x.notaTar}else{x.p=0;x.src=''}}
 
- /* ---------------- al elegir capturas: montar el presupuesto ---------------- */
+ /* ---------------- planos dibujados (PDF sin texto: impreso a PDF o escaneado) ----------------
+    Del cajetín se saca dónde es la obra, la escala, el nombre del plano y la fecha (sin IA: lector óptico + posiciones).
+    Si el PDF no tiene cajetín, puede ser una lista escaneada: se lee entera como si fuera una captura. */
+ var ET_SITIO=/^(situacion|emplazamiento|direccion|ubicacion|localizacion|kokapena|helbidea)$/,ET_ESC=/^(escala|eskala)$/,ET_PLANO=/^(plano|planoa)$/,ET_FECHA=/^(fecha|data)$/;
+ function abrirPdf(f){return cargarPdfjs().then(function(){return f.arrayBuffer()}).then(function(buf){return pdfjsLib.getDocument({data:buf}).promise}).then(function(doc){return doc.getPage(1).then(function(pg){return pg.getTextContent().then(function(t){var n=t.items.filter(function(x){return String(x.str||'').trim()}).length;return {f:f,pg:pg,conTexto:n>=5}})})})}
+ function pintarPdf(pg,ancho){var v1=pg.getViewport({scale:1}),vp=pg.getViewport({scale:ancho/v1.width});var c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);return pg.render({canvasContext:x,viewport:vp}).promise.then(function(){return c})}
+ function trozoAbajo(c,desde){var y0=Math.round(c.height*desde),d=document.createElement('canvas');d.width=c.width;d.height=c.height-y0;d.getContext('2d').drawImage(c,0,y0,c.width,d.height,0,0,c.width,d.height);return d}
+ function palabras(R){var D=(R&&R.data)||{},W=(D.words||[]).slice();if(!W.length)(D.blocks||[]).forEach(function(b){(b.paragraphs||[]).forEach(function(p){(p.lines||[]).forEach(function(l){(l.words||[]).forEach(function(w){W.push(w)})})})});
+  return W.filter(function(w){return w&&w.text&&w.bbox&&(w.confidence==null||w.confidence>45)&&!/^[|—–\-_.;:,'"`]+$/.test(String(w.text).trim())}).map(function(w){return {t:String(w.text).trim(),x0:w.bbox.x0,x1:w.bbox.x1,y0:w.bbox.y0,y1:w.bbox.y1}})}
+ function cajetin(W){var et=W.filter(function(w){return /:$/.test(w.t)&&w.t.length>2}),o={};
+  function enLinea(a,b){var h=Math.max(a.y1-a.y0,b.y1-b.y0);return Math.abs((a.y0+a.y1)/2-(b.y0+b.y1)/2)<h*0.7}
+  function valor(L){var h=Math.max(10,L.y1-L.y0),sig=et.filter(function(e){return e!==L&&enLinea(e,L)&&e.x0>L.x0}).sort(function(a,b){return a.x0-b.x0})[0],xmax=sig?sig.x0:1e9;
+   var der=W.filter(function(w){return et.indexOf(w)<0&&enLinea(w,L)&&w.x0>L.x1&&w.x1<=xmax+2}).sort(function(a,b){return a.x0-b.x0});
+   if(der.length)return der.map(function(w){return w.t}).join(' ');
+   var ab=W.filter(function(w){var cx=(w.x0+w.x1)/2;return et.indexOf(w)<0&&w.y0>L.y1-3&&w.y0<L.y1+h*3.5&&cx>=L.x0-h*1.5&&cx<xmax-h*0.3}).sort(function(a,b){return (a.y0-b.y0)||(a.x0-b.x0)});
+   if(!ab.length)return '';var y=ab[0].y0;return ab.filter(function(w){return w.y0<y+h*0.9}).sort(function(a,b){return a.x0-b.x0}).map(function(w){return w.t}).join(' ')}
+  et.forEach(function(L){var k=sa(L.t.replace(/:$/,'')).replace(/[^a-z]/g,'');
+   if(ET_SITIO.test(k)&&!o.sitio)o.sitio=valor(L);else if(ET_ESC.test(k)&&!o.escala)o.escala=valor(L);else if(ET_PLANO.test(k)&&!o.plano)o.plano=valor(L);else if(ET_FECHA.test(k)&&!o.fecha)o.fecha=valor(L)});
+  if(o.sitio){o.sitio=o.sitio.replace(/[|]+/g,' ').replace(/\s+/g,' ').replace(/^[\s,.\-]+|[\s,.\-]+$/g,'').trim();if(o.sitio&&o.sitio===o.sitio.toUpperCase())o.sitio=o.sitio.toLowerCase().replace(/(^|[\s\-(])\S/g,function(m){return m.toUpperCase()})}
+  if(o.escala){var m=o.escala.match(/1\s*[\/:]\s*(\d{1,4})/);o.escala=m?'1/'+m[1]:''}
+  if(o.plano)o.plano=o.plano.replace(/_/g,' ').replace(/\s+/g,' ').trim();
+  return o}
+ function leerPlanos(rs,info){var out={sitio:'',escala:'',plano:'',fecha:'',textos:[],n:0};
+  clearTimeout(lectorT);LEE={tipo:'plano',n:1,i:1,info:info};pinta('Leyendo el plano…',5);
+  return lector().then(function(w){
+   var cadena=Promise.resolve();
+   rs.forEach(function(r){cadena=cadena.then(function(){return pintarPdf(r.pg,2400)}).then(function(c){
+     return w.recognize(trozoAbajo(c,0.78)).then(function(R){var o=cajetin(palabras(R));
+      if(o.sitio||o.escala||o.plano){out.n++;['sitio','escala','plano','fecha'].forEach(function(k){if(o[k]&&!out[k])out[k]=o[k]});return}
+      LEE={tipo:'captura',n:1,i:1,info:info};pinta('Leyendo el PDF…',0);
+      return w.recognize(c).then(function(R2){var t=(R2&&R2.data&&R2.data.text)||'';if(t.trim())out.textos.push(t)})})})});
+   return cadena.then(function(){LEE=null;soltarLector();return out},function(e){LEE=null;soltarLector();throw e})})}
+ function esImg(f){return /^image\//.test(f.type)||/\.(jpe?g|png|heic|webp)$/i.test(f.name||'')}
+ function cerrarGuia(){try{var gc=document.getElementById('guiaCapa');if(gc&&gc.classList.contains('on')){gc.classList.remove('on');document.body.style.overflow=''}}catch(e){}}
+ function aLaLista(){try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display='';try{sessionStorage.setItem('vr_meter','mano')}catch(_){}}catch(e){}}
+ function verAviso(id){setTimeout(function(){try{var a=document.getElementById(id)||document.getElementById('tb');a.scrollIntoView({block:'start'});var tn=document.getElementById('topnav'),h=0;if(tn){var r=tn.getBoundingClientRect();if(r.top<=2)h=r.bottom}window.scrollBy(0,-(h+10))}catch(e){}},300)}
+ /* lo que se saca del plano se pone en el presupuesto (solo donde está vacío) */
+ function ponerPlano(P){var r={sitio:false};try{var fd=document.getElementById('f_dir');if(P&&P.sitio&&fd&&!fd.value.trim()){fd.value=P.sitio;r.sitio=true}if(typeof leer==='function')leer()}catch(e){}return r}
+ function textoPlano(P,puesto){if(!P||!(P.sitio||P.escala||P.plano))return '';var calle=P.sitio&&!/\d/.test(P.sitio);
+  return 'Del plano'+(P.plano?' «'+P.plano+'»':'')+(P.escala?' (escala '+P.escala+')':'')+': '+(P.sitio?'la obra es en <b>'+P.sitio+'</b>'+(puesto?', ya puesto en «Obra»':'')+(calle?'; pídele la calle y el número':''):'no trae dónde es la obra')+'. Las medidas de las habitaciones no vienen escritas en el plano: las cantidades son las del correo. '}
+ function soloPlano(P,info){var r=ponerPlano(P),hay=window.cur&&(cur.lineas||[]).length;var t=textoPlano(P,r.sitio);
+  try{if(cur.nom&&typeof guardar==='function')guardar()}catch(e){}
+  try{var ac=document.getElementById('avisoCapturas');if(ac&&r.sitio)ac.innerHTML=ac.innerHTML.replace('La dirección de la obra no viene: pídesela. ','')}catch(e){}
+  if(hay){aLaLista();var cm=document.getElementById('cardMano'),av=document.getElementById('avisoPlano');if(av)av.remove();
+   if(cm)cm.insertAdjacentHTML('afterbegin','<div id="avisoPlano" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45"><b>Plano leído.</b> '+t+'</div>');if(info)info.textContent='';verAviso('avisoPlano')}
+  else if(info)info.innerHTML='<div class="aviso" style="color:#1B6B36;line-height:1.45"><b>Plano leído.</b> '+t+'<br><b>Ahora mete las capturas con la lista de trabajos</b> en este mismo botón, o cuéntamelos con tus palabras.</div>';
+  try{if(window.__usoApunta)__usoApunta('plano')}catch(e){}
+  try{if(window.guiaBarra)guiaBarra()}catch(e){}}
+
+ /* ---------------- al elegir capturas (y el plano, si viene): montar el presupuesto ---------------- */
  var leer0=window.leerArquitecto;
  window.leerArquitecto=function(files){
-  var imgs=[].filter.call(files||[],function(f){return /^image\//.test(f.type)||/\.(jpe?g|png|heic|webp)$/i.test(f.name||'')}),pdfs=[].filter.call(files||[],function(f){return imgs.indexOf(f)<0});
-  if(pdfs.length&&leer0)leer0.call(this,pdfs);
-  if(!imgs.length)return;
-  try{var gc=document.getElementById('guiaCapa');if(gc&&gc.classList.contains('on')){gc.classList.remove('on');document.body.style.overflow=''}}catch(e){}
-  var info=document.getElementById('arqInfo');if(info){info.innerHTML='<b>Leyendo…</b>';try{var cp=document.getElementById('cardPdf');if(cp&&cp.style.display!=='none')cp.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
+  var todos=[].slice.call(files||[]),imgs=todos.filter(esImg),pdfs=todos.filter(function(f){return imgs.indexOf(f)<0});
+  var info=document.getElementById('arqInfo');
+  if(!pdfs.length){if(imgs.length)montar(imgs,null,info);return}
+  cerrarGuia();if(info)info.innerHTML='<b>Leyendo…</b>';try{if(window.guiaBarra)setTimeout(guiaBarra,50)}catch(e){}
+  Promise.all(pdfs.map(function(f){return abrirPdf(f).catch(function(){return {f:f,conTexto:true}})})).then(function(rs){
+   var conT=rs.filter(function(r){return r.conTexto}).map(function(r){return r.f}),sinT=rs.filter(function(r){return !r.conTexto});
+   if(conT.length&&leer0)leer0.call(window,conT);
+   if(!sinT.length){if(imgs.length)montar(imgs,null,info);return}
+   return leerPlanos(sinT,info).then(function(P){montar(imgs,P,info)})
+  }).catch(function(e){if(info)info.textContent='No he podido leer el PDF ('+(e&&e.message||e)+'). Cuéntamelo con tus palabras.'})};
+ function montar(imgs,P,info){
+  cerrarGuia();
+  if(info){info.innerHTML='<b>Leyendo…</b>';try{var cp=document.getElementById('cardPdf');if(cp&&cp.style.display!=='none')cp.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
   try{if(window.guiaBarra)setTimeout(guiaBarra,50)}catch(e){}
-  Promise.all([leerImagenes(imgs,info),window.basePrecios?basePrecios():null]).then(function(res){var textos=res[0];
+  var lee=imgs.length?leerImagenes(imgs,info):Promise.resolve([]);
+  Promise.all([lee,window.basePrecios?basePrecios():null]).then(function(res){var textos=res[0].concat((P&&P.textos)||[]);
+   if(!textos.length){if(P&&(P.sitio||P.escala||P.plano))return soloPlano(P,info);if(info)info.textContent='No he sacado texto de este PDF. Mete las capturas de la lista de trabajos o cuéntamelo con tus palabras.';return}
    var partes=textos.map(aItems),items=unirItems(partes.map(function(x){return x.items}));
    var firma=[].concat.apply([],partes.map(function(x){return x.firma}));var cli=clienteDe(firma);
-   if(!items.length){if(info)info.textContent='No he sacado texto de la captura. Prueba con una más nítida, o copia el texto y pégalo en «Lo cuento yo».';return}
+   if(!items.length){if(P&&(P.sitio||P.escala||P.plano))return soloPlano(P,info);if(info)info.textContent='No he sacado texto de la captura. Prueba con una más nítida, o copia el texto y pégalo en «Lo cuento yo».';return}
    try{if(typeof leer==='function')leer()}catch(e){}
    /* si hay otro presupuesto a medias de otro cliente, se empieza uno nuevo */
    var nombre=cli.nombre?(cli.nombre+(cli.empresa?' ('+cli.empresa+')':'')):'';
@@ -262,38 +338,45 @@
     if((cli.tel||cli.fijo)&&ft&&!ft.value.trim()){ft.value=cli.tel||cli.fijo;puesto.push('teléfono')}
     if(cli.email&&fe&&!fe.value.trim()){fe.value=cli.email;puesto.push('correo')}
     if(typeof leer==='function')leer()}catch(e){}
+   var pp=ponerPlano(P);
    var ctx=contexto(items),notas=[],faltan=[],aj=[],n={tuyo:0,tarifa:0,mercado:0,cero:0},total=0;
    items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){ponerPrecio(x);if(x.nota)notas.push(x.nota);if(!(x.q>0)&&x.falta)faltan.push(x.falta);
      if(x.p>0)n[x.src]++;else n.cero++;total++;if(x.r&&x.r!==1){aj.push(x.r)}
      var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;var c=capDe(x);if(c)l.cap=c;cur.lineas.push(l)})});
    try{renderLineas()}catch(e){}
-   try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display='';try{sessionStorage.setItem('vr_meter','mano')}catch(_){}}catch(e){}
-   var conP=n.tuyo+n.tarifa+n.mercado;
-   var msg='<b>Leído de '+(imgs.length===1?'la captura':'las '+imgs.length+' capturas')+':</b> '+items.length+' trabajos del cliente, '+total+' partidas. '+
+   aLaLista();
+   var conP=n.tuyo+n.tarifa+n.mercado,nc=imgs.length,np=((P&&P.textos)||[]).length;
+   var de=nc&&np?'las capturas y el PDF':nc?(nc===1?'la captura':'las '+nc+' capturas'):'el PDF';
+   var msg='<b>Leído de '+de+':</b> '+items.length+' trabajos del cliente, '+total+' partidas. '+
     (conP?conP+' con precio ('+[n.tuyo?n.tuyo+' tuyos de otras veces':'',n.tarifa?n.tarifa+' de tu tarifa':'',n.mercado?n.mercado+' de la tabla de mercado':''].filter(Boolean).join(', ')+'). ':'')+
     (n.cero?'<b>'+n.cero+' sin precio</b>: ponles el tuyo tocando el precio, y me lo quedo para la próxima. ':'')+
     (faltan.length?'<b>Falta la cantidad</b> de '+faltan.length+': '+faltan.join(', ')+'. ':'')+
     (puesto.length?'Cliente: '+puesto.join(', ')+' cogidos de la firma. ':'')+
+    textoPlano(P,pp.sitio)+
     (!(cur.dir||'').trim()?'La dirección de la obra no viene: pídesela. ':'')+
     (aj.length?(function(){var m=aj.reduce(function(a,b){return a+b},0)/aj.length,pc=Math.round(Math.abs(m-1)*100);return pc?'Los precios de tarifa y de mercado van '+(m>1?'subidos':'bajados')+' un '+pc+' % de media, que es como cobras tú por lo que has corregido otras veces. ':''})():'')+
     (notas.length?'<div style="margin-top:6px">'+notas.map(function(t){return '· '+cap(t)+'.'}).join('<br>')+'</div>':'')+
     '<details style="margin-top:6px"><summary>Ver lo que he leído</summary><ol style="margin:6px 0 0 18px;padding:0">'+items.map(function(t){return '<li>'+String(t).replace(/[<>&]/g,'')+'</li>'}).join('')+'</ol></details>';
-   var cm=document.getElementById('cardMano');var av=document.getElementById('avisoCapturas');if(av)av.remove();
+   var cm=document.getElementById('cardMano');['avisoCapturas','avisoPlano'].forEach(function(id){var av=document.getElementById(id);if(av)av.remove()});
    if(cm){cm.insertAdjacentHTML('afterbegin','<div id="avisoCapturas" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45">'+msg+'</div>')}
    if(info)info.textContent='';
    try{if(cur.nom&&typeof guardar==='function')guardar()}catch(e){}
-   setTimeout(function(){try{var a=document.getElementById('avisoCapturas')||document.getElementById('tb');a.scrollIntoView({block:'start'});var tn=document.getElementById('topnav'),h=0;if(tn){var r=tn.getBoundingClientRect();if(r.top<=2)h=r.bottom}window.scrollBy(0,-(h+10))}catch(e){}},300);
+   verAviso('avisoCapturas');
    try{if(window.__usoApunta)__usoApunta('imagen')}catch(e){}
    try{if(window.guiaBarra)guiaBarra()}catch(e){}
-  }).catch(function(e){if(info)info.textContent='No he podido leer la captura ('+(e&&e.message||e)+'). Copia el texto y pégalo en «Lo cuento yo».'})};
+  }).catch(function(e){if(info)info.textContent='No he podido leer la captura ('+(e&&e.message||e)+'). Copia el texto y pégalo en «Lo cuento yo».'})}
 
  /* para probar sin capturas: el mismo motor con texto */
  window.__capturasTexto=function(textos){return textos.map(aItems)};
+ window.__unirItems=unirItems;
  window.__partidasDe=function(items){var ctx=contexto(items),o=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){ponerPrecio(x);o.push(x)})});return o};
+
+ /* en cuanto se abre «Capturas, fotos, plano o PDF», el lector se empieza a preparar */
+ var mp0=window.meterPor;if(mp0)window.meterPor=function(k){var r=mp0.apply(this,arguments);if(k==='pdf')window.__preparaLector();return r};
 
  /* el selector acepta fotos y capturas, y los textos lo dicen */
  function ajustar(){var f=document.getElementById('pdfArq');if(f&&!/image/.test(f.getAttribute('accept')||''))f.setAttribute('accept','application/pdf,image/*');
-  var c=document.getElementById('cardPdf');if(c&&!c.__img){c.__img=1;var h=c.querySelector('h2');if(h)h.textContent='¿Tienes un PDF, una foto o una captura de la lista?';
-   var p=c.querySelector('p');if(p)p.textContent='Vale el PDF del arquitecto, el plano con medidas, o las capturas del correo o del WhatsApp con la lista de trabajos (puedes elegir varias). La app lee el texto, saca el cliente de la firma, escribe cada trabajo como una partida y le pone tu precio.'}}
+  var c=document.getElementById('cardPdf');if(c&&!c.__img){c.__img=1;var h=c.querySelector('h2');if(h)h.textContent='Capturas, fotos, plano o PDF';
+   var p=c.querySelector('p');if(p)p.innerHTML='<b>1.</b> Elige las capturas del correo o del WhatsApp con la lista de trabajos (varias a la vez). Saco el cliente de la firma, escribo cada trabajo como una partida y le pongo tu precio.<br><b>2.</b> Si tienes el plano, mételo también aquí, antes o después: saco de él dónde es la obra.<br>Vale también el PDF del arquitecto con las mediciones.'}}
  var k=0,iv=setInterval(function(){if(document.getElementById('pdfArq')){clearInterval(iv);ajustar()}else if(++k>80)clearInterval(iv)},150);
 })();

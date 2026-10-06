@@ -9,10 +9,10 @@
 
  var T={
   es:{que:'¿Qué quieres hacer?',nuevo:'Hacer un presupuesto nuevo',ver:'Ver mis presupuestos',como:'¿Cómo tienes los trabajos?',
-      voz:'Lo cuento yo, hablando o escribiendo',pdf:'Tengo un PDF, una foto o una captura de la lista',mano:'Los elijo yo de mi lista de precios',
+      voz:'Lo cuento yo, hablando o escribiendo',pdf:'Tengo capturas, fotos, el plano o un PDF',mano:'Los elijo yo de mi lista de precios',
       atras:'Atrás',solo:'Ya me apaño, quitar la ayuda',lang:'Română',
       p1:'Paso 1 de 4 · Cuenta los trabajos abajo y pulsa «Convertir en trabajos»',
-      p1pdf:'Paso 1 de 4 · Elige el PDF o la captura (botón «Elegir archivo», abajo)',
+      p1pdf:'Paso 1 de 4 · Elige las capturas, y luego el plano si lo tienes (botón «Elegir archivos», abajo)',
       leyendo:'Leyendo… espera unos segundos y no cierres la app',
       p1mano:'Paso 1 de 4 · Busca cada trabajo en el buscador de abajo y tócalo para añadirlo',
       cero:'Paso 2 de 4 · Hay {n} sin precio: toca el precio y escríbelo',cero1:'Paso 2 de 4 · Hay 1 trabajo sin precio: toca el precio y escríbelo',
@@ -23,10 +23,10 @@
       ok:'Enviado. Cuando el cliente firme, te avisamos aquí.',ayuda:'Ayuda',cero_btn:'Ver cuáles',
       q1:'Paso 2 de 4 · A 1 trabajo le falta la cantidad (cuántas puertas, cuántos metros): escríbela',qn:'Paso 2 de 4 · A {n} trabajos les falta la cantidad (cuántas puertas, cuántos metros): escríbela'},
   ro:{que:'Ce vrei să faci?',nuevo:'Fac un deviz nou',ver:'Văd devizele mele',como:'Cum ai lucrările?',
-      voz:'Le spun eu, vorbind sau scriind',pdf:'Am un PDF, o poză sau o captură cu lista',mano:'Le aleg eu din lista mea de prețuri',
+      voz:'Le spun eu, vorbind sau scriind',pdf:'Am capturi, poze, planul sau un PDF',mano:'Le aleg eu din lista mea de prețuri',
       atras:'Înapoi',solo:'Mă descurc, scoate ajutorul',lang:'Español',
       p1:'Pasul 1 din 4 · Spune lucrările mai jos și apasă «Convertir en trabajos»',
-      p1pdf:'Pasul 1 din 4 · Alege PDF-ul arhitectului (butonul «Elegir archivo», mai jos)',
+      p1pdf:'Pasul 1 din 4 · Alege capturile, apoi planul dacă îl ai (butonul «Elegir archivos», mai jos)',
       leyendo:'Citesc… așteaptă câteva secunde și nu închide aplicația',
       p1mano:'Pasul 1 din 4 · Caută fiecare lucrare în căutare și atinge-o ca să o adaugi',
       cero:'Pasul 2 din 4 · Sunt {n} fără preț: atinge prețul și scrie-l',cero1:'Pasul 2 din 4 · E 1 lucrare fără preț: atinge prețul și scrie-l',
@@ -103,7 +103,7 @@
  /* ---- la barra del siguiente paso ---- */
  var bar=document.createElement('div');bar.id='guiaBarra';
  function colocarBarra(){var p=document.getElementById('page-presupuesto');if(p&&bar.parentNode!==p)p.insertBefore(bar,p.firstChild)}
- function estado(){var ai=document.getElementById('arqInfo');if(ai&&/^(Leyendo|Preparando)/.test(ai.textContent||''))return {c:'listo',m:t('leyendo'),b:null};
+ function estado(){var ai=document.getElementById('arqInfo');if(ai&&/^(Leyendo|Preparando|Bajando)/.test(ai.textContent||''))return {c:'listo',m:t('leyendo'),b:null};
   try{if(typeof leer==='function')leer()}catch(_){}
   var L=(window.cur&&cur.lineas)||[];var cero=L.filter(function(l){return !(parseFloat(l.p)>0)}).length;
   if(window.AJ&&(!AJ.nombre||!AJ.tel))return {c:'aviso',m:t('datos'),b:t('datosBtn'),f:'irAAjustes'};
