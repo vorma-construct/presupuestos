@@ -4,6 +4,9 @@
  if(!window.EMP||!EMP.id)return;
  var K='vr_uso',o;try{o=JSON.parse(localStorage.getItem(K)||'null')}catch(e){o=null}
  o=o||{dias:{},total:{}};
+ /* el aparato de Asier se marca abriendo la app una vez con ?mio=1 (o ?mio=0 para quitarlo) */
+ try{var qm=new URLSearchParams(location.search).get('mio');if(qm==='1')localStorage.setItem('vr_mio','1');if(qm==='0')localStorage.removeItem('vr_mio')}catch(e){}
+ var MIO=false;try{MIO=localStorage.getItem('vr_mio')==='1'}catch(e){}
  var dev;try{dev=localStorage.getItem('vr_dev');if(!dev){dev=Math.random().toString(36).slice(2,10);localStorage.setItem('vr_dev',dev)}}catch(e){dev='x'}
  function hoy(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
  var UA=navigator.userAgent||'',DISP=/iPhone/.test(UA)?'iPhone':/iPad/.test(UA)?'iPad':/Android/.test(UA)?('Android'+((UA.match(/;\s*([^;)]+?)\s+Build/)||[])[1]?' · '+UA.match(/;\s*([^;)]+?)\s+Build/)[1]:'')):/Windows/.test(UA)?'Ordenador Windows':/Mac/.test(UA)?'Mac':'Otro';
@@ -11,7 +14,7 @@
  var t=null;
  function subir(){clearTimeout(t);t=setTimeout(function(){try{if(!(window.FB&&FB.uid&&FB.db))return;var u=(window.firebase&&firebase.auth&&firebase.auth().currentUser)||{};
    var nP=0,nM=0;try{Object.keys(DB.presus||{}).forEach(function(k){nP++;if(DB.presus[k].firmaTok)nM++})}catch(e){}
-   FB.db.collection('seguimiento').doc('uso_'+EMP.id+'_'+dev).set({tipo:'uso',empresa:EMP.id,marca:(window.AJ&&AJ.marca)||EMP.nombreApp||EMP.id,cuenta:u.email||'',uid:FB.uid,disp:DISP,instalada:instalada(),ver:window.APP_VERSION||'',
+   FB.db.collection('seguimiento').doc('uso_'+EMP.id+'_'+dev).set({tipo:'uso',empresa:EMP.id,marca:(window.AJ&&AJ.marca)||EMP.nombreApp||EMP.id,cuenta:u.email||'',uid:FB.uid,mio:MIO,disp:DISP,instalada:instalada(),ver:window.APP_VERSION||'',
     ultimo:o.ultimo||Date.now(),ultimoQue:o.ultimoQue||'',dias:o.dias,total:o.total,presupuestos:nP,mandados:nM,error:o.error||'',errorTs:o.errorTs||0,ts:Date.now()},{merge:false}).catch(function(){})}catch(e){}},2500)}
  function apunta(q){var d=hoy();o.dias[d]=o.dias[d]||{};o.dias[d][q]=(o.dias[d][q]||0)+1;o.total[q]=(o.total[q]||0)+1;o.ultimo=Date.now();o.ultimoQue=q;
   var ks=Object.keys(o.dias).sort();while(ks.length>90)delete o.dias[ks.shift()];
