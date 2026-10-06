@@ -12,13 +12,27 @@ main{padding:14px;max-width:760px;margin:0 auto}.emp{margin:0 0 18px}.emp h2{fon
 .nums{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:14px}.nums b{font-size:16px}
 .tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12.5px;font-weight:700}.ok{background:#E3F1E7;color:var(--ok)}.warn{background:#FDE8DE;color:var(--warn)}.bad{background:#FBE3E0;color:var(--bad)}
 .err{margin-top:8px;font-size:13px;color:var(--bad);background:#FBE3E0;border-radius:8px;padding:6px 8px}
+.pres{border-left:4px solid var(--line)}.pres.mal{border-left-color:var(--bad)}.pres.bien{border-left-color:var(--ok)}
+.pres details{margin-top:8px}.pres summary{cursor:pointer;color:var(--mut);font-size:13.5px}
+.lin{display:grid;grid-template-columns:1fr auto auto;gap:4px 10px;font-size:13px;padding:4px 0;border-top:1px dashed var(--line)}.lin.cero{color:var(--bad)}
 .consejo{margin-top:8px;font-size:13.5px;background:#FFF6E5;border-radius:8px;padding:8px 10px}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121212;--card:#1C1C1C;--ink:#EEE;--mut:#AAA;--line:#333}}
 </style></head><body>
 <header><h1>¿Usan la aplicación?</h1><p>Solo cuenta cuándo la abren y qué hacen. No guarda lo que escriben. Ellos no ven esta página.</p></header>
 <main id="m"><p class="sub">Cargando…</p></main>
+<main id="rev">
+ <section class="emp"><h2>Sus presupuestos, uno a uno</h2>
+  <div class="card" id="login"><div class="sub" style="margin-bottom:8px">Para ver lo que han hecho de verdad hay que entrar con tu cuenta de administrador.</div>
+   <input id="lg_e" type="email" placeholder="Correo" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;font:inherit">
+   <input id="lg_p" type="password" placeholder="Contraseña" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px;font:inherit">
+   <button id="lg_b" style="width:100%;padding:11px;border:0;border-radius:8px;background:#111214;color:#fff;font-weight:700;font:inherit;cursor:pointer">Entrar</button>
+   <div class="sub" id="lg_m" style="margin-top:6px"></div></div>
+  <div id="lista"></div>
+ </section>
+</main>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script>
 var CFG={apiKey:"AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q",authDomain:"reformas-ioan.firebaseapp.com",projectId:"reformas-ioan",storageBucket:"reformas-ioan.firebasestorage.app",messagingSenderId:"65105142083",appId:"1:65105142083:web:cfcb082d4406f938c60ff6"};
 firebase.initializeApp(CFG);var db=firebase.firestore();
@@ -47,4 +61,29 @@ db.collection('seguimiento').where('tipo','==','uso').get().then(function(q){var
     (x.error?'<div class="err">Último fallo ('+hace(x.errorTs)+'): '+esc(x.error)+'</div>':'')+(consejo?'<div class="consejo">'+consejo+'</div>':'')+'</div>'}).join('')+'</section>'}).join('')+
   '<p class="sub">Verde fuerte: ese día hizo algo (presupuesto, dictado, PDF, fotos). Verde claro: solo la abrió.</p>'
 }).catch(function(e){document.getElementById('m').innerHTML='<div class="card">No he podido leer los datos: '+esc(e.message)+'</div>'});
+
+/* ---- revision de presupuestos (solo administrador) ---- */
+var auth=firebase.auth();
+function eur(x){return (Math.round((x||0)*100)/100).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'}
+function numv(v){return parseFloat(String(v==null?'':v).replace(',','.'))||0}
+document.getElementById('lg_b').onclick=function(){var m=document.getElementById('lg_m');m.textContent='Entrando…';
+ auth.signInWithEmailAndPassword(document.getElementById('lg_e').value.trim(),document.getElementById('lg_p').value).catch(function(e){m.textContent='No he podido entrar: '+e.message})};
+auth.onAuthStateChanged(function(us){if(!us)return;document.getElementById('login').style.display='none';cargarPresus()});
+function cargarPresus(){var L=document.getElementById('lista');L.innerHTML='<p class="sub">Leyendo sus presupuestos…</p>';
+ db.collection('seguimiento').where('tipo','==','uso').get().then(function(q){var uids={};q.forEach(function(d){var x=d.data();if(x.uid&&x.empresa)uids[x.uid]=x.marca||x.empresa});
+  var ks=Object.keys(uids);if(!ks.length){L.innerHTML='<div class="card">Todavía no hay ninguna empresa con la app abierta.</div>';return}
+  return Promise.all(ks.map(function(uid){return db.collection('clientes').doc(uid).collection('presupuestos').get().then(function(qq){var a=[];qq.forEach(function(d){a.push(d.data())});return {uid:uid,marca:uids[uid],presus:a}})}))
+ }).then(function(E){if(!E)return;L.innerHTML=E.map(function(e){var P=e.presus.sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+   if(!P.length)return '<h2 style="font-size:16px">'+esc(e.marca)+'</h2><div class="card">Sin presupuestos guardados en la nube.</div>';
+   return '<h2 style="font-size:16px">'+esc(e.marca)+' · '+n(P.length)+(P.length===1?' presupuesto':' presupuestos')+'</h2>'+P.map(function(p){
+    var ls=p.lineas||[],cero=ls.filter(function(l){return !(numv(l.p)>0)}),sinD=ls.filter(function(l){return !String(l.d||'').trim()}),tot=ls.reduce(function(a,l){return a+numv(l.q)*numv(l.p)},0);
+    var prob=[];if(!ls.length)prob.push('sin ninguna partida');if(cero.length)prob.push(n(cero.length)+(cero.length===1?' partida a cero':' partidas a cero'));if(sinD.length)prob.push(n(sinD.length)+' sin descripción');if(!p.nom)prob.push('sin nombre de cliente');
+    var estado=p.firmado||p.firmaOk?'<span class="tag ok">firmado por el cliente</span>':p.firmaTok?'<span class="tag warn">mandado, sin firmar</span>':'<span class="tag">sin mandar</span>';
+    var cls=!ls.length||cero.length?'mal':'bien';
+    return '<div class="card pres '+cls+'"><div class="frase">Nº '+esc(p.num)+' · '+esc(p.nom||'sin cliente')+' '+estado+'</div>'+
+     '<div class="sub">'+esc(p.dir||'')+(p.ts?' · '+hace(p.ts):'')+' · '+n(ls.length)+(ls.length===1?' partida':' partidas')+' · '+eur(tot)+' sin IVA</div>'+
+     (prob.length?'<div class="err">'+prob.join(' · ')+'</div>':'<div class="sub" style="color:var(--ok);margin-top:4px">Todo con precio y descripción.</div>')+
+     (ls.length?'<details><summary>Ver las partidas</summary>'+ls.map(function(l){return '<div class="lin'+(numv(l.p)>0?'':' cero')+'"><span>'+esc(l.d||'(sin descripción)')+'</span><span>'+numv(l.q)+' '+esc(l.u||'')+'</span><span>'+eur(numv(l.p))+'</span></div>'}).join('')+'</details>':'')+
+    '</div>'}).join('')}).join('')
+ }).catch(function(e){L.innerHTML='<div class="card">No he podido leer los presupuestos: '+esc(e.message)+'. Si dice «permission», faltan las reglas nuevas en Firebase.</div>'})}
 </script></body></html>
