@@ -48,11 +48,11 @@
   i.parentNode.insertBefore(p,i.nextSibling)})}
  setTimeout(pista,1200);setTimeout(pista,5000);
 
- /* Android: PDF compartido desde WhatsApp → entra solo en «Tengo el PDF del arquitecto» */
+ /* Android: PDF, foto o capturas compartidas desde WhatsApp, Gmail o la galería → entra solo y hace el presupuesto */
  if(/[?&]compartido=1/.test(location.search)&&window.caches){
-  history.replaceState(null,'',location.pathname);
+  window.__compartido=1;history.replaceState(null,'',location.pathname);
   caches.open('compartido').then(function(c){return c.keys().then(function(ks){return Promise.all(ks.map(function(k){return c.match(k).then(function(r){return r.blob().then(function(b){var n=decodeURIComponent(r.headers.get('x-nombre')||'archivo.pdf');return new File([b],n,{type:b.type||'application/pdf'})})})})).then(function(fs){ks.forEach(function(k){c.delete(k)});return fs})})}).then(function(fs){
-   fs=(fs||[]).filter(function(f){return /pdf/i.test(f.type)||/\.pdf$/i.test(f.name)});if(!fs.length)return;
+   fs=(fs||[]).filter(function(f){return /pdf|image/i.test(f.type)||/\.(pdf|jpe?g|png|webp|heic)$/i.test(f.name)});if(!fs.length)return;
    var meter=function(){try{if(window.cur&&cur.lineas&&cur.lineas.length&&window.nuevo)nuevo();var b=document.querySelector('button.ntab[data-t="presupuesto"]');if(b)b.click();if(window.meterPor)meterPor('pdf');
      var inp=document.getElementById('pdfArq');if(!inp)return;var dt=new DataTransfer();fs.forEach(function(f){dt.items.add(f)});inp.files=dt.files;inp.dispatchEvent(new Event('change',{bubbles:true}));
      var cp=document.getElementById('cardPdf');if(cp)cp.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}};

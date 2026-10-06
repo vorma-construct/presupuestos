@@ -13,6 +13,7 @@
       atras:'Atrás',solo:'Ya me apaño, quitar la ayuda',lang:'Română',
       p1:'Paso 1 de 4 · Cuenta los trabajos abajo y pulsa «Convertir en trabajos»',
       p1pdf:'Paso 1 de 4 · Elige el PDF o la captura (botón «Elegir archivo», abajo)',
+      leyendo:'Leyendo… espera unos segundos y no cierres la app',
       p1mano:'Paso 1 de 4 · Busca cada trabajo en el buscador de abajo y tócalo para añadirlo',
       cero:'Paso 2 de 4 · Hay {n} sin precio: toca el precio y escríbelo',cero1:'Paso 2 de 4 · Hay 1 trabajo sin precio: toca el precio y escríbelo',
       cli:'Paso 3 de 4 · Pon el nombre y el teléfono del cliente',cliBtn:'Ir al cliente',
@@ -26,6 +27,7 @@
       atras:'Înapoi',solo:'Mă descurc, scoate ajutorul',lang:'Español',
       p1:'Pasul 1 din 4 · Spune lucrările mai jos și apasă «Convertir en trabajos»',
       p1pdf:'Pasul 1 din 4 · Alege PDF-ul arhitectului (butonul «Elegir archivo», mai jos)',
+      leyendo:'Citesc… așteaptă câteva secunde și nu închide aplicația',
       p1mano:'Pasul 1 din 4 · Caută fiecare lucrare în căutare și atinge-o ca să o adaugi',
       cero:'Pasul 2 din 4 · Sunt {n} fără preț: atinge prețul și scrie-l',cero1:'Pasul 2 din 4 · E 1 lucrare fără preț: atinge prețul și scrie-l',
       cli:'Pasul 3 din 4 · Pune numele și telefonul clientului',cliBtn:'La client',
@@ -101,7 +103,8 @@
  /* ---- la barra del siguiente paso ---- */
  var bar=document.createElement('div');bar.id='guiaBarra';
  function colocarBarra(){var p=document.getElementById('page-presupuesto');if(p&&bar.parentNode!==p)p.insertBefore(bar,p.firstChild)}
- function estado(){try{if(typeof leer==='function')leer()}catch(_){}
+ function estado(){var ai=document.getElementById('arqInfo');if(ai&&/^(Leyendo|Preparando)/.test(ai.textContent||''))return {c:'listo',m:t('leyendo'),b:null};
+  try{if(typeof leer==='function')leer()}catch(_){}
   var L=(window.cur&&cur.lineas)||[];var cero=L.filter(function(l){return !(parseFloat(l.p)>0)}).length;
   if(window.AJ&&(!AJ.nombre||!AJ.tel))return {c:'aviso',m:t('datos'),b:t('datosBtn'),f:'irAAjustes'};
   if(!L.length)return {c:'listo',m:modo==='pdf'?t('p1pdf'):modo==='mano'?t('p1mano'):t('p1'),b:null};
@@ -121,7 +124,10 @@
   if(b.id==='guiaBtnAyuda'){abrir('que');return}
   var f=b.getAttribute('data-f');
   if(f==='enviar'){try{menuEnviar()}catch(_){}return}
-  if(f==='irACero'){var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'center'});return}
+  if(f==='irACero'){var rows=[].slice.call(document.querySelectorAll('#tb tr')),vale=function(r,c){var x=r.querySelector(c);return x&&parseFloat(String(x.value).replace(',','.'))>0};
+   var rq=rows.find(function(r){return !vale(r,'.lq')}),rp=rows.find(function(r){return !vale(r,'.lp')}),r=rq||rp;
+   if(!r){var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'center'});return}
+   r.scrollIntoView({block:'center'});var inp=r.querySelector(rq?'.lq':'.lp');try{inp.focus({preventScroll:true});inp.select()}catch(_){}return}
   if(f==='irACliente'){var n=document.getElementById('f_nom');if(n){n.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){n.focus()},400)}return}
   try{var L=(typeof problemas==='function')?problemas():[];var x=L.find(function(y){return y.f===f});if(x&&typeof continuar==='function'){continuar();return}}catch(_){}
   if(f==='irAAjustes'||f==='irAFirma'){try{ST('ajustes')}catch(_){}}
@@ -134,6 +140,7 @@
 
  /* ---- arranque: la primera vez, el asistente; despues, la barra ---- */
  function arranque(){if(g(LS_OFF)==='1'||nMandados()>=3){return}
+  if(window.__compartido){barra();return}
   var vacio=true;try{vacio=!(window.cur&&(cur.lineas||[]).length)&&!(window.cur&&cur.nom)}catch(_){}
   if(vacio)abrir('que');else barra()}
  var n=0,iv=setInterval(function(){if(window.DB&&window.AJ&&document.getElementById('page-presupuesto')){clearInterval(iv);setTimeout(arranque,600)}else if(++n>80)clearInterval(iv)},150);

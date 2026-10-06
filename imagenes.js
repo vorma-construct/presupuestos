@@ -22,9 +22,10 @@
    for(var j=0;j<p.length;j+=4){var v=p[j];if(oscuro)v=255-v;v=v>150?255:(v<90?0:v);p[j]=p[j+1]=p[j+2]=v}
    c.putImageData(d,0,0);ok(cv)};im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
  function leerImagenes(files,info){
+  if(info)info.innerHTML='<b>Preparando el lector de capturas…</b> La primera vez tarda un poco más, porque se lo baja al móvil.';
   return cargarTess().then(function(){return Tesseract.createWorker('spa',1,{workerPath:RAIZ+'ocr/worker.min.js',corePath:RAIZ+'ocr/',langPath:RAIZ+'ocr/',gzip:true})}).then(function(w){
    var textos=[],cadena=Promise.resolve();
-   [].forEach.call(files,function(f,i){cadena=cadena.then(function(){if(info)info.textContent='Leyendo la captura '+(i+1)+' de '+files.length+'…';return preparar(f)}).then(function(cv){return w.recognize(cv)}).then(function(r){textos.push(r.data.text||'')})});
+   [].forEach.call(files,function(f,i){cadena=cadena.then(function(){if(info)info.innerHTML='<b>Leyendo la captura '+(i+1)+' de '+files.length+'…</b>';return preparar(f)}).then(function(cv){return w.recognize(cv)}).then(function(r){textos.push(r.data.text||'')})});
    return cadena.then(function(){return w.terminate()}).then(function(){return textos})})}
 
  /* ---------------- utilidades ---------------- */
@@ -132,7 +133,7 @@
  window.apuntaRatio=function(desc,r){if(!(r>0.2&&r<5)||!window.DB)return;DB.ratios=(DB.ratios||[]).concat([{f:familia(desc),r:Math.round(r*1000)/1000,ts:Date.now()}]).slice(-60);try{save()}catch(e){}};
 
  /* ---------------- cada trabajo del correo -> partidas ---------------- */
- function L(d,q,u,o){o=o||{};return {d:cap(d),q:q,u:u,tar:o.tar||'',mer:o.mer||null,falta:o.falta||'',nota:o.nota||''}}
+ function L(d,q,u,o){o=o||{};return {d:cap(d),q:q,u:u,tar:o.tar||'',mer:o.mer||null,falta:o.falta||'',nota:o.nota||'',notaTar:o.notaTar||''}}
  function zonasDe(p,re){var m=p.match(re);if(!m)return '';return m[1].replace(/\s*,?\s*\d+(?:,\d+)?\s*(?:m2|ml|m²)\b.*$/i,'').replace(/\s*-\s*/g,', ').replace(/\s*,\s*y\s+/g,' y ').replace(/^la zona de\s+/i,'').replace(/[\s,.]+$/,'').trim()}
  function conArt(z){var t=sa(z).trim();if(/^(la|el|los|las)\s/.test(t)||/,| y /.test(t))return z;if(/^(cocina|habitacion|terraza|entrada|despensa|vivienda|casa|zona)\b/.test(t))return 'la '+z;if(/^(bano|salon|pasillo|comedor|dormitorio|hall|aseo|txoko|garaje|piso|trastero)\b/.test(t))return 'el '+z;return z}
  function de(z){z=conArt(z);return ('de '+z).replace(/^de el\b/,'del')}
@@ -167,15 +168,16 @@
   [/^(volver a (llevar|traer|subir|meter|colocar)|devolver|devolucion|traer de nuevo|subir de nuevo)\b.*\balmacen\b/,function(n,p){var m=p.match(/al? (?:piso|casa|vivienda)\s+(.*)$/i);var que=m?m[1]:p.replace(/^.*?almac[eé]n\s*/i,'');que=que.replace(/^el\s+/i,'del ').replace(/\s*,\s*y\s+/g,' y ');
    return [L('Traslado desde almacén y colocación en la vivienda '+(/^del\s/.test(que)?'':'de ')+que,1,'ud')]}],
   /* tabiques */
-  [/^(derribo|derribar|demoler|demolicion|tirar|quitar)\b.*\btabiques?\b/,function(n,p){var lg=longitudes(n),col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];
-   return [L('Demolición de tabique'+(/plano/.test(n)?' según plano':'')+(col?' (marcado en '+col+')':'')+(lg.length?', de '+lg.map(f2).join(' m + ')+' m de longitud':'')+', con retirada de escombro a vertedero autorizado',1,'ud',{tar:'tab'})]}],
+  [/^(derribo|derribar|demoler|demolicion|tirar|quitar)\b.*\btabiques?\b/,function(n,p,c){var lg=longitudes(n),col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];
+   var alto=(c&&c.alto)||0,suma=lg.reduce(function(a,b){return a+b},0),m2=suma&&alto?r2(suma*alto):0;
+   return [L('Demolición de tabique'+(/plano/.test(n)?' según plano':'')+(col?' (marcado en '+col+')':'')+(lg.length?', de '+lg.map(f2).join(' m + ')+' m de longitud'+(m2?' y '+f2(alto)+' m de altura ('+f2(m2)+' m²)':''):'')+', con retirada de escombro a vertedero autorizado',1,'ud',{tar:'tab',nota:m2?'el tabique a derribar mide '+f2(m2)+' m² ('+lg.map(f2).join(' + ')+' m de largo por '+f2(alto)+' m de alto); tu tarifa lo cobra por unidad':''})]}],
   [/^(levantar|hacer|construir|ejecutar|formar|formacion|colocar|poner|cerrar con)\b.*\btabique\b/,function(n,p,c){var lg=(n.match(/tabique(?: nuevo)?(?: de)?\s*(\d+(?:,\d+)?)\s*m\b/)||[])[1];lg=lg?nm(lg):0;
    var col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];var alto=c.alto||0;var out=[];
    var d='Formación de tabique nuevo'+(lg?' de '+f2(lg)+' m de longitud':'')+(alto?' hasta techo ('+f2(alto)+' m de altura)':'')+(/plano|marcado/.test(n)?', según plano':'')+(col?' (marcado en '+col+')':'');
    if(lg&&alto)out.push(L(d,r2(lg*alto),'m2',{tar:'pla',nota:'el tabique nuevo lo he medido con '+f2(lg)+' m de largo por '+f2(alto)+' m de altura hasta techo, que es la que da el correo'}));
    else out.push(L(d,lg||0,lg?'ml':'m2',{falta:lg?'':'los m² del tabique'}));
    if(/\b(caja|cala|cajon|armazon|casoneto|kit)\b.*\bcorredera\b/.test(n)){var an=(n.match(/(\d+(?:,\d+)?)\s*m de ancho/)||[])[1],al=(n.match(/(\d+(?:,\d+)?)\s*m de alto/)||[])[1];
-    out.push(L('Suministro y colocación de armazón para puerta corredera empotrada'+(/hasta (el )?techo/.test(n)?', hasta techo':'')+(an||al?', de '+(an?an+' m de ancho':'')+(an&&al?' y ':'')+(al?al+' m de alto':''):''),1,'ud',{tar:'cor'}))}
+    out.push(L('Suministro y colocación de armazón para puerta corredera empotrada'+(/hasta (el )?techo/.test(n)?', hasta techo':'')+(an||al?', de '+(an?an+' m de ancho':'')+(an&&al?' y ':'')+(al?al+' m de alto':''):''),1,'ud',{tar:'cor',notaTar:/hasta (el )?techo/.test(n)?'el armazón de la corredera es hasta techo'+(al?' ('+al+' m de alto)':'')+' y el precio de tu tarifa es el del normal: revísalo':''}))}
    return out}],
   /* puertas y rodapies */
   [/^(soltar|quitar|desmontar|retirar|levantar|arrancar)\b.*\bpuertas?\b.*\brodapies?\b/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];var ml=mlDe(n);
@@ -230,7 +232,7 @@
   if(!s&&x.mer){p0=deMercado(x.mer[0],x.mer[1],x.u);if(p0>0)s='mercado'}
   if(!s&&x.generica){try{var pz=window.parecida?parecida(x.orig):null;if(pz&&pz.t&&pz.t.p>0&&uN(pz.t.u)===uN(x.u)&&familia(pz.t.d)===fam&&objeto(pz.t.d)===obj){p0=pz.t.p;s='tarifa'}}catch(e){}
    if(!s){try{var R=window.precioRealDe?precioRealDe({t:x.d,u:x.u,q:x.q||1,pa:0}):null;if(R&&R.p>0&&!R.sinMercado&&R.famDesc&&familia(R.famDesc)===fam&&objeto(R.famDesc)===obj){p0=r2(R.p);s='mercado'}}catch(e){}}}
-  if(s){x.p0=p0;x.r=ratio(fam);x.p=r2(p0*x.r);x.src=s}else{x.p=0;x.src=''}}
+  if(s){x.p0=p0;x.r=ratio(fam);x.p=r2(p0*x.r);x.src=s;if(s==='tarifa'&&x.notaTar)x.nota=(x.nota?x.nota+'; ':'')+x.notaTar}else{x.p=0;x.src=''}}
 
  /* ---------------- al elegir capturas: montar el presupuesto ---------------- */
  var leer0=window.leerArquitecto;
@@ -238,7 +240,9 @@
   var imgs=[].filter.call(files||[],function(f){return /^image\//.test(f.type)||/\.(jpe?g|png|heic|webp)$/i.test(f.name||'')}),pdfs=[].filter.call(files||[],function(f){return imgs.indexOf(f)<0});
   if(pdfs.length&&leer0)leer0.call(this,pdfs);
   if(!imgs.length)return;
-  var info=document.getElementById('arqInfo');if(info)info.textContent='Leyendo…';
+  try{var gc=document.getElementById('guiaCapa');if(gc&&gc.classList.contains('on')){gc.classList.remove('on');document.body.style.overflow=''}}catch(e){}
+  var info=document.getElementById('arqInfo');if(info){info.innerHTML='<b>Leyendo…</b>';try{var cp=document.getElementById('cardPdf');if(cp&&cp.style.display!=='none')cp.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
+  try{if(window.guiaBarra)setTimeout(guiaBarra,50)}catch(e){}
   Promise.all([leerImagenes(imgs,info),window.basePrecios?basePrecios():null]).then(function(res){var textos=res[0];
    var partes=textos.map(aItems),items=unirItems(partes.map(function(x){return x.items}));
    var firma=[].concat.apply([],partes.map(function(x){return x.firma}));var cli=clienteDe(firma);
@@ -257,7 +261,7 @@
      if(x.p>0)n[x.src]++;else n.cero++;total++;if(x.r&&x.r!==1){aj.push(x.r)}
      var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;cur.lineas.push(l)})});
    try{renderLineas()}catch(e){}
-   try{meterPor('mano')}catch(e){}
+   try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display='';try{sessionStorage.setItem('vr_meter','mano')}catch(_){}}catch(e){}
    var conP=n.tuyo+n.tarifa+n.mercado;
    var msg='<b>Leído de '+(imgs.length===1?'la captura':'las '+imgs.length+' capturas')+':</b> '+items.length+' trabajos del cliente, '+total+' partidas. '+
     (conP?conP+' con precio ('+[n.tuyo?n.tuyo+' tuyos de otras veces':'',n.tarifa?n.tarifa+' de tu tarifa':'',n.mercado?n.mercado+' de la tabla de mercado':''].filter(Boolean).join(', ')+'). ':'')+
@@ -272,7 +276,7 @@
    if(cm){cm.insertAdjacentHTML('afterbegin','<div id="avisoCapturas" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45">'+msg+'</div>')}
    if(info)info.textContent='';
    try{if(cur.nom&&typeof guardar==='function')guardar()}catch(e){}
-   var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'start'});
+   setTimeout(function(){try{var a=document.getElementById('avisoCapturas')||document.getElementById('tb');a.scrollIntoView({block:'start'});var tn=document.getElementById('topnav'),h=0;if(tn){var r=tn.getBoundingClientRect();if(r.top<=2)h=r.bottom}window.scrollBy(0,-(h+10))}catch(e){}},300);
    try{if(window.__usoApunta)__usoApunta('imagen')}catch(e){}
    try{if(window.guiaBarra)guiaBarra()}catch(e){}
   }).catch(function(e){if(info)info.textContent='No he podido leer la captura ('+(e&&e.message||e)+'). Copia el texto y pégalo en «Lo cuento yo».'})};
