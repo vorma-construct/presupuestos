@@ -53,15 +53,37 @@
   [/\b(?:facem|face|facut|executam|executie)\b/g,' hacer '],
   [/\b(?:noua|nou|noi|noile|nouă)\b/g,' nuevo '],[/\b(?:vechi|veche|vechea|vechiul)\b/g,' viejo '],
   [/\b(?:bucati|bucata|buc)\b/g,' unidades '],
-  [/\b(puertas|ventanas|baldosas|tuberias)\s+nuevo\b/g,'$1 nuevas'],[/\b(enchufes|interruptores|radiadores|azulejos|muebles)\s+nuevo\b/g,'$1 nuevos'],[/\bsi\b/g,' y '],[/\bcu\b/g,' con '],[/\bfara\b/g,' sin '],[/\bin\b/g,' en '],[/\bdin\b/g,' de ']
+  [/\b(?:usa|usile|usii)\s+de\s+(?:la\s+)?intrare\b/g,' puerta de entrada '],[/\bdulap(?:ul|uri)?\s+de\s+haine\b|\bdulap(?:ul|uri)?\b|\bsifonier(?:ul|e)?\b/g,' armario '],
+  [/\bnis[ae]\b|\bnisa\b/g,' hornacina '],[/\bintrar(?:e|ea)\b/g,' entrada '],[/\btelevizor(?:ul)?\b/g,' television '],[/\blambriu(?:l)?\b/g,' friso de madera '],[/\bpervaz(?:ul|uri|urile)?\b/g,' alfeizar '],
+  [/\bplinta\b|\bplintele\b|\bplinte\b/g,' rodapie '],[/\bscar[ae]\b|\bscarile\b/g,' escalera '],[/\bbalustrada\b/g,' barandilla '],[/\bjgheab(?:uri)?\b/g,' canalon '],[/\bacoperis(?:ul)?\b/g,' tejado '],[/\btigl[ae]\b/g,' tejas '],
+  [/\bfatad[ae]\b|\bfatada\b/g,' fachada '],[/\bboiler(?:ul)?\b/g,' termo '],[/\bhot[ae]\b/g,' campana extractora '],[/\bblat(?:ul)?\b/g,' encimera '],[/\bmocheta\b/g,' moqueta '],[/\bpiatr[ae]\b/g,' piedra '],
+  [/\bde\s+la\b/g,' de '],[/\bpentru\b/g,' para '],[/\b(?:dintre|intre)\b/g,' entre '],[/(^|\s)pe(?=\s)/g,'$1en '],[/(^|\s)sau(?=\s)/g,'$1o '],[/\bmare\b|\bmari\b/g,' grande '],[/\bmic[ai]?\b/g,' pequeño '],
+  [/\btoate\b/g,' todas '],[/\btot(?:ul)?\b/g,' todo '],[/(^|\s)sa(?=\s)/g,'$1'],[/\b(?:vrem|vreau|vrea|trebuie|aici|acolo|asa|cam|aproximativ|deci|apoi|dupa|pana)\b/g,' '],[/(^|\s)o(?=\s)/g,'$1un '],[/(^|\s)la(?=\s)/g,'$1en '],
+  [/\b(puertas|ventanas|baldosas|tuberias)\s+nuevo\b/g,'$1 nuevas'],[/\b(enchufes|interruptores|radiadores|azulejos|muebles)\s+nuevo\b/g,'$1 nuevos'],[/(^|\s)si(?=\s)/g,'$1y '],[/(^|\s)cu(?=\s)/g,'$1con '],[/\bfara\b/g,' sin '],[/(^|\s)in(?=\s)/g,'$1en '],[/(^|\s)din(?=\s)/g,'$1de ']
  ];
- window.rumanoAEspanol=function(t){var s=' '+fold(t)+' ';R.forEach(function(r){s=s.replace(r[0],r[1])});return s.replace(/\s{2,}/g,' ').trim()};
+ var _WL=null;
+ function listaEs(){if(_WL)return _WL;var W={},add=function(s){fold(s).split(/[^a-z0-9ñ]+/).forEach(function(w){if(w)W[w]=1})};
+  try{(window.tarifa?tarifa():[]).forEach(function(t){add(t.d);(t.k||[]).forEach(add)})}catch(e){}
+  R.forEach(function(x){if(typeof x[1]==='string')add(x[1])});
+  add('de del el la los las un una unos unas y o con sin en a al por para que se le lo su sus mas muy todo toda todos todas cada otro otra este esta nuevo nueva nuevos nuevas viejo vieja poner colocar quitar cambiar hacer montar tirar picar pintar alicatar reformar reforma integral metros cuadrados lineales alto ancho largo unidades unidad ud entre hasta desde sobre bajo encima debajo dentro fuera lado frente pared paredes suelo techo puerta puertas ventana ventanas baño cocina habitacion salon pasillo piso casa terraza azulejos baldosa inodoro lavabo grifo ducha plato bañera mueble espejo pladur parquet flotante tabique falso enchufes interruptores puntos luz radiadores caldera fontaneria instalacion electrica aislamiento contenedor escombro limpieza final alisar enlucido yeso nivelar');
+  _WL=W;return W}
+ var FIN=[[/\bponer\s+(?:un\s+)?cocina(?:\s+nuevo)?\b/g,'montar cocina'],[/\ben\s+(ventanas|puertas|paredes)\b/g,'en las $1'],[/\bun\s+(hornacina|cocina|encimera|puerta|ventana|pared|escalera|fachada|campana|baldosa|bañera|ducha)\b/g,'una $1'],
+  [/\b(cocina|puerta|ventana|pared|hornacina|encimera|escalera|fachada|campana|bañera|baldosa)\s+nuevo\b/g,'$1 nueva'],[/\ben\s+en\b/g,'en']];
+ window.rumanoAEspanol=function(t){var s=' '+fold(t)+' ';R.forEach(function(r){s=s.replace(r[0],r[1])});FIN.forEach(function(r){s=s.replace(r[0],r[1])});return s.replace(/\s{2,}/g,' ').trim()};
  var conv0=window.convertir;
  if(conv0)window.convertir=function(){var ta=document.getElementById('dictado'),orig=ta?ta.value:'';
   if(!ta||!orig.trim()||!esRumano(orig))return conv0.apply(this,arguments);
   var es=rumanoAEspanol(orig),n0=((window.cur||{}).lineas||[]).length;ta.value=es;var r;try{r=conv0.apply(this,arguments)}finally{ta.value=orig}
-  setTimeout(function(){var L=((window.cur||{}).lineas||[]).slice(n0),malas=L.filter(function(l){return esRumano(l.d||'')});
-   var info=document.getElementById('convInfo');if(info)info.insertAdjacentHTML('afterbegin','<div style="color:#1B6B36;margin-bottom:4px"><b>Entendido en rumano.</b> Lo he pasado al español: «'+es.replace(/</g,'')+'»</div>'+(malas.length?'<div style="color:#b3261e;margin-bottom:4px">'+malas.length+' línea(s) han quedado con palabras en rumano: escríbelas en español antes de mandar.</div>':''))},300);
+  setTimeout(function(){var L0=((window.cur||{}).lineas||[]),quit=0,limp=0,noSe=[];
+   /* garantía: ninguna palabra rumana en lo que verá el cliente. Las líneas de la tarifa ya están en español;
+      en las demás solo se quedan palabras españolas conocidas (tarifa, diccionario y palabras de uso). */
+   var WL=listaEs(),T=(window.tarifa?tarifa():[]);
+   for(var i=L0.length-1;i>=n0;i--){var l=L0[i];if(T.some(function(t){return l.d===t.d||l.d.indexOf(t.d+' \u2014')===0}))continue;
+    var ws=String(l.d||'').split(/\s+/),ok=ws.filter(function(w){var f=fold(w).replace(/[^a-z0-9ñ,.]/g,'').replace(/[,.]$/,'');return !f||/^\d/.test(f)||WL[f]});
+    if(ok.length===ws.length)continue;var malas=ws.filter(function(w){return ok.indexOf(w)<0});noSe.push(malas.join(' '));L0.splice(i,1);quit++}
+   if(quit||limp){try{renderLineas();leer();save()}catch(e){}}
+   var L=L0.slice(n0),malas=L.filter(function(l){return esRumano(l.d||'')});
+   var info=document.getElementById('convInfo');if(info)info.insertAdjacentHTML('afterbegin','<div style="color:#1B6B36;margin-bottom:4px"><b>Entendido en rumano.</b> Lo he pasado al español: «'+es.replace(/</g,'')+'»</div>'+(quit?'<div style="color:#b3261e;margin-bottom:4px"><b>No he sabido pasar al español:</b> «'+noSe.join('», «').replace(/</g,'')+'». Ese trabajo no lo he metido: añádelo a mano en español con «+ Escribir uno a mano».</div>':''))},300);
   return r};
  /* botón de idioma junto a «Dictar con voz» */
  function boton(){var v=document.getElementById('btnVoz');if(!v||document.getElementById('btnIdioma'))return;var b=document.createElement('button');b.type='button';b.id='btnIdioma';b.className='sec';

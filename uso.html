@@ -1,0 +1,50 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Uso de las apps</title>
+<style>
+:root{--bg:#F4F3F1;--card:#fff;--ink:#141414;--mut:#5E5A55;--line:#E1DDD7;--ok:#1B7A3A;--warn:#C24A00;--bad:#B3261E}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:#111214;color:#fff;padding:16px}h1{margin:0;font-size:20px}header p{margin:4px 0 0;color:#B9B6B2;font-size:13.5px}
+main{padding:14px;max-width:760px;margin:0 auto}.emp{margin:0 0 18px}.emp h2{font-size:18px;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.frase{font-size:16px;font-weight:700;margin-bottom:4px}.sub{color:var(--mut);font-size:13.5px}
+.dias{display:flex;gap:4px;margin:10px 0 6px}.d{flex:1;height:26px;border-radius:5px;background:#ECE9E4;position:relative}.d.si{background:var(--ok)}.d.poco{background:#9BCBA9}
+.d span{position:absolute;bottom:-17px;left:0;right:0;text-align:center;font-size:10px;color:var(--mut)}
+.nums{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:14px}.nums b{font-size:16px}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12.5px;font-weight:700}.ok{background:#E3F1E7;color:var(--ok)}.warn{background:#FDE8DE;color:var(--warn)}.bad{background:#FBE3E0;color:var(--bad)}
+.err{margin-top:8px;font-size:13px;color:var(--bad);background:#FBE3E0;border-radius:8px;padding:6px 8px}
+.consejo{margin-top:8px;font-size:13.5px;background:#FFF6E5;border-radius:8px;padding:8px 10px}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121212;--card:#1C1C1C;--ink:#EEE;--mut:#AAA;--line:#333}}
+</style></head><body>
+<header><h1>¿Usan la aplicación?</h1><p>Solo cuenta cuándo la abren y qué hacen. No guarda lo que escriben. Ellos no ven esta página.</p></header>
+<main id="m"><p class="sub">Cargando…</p></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+var CFG={apiKey:"AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q",authDomain:"reformas-ioan.firebaseapp.com",projectId:"reformas-ioan",storageBucket:"reformas-ioan.firebasestorage.app",messagingSenderId:"65105142083",appId:"1:65105142083:web:cfcb082d4406f938c60ff6"};
+firebase.initializeApp(CFG);var db=firebase.firestore();
+var NUM=['cero','un','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'];
+function n(x,f){x=x||0;var s=x<=20?NUM[x]:String(x);if(f&&x===1)s='una';return s}
+function hace(ts){if(!ts)return 'nunca';var d=Math.floor((Date.now()-ts)/864e5),h=Math.floor((Date.now()-ts)/36e5);if(h<1)return 'hace un rato';if(d<1)return 'hoy';if(d===1)return 'ayer';return 'hace '+n(d)+' días'}
+function dia(off){var d=new Date(Date.now()-off*864e5);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+var QUE={abre:'abrirla',dicta:'dictar un presupuesto',voz:'hablar',pdfArquitecto:'meter un PDF del arquitecto',plano:'sacar un presupuesto de un plano',presupuestosDelPdf:'hacer presupuestos del PDF',mandar:'mandar un presupuesto',pdf:'sacar un PDF',nuevo:'empezar un presupuesto',fotos:'las fotos de obra',agenda:'la agenda',variante:'hacer una variante',fallo:'un fallo'};
+function esc(s){return String(s||'').replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+db.collection('seguimiento').where('tipo','==','uso').get().then(function(q){var E={};q.forEach(function(d){var x=d.data();(E[x.empresa]=E[x.empresa]||[]).push(x)});
+ var ks=Object.keys(E);if(!ks.length){document.getElementById('m').innerHTML='<div class="card">Todavía no ha entrado nadie con la versión nueva de su app.</div>';return}
+ document.getElementById('m').innerHTML=ks.map(function(k){var L=E[k].sort(function(a,b){return (b.ultimo||0)-(a.ultimo||0)});
+  return '<section class="emp"><h2>'+esc(L[0].marca||k)+'</h2>'+L.map(function(x){var T=x.total||{},D=x.dias||{};
+   var sem=0,usoSem=0;for(var i=0;i<7;i++){var dd=D[dia(i)];if(dd){sem++;usoSem+=(dd.dicta||0)+(dd.pdfArquitecto||0)+(dd.mandar||0)+(dd.pdf||0)+(dd.nuevo||0)}}
+   var dias='';for(var j=13;j>=0;j--){var z=D[dia(j)],hecho=z&&((z.dicta||0)+(z.pdfArquitecto||0)+(z.mandar||0)+(z.pdf||0)+(z.nuevo||0)+(z.fotos||0));dias+='<div class="d '+(z?(hecho?'si':'poco'):'')+'" title="'+dia(j)+'">'+''+'</div>'}
+   var dd=Math.floor((Date.now()-(x.ultimo||0))/864e5),tag=dd<=2?'<span class="tag ok">la usa</span>':dd<=7?'<span class="tag warn">poco</span>':'<span class="tag bad">no la usa</span>';
+   var consejo='';if(dd>7)consejo='Lleva más de una semana sin abrirla. Mándale un mensaje o enséñale otra vez lo básico.';
+   else if(!T.mandar&&(T.abre||0)>=3)consejo='La abre pero todavía no ha mandado ningún presupuesto: igual se atasca al hacerlo. Llámale y hacedlo juntos una vez.';
+   else if(!x.instalada&&(T.abre||0)>=3)consejo='La usa sin instalar: mándale los pasos para instalarla, así la tiene a mano.';
+   else if((T.fallo||0)>0&&x.errorTs&&Date.now()-x.errorTs<7*864e5)consejo='Ha tenido algún fallo esta semana: pásamelo y lo miro.';
+   return '<div class="card"><div class="frase">'+tag+' Última vez '+hace(x.ultimo)+(x.ultimoQue&&x.ultimoQue!=='abre'?', para '+(QUE[x.ultimoQue]||x.ultimoQue):'')+'</div>'+
+    '<div class="sub">'+esc(x.cuenta||'sin cuenta')+' · '+esc(x.disp||'')+' · '+(x.instalada?'instalada':'<b>sin instalar</b> (la usa desde el navegador)')+' · '+esc(x.ver||'')+'</div>'+
+    '<div class="sub" style="margin-top:4px">Esta semana: '+n(sem)+' día'+(sem===1?'':'s')+' con la app abierta'+(usoSem?', '+n(usoSem)+' cosa'+(usoSem===1?'':'s')+' hecha'+(usoSem===1?'':'s'):', sin hacer nada')+'.</div>'+
+    '<div class="dias">'+dias+'</div><div class="sub" style="display:flex;justify-content:space-between;font-size:11.5px"><span>hace dos semanas</span><span>hoy</span></div>'+
+    '<div class="nums"><span><b>'+(T.abre||0)+'</b> '+((T.abre||0)===1?'vez abierta':'veces abierta')+'</span><span><b>'+(x.presupuestos||0)+'</b> '+((x.presupuestos||0)===1?'presupuesto':'presupuestos')+'</span><span><b>'+(x.mandados||0)+'</b> '+((x.mandados||0)===1?'mandado':'mandados')+' al cliente</span><span><b>'+(T.dicta||0)+'</b> '+((T.dicta||0)===1?'dictado':'dictados')+'</span><span><b>'+(T.pdfArquitecto||0)+'</b> PDF del arquitecto</span><span><b>'+(T.pdf||0)+'</b> PDF sacados</span><span><b>'+(T.fotos||0)+'</b> fotos de obra</span></div>'+
+    (x.error?'<div class="err">Último fallo ('+hace(x.errorTs)+'): '+esc(x.error)+'</div>':'')+(consejo?'<div class="consejo">'+consejo+'</div>':'')+'</div>'}).join('')+'</section>'}).join('')+
+  '<p class="sub">Verde fuerte: ese día hizo algo (presupuesto, dictado, PDF, fotos). Verde claro: solo la abrió.</p>'
+}).catch(function(e){document.getElementById('m').innerHTML='<div class="card">No he podido leer los datos: '+esc(e.message)+'</div>'});
+</script></body></html>
