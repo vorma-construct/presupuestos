@@ -9,19 +9,20 @@
 
  var T={
   es:{que:'¿Qué quieres hacer?',nuevo:'Hacer un presupuesto nuevo',ver:'Ver mis presupuestos',como:'¿Cómo tienes los trabajos?',
-      voz:'Lo cuento yo, hablando o escribiendo',pdf:'Tengo el PDF del arquitecto o un plano',mano:'Los elijo yo de mi lista de precios',
+      voz:'Lo cuento yo, hablando o escribiendo',pdf:'Tengo un PDF, una foto o una captura de la lista',mano:'Los elijo yo de mi lista de precios',
       atras:'Atrás',solo:'Ya me apaño, quitar la ayuda',lang:'Română',
       p1:'Paso 1 de 4 · Cuenta los trabajos abajo y pulsa «Convertir en trabajos»',
-      p1pdf:'Paso 1 de 4 · Elige el PDF del arquitecto (botón «Elegir archivo», abajo)',
+      p1pdf:'Paso 1 de 4 · Elige el PDF o la captura (botón «Elegir archivo», abajo)',
       p1mano:'Paso 1 de 4 · Busca cada trabajo en el buscador de abajo y tócalo para añadirlo',
       cero:'Paso 2 de 4 · Hay {n} sin precio: toca el precio y escríbelo',cero1:'Paso 2 de 4 · Hay 1 trabajo sin precio: toca el precio y escríbelo',
       cli:'Paso 3 de 4 · Pon el nombre y el teléfono del cliente',cliBtn:'Ir al cliente',
       datos:'Antes de nada · Pon tu nombre y teléfono (una vez)',datosBtn:'Ponerlos',
       firma:'Paso 4 de 4 · Antes de enviar, deja tu firma para los contratos (una vez)',firmaBtn:'Firmar',
       env:'Paso 4 de 4 · Todo listo: envíaselo al cliente',envBtn:'Enviar al cliente',
-      ok:'Enviado. Cuando el cliente firme, te avisamos aquí.',ayuda:'Ayuda',cero_btn:'Ver cuáles'},
+      ok:'Enviado. Cuando el cliente firme, te avisamos aquí.',ayuda:'Ayuda',cero_btn:'Ver cuáles',
+      q1:'Paso 2 de 4 · A 1 trabajo le falta la cantidad (cuántas puertas, cuántos metros): escríbela',qn:'Paso 2 de 4 · A {n} trabajos les falta la cantidad (cuántas puertas, cuántos metros): escríbela'},
   ro:{que:'Ce vrei să faci?',nuevo:'Fac un deviz nou',ver:'Văd devizele mele',como:'Cum ai lucrările?',
-      voz:'Le spun eu, vorbind sau scriind',pdf:'Am PDF-ul arhitectului sau un plan',mano:'Le aleg eu din lista mea de prețuri',
+      voz:'Le spun eu, vorbind sau scriind',pdf:'Am un PDF, o poză sau o captură cu lista',mano:'Le aleg eu din lista mea de prețuri',
       atras:'Înapoi',solo:'Mă descurc, scoate ajutorul',lang:'Español',
       p1:'Pasul 1 din 4 · Spune lucrările mai jos și apasă «Convertir en trabajos»',
       p1pdf:'Pasul 1 din 4 · Alege PDF-ul arhitectului (butonul «Elegir archivo», mai jos)',
@@ -31,7 +32,8 @@
       datos:'Înainte de toate · Pune numele și telefonul tău (o dată)',datosBtn:'Pune-le',
       firma:'Pasul 4 din 4 · Înainte de a trimite, lasă semnătura ta pentru contracte (o dată)',firmaBtn:'Semnează',
       env:'Pasul 4 din 4 · Totul gata: trimite-l clientului',envBtn:'Trimite clientului',
-      ok:'Trimis. Când clientul semnează, te anunțăm aici.',ayuda:'Ajutor',cero_btn:'Vezi care'}
+      ok:'Trimis. Când clientul semnează, te anunțăm aici.',ayuda:'Ajutor',cero_btn:'Vezi care',
+      q1:'Pasul 2 din 4 · La 1 lucrare lipsește cantitatea (câte uși, câți metri): scrie-o',qn:'Pasul 2 din 4 · La {n} lucrări lipsește cantitatea (câte uși, câți metri): scrie-o'}
  };
  function t(k){return (T[lang]||T.es)[k]||T.es[k]||k}
 
@@ -80,6 +82,7 @@
   if(a==='atras'){paso='que';pinta();return}
   if(a==='ver'){cerrar();try{ST('clientes')}catch(_){}return}
   if(a==='solo'){s(LS_OFF,'1');cerrar();barra();return}
+  if(a==='pdf'){var fi=document.getElementById('pdfArq');if(fi){try{fi.click()}catch(_){}}}
   if(a==='voz'||a==='pdf'||a==='mano'){cerrar();empezar(a);return}
  });
  function abrir(p){paso=p||'que';pinta();capa.classList.add('on');document.body.style.overflow='hidden'}
@@ -102,6 +105,8 @@
   var L=(window.cur&&cur.lineas)||[];var cero=L.filter(function(l){return !(parseFloat(l.p)>0)}).length;
   if(window.AJ&&(!AJ.nombre||!AJ.tel))return {c:'aviso',m:t('datos'),b:t('datosBtn'),f:'irAAjustes'};
   if(!L.length)return {c:'listo',m:modo==='pdf'?t('p1pdf'):modo==='mano'?t('p1mano'):t('p1'),b:null};
+  var sinQ=L.filter(function(l){return !(parseFloat(l.q)>0)}).length;
+  if(sinQ)return {c:'aviso',m:(sinQ===1?t('q1'):t('qn').replace('{n}',sinQ)),b:t('cero_btn'),f:'irACero'};
   if(cero)return {c:'aviso',m:cero===1?t('cero1'):t('cero').replace('{n}',cero),b:t('cero_btn'),f:'irACero'};
   if(!(cur.nom&&String(cur.nom).trim())||!(cur.tel&&String(cur.tel).trim()))return {c:'listo',m:t('cli'),b:t('cliBtn'),f:'irACliente'};
   if(cur.firmaTok)return {c:'listo',m:t('ok'),b:null};
