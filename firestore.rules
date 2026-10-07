@@ -3,6 +3,14 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // Asier (administrador) puede LEER los presupuestos de todas las empresas; solo cada empresa escribe los suyos
     function esAdmin() { return request.auth != null && request.auth.token.email == 'asieresquinas1@gmail.com'; }
+    // Es mio: lo creo esta cuenta (campo uid). Los documentos antiguos sin uid siguen como antes.
+    function esMio(datos) { return request.auth != null && datos.get('uid', request.auth.uid) == request.auth.uid; }
+    function sigueSiendoMio() { return request.resource.data.get('uid', request.auth.uid) == request.auth.uid; }
+    function duenoDeLaObra(obra) {
+      return !exists(/databases/$(database)/documents/seguimiento/$(obra))
+        || esMio(get(/databases/$(database)/documents/seguimiento/$(obra)).data);
+    }
+
     match /clientes/{uid} {
       allow read: if request.auth != null && (request.auth.uid == uid || esAdmin());
       allow write: if request.auth != null && request.auth.uid == uid;
@@ -11,20 +19,30 @@ service cloud.firestore {
         allow write: if request.auth != null && request.auth.uid == uid;
       }
     }
+
+    // Firmas: el cliente abre SU enlace y firma una sola vez; nadie puede sacar la lista de todas.
     match /firmas/{token} {
-      allow read: if true;
-      allow create, delete: if request.auth != null;
-      allow update: if request.auth != null
-        || (resource.data.firma == null
+      allow get: if true;
+      allow list: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null && sigueSiendoMio();
+      allow delete: if esMio(resource.data);
+      allow update: if (esMio(resource.data) && sigueSiendoMio())
+        || (resource.data.get('firma', null) == null
             && request.resource.data.diff(resource.data).affectedKeys()
                  .hasOnly(['firma','nombreFirma','dni','fechaFirma','aceptado','visto']));
     }
+
+    // Obras: el cliente ve la suya con su enlace; listar, solo el recuento de uso y lo de cada uno.
     match /seguimiento/{token} {
-      allow read: if true;
-      allow write: if request.auth != null;
+      allow get: if true;
+      allow list: if resource.data.tipo == 'uso'
+        || (request.auth != null && (resource.data.uid == request.auth.uid || esAdmin()));
+      allow create: if request.auth != null && sigueSiendoMio();
+      allow update: if request.auth != null && (token.matches('uso_.*') || (esMio(resource.data) && sigueSiendoMio()));
+      allow delete: if request.auth != null && (token.matches('uso_.*') || esMio(resource.data));
       match /fotos/{foto} {
         allow read: if true;
-        allow write: if request.auth != null;
+        allow write: if request.auth != null && duenoDeLaObra(token);
         // el cliente, sin cuenta, solo puede contestar a un imprevisto que aun no ha contestado
         allow update: if request.auth == null
           && resource.data.tipo == 'imprevisto'
