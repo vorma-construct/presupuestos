@@ -117,7 +117,7 @@
   if(/moldur|escayol/.test(t))return 'escayola';
   if(/corredera|armazon|casoneto/.test(t))return 'carpinteria';
   if(/tabique|pladur|trasdos/.test(t))return 'tabiqueria';
-  if(/suministr|coloc|instal|montaj|poner/.test(t))return 'colocacion';
+  if(/suministr|coloc|instal|montaj|poner|sustitu|cambi|alicat|embaldos|^solado/.test(t))return 'colocacion';
   return 'otro'}
  var OBJ=[['persiana',/persian/],['moldura',/moldur|escayol/],['rodapie',/rodapi/],['corredera',/corredera|casoneto|armazon/],['puerta',/puerta/],['ventana',/ventana/],['alicatado',/azulej|alicat/],['ascensor',/ascensor|zonas comunes/],['roza',/roza/],['cocina_muebles',/(mobiliario|muebles) de (la )?cocina|cocina (actual|existente)|demolicion de cocina/],['mobiliario',/mobiliario|mueble|sofa|cama|mesa|escritorio/],['tabique',/tabique|pladur/],['techo',/techo|paramentos? horizontal/],['pared',/pared|paramentos? vertical/],['suelo',/suelo|solad|pavimento|tarima|parquet/],['sanitario',/inodoro|lavabo|banera|plato de ducha|sanitari/],['radiador',/radiador/]];
  function objeto(t){t=sa(t);for(var i=0;i<OBJ.length;i++)if(OBJ[i][1].test(t))return OBJ[i][0];return 'otro'}
@@ -289,12 +289,25 @@
   /* molduras */
   [/^(arreglo|arreglar|reparacion|reparar|restaurar|restauracion|reponer)\b.*\bmolduras?\b/,function(n,p){var z=zonasDe(p,/(?:zona de|en el|en la|en|del|de la)\s+((?:salón|salon|pasillo|cocina|dormitorio|habitación|habitacion|comedor|hall|entrada)[^,.]*)/i);var porMl=/por ml|metro lineal|por metro/.test(n);var q=mlDe(n);
    return [L('Reparación de molduras de techo'+(z?' en '+z.replace(/\s*,\s*/g,' y '):'')+(porMl&&!q?'. Precio por metro lineal; se medirá en obra':''),q||1,'ml',{cy:function(){return cyP('moldura_escayola')},notaCy:'las molduras van al precio de CYPE de moldura de escayola nueva por metro'})]}],
+  /* como lo escribe un cliente cualquiera en un correo o en el formulario de la web */
+  [/\b(quitar|retirar|eliminar|rascar|rascado|alisar|alisado|eliminacion)\b.*\bgotel/,function(n,p){var z=zonasDe(p,/gotel[eé]\s+(?:de\s+|del\s+|en\s+)?(.*)$/i);var q=m2De(n);
+   return [L('Eliminación de gotelé y alisado de paredes'+(z?' '+de(z):''),q||0,'m2',{mer:['d_gotele','Quitar gotelé (rascado/alisado de paredes)'],falta:q?'':'los m² de pared'})]}],
+  [/^(pintado|pintar|pintura)\b(?!.*\b(techos?|paredes?|cajas?|cajon(es)?|puertas?|ventanas?|radiador(es)?|barandill\w*|rejas?|fachadas?|esmalte|madera|hierro|forja|tejado|suelo|gotel\w*)\b)/,function(n,p){var z=zonasDe(p,/^(?:pintado|pintar|pintura)\s+(?:(?:de|del|el|la|los|las|todo el|toda la|todo|toda)\s+)*(.*)$/i);var q=m2De(n);
+   z=z.replace(/^(mi|mis|nuestro|nuestra|nuestros|nuestras|su|sus|tu|tus)\s+/i,'').replace(/,?\s+(?:que\s+)?(?:son|tiene|tienen)\s+(.+)$/i,' ($1)');var zp=z.match(/^(.*?)\s(\(.*\))$/);
+   return [L('Pintura plástica en paredes'+(z?' '+(zp?de(zp[1])+' '+zp[2]:de(z)):''),q||0,'m2',{tar:'pip',falta:q?'':'los m² de pared',nota:'donde pide pintar sin decir paredes o techos lo he puesto como paredes; si es también el techo, añade los techos'})]}],
+  [/^(cambiar|cambio|sustituir|sustitucion|renovar|poner|colocar|colocacion|instalar|instalacion|suministro|montar|montaje)\b.*\bpuertas?\b(?!.*\b(entrada|calle|garaje|corredera|armarios?|terraza|balcon|ducha|mampara)\b)/,function(n,p){var c=cuantas(n,'puertas?'),o=[];
+   if(/^(cambiar|cambio|sustituir|sustitucion|renovar)/.test(n))o.push(L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio',c||0,'ud',{tar:'pue',falta:c?'':'cuántas puertas'}));
+   o.push(L('Suministro y colocación de puerta de paso interior, con marco, tapajuntas y herrajes',c||0,'ud',{tar:'pub',falta:c?'':'cuántas puertas'}));return o}],
  ];
+ /* cuántas: "3 puertas", "tres puertas", "la puerta" (una) */
+ var NUMS={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12};
+ function cuantas(n,nom){var m=n.match(new RegExp('\\b(\\d{1,3}|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\\s+(?:[a-z]+\\s+)?'+nom+'\\b'));if(m)return /^\d/.test(m[1])?+m[1]:NUMS[m[1]];
+  var sg=nom.replace(/s\?$/,'');if(new RegExp('\\b(la|el|una|un|esta|este)\\s+'+sg+'\\b').test(n)&&!new RegExp('\\b'+sg+'s\\b').test(n))return 1;return 0}
 
  /* lo que no encaja en ninguna regla: verbo del cliente -> nombre de partida, y sus medidas */
- function generica(n,p){var r=p.replace(/^quitar\s+/i,'Retirada de ').replace(/^tirar\s+/i,'Demolición de ').replace(/^derribo de\s+/i,'Demolición de ').replace(/^levantar\s+/i,'Formación de ').replace(/^colocar\s+/i,'Colocación de ').replace(/^poner\s+/i,'Colocación de ').replace(/^pintar\s+/i,'Pintura plástica de ').replace(/^pintado de\s+/i,'Pintura de ').replace(/^cambiar\s+/i,'Sustitución de ').replace(/^arreglar\s+|^arreglo de\s+/i,'Reparación de ').replace(/^soltar\s+/i,'Desmontaje de ').replace(/^desmontar\s+/i,'Desmontaje de ').replace(/^montar\s+/i,'Montaje de ').replace(/^instalar\s+/i,'Instalación de ').replace(/^tapar\s+/i,'Protección de ').replace(/^limpiar\s+/i,'Limpieza de ').replace(/retirar al garbigune/i,'transporte a punto limpio (Garbigune)').replace(/\bde el\b/g,'del');
-  var q=m2De(n),u='m2';if(!q){q=mlDe(n);u='ml'}if(!q){var c=n.match(/\b(\d+)\s*(?:ud|uds|unidades|puntos|piezas)\b/);q=c?+c[1]:1;u='ud'}
-  r=r.replace(/[,\s]*\d+(?:,\d+)?\s*(m2|m²|ml)\b.*$/i,'');
+ function generica(n,p){var r=p.replace(/^quitar\s+/i,'Retirada de ').replace(/^tirar\s+/i,'Demolición de ').replace(/^derribo de\s+/i,'Demolición de ').replace(/^levantar\s+/i,'Formación de ').replace(/^colocar\s+/i,'Colocación de ').replace(/^poner\s+/i,'Colocación de ').replace(/^pintar\s+/i,'Pintura plástica de ').replace(/^pintado de\s+/i,'Pintura de ').replace(/^cambiar\s+/i,'Sustitución de ').replace(/^arreglar\s+|^arreglo de\s+/i,'Reparación de ').replace(/^soltar\s+/i,'Desmontaje de ').replace(/^alicatar\s+(?:de nuevo\s+)?(?:de\s+)?/i,'Alicatado de ').replace(/^(?:solar|embaldosar)\s+(?:de\s+)?/i,'Solado de ').replace(/^(?:lucir|enlucir)\s+/i,'Lucido de ').replace(/^impermeabilizar\s+/i,'Impermeabilización de ').replace(/^aislar\s+/i,'Aislamiento de ').replace(/^nivelar\s+/i,'Nivelación de ').replace(/^lijar\s+/i,'Lijado de ').replace(/^barnizar\s+/i,'Barnizado de ').replace(/^empapelar\s+/i,'Colocación de papel pintado en ').replace(/^abrir\s+/i,'Apertura de ').replace(/^ampliar\s+/i,'Ampliación de ').replace(/^(?:mover|trasladar)\s+/i,'Traslado de ').replace(/^sustituir\s+/i,'Sustitución de ').replace(/^reparar\s+/i,'Reparación de ').replace(/^renovar\s+/i,'Renovación de ').replace(/^reformar\s+/i,'Reforma de ').replace(/^desmontar\s+/i,'Desmontaje de ').replace(/^montar\s+/i,'Montaje de ').replace(/^instalar\s+/i,'Instalación de ').replace(/^tapar\s+/i,'Protección de ').replace(/^limpiar\s+/i,'Limpieza de ').replace(/retirar al garbigune/i,'transporte a punto limpio (Garbigune)').replace(/\bde el\b/g,'del');
+  var q=m2De(n),u='m2';if(!q){q=mlDe(n);u='ml'}if(!q){var n2=n.replace(/\b(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(?=[a-z])/g,function(w){return NUMS[w.trim()]+' '});var c=n2.match(/\b(\d+)\s*(?:ud|uds|unidades|puntos|piezas|ventanas?|radiadores?|enchufes?|interruptores?|persianas?|focos?|tomas?|grifos?|lavabos?|inodoros?|armarios?|apliques?|plafones?|lamparas?|mamparas?|platos?)\b/);q=c?+c[1]:1;u='ud'}
+  r=r.replace(/[,\s(]*(?:unos|unas|aprox\.?|aproximadamente|alrededor de|sobre|m[aá]s o menos)?\s*\d+(?:,\d+)?\s*(m2|m²|ml)\b.*$/i,'').replace(/[\s,(]+$/,'');
   return [L(r,q,u)]}
 
  function partidasDe(t,ctx){var p=pulir(t),n=sa(p);
@@ -310,8 +323,8 @@
   var par=xs.filter(function(x){return /^Pintura plástica.*paredes/.test(x.d)&&x.u==='m2'&&x.q>0}).reduce(function(a,x){return a+x.q},0);
   var area=r2(techo||(par/2.5));
   var base=techo?'los '+f1(techo)+' m² de techos que da el correo':'los m² de paredes del correo entre 2,5 de altura';
-  if(!/proteg\w*\s+(el\s+|los\s+)?(suelo|pavimento|solado)/.test(todo))out.push(L('Protección de suelos durante la obra, con lámina de plástico y cartón',area||0,'m2',{cy:function(){return cyP('proteccion_suelos')},falta:area?'':'los m² de suelo',notaCy:'proteger el suelo lo he medido con '+base}));
-  if(!/limpieza/.test(todo))out.push(L('Limpieza final de obra',area||0,'m2',{cy:function(){return cyP('limpieza_final')},falta:area?'':'los m² de la limpieza',notaCy:'la limpieza final la he medido con '+base}));
+  if(!/proteg\w*\s+(el\s+|los\s+)?(suelo|pavimento|solado)/.test(todo))out.push(L('Protección de suelos durante la obra, con lámina de plástico y cartón',area||0,'m2',{cy:function(){return cyP('proteccion_suelos')},falta:area?'':'los m² de suelo',notaCy:area?'proteger el suelo lo he medido con '+base:''}));
+  if(!/limpieza/.test(todo))out.push(L('Limpieza final de obra',area||0,'m2',{cy:function(){return cyP('limpieza_final')},falta:area?'':'los m² de la limpieza',notaCy:area?'la limpieza final la he medido con '+base:''}));
   out.forEach(function(x){x.extra=true;x.orig='(añadida: la obra la necesita)'});return out}
  function capDe(x){var fam=familia(x.d);
   if(/^traslado desde almac|^limpieza/i.test(x.d))return 'Otros trabajos';
@@ -378,6 +391,34 @@
   try{if(window.__usoApunta)__usoApunta('plano')}catch(e){}
   try{if(window.guiaBarra)guiaBarra()}catch(e){}}
 
+ /* ---------------- trabajos del cliente -> lineas del presupuesto con su precio (sin tocar la pantalla) ---------------- */
+ function lineasDe(items){var ctx=contexto(items),xs=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){xs.push(x)})});var ext=implicitas(xs,items);xs=xs.concat(ext);
+  var R={lineas:[],n:{tuyo:0,tarifa:0,cype:0,mercado:0,cero:0},notas:[],faltan:[],aj:[],ext:ext.map(function(x){return x.d})};
+  xs.forEach(function(x){ponerPrecio(x);if(x.nota&&R.notas.indexOf(x.nota)<0)R.notas.push(x.nota);if(!(x.q>0)&&x.falta)R.faltan.push(x.falta);
+   if(x.p>0)R.n[x.src]++;else R.n.cero++;if(x.r&&x.r!==1)R.aj.push(x.r);
+   var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;var c=capDe(x);if(c)l.cap=c;R.lineas.push(l)});
+  return R}
+ /* el aviso verde de lo leído: cuántas partidas, de dónde sale cada precio, qué falta */
+ function resumen(R,items,o){o=o||{};var n=R.n,conP=n.tuyo+n.tarifa+n.cype+n.mercado,ext=R.ext,aj=R.aj;
+  return '<b>Leído '+(o.leido||('de '+(o.de||'las capturas')))+':</b> '+(items.length===1?'1 trabajo':items.length+' trabajos')+' del cliente, '+(R.lineas.length===1?'1 partida':R.lineas.length+' partidas')+'. '+
+   (conP?conP+' con precio ('+[n.tuyo?n.tuyo+' tuyos de otras veces':'',n.tarifa?n.tarifa+' de tu tarifa':'',n.cype?n.cype+' de CYPE con el 19 % y el 7 %':'',n.mercado?n.mercado+' de la tabla de mercado':''].filter(Boolean).join(', ')+'). ':'')+
+   (n.cero?'<b>'+n.cero+' sin precio</b>: ponles el tuyo tocando el precio, y me lo quedo para la próxima. ':'')+
+   (R.faltan.length?'<b>Falta la cantidad</b> de '+R.faltan.length+': '+R.faltan.join(', ')+'. ':'')+
+   (ext.length?'He añadido '+(ext.length===1?'una partida que la obra necesita':ext.length+' partidas que la obra necesita')+' aunque '+(o.aunque||'el correo no lo diga')+': '+lista(ext.map(function(d){return minus(d.replace(/,.*$/,''))}))+'. Quítalas si no van. ':'')+
+   (o.puesto||'')+(o.plano||'')+
+   (o.sinDir?'La dirección de la obra no viene: pídesela. ':'')+
+   (aj.length?(function(){var m=aj.reduce(function(a,b){return a+b},0)/aj.length,pc=Math.round(Math.abs(m-1)*100);return pc?'Los precios de tarifa y de mercado van '+(m>1?'subidos':'bajados')+' un '+pc+' % de media, que es como cobras tú por lo que has corregido otras veces. ':''})():'')+
+   (R.notas.length?'<div style="margin-top:6px">'+R.notas.map(function(t){return '· '+cap(t)+'.'}).join('<br>')+'</div>':'')+
+   '<details style="margin-top:6px"><summary>Ver lo que he leído</summary><ol style="margin:6px 0 0 18px;padding:0">'+items.map(function(t){return '<li>'+String(t).replace(/[<>&]/g,'')+'</li>'}).join('')+'</ol></details>'}
+ /* el texto de un PDF con texto, en lineas como se ven en la hoja (para los PDF que llegan por correo) */
+ function textoPdf(f){return cargarPdfjs().then(function(){return f.arrayBuffer()}).then(function(buf){return pdfjsLib.getDocument({data:buf}).promise}).then(function(doc){var ps=[];
+   for(var i=1;i<=Math.min(doc.numPages,40);i++)ps.push(doc.getPage(i).then(function(pg){return pg.getTextContent().then(function(tc){var filas=[];
+    tc.items.forEach(function(it){var s=String(it.str||'');if(!s.trim())return;var x=it.transform[4],y=it.transform[5],h=Math.abs(it.transform[3])||10;
+     var f=null;for(var k=0;k<filas.length;k++)if(Math.abs(filas[k].y-y)<h*0.5){f=filas[k];break}if(!f){f={y:y,its:[]};filas.push(f)}f.its.push({x:x,s:s,w:it.width||0})});
+    filas.sort(function(a,b){return b.y-a.y});
+    return filas.map(function(r){r.its.sort(function(a,b){return a.x-b.x});var t='',xf=null;r.its.forEach(function(it){if(xf!=null&&it.x-xf>1.5)t+=' ';t+=it.s;xf=it.x+it.w});return t.replace(/\s+/g,' ').trim()}).filter(Boolean)})}));
+   return Promise.all(ps)}).then(function(pp){return [].concat.apply([],pp)})}
+
  /* ---------------- al elegir capturas (y el plano, si viene): montar el presupuesto ---------------- */
  var leer0=window.leerArquitecto;
  window.leerArquitecto=function(files){
@@ -411,26 +452,12 @@
     if(cli.email&&fe&&!fe.value.trim()){fe.value=cli.email;puesto.push('correo')}
     if(typeof leer==='function')leer()}catch(e){}
    var pp=ponerPlano(P);
-   var ctx=contexto(items),notas=[],faltan=[],aj=[],n={tuyo:0,tarifa:0,cype:0,mercado:0,cero:0},total=0;
-   var xs=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){xs.push(x)})});var ext=implicitas(xs,items);xs=xs.concat(ext);
-   xs.forEach(function(x){ponerPrecio(x);if(x.nota)notas.push(x.nota);if(!(x.q>0)&&x.falta)faltan.push(x.falta);
-     if(x.p>0)n[x.src]++;else n.cero++;total++;if(x.r&&x.r!==1){aj.push(x.r)}
-     var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;var c=capDe(x);if(c)l.cap=c;cur.lineas.push(l)});
+   var R=lineasDe(items);R.lineas.forEach(function(l){cur.lineas.push(l)});
    try{renderLineas()}catch(e){}
    aLaLista();
-   var conP=n.tuyo+n.tarifa+n.cype+n.mercado,nc=imgs.length,np=((P&&P.textos)||[]).length;
+   var nc=imgs.length,np=((P&&P.textos)||[]).length;
    var de=nc&&np?'las capturas y el PDF':nc?(nc===1?'la captura':'las '+nc+' capturas'):'el PDF';
-   var msg='<b>Leído de '+de+':</b> '+items.length+' trabajos del cliente, '+total+' partidas. '+
-    (conP?conP+' con precio ('+[n.tuyo?n.tuyo+' tuyos de otras veces':'',n.tarifa?n.tarifa+' de tu tarifa':'',n.cype?n.cype+' de CYPE con el 19 % y el 7 %':'',n.mercado?n.mercado+' de la tabla de mercado':''].filter(Boolean).join(', ')+'). ':'')+
-    (n.cero?'<b>'+n.cero+' sin precio</b>: ponles el tuyo tocando el precio, y me lo quedo para la próxima. ':'')+
-    (faltan.length?'<b>Falta la cantidad</b> de '+faltan.length+': '+faltan.join(', ')+'. ':'')+
-    (ext.length?'He añadido '+(ext.length===1?'una partida que la obra necesita':ext.length+' partidas que la obra necesita')+' aunque el correo no lo diga: '+lista(ext.map(function(x){return minus(x.d.replace(/,.*$/,''))}))+'. Quítalas si no van. ':'')+
-    (puesto.length?'Cliente: '+puesto.join(', ')+' cogidos de la firma. ':'')+
-    textoPlano(P,pp.sitio)+
-    (!(cur.dir||'').trim()?'La dirección de la obra no viene: pídesela. ':'')+
-    (aj.length?(function(){var m=aj.reduce(function(a,b){return a+b},0)/aj.length,pc=Math.round(Math.abs(m-1)*100);return pc?'Los precios de tarifa y de mercado van '+(m>1?'subidos':'bajados')+' un '+pc+' % de media, que es como cobras tú por lo que has corregido otras veces. ':''})():'')+
-    (notas.length?'<div style="margin-top:6px">'+notas.filter(function(t,i){return notas.indexOf(t)===i}).map(function(t){return '· '+cap(t)+'.'}).join('<br>')+'</div>':'')+
-    '<details style="margin-top:6px"><summary>Ver lo que he leído</summary><ol style="margin:6px 0 0 18px;padding:0">'+items.map(function(t){return '<li>'+String(t).replace(/[<>&]/g,'')+'</li>'}).join('')+'</ol></details>';
+   var msg=resumen(R,items,{de:de,puesto:puesto.length?'Cliente: '+puesto.join(', ')+' cogidos de la firma. ':'',plano:textoPlano(P,pp.sitio),sinDir:!(cur.dir||'').trim()});
    var cm=document.getElementById('cardMano');['avisoCapturas','avisoPlano'].forEach(function(id){var av=document.getElementById(id);if(av)av.remove()});
    if(cm){cm.insertAdjacentHTML('afterbegin','<div id="avisoCapturas" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45">'+msg+'</div>')}
    if(info)info.textContent='';
@@ -444,6 +471,10 @@
  window.__capturasTexto=function(textos){return textos.map(aItems)};
  window.__unirItems=unirItems;
  window.__partidasDe=function(items){var ctx=contexto(items),o=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){o.push(x)})});o=o.concat(implicitas(o,items));o.forEach(ponerPrecio);return o};
+ /* el mismo motor para los presupuestos que llegan por correo (correo.js), sin tocar la pantalla */
+ window.__motor={aItems:aItems,unirItems:unirItems,clienteDe:clienteDe,lineas:lineasDe,resumen:resumen,textoPlano:textoPlano,textoPdf:textoPdf,
+  esImg:esImg,abrirPdf:abrirPdf,leerPlanos:leerPlanos,leerImagenes:leerImagenes,pulir:pulir,sa:sa,
+  base:function(){return Promise.resolve(window.basePrecios?basePrecios():null).then(function(b){if(b)BASEP=b;return b},function(){return null})}};
 
  /* en cuanto se abre «Capturas, fotos, plano o PDF», el lector se empieza a preparar */
  var mp0=window.meterPor;if(mp0)window.meterPor=function(k){var r=mp0.apply(this,arguments);if(k==='pdf')window.__preparaLector();return r};
