@@ -1,6 +1,46 @@
 {
- "generado": 1791414930750,
+ "generado": 1791463124425,
  "aparatos": [
+  {
+   "empresa": "lucas",
+   "marca": "REFORMAS LUCAS",
+   "disp": "iPhone",
+   "instalada": true,
+   "ver": "v213",
+   "mio": false,
+   "ultimo": 1791459470763,
+   "ultimoQue": "pdf",
+   "dias": {
+    "2026-10-08": {
+     "abre": 1,
+     "nuevo": 5,
+     "dicta": 4,
+     "mandar": 13,
+     "voz": 1,
+     "variante": 1,
+     "pdf": 1
+    }
+   },
+   "total": {
+    "abre": 1,
+    "nuevo": 5,
+    "dicta": 4,
+    "mandar": 13,
+    "voz": 1,
+    "variante": 1,
+    "pdf": 1
+   },
+   "presupuestos": 13,
+   "mandados": 3,
+   "estado": {
+    "partidas": 15,
+    "aCero": 0,
+    "total": 9336,
+    "avisos": 0
+   },
+   "fallo": false,
+   "falloTs": 0
+  },
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
@@ -35,9 +75,9 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v213",
+   "ver": "v216",
    "mio": true,
-   "ultimo": 1791404694579,
+   "ultimo": 1791462834440,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -52,10 +92,13 @@
     },
     "2026-10-07": {
      "abre": 2
+    },
+    "2026-10-08": {
+     "abre": 5
     }
    },
    "total": {
-    "abre": 19,
+    "abre": 24,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
@@ -64,8 +107,8 @@
     "imagen": 2,
     "mandar": 1
    },
-   "presupuestos": 3,
-   "mandados": 0,
+   "presupuestos": 12,
+   "mandados": 2,
    "estado": {
     "partidas": 0,
     "aCero": 0,
@@ -105,9 +148,9 @@
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": false,
-   "ver": "v201",
+   "ver": "v213",
    "mio": false,
-   "ultimo": 1791311411934,
+   "ultimo": 1791458116127,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -116,20 +159,30 @@
      "agenda": 1,
      "voz": 1,
      "dicta": 4
+    },
+    "2026-10-08": {
+     "abre": 2,
+     "fallo": 1
     }
    },
    "total": {
-    "abre": 3,
+    "abre": 5,
     "nuevo": 1,
     "agenda": 1,
     "voz": 1,
-    "dicta": 4
+    "dicta": 4,
+    "fallo": 1
    },
-   "presupuestos": 8,
+   "presupuestos": 9,
    "mandados": 0,
-   "estado": {},
-   "fallo": false,
-   "falloTs": 0
+   "estado": {
+    "partidas": 0,
+    "aCero": 0,
+    "total": 0,
+    "avisos": 2
+   },
+   "fallo": true,
+   "falloTs": 1791457859786
   }
  ]
 }
