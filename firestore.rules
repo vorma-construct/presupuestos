@@ -1,9 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Asier (administrador) puede LEER los presupuestos de todas las empresas; solo cada empresa escribe los suyos
-    function esAdmin() { return request.auth != null && request.auth.token.email == 'asieresquinas1@gmail.com'; }
-
     // EQUIPO DE UNA EMPRESA: la cuenta duena (el uid de la ruta) y las cuentas a las que alguien del equipo dejo entrar
     // (documento clientes/{duena}/equipo/{cuenta}). Todas ven y guardan los mismos presupuestos, firmas y obras.
     function esDeLaEmpresa(duena) {
@@ -19,27 +16,27 @@ service cloud.firestore {
     }
 
     match /clientes/{uid} {
-      allow read: if esDeLaEmpresa(uid) || esAdmin();
+      allow read: if esDeLaEmpresa(uid);
       allow write: if esDeLaEmpresa(uid);
       match /presupuestos/{doc} {
-        allow read: if esDeLaEmpresa(uid) || esAdmin();
+        allow read: if esDeLaEmpresa(uid);
         allow write: if esDeLaEmpresa(uid);
       }
-      // quien esta dentro del equipo: cada cuenta puede mirar si ella esta; solo el equipo deja entrar; solo la duena (o Asier) echa
+      // quien esta dentro del equipo: cada cuenta puede mirar si ella esta; solo el equipo deja entrar; solo la duena echa
       match /equipo/{cuenta} {
-        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid) || esAdmin());
-        allow list: if esDeLaEmpresa(uid) || esAdmin();
-        allow create: if esDeLaEmpresa(uid) || esAdmin();
-        allow delete: if (request.auth != null && request.auth.uid == uid) || esAdmin();
+        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid));
+        allow list: if esDeLaEmpresa(uid);
+        allow create: if esDeLaEmpresa(uid);
+        allow delete: if request.auth != null && request.auth.uid == uid;
       }
       // peticiones de entrada: cada cuenta pide la suya (con su propio correo); el equipo las ve y las contesta
       match /solicitudes/{cuenta} {
         allow create, update: if request.auth != null && request.auth.uid == cuenta
           && request.resource.data.keys().hasOnly(['correo', 'ts', 'disp'])
           && request.resource.data.correo.lower() == request.auth.token.email.lower();
-        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid) || esAdmin());
-        allow list: if esDeLaEmpresa(uid) || esAdmin();
-        allow delete: if (request.auth != null && request.auth.uid == cuenta) || esDeLaEmpresa(uid) || esAdmin();
+        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid));
+        allow list: if esDeLaEmpresa(uid);
+        allow delete: if (request.auth != null && request.auth.uid == cuenta) || esDeLaEmpresa(uid);
       }
     }
 
@@ -59,7 +56,7 @@ service cloud.firestore {
     match /seguimiento/{token} {
       allow get: if true;
       allow list: if resource.data.tipo == 'uso'
-        || (request.auth != null && (resource.data.uid == request.auth.uid || esDeLaEmpresa(resource.data.uid) || esAdmin()));
+        || (request.auth != null && (resource.data.uid == request.auth.uid || esDeLaEmpresa(resource.data.uid)));
       allow create: if request.auth != null && sigueSiendoMio();
       allow update: if request.auth != null && (token.matches('uso_.*') || (esMio(resource.data) && sigueSiendoMio()));
       allow delete: if request.auth != null && (token.matches('uso_.*') || esMio(resource.data));
