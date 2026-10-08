@@ -1,5 +1,5 @@
 {
- "generado": 1791495101922,
+ "generado": 1791496871887,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -7,6 +7,7 @@
    "disp": "iPhone",
    "instalada": true,
    "ver": "v218",
+   "cta": "bd4dd",
    "mio": false,
    "ultimo": 1791481082933,
    "ultimoQue": "dicta",
@@ -72,6 +73,7 @@
    "disp": "iPhone",
    "instalada": true,
    "ver": "v200",
+   "cta": "bd4dd",
    "mio": false,
    "ultimo": 1791285221778,
    "ultimoQue": "plano",
@@ -102,9 +104,10 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v216",
+   "ver": "v218",
+   "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791465476751,
+   "ultimo": 1791495558263,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -121,11 +124,11 @@
      "abre": 2
     },
     "2026-10-08": {
-     "abre": 6
+     "abre": 8
     }
    },
    "total": {
-    "abre": 25,
+    "abre": 27,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
@@ -134,18 +137,23 @@
     "imagen": 2,
     "mandar": 1
    },
-   "presupuestos": 12,
+   "presupuestos": 14,
    "mandados": 2,
    "estado": {
-    "partidas": 15,
+    "partidas": 0,
     "aCero": 0,
-    "total": 9336,
-    "avisos": 0
+    "total": 0,
+    "avisos": 1
    },
    "fallo": true,
    "falloTxt": "Uncaught Error: TypeError: Failed to fetch (v209)",
    "falloTs": 1791317727132,
-   "log": []
+   "log": [
+    {
+     "t": 1791495558263,
+     "q": "abre"
+    }
+   ]
   },
   {
    "empresa": "lucas",
@@ -153,6 +161,7 @@
    "disp": "Android",
    "instalada": false,
    "ver": "v201",
+   "cta": "0e1d2",
    "mio": false,
    "ultimo": 1791309486979,
    "ultimoQue": "abre",
@@ -180,6 +189,7 @@
    "disp": "iPhone",
    "instalada": false,
    "ver": "v213",
+   "cta": "bd4dd",
    "mio": false,
    "ultimo": 1791458116127,
    "ultimoQue": "abre",
