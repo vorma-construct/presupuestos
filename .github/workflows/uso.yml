@@ -1,6 +1,6 @@
 # Dos veces al dia saca de la nube el recuento de uso de las apps de otras empresas
 # (solo cuando se abren y que hacen; nunca lo que escriben) y lo deja en tools/uso.json
-# para que el aviso diario de Asier lo pueda leer. No guarda cuentas ni correos.
+# para que el aviso diario de Asier lo pueda leer. No guarda correos: solo una marca de cinco letras por cuenta, para saber si dos moviles entran con la misma.
 name: uso
 on:
   schedule: [{cron: '35 6,18 * * *'}]
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           python3 - <<'PY'
-          import json,urllib.request,time
+          import json,urllib.request,time,hashlib
           KEY="AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q"
           url="https://firestore.googleapis.com/v1/projects/reformas-ioan/databases/(default)/documents:runQuery?key="+KEY
           q={"structuredQuery":{"from":[{"collectionId":"seguimiento"}],"where":{"fieldFilter":{"field":{"fieldPath":"tipo"},"op":"EQUAL","value":{"stringValue":"uso"}}},"limit":100}}
@@ -35,7 +35,7 @@ jobs:
               dias=f.get("dias") or {}
               ks=sorted(dias.keys())[-14:]
               out.append({"empresa":f.get("empresa"),"marca":f.get("marca"),"disp":f.get("disp"),"instalada":f.get("instalada"),"ver":f.get("ver"),
-                          "mio":bool(f.get("mio")) or (str(f.get("cuenta") or "").lower()=="asieresquinas1@gmail.com"),"ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
+                          "cta":hashlib.sha256(str(f.get("uid") or "").encode()).hexdigest()[:5] if f.get("uid") else "","mio":bool(f.get("mio")) or (str(f.get("cuenta") or "").lower()=="asieresquinas1@gmail.com"),"ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
                           "presupuestos":f.get("presupuestos"),"mandados":f.get("mandados"),"estado":f.get("estado") or {},"fallo":bool(f.get("error")),"falloTxt":str(f.get("error") or "")[:200],"falloTs":f.get("errorTs"),"log":f.get("log") or []})
           json.dump({"generado":int(time.time()*1000),"aparatos":out},open("tools/uso.json","w"),ensure_ascii=False,indent=1)
           print("aparatos:",len(out))
