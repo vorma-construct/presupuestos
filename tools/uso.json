@@ -1,5 +1,5 @@
 {
- "generado": 1791464450295,
+ "generado": 1791464695967,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -40,7 +40,8 @@
    },
    "fallo": false,
    "falloTxt": "",
-   "falloTs": 0
+   "falloTs": 0,
+   "log": []
   },
   {
    "empresa": "lucas",
@@ -70,7 +71,8 @@
    "estado": {},
    "fallo": false,
    "falloTxt": "",
-   "falloTs": 0
+   "falloTs": 0,
+   "log": []
   },
   {
    "empresa": "lucas",
@@ -119,7 +121,8 @@
    },
    "fallo": true,
    "falloTxt": "Uncaught Error: TypeError: Failed to fetch (v209)",
-   "falloTs": 1791317727132
+   "falloTs": 1791317727132,
+   "log": []
   },
   {
    "empresa": "lucas",
@@ -145,7 +148,8 @@
    "estado": {},
    "fallo": false,
    "falloTxt": "",
-   "falloTs": 0
+   "falloTs": 0,
+   "log": []
   },
   {
    "empresa": "lucas",
@@ -187,7 +191,8 @@
    },
    "fallo": true,
    "falloTxt": "Script error. (v213)",
-   "falloTs": 1791457859786
+   "falloTs": 1791457859786,
+   "log": []
   }
  ]
 }
