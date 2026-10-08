@@ -16,7 +16,7 @@
    var nP=0,nM=0;try{Object.keys(DB.presus||{}).forEach(function(k){nP++;if(DB.presus[k].firmaTok)nM++})}catch(e){}
    /* como quedo lo ultimo que tocaron: cuantas partidas, cuantas a cero y cuantos avisos de la revision (sin guardar textos) */
    var est={};try{if(window.cur&&cur.lineas){est.partidas=cur.lineas.length;est.aCero=cur.lineas.filter(function(l){return !(num(l.p)>0)}).length;est.total=Math.round((cur.lineas.reduce(function(a,l){return a+num(l.q)*num(l.p)},0))||0);
-     try{var rv=window.revisar?revisar(false):null;if(rv&&rv.E)est.avisos=rv.E.length}catch(e){}}}catch(e){}
+     try{var rv=window.revisar?revisar(false,true):null;/* solo contar: el cuadro de la revisión no se toca por detrás */if(rv&&rv.E)est.avisos=rv.E.length}catch(e){}}}catch(e){}
    FB.db.collection('seguimiento').doc('uso_'+EMP.id+'_'+dev).set({tipo:'uso',empresa:EMP.id,marca:(window.AJ&&AJ.marca)||EMP.nombreApp||EMP.id,cuenta:u.email||'',uid:FB.uid,mio:MIO,disp:DISP,instalada:instalada(),ver:window.APP_VERSION||'',
     ultimo:o.ultimo||Date.now(),ultimoQue:o.ultimoQue||'',dias:o.dias,total:o.total,presupuestos:nP,mandados:nM,error:o.error||'',errorTs:o.errorTs||0,estado:est,ts:Date.now()},{merge:false}).catch(function(){})}catch(e){}},2500)}
  function apunta(q){var d=hoy();o.dias[d]=o.dias[d]||{};o.dias[d][q]=(o.dias[d][q]||0)+1;o.total[q]=(o.total[q]||0)+1;o.ultimo=Date.now();o.ultimoQue=q;
@@ -31,7 +31,7 @@
  setTimeout(function(){[['convertir','dicta'],['leerArquitecto','pdfArquitecto'],['planoPorCodigo','plano'],['hacerPresupuestos','presupuestosDelPdf'],['mandarFirma','mandar'],['imprimir','pdf'],
   ['nuevo','nuevo'],['fotosDeEste','fotos'],['abrirFotos','fotos'],['dictar','voz'],['abrirAgenda','agenda'],['duplicar','variante']].forEach(function(x){envolver(x[0],x[1])})},2500);
  /* fallos de la app, para poder ayudarles */
- window.addEventListener('error',function(e){try{o.error=String((e&&e.message)||'error').slice(0,200)+' ('+(window.APP_VERSION||'')+')';o.errorTs=Date.now();apunta('fallo')}catch(x){}});
+ window.addEventListener('error',function(e){try{var donde=(e&&e.filename)?' @'+String(e.filename).split('/').pop().split('?')[0]+':'+(e.lineno||0):'';o.error=String((e&&e.message)||'error').slice(0,180)+donde+' ('+(window.APP_VERSION||'')+')';o.errorTs=Date.now();apunta('fallo')}catch(x){}});
  /* cuando haya sesión, sube lo que haya */
  var n=0,iv=setInterval(function(){if(window.FB&&FB.uid){clearInterval(iv);subir()}else if(++n>60)clearInterval(iv)},2000);
 })();

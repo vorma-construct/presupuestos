@@ -16,10 +16,10 @@ window.autoCorregir=autoCorregir;
 
 /* lo que no puede salir: se suma a la revision de siempre */
 var revisar0=window.revisar;
-window.revisar=function(mostrar){var r=revisar0.apply(this,arguments);try{
+window.revisar=function(mostrar,calla){var r=revisar0.apply(this,arguments);try{
  var sin=(cur.paqs||[]).filter(function(pk){return !(pk.suelo>0)&&cur.lineas.some(function(l){return l.paqId===pk.id&&l.u==='m2'})});
  sin.forEach(function(pk){var nom={bano:'del baño',cocina:'de la cocina',hab:'de la habitación',piso:'del piso'}[pk.tipo]||'de una estancia';r.E.push('Faltan los metros '+nom+(pk.n>1?' '+pk.n:'')+': sus partidas van con cantidad 1. Ponlos arriba, en «Para afinar el precio».')});
- if(sin.length){var box=document.getElementById('revBox');if(box)box.insertAdjacentHTML('afterbegin','<div class="aviso" style="border-color:#b3261e;background:#fbe3e0">'+sin.length+' estancia(s) sin medir. ✕ '+r.E.slice(-sin.length).join('<br>✕ ')+'</div>')}
+ if(sin.length&&!calla){var box=document.getElementById('revBox');if(box)box.insertAdjacentHTML('afterbegin','<div class="aviso" style="border-color:#b3261e;background:#fbe3e0">'+sin.length+' estancia(s) sin medir. ✕ '+r.E.slice(-sin.length).join('<br>✕ ')+'</div>')}
  if(cur.dir&&(cur.dir.length>80||/\b(haremos|haremos|vamos a|queremos|autoconstruccion|presupuesto|solicitamos)\b/.test(norm(cur.dir)))){r.A.push('La dirección de la obra parece una frase, no una dirección: «'+cur.dir.slice(0,60)+'».')}
 }catch(e){}return r};
 
@@ -46,7 +46,8 @@ window.mandarFirma=function(){if(window.__vigSilencio)return mandar0.apply(this,
   /* avisa, pero decide él: si quiere, lo manda igualmente */
   if(!confirm('Hay '+r.E.length+' cosa(s) marcadas en rojo en «Revisar el presupuesto»:\n\n· '+r.E.slice(0,4).join('\n· ')+(r.E.length>4?'\n…':'')+'\n\n¿Lo mandas igualmente?'))return}
  var P=revisarDocumento();if(P.length){P=revisarDocumento()}/* si falla, se pinta otra vez y se vuelve a mirar */
- if(P.length){aviso('<b>No lo mando todavía.</b> Al leer el documento que va a recibir el cliente he visto: '+P.join('; ')+'.',true);return}
+ /* avisa, pero decide él (como con lo rojo) */
+ if(P.length&&!confirm('Al mirar el documento que va a recibir el cliente he visto esto:\n\n· '+P.slice(0,4).join('\n· ')+(P.length>4?'\n…':'')+'\n\n¿Lo mandas igualmente?'))return
  var res=mandar0.apply(this,arguments);
  var t0=Date.now();(function mira(){var m=document.getElementById('msg');if(m&&/Enlace (actualizado|mandado)/.test(m.textContent)&&!m.querySelector('.vig2')){m.insertAdjacentHTML('beforeend','<div class="vig2" style="margin-top:6px;font-size:13px;color:#1B7A3A"><b>Revisado dos veces antes de salir:</b> las partidas, cantidades y precios, y el documento tal como lo ve el cliente.'+(ch.length?'<br>He corregido: '+ch.join('; ')+'.':'')+'</div>');return}if(Date.now()-t0<30000)setTimeout(mira,500)})();
  return res};
