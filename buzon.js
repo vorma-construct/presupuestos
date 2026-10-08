@@ -376,11 +376,11 @@
    h+='<p style="margin:0 0 8px"><b style="color:var(--ok)">✓ Conectado'+(a.correoCuenta?' a '+esc(a.correoCuenta):'')+'.</b> Cuando llega una petición de presupuesto (la lista de trabajos escrita, capturas o el plano), te lo hago solo: con su número, el cliente y cada trabajo con su precio. Miro el correo al abrir la app y cada cinco minutos mientras está abierta.</p>'+
     '<p style="margin:0 0 8px;color:var(--muted);font-size:13px">'+(e.ok?'Último vistazo: '+hace(e.ok)+'. ':'Todavía no he mirado el correo. ')+(nh?'Presupuestos hechos solos en este móvil: '+nh+'. ':'')+(e.err?'<span style="color:#b3261e">Último fallo: '+esc(e.err)+' ('+hace(e.errTs)+').</span>':'')+'</p>'+
     '<div class="row"><button class="ok" type="button" data-b="mirar">Mirar el correo ahora</button><button class="sec" type="button" data-b="semana">Mirar también los de la última semana</button><button class="sec" type="button" data-b="quitar">Desconectar</button></div><div id="buzonMsg" style="margin-top:6px;font-size:14px"></div>'}
-  else{var n=Math.max(0,Math.min(3,e.paso||0)),P=PASOS[n];
+  else{var n=Math.max(0,Math.min(PASOS.length-1,e.paso||0)),P=PASOS[n];
    if(!(window.FB&&FB.uid))h+='<div class="aviso" style="margin:0 0 8px">Primero entra en tu cuenta de la app: así, al conectarlo aquí, queda conectado también en todos los móviles de la empresa.</div>';
-   h+='<p style="margin:0 0 10px">Cuando os llegue al Gmail una petición de presupuesto, la app la convierte sola en presupuesto. Hay que conectarla <b>una sola vez</b> con el Gmail de la empresa. Te lo voy diciendo paso a paso; vale el móvil.</p>'+
+   h+='<p style="margin:0 0 10px">Cuando os llegue al Gmail una petición de presupuesto, la app la convierte sola en presupuesto. Hay que conectarla <b>una sola vez</b> con el Gmail de la empresa. Te lo voy diciendo paso a paso; se hace todo en este mismo móvil.</p>'+
     '<div style="border:2px solid #1B6B36;border-radius:12px;padding:14px">'+
-    '<div style="font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.3px">PASO '+(n+1)+' DE 4</div>'+
+    '<div style="font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.3px">PASO '+(n+1)+' DE '+PASOS.length+'</div>'+
     '<div style="font-size:19px;font-weight:800;margin:2px 0 8px">'+P.t+'</div>'+
     '<div style="line-height:1.5;margin-bottom:10px">'+P.h+'</div>'+(P.nota?'<div style="font-size:13px;color:var(--muted);margin:-4px 0 10px">'+P.nota+'</div>':'')+P.b+
     '<div id="buzonMsg" style="margin-top:8px;font-size:14px"></div>'+
@@ -388,11 +388,16 @@
     '<details style="margin-top:8px"><summary style="font-size:13px;color:var(--muted)">Ver el programa</summary><textarea id="buzonCodigo" readonly rows="6" style="width:100%;font-family:monospace;font-size:11px;margin-top:6px"></textarea></details>'}
   box.innerHTML=h;var ta=document.getElementById('buzonCodigo');if(ta)ta.value=codigo()}
  var BOTON='width:100%;padding:14px;font-size:17px',SIG='<button class="ok" type="button" data-b="sig" style="'+BOTON+'">Hecho, siguiente</button>';
+ var IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),AND=/Android/.test(navigator.userAgent),MOVIL=IOS||AND;
  var PASOS=[
   {t:'Copia el programa',h:'Toca el botón y se copia solo.',b:'<button class="ok" type="button" data-b="copiar" style="'+BOTON+'">Copiar el programa</button>'},
-  {t:'Pégalo en el Gmail de la empresa',h:'Abre Chrome en <b>incógnito</b> (los tres puntos de arriba → «Nueva pestaña de incógnito»), escribe <b>script.new</b> y que entre el dueño del Gmail de la empresa con su correo y su contraseña.<br>Cuando salga una hoja con código, toca debajo de todo, mantén el dedo y <b>pega</b>. Luego toca el <b>disquete</b> para guardar.',nota:'Si en el móvil se ve raro, en los tres puntos de Chrome marca «Sitio de escritorio».',b:SIG},
-  {t:'Publícalo y dale permiso',h:'Arriba a la derecha toca <b>Implementar</b> → <b>Nueva implementación</b>. En la rueda elige <b>Aplicación web</b>. En «Quién tiene acceso» pon <b>Cualquier usuario</b> y toca <b>Implementar</b>.<br>Te pide permiso: <b>Autorizar acceso</b> → elige el Gmail → <b>Configuración avanzada</b> → <b>Ir a…</b> → <b>Permitir</b>.',nota:'Google avisa de que no está verificado porque el programa es vuestro y no de una empresa. Solo deja leer los correos a la app: no manda ni borra nada.',b:SIG},
-  {t:'Conéctalo con la app',h:'Debajo de «URL de la aplicación web» toca <b>Copiar</b>, vuelve aquí y toca el botón.',b:'<button class="ok" type="button" data-b="pegar" style="'+BOTON+'">Pegar y conectar</button>'+
+  {t:'Entra con el Gmail de la empresa',
+   h:(IOS?'Abre <b>Safari</b>, escribe arriba <b>script.new</b> y entra.':AND?'Abre Chrome en <b>incógnito</b> (los tres puntos de arriba → «Nueva pestaña de incógnito»), escribe arriba <b>script.new</b> y entra.':'Abre una ventana de <b>incógnito</b> del navegador, escribe arriba <b>script.new</b> y entra.')+' Google pide el <b>correo y la contraseña del Gmail</b> de la empresa: los pone el dueño del correo.',
+   nota:IOS?'Si la página se ve rara, toca «aA», al lado de la dirección, y luego «Solicitar sitio web de escritorio».':AND?'Si la página se ve rara, en los tres puntos de Chrome marca «Sitio de escritorio».':'',b:SIG},
+  {t:'Pega el programa',h:MOVIL?'Cuando salga una hoja con letras, toca debajo de todo, deja el dedo apretado y dale a <b>Pegar</b>. Luego toca el dibujo del <b>disquete</b> para guardar.':'Cuando salga una hoja con letras, haz clic debajo de todo y pega (Ctrl+V). Luego haz clic en el <b>disquete</b> para guardar.',b:SIG},
+  {t:'Publícalo',h:'Arriba a la derecha toca <b>Implementar</b> y después <b>Nueva implementación</b>. En la ruedecita elige <b>Aplicación web</b>. En «Quién tiene acceso» pon <b>Cualquier usuario</b> y toca <b>Implementar</b>.',b:SIG},
+  {t:'Dale permiso',h:'Toca <b>Autorizar acceso</b>, elige el Gmail de la empresa, luego <b>Configuración avanzada</b>, <b>Ir a…</b> y <b>Permitir</b>.',nota:'Google avisa de que no está verificado porque el programa es vuestro y no de una empresa. Solo deja leer los correos a la app: no manda ni borra nada.',b:SIG},
+  {t:'Conéctalo con la app',h:'Debajo de «URL de la aplicación web», toca <b>Copiar</b>. Vuelve aquí y toca el botón.',b:'<button class="ok" type="button" data-b="pegar" style="'+BOTON+'">Pegar y conectar</button>'+
    '<div style="font-size:13px;color:var(--muted);margin:10px 0 4px">O pégala aquí a mano:</div><div class="row"><input id="buzonUrl" placeholder="https://script.google.com/macros/s/…/exec" style="flex:1;min-width:200px" autocomplete="off"><button class="sec" type="button" data-b="conectar">Conectar</button></div>'}];
  function paso(n){ponEst(function(x){x.paso=n});pintarAjustes();try{document.getElementById('buzonCard').scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}}
  function pegar(){function aMano(){msg('Mantén el dedo en el recuadro de abajo, pega y toca «Conectar».',true);var i=document.getElementById('buzonUrl');if(i)i.focus()}
@@ -407,7 +412,7 @@
   msg('Probando…');var k=clave();
   llamar({a:'prueba'},25000,u,k).then(function(r){
    if(r&&r.error==='clave'){msg('Ese programa no es el de esta app. Vuelve al paso uno, cópialo otra vez y repite los pasos.',true);return}
-   if(!r||!r.ok){msg('No me contesta bien. Mira el paso tres: en «Quién tiene acceso» tiene que poner «Cualquier usuario».',true);return}
+   if(!r||!r.ok){msg('No me contesta bien. Mira el paso cuatro: en «Quién tiene acceso» tiene que poner «Cualquier usuario».',true);return}
    AJ.correoUrl=u;AJ.correoCuenta=String(r.cuenta||'');AJ.correoDesde=Date.now()-6*3600e3;try{lsSet('vr_aj',JSON.stringify(AJ));subirConfig()}catch(_){}
    ponEst(function(x){delete x.ult;delete x.err;delete x.jsonp;x.paso=0});pintarAjustes();
    /* ojo si se ha conectado otro Gmail que no es el de la empresa */
@@ -415,7 +420,7 @@
    var aviso=otro?'<br><span style="color:#b3261e"><b>Ojo:</b> se ha conectado el correo '+esc(r.cuenta)+' y el de la empresa es '+esc(emp)+'. Si no es el bueno, toca «Desconectar» y repite los pasos entrando con el de la empresa.</span>':'';
    msg('✓ Conectado'+(r.cuenta?' con '+esc(r.cuenta):'')+'. Miro el correo ahora…'+aviso);
    mirar(true).then(function(){msg(resultado()+aviso)})})
-  .catch(function(e){msg('No me contesta. Mira el paso tres: en «Quién tiene acceso» tiene que poner «Cualquier usuario».',true)})}
+  .catch(function(e){msg('No me contesta. Mira el paso cuatro: en «Quién tiene acceso» tiene que poner «Cualquier usuario».',true)})}
  function resultado(){var e=est();if(e.err)return '<span style="color:#b3261e">No he podido mirar el correo: '+esc(e.err)+'</span>';var L=nuevos();return L.length?'Hecho: '+(L.length===1?'tienes un presupuesto nuevo del correo, en el aviso verde.':'tienes '+L.length+' presupuestos nuevos del correo, en el aviso verde.'):'Conectado y mirado: ahora no hay peticiones de presupuesto nuevas. Las que lleguen se harán solas al abrir la app.'}
  function mirarYa(){msg('Mirando el correo…');mirar(true).then(function(){msg(resultado())})}
  function semana(){ponEst(function(x){x.unaVez=Date.now()-7*864e5});mirarYa()}
