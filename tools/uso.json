@@ -1,5 +1,5 @@
 {
- "generado": 1791464695967,
+ "generado": 1791467623946,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -81,7 +81,7 @@
    "instalada": true,
    "ver": "v216",
    "mio": true,
-   "ultimo": 1791462834440,
+   "ultimo": 1791465476751,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -98,11 +98,11 @@
      "abre": 2
     },
     "2026-10-08": {
-     "abre": 5
+     "abre": 6
     }
    },
    "total": {
-    "abre": 24,
+    "abre": 25,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
@@ -114,10 +114,10 @@
    "presupuestos": 12,
    "mandados": 2,
    "estado": {
-    "partidas": 0,
+    "partidas": 15,
     "aCero": 0,
-    "total": 0,
-    "avisos": 2
+    "total": 9336,
+    "avisos": 0
    },
    "fallo": true,
    "falloTxt": "Uncaught Error: TypeError: Failed to fetch (v209)",
