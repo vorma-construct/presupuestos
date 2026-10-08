@@ -42,7 +42,9 @@ var mandar0=window.mandarFirma;
 window.mandarFirma=function(){if(window.__vigSilencio)return mandar0.apply(this,arguments);
  leer();var ch=autoCorregir(cur);if(ch.length){renderLineas();leer()}
  var r=revisar(true);
- if(r.E.length){var b=document.getElementById('revBox');if(b)b.scrollIntoView({behavior:'smooth',block:'center'});aviso('<b>No lo mando todavía.</b> Hay '+r.E.length+' cosa(s) que arreglar: están marcadas en rojo, en «Revisar el presupuesto».',true);return}
+ if(r.E.length){var b=document.getElementById('revBox');if(b)b.scrollIntoView({behavior:'smooth',block:'center'});
+  /* avisa, pero decide él: si quiere, lo manda igualmente */
+  if(!confirm('Hay '+r.E.length+' cosa(s) marcadas en rojo en «Revisar el presupuesto»:\n\n· '+r.E.slice(0,4).join('\n· ')+(r.E.length>4?'\n…':'')+'\n\n¿Lo mandas igualmente?'))return}
  var P=revisarDocumento();if(P.length){P=revisarDocumento()}/* si falla, se pinta otra vez y se vuelve a mirar */
  if(P.length){aviso('<b>No lo mando todavía.</b> Al leer el documento que va a recibir el cliente he visto: '+P.join('; ')+'.',true);return}
  var res=mandar0.apply(this,arguments);
