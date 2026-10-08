@@ -265,7 +265,7 @@
   if(arq.length)aviso+=(aviso?'<br>':'')+'<b>Trae el PDF del arquitecto</b> ('+arq.map(function(x){return esc(limpio(x.nombre))}).join(', ')+'): tócalo abajo y lo leo como siempre. ';
   if(a.T.asc)aviso+='Dice que no hay ascensor: lo he marcado y he puesto el montacargas. ';
   var hoy=new Date().toISOString().slice(0,10);
-  var p={num:'',idp:idNuevo(),fecha:hoy,nom:cli.nom||('Correo del '+new Date(c.fecha||Date.now()).toLocaleDateString('es-ES')),tel:cli.tel,email:cli.email,dir:cli.dir,asc:a.T.asc?'1':'0',iva:'21',obs:'',suelo:false,
+  var p={num:'',idp:idNuevo(),fecha:hoy,creado:Date.now(),desde:(window.dispTxt?dispTxt():''),nom:cli.nom||('Correo del '+new Date(c.fecha||Date.now()).toLocaleDateString('es-ES')),tel:cli.tel,email:cli.email,dir:cli.dir,asc:a.T.asc?'1':'0',iva:'21',obs:'',suelo:false,
    lineas:lineas,estado:'borrador',c:{p1:30,p2:60,p3:10,plazo:'',inicio:'',gar:24},ts:Date.now(),nuevoCorreo:true,
    correo:{id:String(c.id||''),de:limpio(c.de).slice(0,160),asunto:limpio(c.asunto).slice(0,160),fecha:c.fecha||Date.now(),texto:String(a.cuerpo||'').slice(0,8000),
     adjuntos:(c.adjuntos||[]).filter(function(x){return esImgUtil(x)||esPdf(x)}).map(function(x){return limpio(x.nombre).slice(0,80)}).slice(0,12),
