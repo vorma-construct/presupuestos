@@ -193,7 +193,9 @@
  function esPdf(x){return /pdf/.test(sa(x.tipo))||/\.pdf$/.test(sa(x.nombre))}
  function analizar(c){
   var asunto=String(c.asunto||''),esRe=/^\s*(re|aw|sv|antw)\s*:/i.test(asunto);
-  var t0=c.html?htmlATexto(c.html):'';if(t0.replace(/\s/g,'').length<20)t0=String(c.texto||'');
+  /* si el correo es solo texto, Gmail lo da sin etiquetas: entonces vale el texto tal cual (con sus saltos de línea) */
+  var esHtml=/<(html|body|div|p|br|li|ul|ol|table|tr|td|span|a|b|strong|font|h[1-6])\b/i.test(String(c.html||''));
+  var t0=esHtml?htmlATexto(c.html):'';if(t0.replace(/\s/g,'').length<20)t0=String(c.texto||'');
   var Lp=limpiar(t0,esRe),de=persona(c.de),rt=persona(c.responder);
   var F=formulario(Lp.original);
   var T=trabajosDe(F.esForm&&F.msg?F.msg:Lp.original);

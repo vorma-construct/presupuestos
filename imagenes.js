@@ -153,7 +153,7 @@
  function L(d,q,u,o){o=o||{};return {d:cap(d),q:q,u:u,tar:o.tar||'',mer:o.mer||null,cy:o.cy||null,falta:o.falta||'',nota:o.nota||'',notaTar:o.notaTar||'',notaCy:o.notaCy||''}}
  function zonasDe(p,re){var m=p.match(re);if(!m)return '';return m[1].replace(/\s*,?\s*\d+(?:,\d+)?\s*(?:m2|ml|m²)\b.*$/i,'').replace(/\s*-\s*/g,', ').replace(/\s*,\s*y\s+/g,' y ').replace(/^la zona de\s+/i,'').replace(/[\s,.]+$/,'').trim()}
  function conArt(z){var t=sa(z).trim();if(/^(la|el|los|las)\s/.test(t)||/,| y /.test(t))return z;if(/^(cocina|habitacion|terraza|entrada|despensa|vivienda|casa|zona)\b/.test(t))return 'la '+z;if(/^(bano|salon|pasillo|comedor|dormitorio|hall|aseo|txoko|garaje|piso|trastero)\b/.test(t))return 'el '+z;return z}
- function de(z){z=conArt(z);return ('de '+z).replace(/^de el\b/,'del')}
+ function de(z){var m=String(z).match(/^([^,]+?)((?:\s*,\s*|\s+y\s+).*)$/);if(m&&!/^(la|el|los|las|del|de)\s/.test(sa(m[1]).trim()))return de(m[1])+m[2];z=conArt(z);return ('de '+z).replace(/^de el\b/,'del')}
  function garbi(n){return /garbigune|punto limpio/.test(n)?' (Garbigune)':''}
  /* "DORM PRINCIPAL, vaciar y retirar al Garbigune, SALON: tapar y proteger el mueble..., y mesa con sofa retirar al almacen, resto habitaciones..."
     -> "Dormitorio principal: vaciado y retirada a punto limpio (Garbigune); salón: protección del mueble... y retirada a almacén de la mesa y el sofá; ..." */
