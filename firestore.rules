@@ -3,27 +3,50 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // Asier (administrador) puede LEER los presupuestos de todas las empresas; solo cada empresa escribe los suyos
     function esAdmin() { return request.auth != null && request.auth.token.email == 'asieresquinas1@gmail.com'; }
-    // Es mio: lo creo esta cuenta (campo uid). Los documentos antiguos sin uid siguen como antes.
-    function esMio(datos) { return request.auth != null && datos.get('uid', request.auth.uid) == request.auth.uid; }
-    function sigueSiendoMio() { return request.resource.data.get('uid', request.auth.uid) == request.auth.uid; }
+
+    // EQUIPO DE UNA EMPRESA: la cuenta duena (el uid de la ruta) y las cuentas a las que alguien del equipo dejo entrar
+    // (documento clientes/{duena}/equipo/{cuenta}). Todas ven y guardan los mismos presupuestos, firmas y obras.
+    function esDeLaEmpresa(duena) {
+      return request.auth != null && (request.auth.uid == duena
+        || exists(/databases/$(database)/documents/clientes/$(duena)/equipo/$(request.auth.uid)));
+    }
+    // Es mio: lo creo esta cuenta o alguien de su empresa (campo uid = la cuenta duena). Los documentos antiguos sin uid siguen como antes.
+    function esMio(datos) { return request.auth != null && esDeLaEmpresa(datos.get('uid', request.auth.uid)); }
+    function sigueSiendoMio() { return esDeLaEmpresa(request.resource.data.get('uid', request.auth.uid)); }
     function duenoDeLaObra(obra) {
       return !exists(/databases/$(database)/documents/seguimiento/$(obra))
         || esMio(get(/databases/$(database)/documents/seguimiento/$(obra)).data);
     }
 
     match /clientes/{uid} {
-      allow read: if request.auth != null && (request.auth.uid == uid || esAdmin());
-      allow write: if request.auth != null && request.auth.uid == uid;
+      allow read: if esDeLaEmpresa(uid) || esAdmin();
+      allow write: if esDeLaEmpresa(uid);
       match /presupuestos/{doc} {
-        allow read: if request.auth != null && (request.auth.uid == uid || esAdmin());
-        allow write: if request.auth != null && request.auth.uid == uid;
+        allow read: if esDeLaEmpresa(uid) || esAdmin();
+        allow write: if esDeLaEmpresa(uid);
+      }
+      // quien esta dentro del equipo: cada cuenta puede mirar si ella esta; solo el equipo deja entrar; solo la duena (o Asier) echa
+      match /equipo/{cuenta} {
+        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid) || esAdmin());
+        allow list: if esDeLaEmpresa(uid) || esAdmin();
+        allow create: if esDeLaEmpresa(uid) || esAdmin();
+        allow delete: if (request.auth != null && request.auth.uid == uid) || esAdmin();
+      }
+      // peticiones de entrada: cada cuenta pide la suya (con su propio correo); el equipo las ve y las contesta
+      match /solicitudes/{cuenta} {
+        allow create, update: if request.auth != null && request.auth.uid == cuenta
+          && request.resource.data.keys().hasOnly(['correo', 'ts', 'disp'])
+          && request.resource.data.correo.lower() == request.auth.token.email.lower();
+        allow get: if request.auth != null && (request.auth.uid == cuenta || esDeLaEmpresa(uid) || esAdmin());
+        allow list: if esDeLaEmpresa(uid) || esAdmin();
+        allow delete: if (request.auth != null && request.auth.uid == cuenta) || esDeLaEmpresa(uid) || esAdmin();
       }
     }
 
     // Firmas: el cliente abre SU enlace y firma una sola vez; nadie puede sacar la lista de todas.
     match /firmas/{token} {
       allow get: if true;
-      allow list: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow list: if request.auth != null && (resource.data.uid == request.auth.uid || esDeLaEmpresa(resource.data.uid));
       allow create: if request.auth != null && sigueSiendoMio();
       allow delete: if esMio(resource.data);
       allow update: if (esMio(resource.data) && sigueSiendoMio())
@@ -32,11 +55,11 @@ service cloud.firestore {
                  .hasOnly(['firma','nombreFirma','dni','fechaFirma','aceptado','visto']));
     }
 
-    // Obras: el cliente ve la suya con su enlace; listar, solo el recuento de uso y lo de cada uno.
+    // Obras: el cliente ve la suya con su enlace; listar, solo el recuento de uso y lo de cada empresa.
     match /seguimiento/{token} {
       allow get: if true;
       allow list: if resource.data.tipo == 'uso'
-        || (request.auth != null && (resource.data.uid == request.auth.uid || esAdmin()));
+        || (request.auth != null && (resource.data.uid == request.auth.uid || esDeLaEmpresa(resource.data.uid) || esAdmin()));
       allow create: if request.auth != null && sigueSiendoMio();
       allow update: if request.auth != null && (token.matches('uso_.*') || (esMio(resource.data) && sigueSiendoMio()));
       allow delete: if request.auth != null && (token.matches('uso_.*') || esMio(resource.data));

@@ -14,11 +14,7 @@ TARIFA_BASE.forEach(function(t){if(!(t.p>0)&&T[t.id]>0)t.p=T[t.id]});/* las part
 function marca(){var lt=document.getElementById('loginTitle');if(lt)lt.textContent=AJ.marca;var li=document.querySelector('#login img');if(li)li.src='empresas/'+E.id+'/icon-192.png';
  var bt=document.getElementById('brandTxt');if(bt)bt.textContent=(AJ.marca||'').toUpperCase()
  var lg=1;if(lg){
-  var em=document.getElementById('lg_email');if(em&&!em.value&&AJ.email)em.value=AJ.email}
- /* una empresa, una sola cuenta: todos sus moviles entran con el mismo correo y la misma clave y asi ven y guardan lo mismo.
-    El boton de crear otra cuenta solo sale con ?alta=1 (para dar de alta una empresa nueva) */
- try{if(!/[?&]alta=1/.test(location.search)){var cb=document.querySelector('#login button[onclick="crearCuenta()"]');if(cb)cb.style.display='none';
-  var lp=document.querySelector('#login p');if(lp)lp.textContent='Entra con el mismo correo y la misma clave en todos los móviles de la empresa: así todos ven lo mismo.'}}catch(_){}}
+  var em=document.getElementById('lg_email');if(em&&!em.value&&AJ.email)em.value=AJ.email}}
 marca();document.addEventListener('DOMContentLoaded',marca);setTimeout(marca,1500);
 /* dosier: sus fotos, sus servicios, nada de lo de otra empresa */
 function dosier(){var d=document.getElementById('sh_dosier');if(!d||d.__emp)return;d.__emp=1;var F=E.fotos||{};

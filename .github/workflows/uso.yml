@@ -27,20 +27,18 @@ jobs:
               if "mapValue" in v: return {k:val(x) for k,x in v["mapValue"].get("fields",{}).items()}
               if "arrayValue" in v: return [val(x) for x in v["arrayValue"].get("values",[])]
               return None
-          out=[];CU={}
+          out=[]
           for x in r:
               d=x.get("document");
               if not d: continue
               f={k:val(v) for k,v in d["fields"].items()}
               dias=f.get("dias") or {}
-              if f.get("empresa")=="lucas" and f.get("uid"): CU[hashlib.sha256(str(f.get("uid")).encode()).hexdigest()[:5]]=f.get("uid")
               ks=sorted(dias.keys())[-14:]
               out.append({"empresa":f.get("empresa"),"marca":f.get("marca"),"disp":f.get("disp"),"instalada":f.get("instalada"),"ver":f.get("ver"),
-                          "cta":hashlib.sha256(str(f.get("uid") or "").encode()).hexdigest()[:5] if f.get("uid") else "","mio":bool(f.get("mio")) or (str(f.get("cuenta") or "").lower()=="asieresquinas1@gmail.com"),"ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
+                          "cta":hashlib.sha256(str(f.get("yo") or f.get("uid") or "").encode()).hexdigest()[:5] if (f.get("yo") or f.get("uid")) else "","mio":bool(f.get("mio")) or (str(f.get("cuenta") or "").lower()=="asieresquinas1@gmail.com"),"ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
                           "presupuestos":f.get("presupuestos"),"mandados":f.get("mandados"),"estado":f.get("estado") or {},"fallo":bool(f.get("error")),"falloTxt":str(f.get("error") or "")[:200],"falloTs":f.get("errorTs"),"log":f.get("log") or []})
           json.dump({"generado":int(time.time()*1000),"aparatos":out},open("tools/uso.json","w"),ensure_ascii=False,indent=1)
           print("aparatos:",len(out))
-          json.dump(CU,open("tools/_cuentas.json","w"))
           PY
           git config user.name "uso"; git config user.email "actions@github.com"
-          git add tools/uso.json tools/_cuentas.json; git diff --cached --quiet || (git commit -m "recuento de uso" && git push)
+          git add tools/uso.json; git diff --cached --quiet || (git commit -m "recuento de uso" && git push)
