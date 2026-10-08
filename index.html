@@ -198,7 +198,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v215';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v216';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -328,8 +328,16 @@ var SINON=[
 [/tirar (el )?tabique|quitar (el )?tabique|abrir (el )?tabique/g,'tirar tabique'],
 [/suelo nuevo|poner suelo|cambiar el suelo/g,'suelo flotante'],
 [/quitar (el )?gotele|rascar (el )?gotele/g,'gotele'],
-[/pintar (todo|la casa|el piso)/g,'pintura paredes']];
-var PARED=['alc','ali','pip','yes','luc','tra','pip3','pit3'];
+[/pintar (todo|la casa|el piso)/g,'pintura paredes $1']];
+var PARED=['alc','ali','pip','yes','luc','tra','pip3','lija'];
+/* en una casa entera, la cuenta de todas las paredes vale para pintar, enlucir o quitar gotelé; el alicatado es de baño o cocina */
+var PINTA=['pip','pip3','lija','yes'];
+/* techos y suelos de la casa entera: los metros de la casa, si no se dicen otros */
+var HORIZ=['pit','pit3','sue','niv','flo','acu','sol','tec','tecq'];
+/* «ochenta metros» -> «80 metros» */
+var CIF={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,dieciseis:16,diecisiete:17,dieciocho:18,diecinueve:19,veinte:20,veintiuno:21,veintiun:21,veintidos:22,veintitres:23,veinticuatro:24,veinticinco:25,veintiseis:26,veintisiete:27,veintiocho:28,veintinueve:29,treinta:30,cuarenta:40,cincuenta:50,sesenta:60,setenta:70,ochenta:80,noventa:90,cien:100};
+function cifras(t){return String(t||'').replace(/\b(treinta|cuarenta|cincuenta|sesenta|setenta|ochenta|noventa)\s+y\s+(uno|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve)\b/g,function(_,d,u){return CIF[d]+CIF[u]}).replace(new RegExp('\\b('+Object.keys(CIF).join('|')+')\\b(?=\\s+[a-z])','g'),function(w){return CIF[w]})}
+var CASA_RE=/\b(casa|piso|vivienda|chalet|apartamento|duplex|atico)\b/,ESTANCIA_RE=/\b(banos?|aseos?|cocinas?|habitacion(?:es)?|dormitorios?|salon|pasillo|cuarto|terraza|recibidor|comedor|galeria)\b/;
 /* saca del texto la superficie de suelo, la altura y, si la dice, el largo por ancho */
 function medidasDe(txt){var r={suelo:0,alto:0,perim:0};
 var lxa=txt.match(/(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*(?:de\s*)?(?:largo|ancho)?\s*(?:x|por)\s*(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*(?:de\s*)?(?:ancho|largo)?\b/);
@@ -340,6 +348,10 @@ var al=txt.match(/(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*de\s*(?:alto|altura)\b/)
 /* "alto de pared dos metros" / "altura de techo 2,5" */
 ||txt.match(/(?:alto|altura)\s*(?:de\s*)?(?:la\s*|las\s*|el\s*)?(?:pared(?:es)?|techo|bano|ba\u00f1o|cocina|habitacion)?\s*(?:de\s*)?(\d+(?:[.,]\d+)?)/);
 if(al)r.alto=num(al[1]);
+/* la casa entera se mira en lo que se dictó tal cual (al traducirlo, «pintar toda la casa» pasa a ser «pintar paredes, pintar techos») */
+var crudo=window.__BRUTO?cifras(norm(String(window.__BRUTO))):txt;
+if(!r.suelo&&CASA_RE.test(crudo)){var sc=crudo.match(/\b(?:casa|piso|vivienda|chalet|apartamento|duplex|atico)(?:\s+(?:entera|entero|completa|completo))?(?:\s*,\s*|\s+(?:de|que tiene|que mide|mide|tiene|son|con|unos|aproximadamente)\b\s*)+(\d+(?:[.,]\d+)?)\s*(?:metros|m)\b(?!\s*(?:lineales|de alto|de altura|de largo|de ancho|x\b|por\b))/);if(sc&&num(sc[1])>=20)r.suelo=num(sc[1])}
+if(!lxa&&r.suelo>=20&&(/\b(?:toda la|todo el)\s+(?:casa|piso|vivienda|chalet|apartamento)\b|\b(?:casa|piso|vivienda|chalet|apartamento|duplex|atico)\s+(?:entera|entero|completa|completo)\b/.test(crudo)||(CASA_RE.test(crudo)&&r.suelo>=40&&!ESTANCIA_RE.test(crudo)))){r.casa=true;r.perim=Math.round(r.suelo*1.08*10)/10}/* todas las habitaciones: unas 2,7 veces el suelo con 2,5 de alto */
 if(!r.perim&&r.suelo>0)r.perim=4*Math.sqrt(r.suelo);
 var pu=txt.match(/(\d+)\s*puertas?\b/);r.puertas=pu?num(pu[1]):(/\bpuerta\b/.test(txt)?1:null);
 var ve=txt.match(/(\d+)\s*ventanas?\b/);r.ventanas=ve?num(ve[1]):(/\bventana\b/.test(txt)?1:null);
@@ -350,17 +362,30 @@ var HUECO={puerta:1.6,ventana:1.2};
 function paredNeta(MD){var br=MD.perim*MD.alto;
 var d=(MD.puertas||0)*HUECO.puerta+(MD.ventanas||0)*HUECO.ventana;
 return Math.max(1,Math.round((br-d)*10)/10)}
+function fmtM(x){return String(Math.round(x*10)/10).replace('.',',')}
+function filaHueco(k,t,v){var b='min-width:44px;font-size:20px;line-height:1;padding:6px 10px';return '<div style="display:flex;align-items:center;gap:8px;margin-top:6px"><span style="min-width:74px">'+t+'</span>'+
+'<button class="mini sec" style="'+b+'" onclick="pasoHueco(\''+k+'\',-1)">\u2212</button>'+
+'<input value="'+v+'" inputmode="numeric" onchange="escHueco(\''+k+'\',this.value)" style="width:58px;text-align:center;font-size:18px;font-weight:700;color:#111;padding:6px">'+
+'<button class="mini sec" style="'+b+'" onclick="pasoHueco(\''+k+'\',1)">+</button></div>'}
+/* el cuadro de las paredes calculadas: cuántos metros salen y cuántas puertas y ventanas se quitan */
+function cajaPared(MD){var q=paredNeta(MD),hay=MD.puertas!=null||MD.ventanas!=null;
+return '<div id="paredBox" style="background:#FFF4E5;border-left:4px solid #C24A00;padding:9px;border-radius:6px;margin-top:8px;font-size:13px">'+
+'<b>Los metros de pared los he calculado yo: '+fmtM(q)+' m\u00b2.</b><br>'+
+(MD.casa?'Es la casa entera, '+fmtM(MD.suelo)+' m\u00b2: cuento las paredes de todas las habitaciones (unas 2,7 veces el suelo), con '+fmtM(MD.alto)+' m de alto':'Con '+fmtM(MD.suelo)+' m\u00b2 de suelo y '+fmtM(MD.alto)+' m de alto')+
+(hay?', menos '+(MD.puertas||0)+((MD.puertas||0)===1?' puerta':' puertas')+' y '+(MD.ventanas||0)+((MD.ventanas||0)===1?' ventana':' ventanas')+'.':'.')+
+'<div style="margin-top:8px"><b>'+(MD.casa?'\u00bfCu\u00e1ntas puertas y ventanas hay en toda la casa?':'\u00bfCu\u00e1ntas puertas y ventanas hay?')+'</b> Te las quito de la pared. Dale a + o escribe el n\u00famero.'+
+filaHueco('puertas','Puertas',MD.puertas||0)+filaHueco('ventanas','Ventanas',MD.ventanas||0)+'</div>'+
+(MD.casa?'':'<div style="margin-top:6px;color:var(--muted)">Si me dices el largo por el ancho (\u00ab4 por 5 metros\u00bb) el per\u00edmetro sale exacto.</div>')+'</div>'}
+function pasoHueco(k,d){var MD=window.__MED;if(!MD)return;ponHueco(k,Math.max(0,Math.min(99,(MD[k]||0)+d)))}
+function escHueco(k,v){var n=parseInt(String(v||'').replace(/\D/g,''),10);ponHueco(k,n>=0?Math.min(99,n):0)}
 /* al tocar los botones, se recalculan las lineas de pared */
 function ponHueco(k,n){var MD=window.__MED;if(!MD)return;MD[k]=n;
-if(MD.puertas===null)MD.puertas=0;if(MD.ventanas===null)MD.ventanas=0;
+if(MD.puertas==null)MD.puertas=0;if(MD.ventanas==null)MD.ventanas=0;
 var q=paredNeta(MD);
 (window.__PARED||[]).forEach(function(d){var l=cur.lineas.find(function(x){return x.d===d});if(l)l.q=q});
 renderLineas();save();
-var ci=document.getElementById('convInfo');
-ci.innerHTML='<div style="background:#FFF4E5;border-left:4px solid #C24A00;padding:9px;border-radius:6px;font-size:13px">'+
-'<b>Pared: '+q+' m\u00b2.</b><br>'+MD.suelo+' m\u00b2 de suelo, '+MD.alto+' m de alto, menos '+MD.puertas+' puerta(s) y '+MD.ventanas+' ventana(s).'+
-'<div style="margin-top:6px">Puertas: '+[0,1,2,3].map(function(x){return '<button class="mini '+(x===MD.puertas?'ok':'sec')+'" onclick="ponHueco(\'puertas\','+x+')">'+x+'</button>'}).join(' ')+
-'</div><div style="margin-top:6px">Ventanas: '+[0,1,2,3].map(function(x){return '<button class="mini '+(x===MD.ventanas?'ok':'sec')+'" onclick="ponHueco(\'ventanas\','+x+')">'+x+'</button>'}).join(' ')+'</div></div>'}
+/* el cuadro se pinta después, para no quitar la casilla mientras se está escribiendo en ella */
+clearTimeout(window.__tHueco);window.__tHueco=setTimeout(function(){var b=document.getElementById('paredBox');if(b&&b.parentNode)b.outerHTML=cajaPared(MD);else{var ci=document.getElementById('convInfo');if(ci)ci.insertAdjacentHTML('beforeend',cajaPared(MD))}},0)}
 function convertir(){leer();var txt=norm(document.getElementById('dictado').value);if(!txt)return;
 window.__ENSUELO=/suelo|solado|pavimento/.test(txt);window.__ENPARED=/pared|alicat|azulej/.test(txt);
 SINON.forEach(function(r){txt=txt.replace(r[0],r[1])});var añad=0,T=tarifa();var ya={};cur.lineas.forEach(function(l){ya[norm(l.d).slice(0,40)]=1});
@@ -382,7 +407,7 @@ while((mm=rxm2.exec(txt))!==null){var d=Math.abs(mm.index-pos);if(d<dist){dist=d
 if(mej)m=mej}
 /* si es trabajo de pared y me has dado el suelo y la altura, calculo los metros de pared */
 var MD=window.__MED||{},calc=false;
-if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.alto>0&&MD.perim>0){
+if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.alto>0&&MD.perim>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)){
 q=paredNeta(MD);calc=true;m={1:String(q)};window.__PARED=window.__PARED||[];window.__PARED.push(t.d)}
 if(!m)m=after.match(new RegExp('^[\\s,:]*(?:de\\s+|unos\\s+)?(\\d+(?:[.,]\\d+)?)\\s*'+U+'\\b'));
 if(!m){var before=txt.slice(Math.max(0,pos-30),pos);m=before.match(new RegExp('(\\d+(?:[.,]\\d+)?)\\s*'+U+'\\b[^\\d]*$'));if(m&&t.u==='ud'&&m[2]&&!/^(ud|uds|unidades)$/.test(m[2])&&norm(t.d).indexOf(norm(m[2]).slice(0,5))<0)m=null;if(!m&&t.u==='ud')m=before.match(/(\d+)\s*$/)}
@@ -393,7 +418,7 @@ var frase=txt.slice(ini,fin);
 if(t.u==='m2')m=frase.match(/(\d+(?:[.,]\d+)?)\s*(?:m2|m\u00b2|metros cuadrados)\b/);
 if(!m)m=frase.match(new RegExp('(\\d+(?:[.,]\\d+)?)\\s*'+U+'\\b'));
 if(!m&&t.u!=='ud')m=frase.match(/(\d+(?:[.,]\d+)?)\s*(?:metros|m)\b/)}
-if(m)q=num(m[1])}if(calc)__nCalc++;cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p});añad++});
+if(m)q=num(m[1]);else if(MD.casa&&t.u==='m2'&&HORIZ.indexOf(t.id)>-1)q=MD.suelo}if(calc)__nCalc++;cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p});añad++});
 /* si pide baldosa en el suelo Y en las paredes, van dos lineas: una por cada cosa */
 var MDp=window.__MED||{};
 if(__nCalc&&MDp.suelo>0&&window.__ENSUELO&&window.__ENPARED){
@@ -406,14 +431,7 @@ if(/(quinto|cuarto|tercero|segundo|sexto|septimo)\s+sin\s+ascensor|sin ascensor/
 renderLineas();var ci=document.getElementById('convInfo');
 if(añad){var MDx=window.__MED||{};
 ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo a\u00f1adido':' trabajos a\u00f1adidos')+'.</b> Revisa abajo las cantidades que pongan 1.'+
-(__nCalc?'<div style="background:#FFF4E5;border-left:4px solid #C24A00;padding:9px;border-radius:6px;margin-top:8px;font-size:13px">'+
-'<b>Los metros de pared los he calculado yo.</b><br>Con '+MDx.suelo+' m\u00b2 de suelo y '+MDx.alto+' m de alto salen <b>'+paredNeta(MDx)+' m\u00b2</b> de pared'+
-((MDx.puertas||MDx.ventanas)?' (ya descontadas '+(MDx.puertas||0)+' puerta(s) y '+(MDx.ventanas||0)+' ventana(s))':'')+'.'+
-((MDx.puertas===null||MDx.ventanas===null)?'<div style="margin-top:8px"><b>\u00bfCu\u00e1ntos huecos hay?</b> Se los descuento.<div style="margin-top:6px">Puertas: '+
-[0,1,2,3].map(function(n){return '<button class="mini sec" onclick="ponHueco(\'puertas\','+n+')">'+n+'</button>'}).join(' ')+
-'</div><div style="margin-top:6px">Ventanas: '+
-[0,1,2,3].map(function(n){return '<button class="mini sec" onclick="ponHueco(\'ventanas\','+n+')">'+n+'</button>'}).join(' ')+'</div></div>':'')+
-'<div style="margin-top:6px;color:var(--muted)">Si me dices el largo por el ancho («4 por 5 metros») el per\u00edmetro sale exacto.</div></div>':'')}
+(__nCalc?cajaPared(MDx):'')}
 
 else{ci.innerHTML='<div style="background:#FFF4E5;border-left:4px solid #C24A00;padding:10px;border-radius:6px;margin-top:8px">'+
 '<b>No he reconocido ning\u00fan trabajo de tu tarifa.</b><br>Prueba a decirlo con las palabras del oficio: \u00abalicatar el ba\u00f1o 20 metros, quitar el suelo, tabique de pladur\u00bb.<br>'+
@@ -1714,7 +1732,7 @@ if(Object.keys(DB.presus||{}).length){ST('clientes');setTimeout(renderClientes,8
 if(hayContactos()){var bc=document.getElementById('btnContacto');if(bc)bc.style.display=''}
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js?v197').catch(function(){});
 try{fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){if(j&&j.v&&j.v!==APP_VERSION&&new URLSearchParams(location.search).get('v')!==j.v)(function(){var q=new URLSearchParams(location.search);q.set('v',j.v);location.replace(location.pathname+'?'+q.toString()+location.hash)})()}).catch(function(){})}catch(_){}
-</script><script src="oficio.js?v163"></script><script src="entiende.js?v199"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v214"></script><script src="autoarreglo.js?v198"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v216"></script><script src="entiende.js?v216"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v214"></script><script src="autoarreglo.js?v198"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v200"></script>
 <script src="dictados.js?v196"></script>

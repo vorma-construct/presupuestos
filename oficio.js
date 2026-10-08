@@ -119,7 +119,7 @@ if(cur.lineas.some(function(l){return l.d===sol.d})){var n0=cur.lineas.length;cu
 cur.lineas.forEach(function(l){if(l.d===ali.d+' \u2014 en las paredes')l.d=ali.d});if(cur.lineas.length!==n0)renderLineas()}})();
 var yaD={};cur.lineas.forEach(function(l){yaD[norm(l.d).slice(0,40)]=1});
 paq.forEach(function(p){p.ids.forEach(function(id){var t=T.find(function(x){return x.id===id});if(!t||yaD[norm(t.d).slice(0,40)])return;var q=1;
-if(t.u==='m2'){if(p.pared.indexOf(id)>-1&&MD.suelo>0)q=paredNeta(MD);else if(p.suelo.indexOf(id)>-1&&MD.suelo>0)q=MD.suelo}
+if(t.u==='m2'){if(p.pared.indexOf(id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(id)>-1))q=paredNeta(MD);else if(p.suelo.indexOf(id)>-1&&MD.suelo>0)q=MD.suelo}
 var dd=t.d;if(id==='alc'&&p.alcSuelo)dd=t.d+' \u2014 en las paredes';
 cur.lineas.push({d:dd,q:q,u:t.u,p:t.p,paquete:p.nombre});yaD[norm(t.d).slice(0,40)]=1;añad++;
 if(id==='alc'&&p.alcSuelo){cur.lineas.push({d:t.d+' \u2014 en el suelo',q:MD.suelo>0?MD.suelo:1,u:t.u,p:t.p,paquete:p.nombre});añad++}})});
@@ -132,7 +132,7 @@ var enc=T.some(function(t){return t.k.some(function(k){var kk=norm(k);var rx=new
 if(enc)return;
 if(!/\b(poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat\w*|lijar|nivelar|reformar|arreglar|reparar|sustituir|renovar|abrir|cerrar|tapar|forrar|revestir|sellar|impermeabilizar|desatascar|limpiar|acuchillar|barnizar|lacar|enlucir|rasear|microcemento|mampara|grifo|grifer\w*|radiador|caldera|persiana|encimera|silicona|marmol|granito|piedra|madera|hierro|aluminio|cristal|espejo)\b/.test(fr))return;
 var par=parecida(fr),c=cantidadDe(fr);
-if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
+if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
 var dl=fr.replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m|ud|uds|unidades)\b/g,'').replace(/^(?:quiero|hay que|habria que|tambien|y)\s+/,'').replace(/\s+/g,' ').replace(/[\s,]+$/,'').trim();if(dl.length<4)dl=fr;var d=dl.charAt(0).toUpperCase()+dl.slice(1);var ap=aprendidoParecido(dl);
 if(yaD[norm(d).slice(0,40)])return;
 cur.lineas.push({d:d,q:c.q,u:c.u,p:ap});yaD[norm(d).slice(0,40)]=1;añad++;if(!(ap>0))sinPrecio.push(d)});

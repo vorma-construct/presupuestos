@@ -105,13 +105,13 @@ hab:{nombre:'Habitación',preg:[
  {k:'armario',t:'¿Montar armario?',ops:[[true,'Sí'],[false,'No']]}],
  def:{paredes:'pintar',suelo:'no',puerta:false,ventana:true,armario:false}},
 piso:{nombre:'Piso entero',preg:[
- {k:'banos',t:'¿Cuántos baños se reforman?',ops:[[0,'Ninguno'],[1,'Uno'],[2,'Dos']]},
+ {k:'banos',t:'¿Cuántos baños se reforman?',num:[0,6]},
  {k:'cocina',t:'¿Se reforma la cocina?',ops:[[true,'Sí'],[false,'No']]},
  {k:'luz',t:'¿Instalación eléctrica nueva?',ops:[[true,'Sí'],[false,'No']]},
  {k:'calef',t:'¿Calefacción nueva?',ops:[[true,'Sí'],[false,'No']]},
  {k:'paredes',t:'Paredes:',ops:[['gotele','Quitar gotelé y pintar'],['pintar','Solo pintar']]},
  {k:'suelo',t:'Suelo:',ops:[['tarima','Quitar el que hay y tarima nueva'],['no','No se toca']]},
- {k:'puertas',t:'¿Cuántas puertas de paso nuevas?',ops:[[0,'Ninguna'],[3,'Tres'],[4,'Cuatro'],[5,'Cinco'],[6,'Seis']]}],
+ {k:'puertas',t:'¿Cuántas puertas de paso nuevas?',num:[0,40]}],
  def:{banos:1,cocina:true,luz:true,calef:false,paredes:'gotele',suelo:'tarima',puertas:4}}
 };
 var EST={bano:'el baño',cocina:'la cocina',hab:'la habitación',piso:'el piso'};
@@ -173,6 +173,13 @@ unaVez()}
 var __n=0;
 function nuevoPaq(tipo,med,n){var pk={id:'pq'+Date.now().toString(36)+(__n++),tipo:tipo,suelo:med.suelo||0,perim:med.perim||0,alto:med.alto||0,n:n||1,r:Object.assign({},PAQ[tipo].def),hechas:{}};paqs().push(pk);return pk}
 
+/* una pregunta de cuántos: − número + */
+function pasoNum(id,k,v,lim){var b='min-width:44px;font-size:20px;line-height:1;padding:6px 10px';
+ return '<span style="display:inline-flex;align-items:center;gap:8px;vertical-align:middle;margin-top:2px">'+
+ '<button class="mini sec" style="'+b+'" onclick="paqResp(\''+id+'\',\''+k+'\','+Math.max(lim[0],v-1)+')">\u2212</button>'+
+ '<input value="'+v+'" inputmode="numeric" onchange="paqNum(\''+id+'\',\''+k+'\',this.value,'+lim[0]+','+lim[1]+')" style="width:58px;text-align:center;font-size:18px;font-weight:700;color:#111;padding:6px">'+
+ '<button class="mini sec" style="'+b+'" onclick="paqResp(\''+id+'\',\''+k+'\','+Math.min(lim[1],v+1)+')">+</button></span>'}
+window.paqNum=function(id,k,val,mn,mx){var v=parseInt(String(val||'').replace(/\D/g,''),10);if(!(v>=0))v=mn;setTimeout(function(){window.paqResp(id,k,Math.min(mx,Math.max(mn,v)))},0)};
 /* tarjeta de preguntas */
 function tarjeta(){var P=paqs().filter(function(pk){return cur.lineas.some(function(l){return l.paqId===pk.id})});if(!P.length)return '';
 var h='<div id="paqBox" style="background:#E8F1FB;border-left:4px solid #2B6CB0;padding:10px;border-radius:8px;margin-top:8px;font-size:14px">';
@@ -184,6 +191,7 @@ P.forEach(function(pk){var tit=PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'');
   '<div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><input id="pm_'+pk.id+'" inputmode="decimal" placeholder="'+(pk.tipo==='piso'?'80':'2 x 1,8 o 4')+'" style="flex:1;min-width:110px;padding:8px;font-size:15px"><button class="mini ok" onclick="paqMedida(\''+pk.id+'\')">'+(faltaMed?'Poner':'Cambiar')+'</button></div>'+
   (pk.tipo!=='piso'?'<div style="font-size:12px;color:#555;margin-top:2px">Largo por ancho o los metros cuadrados. Alto de pared: '+fmt(pk.alto>0?pk.alto:ALTO)+' m.</div>':'')+'</div>';
  PAQ[pk.tipo].preg.forEach(function(q){h+='<div style="margin-top:6px">'+q.t+' ';
+  if(q.num){h+=pasoNum(pk.id,q.k,+pk.r[q.k]||0,q.num)+'</div>';return}
   q.ops.forEach(function(o){var on=pk.r[q.k]===o[0];h+='<button class="mini '+(on?'ok':'sec')+'" style="margin:2px" onclick="paqResp(\''+pk.id+'\',\''+q.k+'\','+JSON.stringify(o[0]).replace(/"/g,'&quot;')+')">'+o[1]+'</button>'});h+='</div>'});
  h+='</div>'});
 var ceros=cur.lineas.filter(function(l){return l.paqId&&!(l.p>0)});if(ceros.length)h+='<div style="margin-top:8px;background:#FBE9E2;border-left:4px solid #B3261E;padding:8px;border-radius:6px"><b>Sin precio en tu tarifa:</b> '+ceros.map(function(l){return '«'+l.d.slice(0,50)+'»'}).join(', ')+'. Ponle el precio abajo y la próxima vez ya lo sabe.</div>';
@@ -223,10 +231,14 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.
  for(var k=1;k<=c;k++)nuevos.push({tipo:tipo,med:med,n:c>1?k:1});resto.push(' ')}
 var txt2=resto.join('');
 var n0=cur.lineas.length;
-if(txt2.replace(/[^a-z]/g,'').length>=3){ta.value=txt2;try{convertir0()}finally{ta.value=bruto}leer()}
+if(txt2.replace(/[^a-z]/g,'').length>=3){ta.value=txt2;window.__BRUTO=bruto;try{convertir0()}finally{ta.value=bruto;window.__BRUTO=null}leer()}
 var hechos=[];
 var sinVent=/\b(no tiene|sin|no hay|no lleva)\s+(?:ninguna\s+)?ventana/.test(norm(bruto)),conVent=!sinVent&&/\b(tiene|con|hay)\s+(?:una\s+)?ventana/.test(norm(bruto));
-nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVent)&&'ventana' in pk.r){pk.r.ventana=!sinVent;pk.hechas.ventana=1}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk)});
+var CUANT={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,dieciseis:16,diecisiete:17,dieciocho:18,diecinueve:19,veinte:20};
+function cuantosDe(t,que){var m=norm(t).match(new RegExp('\\b(\\d+|'+Object.keys(CUANT).join('|')+')\\s+(?:'+que+')\\b'));return m?(CUANT[m[1]]||+m[1]):null}
+var nBan=cuantosDe(bruto,'banos|aseos'),nPue=cuantosDe(bruto,'puertas');
+nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVent)&&'ventana' in pk.r){pk.r.ventana=!sinVent;pk.hechas.ventana=1}
+if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk)});
 /* lo que el de siempre metio y ya va en una estancia: fuera duplicados */
 if(hechos.length){unaVez();cur.lineas=cur.lineas.filter(function(l){if(l.paqId)return true;var dup=cur.lineas.some(function(o){return o.paqId&&o.d.indexOf(l.d)===0});return !dup})}
 renderLineas();try{autoGuardar()}catch(_){}
