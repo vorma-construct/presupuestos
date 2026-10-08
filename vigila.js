@@ -49,7 +49,7 @@ window.mandarFirma=function(){if(window.__vigSilencio)return mandar0.apply(this,
  /* avisa, pero decide él (como con lo rojo) */
  if(P.length&&!confirm('Al mirar el documento que va a recibir el cliente he visto esto:\n\n· '+P.slice(0,4).join('\n· ')+(P.length>4?'\n…':'')+'\n\n¿Lo mandas igualmente?'))return
  var res=mandar0.apply(this,arguments);
- var t0=Date.now();(function mira(){var m=document.getElementById('msg');if(m&&/Enlace (actualizado|mandado)/.test(m.textContent)&&!m.querySelector('.vig2')){m.insertAdjacentHTML('beforeend','<div class="vig2" style="margin-top:6px;font-size:13px;color:#1B7A3A"><b>Revisado dos veces antes de salir:</b> las partidas, cantidades y precios, y el documento tal como lo ve el cliente.'+(ch.length?'<br>He corregido: '+ch.join('; ')+'.':'')+'</div>');return}if(Date.now()-t0<30000)setTimeout(mira,500)})();
+ var t0=Date.now();(function mira(){var m=document.getElementById('msg');if(m&&/Enlace (actualizado|mandado)/.test(m.textContent)&&!m.querySelector('.vig2')){try{if(window.__usoApunta)__usoApunta('mandado')}catch(_){}m.insertAdjacentHTML('beforeend','<div class="vig2" style="margin-top:6px;font-size:13px;color:#1B7A3A"><b>Revisado dos veces antes de salir:</b> las partidas, cantidades y precios, y el documento tal como lo ve el cliente.'+(ch.length?'<br>He corregido: '+ch.join('; ')+'.':'')+'</div>');return}if(Date.now()-t0<30000)setTimeout(mira,500)})();
  return res};
 
 /* aviso que se queda hasta que lo tocas */

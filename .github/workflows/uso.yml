@@ -25,6 +25,7 @@ jobs:
               if "doubleValue" in v: return v["doubleValue"]
               if "booleanValue" in v: return v["booleanValue"]
               if "mapValue" in v: return {k:val(x) for k,x in v["mapValue"].get("fields",{}).items()}
+              if "arrayValue" in v: return [val(x) for x in v["arrayValue"].get("values",[])]
               return None
           out=[]
           for x in r:
@@ -35,7 +36,7 @@ jobs:
               ks=sorted(dias.keys())[-14:]
               out.append({"empresa":f.get("empresa"),"marca":f.get("marca"),"disp":f.get("disp"),"instalada":f.get("instalada"),"ver":f.get("ver"),
                           "mio":bool(f.get("mio")) or (str(f.get("cuenta") or "").lower()=="asieresquinas1@gmail.com"),"ultimo":f.get("ultimo"),"ultimoQue":f.get("ultimoQue"),"dias":{k:dias[k] for k in ks},"total":f.get("total") or {},
-                          "presupuestos":f.get("presupuestos"),"mandados":f.get("mandados"),"estado":f.get("estado") or {},"fallo":bool(f.get("error")),"falloTxt":str(f.get("error") or "")[:200],"falloTs":f.get("errorTs")})
+                          "presupuestos":f.get("presupuestos"),"mandados":f.get("mandados"),"estado":f.get("estado") or {},"fallo":bool(f.get("error")),"falloTxt":str(f.get("error") or "")[:200],"falloTs":f.get("errorTs"),"log":f.get("log") or []})
           json.dump({"generado":int(time.time()*1000),"aparatos":out},open("tools/uso.json","w"),ensure_ascii=False,indent=1)
           print("aparatos:",len(out))
           PY
