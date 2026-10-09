@@ -67,8 +67,8 @@ window.juntarRepes=function(){var map={};try{var P=DB.presus||{};var ks=Object.k
  var hecho={};ks.forEach(function(k){if(hecho[k])return;var g=ks.filter(function(j){return !hecho[j]&&norm(P[j].nom).trim()===norm(P[k].nom).trim()&&mismaObra(P[j].dir,P[k].dir)});if(g.length<2)return;
   g.forEach(function(j){hecho[j]=1});
   var nuevo=g.slice().sort(function(a,b){return (P[b].ts||0)-(P[a].ts||0)})[0],viejo=g.slice().sort(function(a,b){return num(a)-num(b)})[0];
-  if(nuevo!==viejo){var c=JSON.parse(JSON.stringify(P[nuevo]));c.num=viejo;P[viejo]=c}
-  g.forEach(function(j){if(j===viejo)return;map[j]=viejo;delete P[j];try{borrarNube(j)}catch(_){}});
+  if(nuevo!==viejo){try{copiaAntes(viejo,'repe')}catch(_){}var c=JSON.parse(JSON.stringify(P[nuevo]));c.num=viejo;P[viejo]=c}
+  g.forEach(function(j){if(j===viejo)return;map[j]=viejo;try{aPapelera(j,'repe')}catch(_){delete P[j];try{borrarNube(j)}catch(_){}}});
   try{subirPresu(viejo)}catch(_){}});
  if(Object.keys(map).length){save();if(cur&&map[cur.num]){try{abrir(map[cur.num])}catch(_){}}try{renderClientes()}catch(_){}}}catch(e){}return map};
 setTimeout(juntarRepes,4000);setTimeout(juntarRepes,15000);

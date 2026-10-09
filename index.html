@@ -198,7 +198,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v221';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v222';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -708,8 +708,8 @@ function dejarEntrar(id){var L=window.__sols||{},r=FB.db.collection('clientes').
 function noEntra(id){FB.db.collection('clientes').doc(FB.uid).collection('solicitudes').doc(id).delete().catch(function(){})}
 function escuchar(){dot('#e0a800');var r=ref();r.get().then(function(s){var d=s.data();if(d){if(d.aj&&window.__empCuenta&&__empCuenta(d.aj))return;if(d.aj){AJ=Object.assign({},AJ_DEF,d.aj);
 if(AJ.marca==='Vornicu Reformas'){AJ.marca='VORMA CONSTRUCT SL';try{subirConfig()}catch(_){}}if(AJ.somos&&AJ.somos.indexOf('Somos un equipo peque')===0){AJ.somos=AJ_DEF.somos;try{subirConfig()}catch(_){}}if(AJ.somos&&AJ.somos.indexOf('Somos una de las empresas de reformas m')===0){AJ.somos=AJ.somos.replace(/^Somos una de las empresas de reformas m[^.]*\./,'Somos una empresa de reformas de Bilbao, con base en Santutxu, que hace desde un baño hasta una vivienda entera.');try{subirConfig()}catch(_){}}lsSet('vr_aj',JSON.stringify(AJ));document.getElementById('brandTxt').textContent=AJ.marca.toUpperCase()}if(d.tarifa)DB.tarifa=d.tarifa;if(d.extra)DB.extra=d.extra;if(d.contador)DB.contador=Math.max(DB.contador,d.contador);if(d.aprend){DB.aprend=DB.aprend||{};Object.keys(d.aprend).forEach(function(k){var a=d.aprend[k],b=DB.aprend[k];if(a&&(!b||(a.ts||0)>(b.ts||0)))DB.aprend[k]=a})}if(d.ratios&&d.ratios.length){var _vr={};(DB.ratios||[]).concat(d.ratios).forEach(function(r){if(r&&r.ts)_vr[r.ts+'|'+r.f]=r});DB.ratios=Object.keys(_vr).map(function(k){return _vr[k]}).sort(function(a,b){return a.ts-b.ts}).slice(-60)}}
-return r.collection('presupuestos').get()}).then(function(q){var nube={};q.forEach(function(doc){nube[doc.id]=doc.data()});var locales=Object.keys(DB.presus);Object.keys(nube).forEach(function(k){if(!DB.presus[k]||(nube[k].ts||0)>=(DB.presus[k].ts||0))DB.presus[k]=nube[k]});locales.forEach(function(k){if(!nube[k]||(DB.presus[k].ts||0)>(nube[k].ts||0))r.collection('presupuestos').doc(k).set(DB.presus[k])});lsSet('vr_db',JSON.stringify(DB));subirConfig();dot('var(--ok)');if(document.getElementById('page-clientes').classList.contains('on'))renderClientes();
-FB.unsub=r.collection('presupuestos').onSnapshot(function(snap){snap.docChanges().forEach(function(ch){var d=ch.doc.data();if(ch.type==='removed'){if(DB.presus[ch.doc.id]&&!(DB.presus[ch.doc.id].ts>(d.ts||0)))delete DB.presus[ch.doc.id]}else if(!DB.presus[ch.doc.id]||(d.ts||0)>=(DB.presus[ch.doc.id].ts||0))DB.presus[ch.doc.id]=d});lsSet('vr_db',JSON.stringify(DB));if(document.getElementById('page-clientes').classList.contains('on'))renderClientes()},function(){dot('#b3261e')})}).catch(function(){dot('#b3261e')})}
+return r.collection('presupuestos').get()}).then(function(q){var nube={};q.forEach(function(doc){nube[doc.id]=doc.data()});var locales=Object.keys(DB.presus);Object.keys(nube).forEach(function(k){if(nube[k].borrado){if(!DB.presus[k]||(nube[k].ts||0)>=(DB.presus[k].ts||0)){delete DB.presus[k];DB.papelera=DB.papelera||{};DB.papelera[k]={p:nube[k],ts:nube[k].borrado.ts||nube[k].ts||0,por:nube[k].borrado.por||'',pendiente:false}}return}if(!DB.presus[k]||(nube[k].ts||0)>=(DB.presus[k].ts||0)){DB.presus[k]=nube[k];if(DB.papelera&&DB.papelera[k])delete DB.papelera[k]}});locales.forEach(function(k){if(DB.presus[k]&&(!nube[k]||(DB.presus[k].ts||0)>(nube[k].ts||0)))r.collection('presupuestos').doc(k).set(DB.presus[k])});lsSet('vr_db',JSON.stringify(DB));subirConfig();dot('var(--ok)');if(document.getElementById('page-clientes').classList.contains('on'))renderClientes();
+FB.unsub=r.collection('presupuestos').onSnapshot(function(snap){snap.docChanges().forEach(function(ch){var d=ch.doc.data(),id=ch.doc.id;if(ch.type==='removed'){if(DB.presus[id]&&!(DB.presus[id].ts>(d.ts||0))){try{aPapelera(id,'nube',true)}catch(_){delete DB.presus[id]}}}else if(d.borrado){if(!DB.presus[id]||(d.ts||0)>=(DB.presus[id].ts||0)){delete DB.presus[id];DB.papelera=DB.papelera||{};DB.papelera[id]={p:d,ts:d.borrado.ts||d.ts||0,por:d.borrado.por||'',pendiente:false}}}else if(!DB.presus[id]||(d.ts||0)>=(DB.presus[id].ts||0)){DB.presus[id]=d;if(DB.papelera&&DB.papelera[id])delete DB.papelera[id]}});lsSet('vr_db',JSON.stringify(DB));if(document.getElementById('page-clientes').classList.contains('on'))renderClientes()},function(){dot('#b3261e')})}).catch(function(){dot('#b3261e')})}
 function subirConfig(){pend().config=true;lsSet('vr_db',JSON.stringify(DB));pintaEstado();vaciarCola()}
 var __autoT=null;
 function autoGuardar(){clearTimeout(__autoT);__autoT=setTimeout(function(){
@@ -732,9 +732,9 @@ function vaciarCola(){if(!FB.uid||!FB.db)return;if(window.__colaVa)return;window
 var P=pend(),ns=Object.keys(P.presus);
 var paso=function(i){if(i>=ns.length){
   if(P.config){return ref().set({aj:AJ,tarifa:DB.tarifa,extra:DB.extra||[],contador:DB.contador,aprend:DB.aprend||{},ratios:DB.ratios||[],ts:Date.now()},{merge:true})
-    .then(function(){P.config=false;lsSet('vr_db',JSON.stringify(DB))}).catch(function(){}).then(function(){window.__colaVa=false;pintaEstado()})}
-  window.__colaVa=false;pintaEstado();return Promise.resolve()}
-var n=ns[i];if(!DB.presus[n]){quitarPend(n);return paso(i+1)}
+    .then(function(){P.config=false;lsSet('vr_db',JSON.stringify(DB))}).catch(function(){}).then(function(){window.__colaVa=false;pintaEstado();if(Object.keys(P.presus).some(function(k){return ns.indexOf(k)<0}))setTimeout(vaciarCola,300)})}
+  window.__colaVa=false;pintaEstado();if(Object.keys(P.presus).some(function(k){return ns.indexOf(k)<0}))setTimeout(vaciarCola,300);return Promise.resolve()}
+var n=ns[i];if(!DB.presus[n]){var q=DB.papelera&&DB.papelera[n];if(q&&q.pendiente&&q.p){return ref().collection('presupuestos').doc(n).set(q.p).then(function(){q.pendiente=false;quitarPend(n)}).catch(function(){}).then(function(){return paso(i+1)})}quitarPend(n);return paso(i+1)}
 return ref().collection('presupuestos').doc(n).set(DB.presus[n]).then(function(){quitarPend(n)}).catch(function(){})
 .then(function(){return paso(i+1)})};
 paso(0)}
@@ -743,6 +743,24 @@ window.addEventListener('online',function(){vaciarCola()});
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'){vaciarCola();try{escucharImprevistos()}catch(_){}}});
 window.addEventListener('beforeunload',function(e){if(hayPend()&&!(window.__abreCorreo&&Date.now()-window.__abreCorreo<4000)){e.preventDefault();e.returnValue=''}});
 function borrarNube(n){if(!FB.uid)return;ref().collection('presupuestos').doc(n).delete().catch(function(){})}
+/* PAPELERA: ningun presupuesto se borra de verdad. Lo que se quita de la lista (a mano, por repetido o porque otro movil lo quito)
+   se guarda aparte y, en la nube, queda el mismo presupuesto marcado como quitado. Se recupera desde Clientes, al final. */
+function aPapelera(n,motivo,soloLocal){var p=DB.presus[n];if(!p)return false;
+ var c=JSON.parse(JSON.stringify(p));c.borrado={ts:Date.now(),por:motivo||'manual',desde:(window.dispTxt?dispTxt():'')};c.ts=Date.now();
+ DB.papelera=DB.papelera||{};DB.papelera[n]={p:c,ts:c.borrado.ts,por:c.borrado.por,pendiente:!soloLocal};
+ var ks=Object.keys(DB.papelera).sort(function(a,b){return (DB.papelera[a].ts||0)-(DB.papelera[b].ts||0)});while(ks.length>60)delete DB.papelera[ks.shift()];
+ delete DB.presus[n];
+ if(!soloLocal){try{marcarPend(n);vaciarCola()}catch(_){}}
+ try{if(window.__usoApunta)__usoApunta(motivo==='repe'?'repe':motivo==='nube'?'quitadoNube':'borra')}catch(_){}
+ return true}
+function copiaAntes(n,motivo){try{var p=DB.presus[n];if(!p)return;DB.papelera=DB.papelera||{};DB.papelera[n+'~antes']={p:JSON.parse(JSON.stringify(p)),ts:Date.now(),por:motivo||'repe',pendiente:false}}catch(_){}}
+function recuperar(k){var e=(DB.papelera||{})[k];if(!e||!e.p)return;var p=JSON.parse(JSON.stringify(e.p));delete p.borrado;p.ts=Date.now();var n=String(p.num||k).replace(/~antes$/,'');
+ if(DB.presus[n]){n=siguienteNum()}p.num=n;DB.presus[n]=p;if(num(n)>num(DB.contador||0))DB.contador=num(n);
+ delete DB.papelera[k];save();subirPresu(n);try{renderClientes()}catch(_){}alert('Recuperado: presupuesto '+n+(p.nom?' de '+p.nom:''))}
+function papeleraHtml(){var P=DB.papelera||{},ks=Object.keys(P).filter(function(k){return P[k]&&P[k].p}).sort(function(a,b){return (P[b].ts||0)-(P[a].ts||0)});
+ if(!ks.length)return '';
+ return '<details style="margin-top:16px"><summary style="cursor:pointer;font-weight:700">Papelera ('+ks.length+') · lo que se quitó, por si lo quieres recuperar</summary>'+ks.map(function(k){var e=P[k],p=e.p,d=new Date(e.ts||0);
+  return '<div class="cli" style="margin-top:6px"><b>'+escH(String(k).replace(/~antes$/,''))+'</b><div><div style="font-weight:700">'+escH(p.nom||'')+'</div><div style="color:var(--muted);font-size:12px">'+escH(p.dir||'')+' · quitado el '+d.toLocaleDateString('es-ES')+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+(e.por==='repe'?' · repetido: lo juntó la limpieza':e.por==='nube'?' · lo quitó otro móvil':'')+(/~antes$/.test(k)?' · versión de antes de juntarlo':'')+(p.firmaTok?' · ya estaba mandado':'')+'</div></div><button class="mini ok" style="grid-column:1/-1;margin-top:4px" onclick="recuperar(\''+escH(k)+'\')">Recuperar</button></div>'}).join('')+'</details>'}
 /* ---------- guardar / clientes ---------- */
 function clientes(){if(!DB.clientes)DB.clientes={};return DB.clientes}
 function claveCli(n){return (n||'').toLowerCase().replace(/\s+/g,' ').trim()}
@@ -811,13 +829,9 @@ var ai=document.getElementById('arqInfo');if(ai)ai.textContent='';var ap=documen
 ['pdfArq'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=''});
 var rb=document.getElementById('revBox');if(rb)rb.innerHTML='';pintar();document.getElementById('msg').textContent='Partidas borradas'}
 function borrarEste(){leer();var n=cur.num;
-if(!confirm('\u00bfBorrar entero el presupuesto '+n+(cur.nom?' de '+cur.nom:'')+'? Se quita tambi\u00e9n de la nube y no se puede deshacer.'))return;
-var _p=DB.presus[n];
-if(_p&&FB.db){try{
-if(_p.firmaTok)FB.db.collection('firmas').doc(_p.firmaTok).delete().catch(function(){});
-if(_p.segTok){FB.db.collection('seguimiento').doc(_p.segTok).collection('fotos').get().then(function(q){q.forEach(function(d){d.ref.delete()})}).catch(function(){});
-FB.db.collection('seguimiento').doc(_p.segTok).delete().catch(function(){})}}catch(_){}}
-if(DB.presus[n]){delete DB.presus[n];save();borrarNube(n)}
+var _p=DB.presus[n],_m=!!(_p&&(_p.firmaTok||_p.segTok||_p.firmado||(_p.estado&&_p.estado!=='borrador')));
+if(!confirm((_m?'Este presupuesto YA SE MAND\u00d3 al cliente. ':'')+'\u00bfQuitar el presupuesto '+n+(cur.nom?' de '+cur.nom:'')+'? No se pierde: se guarda en la Papelera, al final de Clientes, por si lo quieres recuperar. El enlace del cliente se queda como est\u00e1.'))return;
+if(DB.presus[n]){aPapelera(n,'manual');save()}
 ARQ={med:[],plano:null,cab:null};var ap=document.getElementById('arqPanel');if(ap){ap.innerHTML='';ap.style.display='none'}
 var ai=document.getElementById('arqInfo');if(ai)ai.textContent='';var rb=document.getElementById('revBox');if(rb)rb.innerHTML='';
 var pa=document.getElementById('pdfArq');if(pa)pa.value='';nuevo();document.getElementById('msg').textContent='Presupuesto '+n+' borrado'}
@@ -845,7 +859,7 @@ function fechasObra(n){var p=DB.presus[n];var i=prompt('D\u00eda de inicio de la
 var f=prompt('D\u00eda en que calculas acabarla',p.obraFinPrev||'');if(f!==null)p.obraFinPrev=f;
 var r=prompt('D\u00eda en que se acab\u00f3 de verdad (vac\u00edo si sigue)',p.obraFin||'');if(r!==null)p.obraFin=r;
 DB.presus[n]=p;save();subirPresu(n);renderClientes()}
-function borrar(n){if(confirm('¿Borrar el presupuesto '+n+' de '+DB.presus[n].nom+'?')){delete DB.presus[n];save();borrarNube(n);renderClientes()}}
+function borrar(n){var p=DB.presus[n];if(!p)return;var m=!!(p.firmaTok||p.segTok||p.firmado||(p.estado&&p.estado!=='borrador'));if(confirm((m?'Este presupuesto YA SE MAND\u00d3 al cliente. ':'')+'\u00bfQuitar el presupuesto '+n+' de '+p.nom+'? No se pierde: se guarda en la Papelera, al final de Clientes, por si lo quieres recuperar.')){aPapelera(n,'manual');save();renderClientes()}}
 var EST={borrador:['Borrador',''],enviado:['Enviado','env'],aceptado:['Aceptado','ace'],obra:['En obra','obra'],finalizado:['Acabada','fin'],cobrado:['Pagado y cerrado','cob']}
 function estaFirmado(p){return !!(p&&p.firmado&&p.firmado.fecha)};
 function fichaCli(p){var tot=totalCon(p.lineas,p.iva);return '<div class="cli"><b>'+p.num+'</b><div><div style="font-weight:700">'+p.nom+(p.rev?' <span class="chip" style="background:#b3261e">'+p.rev+' por arreglar</span>':'')+'</div><div style="color:var(--muted);font-size:12px">'+(p.dir||'')+' · '+p.fecha+horaTxt(p)+' · '+eur(tot)+(estaFirmado(p)?'<br><span style="color:var(--ok)">Firmado por '+p.firmado.nombre+' el '+String(p.firmado.fecha||'').replace(/\s*\([^)]*\)\s*$/,'')+'</span>':(p.firmaTok?'<br><span style="color:'+(p.visto?'#C24A00':'var(--muted)')+'">'+(p.visto?'\u2713 El cliente lo abri\u00f3 el '+new Date(p.visto).toLocaleDateString('es-ES')+', sin firmar todav\u00eda':'Enlace de firma mandado, sin abrir')+'</span>':''))+'</div></div><select class="mini" style="width:auto" onchange="estado(\''+p.num+'\',this.value)">'+Object.keys(EST).map(function(k){return '<option value="'+k+'"'+(p.estado===k?' selected':'')+'>'+EST[k][0]+'</option>'}).join('')+'</select>'+barraObra(p)+(p.firmaTok&&!estaFirmado(p)?'<div style="grid-column:1/-1;margin-top:4px"><a class="mini" style="display:inline-block;padding:5px 9px;border-radius:6px;background:var(--ok);color:#fff;text-decoration:none" target="_blank" rel="noopener" href="'+waURL('Hola '+p.nom+', te recuerdo el presupuesto n\u00ba '+p.num+'. Puedes firmarlo aqu\u00ed: '+firmaURL(p.firmaTok)+' (aceptaci\u00f3n bajo reserva)',p.tel)+'">WhatsApp</a> <a class="mini" style="display:inline-block;padding:5px 9px;border-radius:6px;border:1px solid var(--line);text-decoration:none;color:var(--ink)" href="'+mailURL(p.nom,p.num,firmaURL(p.firmaTok),p.email)+'">Correo</a></div>':'')+'<div style="grid-column:1/-1;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)"><b style="font-size:12px">Seguimiento de la obra</b><br><button class="mini" style="background:#25D366;color:#fff;border:0" onclick="mandarSeguimiento(\'' + p.num + '\')">WhatsApp</button> <button class="mini" onclick="copiarSeguimiento(\'' + p.num + '\')">Copiar</button>' + (p.segTok ? '<div style="font-size:11px;color:var(--muted);margin-top:3px;word-break:break-all">' + segURL(p.segTok) + '</div>' : '') + '</div><div class="row"><button class="mini ok" onclick="verFotos(\''+p.num+'\')">Fotos de la obra</button><button class="mini" onclick="abrir(\''+p.num+'\')">Abrir</button><button class="mini sec" onclick="borrar(\''+p.num+'\')">Borrar</button></div></div>'}
@@ -860,13 +874,13 @@ if(em){verMasCliente();document.getElementById('f_email').value=em}
 leer();save()}).catch(function(){})}
 function renderClientes(){var f=norm(document.getElementById('fcli').value||'');var box=document.getElementById('listaCli');
 var arr=Object.values(DB.presus).filter(function(p){return !f||norm(p.nom+' '+p.dir).indexOf(f)>-1}).sort(function(a,b){return (b.ts||0)-(a.ts||0)});
-if(!arr.length){box.innerHTML='<p style="color:var(--muted)">Todav\u00eda no hay presupuestos guardados.</p>';return}
+if(!arr.length){box.innerHTML='<p style="color:var(--muted)">Todav\u00eda no hay presupuestos guardados.</p>'+papeleraHtml();return}
 var marcha=arr.filter(estaFirmado),capta=arr.filter(function(p){return !estaFirmado(p)});
 var bloque=function(tit,sub,lista,color){if(!lista.length)return '<div class="tarifa-cat" style="background:'+color+'">'+tit+' (0)</div><p style="color:var(--muted);margin:6px 0 14px">'+sub+'</p>';
 return '<div class="tarifa-cat" style="background:'+color+'">'+tit+' ('+lista.length+')</div>'+lista.map(fichaCli).join('')};
 box.innerHTML='<button class="ok" style="width:100%;padding:15px;font-size:17px;margin-bottom:10px" onclick="nuevoDesdeLista()">+ Nuevo presupuesto</button>'+
 '<div class="row" style="margin-bottom:8px"><button class="sec" onclick="comprobarFirmas(true)">Comprobar firmas</button><span id="firmasInfo" style="color:var(--muted);font-size:12px"></span></div>'+bloque('EN MARCHA \u00b7 firmados','Aqu\u00ed caen solos en cuanto el cliente firma el enlace.',marcha,'#1a7a3f')
-+bloque('EN CAPTACI\u00d3N \u00b7 pendientes de firma','Presupuestos mandados o en borrador que a\u00fan no ha firmado nadie.',capta,'#1E2A35');
++bloque('EN CAPTACI\u00d3N \u00b7 pendientes de firma','Presupuestos mandados o en borrador que a\u00fan no ha firmado nadie.',capta,'#1E2A35')+papeleraHtml();
 comprobarFirmas();escucharFirmas();escucharTodasLasFirmas()}
 function info(t){var e=document.getElementById('firmasInfo');if(e)e.textContent=t}
 function comprobarFirmas(manual){if(!FB.db){if(manual)info('Todav\u00eda no hay conexi\u00f3n con la nube; espera unos segundos y vuelve a darle.');return}
@@ -1791,7 +1805,7 @@ function alVolverApp(){if(document.visibilityState!=='hidden'&&Date.now()-__ultV
 document.addEventListener('visibilitychange',alVolverApp);window.addEventListener('focus',alVolverApp);window.addEventListener('pageshow',function(e){if(e&&e.persisted)alVolverApp()});
 /* después de ponerse la versión nueva, vuelve al presupuesto que estaba abierto */
 try{var __ra=sessionStorage.getItem('vr_reabrir');if(__ra){sessionStorage.removeItem('vr_reabrir');if(DB.presus&&DB.presus[__ra])setTimeout(function(){try{abrir(__ra)}catch(_){}},400)}}catch(_){}
-</script><script src="oficio.js?v216"></script><script src="entiende.js?v216"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v218"></script><script src="autoarreglo.js?v198"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v216"></script><script src="entiende.js?v216"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v222"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v200"></script>
 <script src="dictados.js?v196"></script>

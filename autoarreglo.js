@@ -17,7 +17,7 @@ function unoSolo(P,igual){var ks=Object.keys(DB.presus).filter(function(k){retur
    setTimeout(function(){var tq2=DB.presus[queda]&&DB.presus[queda].firmaTok;if(!tq2||tq2===tok)return;
     FB.db.collection('firmas').doc(tok).get().then(function(d){if(d.exists&&(d.data()||{}).firma)return;
      return FB.db.collection('firmas').doc(tq2).get().then(function(n){if(!n.exists)return;var x=n.data();x.num=queda;x.ts=Date.now();return FB.db.collection('firmas').doc(tok).set(x)})}).catch(function(){})},45000)}
-  delete DB.presus[k];try{borrarNube(k)}catch(_){}fuera.push(k)});
+  try{aPapelera(k,'repe')}catch(_){delete DB.presus[k];try{borrarNube(k)}catch(_){}}fuera.push(k)});
  if(fuera.length){save();if(window.cur&&fuera.indexOf(cur.num)>=0)try{abrir(queda)}catch(_){}try{renderClientes()}catch(_){}}
  return fuera}
 function correr(){fetch('arreglos/auto.json?'+Date.now()).then(function(r){return r.json()}).then(function(L){
