@@ -1,5 +1,5 @@
 {
- "generado": 1791553102759,
+ "generado": 1791586172471,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -147,10 +147,10 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v218",
+   "ver": "v222",
    "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791495558263,
+   "ultimo": 1791575338935,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -168,10 +168,13 @@
     },
     "2026-10-08": {
      "abre": 8
+    },
+    "2026-10-09": {
+     "abre": 2
     }
    },
    "total": {
-    "abre": 27,
+    "abre": 29,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
@@ -186,7 +189,7 @@
     "partidas": 0,
     "aCero": 0,
     "total": 0,
-    "avisos": 1
+    "avisos": 2
    },
    "fallo": true,
    "falloTxt": "Uncaught Error: TypeError: Failed to fetch (v209)",
@@ -194,6 +197,14 @@
    "log": [
     {
      "t": 1791495558263,
+     "q": "abre"
+    },
+    {
+     "t": 1791575337196,
+     "q": "abre"
+    },
+    {
+     "t": 1791575338935,
      "q": "abre"
     }
    ]
