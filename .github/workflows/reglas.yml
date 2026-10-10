@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['.github/workflows/reglas.yml']
+    paths: ['.github/workflows/reglas.yml', 'tools/reglas.pedir']
 permissions: {contents: write}
 jobs:
   reglas:
