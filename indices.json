@@ -1,7 +1,7 @@
 {
  "fuente": "Eustat, Índice de costes de la construcción de la C.A. de Euskadi, edificación (base 2021=100)",
  "url": "https://es.eustat.eus/elementos/xls0010249_c.csv",
- "leido": "2026-10-05",
+ "leido": "2026-10-10",
  "columna": "edificacion",
  "anual": {
   "2021": 100.0,
