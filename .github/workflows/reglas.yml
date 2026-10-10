@@ -1,0 +1,56 @@
+# Comprueba desde fuera que las reglas de Firestore publicadas son las nuevas (equipo de empresa).
+# Crea una cuenta de prueba que dura unos segundos, mira dos cosas y la borra:
+#  - leer equipo/{yo} de la empresa Lucas: con las reglas nuevas sale "no existe" (404); con las viejas, "denegado" (403)
+#  - leer los datos de la empresa Lucas siendo de fuera: tiene que salir "denegado" (403) siempre
+# Deja el resultado en tools/reglas.json (no guarda correos ni contrasenas).
+name: reglas
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/reglas.yml']
+permissions: {contents: write}
+jobs:
+  reglas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.error,time,secrets
+          KEY="AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q"
+          DUENO="MCxD1m6SXwcDebQYjLK3FWi2Dcs1"
+          BASE="https://firestore.googleapis.com/v1/projects/reformas-ioan/databases/(default)/documents/"
+          AUTH="https://identitytoolkit.googleapis.com/v1/accounts:"
+          def pide(url,body=None,tok=None):
+              h={"Content-Type":"application/json","Referer":"https://reformas-lucas.github.io/"}
+              if tok: h["Authorization"]="Bearer "+tok
+              req=urllib.request.Request(url,data=json.dumps(body).encode() if body is not None else None,headers=h)
+              try:
+                  with urllib.request.urlopen(req,timeout=60) as r: return r.status,json.load(r)
+              except urllib.error.HTTPError as e:
+                  try: b=json.loads(e.read() or b"{}")
+                  except Exception: b={}
+                  return e.code,b
+          res={"fecha":int(time.time()*1000)}
+          st,b=pide(AUTH+"signUp?key="+KEY,{"email":"prueba-reglas-%d@example.com"%int(time.time()),"password":secrets.token_urlsafe(18),"returnSecureToken":True})
+          tok,uid=b.get("idToken"),b.get("localId")
+          res["cuentaPrueba"]=st
+          if not tok:
+              res["resultado"]="no se pudo crear la cuenta de prueba"
+              res["error"]=str((b.get("error") or {}).get("message",""))[:200]
+          else:
+              try:
+                  s1,_=pide(BASE+"clientes/%s/equipo/%s"%(DUENO,uid),tok=tok)
+                  s2,_=pide(BASE+"clientes/%s"%DUENO,tok=tok)
+                  res["equipo"]=s1; res["datosAjenos"]=s2
+                  res["resultado"]=("nuevas" if s1==404 else "viejas" if s1==403 else "raro")+(" y protegidas" if s2==403 else " PERO SE VEN DATOS AJENOS")
+              finally:
+                  s3,_=pide(AUTH+"delete?key="+KEY,{"idToken":tok})
+                  res["cuentaBorrada"]=(s3==200)
+          json.dump(res,open("tools/reglas.json","w"),ensure_ascii=False,indent=1)
+          print(res)
+          PY
+          git config user.name "reglas"; git config user.email "actions@github.com"
+          git add tools/reglas.json
+          git commit -m "comprobacion de reglas" && for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
