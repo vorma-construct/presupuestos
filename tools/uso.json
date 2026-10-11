@@ -1,5 +1,5 @@
 {
- "generado": 1791716975809,
+ "generado": 1791724803207,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -185,8 +185,8 @@
    "ver": "v222",
    "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791575338935,
-   "ultimoQue": "abre",
+   "ultimo": 1791717133466,
+   "ultimoQue": "borra",
    "dias": {
     "2026-10-06": {
      "abre": 17,
@@ -206,17 +206,22 @@
     },
     "2026-10-09": {
      "abre": 2
+    },
+    "2026-10-11": {
+     "abre": 1,
+     "borra": 1
     }
    },
    "total": {
-    "abre": 29,
+    "abre": 30,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
     "dicta": 1,
     "fallo": 3,
     "imagen": 2,
-    "mandar": 1
+    "mandar": 1,
+    "borra": 1
    },
    "presupuestos": 14,
    "mandados": 2,
@@ -241,6 +246,14 @@
     {
      "t": 1791575338935,
      "q": "abre"
+    },
+    {
+     "t": 1791717098200,
+     "q": "abre"
+    },
+    {
+     "t": 1791717133466,
+     "q": "borra"
     }
    ]
   },
