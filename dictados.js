@@ -12,6 +12,8 @@
   var info=((document.getElementById('convInfo')||{}).innerText||'').trim().slice(0,300);
   var e={ts:Date.now(),fecha:new Date().toLocaleString('es-ES'),num:c.num||'',cliente:c.nom||'',origen:porVoz?'voz':'escrito',texto:String(txt).slice(0,3000),
    trabajos:nuevas.length,lineas:nuevas.slice(0,40),aviso:info,ver:window.APP_VERSION||'',fallo:!nuevas.length};
+  /* al recuento de uso solo van números: cuántas partidas salieron, cuántas sin precio, cuántas palabras tenía y si fue por voz; nunca el texto */
+  try{if(window.__usoResultado)__usoResultado({n:nuevas.length,c:nuevas.filter(function(l){return !((window.num?num(l.p):parseFloat(l.p))>0)}).length,w:String(txt).trim().split(/\s+/).length,v:porVoz?1:0})}catch(x){}
   porVoz=false;
   var a=lee();a.unshift(e);graba(a);subir(a);
   try{if(c&&c.num){c.dictados=(c.dictados||[]).concat([{ts:e.ts,origen:e.origen,texto:e.texto,trabajos:e.trabajos}]).slice(-30);if(window.save)save()}}catch(x){}

@@ -25,6 +25,12 @@
   var ks=Object.keys(o.dias).sort();while(ks.length>90)delete o.dias[ks.shift()];
   try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}subir()}
  window.__usoApunta=apunta;
+ /* lo que salió de cada conversión de texto a partidas (dictados.js): solo números, se pegan al último «dicta» */
+ window.__usoResultado=function(r){try{var L=o.log||[];for(var i=L.length-1;i>=0;i--){if(L[i].q==='dicta'){if(L[i].n==null){L[i].n=r.n;L[i].c=r.c;L[i].w=r.w;L[i].v=r.v}break}}
+  var d=hoy();o.dias[d]=o.dias[d]||{};o.dias[d].partidas=(o.dias[d].partidas||0)+(r.n||0);o.total.partidas=(o.total.partidas||0)+(r.n||0);
+  if(!r.n){o.dias[d].sinNada=(o.dias[d].sinNada||0)+1;o.total.sinNada=(o.total.sinNada||0)+1}
+  if(r.c){o.dias[d].sinPrecio=(o.dias[d].sinPrecio||0)+r.c;o.total.sinPrecio=(o.total.sinPrecio||0)+r.c}
+  try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}subir()}catch(e){}};
  /* abrir: una vez al entrar y otra si vuelve tras media hora */
  var ultAbre=0;function abre(){if(Date.now()-ultAbre<30*60000)return;ultAbre=Date.now();apunta('abre')}
  abre();document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')abre()});
