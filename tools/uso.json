@@ -1,5 +1,5 @@
 {
- "generado": 1791669361559,
+ "generado": 1791716521987,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -9,7 +9,7 @@
    "ver": "v222",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1791628916360,
+   "ultimo": 1791712738313,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-08": {
@@ -31,10 +31,13 @@
     "2026-10-10": {
      "abre": 3,
      "dicta": 3
+    },
+    "2026-10-11": {
+     "abre": 1
     }
    },
    "total": {
-    "abre": 9,
+    "abre": 10,
     "nuevo": 8,
     "dicta": 8,
     "mandar": 15,
@@ -47,10 +50,10 @@
    "presupuestos": 15,
    "mandados": 2,
    "estado": {
-    "partidas": 10,
+    "partidas": 0,
     "aCero": 0,
-    "total": 4958,
-    "avisos": 1
+    "total": 0,
+    "avisos": 2
    },
    "fallo": false,
    "falloTxt": "",
@@ -134,6 +137,10 @@
     },
     {
      "t": 1791628916360,
+     "q": "abre"
+    },
+    {
+     "t": 1791712738313,
      "q": "abre"
     }
    ]
