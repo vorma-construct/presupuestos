@@ -279,7 +279,9 @@
   var conCant=items.filter(function(t){return /\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m\b|metros|ud\b|uds|unidades|puntos)/i.test(t)}).length;
   var aDictar=!nCap&&!nPdf&&!arq.length&&!deAdj.length&&!P&&(items.length>=1||(a.F.esForm&&a.F.msg))&&conCant*2<Math.max(1,items.length);
   var dictar=aDictar?paraDictar((a.F.esForm&&a.F.msg)||a.T.cuerpo||items.join('. ')):'';if(!dictar)aDictar=false;
-  var h=huella((cli.email||a.de.email)+'|'+R.lineas.map(function(l){return sa(l.d).slice(0,30)}).sort().join('|')+'|'+(sinP?sa(a.cuerpo).slice(0,200):''));
+  /* con PDF o capturas, lo que cuenta es el archivo: dos proyectos distintos del mismo estudio no son el mismo correo repetido */
+  var adjH=(arq.length||nPdf||nCap)?'|'+(c.adjuntos||[]).filter(function(x){return esImgUtil(x)||esPdf(x)}).map(function(x){return sa(x.nombre||'')+':'+(x.tam||0)}).sort().join(','):'';
+  var h=huella((cli.email||a.de.email)+'|'+R.lineas.map(function(l){return sa(l.d).slice(0,30)}).sort().join('|')+'|'+(sinP?sa(a.cuerpo).slice(0,200):'')+adjH);
   if(repetido(h))return Promise.resolve({n:'',repe:true});
   var lineas=aDictar?[]:R.lineas.map(function(l){var o={d:limpio(l.d),q:l.q,u:l.u,p:l.p};if(l.orig)o.orig=limpio(l.orig).slice(0,300);if(l.src)o.src=l.src;if(l.p0)o.p0=l.p0;if(l.cap)o.cap=l.cap;return o});
   if(a.T.asc&&!aDictar){try{var tm=tarifa().find(function(x){return x.id==='mon'});if(tm&&!lineas.some(function(l){return /montacargas/i.test(l.d)}))lineas.push({d:tm.d,q:1,u:tm.u,p:tm.p})}catch(_){}}
