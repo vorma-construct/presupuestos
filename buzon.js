@@ -188,6 +188,16 @@
  var PIDE=/\b(un|vuestro|tu|su)\s+presupuesto\b|\bpresupuesto\s+(para|de\s+(la|el|un|una|mi|nuestra|nuestro|los|las)|sin compromiso|aproximado)\b|\bcuanto\s+(costaria|cuesta|me cobrar|nos cobrar|sale|saldria)|\b(precio|valoracion|cotizacion)\s+(para|de)\s+(reformar|pintar|cambiar|hacer|poner|quitar|alicatar|la|el|un|una)\b/;
  var PIDE2=/(pedir|pido|pedimos|solicit|quer(ia|iamos|emos)|quisiera|necesit|gustar|podeis|podriais|podrias|podria|puedes|pueden|me (pasas|mandas|das|haces|hagas)|hacer(me|nos)|mandar(me|nos)|enviar(me|nos)|pasar(me|nos)|dar(me|nos)|interesa)/;
  var WEB=/no-?reply|noreply|donotreply|wordpress|formulario|form@|forms?\.|^web@|^webmaster@|notificaci|mailer|bounce|postmaster|newsletter|boletin|marketing|notification|alertas?@|avisos?@|auto-?confirm|confirmacion@|^pedidos?@|^orders?@|^envios?@|shipping|^facturas?@|facturacion@|billing|invoice|receipts?@|^recibos?@|^soporte@|^support@|^promo|^ofertas?@|^news@/;
+ /* palabras del oficio: las fuertes son de obra seguro; las débiles solo cuentan juntas o con una petición */
+ var OBRA_F=/\b(reform\w*|albañil\w*|albanil\w*|alicat\w*|azulej\w*|fontaner\w*|pladur|escayol\w*|solad\w*|tabiques?|enluc\w*|yeso|tarima|parquet|gotele|plato de ducha|mampara|falso techo|goteras?|impermeabiliz\w*|derrib\w*|demoli\w*|rehabilit\w*|instalacion electrica|calefaccion|radiador\w*|fachadas?|tejados?|banera|sanitarios|inodoro|lavabo|encimera|rodapie\w*|mediciones|presupuesto de (?:la )?obra|obras? de reforma|alisar (?:las )?paredes|lucir (?:las )?paredes|pintar (?:el|la|las|los|toda|todo|mi|su|una|un)\b|picar (?:el|la|las|los)\b|cambiar (?:el|la|las|los) (?:suelo|banera|azulejos|ventanas|puertas))/g;
+ var OBRA_D=/\b(obras?|banos?|aseos?|cocinas?|suelos?|techos?|paredes|pared|puertas?|ventanas?|piso|casa|vivienda|lonja|local|pintura|presupuest\w*|metros|m2|humedad\w*|tuberi\w*|electricidad|enchuf\w*|terraza|portal|comunidad)\b/g;
+ function fuertes(t){var m={};(String(t).match(OBRA_F)||[]).forEach(function(x){m[x]=1});return Object.keys(m).length}
+ function debiles(t){var m={};(String(t).match(OBRA_D)||[]).forEach(function(x){m[x.replace(/s$/,'')]=1});return Object.keys(m).length}
+ var COMERCIAL=/(paypal|amazon|google|apple\.com|icloud|microsoft|outlook\.com|netflix|spotify|hbo|disney|dazn|primevideo|twitch|steam|stream|playstation|xbox|nintendo|epicgames|youtube|facebook|instagram|meta\.com|whatsapp|tiktok|twitter|linkedin|telegram|movistar|vodafone|orange\.es|jazztel|digimobil|yoigo|masmovil|pepephone|lowi|simyo|euskaltel|iberdrola|endesa|naturgy|repsol|totalenergies|holaluz|bbva|santander|caixabank|lacaixa|kutxabank|bankinter|sabadell|ing\.es|openbank|revolut|n26|bizum|wallapop|vinted|aliexpress|shein|temu|ebay|zalando|booking|airbnb|expedia|ryanair|vueling|iberia|renfe|glovo|uber|cabify|justeat|deliveroo|correos\.es|seur|mrw|dhl|gls|ups\.com|fedex|nacex|agenciatributaria|aeat|seg-social|dgt\.es|sepe|ticketmaster|eventbrite|leroymerlin|bricodepot|bauhaus|ikea|mediamarkt|pccomponentes|decathlon|elcorteingles|carrefour|mercadona|lidl|eroski|canva|adobe|dropbox|zoom\.us|slack|notion|github|openai|anthropic)/;
+ var NOOBRA=/\b(factura|recibo|pedido|compra|pago|cobro|suscripci\w*|tu cuenta|contrasena|verific\w*|codigo|oferta|descuento|rebajas|newsletter|envio|entrega|seguimiento|reserva|confirmaci\w*|alerta|notificaci\w*|inicio de sesion|bienvenid\w*|tu plan|renovaci\w*|transferencia|movimiento|extracto)\b/;
+ /* quien ya es cliente de verdad: tiene un presupuesto hecho en la app que no salió de un correo */
+ function esConocido(em){em=sa(em);if(!em||em.indexOf('@')<0)return false;
+  try{return Object.keys(DB.presus||{}).some(function(k){var p=DB.presus[k];return p&&!p.correo&&sa(p.email)===em})}catch(e){return false}}
  function esImgUtil(x){var t=sa(x.tipo),n=sa(x.nombre);if(!/^image\/(jpe?g|png|webp|heic|heif)/.test(t)&&!/\.(jpe?g|png|webp|heic)$/.test(n))return false;
   if((x.tam||0)<20000)return false;if(/^(logo|firma|signature|facebook|twitter|instagram|linkedin|whatsapp|youtube|icon|banner|outlook)/.test(n))return false;return true}
  function esPdf(x){return /pdf/.test(sa(x.tipo))||/\.pdf$/.test(sa(x.nombre))}
@@ -204,7 +214,16 @@
   var adj=c.adjuntos||[],imgs=adj.filter(esImgUtil),pdfs=adj.filter(esPdf);
   var web=WEB.test(de.email),fuerte=FUERTE.test(todo),pide=PIDE.test(todo)&&PIDE2.test(todo);
   var mio=sa(A().correoCuenta||''),propio=!!(mio&&de.email===mio);
-  var candidato=!c.boletin&&!propio&&(fuerte||F.esForm||T.items.length>=2||pdfs.length>0||(imgs.length>0&&!web));
+  /* SOLO peticiones de obra de verdad: hace falta que hable del oficio. Un PDF, unas fotos o una lista no bastan
+     (pagos, plataformas, bancos, tiendas, envíos…). Un cliente que ya está en la app sí puede mandar solo el PDF o las fotos. */
+  var oF=fuertes(todo),oD=debiles(todo),conocido=esConocido(de.email)||esConocido(rt.email),
+      comercial=COMERCIAL.test(de.email)||(web&&!F.esForm),basura=NOOBRA.test(sa(asunto))&&!oF;
+  var candidato=!c.boletin&&!propio&&!comercial&&!basura&&(
+    (F.esForm&&(oF>=1||oD>=2))||
+    (conocido&&(oF>=1||oD>=1||pdfs.length>0||imgs.length>0))||
+    oF>=2||
+    (oF>=1&&(pide||oD>=2||T.lista||pdfs.length>0||imgs.length>0))||
+    (pide&&oD>=3));
   return {asunto:asunto,esRe:esRe,cuerpo:Lp.texto,reenv:Lp.reenv,de:de,rt:rt,F:F,T:T,imgs:imgs,pdfs:pdfs,web:web,fuerte:fuerte,pide:pide||F.esForm,candidato:candidato,
    quien:limpio((F.esForm&&F.nombre)||(Lp.reenv&&Lp.reenv.nom)||de.nom||de.email||'un cliente')}}
 
@@ -227,6 +246,9 @@
   try{if(window.cur&&cur.num&&!DB.presus[cur.num]&&nn(cur.num)>=nn(n))n=String(Math.floor(nn(cur.num))+1)}catch(_){}
   return libreDesde(n)}
  function idNuevo(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+ function paraDictar(t){return String(t||'').split(/\n+/).map(function(l){return l.replace(/^\s*(?:[•·\-–—*]+|\d+[.)])\s*/,'').trim()})
+   .filter(function(l){var x=sa(l);return l&&!/^(hola|buen[oa]s?(?:\s+(?:dias|tardes|noches))?|saludos|un saludo|gracias|muchas gracias|atentamente)\b[\s,.:!]*$/.test(x)&&!/^[^.]{0,45}:\s*$/.test(l)})
+   .map(function(l){return /[.,;:!?]$/.test(l)?l:l+'.'}).join(' ').replace(/\s+/g,' ').trim().slice(0,3000)}
  /* el presupuesto se crea en la nube solo si ese número no lo tiene ya otro (el otro móvil puede haber hecho uno a la vez) */
  function reservar(p){var n=numeroLibre(),veces=0;
   if(!(window.FB&&FB.db&&FB.uid&&FB.db.runTransaction)||navigator.onLine===false){p.num=n;return Promise.resolve(n)}
@@ -252,10 +274,15 @@
   if(!crear&&!a.esRe&&a.pide&&(!a.web||a.F.esForm)){crear=true;sinP=true}
   if(!crear&&arq.length&&!a.web)crear=true;
   if(!crear)return Promise.resolve({n:''});
+  /* un cliente que lo cuenta con sus palabras (sin medida en cada trabajo, sin capturas ni PDF): se monta al abrirlo como si se dictara,
+     con el mismo motor del dictado (estancias, medidas, preguntas). Las listas de un estudio o de un arquitecto siguen como siempre. */
+  var conCant=items.filter(function(t){return /\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m\b|metros|ud\b|uds|unidades|puntos)/i.test(t)}).length;
+  var aDictar=!nCap&&!nPdf&&!arq.length&&!deAdj.length&&!P&&(items.length>=1||(a.F.esForm&&a.F.msg))&&conCant*2<Math.max(1,items.length);
+  var dictar=aDictar?paraDictar((a.F.esForm&&a.F.msg)||a.T.cuerpo||items.join('. ')):'';if(!dictar)aDictar=false;
   var h=huella((cli.email||a.de.email)+'|'+R.lineas.map(function(l){return sa(l.d).slice(0,30)}).sort().join('|')+'|'+(sinP?sa(a.cuerpo).slice(0,200):''));
   if(repetido(h))return Promise.resolve({n:'',repe:true});
-  var lineas=R.lineas.map(function(l){var o={d:limpio(l.d),q:l.q,u:l.u,p:l.p};if(l.orig)o.orig=limpio(l.orig).slice(0,300);if(l.src)o.src=l.src;if(l.p0)o.p0=l.p0;if(l.cap)o.cap=l.cap;return o});
-  if(a.T.asc){try{var tm=tarifa().find(function(x){return x.id==='mon'});if(tm&&!lineas.some(function(l){return /montacargas/i.test(l.d)}))lineas.push({d:tm.d,q:1,u:tm.u,p:tm.p})}catch(_){}}
+  var lineas=aDictar?[]:R.lineas.map(function(l){var o={d:limpio(l.d),q:l.q,u:l.u,p:l.p};if(l.orig)o.orig=limpio(l.orig).slice(0,300);if(l.src)o.src=l.src;if(l.p0)o.p0=l.p0;if(l.cap)o.cap=l.cap;return o});
+  if(a.T.asc&&!aDictar){try{var tm=tarifa().find(function(x){return x.id==='mon'});if(tm&&!lineas.some(function(l){return /montacargas/i.test(l.d)}))lineas.push({d:tm.d,q:1,u:tm.u,p:tm.p})}catch(_){}}
   var de=['del correo'];if(nCap)de.push(nCap===1?'de la captura':'de las '+nCap+' capturas');if(nPdf)de.push(P&&(P.sitio||P.plano)?'del plano':'del PDF');
   var deTxt=de.length>1?de.slice(0,-1).join(', ')+' y '+de[de.length-1]:de[0];
   var puesto=[cli.nom?'nombre':'',cli.tel?'teléfono':'',cli.email?'correo':''].filter(Boolean);
@@ -263,10 +290,11 @@
   var aviso=(!R.lineas.length&&arq.length)?(puesto.length?'Cliente: '+(puesto.length>1?puesto.slice(0,-1).join(', ')+' y '+puesto[puesto.length-1]:puesto[0])+' sacados del correo. ':''):sinP?'<b>Pide presupuesto, pero no he sacado los trabajos del correo.</b> Léelo abajo y cuéntamelo con tus palabras, o mételos a mano. ':
    mm.resumen(R,items,{leido:deTxt,puesto:puesto.length?'Cliente: '+(puesto.length>1?puesto.slice(0,-1).join(', ')+' y '+puesto[puesto.length-1]:puesto[0])+' sacados del correo. ':'',plano:mm.textoPlano(P,cli.dirDePlano),sinDir:!cli.dir});
   if(arq.length)aviso+=(aviso?'<br>':'')+'<b>Trae el PDF del arquitecto</b> ('+arq.map(function(x){return esc(limpio(x.nombre))}).join(', ')+'): tócalo abajo y lo leo como siempre. ';
-  if(a.T.asc)aviso+='Dice que no hay ascensor: lo he marcado y he puesto el montacargas. ';
+  if(a.T.asc&&!aDictar)aviso+='Dice que no hay ascensor: lo he marcado y he puesto el montacargas. ';
+  if(aDictar)aviso='Lo pide con sus palabras: lo he montado al abrirlo como si me lo dictaras, con sus medidas y sus preguntas. '+(puesto.length?'Cliente: '+(puesto.length>1?puesto.slice(0,-1).join(', ')+' y '+puesto[puesto.length-1]:puesto[0])+' sacados del correo.':'');
   var hoy=new Date().toISOString().slice(0,10);
   var p={num:'',idp:idNuevo(),fecha:hoy,creado:Date.now(),desde:(window.dispTxt?dispTxt():''),nom:cli.nom||('Correo del '+new Date(c.fecha||Date.now()).toLocaleDateString('es-ES')),tel:cli.tel,email:cli.email,dir:cli.dir,asc:a.T.asc?'1':'0',iva:'21',obs:'',suelo:false,
-   lineas:lineas,estado:'borrador',c:{p1:30,p2:60,p3:10,plazo:'',inicio:'',gar:24},ts:Date.now(),nuevoCorreo:true,
+   lineas:lineas,estado:'borrador',c:{p1:30,p2:60,p3:10,plazo:'',inicio:'',gar:24},ts:Date.now(),nuevoCorreo:true,dictarAlAbrir:aDictar?dictar:undefined,
    correo:{id:String(c.id||''),de:limpio(c.de).slice(0,160),asunto:limpio(c.asunto).slice(0,160),fecha:c.fecha||Date.now(),texto:String(a.cuerpo||'').slice(0,8000),
     adjuntos:(c.adjuntos||[]).filter(function(x){return esImgUtil(x)||esPdf(x)}).map(function(x){return limpio(x.nombre).slice(0,80)}).slice(0,12),
     aviso:aviso,huella:h,sinPartidas:sinP,arq:arq.map(function(x){return {i:x.i,nombre:limpio(x.nombre).slice(0,80)}}),prosa:!!(a.T.prosa&&!a.T.lista&&!deAdj.length&&!arq.length),items:items.slice(0,60),dictado:String((a.F.esForm&&a.F.msg)||a.T.cuerpo||'').slice(0,3000)}};
@@ -325,7 +353,7 @@
    b.addEventListener('click',function(e){var t=e.target.closest('[data-n],[data-x]');if(!t)return;if(t.hasAttribute('data-x')){quitarNuevos();return}abrirDeCorreo(t.getAttribute('data-n'))})}
   var h='';
   if(L.length){h+='<div style="font-weight:800;margin-bottom:4px">📩 '+(L.length===1?'Presupuesto nuevo que ha llegado por correo':L.length+' presupuestos nuevos que han llegado por correo')+'</div>';
-   L.slice(0,3).forEach(function(p){var np=(p.lineas||[]).length;h+='<div style="display:flex;gap:8px;align-items:center;margin-top:6px"><div style="flex:1;min-width:0;line-height:1.3">'+esc(p.nom)+' · nº '+esc(p.num)+'<br><span style="opacity:.85;font-size:13px">'+(p.correo.sinPartidas?'Pide presupuesto: míralo':(!np&&(p.correo.arq||[]).length)?'Trae el PDF del arquitecto: ábrelo':np+(np===1?' partida':' partidas')+' · '+eu(base(p))+' sin IVA')+'</span></div><button type="button" data-n="'+esc(p.num)+'" style="background:#fff;color:#1B6B36;border:0;border-radius:8px;padding:9px 14px;font-weight:800;font-size:15px">Abrir</button></div>'});
+   L.slice(0,3).forEach(function(p){var np=(p.lineas||[]).length;h+='<div style="display:flex;gap:8px;align-items:center;margin-top:6px"><div style="flex:1;min-width:0;line-height:1.3">'+esc(p.nom)+' · nº '+esc(p.num)+'<br><span style="opacity:.85;font-size:13px">'+(p.dictarAlAbrir&&!np?'Lo pide con sus palabras: ábrelo y lo monto':p.correo.sinPartidas?'Pide presupuesto: míralo':(!np&&(p.correo.arq||[]).length)?'Trae el PDF del arquitecto: ábrelo':np+(np===1?' partida':' partidas')+' · '+eu(base(p))+' sin IVA')+'</span></div><button type="button" data-n="'+esc(p.num)+'" style="background:#fff;color:#1B6B36;border:0;border-radius:8px;padding:9px 14px;font-weight:800;font-size:15px">Abrir</button></div>'});
    if(L.length>3)h+='<div style="margin-top:6px;font-size:13px">y '+(L.length-3)+' más en «Presupuestos»</div>';
    h+='<button type="button" data-x="1" title="Quitar el aviso" style="position:absolute;top:4px;right:6px;background:transparent;border:0;color:#fff;font-size:20px;padding:4px 8px">×</button>'}
   if(txtTrabajo)h+='<div style="'+(L.length?'margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,.25);':'')+'font-size:13px;opacity:.95">⏳ '+esc(txtTrabajo)+'</div>';
@@ -354,6 +382,11 @@
   h+='<details style="margin-top:8px"><summary>Ver el correo</summary><div id="buzonTexto" style="white-space:pre-wrap;font-size:13px;margin-top:6px;max-height:340px;overflow:auto;background:#f6f5f2;border-radius:8px;padding:8px"></div>'+(c.adjuntos&&c.adjuntos.length?'<div style="font-size:12px;color:var(--muted);margin-top:4px">Adjuntos: '+c.adjuntos.map(esc).join(', ')+'</div>':'')+'</details>';
   k.innerHTML=h;k.style.display='';k.style.borderLeft='5px solid #1B6B36';var tx=document.getElementById('buzonTexto');if(tx)tx.textContent=c.texto||'';
   if((cur.lineas||[]).length)try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display=''}catch(_){}}
+ /* el correo de un cliente que lo cuenta con sus palabras: al abrirlo, como si me lo dictaras */
+ function montarDictado(){try{if(!window.cur||!cur.dictarAlAbrir||(cur.lineas||[]).length)return;var t=String(cur.dictarAlAbrir);delete cur.dictarAlAbrir;
+   try{var p0=DB.presus[cur.num];if(p0)delete p0.dictarAlAbrir}catch(_){}
+   if(window.meterPor)meterPor('voz');var ta=document.getElementById('dictado');if(!ta)return;ta.value=t;convertir();
+   setTimeout(function(){try{autoGuardar()}catch(_){}try{var ci=document.getElementById('convInfo');if(ci)ci.scrollIntoView({behavior:'smooth',block:'center'})}catch(_){}},1200)}catch(e){}}
  function alDictado(){try{var t=(cur.correo.items&&cur.correo.items.length&&!cur.correo.sinPartidas)?cur.correo.items.join('. '):String(cur.correo.dictado||cur.correo.texto||'').split(/\n--\s*\n/)[0];
    meterPor('voz');var ta=document.getElementById('dictado');if(ta){ta.value=t.slice(0,3000);ta.scrollIntoView({behavior:'smooth',block:'center'})}
    var m=document.getElementById('buzonTarjetaMsg');if(m)m.textContent='Lo tienes en «Cuéntame lo que quiere el cliente»: repásalo y pulsa «Convertir en trabajos». Si sale algo repetido, quita lo que sobre.'}catch(e){}}
@@ -428,7 +461,7 @@
 
  /* ---------------- engancharse a la app ---------------- */
  function enganchar(){
-  var ab=window.abrir;if(ab&&!ab.__buzon){window.abrir=function(n){var r=ab.apply(this,arguments);try{var p=DB.presus[n];if(p&&p.nuevoCorreo){delete p.nuevoCorreo;if(window.cur&&cur.num===n)delete cur.nuevoCorreo;save();subirPresu(n);pintarAviso()}}catch(_){}return r};window.abrir.__buzon=1}
+  var ab=window.abrir;if(ab&&!ab.__buzon){window.abrir=function(n){var r=ab.apply(this,arguments);try{if(window.cur&&cur.dictarAlAbrir&&!(cur.lineas||[]).length)setTimeout(montarDictado,500)}catch(_){}try{var p=DB.presus[n];if(p&&p.nuevoCorreo){delete p.nuevoCorreo;if(window.cur&&cur.num===n)delete cur.nuevoCorreo;save();subirPresu(n);pintarAviso()}}catch(_){}return r};window.abrir.__buzon=1}
   var pi=window.pintar;if(pi&&!pi.__buzon){window.pintar=function(){var r=pi.apply(this,arguments);try{pintarTarjeta()}catch(_){}return r};window.pintar.__buzon=1}
   var st=window.ST;if(st&&!st.__buzon){window.ST=function(t){var r=st.apply(this,arguments);if(t==='ajustes')try{pintarAjustes()}catch(_){}return r};window.ST.__buzon=1}
   var nu=window.nuevo;if(nu&&!nu.__buzon){window.nuevo=function(){var r=nu.apply(this,arguments);try{if(window.cur&&!cur.idp)cur.idp=idNuevo()}catch(_){}return r};window.nuevo.__buzon=1}

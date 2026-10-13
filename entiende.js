@@ -238,7 +238,7 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.
  /* "y alicatar" dentro del baño: ya va en el paquete */
  for(var k=1;k<=c;k++)nuevos.push({tipo:tipo,med:med,n:c>1?k:1});resto.push(' ')}
 var txt2=resto.join('');
-var n0=cur.lineas.length;
+var n0=cur.lineas.length;cur.lineas.forEach(function(l){l.__v=1});
 if(txt2.replace(/[^a-z]/g,'').length>=3){ta.value=txt2;window.__BRUTO=bruto;try{convertir0()}finally{ta.value=bruto;window.__BRUTO=null}leer()}
 var hechos=[];
 var sinVent=/\b(no tiene|sin|no hay|no lleva)\s+(?:ninguna\s+)?ventana/.test(norm(bruto)),conVent=!sinVent&&/\b(tiene|con|hay)\s+(?:una\s+)?ventana/.test(norm(bruto));
@@ -249,6 +249,13 @@ nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVen
 if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk)});
 /* lo que el de siempre metio y ya va en una estancia: fuera duplicados */
 if(hechos.length){unaVez();cur.lineas=cur.lineas.filter(function(l){if(l.paqId)return true;var dup=cur.lineas.some(function(o){return o.paqId&&o.d.indexOf(l.d)===0});return !dup})}
+/* un solo baño o cocina: el suelo suelto ya va en la estancia (es de baldosa), y «la puerta del baño» es su pregunta de la puerta */
+if(hechos.length===1&&/^(bano|cocina)$/.test(hechos[0].tipo)&&!/\b(habitacion\w*|dormitorio\w*|salon|pasillo\w*|terraza\w*|toda la casa|todo el piso|casa entera|piso entero)\b/.test(norm(bruto))){
+ var pk1=hechos[0],TT=tarifa(),idDe=function(l){var t=TT.find(function(x){return x.d===l.d});return t?t.id:''},SUELO={sue:1,flo:1,sol:1,niv:1},conPuerta=false;
+ if((pk1.tipo==='bano'&&/\bpuertas? del? (?:bano|aseo)\b/.test(norm(bruto)))||(pk1.tipo==='cocina'&&/\bpuertas? de la cocina\b/.test(norm(bruto)))){pk1.r.puerta=pk1.tipo==='bano'?true:'normal';pk1.hechas.puerta=1;conPuerta=true}
+ cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.__v)return true;var id=idDe(l);if(SUELO[id])return false;if(conPuerta&&(id==='pub'||id==='pue'))return false;return true});
+ if(conPuerta)rehacer(pk1,true)}
+cur.lineas.forEach(function(l){delete l.__v});
 renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;
 var añad=cur.lineas.length-n0;
