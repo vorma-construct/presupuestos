@@ -437,7 +437,13 @@
      if(window.cur===c){var f=document.getElementById('f_num');if(f)f.value=c.num;var m=document.getElementById('msg');if(m)m.textContent='Este presupuesto pasa a ser el nº '+c.num+': el nº '+viejo+' ya lo tenía otro presupuesto'+(ant.correo?' (el que llegó por correo)':'')+'.'}}}catch(_){}
     return he.apply(this,arguments)};window.heredar.__buzon=1}
   var fc=window.fichaCli;if(fc&&!fc.__buzon){window.fichaCli=function(p){var h=fc.apply(this,arguments);try{if(p&&p.correo)h=h.replace('<div style="font-weight:700">','<div style="font-weight:700"><span class="chip" style="background:'+(p.nuevoCorreo?'#1B6B36':'#6b7a86')+';margin-right:6px">'+(p.nuevoCorreo?'📩 nuevo por correo':'📩 por correo')+'</span>')}catch(_){}return h};window.fichaCli.__buzon=1}}
- function arrancar(){enganchar();try{if(window.cur&&!cur.idp&&!DB.presus[cur.num])cur.idp=idNuevo()}catch(_){}pintarAviso();try{pintarTarjeta()}catch(_){}
+ /* enlace directo al último paso: ?correo=pegar abre Ajustes justo donde se pega la dirección del Gmail */
+ function directo(){try{var qp=new URLSearchParams(location.search);if(qp.get('correo')!=='pegar')return;qp.delete('correo');
+   try{history.replaceState(null,'',location.pathname+(qp.toString()?'?'+qp.toString():'')+location.hash)}catch(_){}
+   setTimeout(function(){try{ST('ajustes')}catch(_){}if(!conectado())ponEst(function(x){x.paso=PASOS.length-1});pintarAjustes();
+    setTimeout(function(){var c=document.getElementById('buzonCard');if(c)c.scrollIntoView({behavior:'smooth',block:'start'});
+     if(!conectado())msg('Copia la dirección que acaba en «/exec» y toca «Pegar y conectar».')},500)},700)}catch(_){}}
+ function arrancar(){enganchar();directo();try{if(window.cur&&!cur.idp&&!DB.presus[cur.num])cur.idp=idNuevo()}catch(_){}pintarAviso();try{pintarTarjeta()}catch(_){}
   setTimeout(function(){mirar()},6000);setTimeout(pintarAviso,2500);setTimeout(pintarAviso,5000);
   setInterval(function(){if(Date.now()-ultIntento>CADA)mirar();pintarAviso()},30000);
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&Date.now()-ultIntento>60000)setTimeout(function(){mirar()},1500)});
