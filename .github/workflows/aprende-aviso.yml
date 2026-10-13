@@ -1,0 +1,46 @@
+# Cada cinco minutos mira si alguien ha usado la app de una empresa que se está enseñando (aprende.js en la app).
+# Solo deja una huella por empresa que cambia cuando hay algo nuevo (tools/aprende-aviso.json): ni horas ni nada de lo dictado.
+# Lo dictado va cifrado y solo se lee en el repositorio privado vigilante. La tarea de Claude que lo revisa mira esta huella.
+name: aprende-aviso
+on:
+  schedule: [{cron: '*/5 * * * *'}]
+  workflow_dispatch:
+permissions: {contents: write}
+concurrency: {group: aprende-aviso, cancel-in-progress: false}
+jobs:
+  mirar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 - <<'PY'
+          import json, urllib.request, hashlib, os
+          KEY = "AIzaSyDsUvYWlJUPa__voQ7oBznCDWb8o6D1m5Q"
+          url = "https://firestore.googleapis.com/v1/projects/reformas-ioan/databases/(default)/documents:runQuery?key=" + KEY
+          q = {"structuredQuery": {"from": [{"collectionId": "seguimiento"}],
+                                   "where": {"fieldFilter": {"field": {"fieldPath": "tipo"}, "op": "EQUAL", "value": {"stringValue": "uso"}}},
+                                   "select": {"fields": [{"fieldPath": "empresa"}, {"fieldPath": "apr"}]}, "limit": 100}}
+          req = urllib.request.Request(url, data=json.dumps(q).encode(), headers={"Content-Type": "application/json"})
+          r = json.load(urllib.request.urlopen(req, timeout=60))
+          ts = {}
+          for x in r:
+              d = x.get("document")
+              if not d:
+                  continue
+              f = d.get("fields", {})
+              emp = f.get("empresa", {}).get("stringValue", "")
+              for v in f.get("apr", {}).get("arrayValue", {}).get("values", []):
+                  t = v.get("mapValue", {}).get("fields", {}).get("t", {})
+                  t = t.get("integerValue") or t.get("doubleValue")
+                  if emp and t:
+                      ts.setdefault(emp, []).append(str(t) + "|" + d["name"].split("/")[-1])
+          nuevo = {e: hashlib.sha256("\n".join(sorted(v)).encode()).hexdigest()[:12] for e, v in ts.items()}
+          p = "tools/aprende-aviso.json"
+          viejo = json.load(open(p)) if os.path.exists(p) else None
+          if nuevo != viejo:
+              json.dump(nuevo, open(p, "w"), sort_keys=True)
+          print("empresas con algo:", len(nuevo), "· cambia:", nuevo != viejo)
+          PY
+          git config user.name aviso; git config user.email actions@github.com
+          git add tools/aprende-aviso.json; git diff --cached --quiet && exit 0
+          git commit -qm "aviso" && (git push -q || (git pull -q --rebase && git push -q))
