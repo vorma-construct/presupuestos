@@ -65,7 +65,10 @@ function mandado(p){return !!(p.firmaTok||p.segTok||p.firmado||(p.estado&&p.esta
 /* cada correo es un trabajo: dos presupuestos de correos distintos (o uno de correo y otro hecho a mano) no se juntan nunca,
    aunque sea el mismo cliente y no tengan direccion. Solo se juntan los que salen del MISMO correo. */
 function deCorreo(p){return p&&p.correo&&p.correo.id?String(p.correo.id):''}
-function mismoOrigen(a,b){return deCorreo(a)===deCorreo(b)}
+/* el mismo correo mandado otra vez (mismo remitente, asunto, texto y adjuntos) es la misma peticion */
+function pide(p){var c=p&&p.correo;if(!c||!c.asunto)return '';var t=norm(String(c.texto||'')).replace(/\s+/g,' ').trim().slice(0,300);if(!t)return '';
+ return norm(String(c.de||'')).replace(/\s+/g,' ').trim()+'|'+norm(String(c.asunto)).replace(/\s+/g,' ').trim()+'|'+t+'|'+(c.adjuntos||[]).map(String).sort().join(',')}
+function mismoOrigen(a,b){var x=deCorreo(a),y=deCorreo(b);if(!x&&!y)return true;if(!x||!y)return false;if(x===y)return true;var pa=pide(a);return !!(pa&&pa===pide(b))}
 window.mismoOrigen=mismoOrigen;
 window.mismaObra=mismaObra;
 window.juntarRepes=function(){var map={};try{var P=DB.presus||{};var ks=Object.keys(P).filter(function(k){var p=P[k];return p&&p.nom&&!/-[A-Z]$/.test(k)&&!mandado(p)});
@@ -78,11 +81,13 @@ window.juntarRepes=function(){var map={};try{var P=DB.presus||{};var ks=Object.k
  if(Object.keys(map).length){save();if(cur&&map[cur.num]){try{abrir(map[cur.num])}catch(_){}}try{renderClientes()}catch(_){}}}catch(e){}return map};
 /* lo que la limpieza junto mal antes de esta regla (dos correos distintos en uno): se vuelve a separar solo, como estaba.
    El de numero mas bajo vuelve a ser el suyo (guardado aparte al juntarlo) y el otro vuelve a su numero. */
-function separarMalJuntados(){var hechos=[];try{var Pa=DB.papelera||{},P=DB.presus||{};
+function separarMalJuntados(){var hechos=[],tocado=false;try{var Pa=DB.papelera||{},P=DB.presus||{};
  Object.keys(Pa).forEach(function(k){var e=Pa[k];if(!/~antes$/.test(k)||!e||e.por!=='repe'||!e.p)return;
   var n=k.replace(/~antes$/,''),orig=e.p,ahora=P[n];
   if(!ahora||mismoOrigen(orig,ahora)||mandado(ahora))return;
   if(!deCorreo(orig)&&!deCorreo(ahora))return;
+  /* si lo de antes ya esta en otro numero (por ejemplo, el mismo correo mandado otra vez), no se duplica */
+  if(deCorreo(orig)&&Object.keys(P).some(function(j){return j!==n&&mismoOrigen(P[j],orig)})){delete Pa[k];tocado=true;return}
   var otro=Object.keys(P).filter(function(j){return j!==n&&mismoOrigen(P[j],ahora)&&deCorreo(ahora)})[0];
   var m='';
   if(!otro){var pj=Object.keys(Pa).filter(function(j){var x=Pa[j];return j!==k&&!/~antes$/.test(j)&&x&&x.por==='repe'&&x.p&&mismoOrigen(x.p,ahora)&&norm(x.p.nom||'').trim()===norm(ahora.nom||'').trim()})
@@ -92,7 +97,7 @@ function separarMalJuntados(){var hechos=[];try{var Pa=DB.papelera||{},P=DB.pres
    if(pj)delete Pa[pj]}
   var o=JSON.parse(JSON.stringify(orig));delete o.borrado;o.num=n;o.ts=Date.now()+1;P[n]=o;delete Pa[k];
   hechos.push({n:n,m:m||otro,a:(o.correo&&o.correo.asunto)||'',b:(ahora.correo&&ahora.correo.asunto)||''})});
- if(!hechos.length)return hechos;
+ if(!hechos.length){if(tocado)save();return hechos}
  save();hechos.forEach(function(h){try{subirPresu(h.n)}catch(_){}try{if(h.m&&DB.presus[h.m])subirPresu(h.m)}catch(_){}});
  try{if(window.__usoApunta)__usoApunta('separa')}catch(_){}
  if(window.cur){var vis=document.getElementById('page-presupuesto');var abierto=hechos.some(function(h){return h.n===cur.num||h.m===cur.num});
@@ -102,7 +107,8 @@ function separarMalJuntados(){var hechos=[];try{var Pa=DB.papelera||{},P=DB.pres
  aviso((hechos.length===1?'<b>Ya tienes otra vez los dos presupuestos.</b> Se habían juntado en uno por error y los he vuelto a separar:<br>':'<b>Ya tienes otra vez separados los presupuestos que se habían juntado por error:</b><br>')+hechos.map(function(h){return 'nº '+h.n+q(h.a)+(h.m?'<br>nº '+h.m+q(h.b):'')}).join('<br>'));
 }catch(e){}return hechos}
 window.separarMalJuntados=separarMalJuntados;
-(function esperaNube(t0){if(window.FB&&FB.uid&&FB.db&&window.DB&&DB.presus||Date.now()-t0>60000){setTimeout(separarMalJuntados,3000);return}setTimeout(function(){esperaNube(t0)},500)})(Date.now());
+/* despues de traer lo de la nube (si no hay nube en un minuto, con lo del movil) */
+(function esperaNube(t0){if(window.FB&&FB.unsub&&window.DB&&DB.presus||Date.now()-t0>60000){setTimeout(separarMalJuntados,1500);return}setTimeout(function(){esperaNube(t0)},500)})(Date.now());
 setTimeout(juntarRepes,4000);setTimeout(juntarRepes,15000);
 /* al hacer los presupuestos de los duenos desde el PDF: si ya existia el de ese cliente, se actualiza ese */
 var hacer0=window.hacerPresupuestos;
