@@ -1,16 +1,16 @@
 {
- "generado": 1791919539462,
+ "generado": 1791920800013,
  "aparatos": [
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": true,
-   "ver": "v222",
+   "ver": "v230",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1791712738313,
-   "ultimoQue": "abre",
+   "ultimo": 1791920018149,
+   "ultimoQue": "repe",
    "dias": {
     "2026-10-08": {
      "abre": 2,
@@ -34,10 +34,14 @@
     },
     "2026-10-11": {
      "abre": 1
+    },
+    "2026-10-13": {
+     "abre": 1,
+     "repe": 1
     }
    },
    "total": {
-    "abre": 10,
+    "abre": 11,
     "nuevo": 8,
     "dicta": 8,
     "mandar": 15,
@@ -45,15 +49,16 @@
     "variante": 1,
     "pdf": 1,
     "agenda": 1,
-    "mandado": 2
+    "mandado": 2,
+    "repe": 1
    },
    "presupuestos": 15,
    "mandados": 2,
    "estado": {
-    "partidas": 0,
+    "partidas": 10,
     "aCero": 0,
-    "total": 0,
-    "avisos": 2
+    "total": 5740,
+    "avisos": 0
    },
    "fallo": false,
    "falloTxt": "",
@@ -142,6 +147,14 @@
     {
      "t": 1791712738313,
      "q": "abre"
+    },
+    {
+     "t": 1791920003144,
+     "q": "abre"
+    },
+    {
+     "t": 1791920018149,
+     "q": "repe"
     }
    ]
   },
@@ -182,10 +195,10 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v228",
+   "ver": "v230",
    "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791918846891,
+   "ultimo": 1791920160941,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -212,24 +225,27 @@
      "borra": 1
     },
     "2026-10-13": {
-     "abre": 3,
-     "correo": 6,
-     "borra": 6
+     "abre": 7,
+     "correo": 8,
+     "borra": 6,
+     "dicta": 1,
+     "partidas": 10
     }
    },
    "total": {
-    "abre": 33,
+    "abre": 37,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
-    "dicta": 1,
+    "dicta": 2,
     "fallo": 3,
     "imagen": 2,
     "mandar": 1,
     "borra": 7,
-    "correo": 6
+    "correo": 8,
+    "partidas": 10
    },
-   "presupuestos": 14,
+   "presupuestos": 15,
    "mandados": 2,
    "estado": {
     "partidas": 0,
@@ -319,6 +335,38 @@
     },
     {
      "t": 1791918846891,
+     "q": "abre"
+    },
+    {
+     "t": 1791919706027,
+     "q": "abre"
+    },
+    {
+     "t": 1791919944205,
+     "q": "correo"
+    },
+    {
+     "t": 1791919948736,
+     "q": "correo"
+    },
+    {
+     "t": 1791919990570,
+     "q": "dicta",
+     "n": 10,
+     "c": 0,
+     "w": 55,
+     "v": 0
+    },
+    {
+     "t": 1791920143799,
+     "q": "abre"
+    },
+    {
+     "t": 1791920153797,
+     "q": "abre"
+    },
+    {
+     "t": 1791920160941,
      "q": "abre"
     }
    ]
