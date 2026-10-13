@@ -197,9 +197,12 @@ P.forEach(function(pk){var tit=PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'');
 var ceros=cur.lineas.filter(function(l){return l.paqId&&!(l.p>0)});if(ceros.length)h+='<div style="margin-top:8px;background:#FBE9E2;border-left:4px solid #B3261E;padding:8px;border-radius:6px"><b>Sin precio en tu tarifa:</b> '+ceros.map(function(l){return '«'+l.d.slice(0,50)+'»'}).join(', ')+'. Ponle el precio abajo y la próxima vez ya lo sabe.</div>';
 return h+'</div>'}
 function pintarTarjeta(){var ci=document.getElementById('convInfo');if(!ci)return;var old=document.getElementById('paqBox');if(old)old.remove();var h=tarjeta();if(h)ci.insertAdjacentHTML('beforeend',h)}
-window.paqResp=function(id,k,v){var pk=paqs().find(function(x){return x.id===id});if(!pk)return;pk.r[k]=v;pk.hechas[k]=1;rehacer(pk);renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta()};
+window.paqResp=function(id,k,v){var pk=paqs().find(function(x){return x.id===id});if(!pk)return;pk.r[k]=v;pk.hechas[k]=1;rehacer(pk);renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta();
+ /* mientras se enseña la app (aprende.js): qué pregunta contestó y qué eligió */
+ try{if(window.__usoPregunta){var qq=(PAQ[pk.tipo].preg||[]).find(function(x){return x.k===k})||{},oo=(qq.ops||[]).find(function(o){return o[0]===v});__usoPregunta(PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'')+' · '+(qq.t||k),oo?oo[1]:String(v))}}catch(_){}};
 window.paqMedida=function(id){var pk=paqs().find(function(x){return x.id===id});var i=document.getElementById('pm_'+id);if(!pk||!i)return;var v=norm(i.value||'');
- var m=medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;rehacer(pk);if(pk.padre){var pd=paqs().find(function(x){return x.id===pk.padre});if(pd)rehacer(pd,true)}renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta()};
+ var m=medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;rehacer(pk);if(pk.padre){var pd=paqs().find(function(x){return x.id===pk.padre});if(pd)rehacer(pd,true)}renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta();
+ try{if(window.__usoPregunta)__usoPregunta(PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'')+' · metros',i.value)}catch(_){}};
 window.pintarPreguntasPaq=pintarTarjeta;
 
 /* ---------- 3) el dictado: traduce, saca las estancias enteras y llama al de siempre ---------- */
@@ -245,6 +248,8 @@ renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;
 var añad=cur.lineas.length-n0;
 if(hechos.length||añad>0){if(/No he reconocido/.test(ci.textContent)||!ci.textContent.trim()||hechos.length&&!/trabajo/.test(ci.textContent)){ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>'}
+ /* el de siempre solo cuenta lo suyo: con estancias, la cuenta buena es la de todas las líneas nuevas */
+ else if(hechos.length){var bb=ci.querySelector('b');if(bb&&/\d+\s+trabajos?\s+añadidos?/.test(bb.textContent))bb.textContent=bb.textContent.replace(/\d+\s+trabajos?\s+añadidos?/,añad+(añad===1?' trabajo añadido':' trabajos añadidos'))}
  /* el aviso viejo de "baño completo: he metido todos..." sobra: ahora pregunto */
  ci.querySelectorAll('div').forEach(function(d){if(/he metido todos los trabajos que suele llevar/.test(d.textContent))d.remove()})}
 pintarTarjeta();
@@ -260,7 +265,7 @@ window.encPuerta=function(que){leer();var c=T('cor'),pr=T('pre'),pb=T('pub');if(
  var iC=cur.lineas.findIndex(function(l){return l.enc==='cor'}),iN=cur.lineas.findIndex(function(l){return l.enc==='normal'});
  if(que==='normal'&&iC>-1){var q=cur.lineas[iC].q||1;cur.lineas.splice(iC,1,{d:pr.d,q:q,u:pr.u,p:pr.p,enc:'normal'},{d:pb.d,q:q,u:pb.u,p:pb.p,enc:'normal2'})}
  if(que==='cor'&&iN>-1){var q2=cur.lineas[iN].q||1;cur.lineas=cur.lineas.filter(function(l){return l.enc!=='normal'&&l.enc!=='normal2'});cur.lineas.splice(iN,0,{d:c.d,q:q2,u:c.u,p:c.p,enc:'cor'})}
- renderLineas();try{autoGuardar()}catch(_){}var b=document.getElementById('encBox');if(b)b.outerHTML=cajaEnc(que);try{if(window.__usoPregunta)__usoPregunta('encastrar',que)}catch(_){}};
+ renderLineas();try{autoGuardar()}catch(_){}var b=document.getElementById('encBox');if(b)b.outerHTML=cajaEnc(que);try{if(window.__usoPregunta)__usoPregunta('Encastrar una puerta',que==='cor'?'Corredera dentro de la pared':'Puerta normal con su premarco')}catch(_){}};
 
 /* al abrir un presupuesto con estancias sin medir, vuelven las preguntas */
 var renderLineas0=window.renderLineas;

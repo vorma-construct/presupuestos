@@ -14,13 +14,15 @@
    trabajos:nuevas.length,lineas:nuevas.slice(0,40),aviso:info,ver:window.APP_VERSION||'',fallo:!nuevas.length};
   /* al recuento de uso solo van números: cuántas partidas salieron, cuántas sin precio, cuántas palabras tenía y si fue por voz; nunca el texto */
   try{if(window.__usoResultado)__usoResultado({n:nuevas.length,c:nuevas.filter(function(l){return !((window.num?num(l.p):parseFloat(l.p))>0)}).length,w:String(txt).trim().split(/\s+/).length,v:porVoz?1:0})}catch(x){}
+  /* mientras se enseña la app (aprende.js, cifrado): lo dicho, lo que salió y lo que preguntó */
+  try{if(window.__aprende)__aprende({q:'dicta',num:c.num||'',v:porVoz?1:0,texto:String(txt),desde:antes})}catch(x){}
   porVoz=false;
   var a=lee();a.unshift(e);graba(a);subir(a);
   try{if(c&&c.num){c.dictados=(c.dictados||[]).concat([{ts:e.ts,origen:e.origen,texto:e.texto,trabajos:e.trabajos}]).slice(-30);if(window.save)save()}}catch(x){}
   try{pinta()}catch(x){}}
  var conv0=window.convertir;
  if(conv0)window.convertir=function(){var ta=document.getElementById('dictado'),txt=ta?ta.value:'',antes=((window.cur||{}).lineas||[]).length,r;
-  try{r=conv0.apply(this,arguments)}catch(err){if(txt.trim()){var a=lee();a.unshift({ts:Date.now(),fecha:new Date().toLocaleString('es-ES'),num:(cur||{}).num||'',origen:porVoz?'voz':'escrito',texto:txt.slice(0,3000),trabajos:0,fallo:true,error:String(err&&err.message||err).slice(0,300),ver:window.APP_VERSION||''});graba(a);subir(a)}throw err}
+  try{r=conv0.apply(this,arguments)}catch(err){if(txt.trim()){try{if(window.__aprende)__aprende({q:'dicta',num:(window.cur||{}).num||'',v:porVoz?1:0,texto:txt,desde:antes,error:String(err&&err.message||err)})}catch(x){}var a=lee();a.unshift({ts:Date.now(),fecha:new Date().toLocaleString('es-ES'),num:(cur||{}).num||'',origen:porVoz?'voz':'escrito',texto:txt.slice(0,3000),trabajos:0,fallo:true,error:String(err&&err.message||err).slice(0,300),ver:window.APP_VERSION||''});graba(a);subir(a)}throw err}
   if(txt.trim())setTimeout(function(){apuntar(txt,antes)},900);return r};
  /* juntar con lo que haya en la nube (otro móvil u ordenador de la misma cuenta) */
  function traer(){try{if(!(window.FB&&FB.uid&&window.ref))return;ref().get().then(function(s){var d=s.data()||{},n=d.dictados||[];if(!n.length)return;var a=lee(),ya={};a.forEach(function(x){ya[x.ts+'|'+x.texto]=1});n.forEach(function(x){if(!ya[x.ts+'|'+x.texto])a.push(x)});a.sort(function(x,y){return y.ts-x.ts});graba(a);pinta()}).catch(function(){})}catch(e){}}
