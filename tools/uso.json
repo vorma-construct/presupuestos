@@ -1,5 +1,5 @@
 {
- "generado": 1791920800013,
+ "generado": 1791922031882,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -195,10 +195,10 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v230",
+   "ver": "v231",
    "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791920160941,
+   "ultimo": 1791921977233,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-06": {
@@ -225,7 +225,7 @@
      "borra": 1
     },
     "2026-10-13": {
-     "abre": 7,
+     "abre": 10,
      "correo": 8,
      "borra": 6,
      "dicta": 1,
@@ -233,7 +233,7 @@
     }
    },
    "total": {
-    "abre": 37,
+    "abre": 40,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
@@ -367,6 +367,18 @@
     },
     {
      "t": 1791920160941,
+     "q": "abre"
+    },
+    {
+     "t": 1791921963027,
+     "q": "abre"
+    },
+    {
+     "t": 1791921968594,
+     "q": "abre"
+    },
+    {
+     "t": 1791921977233,
      "q": "abre"
     }
    ]
