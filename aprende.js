@@ -57,10 +57,21 @@
  function marcar(nm){if(!nm)return;var m=lee('vr_apr_d',{});m[nm]=Date.now();var ks=Object.keys(m);ks.forEach(function(k){if(Date.now()-m[k]>7*864e5)delete m[k]});graba('vr_apr_d',m)}
  function dictado(nm){var m=lee('vr_apr_d',{});return !!(nm&&m[nm]&&Date.now()-m[nm]<7*864e5)}
 
+ /* lo que la app no entiende: se le dice que ya nos ha llegado y para cuándo estará (la tarea que lo revisa sale cada hora, de siete a diez de la noche) */
+ function cuando(){var d=new Date(),h=d.getHours(),m=d.getMinutes();return (h<6||h>=22||(h===21&&m>=50))?'mañana a primera hora te lo dejamos arreglado':'en una hora más o menos te lo dejamos arreglado'}
+ function esc(t){return String(t||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ var CAJA='background:#FFF4E5;border-left:4px solid #C24A00;padding:10px;border-radius:6px;margin-top:8px;font-size:14px;color:#3B2412;line-height:1.4';
+ /* oficio.js la pone en vez de «No está en tu tarifa» */
+ window.__aprendeCaja=function(lista){return '<div id="aprCaja" style="'+CAJA+'"><b>Esto aún no lo entiendo:</b> '+lista.map(function(d){return '«'+esc(String(d).slice(0,60))+'»'}).join(', ')+
+  '.<br>Ya nos ha llegado: '+cuando()+'.<br>Mientras, ponle tú el precio abajo y sigue con el presupuesto.</div>'};
+ function cajaNada(){var ci=document.getElementById('convInfo');if(!ci||document.getElementById('aprCaja'))return;
+  ci.insertAdjacentHTML('beforeend','<div id="aprCaja" style="'+CAJA+'"><b>Ya nos ha llegado lo que has dicho:</b> '+cuando()+'.<br>Mientras, busca los trabajos uno a uno o escríbelos a mano, y sigue con el presupuesto.</div>')}
+
  /* 1) cada dictado (lo llama dictados.js cuando ya están las líneas y las preguntas) */
  window.__aprende=function(r){try{
   if(r.q==='dicta'){var L=(window.cur&&cur.lineas)||[];var desde=r.desde||0;delete r.desde;
    r.texto=tapa(String(r.texto||'').slice(0,4000));r.lineas=fila(L.slice(desde));r.antes=desde;r.n=L.length;r.total=total(L);
+   if(!r.lineas.length||r.error)cajaNada();
    r.aviso=tapa(aviso().slice(0,3000));r.marcado=marcadas();
    if(r.error)r.error=tapa(String(r.error).slice(0,300));marcar(r.num)}
   apunta(r)}catch(e){}};

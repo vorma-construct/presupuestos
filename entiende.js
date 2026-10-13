@@ -247,9 +247,12 @@ if(hechos.length){unaVez();cur.lineas=cur.lineas.filter(function(l){if(l.paqId)r
 renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;
 var añad=cur.lineas.length-n0;
-if(hechos.length||añad>0){if(/No he reconocido/.test(ci.textContent)||!ci.textContent.trim()||hechos.length&&!/trabajo/.test(ci.textContent)){ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>'}
- /* el de siempre solo cuenta lo suyo: con estancias, la cuenta buena es la de todas las líneas nuevas */
- else if(hechos.length){var bb=ci.querySelector('b');if(bb&&/\d+\s+trabajos?\s+añadidos?/.test(bb.textContent))bb.textContent=bb.textContent.replace(/\d+\s+trabajos?\s+añadidos?/,añad+(añad===1?' trabajo añadido':' trabajos añadidos'))}
+if(hechos.length||añad>0){if(/No he reconocido/.test(ci.textContent)||!ci.textContent.trim()||hechos.length&&!/trabajo/.test(ci.textContent)){
+ /* se cambia la cuenta, pero sin perder los avisos de debajo (lo que no está en la tarifa o no se ha entendido) */
+ var guardar=Array.prototype.filter.call(ci.children,function(d){return d.tagName==='DIV'&&!/No he reconocido/.test(d.textContent)});
+ ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>';guardar.forEach(function(d){ci.appendChild(d)})}
+ /* el de siempre solo cuenta lo suyo: la cuenta buena es la de todas las líneas nuevas (estancias y lo que entra a cero) */
+ else{var bb=ci.querySelector('b');if(bb&&/\d+\s+trabajos?\s+añadidos?/.test(bb.textContent))bb.textContent=bb.textContent.replace(/\d+\s+trabajos?\s+añadidos?/,añad+(añad===1?' trabajo añadido':' trabajos añadidos'))}
  /* el aviso viejo de "baño completo: he metido todos..." sobra: ahora pregunto */
  ci.querySelectorAll('div').forEach(function(d){if(/he metido todos los trabajos que suele llevar/.test(d.textContent))d.remove()})}
 pintarTarjeta();

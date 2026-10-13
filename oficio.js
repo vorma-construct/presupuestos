@@ -144,7 +144,9 @@ if(añad)renderLineas();
 var ci=document.getElementById('convInfo');if(!ci)return;var extra='';
 if(MD.altoSupuesto&&(window.__PARED||[]).length)extra+='<div style="margin-top:6px;font-size:13px">Alto de pared supuesto: <b>2,5 m</b>. Si es otro, dilo («2,7 de alto») y lo recalculo.</div>';
 if(paq.length)extra+='<div style="background:#E8F1FB;border-left:4px solid #2B6CB0;padding:9px;border-radius:6px;margin-top:8px;font-size:13px"><b>'+paq.map(function(p){return p.nombre}).join(' y ')+':</b> he metido todos los trabajos que suele llevar. Quita los que no toquen y revisa las cantidades.</div>';
-if(sinPrecio.length)extra+='<div style="background:#FBE9E2;border-left:4px solid var(--brick);padding:9px;border-radius:6px;margin-top:8px;font-size:13px"><b>No está en tu tarifa:</b> '+sinPrecio.map(function(d){return '«'+d.slice(0,60)+'»'}).join(', ')+'.<br>Pon su precio abajo y me lo quedo para la próxima.</div>';
+/* mientras se enseña la app (aprende.js): «esto aún no lo entiendo, ya nos ha llegado y en una hora más o menos te lo dejamos arreglado» */
+if(sinPrecio.length&&window.__aprendeCaja)extra+=__aprendeCaja(sinPrecio);
+else if(sinPrecio.length)extra+='<div style="background:#FBE9E2;border-left:4px solid var(--brick);padding:9px;border-radius:6px;margin-top:8px;font-size:13px"><b>No está en tu tarifa:</b> '+sinPrecio.map(function(d){return '«'+d.slice(0,60)+'»'}).join(', ')+'.<br>Pon su precio abajo y me lo quedo para la próxima.</div>';
 if(añad&&!/trabajo/.test(ci.textContent))ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b> Revisa abajo las cantidades.';
 ci.innerHTML+=extra};
 /* 4) listas de otros (arquitecto, estudio, otro albañil): si el diccionario no encuentra, se busca la partida mas parecida;
