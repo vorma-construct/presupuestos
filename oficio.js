@@ -7,6 +7,9 @@
 var ALTO_DEFECTO=2.5;
 /* palabras de obra -> palabras que la tarifa conoce. Orden: de lo mas concreto a lo mas general. */
 var VOCAB=[
+/* «encastrar una puerta», «puerta empotrada»: se pone la corredera dentro de la pared y entiende.js pregunta si es una puerta normal con premarco */
+[/\b(?:encastr\w*|empotr\w*)\s+(?:(?:la|una|las|unas|el|un)\s+)?(?:(\d+|dos|tres|cuatro|cinco|seis)\s+)?puertas?\b(?!\s+(?:corredera|abatible|batiente))/g,function(m,n){var N={dos:2,tres:3,cuatro:4,cinco:5,seis:6};var q=n?(N[n]||n):'';return ' puerta corredera '+(q?q+' puertas ':'')}],
+[/\bpuertas?\s+(?:encastrad\w*|empotrad\w*)\b(?!\s+(?:corredera|abatible|batiente))/g,' puerta corredera '],
 [/\b(enlos\w*|solar|solad\w*|poner (?:el )?suelo de (?:baldosa|gres|porcelanico|ceramica|azulejo))\b(?:\s+(?:el|la|los|las|del|de la|de|un|una))*\s*(bano|banos|cocina|terraza|pasillo|salon|habitacion|piso|suelo)?/g,function(m,v,d){return 'baldosa en el suelo'+(d?' del '+d:'')}],
 [/\b(chapar|chapad\w*|revestir|aplacar|aplacad\w*)\b(?:\s+(?:el|la|los|las|del|de la|de))*\s*(pared|paredes|bano|cocina)?/g,'alicatar'],
 [/\b(azulejar|azulejad\w*|poner azulejo\w*|colocar azulejo\w*|alikatar|aligatar)\b/g,'alicatar'],
@@ -34,8 +37,8 @@ var VOCAB=[
 [/\b(montar|poner|colocar|instalar)\s+(?:la\s+|los\s+)?(cocina nueva|cocina|muebles de la cocina|muebles de cocina)\b/g,'montar cocina'],
 [/\b(montar|poner|colocar)\s+(?:un\s+|el\s+)?mueble\s+(?:de\s+|del\s+)?bano\b/g,'mueble de baño'],
 [/\b(montar|poner|colocar|hacer)\s+(?:un\s+|el\s+|los\s+)?armario\w*\b/g,'montar armario'],
-[/\b(tirar|derribar|quitar|abrir|echar abajo)\s+(?:el\s+|la\s+|un\s+)?(tabique|pared|muro)\b/g,'tirar tabique'],
-[/\b(hacer|levantar|poner|subir)\s+(?:un\s+|el\s+)?(tabique|pared)\b/g,'tabique nuevo'],
+[/\b(tirar|derribar|demoler|quitar|abrir|echar abajo)\s+(?:(?:el|la|los|las|un|una|unos|unas|ese|esa|este|esta|dos|tres)\s+)?(tabiques?|pared(?:es)?|muros?)\b(?!\s+de\s+carga)/g,'tirar tabique'],
+[/\b(hacer|levantar|poner|subir)\s+(?:(?:un|una|el|la|otro|otra)\s+)?(tabique|pared)\b/g,'tabique nuevo'],
 [/\b(abrir|agrandar|hacer)\s+(?:un\s+|el\s+)?hueco\b/g,'abrir hueco'],
 [/\b(nivelar|recrecer|autonivelante|echar autonivelante)\b/g,'nivelar'],
 [/\b(acuchillar|barnizar|lijar)\s+(?:el\s+)?(suelo|parquet|parque|tarima)\b/g,'acuchillar'],

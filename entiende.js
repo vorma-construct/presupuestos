@@ -247,7 +247,20 @@ var añad=cur.lineas.length-n0;
 if(hechos.length||añad>0){if(/No he reconocido/.test(ci.textContent)||!ci.textContent.trim()||hechos.length&&!/trabajo/.test(ci.textContent)){ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>'}
  /* el aviso viejo de "baño completo: he metido todos..." sobra: ahora pregunto */
  ci.querySelectorAll('div').forEach(function(d){if(/he metido todos los trabajos que suele llevar/.test(d.textContent))d.remove()})}
-pintarTarjeta()};
+pintarTarjeta();
+/* «encastrar una puerta» sin decir cuál: va la corredera dentro de la pared y se pregunta, por si es una puerta normal con su premarco */
+if(RX_ENC.test(norm(bruto))&&!/corredera|abatible|batiente/.test(norm(bruto))){var tc=T('cor');var lc=tc&&cur.lineas.find(function(l){return l.d===tc.d&&!l.enc});
+ if(lc){lc.enc='cor';var vb=document.getElementById('encBox');if(vb)vb.remove();ci.insertAdjacentHTML('beforeend',cajaEnc('cor'))}}};
+var RX_ENC=/\b(?:encastr|empotr)\w*\s+(?:(?:la|una|las|unas|el|un)\s+)?(?:\w+\s+)?puertas?\b|\bpuertas?\s+(?:encastrad|empotrad)\w*/;
+function cajaEnc(sel){return '<div id="encBox" style="background:#E8F1FB;border-left:4px solid #2B6CB0;padding:10px;border-radius:8px;margin-top:8px;font-size:14px">'+
+ '<b>«Encastrar una puerta»: ¿cuál es?</b><div style="font-size:12px;color:#555;margin:2px 0 6px">He puesto la corredera que va dentro de la pared. Si es otra, tócala y lo cambio.</div>'+
+ '<button class="mini '+(sel==='cor'?'ok':'sec')+'" style="margin:2px" onclick="encPuerta(\'cor\')">Corredera dentro de la pared</button>'+
+ '<button class="mini '+(sel==='normal'?'ok':'sec')+'" style="margin:2px" onclick="encPuerta(\'normal\')">Puerta normal con su premarco</button></div>'}
+window.encPuerta=function(que){leer();var c=T('cor'),pr=T('pre'),pb=T('pub');if(!c||!pr||!pb)return;
+ var iC=cur.lineas.findIndex(function(l){return l.enc==='cor'}),iN=cur.lineas.findIndex(function(l){return l.enc==='normal'});
+ if(que==='normal'&&iC>-1){var q=cur.lineas[iC].q||1;cur.lineas.splice(iC,1,{d:pr.d,q:q,u:pr.u,p:pr.p,enc:'normal'},{d:pb.d,q:q,u:pb.u,p:pb.p,enc:'normal2'})}
+ if(que==='cor'&&iN>-1){var q2=cur.lineas[iN].q||1;cur.lineas=cur.lineas.filter(function(l){return l.enc!=='normal'&&l.enc!=='normal2'});cur.lineas.splice(iN,0,{d:c.d,q:q2,u:c.u,p:c.p,enc:'cor'})}
+ renderLineas();try{autoGuardar()}catch(_){}var b=document.getElementById('encBox');if(b)b.outerHTML=cajaEnc(que);try{if(window.__usoPregunta)__usoPregunta('encastrar',que)}catch(_){}};
 
 /* al abrir un presupuesto con estancias sin medir, vuelven las preguntas */
 var renderLineas0=window.renderLineas;
