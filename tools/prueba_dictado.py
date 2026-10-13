@@ -2,6 +2,7 @@
 Sirve para enseñar palabras nuevas sin romper las que ya entiende: se pasa ANTES y DESPUÉS del cambio y se comparan.
 Uso:  python3 tools/prueba_dictado.py [frases.json] [empresa] > salida.txt
       (por defecto tools/frases_prueba.json y la empresa lucas; «vorma» = la app de Vorma)
+Saca cada línea entera: [descripción, cantidad, unidad, precio de la tarifa de Vorma] y «NO ENTENDIDA» si la app no la entendió.
 Sale con código 1 si la página da algún error. No usa la nube: todo en local."""
 import asyncio, json, os, sys, threading, functools, socket
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -41,7 +42,7 @@ async def main():
         for t in FRASES:
             r = await pg.evaluate("""t=>{nuevo();document.getElementById('dictado').value=t;convertir();
               return new Promise(res=>setTimeout(()=>{var ci=document.getElementById('convInfo');
-                res({lineas:(cur.lineas||[]).map(l=>[String(l.d).slice(0,80),l.q,l.u||'',l.p]),
+                res({lineas:(cur.lineas||[]).map(l=>[String(l.d),l.q,l.u||'',l.p].concat(l.fb?['NO ENTENDIDA']:[])),
                      info:ci?ci.innerText.replace(/\\s+/g,' ').slice(0,300):''})},1500))}""", t)
             print('\n>>', t)
             for l in r['lineas']:
