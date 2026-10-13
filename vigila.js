@@ -62,15 +62,47 @@ var VAC_D={calle:1,c:1,avenida:1,avda:1,plaza:1,barrio:1,piso:1,portal:1,bizkaia
 function tokD(d){return norm(d||'').replace(/[^a-z0-9 ]+/g,' ').split(/\s+/).filter(function(w){return w.length>=3&&!VAC_D[w]||/^\d+$/.test(w)})}
 function mismaObra(a,b){var x=tokD(a),y=tokD(b);if(!x.length||!y.length)return true;var c=x.filter(function(w){return y.indexOf(w)>=0}).length;return c>=2||c/Math.min(x.length,y.length)>=0.6}
 function mandado(p){return !!(p.firmaTok||p.segTok||p.firmado||(p.estado&&p.estado!=='borrador'))}
+/* cada correo es un trabajo: dos presupuestos de correos distintos (o uno de correo y otro hecho a mano) no se juntan nunca,
+   aunque sea el mismo cliente y no tengan direccion. Solo se juntan los que salen del MISMO correo. */
+function deCorreo(p){return p&&p.correo&&p.correo.id?String(p.correo.id):''}
+function mismoOrigen(a,b){return deCorreo(a)===deCorreo(b)}
+window.mismoOrigen=mismoOrigen;
 window.mismaObra=mismaObra;
 window.juntarRepes=function(){var map={};try{var P=DB.presus||{};var ks=Object.keys(P).filter(function(k){var p=P[k];return p&&p.nom&&!/-[A-Z]$/.test(k)&&!mandado(p)});
- var hecho={};ks.forEach(function(k){if(hecho[k])return;var g=ks.filter(function(j){return !hecho[j]&&norm(P[j].nom).trim()===norm(P[k].nom).trim()&&mismaObra(P[j].dir,P[k].dir)});if(g.length<2)return;
+ var hecho={};ks.forEach(function(k){if(hecho[k])return;var g=ks.filter(function(j){return !hecho[j]&&norm(P[j].nom).trim()===norm(P[k].nom).trim()&&mismaObra(P[j].dir,P[k].dir)&&mismoOrigen(P[j],P[k])});if(g.length<2)return;
   g.forEach(function(j){hecho[j]=1});
   var nuevo=g.slice().sort(function(a,b){return (P[b].ts||0)-(P[a].ts||0)})[0],viejo=g.slice().sort(function(a,b){return num(a)-num(b)})[0];
   if(nuevo!==viejo){try{copiaAntes(viejo,'repe')}catch(_){}var c=JSON.parse(JSON.stringify(P[nuevo]));c.num=viejo;P[viejo]=c}
   g.forEach(function(j){if(j===viejo)return;map[j]=viejo;try{aPapelera(j,'repe')}catch(_){delete P[j];try{borrarNube(j)}catch(_){}}});
   try{subirPresu(viejo)}catch(_){}});
  if(Object.keys(map).length){save();if(cur&&map[cur.num]){try{abrir(map[cur.num])}catch(_){}}try{renderClientes()}catch(_){}}}catch(e){}return map};
+/* lo que la limpieza junto mal antes de esta regla (dos correos distintos en uno): se vuelve a separar solo, como estaba.
+   El de numero mas bajo vuelve a ser el suyo (guardado aparte al juntarlo) y el otro vuelve a su numero. */
+function separarMalJuntados(){var hechos=[];try{var Pa=DB.papelera||{},P=DB.presus||{};
+ Object.keys(Pa).forEach(function(k){var e=Pa[k];if(!/~antes$/.test(k)||!e||e.por!=='repe'||!e.p)return;
+  var n=k.replace(/~antes$/,''),orig=e.p,ahora=P[n];
+  if(!ahora||mismoOrigen(orig,ahora)||mandado(ahora))return;
+  if(!deCorreo(orig)&&!deCorreo(ahora))return;
+  var otro=Object.keys(P).filter(function(j){return j!==n&&mismoOrigen(P[j],ahora)&&deCorreo(ahora)})[0];
+  var m='';
+  if(!otro){var pj=Object.keys(Pa).filter(function(j){var x=Pa[j];return j!==k&&!/~antes$/.test(j)&&x&&x.por==='repe'&&x.p&&mismoOrigen(x.p,ahora)&&norm(x.p.nom||'').trim()===norm(ahora.nom||'').trim()})
+    .sort(function(a,b){return (Pa[b].ts||0)-(Pa[a].ts||0)})[0];
+   m=pj&&!P[pj]?pj:siguienteNum();
+   var c=JSON.parse(JSON.stringify(ahora));delete c.borrado;c.num=m;c.ts=Date.now();P[m]=c;if(num(m)>num(DB.contador||0))DB.contador=num(m);
+   if(pj)delete Pa[pj]}
+  var o=JSON.parse(JSON.stringify(orig));delete o.borrado;o.num=n;o.ts=Date.now()+1;P[n]=o;delete Pa[k];
+  hechos.push({n:n,m:m||otro,a:(o.correo&&o.correo.asunto)||'',b:(ahora.correo&&ahora.correo.asunto)||''})});
+ if(!hechos.length)return hechos;
+ save();hechos.forEach(function(h){try{subirPresu(h.n)}catch(_){}try{if(h.m&&DB.presus[h.m])subirPresu(h.m)}catch(_){}});
+ try{if(window.__usoApunta)__usoApunta('separa')}catch(_){}
+ if(window.cur){var vis=document.getElementById('page-presupuesto');var abierto=hechos.some(function(h){return h.n===cur.num||h.m===cur.num});
+  if(abierto&&DB.presus[cur.num]){if(vis&&vis.classList.contains('on'))try{abrir(cur.num)}catch(_){}else{cur=JSON.parse(JSON.stringify(DB.presus[cur.num]));try{pintar()}catch(_){}}}}
+ try{renderClientes()}catch(_){}
+ var q=function(t){return t?' «'+escH(String(t).replace(/^(re|fwd?):\s*/i,'').slice(0,60))+'»':''};
+ aviso((hechos.length===1?'<b>Ya tienes otra vez los dos presupuestos.</b> Se habían juntado en uno por error y los he vuelto a separar:<br>':'<b>Ya tienes otra vez separados los presupuestos que se habían juntado por error:</b><br>')+hechos.map(function(h){return 'nº '+h.n+q(h.a)+(h.m?'<br>nº '+h.m+q(h.b):'')}).join('<br>'));
+}catch(e){}return hechos}
+window.separarMalJuntados=separarMalJuntados;
+(function esperaNube(t0){if(window.FB&&FB.uid&&FB.db&&window.DB&&DB.presus||Date.now()-t0>60000){setTimeout(separarMalJuntados,3000);return}setTimeout(function(){esperaNube(t0)},500)})(Date.now());
 setTimeout(juntarRepes,4000);setTimeout(juntarRepes,15000);
 /* al hacer los presupuestos de los duenos desde el PDF: si ya existia el de ese cliente, se actualiza ese */
 var hacer0=window.hacerPresupuestos;
