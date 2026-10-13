@@ -14,6 +14,8 @@ var RE_BANO=new RegExp('\\b(?:'+VERBO_ESTANCIA+')\\b[^,.;:]{0,45}?\\b(?:cuarto d
 var RE_COCINA=new RegExp('\\b(?:'+VERBO_ESTANCIA+')\\b[^,.;:]{0,45}?\\bcocinas?\\b|\\bcocinas?\\s+(?:completa|entera|nueva|integral)\\b');
 var RE_HAB=new RegExp('\\b(?:'+VERBO_ESTANCIA+')\\b[^,.;:]{0,35}?\\b(habitacion(?:es)?|dormitorios?|cuartos?(?! de bano)|salon|sala de estar)\\b');
 var RE_PISO=/\b(?:reform\w*|renov\w*|reforma integral|obra integral|arregl\w*|rehacer)\b[^,.;:]{0,30}?\b(?:(?:el|un|una|la|toda la|todo el|mi)\s+)?(piso|casa|vivienda|apartamento|lonja)\b(?:\s+(?:entero|entera|completo|completa))?|\b(piso|casa|vivienda)\s+(?:entero|entera|completo|completa)\b|\breforma integral\b(?![^,.;]*\b(bano|aseo|cocina)\b)/;
+/* una estancia nombrada dentro de «reformar … casa» */
+var ESTANCIA_EN=/\b(banos?|aseos?|cocinas?|habitacion\w*|dormitorio\w*|salon\w*|cuartos?|terraza\w*|pasillo\w*|balcon\w*|trastero\w*|despensa\w*)\b/;
 /* si la frase ya dice trabajos concretos, no es "la estancia entera" */
 var CONCRETO_BANO=/tuberi|fontaner|banera|ducha|plato|azulej|sanitari|inodoro|vater|water|lavabo|mueble|techo|extractor|ventila|puerta|pint|picar|quitar|grifo|mampara|suelo/;
 var CONCRETO_COC=/mueble|suelo|pared|fontaner|techo|puerta|corredera|lucir|azulej|tabique|abrir|encimera|fregadero|campana|pint|quitar|desmont|montar|alicat/;
@@ -219,10 +221,13 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.
  else if(ultPaq&&/^\s*(?:en\s+)?(?:el|la|los|las|mi)?\s*(banos?|aseos?|cocina|habitacion(?:es)?|salon|dormitorios?)\b[^a-z]*(?:de\s+\d.*)?$/.test(fr)){fr=' reformar el '+fr.trim()+' '}
  else if(/^\s*(?:y\s+)?(?:poner|colocar|montar|meter)\s+(?:uno|una|otro|otra|los|las)?\s*(?:nuev[oa]s?)\s*$/.test(fr)&&ultObj){fr={cocina:' montar cocina ',rodapie:' rodapie nuevo ',puerta:' puertas nuevas ',suelo:' suelo flotante ',plato:' plato de ducha ',banera:' plato de ducha '}[ultObj]||fr}
  if(estAqui)ultEst=estAqui;var ob=(fr.match(/\b(cocina|rodapie|puerta|suelo|plato|banera)\w*/)||[])[1];if(ob)ultObj=ob;
- if(RE_PISO.test(fr))tipo='piso';
- else if(RE_BANO.test(fr)&&!CONCRETO_BANO.test(fr.replace(RE_BANO,'')))tipo='bano';
- else if(RE_COCINA.test(fr)&&!CONCRETO_COC.test(fr.replace(RE_COCINA,'')))tipo='cocina';
- else if(RE_HAB.test(fr)&&!CONCRETO_HAB.test(fr.replace(RE_HAB,'')))tipo='hab';
+ /* «reformar el baño de mi casa» es el baño, no la casa entera */
+ var mPiso=fr.match(RE_PISO);
+ if(mPiso&&!ESTANCIA_EN.test(mPiso[0]))tipo='piso';
+ /* lo concreto cuenta también si va entre el verbo y la estancia: «cambiar la puerta del baño» es la puerta, no el baño entero */
+ else if(RE_BANO.test(fr)&&!CONCRETO_BANO.test(fr.replace(/\b(?:cuarto de )?(?:banos?|aseos?|servicio)\b/g,' ')))tipo='bano';
+ else if(RE_COCINA.test(fr)&&!CONCRETO_COC.test(fr.replace(/\bcocinas?\b/g,' ')))tipo='cocina';
+ else if(RE_HAB.test(fr)&&!CONCRETO_HAB.test(fr.replace(/\b(?:habitacion(?:es)?|dormitorios?|cuartos?|salon|sala de estar)\b/g,' ')))tipo='hab';
  /* "baño: quitar bañera, plato..." -> son trabajos sueltos del baño, no el paquete */
  if(!tipo){resto.push(fr);ultPaq=null;continue}
  ultPaq=tipo;

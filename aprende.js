@@ -146,6 +146,18 @@
  setInterval(function(){if(document.visibilityState==='visible')traer()},10*60000);
  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')setTimeout(traer,1500)});
 
+ /* 5) los presupuestos que llegan por correo (buzon.js): qué decía el correo y qué se montó, para ver si sale bien y arreglarlo */
+ function dominio(s){return String(s||'').replace(/[\w.+'-]+@([\w-]+(?:\.[\w-]+)+)/g,'…@$1').slice(0,160)}
+ function correosHechos(){try{if(!window.DB||!DB.presus)return;var ya=lee('vr_apr_c',{}),n=0;
+  Object.keys(DB.presus).forEach(function(k){var p=DB.presus[k];if(!p||!p.correo||!p.correo.id||n>=6)return;var id=String(p.correo.id)+'|'+k;if(ya[id])return;n++;ya[id]=Date.now();
+   var c=p.correo;apunta({q:'correo',num:k,nom:tapa(String(p.nom||'').slice(0,80)),de:dominio(c.de),asunto:tapa(String(c.asunto||'').slice(0,160)),fecha:c.fecha||0,
+    texto:tapa(String(c.texto||'').slice(0,4000)),adjuntos:(c.adjuntos||[]).slice(0,12).map(function(x){return String(x).slice(0,80)}),
+    aviso:tapa(String(c.aviso||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,1500)),items:(c.items||[]).slice(0,60).map(function(x){return tapa(String(x).slice(0,200))}),
+    lineas:fila(p.lineas||[]),n:(p.lineas||[]).length,total:total(p.lineas||[]),sinPartidas:!!c.sinPartidas,prosa:!!c.prosa,arq:(c.arq||[]).length})});
+  var ks=Object.keys(ya);if(ks.length>400)ks.sort(function(a,b){return ya[a]-ya[b]}).slice(0,ks.length-400).forEach(function(k){delete ya[k]});
+  graba('vr_apr_c',ya)}catch(e){}}
+ setTimeout(correosHechos,9000);setInterval(function(){if(document.visibilityState==='visible')correosHechos()},60000);
+
  /* que se sepa: debajo del dictado */
  function nota(){var cv=document.getElementById('cardVoz');if(!cv||document.getElementById('aprNota'))return;
   cv.insertAdjacentHTML('beforeend','<p id="aprNota" style="font-size:12px;color:var(--muted);margin:8px 0 0">Mientras la app aprende, revisamos lo que dictas para enseñarle tus palabras.</p>')}
