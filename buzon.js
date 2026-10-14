@@ -143,7 +143,7 @@
   t=t.replace(/^(en|el|la|los|las|del|de la|zona de|zona)\s+/,'');var a=ART[k]||(ART[k.split(' ')[0]])||'el';return a==='el'?'del '+t:'de '+a+' '+t}
  function conSala(it,sala){if(!sala||RE_HAY_SALA.test(sa(it)))return it;var ss=sa(sala);
   if(/bano|aseo/.test(ss)&&/banera|ducha|inodoro|lavabo|bide|mampara|sanitari/.test(sa(it)))return it;
-  if(/cocina/.test(ss)&&/encimera|fregadero|campana|vitro|horno|muebles de cocina|mobiliario de cocina/.test(sa(it)))return it;var m=it.match(/\s\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m\b|metros|uds?\b|unidades|rollos?)/i);
+  if(/cocina/.test(ss)&&/encimera|fregadero|campana|vitro|horno|muebles de cocina|mobiliario de cocina/.test(sa(it)))return it;if(/^miden?\b/i.test(it)){var ds=deSala(sala).replace(/^(del|de la|de los|de las)\s+/,'');return ds.charAt(0).toUpperCase()+ds.slice(1)+': '+it.charAt(0).toLowerCase()+it.slice(1)}var m=it.match(/\s\d+(?:[.,]\d+)?(?:\s*(?:x|por)\s*\d+(?:[.,]\d+)?)?\s*(?:m2|m²|ml|m\b|metros|uds?\b|unidades|rollos?)/i);
   if(m&&m.index>3)return it.slice(0,m.index).replace(/[\s,]+$/,'')+' '+deSala(sala)+it.slice(m.index);return it.replace(/[\s.,;]+$/,'')+' '+deSala(sala)}
  function medidaLimpia(t){return t.replace(/\(\s*(?:de\s+)?(?:unos|unas|aprox\.?|aproximadamente|alrededor de|sobre|m[aá]s o menos)?\s*(\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m|metros(?:\s+cuadrados|\s+lineales)?|uds?|unidades|rollos?))\s*\)/gi,' $1').replace(/\b(?:unos|unas|aprox\.?|aproximadamente|alrededor de|m[aá]s o menos)\s+(?=\d)/gi,'').replace(/\s{2,}/g,' ').trim()}
  function esCab(l){var s=sa(l).replace(/\s*[\-–\/]\s*/g,' ').trim();return s.split(/\s+/).length<=5&&RE_CAB.test(s)}
