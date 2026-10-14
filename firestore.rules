@@ -49,7 +49,7 @@ service cloud.firestore {
       allow update: if (esMio(resource.data) && sigueSiendoMio())
         || (resource.data.get('firma', null) == null
             && request.resource.data.diff(resource.data).affectedKeys()
-                 .hasOnly(['firma','nombreFirma','dni','fechaFirma','aceptado','visto']));
+                 .hasOnly(['firma','nombreFirma','dni','fechaFirma','aceptado','visto','bc3']));
     }
 
     // Obras: el cliente ve la suya con su enlace; listar, solo el recuento de uso y lo de cada empresa.

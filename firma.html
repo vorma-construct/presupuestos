@@ -35,6 +35,8 @@ button{padding:12px 16px;border-radius:8px;border:0;font-size:15px;font-weight:7
 .chk input{flex:0 0 26px;margin-top:2px}
 .fin{background:#e8f5ec;border:1px solid #8A6A12;color:#14532d;padding:16px;border-radius:8px;font-size:15px;line-height:1.5}
 .cargando{padding:30px;text-align:center;color:var(--muted)}
+.bc3{background:#fff;border:1px solid var(--line);border-left:4px solid var(--brick);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:14px;line-height:1.45}
+.bc3 .bc3t{margin-top:4px}.bc3 .bc3c{margin:8px 0 10px;color:#1B5E20;font-size:13.5px}.bc3 button{width:100%}.bc3 .bc3n{margin-top:8px;font-size:12px;color:var(--muted)}
 </style>
 </head><body>
 <header><b id="hMarca">Presupuesto</b><div id="hSub" style="font-size:13px;opacity:.85"></div></header>
@@ -53,6 +55,7 @@ button{padding:12px 16px;border-radius:8px;border:0;font-size:15px;font-weight:7
   </div>
   <div id="fin" class="fin" style="display:none"></div>
 </div>
+<script src="bc3.js?v234"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
@@ -71,7 +74,7 @@ if(TOK)db.collection("firmas").doc(TOK).get().then(function(s){
   document.getElementById('hSub').textContent='Presupuesto nº '+(DATOS.num||'')+(DATOS.cliente?' · '+DATOS.cliente:'');
   if(DATOS.firma){verFirmado(DATOS);return}
   if(DATOS.css){var st=document.createElement('style');st.textContent=(function(c){var i=c.indexOf('@media print{');while(i>=0){var d=0,j=i;for(;j<c.length;j++){if(c[j]==='{')d++;else if(c[j]==='}'){d--;if(d===0)break}}c=c.slice(0,i)+c.slice(j+1);i=c.indexOf('@media print{')}return c})(DATOS.css);document.head.appendChild(st)}var st2=document.createElement('style');st2.textContent="#doc,#doc *{font-family:'TxtAzk',system-ui,sans-serif}h1,h2,h3,.cond,.ptag,.pclaim,.tot .big,.dochead .who,.ptab tr.cap td,.vals div b,.clausula b,.tarifa-cat,#doc b{font-family:'TitAzk','DejaVu Serif Condensed',Georgia,serif!important}";document.head.appendChild(st2);
-  document.getElementById('doc').innerHTML=DATOS.html||'';limpiarDoc();
+  document.getElementById('doc').innerHTML=DATOS.html||'';limpiarDoc();tarjetaBC3(DATOS);
   document.getElementById('aviso').textContent=DATOS.aviso||'';
   document.getElementById('nom').value=DATOS.cliente||'';
   document.getElementById('lopd').innerHTML='<b>Protecci\u00f3n de datos.</b> Quien trata sus datos es '+(DATOS.responsable||DATOS.marca||'el contratista')+
@@ -88,7 +91,7 @@ function eu(n){var s=(Math.round(n*100)/100).toFixed(2).split('.');return s[0].r
 function verFirmado(D){
   if(D.css){var st=document.createElement('style');st.textContent=D.css.replace(/@media print\{[\s\S]*?\}\s*$/,'');document.head.appendChild(st)}
   var st2=document.createElement('style');st2.textContent="#doc,#doc *{font-family:'TxtAzk',system-ui,sans-serif}";document.head.appendChild(st2);
-  document.getElementById('doc').innerHTML=D.html||'';limpiarDoc();
+  document.getElementById('doc').innerHTML=D.html||'';limpiarDoc();tarjetaBC3(D);
   var cont=document.getElementById('cont');
   /* fuera lo de firmar: ya esta firmado */
   ['firmar','nom','dni','cv','acepto','btn','msg','lopd'].forEach(function(id){var e=document.getElementById(id);if(!e)return;var b=e.closest('label')||e;b.style.display='none';});
@@ -113,7 +116,27 @@ function verFirmado(D){
   }).catch(function(){});
 }
 
-var FIRMA_VER='v193';
+/* para el arquitecto o aparejador: el mismo presupuesto en BC3, para su programa de mediciones.
+   Antes de descargar ve lo que lleva: capítulos, partidas y el total, comprobado contra este presupuesto. */
+function escB(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function tarjetaBC3(D){try{if(!window.BC3PRESU||!D)return;var S=(D.partidas&&D.partidas.caps)?D.partidas:BC3PRESU.deTabla(document.getElementById('doc'));
+ var M={num:D.num,cliente:D.cliente,obra:D.obra,marca:D.marca,fecha:D.ts?new Date(D.ts).toISOString().slice(0,10):'',iva:D.ivaPct};
+ var R=BC3PRESU.generar(S,M);if(!R.partidas)return;
+ var igual=D.base!=null&&Math.abs(R.total-Number(D.base))<0.005,cods=(S.caps||[]).some(function(C){return (C.l||[]).some(function(l){return /^\d+(\.\d+)+$/.test(String(l.c||''))})});
+ var movil=/Android|iPhone|iPad/i.test(navigator.userAgent);
+ var el=document.getElementById('bc3Box');if(!el){el=document.createElement('div');el.id='bc3Box';var dc=document.getElementById('doc');dc.parentNode.insertBefore(el,dc.nextSibling)}
+ el.className='bc3';
+ el.innerHTML='<b>\u00bfLo revisa un arquitecto o aparejador?</b>'+
+  '<div class="bc3t">P\u00e1selo a su programa de mediciones sin copiar nada: Presto, Arqu\u00edmedes, TCQ y los dem\u00e1s que abren el formato est\u00e1ndar BC3.</div>'+
+  '<div class="bc3c">\u2713 '+R.caps+(R.caps===1?' cap\u00edtulo':' cap\u00edtulos')+' y '+R.partidas+(R.partidas===1?' partida':' partidas')+', con sus mediciones y precios'+(cods?' y la numeraci\u00f3n del proyecto':'')+'.<br>\u2713 Total sin IVA: <b>'+eu(R.total)+'</b>'+(igual?', el mismo que este presupuesto.':'.')+'</div>'+
+  '<button class="ok" type="button" id="bc3Btn">Descargar para mi programa (BC3)</button>'+
+  '<div class="bc3n">Precios de '+escB(D.marca||'la empresa')+' sin IVA, sin gastos generales ni beneficio a\u00f1adidos: puede aplicar los suyos.'+(movil?' Para abrirlo en el ordenador, abra all\u00ed este mismo enlace.':'')+'</div>';
+ document.getElementById('bc3Btn').onclick=function(){var R2=BC3PRESU.generar(S,M);BC3PRESU.descargar(R2,M);try{if(TOK)db.collection('firmas').doc(TOK).update({bc3:Date.now()}).catch(function(){})}catch(_){}};
+ /* si viene de un proyecto de arquitecto, quien lo abre suele ser el arquitecto: un atajo arriba que baja a la tarjeta */
+ if(cods&&!document.getElementById('bc3Ir')){var dc2=document.getElementById('doc'),ir=document.createElement('button');ir.id='bc3Ir';ir.type='button';ir.className='sec';ir.style.cssText='width:100%;margin:0 0 10px';
+  ir.textContent='Para su programa de mediciones (BC3) \u2193';ir.onclick=function(){el.scrollIntoView({behavior:'smooth',block:'center'})};dc2.parentNode.insertBefore(ir,dc2)}
+}catch(e){}}
+var FIRMA_VER='v234';
 try{var _u=new URL(location.href);if(!_u.searchParams.get('v')){fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){if(j&&j.v&&j.v!==FIRMA_VER){_u.searchParams.set('v',j.v);location.replace(_u.toString())}}).catch(function(){})}}catch(_){}
 document.addEventListener('DOMContentLoaded',function(){var e=document.createElement('div');e.textContent=FIRMA_VER;e.style.cssText='position:fixed;right:6px;bottom:6px;font-size:10px;color:#9aa0a6;z-index:99';document.body.appendChild(e)});
 function esDelNegocio(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i)||'';if(/^(emp_[a-z0-9_-]+:)?vr_(db|aj)$/.test(k)||/^firebase:authUser:/.test(k))return true}}catch(_){}return false}
