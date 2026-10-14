@@ -1,5 +1,5 @@
 {
- "generado": 1792001639974,
+ "generado": 1792014801126,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -195,11 +195,11 @@
    "marca": "REFORMAS LUCAS",
    "disp": "Android",
    "instalada": true,
-   "ver": "v234",
+   "ver": "v235",
    "cta": "bd4dd",
    "mio": true,
-   "ultimo": 1791976371556,
-   "ultimoQue": "correo",
+   "ultimo": 1792003798594,
+   "ultimoQue": "dicta",
    "dias": {
     "2026-10-06": {
      "abre": 17,
@@ -232,30 +232,32 @@
      "partidas": 10
     },
     "2026-10-14": {
-     "abre": 2,
-     "correo": 1
+     "abre": 3,
+     "correo": 1,
+     "dicta": 1,
+     "partidas": 15
     }
    },
    "total": {
-    "abre": 42,
+    "abre": 43,
     "nuevo": 7,
     "pdfArquitecto": 7,
     "plano": 2,
-    "dicta": 2,
+    "dicta": 3,
     "fallo": 3,
     "imagen": 2,
     "mandar": 1,
     "borra": 7,
     "correo": 9,
-    "partidas": 10
+    "partidas": 25
    },
    "presupuestos": 16,
    "mandados": 2,
    "estado": {
-    "partidas": 0,
+    "partidas": 15,
     "aCero": 0,
-    "total": 0,
-    "avisos": 2
+    "total": 5919,
+    "avisos": 0
    },
    "fallo": true,
    "falloTxt": "Uncaught Error: TypeError: Failed to fetch (v209)",
@@ -396,6 +398,18 @@
     {
      "t": 1791976371556,
      "q": "correo"
+    },
+    {
+     "t": 1792003733854,
+     "q": "abre"
+    },
+    {
+     "t": 1792003798594,
+     "q": "dicta",
+     "n": 15,
+     "c": 0,
+     "w": 74,
+     "v": 0
     }
    ]
   },
