@@ -9,6 +9,9 @@ Comprueba:
   5. Lo que se dice después se suma sin repetir lo de antes.
   6. Presupuesto nuevo: el cuadro del dictado empieza vacío.
   7. Una medida disparatada (un baño de 194 m²) sale avisada en rojo.
+  8. «Reformar una casa de ochenta y siete metros cuadrados tirar el tabique de la cocina y juntarlo con la sala y arreglar el
+     baño» (sin comas, como lo escribe el micro): sale el derribo del tabique, un solo baño y una cocina con sus metros
+     calculados por los de la casa (nada a 1 m²), el piso sin contarlos dos veces, y cada partida dice de qué estancia es.
 Sale con código 1 si algo no cuadra. No usa la nube: todo en local."""
 import asyncio, json, os, sys, threading, functools, socket
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -37,6 +40,12 @@ JS = r"""async()=>{
  await voz([[['y pintar las paredes de la cocina de 10 metros',true]]]);out.y_luego=foto();
  nuevo();out.nuevo_vacio={cuadro:ta.value,dice:info()};
  nuevo();ta.value='reformar un baño de 194 metros cuadrados';convertir();await espera();out.disparate=foto();
+ nuevo();ta.value='reformar una casa de ochenta y siete metros cuadrados tirar el tabique de la cocina y juntarlo con la sala y arreglar el baño';convertir();await espera();
+ var P=cur.paqs||[],pi=P.find(p=>p.tipo==='piso')||{},hijos=P.filter(p=>p.padre===pi.id);
+ out.casa87={tabique:cur.lineas.some(l=>/^Derribo de tabique/.test(l.d)),banos:P.filter(p=>p.tipo==='bano').map(p=>p.suelo),cocinas:P.filter(p=>p.tipo==='cocina').map(p=>p.suelo),
+   hijos:hijos.length,piso:pi.suelo,sueloPiso:(cur.lineas.find(l=>l.paqId===pi.id&&/^Quitar el suelo actual/.test(l.d))||{}).q,
+   aUno:cur.lineas.filter(l=>l.u==='m2'&&num(l.q)===1).map(l=>l.d.slice(0,60)),sinEstancia:cur.lineas.filter(l=>l.paqId&&l.paqId!==pi.id&&!/ — (baño|cocina)/.test(l.d)&&!/^Suministro de contenedor/.test(l.d)).map(l=>l.d.slice(0,60)),
+   repetidas:revisar(false,true).A.filter(a=>/repetida/.test(a))};
  return out}"""
 
 
@@ -84,6 +93,10 @@ async def main():
         mal.append('6. presupuesto nuevo con el dictado anterior: %s' % json.dumps(r['nuevo_vacio'], ensure_ascii=False))
     if 'no cuadra' not in r['disparate']['dice']:
         mal.append('7. el baño de 194 m² no sale avisado: %s' % json.dumps(r['disparate'], ensure_ascii=False))
+    c = r['casa87']
+    if not (c['tabique'] and len(c['banos']) == 1 and len(c['cocinas']) == 1 and c['hijos'] == 2 and all(x > 1 for x in c['banos'] + c['cocinas'])
+            and abs(c['sueloPiso'] - (c['piso'] - sum(c['banos']) - sum(c['cocinas']))) < 0.2 and not c['aUno'] and not c['sinEstancia'] and not c['repetidas']):
+        mal.append('8. la casa de 87 metros no sale bien: %s' % json.dumps(c, ensure_ascii=False))
     if errores:
         mal.append('errores de la página: %s' % errores[:3])
     print('Demo (%s): %d líneas, %s € sin IVA (gotelé %s m², baños %s)' % (EMP, base['lineas'], base['total'], base['gotele'], base['banos']))

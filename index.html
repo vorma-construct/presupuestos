@@ -198,7 +198,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v238';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v239';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -640,7 +640,7 @@ function revisar(mostrar,calla){leer();var E=[],A=[],L=cur.lineas,T=tarifa();var
 if(!cur.nom)E.push('Falta el nombre del cliente.');if(!cur.dir)A.push('Falta la dirección de la obra.');
 if(!L.length)E.push('El presupuesto no tiene partidas.');
 L.forEach(function(l,i){if(!l.d.trim())E.push('La línea '+(i+1)+' está vacía.');if(!(l.q>0))E.push('«'+l.d.slice(0,50)+'…» tiene cantidad cero.');if(!(l.p>0))E.push('«'+l.d.slice(0,50)+'…» está a CERO euros.')});
-var vistos={};L.forEach(function(l){var k=norm(l.d).slice(0,60)+'|'+l.u;if(vistos[k]&&vistos[k].q===l.q)A.push('Partida repetida con la misma cantidad: «'+l.d.slice(0,50)+'…».');vistos[k]=l});
+var vistos={};L.forEach(function(l){var k=(l.paqId?norm(l.d):norm(l.d).slice(0,60))+'|'+l.u;if(vistos[k]&&vistos[k].q===l.q)A.push('Partida repetida con la misma cantidad: «'+l.d.slice(0,50)+'…».');vistos[k]=l});
 if(cur.arq&&cur.arq.length){cur.arq.forEach(function(a){var l=L.find(function(x){return x.code===a.code});if(!l)E.push('Falta la partida '+a.code+' del arquitecto: «'+a.t.slice(0,50)+'». Estaba en las mediciones y ya no está.');else if(Math.abs(l.q-a.q)>0.001)A.push('Partida '+a.code+': el arquitecto mide '+a.q+' '+a.u+' y tú tienes '+l.q+' '+l.u+'.')});var totA=cur.arq.reduce(function(s,a){return s+(a.pa||0)*a.q},0);if(totA>0){var tot=L.reduce(function(s,l){return s+l.q*l.p},0);A.push('El arquitecto estima '+eur(totA)+' sin IVA; tu base es '+eur(tot)+' ('+Math.round(tot/totA*100)+' %).')}}
 var NA=AJ.noAvisar||{},K={};var avisa=function(k,t){if(NA[k])return;K[t]=k;A.push(t)};
 if(cur.asc==='1'&&!has(/montacargas/))avisa('mon','Has marcado piso sin ascensor y no está el suplemento de montacargas. Si no lo cobras, déjalo así.');
@@ -1814,7 +1814,7 @@ function alVolverApp(){if(document.visibilityState!=='hidden'&&Date.now()-__ultV
 document.addEventListener('visibilitychange',alVolverApp);window.addEventListener('focus',alVolverApp);window.addEventListener('pageshow',function(e){if(e&&e.persisted)alVolverApp()});
 /* después de ponerse la versión nueva, vuelve al presupuesto que estaba abierto */
 try{var __ra=sessionStorage.getItem('vr_reabrir');if(__ra){sessionStorage.removeItem('vr_reabrir');if(DB.presus&&DB.presus[__ra])setTimeout(function(){try{abrir(__ra)}catch(_){}},400)}}catch(_){}
-</script><script src="oficio.js?v237"></script><script src="entiende.js?v238"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v232"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v237"></script><script src="entiende.js?v239"></script><script src="arquitecto.js?v239"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v239"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v200"></script>
 <script src="dictados.js?v238"></script>

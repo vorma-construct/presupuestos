@@ -20,6 +20,10 @@ window.revisar=function(mostrar,calla){var r=revisar0.apply(this,arguments);try{
  var sin=(cur.paqs||[]).filter(function(pk){return !(pk.suelo>0)&&cur.lineas.some(function(l){return l.paqId===pk.id&&l.u==='m2'})});
  sin.forEach(function(pk){var nom={bano:'del baño',cocina:'de la cocina',hab:'de la habitación',piso:'del piso'}[pk.tipo]||'de una estancia';r.E.push('Faltan los metros '+nom+(pk.n>1?' '+pk.n:'')+': sus partidas van con cantidad 1. Ponlos arriba, en «Para afinar el precio».')});
  if(sin.length&&!calla){var box=document.getElementById('revBox');if(box)box.insertAdjacentHTML('afterbegin','<div class="aviso" style="border-color:#b3261e;background:#fbe3e0">'+sin.length+' estancia(s) sin medir. ✕ '+r.E.slice(-sin.length).join('<br>✕ ')+'</div>')}
+ /* baño o cocina con los metros calculados por los de la casa: se puede mandar, pero que lo sepa */
+ (cur.paqs||[]).filter(function(pk){return pk.calculado&&pk.suelo>0&&cur.lineas.some(function(l){return l.paqId===pk.id})}).forEach(function(pk){var nom={bano:'El baño',cocina:'La cocina'}[pk.tipo]||'Una estancia';r.A.push(nom+(pk.n>1?' '+pk.n:'')+' va con unos '+String(pk.suelo).replace('.',',')+' m² calculados por los metros de la casa: si los sabes, ponlos arriba.')});
+ /* las notas para el cliente hablan de un proyecto o de un plano y ya no queda ninguna partida de ese proyecto: son de otra obra */
+ if(cur.obs&&/\b(proyecto|arquitecto|plano)\b/.test(norm(cur.obs))&&!(window.esDeArquitecto&&esDeArquitecto(cur)))r.A.push('Las notas que verá el cliente hablan de un proyecto y aquí no queda ninguna partida de ese proyecto: mira si son de otra obra y bórralas.');
  if(cur.dir&&(cur.dir.length>80||/\b(haremos|haremos|vamos a|queremos|autoconstruccion|presupuesto|solicitamos)\b/.test(norm(cur.dir)))){r.A.push('La dirección de la obra parece una frase, no una dirección: «'+cur.dir.slice(0,60)+'».')}
 }catch(e){}return r};
 

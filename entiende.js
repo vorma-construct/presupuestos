@@ -22,6 +22,8 @@ var CONCRETO_COC=/mueble|suelo|pared|fontaner|techo|puerta|corredera|lucir|azule
 var CONCRETO_HAB=/suelo|tarima|parquet|pint|gotel|puerta|armario|pared|techo|enchuf|ventana|quitar|tirar|juntar|dividir|tabique/;
 
 var REGLAS=[
+/* el micro no pone comas: «una casa de 87 metros cuadrados tirar el tabique…» → un trabajo nuevo detrás de una medida es otra frase */
+[/(\d(?:[.,]\d+)?\s*(?:m2|m²|metros cuadrados|metros|mts?|m)|\bcuadrados)\s+(?=(?:quitar|poner|tirar|picar|pintar|cambiar|alicatar|lijar|enlucir|lucir|derribar|montar|instalar|colocar|reformar|renovar|abrir|cerrar|levantar|arrancar|sacar|nivelar|empapelar|alisar|rascar|arreglar|modernizar|desmontar|embaldosar|forrar|aislar|hacer|meter|echar|juntar|unir|dividir|separar|acuchillar|barnizar)\b)/g,'$1, '],
 /* separar "x y poner y" en frases */
 [/\s+y\s+(?=(?:poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat|lijar|nivelar|alisar|enlucir|embaldos|acuchill|barniz|pulir|abrir|bajar|cerrar)\b)/g,', '],
 [/\b(reform\w*|renov\w*|arregl\w*|moderniz\w*|hacer)\s+y\s+\w+\s+(?:(?:el|la|un|una|mi)\s+)?(banos?|aseos?|cocina|habitacion|dormitorio|piso|casa)\b/g,'$1 el $2'],
@@ -141,10 +143,12 @@ var EST={bano:'el baño',cocina:'la cocina',hab:'la habitación',piso:'el piso'}
 
 /* lineas de una estancia segun sus respuestas */
 function lineasDe(pk){var s=pk.r,S=pk.suelo>0?pk.suelo:0,A=pk.alto>0?pk.alto:ALTO,L=[];
+/* en el presupuesto cada partida dice de qué estancia es («— baño», «— cocina»): si no, el techo del baño y el de la cocina parecen la misma partida repetida */
+var tag={bano:'baño',cocina:'cocina',hab:'habitación'}[pk.tipo]||'';if(tag&&pk.n>1)tag+=' '+pk.n;
 var perim=pk.perim>0?pk.perim:(S>0?n2(4*Math.sqrt(S)):0);
 function pared(puertas,ventanas){if(!(S>0))return 1;return Math.max(1,n2(perim*A-puertas*1.6-ventanas*1.2))}
-function add(id,q,suf){var t=T(id);if(!t)return;L.push({d:t.d+(suf||''),q:q>0?q:1,u:t.u,p:t.p,tid:id})}
-function libre(d,q,u){L.push({d:d,q:q,u:u,p:(window.aprendidoParecido?aprendidoParecido(d):0)||0})}
+function add(id,q,suf){var t=T(id);if(!t)return;var sf=suf||'';if(tag&&id!=='con'&&id!=='limf')sf=' — '+tag+(sf?', '+sf.replace(/^\s*—\s*/,''):'');L.push({d:t.d+sf,q:q>0?q:1,u:t.u,p:t.p,tid:id})}
+function libre(d,q,u){var pr=(window.aprendidoParecido?aprendidoParecido(d):0)||0;L.push({d:tag?d+' — '+tag:d,q:q,u:u,p:pr})}
 var sq=S>0?S:1;
 if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  add('san',1);add('ali',W);add('sol',sq);add('dfon',1);add('fba',1);
@@ -173,7 +177,7 @@ if(pk.tipo==='piso'){var mojado=paqs().filter(function(h){return h.padre===pk.id
  if(s.luz){add('ins',1);add('ele',1);add('bol',1)}
  if(s.calef)add('cal',1);
  if(s.paredes==='gotele')add('lija',Wp);add('pip',Wp);add('pit',Sseco);
- if(s.suelo==='tarima'){add('sue',Sseco);add('rod',S>0?n2(S*0.9):1);add('flo',Sseco);add('ron',S>0?n2(S*0.9):1)}
+ if(s.suelo==='tarima'){add('sue',Sseco);add('rod',S>0?n2(Sseco*0.9):1);add('flo',Sseco);add('ron',S>0?n2(Sseco*0.9):1)}
  if(s.puertas>0){add('pue',s.puertas);add('pub',s.puertas)}
  add('con',1);add('limf',1)}
 L.forEach(function(l){l.paqId=pk.id;l.paquete=PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'')});
@@ -181,17 +185,32 @@ return L}
 
 function unaVez(){var v={};cur.lineas=cur.lineas.filter(function(l){if(!l.paqId||['con','limf'].indexOf(l.tid)<0)return true;if(v[l.tid])return false;v[l.tid]=1;return true})}
 function paqs(){cur.paqs=cur.paqs||[];return cur.paqs}
-function rehacer(pk,sinLeer){if(!sinLeer)leer();var antes={};cur.lineas.forEach(function(l){if(l.paqId===pk.id)antes[l.d]=l});
-var idx=cur.lineas.findIndex(function(l){return l.paqId===pk.id});if(idx<0)idx=cur.lineas.length;
-cur.lineas=cur.lineas.filter(function(l){return l.paqId!==pk.id});
-var nuevas=lineasDe(pk).map(function(l){var a=antes[l.d];if(a&&a.p>0)l.p=a.p;return l});/* respeta el precio que ya haya puesto */
-cur.lineas.splice.apply(cur.lineas,[Math.min(idx,cur.lineas.length),0].concat(nuevas));
-/* el piso con baños y cocina: cada uno con sus preguntas */
-if(pk.tipo==='piso'){var hijos=paqs().filter(function(x){return x.padre===pk.id});
+/* la misma partida de la misma estancia, aunque cambie cómo se llama (para respetar el precio que ya se haya puesto a mano) */
+function claveL(l){var d=String(l.d||'');return (l.tid||d.replace(/ — .*$/,''))+'|'+(/en las paredes/.test(d)?'p':/en el suelo/.test(d)?'s':'')}
+/* los metros de un baño o una cocina sin medir, sacados de los de la casa (se dice en su tarjeta y en la revisión) */
+function metrosCalculados(tipo,S){var r=function(x){return Math.round(x*2)/2},c=function(x,a,b){return Math.min(b,Math.max(a,x))};
+ if(!(S>0))return 0;if(tipo==='bano')return c(r(S*0.05),3.5,6);if(tipo==='cocina')return c(r(S*0.11),6,14);return 0}
+window.metrosCalculados=metrosCalculados;
+/* los metros que se dicen de un baño o de la cocina dentro de la frase del piso: «con dos baños de 4 metros», «la cocina de 10» */
+function medidasDichas(t){var r={bano:[],cocina:[]},re=/\b(?:(un|una|dos|tres|\d)\s+)?(banos?|aseos?|cocinas?)\b(?=\s*(?:de|que mide|que tiene|mide|tiene|son)\s+\d)/g,m;
+ while((m=re.exec(t))){var tipo=/^coc/.test(m[2])?'cocina':'bano',sub=t.slice(m.index+m[0].length,m.index+m[0].length+40).replace(/^\s*(?:de|que mide|que tiene|mide|tiene|son)\s+/,'');
+  if(!/^\d+(?:[.,]\d+)?\s*(?:m2|m²|metros|mts?|m\b|x\b|por\b)/.test(sub))continue;var md=medidaTrozo(sub);if(!(md.suelo>0)||md.suelo>60)continue;
+  var n=tipo==='cocina'?1:({un:1,una:1,dos:2,tres:3}[m[1]]||parseInt(m[1])||1);for(var k=0;k<n&&k<6;k++)r[tipo].push(md.suelo)}
+ return r}
+/* el piso con baños y cocina: cada uno con sus preguntas; los que no tienen metros, calculados por los de la casa */
+function hijosDelPiso(pk){var hijos=paqs().filter(function(x){return x.padre===pk.id});
  var quiere={bano:pk.r.banos||0,cocina:pk.r.cocina?1:0};
  ['bano','cocina'].forEach(function(tp){var ya=hijos.filter(function(h){return h.tipo===tp});
-  for(var i=ya.length;i<quiere[tp];i++){var h=nuevoPaq(tp,{suelo:0,perim:0,alto:pk.alto},i+1);h.padre=pk.id;cur.lineas=cur.lineas.concat(lineasDe(h))}
-  ya.slice(quiere[tp]).forEach(function(h){cur.lineas=cur.lineas.filter(function(l){return l.paqId!==h.id});cur.paqs=paqs().filter(function(x){return x!==h})})})}
+  for(var i=ya.length;i<quiere[tp];i++){var h=nuevoPaq(tp,{suelo:0,perim:0,alto:pk.alto},i+1);h.padre=pk.id;var e=metrosCalculados(tp,pk.suelo);if(e>0){h.suelo=e;h.calculado=1}cur.lineas=cur.lineas.concat(lineasDe(h))}
+  ya.slice(quiere[tp]).forEach(function(h){cur.lineas=cur.lineas.filter(function(l){return l.paqId!==h.id});cur.paqs=paqs().filter(function(x){return x!==h})})});
+ if(pk.suelo>0)paqs().filter(function(h){return h.padre===pk.id&&(!(h.suelo>0)||h.calculado)}).forEach(function(h){var e=metrosCalculados(h.tipo,pk.suelo);if(e>0&&e!==h.suelo){h.suelo=e;h.perim=0;h.calculado=1;rehacer(h,true)}})}
+function rehacer(pk,sinLeer){if(!sinLeer)leer();
+if(pk.tipo==='piso')hijosDelPiso(pk);
+var antes={};cur.lineas.forEach(function(l){if(l.paqId===pk.id)antes[claveL(l)]=l});
+var idx=cur.lineas.findIndex(function(l){return l.paqId===pk.id});if(idx<0)idx=cur.lineas.length;
+cur.lineas=cur.lineas.filter(function(l){return l.paqId!==pk.id});
+var nuevas=lineasDe(pk).map(function(l){var a=antes[claveL(l)];if(a&&a.p>0)l.p=a.p;return l});/* respeta el precio que ya haya puesto */
+cur.lineas.splice.apply(cur.lineas,[Math.min(idx,cur.lineas.length),0].concat(nuevas));
 unaVez()}
 var __n=0;
 function nuevoPaq(tipo,med,n){var pk={id:'pq'+Date.now().toString(36)+(__n++),tipo:tipo,suelo:med.suelo||0,perim:med.perim||0,alto:med.alto||0,n:n||1,r:Object.assign({},PAQ[tipo].def),hechas:{}};paqs().push(pk);return pk}
@@ -209,9 +228,9 @@ var h='<div id="paqBox" style="background:#E8F1FB;border-left:4px solid #2B6CB0;
 h+='<b>Para afinar el precio, contesta esto</b><div style="font-size:12px;color:#555;margin-bottom:6px">Lo marcado en color es lo que he puesto. Cada respuesta cambia las líneas al momento.</div>';
 P.forEach(function(pk){var tit=PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'');
  h+='<div style="background:#fff;border-radius:8px;padding:8px;margin-top:8px"><div style="font-weight:700;margin-bottom:4px">'+tit+'</div>';
- var faltaMed=!(pk.suelo>0);
- h+='<div style="margin:4px 0'+(faltaMed?';background:#FDECEA;padding:6px;border-radius:6px':'')+'">'+(faltaMed?'<b style="color:#B3261E">¿Cuántos metros tiene '+EST[pk.tipo]+'?</b> Sin esto las cantidades van a 1.':'Mide <b>'+fmt(pk.suelo)+' m²</b>'+(pk.perim>0?' ('+fmt(pk.perim)+' m de perímetro)':'')+'.')+
-  '<div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><input id="pm_'+pk.id+'" inputmode="decimal" placeholder="'+(pk.tipo==='piso'?'80':'2 x 1,8 o 4')+'" style="flex:1;min-width:110px;padding:8px;font-size:15px"><button class="mini ok" onclick="paqMedida(\''+pk.id+'\')">'+(faltaMed?'Poner':'Cambiar')+'</button></div>'+
+ var faltaMed=!(pk.suelo>0),calc=!faltaMed&&pk.calculado,padre=calc&&paqs().find(function(x){return x.id===pk.padre});
+ h+='<div style="margin:4px 0'+(faltaMed?';background:#FDECEA;padding:6px;border-radius:6px':calc?';background:#FFF4E5;padding:6px;border-radius:6px':'')+'">'+(faltaMed?'<b style="color:#B3261E">¿Cuántos metros tiene '+EST[pk.tipo]+'?</b> Sin esto las cantidades van a 1.':calc?'<b>Unos '+fmt(pk.suelo)+' m²</b>, calculados por '+(padre&&padre.suelo>0?'los '+fmt(padre.suelo)+' m² de la casa':'los metros de la casa')+'. Si sabes los metros, ponlos aquí.':'Mide <b>'+fmt(pk.suelo)+' m²</b>'+(pk.perim>0?' ('+fmt(pk.perim)+' m de perímetro)':'')+'.')+
+  '<div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap"><input id="pm_'+pk.id+'" inputmode="decimal" placeholder="'+(pk.tipo==='piso'?'Metros de la casa':'2 x 1,8 o 4')+'" style="flex:1;min-width:110px;padding:8px;font-size:15px"><button class="mini ok" onclick="paqMedida(\''+pk.id+'\')">'+(faltaMed?'Poner':'Cambiar')+'</button></div>'+
   (pk.tipo!=='piso'?'<div style="font-size:12px;color:#555;margin-top:2px">Largo por ancho o los metros cuadrados. Alto de pared: '+fmt(pk.alto>0?pk.alto:ALTO)+' m.</div>':'')+'</div>';
  PAQ[pk.tipo].preg.forEach(function(q){h+='<div style="margin-top:6px">'+q.t+' ';
   if(q.num){h+=pasoNum(pk.id,q.k,+pk.r[q.k]||0,q.num)+'</div>';return}
@@ -224,7 +243,7 @@ window.paqResp=function(id,k,v){var pk=paqs().find(function(x){return x.id===id}
  /* mientras se enseña la app (aprende.js): qué pregunta contestó y qué eligió */
  try{if(window.__usoPregunta){var qq=(PAQ[pk.tipo].preg||[]).find(function(x){return x.k===k})||{},oo=(qq.ops||[]).find(function(o){return o[0]===v});__usoPregunta(PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'')+' · '+(qq.t||k),oo?oo[1]:String(v))}}catch(_){}};
 window.paqMedida=function(id){var pk=paqs().find(function(x){return x.id===id});var i=document.getElementById('pm_'+id);if(!pk||!i)return;var v=norm(i.value||'');
- var m=medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;rehacer(pk);if(pk.padre){var pd=paqs().find(function(x){return x.id===pk.padre});if(pd)rehacer(pd,true)}renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta();
+ var m=medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;delete pk.calculado;rehacer(pk);if(pk.padre){var pd=paqs().find(function(x){return x.id===pk.padre});if(pd)rehacer(pd,true)}renderLineas();try{autoGuardar()}catch(_){}pintarTarjeta();
  try{if(window.__usoPregunta)__usoPregunta(PAQ[pk.tipo].nombre+(pk.n>1?' '+pk.n:'')+' · metros',i.value)}catch(_){}};
 window.pintarPreguntasPaq=pintarTarjeta;
 
@@ -299,9 +318,19 @@ var CUANT={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,
 function cuantosDe(t,que){var m=norm(t).match(new RegExp('\\b(\\d+|'+Object.keys(CUANT).join('|')+')\\s+(?:'+que+')\\b'));return m?(CUANT[m[1]]||+m[1]):null}
 var nBan=cuantosDe(bruto,'banos|aseos'),nPue=cuantosDe(bruto,'puertas');
 nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVent)&&'ventana' in pk.r){pk.r.ventana=!sinVent;pk.hechas.ventana=1}
-if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}
- /* los baños o la cocina que van con su propia medida no se meten otra vez dentro del piso */
- if(nuevos.some(function(y){return y.tipo==='bano'})){pk.r.banos=0;pk.hechas.banos=1}if(nuevos.some(function(y){return y.tipo==='cocina'})){pk.r.cocina=false;pk.hechas.cocina=1}}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk,true)});
+if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}}
+cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk)});
+/* el piso y las estancias dichas aparte («reformar la casa de 87 metros… y arreglar el baño»): ese baño y esa cocina son DEL piso.
+   Así no salen baños de más, y el suelo, las paredes y los techos del piso van sin ellos (no se cobran dos veces) */
+hechos.filter(function(h){return h.tipo==='piso'}).forEach(function(pi){
+ var suyos=hechos.filter(function(h){return (h.tipo==='bano'||h.tipo==='cocina')&&!h.padre});suyos.forEach(function(h){h.padre=pi.id});
+ var eb=suyos.filter(function(h){return h.tipo==='bano'}).length;if(eb){pi.r.banos=Math.min(6,Math.max(eb,nBan!=null?nBan:0));pi.hechas.banos=1}
+ if(suyos.some(function(h){return h.tipo==='cocina'})){pi.r.cocina=true;pi.hechas.cocina=1}
+ rehacer(pi,true);
+ /* «la casa de 90 metros con un baño de 5 metros»: los metros dichos para el baño o la cocina mandan sobre los calculados */
+ var dichos=medidasDichas(norm(bruto));suyos.forEach(function(h){var L=dichos[h.tipo]||[],k=L.indexOf(h.suelo);if(h.suelo>0&&k>=0)L.splice(k,1)});
+ var cambio=false;paqs().filter(function(h){return h.padre===pi.id&&(h.calculado||!(h.suelo>0))}).forEach(function(h){var L=dichos[h.tipo]||[];if(L.length){h.suelo=L.shift();h.perim=0;delete h.calculado;rehacer(h,true);cambio=true}});
+ if(cambio)rehacer(pi,true)});
 /* lo que el de siempre metio y ya va en una estancia: fuera duplicados */
 if(hechos.length){unaVez();cur.lineas=cur.lineas.filter(function(l){if(l.paqId)return true;var dup=cur.lineas.some(function(o){return o.paqId&&o.d.indexOf(l.d)===0});return !dup})}
 /* un solo baño o cocina: el suelo suelto ya va en la estancia (es de baldosa), y «la puerta del baño» es su pregunta de la puerta */
@@ -313,6 +342,8 @@ if(hechos.length===1&&/^(bano|cocina)$/.test(hechos[0].tipo)&&!/\b(habitacion\w*
 var nuevasDs=cur.lineas.filter(function(l){return !l.__v}).map(function(l){return l.d});
 cur.lineas.forEach(function(l){delete l.__v});
 window.__ultDict={num:cur.num,creado:cur.creado,tal:ta.value,parte:aConv,h:huella(aConv),ds:nuevasDs};
+/* dictar en un presupuesto que ya se mandó (tiene enlace de firma): si se vuelve a mandar, el cliente verá esto */
+if(cur.firmaTok&&!cur.firmado){var ciF=document.getElementById('convInfo');if(ciF)ciF.insertAdjacentHTML('beforeend','<div style="margin-top:6px;background:#FFF4E5;border-left:4px solid #C24A00;padding:6px 8px;border-radius:6px"><b>Ojo: este presupuesto ya se mandó a un cliente</b> (nº '+cur.num+'). Si es otra obra, dale a «Nuevo presupuesto» y díctalo allí.</div>')}
 if(pisoFuera){var ciP=document.getElementById('convInfo');if(ciP)ciP.insertAdjacentHTML('beforeend','<div style="margin-top:6px">«Reforma de la casa» lo he tomado como los trabajos que dices con sus medidas. Si es la reforma de la casa entera, di «reforma integral de la casa» o «la casa entera».</div>')}
 renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;

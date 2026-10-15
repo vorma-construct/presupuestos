@@ -155,7 +155,8 @@ var _barra=window.cypeBarra;
 window.cypeBarra=function(){_barra.apply(this,arguments);var b=document.getElementById('cyBarra');if(!b)return;var R=cypeRatio();var falt=ARQ.med.filter(function(p){return p.on&&!(p.pr>0)&&p.pa>0}).length;if(!R||!falt){var v=document.getElementById('cyRatio');if(v)v.remove();return}
 var row=b.querySelector('.row');if(!row)return;var txt='Rellenar las '+falt+' sin precio con tu proporción ('+R.k.toFixed(2).replace('.',',')+' veces el arquitecto)';var ya=document.getElementById('cyRatio');if(ya&&ya.textContent===txt)return;if(ya)ya.remove();var bt=document.createElement('button');bt.id='cyRatio';bt.className='ok';bt.style.background='#5B4A12';bt.textContent=txt;bt.onclick=cypeProporcion;row.insertBefore(bt,row.firstChild)};
 /* presupuesto que viene de un proyecto de arquitecto: se explica como se trabaja y se enlaza a la web */
-function esDeArquitecto(c){c=c||cur;return !!(c&&((c.arqLeidas||0)>0||(c.lineas||[]).some(function(l){return /^\d+(\.\d+)+$/.test(l.code||'')})))}
+/* de un proyecto de arquitecto: si le queda alguna partida del proyecto (con su código). Si se borraron todas y se dictó otra obra, ya no */
+function esDeArquitecto(c){c=c||cur;return !!(c&&(c.lineas||[]).some(function(l){return /^\d+(\.\d+)+$/.test(l.code||'')||((c.arqLeidas||0)>0&&String(l.code||'').trim()&&!l.paqId)}))}
 function webSeguimiento(){return window.EMP?(AJ.webSeg||''):(AJ.webSeg||'https://reformas-en-bilbao.es/seguimiento-de-obra')}
 var _pintarDocs=window.pintarDocs;
 window.pintarDocs=function(){var r=_pintarDocs.apply(this,arguments);try{var obs=document.getElementById('p_obs');if(!obs)return r;var b=document.getElementById('p_como');
