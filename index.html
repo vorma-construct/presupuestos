@@ -198,10 +198,13 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v236';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v237';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
+{id:'pic',c:'Demoliciones',d:'Picado del revestimiento de yeso de las paredes con medios manuales, hasta dejar la fábrica a la vista, con limpieza, retirada del escombro y tirada al centro autorizado',u:'m2',p:9.2,k:['picar la pared','picar las paredes','picar paredes','picar el yeso','picado de paredes','picar pared']},
+{id:'qpa',c:'Demoliciones',d:'Arranque del papel pintado de las paredes con medios manuales, sin dañar el soporte, que queda preparado para su nuevo acabado, con retirada y tirada al centro autorizado',u:'m2',p:13.8,k:['quitar el papel de pared','quitar papel de pared','quitar el papel','arrancar el papel','despegar el papel','levantar el papel']},
+{id:'qma',c:'Demoliciones',d:'Desmontaje de la mampara de ducha existente con sus perfiles y fijaciones, retirada y tirada al centro autorizado',u:'ud',p:46,k:['quitar la mampara','quitar mampara','desmontar la mampara','desmontar mampara','mampara vieja']},
 {id:'pue',c:'Demoliciones',d:'Quitar puertas, marcos y premarcos, bajada de madera y tirada al centro autorizado',u:'ud',p:35,k:['quitar puertas','puertas viejas','sacar puertas']},
 {id:'rod',c:'Demoliciones',d:'Quitar el rodapié actual, retirada de madera y tirada al centro autorizado',u:'ml',p:2.5,k:['quitar rodapie','quitar rodapié','rodapie viejo']},
 {id:'coc',c:'Demoliciones',d:'Demolición de cocina actual, bajada de muebles y electrodomésticos, tirada al centro autorizado',u:'ud',p:330,k:['quitar cocina','tirar cocina','demoler cocina','desmontar cocina','cocina vieja']},
@@ -217,6 +220,7 @@ var TARIFA_BASE=[
 {id:'fba',c:'Instalaciones',d:'Instalación de fontanería para un cuarto de baño con inodoro, plato de ducha y lavabo, con llaves de corte por cuarto húmedo',u:'ud',p:1350,k:['fontaneria baño','fontanería baño','fontaneria del baño','fontaneria para el baño']},
 {id:'fco',c:'Instalaciones',d:'Instalación de fontanería para cocina con fregadero y lavadora, con llaves de corte por cuarto húmedo',u:'ud',p:1300,k:['fontaneria cocina','fontanería cocina','fontaneria de cocina','fontaneria para la cocina']},
 {id:'cal',c:'Instalaciones',d:'Calefacción con colector individual por radiador y tubería multicapa, seis radiadores de aluminio y dos toalleros para baños, caldera de gas Ferroli o similar',u:'ud',p:5450,k:['calefaccion','calefacción','radiadores','caldera']},
+{id:'rad',c:'Instalaciones',d:'Suministro e instalación de radiador de aluminio inyectado de seis elementos y 425 mm de altura, con llave termostática, detentor y purgador automático, conectado a la calefacción existente, montado y probado',u:'ud',p:201.25,k:['un radiador','radiador nuevo','poner un radiador','cambiar el radiador','cambiar un radiador','otro radiador']},
 {id:'niv',c:'Albañilería',d:'Nivelación y recrecido de solado de toda la vivienda con cemento, arena y arlita, dejando listo para colocar el suelo elegido',u:'m2',p:33.5,k:['nivelar','recrecido','nivelacion','nivelación','autonivelante']},
 {id:'pla',c:'Albañilería',d:'Tabique de pladur con placa de yeso laminado de 15 mm por cada cara sobre estructura de acero galvanizado de 70 mm cada 40 cm, lana de roca en el interior, replanteo, nivelación y repaso de juntas',u:'m2',p:66,k:['tabique nuevo','tabique de pladur','pladur','hacer tabique','levantar tabique']},
 {id:'tec',c:'Albañilería',d:'Falso techo de pladur de 13 mm con perfilería de 15x50 cada 60x60 y refuerzos, venda de unión, enlucido y lijado',u:'m2',p:35,k:['falso techo','techo de pladur','bajar techo']},
@@ -226,6 +230,7 @@ var TARIFA_BASE=[
 {id:'pre',c:'Albañilería',d:'Suministro y colocación de premarco de madera',u:'ud',p:85,k:['premarcos']},
 {id:'cor',c:'Albañilería',d:'Suministro y colocación de sistema de cajón para puerta corredera de 72 cm',u:'ud',p:350,k:['corredera','puerta corredera','cajon corredera']},
 {id:'yes',c:'Revestimientos',d:'Rayado del yeso tosco actual, formación de rincones, aristas y remates para aplicar fijador, guardavivos de chapa galvanizada o PVC en esquinas, enlucido con dos manos de carga y dos de fino, lijado',u:'m2',p:22,k:['enlucir','enlucido','yeso','paredes nuevas','lucir paredes','alisar paredes']},
+{id:'ppa',c:'Revestimientos',d:'Revestimiento de paredes con papel pintado vinílico de 235 g/m², colocado con cola celulósica, con limpieza y preparación del soporte, replanteo, cortes y casado del dibujo',u:'m2',p:12.26,k:['papel de pared','papel pintado','empapelar','empapelado']},
 {id:'luc',c:'Revestimientos',d:'Lucido de paredes de cocina con yeso, dos manos de carga y dos de fino, lijado y listo para pintar',u:'m2',p:28,k:['lucir cocina','yeso cocina']},
 {id:'alc',c:'Revestimientos',d:'Suministro y colocación de alicatado en paramentos verticales y horizontales, recibido con cemento cola blanco flexible H40, rejuntado y limpieza (material a 25 €/m² en formato comercial)',u:'m2',p:68.28,k:['alicatar','alicatado nuevo','azulejo nuevo','poner azulejo','alicatado']},
 {id:'flo',c:'Revestimientos',d:'Suministro y colocación de suelo flotante con manta acústica de 2 mm (material a 25 €/m² en formato comercial)',u:'m2',p:43,k:['suelo flotante','suelo nuevo','laminado','tarima flotante','parquet nuevo','suelo laminado']},
@@ -236,6 +241,7 @@ var TARIFA_BASE=[
 {id:'pen',c:'Carpintería y sanitarios',d:'Suministro y colocación de puerta de entrada blanca por el interior y roble por el exterior, cerradura de tres puntos, jambas de 80 mm sapeli, manilla cromada',u:'ud',p:880,k:['puerta de entrada','puerta blindada','puerta principal']},
 {id:'pd7',c:'Carpintería y sanitarios',d:'Suministro y colocación de plato de ducha blanco 70x110',u:'ud',p:335,k:['plato de ducha','ducha nueva','plato ducha']},
 {id:'pd8',c:'Carpintería y sanitarios',d:'Suministro y colocación de plato de ducha blanco 80x80',u:'ud',p:380,k:['ducha 80']},
+{id:'mam',c:'Carpintería y sanitarios',d:'Suministro y colocación de mampara frontal de ducha con puerta corredera y panel fijo, de vidrio templado transparente con perfiles de aluminio, con sus fijaciones y sellado de juntas',u:'ud',p:690,k:['mampara','mampara de ducha','mampara del baño','mampara de baño']},
 {id:'mco',c:'Montajes',d:'Instalación de mueble de cocina, parte baja y alta, encimera, electrodomésticos, ajustes y puesta en funcionamiento. Muebles suministrados por el cliente',u:'ud',p:800,k:['montar cocina','montaje cocina','muebles de cocina','instalar cocina']},
 {id:'mba',c:'Montajes',d:'Montaje de mueble de baño con espejo y luz',u:'ud',p:110,k:['mueble de baño','montar mueble baño']},
 {id:'mar',c:'Montajes',d:'Montaje de armario con puertas, baldas y cajones, ajustes del mismo (suministrado por el cliente)',u:'ud',p:345,k:['montar armario','armario','armarios']},
@@ -1807,7 +1813,7 @@ function alVolverApp(){if(document.visibilityState!=='hidden'&&Date.now()-__ultV
 document.addEventListener('visibilitychange',alVolverApp);window.addEventListener('focus',alVolverApp);window.addEventListener('pageshow',function(e){if(e&&e.persisted)alVolverApp()});
 /* después de ponerse la versión nueva, vuelve al presupuesto que estaba abierto */
 try{var __ra=sessionStorage.getItem('vr_reabrir');if(__ra){sessionStorage.removeItem('vr_reabrir');if(DB.presus&&DB.presus[__ra])setTimeout(function(){try{abrir(__ra)}catch(_){}},400)}}catch(_){}
-</script><script src="oficio.js?v227"></script><script src="entiende.js?v230"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v232"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v237"></script><script src="entiende.js?v230"></script><script src="arquitecto.js?v182"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v232"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v200"></script>
 <script src="dictados.js?v225"></script>

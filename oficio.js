@@ -7,6 +7,8 @@
 var ALTO_DEFECTO=2.5;
 /* palabras de obra -> palabras que la tarifa conoce. Orden: de lo mas concreto a lo mas general. */
 var VOCAB=[
+/* «poner dos radiadores», «cambiar los radiadores»: son radiadores sueltos, no la calefacción entera (esa, si se nombra la calefacción) */
+[/\b(poner|cambiar|instalar|colocar|meter|sustituir|renovar)\s+((?:(?:el|los|un|unos|las|unas)\s+)?(?:(?:\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s+)?)radiador(?:es)?(?:\s+nuevos?)?\b(?!\s+(?:de\s+(?:la\s+)?)?calefac)/g,function(m,v,n){return v+' '+n+'radiador nuevo'}],
 /* «papel pintado» no es pintura: que no se confunda con pintar paredes */
 [/\bpapel(?:es)?\s+pintados?\b/g,'papel de pared'],
 /* «encastrar una puerta», «puerta empotrada»: se pone la corredera dentro de la pared y entiende.js pregunta si es una puerta normal con premarco */
