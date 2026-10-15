@@ -72,6 +72,27 @@ var REGLAS=[
 function traducir(txt){REGLAS.forEach(function(r){txt=txt.replace(r[0],r[1])});return txt.replace(/\s+/g,' ').replace(/\s+,/g,',').replace(/,\s*,/g,',')}
 window.traducirFrase=traducir;
 
+/* medidas dichas en letra («cuatro metros», «noventa y cuatro metros cuadrados», «ciento veinte metros», «cuatro por tres») a número;
+   solo delante de una medida o detrás de «por», para no tocar «dos baños» ni «una casa» */
+var NUMLET={cero:0,un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,dieciseis:16,diecisiete:17,dieciocho:18,diecinueve:19,veinte:20,veintiuno:21,veintiun:21,veintiuna:21,veintidos:22,veintitres:23,veinticuatro:24,veinticinco:25,veintiseis:26,veintisiete:27,veintiocho:28,veintinueve:29,treinta:30,cuarenta:40,cincuenta:50,sesenta:60,setenta:70,ochenta:80,noventa:90,cien:100,ciento:100,doscientos:200,doscientas:200,trescientos:300,trescientas:300,cuatrocientos:400,cuatrocientas:400,quinientos:500,quinientas:500,seiscientos:600,seiscientas:600,setecientos:700,setecientas:700,ochocientos:800,ochocientas:800,novecientos:900,novecientas:900};
+function valorLetra(fr){var t=norm(fr).split(/\s+/).filter(Boolean),v=0,ok=false;for(var i=0;i<t.length;i++){var w=t[i];if(w==='y'||w==='con')continue;if(w==='medio'||w==='media'){v+=0.5;continue}if(w in NUMLET){v+=NUMLET[w];ok=true}else return null}return ok?v:null}
+function cifrasMedida(s){var W='(?:'+Object.keys(NUMLET).sort(function(a,b){return b.length-a.length}).join('|')+')';
+ var F='\\b('+W+'(?:\\s+(?:y\\s+)?'+W+')*(?:\\s+y\\s+medio)?)';
+ var sinT=function(x){return x.normalize('NFD').replace(/[\u0300-\u036f]/g,'')};var t=sinT(String(s||''));
+ t=t.replace(new RegExp(F+'(?=\\s*(?:metros?|mts?|m2|m²|m\\b|por\\b|x\\b|de\\s+(?:largo|ancho|alto)))','gi'),function(m,g){var v=valorLetra(g);return v==null?m:String(v).replace('.',',')});
+ t=t.replace(new RegExp('(\\d(?:[.,]\\d+)?\\s*(?:metros?\\s+|m\\s+)?(?:de\\s+largo\\s+)?)(por|x)\\s+'+F+'\\b','gi'),function(m,a,p,g){var v=valorLetra(g);return v==null?m:a+p+' '+String(v).replace('.',',')});
+ t=t.replace(/\b(\d+)\s+(metros?|m)\s+y\s+medio\b/gi,function(m,n,u){return n+',5 '+u});
+ return t}
+window.cifrasMedida=cifrasMedida;
+/* el micro del móvil a veces repite lo dicho («quiero hacer una reforma quiero hacer una reforma de una casa…»):
+   un trozo de 4 palabras o más dicho dos veces seguidas se queda en una */
+function quitarRepes(s){var w=String(s||'').split(/\s+/).filter(Boolean),k=function(x){return norm(x).replace(/[^a-z0-9]/g,'')};
+ for(var vuelta=0;vuelta<12;vuelta++){var hecho=false,K=w.map(k);
+  fuera:for(var L=Math.floor(w.length/2);L>=4;L--){for(var i=0;i+2*L<=w.length;i++){var igual=true;for(var j=0;j<L;j++){if(K[i+j]!==K[i+L+j]){igual=false;break}}
+   if(igual){w.splice(i+L,L);hecho=true;break fuera}}}
+  if(!hecho)break}
+ return w.join(' ')}
+window.quitarRepes=quitarRepes;
 /* medidas de un trozo de frase: "2 por 1,80", "4 metros cuadrados", "de 5 metros" (en una estancia es suelo) */
 function medidaTrozo(fr){var r={suelo:0,perim:0,alto:0};
 var lxa=fr.match(/(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*(?:de\s+largo\s+)?(?:x|por)\s*(\d+(?:[.,]\d+)?)/);
@@ -209,11 +230,32 @@ window.pintarPreguntasPaq=pintarTarjeta;
 
 /* ---------- 3) el dictado: traduce, saca las estancias enteras y llama al de siempre ---------- */
 var convertir0=window.convertir;
-window.convertir=function(){var ta=document.getElementById('dictado');var bruto=ta.value;if(!bruto.trim())return;leer();
-var txt=traducir(' '+norm(bruto)+' ');var nuevos=[];
+/* al abrir la app el cuadro del dictado empieza vacío (el navegador a veces devuelve lo de la última vez, y se volvería a meter) */
+(function(){var v=function(){try{var d=document.getElementById('dictado');if(d){d.value='';d.setAttribute('autocomplete','off')}}catch(_){}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',v);else v();window.addEventListener('pageshow',function(e){if(e&&e.persisted)v()})})();
+window.convertir=function(){var ta=document.getElementById('dictado');var brutoTal=ta.value;if(!brutoTal.trim())return;leer();
+/* el micro va AÑADIENDO al cuadro lo que se dice: si el cuadro empieza por lo que ya se convirtió en este presupuesto, solo se convierte lo nuevo.
+   Y el mismo dictado otra vez (se repite para enseñarlo, o por si no lo cogió) no se mete dos veces mientras lo de antes siga abajo */
+var U=window.__ultDict&&__ultDict.num===cur.num&&__ultDict.creado===cur.creado?__ultDict:null;
+var huella=function(x){return norm(cifrasMedida(x)).replace(/[^a-z0-9]/g,'')};
+var siguenU=function(){if(!U||!U.ds||!U.ds.length)return false;var n=U.ds.filter(function(d){return cur.lineas.some(function(l){return l.d===d})}).length;return n>=Math.ceil(U.ds.length*0.8)};
+var yaEsta=function(){var ci0=document.getElementById('convInfo');if(ci0)ci0.innerHTML='<b style="color:#B3261E">Esto ya lo has dictado y está abajo: no lo meto dos veces.</b><div>Si quieres cambiar algo, díctame solo lo que cambia o tócalo en la lista.</div>'};
+var aConv=brutoTal,repe=function(parte){window.__ultConv={tal:brutoTal,parte:parte,repetido:true};yaEsta()};
+if(U&&brutoTal===U.tal){if(siguenU()){repe(U.parte||brutoTal);return}aConv=U.parte||brutoTal}
+else if(U&&U.tal&&brutoTal.indexOf(U.tal)===0){aConv=brutoTal.slice(U.tal.length);if(!aConv.trim())return;if(huella(aConv)===U.h&&siguenU()){ta.value=U.tal;repe(aConv);return}}
+else if(U&&huella(brutoTal)===U.h&&siguenU()){repe(brutoTal);return}
+/* lo que se convierte de verdad (para «Lo que se ha dictado» y para la revisión de César): solo lo nuevo */
+window.__ultConv={tal:brutoTal,parte:aConv,repetido:false};
+/* «dos baños de cuatro metros», «noventa metros cuadrados», «cuatro por tres»: las medidas en letra pasan a número */
+var bruto=quitarRepes(cifrasMedida(aConv));
+/* el mensaje de debajo es de este dictado: lo de dictados anteriores fuera */
+var ciL=document.getElementById('convInfo');if(ciL)ciL.innerHTML='';
+var txt=traducir(' '+norm(bruto)+' ');var nuevos=[],pisoGen=[],usados=[];
 var trozos=txt.replace(/(\d)[,.](\d)/g,'$1#$2').split(/([,;.:])/).map(function(x){return x.replace(/(\d)#(\d)/g,'$1,$2')});var resto=[];
 var ultEst=null,ultObj=null,ultPaq=null;
-for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.push(fr);continue}
+var vistos={};
+for(var i=0;i<trozos.length;i++){var fr=trozos[i],fr0=fr;if(/^[,;.:]$/.test(fr)){resto.push(fr);continue}
+ /* la misma frase dos veces en el mismo dictado (el micro a veces la repite): una vez */
+ var clv=fr.replace(/\s+/g,' ').trim();if(clv.length>8){if(vistos[clv]){resto.push(' ');continue}vistos[clv]=1}
  var tipo=null,c=1;
  /* lo que se refiere a lo dicho antes: "quiero ponerlo moderno", "hay que hacerla nueva", "y la cocina" */
  var estAqui=(fr.match(/\b(banos?|aseos?|cocina|piso|casa|vivienda|habitacion|salon|dormitorio)\b/)||[])[1];
@@ -223,7 +265,11 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.
  if(estAqui)ultEst=estAqui;var ob=(fr.match(/\b(cocina|rodapie|puerta|suelo|plato|banera)\w*/)||[])[1];if(ob)ultObj=ob;
  /* «reformar el baño de mi casa» es el baño, no la casa entera */
  var mPiso=fr.match(RE_PISO);
- if(mPiso&&!ESTANCIA_EN.test(mPiso[0]))tipo='piso';
+ if(mPiso&&!ESTANCIA_EN.test(mPiso[0])){
+  /* «quiero hacer una reforma de una casa», sin decir cuánto mide ni que sea entera: si luego se dicen los trabajos con sus medidas, es solo el contexto (se decide al acabar) */
+  var medP=medidaTrozo(fr);if(!(medP.suelo>0)&&trozos[i+2]&&/^\s*(?:que\s+)?(?:tiene|mide|son|de)\b/.test(trozos[i+2]))medP=medidaTrozo(trozos[i+2]);/* «reformar el piso, tiene 70 metros» */
+  if(!/\b(integral|entera|entero|completa|completo|toda|todo)\b/.test(fr)&&!(medP.suelo>0)){pisoGen.push({fr:fr});resto.push(' ');ultPaq='piso';continue}
+  tipo='piso'}
  /* lo concreto cuenta también si va entre el verbo y la estancia: «cambiar la puerta del baño» es la puerta, no el baño entero */
  else if(RE_BANO.test(fr)&&!CONCRETO_BANO.test(fr.replace(/\b(?:cuarto de )?(?:banos?|aseos?|servicio)\b/g,' ')))tipo='bano';
  else if(RE_COCINA.test(fr)&&!CONCRETO_COC.test(fr.replace(/\bcocinas?\b/g,' ')))tipo='cocina';
@@ -234,19 +280,28 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i];if(/^[,;.:]$/.test(fr)){resto.
  if(tipo==='bano')c=cuantos(fr,'banos|aseos');if(tipo==='hab')c=cuantos(fr,'habitaciones|dormitorios|cuartos');if(tipo==='cocina')c=1;
  var med=medidaTrozo(fr);
  /* la medida puede venir en la frase de al lado: "reformar el baño, que tiene 4 metros" */
- if(!(med.suelo>0)&&trozos[i+2]&&/^\s*(?:que\s+)?(?:tiene|mide|son|de)\b/.test(trozos[i+2])){med=medidaTrozo(trozos[i+2]);trozos[i+2]=''}
+ if(!(med.suelo>0)&&trozos[i+2]&&/^\s*(?:que\s+)?(?:tiene|mide|son|de)\b/.test(trozos[i+2])){med=medidaTrozo(trozos[i+2]);usados.push(trozos[i+2]);trozos[i+2]=''}
  /* "y alicatar" dentro del baño: ya va en el paquete */
- for(var k=1;k<=c;k++)nuevos.push({tipo:tipo,med:med,n:c>1?k:1});resto.push(' ')}
+ for(var k=1;k<=c;k++)nuevos.push({tipo:tipo,med:med,n:c>1?k:1});resto.push(' ');usados.push(fr0)}
+/* el «reformar la casa» suelto: si luego se dicen trabajos con sus medidas, son esos trabajos; si no, es el piso entero, como siempre */
+var pisoFuera=false;
+if(pisoGen.length){var otros=trozos.filter(function(x){return !pisoGen.some(function(pg){return pg.fr===x})}).join(' ');
+ var detalla=/\b(quitar|pintar|picar|poner|cambiar|alicatar|lijar|enlucir|tirar|derribar|montar|instalar|colocar|reformar|renovar|abrir|cerrar|levantar|arrancar|sacar|nivelar|empapelar|alisar|rascar|arreglar|modernizar|desmontar|embaldosar|forrar|aislar|hacer)\b/.test(otros)&&/\d\s*(?:m2|metros?|mts?|m\b|x|por)/.test(otros);
+ if(!detalla)pisoGen.forEach(function(pg){nuevos.push({tipo:'piso',med:medidaTrozo(pg.fr),n:1})});else pisoFuera=true}
 var txt2=resto.join('');
 var n0=cur.lineas.length;cur.lineas.forEach(function(l){l.__v=1});
-if(txt2.replace(/[^a-z]/g,'').length>=3){ta.value=txt2;window.__BRUTO=bruto;try{convertir0()}finally{ta.value=bruto;window.__BRUTO=null}leer()}
+/* lo dicho tal cual, para que el de siempre vea «la casa de 90 metros»: sin las estancias que ya van aparte («quitar el gotelé de la casa de 90 metros y reformar dos baños» son las paredes de la casa, no de un cuarto) */
+var crudoB=' '+norm(bruto).replace(/\s+/g,' ')+' ';usados.forEach(function(u){u=String(u||'').trim();if(u.length<4)return;var k=crudoB.indexOf(u);if(k>=0)crudoB=crudoB.slice(0,k)+' '+crudoB.slice(k+u.length)});
+if(txt2.replace(/[^a-z]/g,'').length>=3){ta.value=txt2;window.__BRUTO=crudoB;try{convertir0()}finally{ta.value=brutoTal;window.__BRUTO=null}leer()}
 var hechos=[];
 var sinVent=/\b(no tiene|sin|no hay|no lleva)\s+(?:ninguna\s+)?ventana/.test(norm(bruto)),conVent=!sinVent&&/\b(tiene|con|hay)\s+(?:una\s+)?ventana/.test(norm(bruto));
 var CUANT={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,dieciseis:16,diecisiete:17,dieciocho:18,diecinueve:19,veinte:20};
 function cuantosDe(t,que){var m=norm(t).match(new RegExp('\\b(\\d+|'+Object.keys(CUANT).join('|')+')\\s+(?:'+que+')\\b'));return m?(CUANT[m[1]]||+m[1]):null}
 var nBan=cuantosDe(bruto,'banos|aseos'),nPue=cuantosDe(bruto,'puertas');
 nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVent)&&'ventana' in pk.r){pk.r.ventana=!sinVent;pk.hechas.ventana=1}
-if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk)});
+if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}
+ /* los baños o la cocina que van con su propia medida no se meten otra vez dentro del piso */
+ if(nuevos.some(function(y){return y.tipo==='bano'})){pk.r.banos=0;pk.hechas.banos=1}if(nuevos.some(function(y){return y.tipo==='cocina'})){pk.r.cocina=false;pk.hechas.cocina=1}}cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk);if(x.tipo==='piso')rehacer(pk,true)});
 /* lo que el de siempre metio y ya va en una estancia: fuera duplicados */
 if(hechos.length){unaVez();cur.lineas=cur.lineas.filter(function(l){if(l.paqId)return true;var dup=cur.lineas.some(function(o){return o.paqId&&o.d.indexOf(l.d)===0});return !dup})}
 /* un solo baño o cocina: el suelo suelto ya va en la estancia (es de baldosa), y «la puerta del baño» es su pregunta de la puerta */
@@ -255,7 +310,10 @@ if(hechos.length===1&&/^(bano|cocina)$/.test(hechos[0].tipo)&&!/\b(habitacion\w*
  if((pk1.tipo==='bano'&&/\bpuertas? del? (?:bano|aseo)\b/.test(norm(bruto)))||(pk1.tipo==='cocina'&&/\bpuertas? de la cocina\b/.test(norm(bruto)))){pk1.r.puerta=pk1.tipo==='bano'?true:'normal';pk1.hechas.puerta=1;conPuerta=true}
  cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.__v)return true;var id=idDe(l);if(SUELO[id])return false;if(conPuerta&&(id==='pub'||id==='pue'))return false;return true});
  if(conPuerta)rehacer(pk1,true)}
+var nuevasDs=cur.lineas.filter(function(l){return !l.__v}).map(function(l){return l.d});
 cur.lineas.forEach(function(l){delete l.__v});
+window.__ultDict={num:cur.num,creado:cur.creado,tal:ta.value,parte:aConv,h:huella(aConv),ds:nuevasDs};
+if(pisoFuera){var ciP=document.getElementById('convInfo');if(ciP)ciP.insertAdjacentHTML('beforeend','<div style="margin-top:6px">«Reforma de la casa» lo he tomado como los trabajos que dices con sus medidas. Si es la reforma de la casa entera, di «reforma integral de la casa» o «la casa entera».</div>')}
 renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;
 var añad=cur.lineas.length-n0;
@@ -270,7 +328,16 @@ if(hechos.length||añad>0){if(/No he reconocido/.test(ci.textContent)||!ci.textC
 pintarTarjeta();
 /* «encastrar una puerta» sin decir cuál: va la corredera dentro de la pared y se pregunta, por si es una puerta normal con su premarco */
 if(RX_ENC.test(norm(bruto))&&!/corredera|abatible|batiente/.test(norm(bruto))){var tc=T('cor');var lc=tc&&cur.lineas.find(function(l){return l.d===tc.d&&!l.enc});
- if(lc){lc.enc='cor';var vb=document.getElementById('encBox');if(vb)vb.remove();ci.insertAdjacentHTML('beforeend',cajaEnc('cor'))}}};
+ if(lc){lc.enc='cor';var vb=document.getElementById('encBox');if(vb)vb.remove();ci.insertAdjacentHTML('beforeend',cajaEnc('cor'))}}
+avisoDisparate(hechos)};
+/* nunca un disparate sin avisar: una medida o un total que no cuadra con lo que se ha dicho (un baño de 194 m², 198.000 €…) */
+function avisoDisparate(hechos){try{var raro=[],tot=0,nn=function(x){return window.num?num(x):(parseFloat(String(x).replace(',','.'))||0)};
+ cur.lineas.forEach(function(l){var q=nn(l.q)||0,p=nn(l.p)||0;tot+=q*p;if(/^(m2|m²|ml|m)$/.test(String(l.u||'').trim())&&q>2000)raro.push('«'+String(l.d).slice(0,45)+'…» con '+String(q).replace('.',',')+' '+l.u)});
+ (hechos||[]).forEach(function(pk){var lim={bano:30,cocina:50,hab:60,piso:800}[pk.tipo];if(lim&&pk.suelo>lim)raro.push((PAQ[pk.tipo]?PAQ[pk.tipo].nombre.toLowerCase():pk.tipo)+' de '+String(pk.suelo).replace('.',',')+' m²')});
+ if(tot>150000)raro.push('el total sale en '+Math.round(tot).toLocaleString('es-ES')+' € sin IVA');
+ var cr=document.getElementById('convInfo'),old=document.getElementById('dispBox');if(old)old.remove();
+ if(raro.length&&cr)cr.insertAdjacentHTML('afterbegin','<div id="dispBox" style="background:#FDECEA;border:1px solid #B3261E;color:#B3261E;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-weight:600">Ojo, esto no cuadra: '+raro.join('; ')+'. Revisa las medidas antes de mandarlo.</div>')}catch(_){}}
+window.avisoDisparate=avisoDisparate;
 var RX_ENC=/\b(?:encastr|empotr)\w*\s+(?:(?:la|una|las|unas|el|un)\s+)?(?:\w+\s+)?puertas?\b|\bpuertas?\s+(?:encastrad|empotrad)\w*/;
 function cajaEnc(sel){return '<div id="encBox" style="background:#E8F1FB;border-left:4px solid #2B6CB0;padding:10px;border-radius:8px;margin-top:8px;font-size:14px">'+
  '<b>«Encastrar una puerta»: ¿cuál es?</b><div style="font-size:12px;color:#555;margin:2px 0 6px">He puesto la corredera que va dentro de la pared. Si es otra, tócala y lo cambio.</div>'+
@@ -289,11 +356,20 @@ var renderLineas0=window.renderLineas;
 (function(){
  function aviso(h){var b=document.getElementById('convInfo');if(b){b.innerHTML=h;b.style.display='block';b.style.marginTop='8px'}}
  var SIN_PERMISO='<span style="color:#B3261E;font-weight:700">No tengo permiso para usar el micrófono.</span> Toca el candado o los tres puntos de arriba en Chrome, entra en «Permisos» y activa el micrófono. Mientras tanto, puedes tocar el micro del teclado y hablar igual.';
+ function clave(x){return norm(String(x||'')).replace(/[^a-z0-9]+/g,' ').trim()}
+ function juntarVoz(arr){var out=[];(arr||[]).forEach(function(t){t=String(t||'').trim();if(!t)return;var w=clave(t).split(' ');
+  if(w.length>=4&&w.length%2===0&&w.slice(0,w.length/2).join(' ')===w.slice(w.length/2).join(' ')){var tw=t.split(/\s+/);t=tw.slice(0,Math.ceil(tw.length/2)).join(' ')}
+  var p=out.length?out[out.length-1]:'',nt=clave(t),np=clave(p);
+  if(np&&nt===np)return;if(np&&nt.indexOf(np)===0){out[out.length-1]=t;return}if(np&&np.indexOf(nt)>=0)return;out.push(t)});return out.join(' ')}
+ window.juntarVoz=juntarVoz;
  window.dictar=function(){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;var b=document.getElementById('btnVoz'),ta=document.getElementById('dictado');
   if(!SR){aviso('Este navegador no dicta. Toca el micro del teclado (al lado de la barra espaciadora) y habla igual; en Android, mejor con Chrome.');if(ta)ta.focus();return}
   var arranca=function(){var r=new SR();r.lang=(window.idiomaDictado?idiomaDictado():'es-ES');r.continuous=true;r.interimResults=true;var base=ta.value,oido=false;
    b.textContent='● Te escucho… (toca para parar)';b.classList.add('warn');aviso('Habla tranquilo: voy escribiendo lo que dices.');
-   r.onresult=function(e){var fin='',prov='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fin+=(fin?' ':'')+t;else prov+=t}oido=true;ta.value=(base?base+' ':'')+fin+(prov?' '+prov:'')};
+   /* hay móviles que devuelven la misma frase dos veces, o cada vez todo lo dicho desde el principio: se junta sin repetir */
+   r.onresult=function(e){var fins=[],prov='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fins.push(t);else prov+=t}
+    var fin=juntarVoz(fins),kf=clave(fin),kp=clave(prov);if(kf&&kp&&kp.indexOf(kf)===0){fin='';}else if(kf&&kp&&kf.indexOf(kp)>=0)prov='';
+    oido=true;ta.value=(base?base+' ':'')+fin+(prov?(fin?' ':'')+prov.trim():'')};
    r.onerror=function(e){var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed')aviso(SIN_PERMISO);else if(c==='no-speech')aviso('No te he oído. Vuelve a darle a «Dictar con voz» y habla cerca del móvil.');else if(c==='network')aviso('Para dictar hace falta internet. Si no tienes, toca el micro del teclado.');else if(c==='audio-capture')aviso('No encuentro el micrófono. Toca el micro del teclado y habla igual.');else if(c!=='aborted')aviso('No he podido escucharte ('+c+'). Toca el micro del teclado y habla igual.')};
    r.onend=function(){b.textContent='Dictar con voz';b.classList.remove('warn');b.onclick=window.dictar;if(oido&&ta.value.trim()){aviso('');setTimeout(function(){try{convertir()}catch(_){}} ,300)}};
    b.onclick=function(){try{r.stop()}catch(_){}};try{r.start()}catch(err){aviso('No he podido arrancar el micrófono. Toca el micro del teclado y habla igual.')}};

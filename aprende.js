@@ -76,7 +76,7 @@
  window.__aprende=function(r){try{
   if(r.q==='dicta'){var L=(window.cur&&cur.lineas)||[];var desde=r.desde||0;delete r.desde;
    r.texto=tapa(String(r.texto||'').slice(0,4000));r.lineas=fila(L.slice(desde));r.antes=desde;r.n=L.length;r.total=total(L);
-   if(!r.lineas.length&&lineaPendiente(r.texto)){L=cur.lineas;r.lineas=fila(L.slice(desde));r.n=L.length;r.pendiente=1}
+   if(!r.lineas.length&&!r.repetido&&lineaPendiente(r.texto)){L=cur.lineas;r.lineas=fila(L.slice(desde));r.n=L.length;r.pendiente=1}
    r.aviso=tapa(aviso().slice(0,3000));r.marcado=marcadas();
    if(r.error)r.error=tapa(String(r.error).slice(0,300));marcar(r.num)}
   apunta(r)}catch(e){}};
