@@ -115,7 +115,7 @@ function escena(bruto,op){op=op||{};
    if(p.t==='sep'){I.push({t:'sep'});return}
    if(p.t==='R'){var u=I.length?I[I.length-1]:null,u2=I.length>1?I[I.length-2]:null;
     /* «… en el salón y en el pasillo también»: un mismo grupo (con «y», «también», comas) */
-    if(u&&u.t==='G')u.rs.push(p);else if(u&&u.t==='sep'&&u2&&u2.t==='G')u2.rs.push(p);else I.push({t:'G',rs:[p]});return}
+    var prepDe=function(x){return /^\s*(?:y\s+|e\s+)?(?:tambien\s+)?(?:en|de|del|para)\b/.test(x)};if(u&&u.t==='G')u.rs.push(p);else if(u&&u.t==='sep'&&u2&&u2.t==='G'&&(/^\s*(?:y|e)\b/.test(p.x)||!op.sinPuntos||!(prepDe(u2.rs[u2.rs.length-1].x)&&/^\s*(?:el|la|los|las)\b/.test(p.x))))u2.rs.push(p);else I.push({t:'G',rs:[p]});return}
    if(p.t==='N'){var g=I.length?I[I.length-1]:null;if(g&&g.t==='G'){g.rs[g.rs.length-1].neg=true;g.cerrado=true}else I.push({t:'S',w:[p.x]});return}
    if(p.t==='M'){I.push({t:'M',x:p.x,v:p.v,lin:p.lin});return}});
   cerrar();
@@ -125,6 +125,9 @@ function escena(bruto,op){op=op||{};
    if(PES.test(tx)||CASA.test(tx)||CONT.test(tx)){
     /* «tarima flotante y pintar y las tres puertas de arriba»: lo de las puertas aparte */
     var mC=tx.match(new RegExp('^(.*?\\b(?:'+TRABW+')\\b.*?)\\s+((?:y\\s+)?(?:(?:las|los|el|la)\\s+)?(?:\\d+\\s+|dos\\s+|tres\\s+|cuatro\\s+|cinco\\s+|seis\\s+)?(?:puertas?|radiador\\w*|ventanas?|armarios?|persianas?|enchufes?)\\b.*)$'));
+    /* «el baño no, que lo hicieron hace poco, luego quitar el gotelé»: lo del baño aparte y luego el trabajo */
+    var mL=tx.match(/^(.*?)\s+((?:y\s+)?(?:luego|despues|ademas|y tambien)\s+.*)$/);
+    if(mL&&TRAB.test(' '+mL[2]+' ')&&!PES.test(' '+mL[2]+' ')&&!CASA.test(' '+mL[2]+' ')&&!CONT.test(' '+mL[2]+' ')){I2.push({t:'X',x:mL[1].trim()});partirW(mL[2]).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}
     if(mC&&TRAB.test(' '+mC[1]+' ')&&!PES.test(mC[1])&&!CASA.test(mC[1])&&!CONT.test(mC[1])){partirW(mC[1]).forEach(function(x){I2.push({t:'W',x:x})});I2.push({t:'X',x:mC[2].trim()});return}
     I2.push({t:'X',x:tx.trim()});return}
    if(TRAB.test(tx)){partirW(tx).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}

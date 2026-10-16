@@ -815,6 +815,7 @@ function analizar(bruto){
    /* «la mampara la pone él la cocina…», «…con mampara la cocina se queda…», «…se queda como está cambiar la calefacción» */
    else if(cw==='pintar'&&/^(tarima|flotante|suelo|parquet|vinilo|laminado|porcelanico|moqueta)$/.test(pw))b=true;
    else if(/^(el|ella|ellos|ellas)$/.test(pw)&&/^(pone|ponen|monta|montan|compra|compran|trae|traen|hace|hacen|pinta|pintan|quita|quitan|coloca|colocan)$/.test(w[i-2]||'')&&/^(el|la|los|las|y|luego|tambien)$/.test(cw))b=true;
+   else if(/^(el|la|los|las)$/.test(cw)&&ROOM.test(w[i+1]||'')&&ROOM.test(pw)&&w.slice(ult,i-1).some(function(x){return VERB.test(x)||KEY.test(x)})&&(function(){var k=i+2;while(k<w.length&&/^(grande|pequen[oa]|principal|de|del|matrimonio|invitados|los|las|ninos|abuela|fondo|arriba|abajo)$/.test(w[k]))k++;return k<w.length&&(KEY.test(w[k])||VERB.test(w[k]))})())b=true;
    else if(/^(el|la|los|las)$/.test(cw)&&ROOM.test(w[i+1]||'')&&(FIN.test(pw)||KEY.test(pw))&&!/^(cocina|bano|aseo|salon|pasillo|comedor|todo|casa|piso|vivienda)$/.test(pw))b=true;
    else if(/^(el|la|los|las)$/.test(cw)&&KEY.test(w[i+1]||'')&&(/^\d/.test(pw)||NUMW.test(pw)||/^(metros|m2|medio|cuadrados)$/.test(pw)))b=true;
    else if(/^(el|la)$/.test(cw)&&/^(principal|grande|pequen[oa]|otro|otra|de)$/.test(w[i+1]||'')&&(w[i+1]!=='de'||/^(invitados|cortesia|arriba|abajo|matrimonio)$/.test(w[i+2]||''))&&(FIN.test(pw)||KEY.test(pw)||/^(sanitarios|inodoro|lavabo|bide|grifo|griferia)$/.test(pw)))b=true;
