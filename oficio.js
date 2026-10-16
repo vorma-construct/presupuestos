@@ -69,8 +69,8 @@ function indice(){var T=tarifa();if(IDX&&IDX.n===T.length)return IDX.l;IDX={n:T.
 function parecida(txt){var n=norm(txt||'');if(!n)return null;var rs=raices(n);if(!rs.length)return null;var dem=DEMOL_RE.test(n)&&!HACER_RE.test(n);var mejor=null;
 indice().forEach(function(e){if(e.dem!==dem)return;if(!fuertes(rs).some(function(r){return e.r[r]}))return;if(e.t.id==='recp'&&!/recuper|recoloc|volver a poner|la misma|existente/.test(n))return;var s=0;rs.forEach(function(r){if(e.r[r])s+=(r.length>=5?2:1)});
 /* palabras fuertes: si la tarifa la tiene y el texto tambien, cuenta doble */
-if(s>0){var fuerte=/pladur|alicat|solad|pint|yeso|enluc|tabiq|tarima|flotan|rodapi|puert|ducha|contened|fontan|electr|calefac|techo|armario|cocina|sanitar|premarc|corred|nivel|acuchill|extract|ventilac/;var mf=n.match(fuerte),tf=norm(e.t.d+' '+e.t.k.join(' ')).match(fuerte);if(mf&&tf&&mf[0]===tf[0])s+=3}
-if(s>0&&(!mejor||s>mejor.score))mejor={t:e.t,score:s}});
+if(s>0){var fuerte=/pladur|alicat|solad|pint|yeso|enluc|tabiq|tarima|flotan|rodapi|puert|ducha|contened|fontan|electr|calefac|techo|armario|cocina|sanitar|premarc|corred|nivel|acuchill|extract|ventilac|papel|mampar|radiad|parquet|gotel|laminad|moqueta|boletin|chimenea|trasdos/;var mf=n.match(fuerte),tf=norm(e.t.d+' '+e.t.k.join(' ')).match(fuerte);var fu=!!(mf&&tf&&mf[0]===tf[0]);if(fu)s+=3}
+if(s>0&&(!mejor||s>mejor.score))mejor={t:e.t,score:s,fu:fu}});
 return mejor&&mejor.score>=3?mejor:null}
 window.parecida=parecida;
 var precioAprendido0=window.precioAprendido;
@@ -149,7 +149,7 @@ var enc=T.some(function(t){return t.k.some(function(k){var kk=norm(k);var rx=new
 if(enc)return;
 if(!/\b(poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat\w*|lijar|nivelar|reformar|arreglar|reparar|sustituir|renovar|abrir|cerrar|tapar|forrar|revestir|sellar|impermeabilizar|desatascar|limpiar|acuchillar|barnizar|lacar|enlucir|rasear|microcemento|mampara|grifo|grifer\w*|radiador|caldera|persiana|encimera|silicona|marmol|granito|piedra|madera|hierro|aluminio|cristal|espejo|aire acondicionado|split|toldo|placas? solares?|tejado|canalon\w*|cubierta|fachada|ventanas?|persianas?|cerramiento|escalera|barandilla|termo|suelo radiante|domotica|alarma|ventanal\w*|claraboya|velux|bomba de calor|aerotermia)\b/.test(fr))return;
 var frSin=fr.replace(DIM_RE,' ');var par=/\b(ventana\w*|persiana\w*|toldo|tejado|canalon\w*|cubierta|fachada|placas? solares?|aire acondicionado|split|cerramiento|escalera|barandilla|claraboya|velux|bomba de calor|aerotermia|alarma|domotica)\b/.test(fr)?null:parecida(fr),c=cantidadDe(frSin);
-if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push({d:t.d,q:q,u:t.u,p:t.p});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
+if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push(par.fu?{d:t.d,q:q,u:t.u,p:t.p}:{d:t.d,q:q,u:t.u,p:t.p,parec:1,parTxt:fr});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
 var dl=fr.replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m|ud|uds|unidades)\b/g,'').replace(/^(?:quiero|hay que|habria que|tambien|y)\s+/,'').replace(/\s+/g,' ').replace(/[\s,]+$/,'').trim();if(dl.length<4)dl=fr;var d=dl.charAt(0).toUpperCase()+dl.slice(1);var ap=aprendidoParecido(dl);
 if(yaD[norm(d).slice(0,40)])return;
 /* lo que no entiende también se mide: si no dice cuánto, con las medidas de lo dictado (paredes, suelo o perímetro) */
