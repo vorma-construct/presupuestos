@@ -91,6 +91,8 @@ function escena(bruto,op){op=op||{};
   if(/\b(?:reform\w*|renov\w*|rehac\w*|moderniz\w*)\b(?!(?:\s+[a-z]+){0,3}?\s+(?:banos?|aseos?|cocinas?)\b)/.test(fr)||new RegExp('\\b(?:'+LIG+')\\b(?:\\s+(?:'+APE+'))?(?:\\s+(?:de\\s+|que tiene\\s+)?\\d+(?:[.,]\\d+)?(?:\\s*(?:m2|metros cuadrados|metros))?)?\\s+(?:tambien\\s+)?(?:enter[oa]s?|complet[oa]s?|integral(?:es)?|de cero|nuev[oa]s?\\b(?!\\s+(?:de|con)\\b))').test(fr)||/\b(?:reforma integral|obra integral|integral\b|todo nuevo|toda nueva|(?:se|lo|la)\s+(?:hacen?|reforman?)\s+(?:todo\s+)?enter[oa]|(?:piso|casa|vivienda)\s+(?:enter[oa]|complet[oa])|reformar\s+(?:el|la|todo el|toda la)\s+(?:piso|casa|vivienda))\b/.test(fr))return {lit:orig};
   /* 1) las estancias de cada pieza (las de antes, las cortas) */
   var malo=false,usaRef=false,ultBase=null,vistos=[];
+  /* «La habitación grande, montar el armario y pintar. La pequeña, solo pintar.»: «la pequeña» de la frase siguiente es otra como la de antes (solo si la de antes se dijo con su apellido) */
+  (function(){var u=reg[reg.length-1];if(u&&u.ape&&u.n===1&&/^(habitacion|dormitorio|cuarto)$/.test(sing(u.base)))ultBase=u.base})();
   T.forEach(function(p){if(p.t!=='R'||malo)return;var m=p.m;var nxT=T[T.indexOf(p)+1];p.tambien=/\b(?:tambien|ademas)\b/.test(p.x)||!!(nxT&&nxT.t==='w'&&/^(?:tambien|igual)$/.test(nxT.x)&&(function(){var n2=T[T.indexOf(p)+2];return !n2||n2.t==='sep'||n2.t==='w'&&/^(?:y|e)$/.test(n2.x)})());p.tamTras=p.tambien&&!/\b(?:tambien|ademas)\b/.test(p.x);
    if(p.k==='exp'){var art=m[1],cnt=m[2],otro=m[3],base=m[4],ape=m[5],ms=m[6];var n=1;if(cnt)n=CNTW[cnt]||+cnt||1;else if(/(?:es|os|as)$/.test(base)&&!/^sala de estar$/.test(base))n=0;
     var arr=null;if(ms){arr=ms.replace(/^\s*de\s+/,'').split(/\s*(?:,|\by\b)\s*(?:de\s+)?/).filter(Boolean).map(numDe);if(arr.some(isNaN))arr=null;else if(arr.length===2&&n===1&&arr[1]<1)arr=[arr[0]+arr[1]]}
@@ -242,6 +244,8 @@ function escena(bruto,op){op=op||{};
    var rooms=it.rooms,sum=rooms.reduce(function(s,r){return s+(mDe(r)||0)},0),todasM=rooms.every(function(r){return mDe(r)!=null});
    if(rooms.length>1&&it.total&&(it.lin||/rodapie|moldura|zocalo/.test(acc)||!todasM||Math.abs(sum-it.totV)>Math.max(1,it.totV*0.1))){
     /* una medida para todas juntas: una partida, de todas */
+    /* «quitar la moqueta y poner tarima con rodapié nuevo, son 46 metros (lineales)»: los metros son del rodapié; quitar lo viejo, aparte y en esas mismas estancias */
+    var mQP=(it.lin||/rodapie|moldura|zocalo/.test(acc))&&acc.match(/^((?:quitar|levantar|arrancar|sacar)\s+(?:el\s+|la\s+|los\s+|las\s+)?(?:moqueta|suelo|parquet|tarima|baldosa|terrazo|linoleo)(?:\s+viej[oa])?)\s+y\s+((?:poner|colocar|cambiar)\b.*)$/);if(mQP){items.push({lit:mQP[1]+' '+rooms.map(function(r,i){return (i?' y ':'')+'en '+nombreDe(r)}).join(''),cerrado:true});acc=mQP[2]}
     var totS=it.total.replace(/^\s*(?:y\s+)?(?:que\s+)?(?:(?:son|seran|sera|es|de|pon|ponle|unos|unas|calcula)\s+)+/,'');if((it.lin||/rodapie|moldura|zocalo/.test(acc))&&!/lineal|\bml\b/.test(totS))totS=totS.replace(/\s*(?:metros|m)\b|$/,' metros lineales').replace(/\s+/g,' ');
     items.push({lit:acc+' '+rooms.map(function(r,i){return (i?' y ':'')+'en '+nombreDe(r)}).join('')+', son '+totS.trim(),cerrado:true});return}
    var accs=it.copia||[acc];

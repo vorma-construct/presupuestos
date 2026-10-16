@@ -1,0 +1,803 @@
+[
+ {
+  "t": "en el salón acuchillar treinta metros y pintar en el comedor lo mismo quince metros y en el pasillo solo pintar",
+  "debe": [
+   "acu",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón",
+    "comedor"
+   ],
+   "pip": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin puntos: el comedor lleva lo mismo que el salón (acuchillar y pintar) con sus 15 metros; el pasillo solo pintar.",
+  "fuera": []
+ },
+ {
+  "t": "En el salón, acuchillar treinta metros y pintar. En el comedor, lo mismo, quince metros. Y en el pasillo, solo pintar.",
+  "debe": [
+   "acu",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón",
+    "comedor"
+   ],
+   "pip": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La misma frase con puntos.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón acuchillar treinta metros y pintar, en el comedor lo mismo quince metros, y en el pasillo solo pintar",
+  "debe": [
+   "acu",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón",
+    "comedor"
+   ],
+   "pip": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con comas: igual.",
+  "fuera": []
+ },
+ {
+  "t": "en el dormitorio principal quitar el gotelé y pintar en el dormitorio pequeño lo mismo diez metros",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los 10 metros son del pequeño: el principal queda sin medida, no con los del pequeño.",
+  "fuera": []
+ },
+ {
+  "t": "En el dormitorio principal, quitar el gotelé y pintar. En el dormitorio pequeño, lo mismo, diez metros.",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos: igual; el principal sin los metros del pequeño.",
+  "fuera": []
+ },
+ {
+  "t": "en el pasillo quitar el gotelé y pintar en el recibidor lo mismo cinco metros",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo",
+    "recibidor"
+   ],
+   "pip": [
+    "pasillo",
+    "recibidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo en el recibidor, con sus 5 metros.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón poner flotante veinticinco metros y en el pasillo lo mismo ocho metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 25
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante en cada estancia con sus metros.",
+  "fuera": []
+ },
+ {
+  "t": "salón acuchillar y barnizar veintidós metros comedor lo mismo doce metros",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 22
+  },
+  "lugares": {
+   "acu": [
+    "salón",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Acuchillar en salón (22) y en comedor (12).",
+  "fuera": []
+ },
+ {
+  "t": "en el salón pintar paredes y techos y en el pasillo lo mismo siete metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 7
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los 7 metros son del pasillo: paredes y techo del pasillo; el salón sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón pintar paredes y techos, y en el pasillo lo mismo, siete metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 7
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con comas: igual (antes el techo del salón se llevaba los 7 metros del pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "a ver salón techo de pladur continuo liso veinte metros pasillo lo mismo seis metros y pintar techos y paredes de los dos",
+  "debe": [
+   "tecq",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tecq": 20
+  },
+  "lugares": {
+   "tecq": [
+    "salón",
+    "pasillo"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Techo continuo en salón (20) y pasillo (6); pintar los dos sin poner los 6 metros de suelo como paredes.",
+  "fuera": []
+ },
+ {
+  "t": "A ver, salón: techo de pladur continuo liso, veinte metros. Pasillo, lo mismo, seis metros. Y pintar techos y paredes de los dos.",
+  "debe": [
+   "tecq",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tecq": 20
+  },
+  "lugares": {
+   "tecq": [
+    "salón",
+    "pasillo"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos: igual.",
+  "fuera": []
+ },
+ {
+  "t": "salón falso techo de pladur veinte metros pasillo igual seis metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 20
+  },
+  "lugares": {
+   "tec": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo en salón (20) y en pasillo (6).",
+  "fuera": []
+ },
+ {
+  "t": "pues la habitación grande armario montarlo y pintar la pequeña solo pintar y en las dos rodapié nuevo veinticinco metros",
+  "debe": [
+   "mar",
+   "pip",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 25
+  },
+  "lugares": {
+   "mar": [
+    "habitación grande"
+   ],
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ],
+   "ron": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Armario y pintar en la grande, solo pintar en la pequeña, rodapié de las dos en una partida de 25 ml.",
+  "fuera": []
+ },
+ {
+  "t": "Pues la habitación grande, montar el armario y pintar. La pequeña, solo pintar. Y en las dos, rodapié nuevo, veinticinco metros.",
+  "debe": [
+   "mar",
+   "pip",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 25
+  },
+  "lugares": {
+   "mar": [
+    "habitación grande"
+   ],
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ],
+   "ron": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos: «la pequeña» es la otra habitación y «las dos» son ambas.",
+  "fuera": []
+ },
+ {
+  "t": "pues el dormitorio grande quitar el papel y pintar el pequeño solo pintar y en los dos rodapié nuevo veinte metros",
+  "debe": [
+   "qpa",
+   "pip",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 20
+  },
+  "lugares": {
+   "qpa": [
+    "dormitorio grande"
+   ],
+   "pip": [
+    "dormitorio grande",
+    "dormitorio pequeño"
+   ],
+   "ron": [
+    "dormitorio grande",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Papel solo en el grande; rodapié de los dos.",
+  "fuera": []
+ },
+ {
+  "t": "el dormitorio principal quitar el papel y pintar el pequeño solo pintar",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio principal"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pequeño solo pintar.",
+  "fuera": []
+ },
+ {
+  "t": "la habitación grande poner flotante y pintar la pequeña solo pintar",
+  "debe": [
+   "flo",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "habitación grande"
+   ],
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "flo"
+  ],
+  "justificacion": "Flotante solo en la grande, sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "Esto es solo pintura y suelos en Algorta El salón tiene veinticinco metros y el pasillo ocho En el salón y el pasillo poner flotante encima treinta y tres metros y rodapié nuevo veinticinco metros lineales Quitar el gotelé del salón y pintar el salón y el pasillo paredes y techos",
+  "debe": [
+   "flo",
+   "ron",
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 33,
+   "ron": 25
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ],
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El flotante es del salón y del pasillo (33 m²), aunque el salón tenga sus 25 metros.",
+  "fuera": []
+ },
+ {
+  "t": "Esto es solo pintura y suelos en Algorta. El salón tiene veinticinco metros y el pasillo ocho. En el salón y el pasillo, poner flotante encima, treinta y tres metros, y rodapié nuevo, veinticinco metros lineales. Quitar el gotelé del salón y pintar el salón y el pasillo, paredes y techos.",
+  "debe": [
+   "flo",
+   "ron",
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 33,
+   "ron": 25
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ],
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos: el flotante en cada estancia con sus metros (25 + 8 = 33).",
+  "fuera": []
+ },
+ {
+  "t": "el comedor tiene dieciocho metros en el comedor y el pasillo poner flotante treinta metros y pintar el comedor",
+  "debe": [
+   "flo",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 30
+  },
+  "lugares": {
+   "flo": [
+    "comedor",
+    "pasillo"
+   ],
+   "pip": [
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El flotante es de comedor y pasillo (30), no solo del pasillo.",
+  "fuera": []
+ },
+ {
+  "t": "el salón tiene veinte metros y el dormitorio doce en el salón y el dormitorio poner tarima flotante treinta y dos metros y pintar los dos",
+  "debe": [
+   "flo",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorio"
+   ],
+   "pip": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante de los dos (32) y pintar los dos.",
+  "fuera": []
+ },
+ {
+  "t": "El salón tiene veinte metros y el pasillo seis en el salón y el pasillo poner tarima flotante veintiséis metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 26
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante de salón y pasillo, 26 m².",
+  "fuera": []
+ },
+ {
+  "t": "Bueno Bilbao Rekalde No es integral En el pasillo salón y las dos habitaciones quitar la moqueta y poner tarima flotante con rodapié nuevo son unos cuarenta y seis metros Pintar esas mismas estancias El baño y la cocina ni tocarlos",
+  "debe": [
+   "flo",
+   "pip",
+   "ron",
+   "sue"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ron": 46
+  },
+  "lugares": {
+   "flo": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ],
+   "pip": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ],
+   "sue": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "sue",
+   "flo"
+  ],
+  "justificacion": "Quitar la moqueta en las mismas estancias; los 46 metros son del rodapié, no del suelo.",
+  "fuera": []
+ },
+ {
+  "t": "En el pasillo, salón y las dos habitaciones, quitar la moqueta y poner tarima flotante con rodapié nuevo, son unos cuarenta y seis metros. Pintar esas mismas estancias.",
+  "debe": [
+   "flo",
+   "pip",
+   "ron",
+   "sue"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ron": 46
+  },
+  "lugares": {
+   "flo": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ],
+   "pip": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ],
+   "sue": [
+    "pasillo",
+    "salón",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "sue",
+   "flo"
+  ],
+  "justificacion": "Con puntos: igual.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón y el dormitorio quitar la moqueta y poner tarima flotante con rodapié nuevo son treinta metros",
+  "debe": [
+   "sue",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 30
+  },
+  "lugares": {
+   "sue": [
+    "salón",
+    "dormitorio"
+   ],
+   "flo": [
+    "salón",
+    "dormitorio"
+   ],
+   "ron": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "sue",
+   "flo"
+  ],
+  "justificacion": "Los 30 metros son del rodapié.",
+  "fuera": []
+ },
+ {
+  "t": "En el pasillo y el salón, levantar el parquet y poner flotante con rodapié, unos treinta y cinco metros lineales.",
+  "debe": [
+   "sue",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 35
+  },
+  "lugares": {
+   "sue": [
+    "pasillo",
+    "salón"
+   ],
+   "flo": [
+    "pasillo",
+    "salón"
+   ],
+   "ron": [
+    "pasillo",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "sue",
+   "flo"
+  ],
+  "justificacion": "Metros lineales: del rodapié; el suelo queda por medir.",
+  "fuera": []
+ },
+ {
+  "t": "en las dos habitaciones quitar la moqueta y poner flotante con rodapié nuevo veinte metros lineales",
+  "debe": [
+   "sue",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 20
+  },
+  "lugares": {
+   "sue": [
+    "dos habitaciones"
+   ],
+   "flo": [
+    "dos habitaciones"
+   ],
+   "ron": [
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "sue",
+   "flo"
+  ],
+  "justificacion": "Metros lineales: del rodapié.",
+  "fuera": []
+ }
+]
