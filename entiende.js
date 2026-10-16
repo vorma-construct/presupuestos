@@ -558,6 +558,7 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  var mFb=TD.match(/\bfontaneria\s+(?:de|del|para)?\s*(?:los\s+)?(dos|tres|2|3)\s+banos\b/);if(mFb&&has('fba')&&!get('fba').paqId&&num(get('fba').q)<=1)get('fba').q=({dos:2,tres:3})[mFb[1]]||+mFb[1];
  if(has('recp')||has('puer')){var mRc=TD.match(/\brecolocar puerta\s*,?\s*(?:(?:que\s+)?son\s+)?(\d+)\b(?!\s*(?:metros|m2))/)||(window.__unaRec?['','1']:TD.match(/\b(\d+)\s+puertas\b/));['recp','puer'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1)return;if(mRc)l.q=+mRc[1];else if(!/\b(?:la|una|esa|esta)\s+puerta\b/.test(TD)||/\bpuertas\b/.test(TD))l.cuantas=1})}
  if(has('con7')&&has('con')&&!get('con').paqId)fuera('con');
+ (function(){var vis={};finales=finales.filter(function(l){if(l.paqId||l.fb)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();
  ['pub','pue','rad','mar','pre','mam'].forEach(function(id){var ls=finales.filter(function(l){return idDe(l)===id&&!l.paqId});var sin=ls.filter(function(l){return !/ \u2014 /.test(l.d)}),con=ls.filter(function(l){return / \u2014 /.test(l.d)});if(sin.length===1&&con.length>=2){var sum=con.reduce(function(a,l){return a+num(l.q)},0);if(Math.abs(sum-num(sin[0].q))<0.01||num(sin[0].q)===1)finales=finales.filter(function(l){return l!==sin[0]})}});
  if(has('alsm')&&has('alc')&&/\b(?:material del cliente|azulejos?\s+(?:los\s+|las\s+)?(?:compra|trae|pone|ponen|compran|traen)\s+(?:el|la)\s+client\w+|los compra el cliente)\b/.test(TD)){var ls=get('alsm');var alcs=finales.filter(function(l){return idDe(l)==='alc'&&!l.paqId&&num(l.q)>1}),dicho=alcs.find(function(l){return !l.calc});if(!(num(ls.q)>1)){if(dicho){ls.q=dicho.q;delete ls.calc}else if(alcs.length){ls.q=alcs[0].q;ls.calc=1}}if(/ \u2014 /.test((alcs[0]||{}).d||'')&&!/ \u2014 /.test(ls.d))ls.d+=alcs[0].d.slice(alcs[0].d.indexOf(' \u2014 '));finales=finales.filter(function(l){return !(idDe(l)==='alc'&&!l.paqId)})}
  if((A.F||[]).some(function(c){return /^\s*(?:y\s+)?nada de puertas(?:\s+nuevas)?\s*$/.test(c)}))finales=finales.filter(function(l){return !(idDe(l)==='pub'&&!l.paqId)});
@@ -582,10 +583,14 @@ if(/\bmuebles?\b[^,.;]{0,30}\b(?:y|e|que)\s+(?:los\s+)?(?:monta|montan|pone|pone
 todasPaq.forEach(function(pk){if(pk.__re){delete pk.__re;rehacer(pk,true)}});
 /* «contenedor de 7 metros cúbicos»: ese contenedor en vez del de la obra */
 if(finales.some(function(l){return idDe(l)==='con7'}))cur.lineas=cur.lineas.filter(function(l){return !(l.paqId&&l.tid==='con')});
+/* la misma partida dos veces (igual, o una sin estancia y la otra con ella y los mismos metros): una */
+(function(){var vis={};finales=finales.filter(function(l){if(l.paqId||l.fb)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true});
+ finales=finales.filter(function(l){if(l.paqId||l.fb||/ \u2014 /.test(l.d)||!(num(l.q)>0))return true;var id=idDe(l);return !finales.some(function(x){return x!==l&&!x.paqId&&idDe(x)===id&&/ \u2014 /.test(x.d)&&Math.abs(num(x.q)-num(l.q))<0.01})})})();
 cur.lineas=cur.lineas.concat(finales);
 if(negados(A.todo).contenedor&&!/\bcontenedor\b[^,.;]{0,15}\b(?:si|tambien)\b/.test(A.todo))cur.lineas=cur.lineas.filter(function(l){var x=idDe(l);return x!=='con'&&x!=='con7'});
 /* «tres manos de pintura en paredes y techos» en una estancia o casa entera: las partidas a tres manos */
 if(/\btres manos\b/.test(A.todo)&&T('pip3')){var t3=/\btres manos\b[^,.;]{0,40}\btechos?\b(?!\s+(?:en\s+blanco|blancos?|normal\w*|de\s+siempre|con\s+una|a\s+una))|\btechos?\b[^,.;]{0,30}\btres manos\b/.test(A.todo),p3=/\btres manos\b[^,.;]{0,40}\bparedes\b|\bparedes\b[^,.;]{0,30}\btres manos\b|\bpintar\b[^,.;]{0,20}\btres manos\b/.test(A.todo)||!t3;cur.lineas.forEach(function(l){var x=idDe(l),sf=l.d.indexOf(' — ')>-1?l.d.slice(l.d.indexOf(' — ')):'';if(x==='pip'&&p3){l.d=T('pip3').d+sf;l.p=T('pip3').p;l.tid='pip3'}else if(x==='pit'&&t3&&T('pit3')){l.d=T('pit3').d+sf;l.p=T('pit3').p;l.tid='pit3'}})}
+(function(){var vis={};cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.fb)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();
 /* las paredes calculadas (para el cuadro de puertas y ventanas): con el nombre que ha quedado */
 if(MEDpared&&PAREDpared.length){window.__MED=MEDpared;window.__PARED=PAREDpared.map(function(d){var l=finales.find(function(x){return x.d===d||x.d.indexOf(d+' \u2014 ')===0});return l?l.d:null}).filter(Boolean)}else window.__PARED=[];
 /* 4) el «reformar la casa» suelto: si se dicen trabajos (o estancias), son esos; si no, es el piso entero, como siempre */
@@ -600,7 +605,7 @@ if(/\bsin ascensor\b/.test(A.todo)){var fa=document.getElementById('f_asc');if(f
 var nuevasDs=cur.lineas.filter(function(l){return !l.__v}).map(function(l){return l.d});
 cur.lineas.forEach(function(l){delete l.__v});
 window.__ultDict={num:cur.num,creado:cur.creado,tal:ta.value,parte:aConv,h:huella(aConv),ds:nuevasDs};
-ajustarPuertasPiso();ajustarSueltasPiso();renderLineas();try{autoGuardar()}catch(_){}
+ajustarPuertasPiso();ajustarSueltasPiso();(function(){var vis={};cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.fb)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();renderLineas();try{autoGuardar()}catch(_){}
 var ci=document.getElementById('convInfo');if(!ci)return;
 var añad=cur.lineas.length-n0;
 if(añad>0)ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>'+(finales.some(function(l){return num(l.q)===1&&/^m/.test(String(l.u))})?' Revisa abajo las cantidades que pongan 1.':'');
@@ -984,6 +989,14 @@ function analizar(bruto){
  t0=t0.replace(/\b(?:desmontaje|desmontar|quitar|retirar)\s+(?:de\s+)?(?:la|las|toda la|toda)\s+instalacion(?:es)?\b/g,'desmontar instalacion');
  /* «quitar el alicatado, 22 metros, y el suelo cerámico, 4 metros»: el mismo verbo para lo segundo */
  t0=t0.replace(/\b(quitar|picar|levantar|arrancar|poner|pintar|alicatar|lijar)\s+([^,.;]{3,40}?)\s*,\s*((?:unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|metros cuadrados|metros))\s*,\s*y\s+(el|la|los|las)\s+(?=[a-z]+[^,.;]{0,30},\s*(?:unos\s+)?\d)/g,'$1 $2 $3, y $1 $4 ');
+ /* «no es cocina completa», «el baño no es entero»: no hay estancia entera */
+ t0=t0.replace(/\bno\s+es\s+(?:una\s+)?(?:(?:la\s+|el\s+)?(?:cocina|bano|aseo)\s+)?(?:reforma\s+)?(?:complet[oa]|enter[oa]|integral)\b|\b(?:la\s+|el\s+)?(?:cocina|bano|aseo)\s+no\s+es\s+(?:complet[oa]|enter[oa])\b/g,' , ');
+ /* «calefacción con radiadores en toda la casa y dos radiadores más aparte en la buhardilla»: y esos radiadores sueltos */
+ t0=t0.replace(/\b(calefaccion[^.;]*?)\s+y\s+(dos|tres|cuatro|un|uno|\d+)\s+radiador(?:es)?\s+mas(?:\s+aparte)?\b/g,function(x,c,n){return c+' , poner '+(/^\d/.test(n)?n:(valorLetra(n)||1))+' radiadores '});
+ /* «en la del niño papel nuevo», «la del niño»: la habitación del niño */
+ t0=t0.replace(/\b(en\s+)la\s+(del\s+nino|de\s+la\s+nina|de\s+los\s+ninos|de\s+matrimonio|de\s+invitados|de\s+la\s+abuela|del\s+fondo)\b/g,function(x,en,ap,off,str){var prev=String(str).slice(Math.max(0,off-200),off);if(!/\b(habitacion(?:es)?|dormitorios?)\b/.test(prev))return x;var b=/\bdormitorios?\b(?![\s\S]*\bhabitacion)/.test(prev)?'el dormitorio':'la habitacion';return (en||'')+b+' '+ap});
+ /* «papel nuevo» (sin quitar): papel pintado nuevo */
+ t0=t0.replace(/\b(?<!quitar\s(?:el\s)?)papel\s+nuevo\b/g,'papel pintado nuevo');
  /* «premarcos de setenta milímetros»: los de pared de 70 */
  t0=t0.replace(/\bpremarcos?\s+(?:de\s+)?(?:70|setenta)\s*(?:mm|milimetros)\b/g,'premarco 70');
  /* «se desmontan tres y se vuelven a poner las tres» (puertas): cuántas se recuperan */
