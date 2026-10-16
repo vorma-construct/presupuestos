@@ -182,7 +182,7 @@ function escena(bruto,op){op=op||{};
    if(pv&&pv.t==='G'&&pv.usado==='delante'){/* «en el salón, 25 metros, quitar…» */var r0=pv.rooms;if(r0.length===1&&r0[0].n===1&&r0[0].m2==null&&!it.lin){r0[0].m2=it.v;r0[0].mFr=-1;it.usado=true;return}}
    if(pv&&pv.t==='G'&&pv.usado==='tras'){var kk=vecinoIdx(k,-1);if(kk>-1&&I2[kk].t==='W')pv=I2[kk]}
    var alFinal=I2.slice(j+1).every(function(z){return z.t==='sep'||z.t==='O'&&z.vacio});
-   if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&!I2.some(function(z){return z.t==='W'&&z.total})&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
+   if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&!I2.some(function(z){return z.t==='W'&&(z.total||/^\s*(?:y\s+)?(?:el|la|los|las)\s+(?:techos?|paredes|suelos?)\s*$/.test(z.x))})&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
    if(pv&&(pv.t==='W'||pv.t==='X')&&!pv.total){pv.total=it.x.trim();pv.totV=it.v;if(it.lin)pv.lin=true;it.usado=true}});
   /* «acuchillar el suelo de salón y habitaciones, son 60 metros, acuchillar y barnizar»: lo mismo dicho otra vez, no otra partida */
   var mismasSalas=function(a,b){return a&&b&&a.length===b.length&&a.every(function(r){return b.indexOf(r)>-1})};
