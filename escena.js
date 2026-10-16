@@ -40,6 +40,8 @@ var R_EXP=new RegExp(PRE+'(?:(el|la|los|las|esos|esas|estos|estas|este|esta|su|s
  '(?:\\s+(?:(?:que\\s+)?(?:tiene|mide|son|es de|tendra|tendran|tienen|miden)\\s+|que\\s+son\\s+|de\\s+|con\\s+)?(?:unos\\s+|unas\\s+|mas o menos\\s+)?('+NUMW+'(?:\\s*(?:,|y)\\s*(?:de\\s+)?'+NUMW+')*)(?:\\s*(?:m2|metros cuadrados|metros|m)\\b(?!\\s*(?:lineales|de\\s+(?:alto|largo|ancho|altura|rodapie|pared|paredes))))?(?![\\w])(?!\\s*(?:puertas|radiador\\w*|ventanas|armarios|enchufes|ml\\b|metros lineales|lineales)))?','y');
 /* una estancia corta: «el principal», «la de matrimonio», «el pequeño», «el otro» */
 var R_EL=new RegExp(PRE+'(el|la)\\s+('+APE+'|otr[oa])\\b(?!\\s+(?:'+LIG+'|bano|aseo|cocina|puerta|ventana|radiador|armario|metros|m2|\\d))','y');
+/* «… y en el pequeño nueve», «y el otro de diez metros»: la estancia corta con sus metros */
+var R_ELM=new RegExp(PRE+'(el|la)\\s+('+APE+'|otr[oa])\\s+(?:(?:que\\s+)?(?:tiene|mide|es de)\\s+|de\\s+)?(?:unos\\s+)?('+NUMW+')(?:\\s*(?:m2|metros cuadrados|metros|m)\\b(?!\\s*(?:lineales|de\\s+(?:alto|largo|ancho|altura))))?(?![\\w])(?!\\s*(?:[.,]\\d|puertas|radiador\\w*|ventanas|armarios|enchufes|ml\\b|metros lineales|lineales|x\\b|por\\b))','y');
 /* las de antes: «en los tres», «de esas dos», «ambos», «esas mismas estancias», «todo eso» */
 var R_ANA=new RegExp(PRE+'(?:(?:esas|esos|estas|estos)\\s+(dos|tres|cuatro|cinco)(?:\\s+(?:mismas|mismos))?(?:\\s+(?:estancias|zonas|piezas|habitaciones|cuartos|sitios|partes|dormitorios))?|(?:los|las)\\s+(dos|tres|cuatro|cinco|[2-6])\\b(?!\\s*(?:[.,]\\d|'+LIG+'|bano|banos|aseos?|cocinas?|puertas|radiadores|ventanas|armarios|metros|m2|m\\b|veces|manos|capas|plantas|pisos|mamparas|y medio|primer\\w*))(?:\\s+(?:mismas|mismos))?|(ambos|ambas)\\b|(?:esas|esos|estas|estos)\\s+(?:mismas\\s+|mismos\\s+)?(?:estancias|zonas|piezas|habitaciones|cuartos|sitios|partes)\\b|todo eso\\b|todo lo anterior\\b|esas mismas\\b|esos mismos\\b|(?:las|los) mism[oa]s (?:estancias|zonas|sitios)\\b)','y');
 /* una medida suelta: «son 42 metros en total», «unos 35 metros lineales», «pon 42 metros lineales» */
@@ -57,6 +59,7 @@ function piezas(s){var T=[],i=0,m,VS=(API().VERBO_OBRA||/pintar|quitar|poner/).s
   var lastR=T.length&&T[T.length-1].t==='R';
   if((m=try_(R_EXP))){T.push({t:'R',k:'exp',m:m,x:m[0]});i+=m[0].length;continue}
   if((m=try_(R_ANA))){T.push({t:'R',k:'ana',m:m,x:m[0]});i+=m[0].length;continue}
+  if((m=try_(R_ELM))){T.push({t:'R',k:'el',m:m,x:m[0],msE:numDe(m[3])});i+=m[0].length;continue}
   if((m=try_(R_EL))){T.push({t:'R',k:'el',m:m,x:m[0]});i+=m[0].length;continue}
   if(lastR){var mn=s.slice(i).match(R_NEG);if(mn){T.push({t:'N',x:mn[0]});i+=mn[0].length;continue}}
   if((m=try_(R_MED))){T.push({t:'M',x:m[0],v:parseFloat(m[1].replace(',','.')),lin:/lineal|\bml\b/.test(m[0])});i+=m[0].length;continue}
@@ -94,6 +97,7 @@ function escena(bruto,op){op=op||{};
     if(/^(esos|esas|estos|estas)$/.test(art||'')&&!cnt)usaRef=true;
     p.rs=[alta({base:base,ape:ape||'',n:n||(arr&&arr.length>1?arr.length:0),otro:!!otro,ms:arr})];ultBase=base}
    else if(p.k==='el'){var ap=m[2],a=apeN(ap);var cand=reg.filter(function(r){return /^otr/.test(ap)?r.otro:apeN(r.ape)===a&&r.n===1});
+    if(p.msE>0){if(cand.length===1){if(cand[0].m2==null&&!(cand[0].ms&&cand[0].ms.length)){cand[0].m2=p.msE;cand[0].mFr=frAct}}else if(!cand.length&&ultBase)cand=[alta({base:ultBase,ape:/^otr/.test(ap)?'':ap,n:1,otro:/^otr/.test(ap),ms:[p.msE]})]}
     if(cand.length===1)p.rs=[cand[0]];
     /* «el dormitorio grande y el pequeño», «la de los niños y la de matrimonio»: otra estancia como la de antes */
     else if(!cand.length&&ultBase&&!/^otr/.test(ap))p.rs=[alta({base:ultBase,ape:ap,n:1})];
