@@ -958,6 +958,9 @@ function analizar(bruto){
   var v=(fr.match(VERBO_OBRA)||[])[0];
   if(ultVerbo&&!(/^pint/.test(ultVerbo)&&/\b(?:puertas?|rodapies?|contenedor|limpieza)\b/.test(fr))&&!VERBO_OBRA.test(fr.split(/\s+y\s+/)[0])&&/^\s*(?:(?:los|las|el|la|del|de la)\s+)?(?:\d+(?:[.,]\d+)?\s*(?:m2|metros cuadrados|metros|m)?\s*(?:de\s+)?)?(?:los\s+|las\s+|el\s+|la\s+)?(techos?|paredes|suelo|rodapie|puertas?)\b(?!\s+(?:flotante|nuev|laminad|de madera|ceramic|blanc|lacad|de gres|porcelan|vinil|lucid|enlucid|pintad|alicatad|de azulejo|con azulejo))/.test(fr))fr=traducir(' '+ultVerbo+' '+fr.trim()+' ');
   var vs=fr.match(new RegExp(VERBO_OBRA.source,'g'));if(vs){var vsN=vs.filter(function(v){return !/^(reform|renov|arregl|moderniz|hacer)/.test(v)});ultVerbo=vsN.length?vsN[vsN.length-1]:null}
+  /* «en el pasillo papel pintado quitar, pintar paredes»: la estancia del principio de la frase vale para lo que sigue */
+  var mLoc0=!locSent&&fr.match(new RegExp('^\\s*(?:y\\s+)?(en\\s+(?:el|la|los|las)\\s+(?:(?:dos|tres|cuatro|\\d+)\\s+)?(?:'+EST_PAL+')(?:\\s+(?:principal|grande|pequen[oa]|de matrimonio|del matrimonio|del fondo|de los ninos|de las ninas|del nino|de la nina|de invitados|de la abuela|de arriba|de abajo|de al lado))?(?:\\s+de\\s+\\d+(?:[.,]\\d+)?(?:\\s*(?:m2|metros cuadrados|metros|m))?)?)\\s+\\S'));
+  if(mLoc0&&!/\b(bano|aseo|cocina|banos|aseos|cocinas)\b/.test(mLoc0[1])&&(VERBO_OBRA.test(fr)||/\b(papel|tarima|flotante|parquet|falso techo|rodapie|gotele|moqueta)\b/.test(fr))){F.push(fr);locSent=' '+mLoc0[1]+' ';return}
   if(locSent){if(new RegExp('\\b('+EST_PAL+')\\b').test(fr)||RE_PISO.test(fr))locSent=null;else if(VERBO_OBRA.test(fr)&&!/\b(puertas?|radiador\w*|ventanas?|persianas?|contenedor\w*|limpieza|ascensor|montacargas)\b/.test(fr))fr=' '+locSent.trim()+' '+fr.trim()+' '}
   F.push(fr)});
  A.F=F;
