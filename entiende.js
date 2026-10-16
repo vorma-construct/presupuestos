@@ -38,7 +38,7 @@ var REGLAS=[
 [/\bpladur\b[^,.;]{0,20}?\btechos?\b|\btechos?\b[^,.;]{0,12}?\bpladur\b/g,' falso techo '],
 [/\bmueble\s+(?:de|del)\s+lavabo\b/g,'mueble de bano'],
 [/\b(?:agrandar|ensanchar|ampliar|hacer mas grande)\s+(?:la\s+|el\s+)?(?:puerta|hueco|paso)\b/g,' abrir hueco '],
-[/\blimpieza\b(?!\s+(?:final|periodica))/g,function(m,o,all){return /\b(final|acabar|terminar|terminad|acabad)\w*/.test(all)?' limpieza final ':m}],
+[/\blimpieza\b(?!\s+(?:final|periodica))/g,function(m,o,all){if(/^\s+(?:de\s+(?:la\s+)?obra\s+)?(?:cada\s+(?:semana|dia|quince|mes)|semanal|periodica|durante|mientras|todas las semanas)\b/.test(String(all).slice(o+m.length,o+m.length+40)))return ' limpieza periodica ';return /\b(final|acabar|terminar|terminad|acabad)\w*/.test(all)?' limpieza final ':m}],
 [/\bal final\b/g,' '],
 /* fontaneria */
 [/\b(?:tuberi\w*|fontaner\w*|cañer\w*|caner\w*|instalacion de agua|el agua)\b[^,.;]{0,30}?\b(?:del?|en el|en la|de la)\s+(bano|aseo|cocina)\b/g,function(m,e){return ' fontaneria '+(e==='cocina'?'cocina':'bano')+' '}],
@@ -960,7 +960,7 @@ function analizar(bruto){
  /* «el baño principal entero también, seis metros»: el «también» no separa los metros */
  t0=t0.replace(/\b(enter[oa]s?|complet[oa]s?)\s+tambien\s+(?=(?:de\s+)?(?:\d|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b)/g,'$1 ');
  /* «premarcos para pared de 70, son cuatro» */
- t0=t0.replace(/\bpremarcos?\s+(70|7)\b([^,.;]{0,25}?)\s*,?\s+(?:que\s+)?son\s+(\d+)\b(?!\s*(?:metros|m2))/g,'$3 premarcos $1 $2');
+ t0=t0.replace(/\bpremarcos?\s+(70|7)\b([^,.;]{0,25}?)\s*,?\s+(?:que\s+)?son\s+(\d+)\b(?!\s*(?:metros|m2))/g,'$3 premarco $1 $2');
  /* «el pasillo tiene papel pintado, lo quitan y ponen papel nuevo»: quitar el papel del pasillo */
  t0=t0.replace(new RegExp('\\b(?:el|la)\\s+('+EST_PAL+')\\s+tiene\\s+(papel pintado|papel|gotele|moqueta|parquet|tarima|azulejos?|alicatado)\\s*,?\\s+(?:y\\s+)?(?:lo|la|los|las)\\s+(?:quitan|quitamos|quitar|arrancan|arrancamos|levantan|levantamos|sacan)\\b','g'),' quitar el $2 del $1 ');
  /* «tienen dos baños y una cocina… los dos baños enteros…»: es cómo es la casa; los baños son los de después */
