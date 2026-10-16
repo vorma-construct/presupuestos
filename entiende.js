@@ -744,6 +744,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «dos baños, uno entero de cuatro con ducha y el otro solo cambiar la mampara»: uno entero y en el otro, lo dicho */
+ t0=t0.replace(/\b(?:dos|2)\s+banos\s*[,:]?\s*(?:uno|el uno|el primero|el grande|el principal)\s+(enter[oa]|complet[oa]|nuevo|a reformar|reformado)\b([^.;]*?)\s*,?\s+y\s+(?:en\s+)?(?:el\s+)?otro(?:\s+bano)?\s*,?\s+(?=solo|nada|no|cambiar|quitar|poner|pintar|la|el|las|los|se)/g,' bano $1$2. en el otro bano ');
  /* «flotante no, que va a poner vinilo él»: ese suelo fuera, y el que pone él tampoco */
  t0=t0.replace(/\b(?:el\s+|la\s+)?(tarima flotante|flotante|tarima|laminado|parquet|vinilo)\s+no\s*,?\s+(?:que|porque)\s+(?:va\s+a\s+poner|lo\s+va\s+a\s+poner|pone|quiere\s+poner|pondra)\s+(?:el\s+|un\s+|una\s+)?(?:vinilo|tarima|laminado|parquet|baldosa|porcelanico|moqueta|suelo|otro|otra)\s+(?:el|ella|ellos|el cliente|la clienta|el mismo|ella misma)\b/g,' nada de $1, ');
  /* «las paredes las pinta él», «el suelo lo pone el cliente»: eso no lo hacemos */
