@@ -782,7 +782,7 @@ function analizar(bruto){
  /* «el suelo… nosotros solo quitamos el que hay»: el que hay es ese suelo */
  t0=t0.replace(/\b(suelo|tarima|parquet|rodapie|mampara|plato|banera|azulejo|alicatado|papel|moqueta|puertas?|radiadores?|muebles?)\b([^.]{0,70}?)\b(quitar|quitamos|quita|quitan|levantar|levantamos|arrancar|arrancamos|sacar|sacamos|desmontar|desmontamos)\s+(el|la|los|las)\s+(?:que\s+hay|que\s+tiene|de\s+ahora|actual(?:es)?|viej[oa]s?)\b/g,function(x,n,mid,v,art){return n+mid+v+' '+art+' '+n+' actual'});
  /* «quitar el suelo de baldosa»: es suelo cerámico (no de madera) */
- t0=t0.replace(/\b(quitar|levantar|picar|arrancar|sacar)\s+(?:el\s+)?suelo\s+(?:de\s+)?(?:baldosa|ceramico|ceramica|gres|terrazo|porcelanico)\b/g,'$1 baldosa');
+ 
  /* «lijar» a secas, entre trabajos de paredes: lijar paredes */
  t0=t0.replace(/\blijar\b(?!\s+(?:y\s+barnizar|el\s+suelo|suelo|el\s+parquet|parquet|la\s+tarima|tarima|las\s+puertas|puertas|la\s+madera|madera|las\s+paredes|paredes|la\s+pared|pared))(?=\s*(?:,|y\b|$))/g,function(x,off,str){var c=String(str).slice(Math.max(0,off-60),off+60);return /\b(papel|gotele|pintar|pintura|yeso|paredes)\b/.test(c)&&!/\b(suelo|parquet|tarima|acuchill)/.test(c)?'lijar paredes':x});
  /* «tirar el tabique… y hacer uno nuevo de pladur»: un tabique nuevo */
