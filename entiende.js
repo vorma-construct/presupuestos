@@ -650,6 +650,7 @@ function familias(t,L,tipo){t=' '+t+' ';var idL=function(l){if(l.tid)return l.ti
  /* dicho al revés y corto («azulejo cocina quitar y poner nuevo», «rodapié quitar y poner 32 metros», «gotelé quitar y pintar»): lo viejo fuera y lo nuevo */
  [[/\b(?:azulejos?|alicatado)\b/,'ali','alc'],[/\brodapies?\b/,'rod','ron'],[/\b(?:parquet|tarima|flotante|laminado|moqueta)\b/,'sue','flo'],[/\bmamparas?\b/,'qma','mam'],[/\bpapel(?: pintado)?\b/,'qpa',''],[/\bgotele\b/,'lija',''],[/\bsanitarios\b/,'san','']].forEach(function(z){if(!z[0].test(t))return;
   var quitaZ=/\b(quitar|sacar|arrancar|levantar|picar|desmontar|cambiar|sustituir)\b/.test(t)&&!/\b(sin|no)\s+(?:quitar|tocar)\b/.test(t),poneZ=z[2]&&/\b(poner|nuev[oa]s?|colocar|cambiar|sustituir|montar|alicatar)\b/.test(t);
+  if(z[1]==='qma'&&/\b(?:con|y)\s+(?:una\s+|su\s+|la\s+)?mamparas?\b/.test(t)&&!/\b(?:quitar|sacar|desmontar|cambiar|sustituir)\s+(?:tambien\s+)?(?:la\s+|las\s+|su\s+)?mamparas?\b|\bmamparas?\b[^,;]{0,15}\b(?:quitar|vieja|actual|existente|que hay|que tiene)\b/.test(t))quitaZ=false;
   if(z[1]==='sue'&&!/\b(quitar|sacar|arrancar|levantar|cambiar)\b[^,;]{0,25}\b(?:parquet|tarima|flotante|laminado|moqueta|suelo)\b|\b(?:parquet|tarima|flotante|laminado|moqueta|suelo)\b[^,;]{0,15}\b(quitar|sacar|levantar|cambiar)\b/.test(t))quitaZ=false;
   if(quitaZ&&!tiene(z[1]))pon(z[1],0);if(poneZ&&!tiene(z[2])&&!(z[2]==='alc'&&tiene('alsm'))&&!(z[2]==='flo'&&tiene('acu')))pon(z[2],0)});
  /* «plato ochenta», «plato de 70»: el plato de esa medida */
@@ -701,7 +702,7 @@ function familias(t,L,tipo){t=' '+t+' ';var idL=function(l){if(l.tid)return l.ti
   /* el número era de otra cosa («la puerta de entrada y 4 puertas de dentro»): esta es una */
   else if(tiene(f.id)&&!c){var l0=L.find(function(l){return idL(l)===f.id});if(l0&&l0.u==='ud'&&num(l0.q)>1&&FAMS.some(function(g){return g!==f&&g.n.test(f.id==='pen'?sinEntrada:t)&&cuenta(g.id==='pub'?sinEntrada:t,g.n)===num(l0.q)}))l0.q=1}
   /* «cambiar las puertas», «cambiar la mampara», «quitar las viejas»: lo viejo se quita */
-  if(f.quitar&&tiene(f.id)&&/\b(cambiar|sustituir|renovar|cambio)\b/.test(t))pon(f.quitar,c||num((L.find(function(l){return idL(l)===f.id})||{}).q)||1);
+  if(f.quitar&&tiene(f.id)&&/\b(cambiar|sustituir|renovar|cambio)\b/.test(t)&&!(f.id==='mam'&&/\bpor\b[^,;]{0,40}\b(?:con|y)\s+(?:una\s+|su\s+)?mamparas?\b/.test(t)&&!/\b(?:cambiar|sustituir|renovar)\s+(?:tambien\s+)?(?:la\s+|las\s+|su\s+)?mamparas?\b/.test(t)))pon(f.quitar,c||num((L.find(function(l){return idL(l)===f.id})||{}).q)||1);
   if(f.quitar&&tiene(f.quitar)&&c)pon(f.quitar,c)});
  if(/\b80\s*(?:x|por)\s*80\b/.test(t)&&tiene('pd7')&&T('pd8')&&!/\b80\s*(?:x|por)\s*80\b[^,;]*\b(?:bueno no|no mejor|mejor)\b/.test(t)){L=L.filter(function(l){return idL(l)!=='pd7'});pon('pd8',1)}
  /* lo que no entendía y ya ha salido aquí («un radiador»): fuera */
@@ -744,6 +745,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «… con mampara. Fuera de eso, pintar…»: «fuera de eso» es «aparte», no quitar la mampara */
+ t0=t0.replace(/\b(?:y\s+)?(?:fuera|aparte|a parte|ademas)\s+de\s+(?:eso|esto|todo eso|lo del bano|lo de la cocina)\b\s*,?/g,'. ');
  /* «dos baños, uno entero de cuatro con ducha y el otro solo cambiar la mampara»: uno entero y en el otro, lo dicho */
  t0=t0.replace(/\b(?:dos|2)\s+banos\s*[,:]?\s*(?:uno|el uno|el primero|el grande|el principal)\s+(enter[oa]|complet[oa]|nuevo|a reformar|reformado)\b([^.;]*?)\s*,?\s+y\s+(?:en\s+)?(?:el\s+)?otro(?:\s+bano)?\s*,?\s+(?=solo|nada|no|cambiar|quitar|poner|pintar|la|el|las|los|se)/g,' bano $1$2. en el otro bano ');
  /* «flotante no, que va a poner vinilo él»: ese suelo fuera, y el que pone él tampoco */
