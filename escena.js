@@ -132,6 +132,8 @@ function escena(bruto,op){op=op||{};
     if(mL&&TRAB.test(' '+mL[2]+' ')&&!PES.test(' '+mL[2]+' ')&&!CASA.test(' '+mL[2]+' ')&&!CONT.test(' '+mL[2]+' ')){I2.push({t:'X',x:mL[1].trim()});partirW(mL[2]).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}
     if(mC&&TRAB.test(' '+mC[1]+' ')&&!PES.test(mC[1])&&!CASA.test(mC[1])&&!CONT.test(mC[1])){partirW(mC[1]).forEach(function(x){I2.push({t:'W',x:x})});I2.push({t:'X',x:mC[2].trim()});return}
     I2.push({t:'X',x:tx.trim()});return}
+   /* «… y en el dormitorio lo mismo y el suelo flotante…»: «lo mismo» aparte de lo que viene detrás */
+   var mLm=tx.match(/^\s*((?:y\s+)?(?:lo mismo|igual|tambien lo mismo))\s+(?:y\s+)?(.+)$/);if(mLm&&TRAB.test(' '+mLm[2]+' ')){I2.push({t:'O',x:mLm[1]});partirW(mLm[2]).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}
    if(TRAB.test(tx)){partirW(tx).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}
    I2.push({t:'O',x:tx.trim(),vacio:it.w.every(function(w){return CONN.test(w)})})});
   function partirW(tx){var ws=tx.trim().split(/\s+/),out=[],cu=[];var reIni=new RegExp('^(?:rodapie\\w*|tarima|parquet|moqueta|gotele|'+VS+')$');
@@ -144,6 +146,11 @@ function escena(bruto,op){op=op||{};
   var vecinoIdx=function(j,d){for(var k=j+d;k>=0&&k<I2.length;k+=d){if(transp(I2[k]))continue;return k}return -1};
   /* primero, detrás de un trabajo («quitar gotelé en los tres»); luego, delante de uno («en los tres tarima flotante») */
   I2.forEach(function(it){if(it.t!=='G')return;var rs=[],neg=[];it.rs.forEach(function(p){(p.neg?neg:rs).push.apply(p.neg?neg:rs,p.rs)});it.rooms=rs;it.negs=neg});
+  /* «en el salón y en el pasillo quitar el gotelé y pintar, y en el dormitorio lo mismo»: el grupo con «lo mismo» detrás es una copia; el de delante, el del trabajo */
+  I2.forEach(function(it,j){if(it.t!=='G'||it.usado)return;var k=vecinoIdx(j,1),o=k>-1?I2[k]:null;if(!o||o.t!=='O'||!/^\s*(?:y\s+)?(?:lo mismo|igual|tambien lo mismo)\s*$/.test(o.x))return;var kw=vecinoIdx(j,-1),w=kw>-1?I2[kw]:null;if(!w||w.t!=='W')return;var kg=vecinoIdx(kw,-1),g0=kg>-1?I2[kg]:null;
+   if(!w.rooms&&g0&&g0.t==='G'&&!g0.usado&&g0.rooms.length){w.rooms=g0.rooms.slice();w.delante=true;g0.usado='delante'}
+   if(!w.rooms)return;var q=kw;while(q>=0){var z=I2[q];if(z.t==='W'&&z.rooms===w.rooms||z===w){it.rooms.forEach(function(r){if(w.rooms.indexOf(r)<0)w.rooms.push(r)})}q=-1}
+   it.usado='tras';o.x='';o.vacio=true;usaRef=true});
   I2.forEach(function(it,j){if(it.t!=='G')return;var rs=it.rooms,neg=it.negs;
    var pv=vecino(j,-1),tamb=it.rs.some(function(p){return p.tambien});
    if(pv&&pv.t==='W'&&!pv.rooms){var kpv=I2.indexOf(pv),gAnt=vecino(kpv,-1);
