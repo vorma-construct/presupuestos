@@ -72,7 +72,7 @@ function escena(bruto,op){op=op||{};
  t=t.replace(/\b(?:eh+|em+|mm+|ehm+)\b/g,' ').replace(/[ \t]+/g,' ');
  if(!new RegExp('\\b('+LIG+')\\b').test(t))return null;
  /* «de salón y habitaciones son 60 metros», «en salón y habitaciones 50 metros»: con dos o más estancias, la medida es del trabajo (de todas), no de la última */
- var listaTot=false;t=t.replace(new RegExp('(\\b(?:'+LIG+')\\b\\s+(?:y|e)\\s+(?:(?:el|la|los|las|en|de|del)\\s+)*(?:dos\\s+|tres\\s+)?(?:'+LIG+')\\b(?:\\s+(?:'+APE+')\\b)?)\\s+(?:(?:que\\s+)?(?:son|seran|en total)\\s+)?(?=(?:unos\\s+|unas\\s+)?\\d+(?:[.,]\\d+)?\\s*(?:m2|metros|m\\b))','g'),function(x,a){listaTot=true;return a+', son '});
+ var listaTot=false;t=t.replace(new RegExp('(\\b(?:'+LIG+')\\b\\s+(?:y|e)\\s+(?:(?:el|la|los|las|en|de|del)\\s+)*(?:dos\\s+|tres\\s+)?(?:'+LIG+')\\b(?:\\s+(?:'+APE+')\\b)?)\\s*,?\\s+(?:(?:que\\s+)?(?:son|seran|en total)\\s+)?(?=(?:unos\\s+|unas\\s+)?\\d+(?:[.,]\\d+)?\\s*(?:m2|metros|m\\b))','g'),function(x,a){listaTot=true;return a+', son '});
  var VS=(API().VERBO_OBRA||/pintar|quitar|poner/).source.replace(/^\\b\(|\)\\b$/g,'');
  /* frases: por punto o punto y coma (no los decimales) */
  var frases=[],buf='';t.replace(/(\d)[.,](\d)/g,'$1#$2').split(/([.;])/).forEach(function(x,i){if(i%2){frases.push(buf);buf='';return}buf+=x});if(buf.trim())frases.push(buf);
