@@ -354,7 +354,9 @@ pisos.forEach(function(pi,ix){
  /* «la casa de 90 metros con un baño de 5 metros»: los metros dichos para el baño o la cocina mandan sobre los calculados */
  var dichos={bano:A.sueltas.bano.slice(),cocina:A.sueltas.cocina.slice()},cambio=false;
  paqs().filter(function(h){return h.padre===pi.id&&(h.calculado||!(h.suelo>0))}).forEach(function(h){var L=dichos[h.tipo]||[];if(L.length){var m=L.shift();h.suelo=m.suelo;h.perim=m.perim||0;delete h.calculado;rehacer(h,true);cambio=true}});
- if(cambio)rehacer(pi,true)});
+ if(cambio)rehacer(pi,true);
+ /* «… y el baño sí lo hacemos, con plato de 80 por 80»: lo que se dice del baño (o la cocina) del piso, en ese baño */
+ ['bano','cocina'].forEach(function(tp){var hs=paqs().filter(function(h){return h.padre===pi.id&&h.tipo===tp&&hechos.indexOf(h)<0});if(hs.length!==1)return;var reT=tp==='bano'?/\b(banos?|aseos?)\b/:/\bcocinas?\b/;var tx=(A.F||[]).filter(function(f){return reT.test(f)&&!RE_PISO.test(f)}).join(' , ');if(tx.replace(/[^a-z]/g,'').length<8)return;respuestas(hs[0],tx);rehacer(hs[0],true)})});
 /* 2) los trabajos sueltos: el motor de siempre, frase a frase, cada una con su estancia (si la nombra) y sus medidas */
 var TT=tarifa(),idDe=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var t=TT.find(function(x){return x.d===d||d.indexOf(x.d+' \u2014 ')===0});return t?t.id:''};
 var leer0=window.leer,baseNuevas=[],MEDpared=null,PAREDpared=[];
@@ -489,7 +491,7 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  if(has('ron')&&!has('rod')&&T('rod')&&(/\brodapie\w*\b[^.;]{0,90}\b(?:quitando|quitar|sacar|arrancar|levantar)\s+(?:el\s+|lo\s+|los\s+)?(?:antiguo|viejo|que hay|actual|existente)\b|\brodapie\w*\b[^.;]{0,30}\bel viejo fuera\b|\brodapie\w*\s+quitar\s+y\s+poner\b|\bquitar\s+y\s+poner\b[^.;]{0,25}\brodapie/.test(TD)))mk('rod',num(get('ron').q));
  if(has('rod')&&!has('ron')&&T('ron')&&/\brodapie\w*\s+quitar\s+y\s+poner\b|\bquitar\s+y\s+poner\b[^.;]{0,25}\brodapie/.test(TD))mk('ron',num(get('rod').q));
  /* lo que no está en la tarifa no se cobra como otra cosa: la caldera no es la calefacción entera, el termo no es la instalación eléctrica… */
- if(has('cal')&&/\bcaldera\b/.test(TD)&&!/\bcalefaccion\b[^,.;]{0,25}\b(?:nueva|entera|completa|toda)\b|\b(?:poner|instalar|hacer|meter)\s+(?:la\s+)?calefaccion\b|\bradiadores\b(?!\s+(?:se quedan|no se tocan|se dejan|los que hay))/.test(TD))fuera('cal');
+ if(has('cal')&&/\bcaldera\b/.test(TD)&&!/\bcalefaccion\b[^,.;]{0,25}\b(?:nueva|entera|completa|toda)\b/.test(norm(String(A.bruto||'')))&&!/\bcalefaccion\b[^,.;]{0,25}\b(?:nueva|entera|completa|toda)\b|\b(?:poner|instalar|hacer|meter)\s+(?:la\s+)?calefaccion\b|\bradiadores\b(?!\s+(?:se quedan|no se tocan|se dejan|los que hay))/.test(TD))fuera('cal');
  if(has('ele')&&/\btermo\b/.test(TD)&&!/\b(?:electricidad|instalacion electrica|cableado|luz nueva|cuadro)\b/.test(TD))fuera('ele');
  if(has('fba')&&/\b(?:inodoro|vater|lavabo|grifo|griferia)\b/.test(TD)&&!/\bfontaneria\b|\b(?:bano|aseo)\s+(?:complet|enter|nuev|integral)|\breform\w*\s+(?:el\s+|del\s+)?(?:bano|aseo)\b|\bintegral\b/.test(TD)&&!finales.some(function(l){return idDe(l)==='fba'&&l.paqId}))fuera('fba');
  if(has('flo')&&/\b(?:terraza|exterior|balcon|jardin|patio)\b/.test(TD)&&!/\b(?:flotante|tarima|laminado|parquet)\b/.test(TD))fuera('flo');
@@ -720,6 +722,10 @@ function analizar(bruto){
  /* ¿lo dictado traía puntos o comas? (se mira lo que llegó, antes de pasar las cifras: «siete, cinco» lo pone la conversión, no el micro) */
  var __conPuntos=/(?:[,.;:](?!\d)|(?<!\d)[,.;:])/.test(String(window.__brutoCrudo!=null?window.__brutoCrudo:bruto));
  var t0=' '+norm(String(bruto).replace(/m²/g,'m2').replace(/m³/g,'m3'))+' ';
+ /* «las paredes las pinta él», «el suelo lo pone el cliente»: eso no lo hacemos */
+ t0=t0.replace(/\b(las paredes|los techos|el techo|el suelo|la tarima|el rodapie|las puertas|la pintura|el gotele|los muebles)\s+(?:lo|la|los|las)\s+(?:pinta|pintan|pone|ponen|hace|hacen|monta|montan|quita|quitan|compra|compran)\s+(?:el cliente|la clienta|ellos|ella|el|su\s+[a-z]+|otro|otra|un amigo)\b/g,function(x,o){return ' , '+o+' no , '});
+ /* «la cocina se queda y el baño también», «el baño no se toca y la cocina tampoco»: las dos fuera */
+ t0=t0.replace(/\b((?:el|la)\s+(?:cocina|bano|aseo))\s+(se\s+queda|no\s+se\s+toca|no|nada|tampoco|ni\s+tocar\w*)\b([^,.;]{0,20}?)\s+y\s+((?:el|la)\s+(?:cocina|bano|aseo))\s+(?:tambien|tampoco|igual|lo mismo)\b/g,function(x,a,v,mid,b){return ' '+a+' '+v+mid+', '+b+' '+(/tampoco|^no$|nada|ni/.test(v)?'no se toca':v)+' '});
  /* «baño completo, dos baños, perdona, solo uno, el otro no»: uno */
  t0=t0.replace(/\b(?:dos|tres|2|3)\s+(?:banos|aseos)\s+(?:(?:perdona|perdon|bueno|no|digo|espera|eh)\s+)+(?:solo\s+)?(?:uno|una|1)\b(?:\s+(?:el|la)\s+otr[oa]\s+no\b)?/g,' ');
  t0=t0.replace(/\b(?:cosina|kocina|cozina|kosina|cocna)\b/g,'cocina').replace(/\b(?:bany|vano|banyo)\b/g,'bano').replace(/\bpintra\b/g,'pintar').replace(/\bpintra(r)?\b/g,'pintar').replace(/(^|\s)q(?=\s)/g,'$1que').replace(/\bsra\.?(?=\s)/g,'senora').replace(/\bsr\.?(?=\s)/g,'senor').replace(/\bxq\b|\bpq\b/g,'porque').replace(/\btb\b|\btmb\b/g,'tambien');
