@@ -37,6 +37,21 @@ var RE_M=new RegExp('(?:\\b(?:en|de|del|para|a|al|y|e)\\s+)*(?:\\b(el|la|los|las
 var RE_EL=new RegExp('(?:\\b(?:en|de|del|para|a|al|y|e)\\s+)*\\b(el|la)\\s+('+APE+'|otr[oa])\\b(?!\\s+(?:'+LIG+'|bano|aseo|cocina|puerta|ventana|radiador|armario|metros|m2))','g');
 var RE_ANA=new RegExp('(?:\\b(?:en|de|del|para|a|al|y|e)\\s+)*(?:\\b(?:esas|esos|estas|estos)\\s+(dos|tres|cuatro|cinco)(?:\\s+(?:mismas|mismos))?(?:\\s+(?:estancias|zonas|piezas|habitaciones|cuartos|sitios|partes|dormitorios))?|\\b(?:los|las)\\s+(dos|tres|cuatro|cinco)\\b(?!\\s+(?:'+LIG+'|bano|banos|aseos?|cocinas?|puertas|radiadores|ventanas|armarios|metros|veces|manos|capas|plantas|pisos|mamparas|y medio|primer\\w*))(?:\\s+(?:mismas|mismos))?|\\b(ambos|ambas)\\b|\\b(?:esas|esos|estas|estos)\\s+(?:mismas\\s+|mismos\\s+)?(?:estancias|zonas|piezas|habitaciones|cuartos|sitios|partes)\\b|\\btodo eso\\b|\\btodo lo anterior\\b|\\besas mismas\\b|\\besos mismos\\b|\\b(?:las|los) mismas?o?s? (?:estancias|zonas|sitios)\\b)','g');
 
+/* un trozo largo sin comas («… nueve en los tres tarima flotante quitando la vieja rodapié nuevo 42 metros lineales…»):
+   se parte donde empieza otra cosa: «en los tres …» seguido de un trabajo, otro trabajo detrás de uno, «el salón no» */
+var TRABW='pint\\w*|gotele|papel pintado|papel|lij\\w*|tarima|flotante|parquet|laminad\\w*|vinil\\w*|moqueta|falso techo|rodapie\\w*|lucir|enluc\\w*|quitar|poner|cambiar|levantar|arrancar|acuchill\\w*|barniz\\w*|alis\\w*|rasc\\w*';
+function partir(q){var V=API().VERBO_OBRA,VS=V?V.source.replace(/^\\b\(|\)\\b$/g,''):'pintar|quitar|poner';
+ var LOC='en\\s+(?:los|las)\\s+(?:dos|tres|cuatro|cinco)\\b(?!\\s+(?:'+LIG+'))|en\\s+(?:ambos|ambas)\\b|en\\s+todo\\s+eso\\b|en\\s+(?:esas|esos|estas|estos)\\b|en\\s+(?:el|la|los|las)\\s+(?:(?:dos|tres|cuatro)\\s+)?(?:'+LIG+')\\b(?:\\s+(?:'+APE+'))?';
+ var NOSEP=/\b(?:y|e|o|de|del|con|el|la|los|las|en|a|al|sin|que|para|un|una|unos|unas|su|sus|hay|quiere|quieren|tambien|solo|nuevo|nueva|ni)\s*$/;
+ var cortes=[],m,re;
+ /* «… en los tres tarima flotante», «… en el salón quitar el gotelé»: un sitio y lo que se hace en él */
+ re=new RegExp('\\s(?=(?:'+LOC+')\\s+(?:[a-z]+\\s+){0,2}?(?:'+TRABW+')\\b)','g');while((m=re.exec(q))){var iz=q.slice(0,m.index);if(iz.replace(/[^a-z0-9]/g,'').length>2&&!NOSEP.test(iz))cortes.push(m.index)}
+ /* otro trabajo detrás de uno ya dicho */
+ re=new RegExp('\\s(?=(?:rodapie\\w*|tarima|parquet|papel pintado|falso techo|moqueta|gotele|'+VS+')\\b)','g');while((m=re.exec(q))){var iz2=q.slice(0,m.index),ult=(iz2.match(/([a-z0-9]+)\s*$/)||[])[1]||'';if(new RegExp('\\b(?:'+TRABW+')\\b').test(iz2.slice(Math.max(0,(cortes.filter(function(c){return c<m.index}).pop()||0))))&&!NOSEP.test(iz2)&&!new RegExp('^(?:'+VS+'|quitando|poniendo|cambiando)$').test(ult)&&!/^(tarima|suelo|rodapie|papel|techo|paredes|pared|techos)$/.test(ult))cortes.push(m.index)}
+ /* «… el salón no», «… el salón está bien»: fuera */
+ re=new RegExp('\\s(?=(?:el|la|los|las)\\s+(?:'+LIG+')(?:\\s+(?:'+APE+'))?\\s+(?:no\\b|esta bien|estan bien|se queda|se quedan|ni\\b|nada\\b))','g');while((m=re.exec(q))){if(new RegExp('\\b(?:'+TRABW+')\\b').test(q.slice(0,m.index)))cortes.push(m.index)}
+ if(!cortes.length)return [q];cortes=cortes.filter(function(c,i,a){return a.indexOf(c)===i}).sort(function(a,b){return a-b});var out=[],ini=0;cortes.forEach(function(c){out.push(q.slice(ini,c));ini=c});out.push(q.slice(ini));return out}
+
 function escena(bruto,op){op=op||{};
  if(window.__sinEscena)return null;
  var t=' '+nrm(bruto).replace(/[…!?¡¿"«»()]/g,' ')+' ';
@@ -56,10 +71,10 @@ function escena(bruto,op){op=op||{};
   var orig=fr;if(!fr.replace(/[^a-z0-9]/g,''))return {lit:fr};
   if(!new RegExp('\\b('+LIG+')\\b').test(fr)&&!RE_ANA.test(fr)&&!/\b(?:el|la)\s+(?:principal|grande|pequen[oa])\b/.test(fr)){RE_ANA.lastIndex=0;return {lit:fr}}RE_ANA.lastIndex=0;
   /* trozos: comas y dos puntos (no decimales); y «… y pintar» (otro verbo) */
-  var tz=[];fr.replace(/(\d),(\d)/g,'$1#$2').split(/\s*[,:]\s*/).forEach(function(p){var V=API().VERBO_OBRA;var re=new RegExp('\\s+y\\s+(?=(?:luego\\s+|despues\\s+|tambien\\s+|ademas\\s+)?(?:'+(V?V.source.replace(/^\\b\(|\)\\b$/g,''):'pintar|quitar|poner')+')\\b)','g');var partes=p.split(re),jn=[];partes.forEach(function(q){if(jn.length&&new RegExp('\\b(?:'+(V?V.source.replace(/^\\b\(|\)\\b$/g,''):'pintar')+')\\s*$').test(jn[jn.length-1]))jn[jn.length-1]+=' y '+q;else jn.push(q)});jn.forEach(function(q){q=q.replace(/(\d)#(\d)/g,'$1,$2');if(q.replace(/[^a-z0-9]/g,''))tz.push(' '+q.trim()+' ')})});
+  var tz=[],dosP={};var trozosFr=fr.replace(/(\d),(\d)/g,'$1#$2').split(/\s*([,:])\s*/);var seps=[];trozosFr=trozosFr.filter(function(x,i){if(i%2){seps[seps.length-1]=x;return false}seps.push('');return true});trozosFr.forEach(function(p,ip){var dosPuntos=seps[ip]===':';var V=API().VERBO_OBRA;var re=new RegExp('\\s+y\\s+(?=(?:luego\\s+|despues\\s+|tambien\\s+|ademas\\s+)?(?:'+(V?V.source.replace(/^\\b\(|\)\\b$/g,''):'pintar|quitar|poner')+')\\b)','g');var partes=p.split(re),jn=[];partes.forEach(function(q){if(jn.length&&new RegExp('\\b(?:'+(V?V.source.replace(/^\\b\(|\)\\b$/g,''):'pintar')+')\\s*$').test(jn[jn.length-1]))jn[jn.length-1]+=' y '+q;else jn.push(q)});jn.forEach(function(q){q=q.replace(/(\d)#(\d)/g,'$1,$2');var pq=partir(q);pq.forEach(function(q2,iq){if(q2.replace(/[^a-z0-9]/g,'')){tz.push(' '+q2.trim()+' ');if(dosPuntos&&iq===pq.length-1)dosP[tz.length-1]=1}})})});
   if(window.__escDebug)window.__escDebug.push(tz.slice());
   var pegar=null,movida=false,vistos=[],scope=null,acc=[],malo=false,usaRef=false,nRooms={},prevAcc=null,ultMen=null,descr=true,lits=[];
-  tz.forEach(function(c){if(malo)return;
+  var ultTipo='';tz.forEach(function(c,ic){if(malo)return;var ultT0=ultTipo;ultTipo='';
    var tieneL=new RegExp('\\b('+LIG+')\\b').test(c);
    /* lo que no es de pintar y suelos se queda como está */
    if(PES.test(c)||CASA.test(c)||CONT.test(c)){if(tieneL&&PES.test(c)&&!/\b(?:con|entre)\s+(?:la|el)\s+(?:cocina|bano)\b/.test(c))malo=true;acc.push({lit:c,scope:scope});descr=false;prevAcc=null;return}
@@ -91,12 +106,14 @@ function escena(bruto,op){op=op||{};
    if(es.length&&!rLimpio){/* solo estancias */
     var pv=acc[acc.length-1];
     if(pv&&pv.accion&&pv.trasera&&!scope){es.forEach(function(r){if(pv.rooms.indexOf(r)<0)pv.rooms.push(r)});return}
-    scope=(scope&&acc.length===0?scope:[]).concat(es);return}
+    var trasScope=scope&&ultT0==='scope';
+    if(!trasScope&&!/^\s*(?:y\s+)?(?:(?:tambien|ademas|luego|despues|solo)\s+)?(?:en|para)\s/.test(c)&&!dosP[ic]){acc.push({lit:c,scope:null,descrDe:es});return}
+    scope=(trasScope?scope:[]).concat(es);ultTipo='scope';return}
    /* solo una medida: de lo de antes */
    var mMed=c.match(/^\s*(?:y\s+)?(?:que\s+)?(?:son|seran|sera|es|serian?|de|unos|unas|en total|mas o menos)?\s*(?:unos\s+|unas\s+)?(\d+(?:[.,]\d+)?)\s*(m2|metros cuadrados|metros lineales|metros|ml|m)?\s*(?:lineales|cuadrados)?\s*(?:en total|mas o menos|aproximadamente)?\s*$/);
    if(!es.length&&mMed&&scope&&scope.length===1&&scope[0].n===1&&scope[0].m2==null&&!/lineal|ml/.test(mMed[0])&&!acc.some(function(a){return a.total})){scope[0].m2=parseFloat(mMed[1].replace(',','.'));scope[0].mFr=-1;movida=true;return}
    if(!es.length&&mMed){var pa=acc[acc.length-1];if(pa&&pa.accion&&!pa.total){pa.total=mMed[0].trim();if(/lineal|\bml\b/.test(pa.total)||/rodapie|moldura|zocalo/.test(pa.accion))pa.lineal=true;pa.orig=(pa.orig||'')+', '+c.trim();return}acc.push({lit:c,scope:scope});return}
-   if(!TRAB.test(resto)){acc.push({lit:c,scope:scope});return}
+   if(!TRAB.test(resto)){acc.push({lit:c,scope:scope,descrDe:es.length?es:null});return}
    descr=false;
    var rooms=es.length?es.slice():(scope?scope.slice():(prevAcc&&TRAB.test(resto)&&/^\s*(?:y\s+)?(?:luego\s+|despues\s+|tambien\s+)?(?:pint|lij|lucir|empapel|poner|quitar|alis|rasc)/.test(resto)?prevAcc.rooms.slice():null));
    var accTxt=resto.replace(/\b(?:en|de|del)\s*$/,'').replace(/^\s*(?:y|e|tambien|ademas|luego|despues)\s+/,' ').replace(/\b(pint|lij|quit|pon|cambi|lev|arranc|empapel|luc|alis|rasc)(ar|er|ir)(?:lo|la|los|las)\b/g,'$1$2').replace(/\b(pintar|lijar|lucir)\s+todo\b/g,'$1').replace(/\btambien\b/g,' ').replace(/\s+/g,' ').trim();
@@ -122,6 +139,7 @@ function escena(bruto,op){op=op||{};
   if(!h.acc||!h.util){if(h.descr&&h.salas&&reg.length&&frasesDescr(h))return;out.push(h.lit!=null?h.lit:h.orig);return}
   var items=[],porSala={};
   h.acc.forEach(function(a){
+   if(a.lit!=null&&a.descrDe&&a.descrDe.every(function(r){return todasUsadas[r.k]||(r.m2==null&&!r.ms)})&&a.descrDe.some(function(r){return todasUsadas[r.k]}))return;
    if(a.lit!=null){if(a.scope&&a.scope.length===1&&porSala[a.scope[0].k]){porSala[a.scope[0].k].acc.push(a.lit.trim());return}items.push({lit:a.lit.trim()});return}
    if(!a.rooms.length){items.push({lit:a.accion+(a.total&&a.accion.indexOf(a.total)<0?' '+a.total:'')});return}
    var mDe=function(r){return r.m2!=null?r.m2:(r.ms&&r.ms.length?r.ms.reduce(function(a,b){return a+b},0):null)};var sum=a.rooms.reduce(function(s,r){return s+(mDe(r)||0)},0),todasM=a.rooms.every(function(r){return mDe(r)!=null});
