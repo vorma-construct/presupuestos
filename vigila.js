@@ -20,6 +20,10 @@ window.revisar=function(mostrar,calla){var r=revisar0.apply(this,arguments);try{
  var sin=(cur.paqs||[]).filter(function(pk){return !(pk.suelo>0)&&cur.lineas.some(function(l){return l.paqId===pk.id&&l.u==='m2'})});
  sin.forEach(function(pk){var nom={bano:'del baño',cocina:'de la cocina',hab:'de la habitación',piso:'del piso'}[pk.tipo]||'de una estancia';r.E.push('Faltan los metros '+nom+(pk.n>1?' '+pk.n:'')+': sus partidas van con cantidad 1. Ponlos arriba, en «Para afinar el precio».')});
  if(sin.length&&!calla){var box=document.getElementById('revBox');if(box)box.insertAdjacentHTML('afterbegin','<div class="aviso" style="border-color:#b3261e;background:#fbe3e0">'+sin.length+' estancia(s) sin medir. ✕ '+r.E.slice(-sin.length).join('<br>✕ ')+'</div>')}
+ /* una partida suelta por metros que se ha quedado en 1 («pintar el salón» sin decir cuánto mide) */
+ var uno=(cur.lineas||[]).filter(function(l){return !l.imp&&!l.paqId&&/^(m2|ml)$/.test(l.u)&&num(l.q)>0&&num(l.q)<=1&&num(l.p)>0});
+ uno.forEach(function(l){var d=String(l.d||''),k=d.indexOf(' \u2014 '),et=k>-1?d.slice(0,Math.min(k,45)):d.slice(0,45);r.E.push('«'+et.trim()+'…'+(k>-1?' '+d.slice(k).trim():'')+'» va con 1 '+(l.u==='m2'?'m²':'ml')+': pon los metros de verdad.')});
+ if(uno.length&&!calla){var box2=document.getElementById('revBox');if(box2)box2.insertAdjacentHTML('afterbegin','<div class="aviso" style="border-color:#b3261e;background:#fbe3e0">'+uno.length+' partida(s) con 1 metro. ✕ '+r.E.slice(-uno.length).join('<br>✕ ')+'</div>')}
  /* baño o cocina con los metros calculados por los de la casa: se puede mandar, pero que lo sepa */
  (cur.paqs||[]).filter(function(pk){return pk.calculado&&pk.suelo>0&&cur.lineas.some(function(l){return l.paqId===pk.id})}).forEach(function(pk){var nom={bano:'El baño',cocina:'La cocina'}[pk.tipo]||'Una estancia';r.A.push(nom+(pk.n>1?' '+pk.n:'')+' va con unos '+String(pk.suelo).replace('.',',')+' m² calculados por los metros de la casa: si los sabes, ponlos arriba.')});
  /* las notas para el cliente hablan de un proyecto o de un plano y ya no queda ninguna partida de ese proyecto: son de otra obra */

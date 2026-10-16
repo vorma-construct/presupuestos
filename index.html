@@ -330,7 +330,7 @@ var SINON=[
 [/(poner|colocar)\s+(baldosa|baldosas|gres|porcelanico|ceramica)[^,.;]*?(suelo|suelos)/g,'alicatado'],
 [/(baldosa|baldosas|gres|porcelanico|ceramica)\s+(en\s+)?(el\s+)?suelo/g,'alicatado'],
 [/(baldosa|baldosas|azulejo|azulejos|gres|porcelanico)\s+(en\s+)?(las?\s+)?pared(es)?/g,'alicatado'],
-[/picar todo|picarlo todo|picar las paredes|picar pared/g,'quitar alicatado'],
+[/picar todo|picarlo todo/g,'quitar alicatado'],
 [/quitar la ba(n|\u00f1)era|quitar ba(n|\u00f1)era|sacar la ba(n|\u00f1)era|quitar el lavabo|quitar lavabo|quitar el inodoro|quitar el water|quitar los sanitarios|quitar sanitario/g,'quitar sanitarios'],
 [/quitar (todos )?los muebles( de (la )?cocina)?|sacar los muebles de la cocina|quitar la cocina vieja/g,'quitar cocina'],
 [/poner (una )?ducha|hacer la ducha|cambiar la ba(n|\u00f1)era por (un )?plato|plato nuevo/g,'plato de ducha'],
@@ -410,7 +410,7 @@ T.forEach(function(t){var pos=-1,kl=0;for(var i=0;i<t.k.length;i++){var kk=norm(
 /* tolerar articulos por medio: "quitar el suelo" encuentra la clave "quitar suelo" */
 var rx=new RegExp(kk.split(' ').map(function(w){return w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}).join('(?:\\s+(?:el|la|los|las|un|una|de|del))?\\s+'),'g');
 var hits=[],mm;while((mm=rx.exec(txt))!==null){hits.push({i:mm.index,l:mm[0].length});if(rx.lastIndex===mm.index)rx.lastIndex++}
-var hi=0;var from=0,p;while(hi<hits.length){p=hits[hi].i;kl=hits[hi].l;hi++;{from=p+1;if(t.c!=='Demoliciones'&&/(quitar|picar|demol|tirar|sacar|levantar|retirar)\s*(el|la|los|las)?\s*$/.test(txt.slice(Math.max(0,p-14),p)))continue;if(pos<0||p<pos){pos=p}break}}}if(pos<0)return;if(ya[norm(t.d).slice(0,40)])return;var q=1;if(t.id!=='mon'){var U=t.u!=='ud'?'(m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m)':'(ud|uds|unidades|puertas|armarios|radiadores|banos|baños)';var after=txt.slice(pos+kl,pos+kl+60);var m=null;
+var hi=0;var from=0,p;while(hi<hits.length){p=hits[hi].i;kl=hits[hi].l;hi++;{from=p+1;if(t.c!=='Demoliciones'&&/(quitar|picar|demol|tirar|sacar|levantar|retirar)\s*(el|la|los|las)?\s*(?:\d+\s+|dos\s+|tres\s+|cuatro\s+)?$/.test(txt.slice(Math.max(0,p-18),p)))continue;if(pos<0||p<pos){pos=p}break}}}if(pos<0)return;if(ya[norm(t.d).slice(0,40)])return;var q=1;if(t.id!=='mon'){var U=t.u==='ml'?'(ml|metros lineales|metros|m)':t.u!=='ud'?'(m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m)':'(ud|uds|unidades|puertas|armarios|radiadores|banos|baños)';var after=txt.slice(pos+kl,pos+kl+60);var m=null;
 /* en partidas por metro cuadrado manda el "N metros cuadrados" mas cercano, aunque haya un "2 metros de alto" por medio */
 if(t.u==='m2'){var rxm2=/(\d+(?:[.,]\d+)?)\s*(?:m2|m\u00b2|metros cuadrados)\b/g,mm,mej=null,dist=1e9;
 while((mm=rxm2.exec(txt))!==null){var d=Math.abs(mm.index-pos);if(d<dist){dist=d;mej=mm}}

@@ -5,7 +5,9 @@
  window.idiomaDictado=function(){try{return localStorage.getItem(LS)==='ro'?'ro-RO':'es-ES'}catch(e){return 'es-ES'}};
  function fold(s){return String(s||'').toLowerCase().replace(/[ăâ]/g,'a').replace(/î/g,'i').replace(/[șş]/g,'s').replace(/[țţ]/g,'t')}
  var MARCAS=['si','baie','baia','perete','peretele','pereti','faianta','gresie','vopsit','vopsim','usa','usi','metri','metru','scoatem','punem','nou','noua','bucatarie','bucataria','tavan','tavanul','podea','pardoseala','rigips','cada','dus','chiuveta','schimbam','montam','apartament','dormitor','camera','facem','vrem','vrea','trebuie','sa','cu','pe','toata','tot','spargem','zugravim','parchet','geam','priza','prize','tevi','apa','lumina','vechi','veche','mp'];
- window.esRumano=function(t){if(/[ăâîșțşţ]/i.test(t))return true;var w=fold(t).split(/[^a-z]+/),n=0;w.forEach(function(x){if(MARCAS.indexOf(x)>=0)n++});return n>=2};
+ /* «cada», «si», «usa» también son palabras en español: no cuentan; y si suena a español («que», «los», «metros»…), es español */
+ var DUDOSAS={si:1,cada:1,usa:1,mp:1},ES_PAL={que:1,el:1,los:1,las:1,del:1,hay:1,quitar:1,poner:1,metros:1,bano:1,banos:1,cocina:1,reformar:1,pintar:1,suelo:1,paredes:1,puerta:1,puertas:1,casa:1,piso:1,uno:1,una:1,dos:1,tres:1,y:1,de:1,la:1,con:1};
+ window.esRumano=function(t){if(/[ăâîșțşţ]/i.test(t))return true;var w=fold(t).split(/[^a-z]+/),n=0,es=0;w.forEach(function(x){if(MARCAS.indexOf(x)>=0&&!DUDOSAS[x])n++;if(ES_PAL[x])es++});return n>=2&&!(es>=3&&es>=n)};
  var NUM={unu:1,una:1,doi:2,doua:2,trei:3,patru:4,cinci:5,sase:6,sapte:7,opt:8,zece:10,unsprezece:11,doisprezece:12,douasprezece:12,treisprezece:13,paisprezece:14,cincisprezece:15,saisprezece:16,saptesprezece:17,optsprezece:18,nouasprezece:19,douazeci:20,treizeci:30,patruzeci:40,cincizeci:50,saizeci:60,saptezeci:70,optzeci:80,nouazeci:90};
  var UNID='(?:metri|metru|mp|m2|bucati|bucata|buc|usi|ferestre|prize|ore|zile|calorifere)';
  /* [patrón (texto sin diacríticos), español que entiende la app]. Los largos primero. */
