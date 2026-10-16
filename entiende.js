@@ -745,6 +745,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «cuatro puertas más la corredera de la cocina»: cinco en total, una de ellas la corredera de la cocina */
+ t0=t0.replace(/\b(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+puertas\s+(?:mas|y ademas|aparte de|ademas de)\s+(?:la|una)\s+(?:puerta\s+)?(corredera\s+(?:de la cocina|del bano|del aseo))\b/g,function(x,n,c){var v=/^\d+$/.test(n)?+n:valorLetra(n);return v?(v+1)+' puertas, y la puerta '+c:x});
  /* «… con mampara. Fuera de eso, pintar…»: «fuera de eso» es «aparte», no quitar la mampara */
  t0=t0.replace(/\b(?:y\s+)?(?:fuera|aparte|a parte|ademas)\s+de\s+(?:eso|esto|todo eso|lo del bano|lo de la cocina)\b\s*,?/g,'. ');
  /* «dos baños, uno entero de cuatro con ducha y el otro solo cambiar la mampara»: uno entero y en el otro, lo dicho */
@@ -804,6 +806,7 @@ function analizar(bruto){
    else if(VERB.test(cw)&&/^(esta|estan|queda|quedan|toca|tocan|bien|nada|tienen|tiene)$/.test(pw)&&/\b(se queda|se quedan|como esta|como estan|no se toca|no se tocan|esta bien|estan bien|nada|ya (?:la |lo |los |las )?tienen?)\s*$/.test(w.slice(Math.max(ult,i-4),i).join(' ')))b=true;
    else if(/^(flotante|tarima|laminado|vinilo|parquet|porcelanico)$/.test(cw)&&(/^(lineales|ml)$/.test(pw)||/^(metros|m|\d+)$/.test(pw)&&w.slice(Math.max(ult,i-5),i).some(function(x){return /^rodapies?$/.test(x)})))b=true;
    else if(COMP[pw+' '+cw]||cuenta||ART.test(pw))b=false;
+   else if(/^(rodapies?|contenedor|electricidad|calefaccion|fontaneria|falso|gotele|radiadores|limpieza|boletin)$/.test(cw)&&pw.length>3&&!FUNC.test(pw)&&!VERB.test(pw)&&!KEY.test(pw)&&!ROOM.test(pw)&&!NUMW.test(pw)&&!/^(nuev[oa]s?|blanc[oa]s?|lacad[oa]s?|madera|pvc|dm|mdf|todo|toda|completa|completo|entera|entero|falta|hace|necesita|necesitan|lleva|llevan|incluye|incluido|nada|tampoco|quieren|quiere|tiene|tienen|hay|piden|pide)$/.test(pw)&&w.slice(ult,i).some(function(x){return VERB.test(x)||KEY.test(x)}))b=true;
    else if(/^(pintar|lijar|acuchillar|barnizar|nivelar)$/.test(pw)&&/^(electricidad|luz|calefaccion|contenedor|limpieza|boletin|fontaneria|instalacion|tarima|flotante|suelo|falso|rodapie|montacargas|ventanas|puertas)$/.test(cw)&&!(pw==='pintar'&&/^(puertas|ventanas)$/.test(cw)))b=true;
    else if(VERB.test(cw)&&VERB.test(pw))b=true;
    else if(VERB.test(cw)&&!FUNC.test(pw)&&!KEY.test(pw)&&!ROOM.test(pw)&&!FIN.test(pw)&&!NUMW.test(pw)&&!/^\d/.test(pw)&&pw.length>2&&w.slice(ult,i).some(function(x){return VERB.test(x)}))b=true;
