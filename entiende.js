@@ -386,15 +386,26 @@ try{A.obras.forEach(function(o,io){
  var mca=(o.crudo||'').match(/^\s*casa entera de (\d+(?:[.,]\d+)?) metros cuadrados/);
  if(!medO&&mca){var SC=num(mca[1]);nuevas.forEach(function(l){if(num(l.q)!==1)return;var id=idDe(l),f=FAM(id,l.d),d=norm(l.d);if(l.u==='ml'&&/rodapi|perimetr|zocalo/.test(d))l.q=n2(SC*0.9);else if(l.u==='m2'&&(f==='suelo'||f==='techo'||/suelo|solado|nivel|recrecido|tarima|parquet|flotante|techo|horizontales/.test(d)&&!/verticales/.test(d)))l.q=SC;else if(l.u==='m2'&&(f==='pared'||/paredes|verticales|gotele|yeso/.test(d)))l.q=n2(SC*2.7)})}
  if(!medO&&o.suelo&&!mca){var mo=o.texto.match(/\bde\s+(\d+(?:[.,]\d+)?)\s*(?:por|x)\s*(\d+(?:[.,]\d+)?)\s*metros\b/)||o.texto.match(/\bde\s+(\d+(?:[.,]\d+)?)\s*metros cuadrados\b/);if(mo){var me=medEn(mo[1],mo[2]);if(me.suelo>0&&me.suelo<200)medO={suelo:me.suelo,perim:me.perim,alto:A.alto||0}}}
- if(medO){var S=medO.suelo,P=medO.perim>0?medO.perim:n2(4*Math.sqrt(S)),AL=medO.alto>0?medO.alto:ALTO,soloSuelo=/\bsuelo\b/.test(o.texto)&&!/\bpared/.test(o.texto),lados=[];if(o.suelo){var ml0=o.texto.match(/(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*(?:x|por)\s*(\d+(?:[.,]\d+)?)/);if(ml0)lados=[num(ml0[1]),num(ml0[2])]}nuevas.forEach(function(l){if(num(l.q)!==1&&lados.indexOf(num(l.q))<0&&!(l.u==='ml'&&o.suelo&&num(l.q)===S)&&!(l.u==='m2'&&o.suelo&&num(l.q)===S&&/^(qpa|ppa|lija|pic|yes|ali|alc|pip|pip3)$/.test(idDe(l))&&!/\b(?:en el )?suelo\b/.test(o.texto)))return;var id=idDe(l),f=soloSuelo&&(id==='alc'||id==='alsm')?'suelo':FAM(id,l.d),d=norm(l.d);
+ if(medO){var S=medO.suelo,P=medO.perim>0?medO.perim:n2(4*Math.sqrt(S)),AL=medO.alto>0?medO.alto:ALTO,soloSuelo=/\bsuelo\b/.test(o.texto)&&!/\bpared/.test(o.texto),lados=[];if(o.suelo){var ml0=o.texto.match(/(\d+(?:[.,]\d+)?)\s*(?:m|metros)?\s*(?:x|por)\s*(\d+(?:[.,]\d+)?)/);if(ml0)lados=[num(ml0[1]),num(ml0[2])]}nuevas.forEach(function(l){if(l.u==='m2'&&!pqG&&o.suelo&&/^(pip|pip3|lija|yes|luc|qpa|ppa|pic|ali)$/.test(idDe(l))&&!/\ben el suelo\b/.test(l.d)&&metrosDePared(S,o)){l.q=S;return}if(num(l.q)!==1&&lados.indexOf(num(l.q))<0&&!(l.u==='ml'&&o.suelo&&num(l.q)===S)&&!(l.u==='m2'&&o.suelo&&num(l.q)===S&&/^(qpa|ppa|lija|pic|yes|ali|alc|pip|pip3)$/.test(idDe(l))&&!/\b(?:en el )?suelo\b/.test(o.texto)))return;var id=idDe(l),f=soloSuelo&&(id==='alc'||id==='alsm')?'suelo':FAM(id,l.d),d=norm(l.d);
   if(l.u==='ml'&&/rodapi|perimetr|zocalo|moldura|cornisa/.test(d))l.q=n2(Math.max(1,P-0.8));
   else if(l.u==='m2'&&(f==='suelo'||f==='techo'||/suelo|solado|pavimento|tarima|parquet|flotante|laminado|techo|horizontales/.test(d)&&!/verticales/.test(d)))l.q=S;
-  else if(l.u==='m2'&&(f==='pared'||/paredes|verticales|alicatado|azulejo|yeso|gotele|papel/.test(d)))l.q=Math.max(1,n2(P*AL-1.6-(medO.sinVent?0:1.2)))})}
+  else if(l.u==='m2'&&(f==='pared'||/paredes|verticales|alicatado|azulejo|yeso|gotele|papel/.test(d))){
+   /* «enlucir las paredes del salón… unos 40 metros cuadrados», «decapar en la habitación, 30 metros»: si los metros no van pegados a la estancia
+      («el salón de 18»), o son demasiados para el suelo de esa estancia, son los de las paredes */
+   if(!pqG&&metrosDePared(S,o))l.q=S;else l.q=Math.max(1,n2(P*AL-1.6-(medO.sinVent?0:1.2)))}})}
  var mlExp=/\d+(?:[.,]\d+)?\s*(?:ml|metros lineales)\b/.test(o.texto);nuevas.forEach(function(l){if(mlExp&&l.u==='ml')l.__ml=1});
  var prevO=A.obras[io-1];var sueloSolo=/\b(suelo|solado|pavimento)\b/.test(o.texto)&&!/\bpared/.test(o.texto)||!/\bpared/.test(o.texto)&&/\b(azulej\w*|baldosa\w*|gres|porcelanico)\b/.test(o.texto)&&prevO&&prevO.i>=o.i-1&&/\b(suelo|solado|baldosas?)\b/.test(prevO.texto)&&!/\bpared/.test(prevO.texto);nuevas.forEach(function(l){l.__f=o;l.__io=io;if(sueloSolo&&/^(alc|alsm)$/.test(idDe(l)))l.__fam='suelo';baseNuevas.push(l)})})}
 finally{window.leer=leer0;window.renderLineas=rl0;window.__sinPaquetesViejos=false}
 /* 3) lo que el motor de siempre saca y ya va en una estancia entera: fuera (pero lo que es de otra estancia, o algo más, se queda) */
 var todasPaq=hechos.concat(paqs().filter(function(h){return pisos.some(function(p){return h.padre===p.id})&&hechos.indexOf(h)<0}));
+function metrosDePared(S,o){var B=' '+norm(String(A.bruto||''))+' ',tx=String(o.orig||o.texto),nS=String(S).replace('.','[.,]');
+ if(!/\b(paredes|pared|yeso|enluc\w*|lucir|lucid\w*|gotele|papel|lij\w*|decap\w*|picar|picado|alicat\w*|azulej\w*)\b/.test(tx+' '+B))return false;
+ if(/\b(suelo|tarima|flotante|parquet|baldosa|solado|techos?)\b/.test(tx))return false;
+ var reN=new RegExp('\\b'+nS+'\\s*(?:m2|metros cuadrados|metros|m)?\\b');if(!reN.test(cifrasMedida(B)))return false;
+ var pegado=new RegExp('\\b(?:'+EST_PAL+')\\b(?:\\s+(?:principal|grande|pequen[oa]|de matrimonio|de invitados))?\\s*,?\\s+(?:de|que tiene|tiene|mide|que mide|es de|que es de)\\s+(?:unos\\s+)?'+nS+'\\b').test(cifrasMedida(B));if(pegado)return false;
+ var r0=(tx.match(new RegExp('\\b('+EST_PAL+')\\b'))||[])[1]||'',tope=/^(bano|aseo)/.test(r0)?10:/^cocina/.test(r0)?18:/^pasillo|recibidor|hall/.test(r0)?12:/^(salon|comedor)/.test(r0)?35:22;
+ var junto=new RegExp('\\b(?:'+EST_PAL+')\\b\\s*,?\\s+(?:unos\\s+)?'+nS+'\\b').test(cifrasMedida(B));if(junto&&S<=tope)return false;
+ return true}
 var ctxDe=function(o){if(o.g)return o.g.paqs||[];if(o.solo)return [];if(!o.r&&A.casaM&&!todasPaq.some(function(h){return h.tipo==='piso'})&&!new RegExp('\\b('+EST_PAL+')\\b').test(o.orig||o.texto))return [];if(o.r&&o.tipo!=='otra'){var adjO=((o.orig||o.texto).match(new RegExp('\\b(?:'+EST_PAL+')\\s+(pequen\\w*|grande|de arriba|de abajo|segund\\w*|principal|del? (?:los )?nin\\w*|de invitados|de cortesia|de matrimonio|de la abuela|de servicio)\\b'))||[])[1];var cands=todasPaq.filter(function(h){return h.tipo===o.tipo&&(o.tipo!=='hab'||!h.nom||raizNom(h.nom)===o.r)});if(adjO&&o.tipo!=='hab'){var adjN=norm(adjO).slice(0,5);var conA=cands.filter(function(h){return norm(String(h.nom||'')).indexOf(adjN)>-1});return conA}return cands}if(o.r)return [];
  if(/\d+(?:[.,]\d+)?\s*(?:m2|m²|metros|mts|m\b|ml)/.test(o.texto)&&!/\b(casa|piso|vivienda|toda|todo el)\b/.test(o.texto))return [];
  /* «falso techo en toda la casa»: es de la casa, no del baño */
@@ -442,7 +453,7 @@ finales=finales.filter(function(l){return !l.__fuera});
   if(!pipsP.length&&has('pip')&&!has('pit')&&A.obras.some(pintaSolo))pipsP=[finales.find(function(l){return idDe(l)==='pip'})];
   var vistosT={};pipsP.forEach(function(lp){var tg=tgL(lp);if(vistosT[tg])return;vistosT[tg]=1;if(finales.some(function(l){return /^pit3?$/.test(idDe(l))&&(tgL(l)===tg||!tg||!tgL(l))})||cur.lineas.some(function(l){return l.paqId&&/^pit3?$/.test(idDe(l))&&tg&&tgL(l).indexOf(tg)===0}))return;
    var sueT=finales.find(function(l){return /^(flo|sue|niv)$/.test(idDe(l))&&tgL(l)===tg&&num(l.q)>1});var o=A.obras[lp.__io];var mo=o&&String(o.texto).match(/\b(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros)\b(?!\s*(?:de\s+)?(?:alto|altura|largo|ancho|lineales|de pared|de paredes))/);
-   var q=sueT?num(sueT.q):(mo?num(mo[1]):(pipsP.length===1?supH:0));mkT('pit',q||1,tg)})}
+   var q=sueT?num(sueT.q):(mo?num(mo[1]):(pipsP.length===1?supH:0));if(!sueT&&q>0&&o&&metrosDePared(q,o))q=0;mkT('pit',q||1,tg)})}
  /* quitar el suelo y poner tarima: su rodapié (el de cada estancia, si no se ha dicho uno para todo) */
  if(has('sue')&&!NGt.rodapie&&!/\brodapie\w*\b[^,.;]{0,25}\b(no|se queda|se deja|vale|esta bien)\b|\bsin\s+(?:tocar\s+)?(?:el\s+)?rodapie/.test(A.todo)&&(has('flo')||has('ron'))){var lron=finales.find(function(l){return idDe(l)==='ron'});
   if(lron){if(!has('rod')&&T('rod'))mkT('rod',num(lron.q),tgL(lron))}
