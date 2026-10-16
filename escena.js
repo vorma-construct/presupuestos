@@ -74,7 +74,7 @@ function escena(bruto,op){op=op||{};
  /* frases: por punto o punto y coma (no los decimales) */
  var frases=[],buf='';t.replace(/(\d)[.,](\d)/g,'$1#$2').split(/([.;])/).forEach(function(x,i){if(i%2){frases.push(buf);buf='';return}buf+=x});if(buf.trim())frases.push(buf);
  frases=frases.map(function(f){return f.replace(/(\d)#(\d)/g,'$1,$2').replace(/\s+/g,' ')});
- var reg=[],excl={},ultSet=null,ultAcc=null,cambia=false,info=[],todasUsadas={};
+ var ultWs=null; var reg=[],excl={},ultSet=null,ultAcc=null,cambia=false,info=[],todasUsadas={};
  var clave=function(e){return sing(e.base)+(e.n>1?'#'+e.n:(e.n===0?'#pl':''))+(e.otro?'#otro':'')+(e.ape?'|'+apeN(e.ape):'')};
  var frAct=0;var alta=function(e){var k=clave(e),x=reg.find(function(r){return r.k===k});
   /* «las habitaciones» después de «dos habitaciones de 12 y de 10»: son esas */
@@ -174,8 +174,11 @@ function escena(bruto,op){op=op||{};
    var k=vecinoIdx(j,1);while(k>-1&&(I2[k].t==='G'&&I2[k].usado==='tras'||I2[k].t==='M'))k=vecinoIdx(k,1);var nx=k>-1?I2[k]:null;
    if(nx&&nx.t==='O'&&/^\s*(?:y\s+)?(quit|levant|arranc|sac|pint|lij|acuchill)(ar)(?:lo|la|los|las)\b/.test(nx.x)&&/\b(?:gotele|papel|moqueta|parquet|suelo|tarima)\b/.test(it.x)){var mv=nx.x.match(/^\s*(?:y\s+)?(quit|levant|arranc|sac|pint|lij|acuchill)(ar)(?:lo|la|los|las)\b/);it.x=mv[1]+'ar '+it.x.replace(/^\s*(?:mira|y)\s+/,'').trim();nx.x=nx.x.slice(mv[0].length).replace(/^\s*todo\b/,'').trim();if(!nx.x||/^(?:a ver|bueno|pues|vale)$/.test(nx.x)){nx.x='';nx.vacio=true}return}
    if(nx&&nx.t==='W'&&/^\s*(?:y\s+)?(?:acuchill|barniz|lij|pul|abrillant|tratar|arregl|reparar|restaur|quitar|levantar|arrancar|sacar)\w*/.test(nx.x)&&!/\b(?:suelo|parquet|tarima)\b/.test(nx.x)){nx.x=nx.x.trim()+' '+it.x.trim().replace(/^y\s+/,'');if(!nx.rooms&&it.rooms)nx.rooms=it.rooms;if(it.total&&!nx.total){nx.total=it.total;nx.totV=it.totV;nx.lin=it.lin}it.t='O';it.x='';it.vacio=true}});
+  /* «Dormitorio principal: quitar papel, lijar y pintar. Dormitorio pequeño: lo mismo, diez metros.»: lo de la frase de antes, en este */
+  if(ultWs&&ultWs.length&&!I2.some(function(z){return z.t==='W'})){I2.forEach(function(it,j){if(it.t!=='O'||!/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual|tambien lo mismo|lo mismo tambien)\s*$/.test(it.x))return;var k=vecinoIdx(j,-1),g=k>-1?I2[k]:null;if(!g||g.t!=='G'||g.usado||!g.rooms.length)return;
+   it.t='W';it.copia=ultWs.slice();it.rooms=g.rooms.slice();it.delante=true;g.usado='delante';usaRef=true;var km=vecinoIdx(j,1),mm=km>-1?I2[km]:null;if(mm&&mm.t==='M'&&!mm.lin&&g.rooms.length===1&&g.rooms[0].n===1&&g.rooms[0].m2==null){g.rooms[0].m2=mm.v;g.rooms[0].mFr=-1;mm.usado=true}})}
   /* las medidas sueltas: del trabajo de antes */
-  I2.forEach(function(it,j){if(it.t!=='M')return;var k=vecinoIdx(j,-1),pv=k>-1?I2[k]:null;
+  I2.forEach(function(it,j){if(it.t!=='M'||it.usado)return;var k=vecinoIdx(j,-1),pv=k>-1?I2[k]:null;
    if(pv&&pv.t==='G'&&pv.usado==='delante'){/* «en el salón, 25 metros, quitar…» */var r0=pv.rooms;if(r0.length===1&&r0[0].n===1&&r0[0].m2==null&&!it.lin){r0[0].m2=it.v;r0[0].mFr=-1;it.usado=true;return}}
    if(pv&&pv.t==='G'&&pv.usado==='tras'){var kk=vecinoIdx(k,-1);if(kk>-1&&I2[kk].t==='W')pv=I2[kk]}
    var alFinal=I2.slice(j+1).every(function(z){return z.t==='sep'||z.t==='O'&&z.vacio});
@@ -187,11 +190,12 @@ function escena(bruto,op){op=op||{};
    for(var q=j-1;q>=0;q--){var p0=I2[q];if(p0.t!=='W'||!p0.total||!mismasSalas(p0.rooms,it.rooms))continue;var px=' '+limpiar(p0.x)+' ';var raiz=function(w){return w.replace(/(ar|er|ir|ado|ados|ada|adas)$/,'')};
     if(vs.every(function(w){return px.indexOf(' '+w+' ')>-1||/^barniz/.test(w)||new RegExp('\\b'+raiz(w)).test(px)})){it.t='O';it.x='';it.vacio=true}break}});
   /* «lo mismo» */
-  I2.forEach(function(it){if(it.t==='W'&&/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual)\s*$/.test(it.x)&&ultAcc)it.copia=ultAcc;if(it.t==='W'&&it.rooms&&it.rooms.length)ultAcc=[it.x]});
+  I2.forEach(function(it){if(it.t==='W'&&!it.copia&&/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual)\s*$/.test(it.x)&&ultAcc)it.copia=ultAcc;if(it.t==='W'&&it.rooms&&it.rooms.length)ultAcc=[it.x]});
   /* si en un grupo «… y en el salón no» se dice que no: fuera de ese trabajo */
   I2.forEach(function(it){if(it.t==='W'&&it.rooms&&it.negs&&it.negs.length)it.rooms=it.rooms.filter(function(r){return it.negs.indexOf(r)<0})});
   if(window.__escDebug)window.__escDebug.push(I2.map(function(it){return it.t+':'+(it.x||(it.rs?it.rs.map(function(p){return p.x+(p.neg?'[no]':'')}).join('|'):''))+(it.rooms?' →'+it.rooms.map(function(r){return r.k}).join('+'):'')+(it.total?' T='+it.total:'')}));
   var conSala=I2.filter(function(it){return it.t==='W'&&it.rooms&&it.rooms.length});
+  if(conSala.length&&!conSala.some(function(it){return it.copia}))ultWs=conSala.map(function(it){return it.x});
   if(!conSala.length)return {lit:orig,descr:I2.every(function(it){return it.t!=='W'}),salas:vistos};
   conSala.forEach(function(it){it.rooms.forEach(function(r){todasUsadas[r.k]=1})});
   var nS={};conSala.forEach(function(it){it.rooms.forEach(function(r){nS[r.k]=1})});
