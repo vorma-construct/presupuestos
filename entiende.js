@@ -260,6 +260,8 @@ function ajustarSueltasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)ret
  /* «el salón de 20 metros… quitar el gotelé del salón y pintar»: lo que se hace en la misma pared, los mismos metros que la pintura */
  var tgS=function(l){var d=String(l.d||''),k=d.indexOf(' \u2014 ');return k>-1?d.slice(k+3).trim():''};
  cur.lineas.forEach(function(l){if(l.paqId)return;var id=idL2(l);if(!/^(lija|qpa|pic|ppa)$/.test(id)||l.u!=='m2')return;var tg=tgS(l);if(!tg)return;var pp=cur.lineas.find(function(x){return x.paqId&&/^(pip|pip3)$/.test(idL2(x))&&tgS(x)===tg});var dicho=new RegExp('\\b'+String(num(l.q)).replace('.',',')+'\\s*(?:m2|metros)').test(String((window.__A&&__A.todo)||''));if(pp&&num(pp.q)>1&&!dicho)l.q=pp.q});
+ /* «reforma integral… el suelo se acuchilla»: lo de toda la casa suelto, con los metros del suelo del piso (sin baños ni cocina) */
+ var pP=paqs().find(function(p){return p.tipo==='piso'}),cM0=window.__A&&__A.casaM;if(pP&&cM0&&cM0.suelo>0){var sP0=n2(paqs().filter(function(p){return p.padre===pP.id&&/^(bano|cocina)$/.test(p.tipo)}).reduce(function(a,p){return a+num(p.suelo||0)},0));if(sP0>0)cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;if(/^(acu|niv|tar)$/.test(idL2(l))&&Math.abs(num(l.q)-cM0.suelo)<0.5&&!new RegExp('\\b'+String(num(l.q))+'\\s*(?:m2|metros)[^,.;]{0,20}\\b(?:de\\s+)?(?:suelo|parquet|tarima|acuchill)').test(String(__A.todo||'')))l.q=n2(Math.max(1,cM0.suelo-sP0))})}
  /* «piso de 70 metros… baño entero… pintar todo, flotante»: lo de toda la casa, sin el baño ni la cocina (ya van con lo suyo) */
  var cM=window.__A&&__A.casaM;if(cM&&cM.suelo>0&&!paqs().some(function(p){return p.tipo==='piso'})){var hz=paqs().filter(function(p){return /^(bano|cocina)$/.test(p.tipo)&&p.suelo>0});if(hz.length){var sS=hz.reduce(function(a,p){return a+num(p.suelo)},0),sP=cur.lineas.filter(function(x){return x.paqId&&hz.some(function(p){return p.id===x.paqId})&&/^(alc|ali)$/.test(idL2(x))&&/paredes|^(?!.*suelo)/.test(String(x.d))&&idL2(x)==='ali'}).reduce(function(a,x){return a+num(x.q)},0);
   cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;var id=idL2(l);if(/^(pit|pit3|flo|sue|niv|tar|acu)$/.test(id)&&Math.abs(num(l.q)-cM.suelo)<0.5)l.q=n2(Math.max(1,cM.suelo-sS));else if(/^(pip|pip3|lija|pic|qpa)$/.test(id)&&sP>0&&num(l.q)>sP*1.5&&!new RegExp('\\b'+String(num(l.q)).replace('.',',')+'\\s*(?:m2|metros)').test(String(__A.todo||'')))l.q=n2(num(l.q)-sP)})}}
@@ -851,6 +853,8 @@ function analizar(bruto){
  /* «puertas … que son siete»: también */
  t0=t0.replace(/\b(puertas?|radiador(?:es)?|premarcos?|contenedor(?:es)?|armarios?|ventanas?)((?:\s+(?:nuev[oa]s|de paso|interiores|blancas|lacadas))?)\s+(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b(?!\s*(?:metros|m2|m\b))/g,function(m,a,ad,n){return a+ad+' '+({dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12})[n]});
  t0=t0.replace(/\b(que son|son)\s+(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b(?!\s*(?:metros|m2|m\b))/g,function(m,a,n){return a+' '+({dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12})[n]});
+ /* «cambiar los radiadores, que son cuatro»: cuatro radiadores */
+ t0=t0.replace(/\b(?:(?:los|las)\s+)?(puertas|radiadores|ventanas|armarios|persianas)\s*,?\s*(?:que\s+)?son\s+(\d+)\b(?!\s*(?:[.,]\d|metros|m2|m\b))/g,'$2 $1');
  /* «quitando el parquet», «tirando el tabique»: como «quitar», «tirar» */
  t0=t0.replace(/\b(quit|tir|cambi|pic|pint|levant|arranc|sac|aliat|alicat|lij|nivel|empapel|acuchill|barniz|derrib|desmont|instal|coloc|mont|reform|renov|arregl|cerr|tap)ando\b/g,'$1ar').replace(/\bponiendo\b/g,'poner').replace(/\bhaciendo\b/g,'hacer').replace(/\babriendo\b/g,'abrir').replace(/\bmetiendo\b/g,'meter');
  /* «en el grande», «la de matrimonio», «el pequeño»: la estancia de antes */
@@ -1305,7 +1309,7 @@ function respuestas(pk,t){var s=pk.r,h=pk.hechas,si=function(k,v){s[k]=v;h[k]=1}
   if(/\bpuertas?\b/.test(t))si('puerta',true);if(/\barmarios?\b/.test(t))si('armario',true)}
  if(pk.tipo==='piso'){
   if(/\bcalefaccion\b/.test(t)&&!/\bsin calefaccion\b|\bcalefaccion no\b/.test(t)&&!N.calef)si('calef',true);
-  if(/\bsuelo\b[^,.;]{0,30}\b(no se toca|no lo toca\w*|se queda|se deja|como esta|solo (?:lo )?acuchill\w*)\b|\b(no se toque|no tocar|sin tocar|dejar)\b[^,.;]{0,15}\bsuelo\b|\bsolo (?:lo )?acuchill\w*/.test(t))si('suelo','no');
+  if(/\bsuelo\b[^,.;]{0,30}\b(no se toca|no lo toca\w*|se queda|se deja|como esta|solo (?:lo )?acuchill\w*|se acuchilla\w*|acuchill\w*|no se cambia)\b|\bsuelo\b[^.;]{0,40}\bse acuchilla\b[^.;]{0,15}\bno se cambia\b|\bacuchill\w*\s+(?:y\s+barniz\w*\s+)?(?:el\s+)?(?:suelo|parquet|tarima)\b|\b(no se toque|no tocar|sin tocar|dejar)\b[^,.;]{0,15}\bsuelo\b|\bsolo (?:lo )?acuchill\w*/.test(t))si('suelo','no');
   if(/\bcocina\b[^,.;]{0,25}\b(no se toca|como esta|se queda|la deja\w*|dejarla|no la toca\w*)\b|\b(sin|menos|excepto)\s+(?:la\s+)?cocina\b|\bla cocina no\b(?!\s+\w)/.test(t))si('cocina',false);
   if(/\b(?:el\s+)?bano\b[^,.;]{0,25}\b(no se toca|como esta|se queda|ya esta hecho|lo deja\w*)\b|\b(sin|menos|excepto)\s+(?:el\s+)?bano\b/.test(t))si('banos',0);
   if(/\bsolo pintar\b|\bsin gotele\b|\bno (?:tiene|hay) gotele\b/.test(t))si('paredes','pintar');

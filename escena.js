@@ -125,7 +125,7 @@ function escena(bruto,op){op=op||{};
    if(PES.test(tx)||CASA.test(tx)||CONT.test(tx)){
     /* «tarima flotante y pintar y las tres puertas de arriba»: lo de las puertas aparte */
     var mC=tx.match(new RegExp('^(.*?\\b(?:'+TRABW+')\\b.*?)\\s+((?:y\\s+)?(?:(?:las|los|el|la)\\s+)?(?:\\d+\\s+|dos\\s+|tres\\s+|cuatro\\s+|cinco\\s+|seis\\s+)?(?:puertas?|radiador\\w*|ventanas?|armarios?|persianas?|enchufes?)\\b.*)$'));
-    if(mC&&!PES.test(mC[1])&&!CASA.test(mC[1])&&!CONT.test(mC[1])){partirW(mC[1]).forEach(function(x){I2.push({t:'W',x:x})});I2.push({t:'X',x:mC[2].trim()});return}
+    if(mC&&TRAB.test(' '+mC[1]+' ')&&!PES.test(mC[1])&&!CASA.test(mC[1])&&!CONT.test(mC[1])){partirW(mC[1]).forEach(function(x){I2.push({t:'W',x:x})});I2.push({t:'X',x:mC[2].trim()});return}
     I2.push({t:'X',x:tx.trim()});return}
    if(TRAB.test(tx)){partirW(tx).forEach(function(x){I2.push({t:TRAB.test(' '+x+' ')?'W':'O',x:x})});return}
    I2.push({t:'O',x:tx.trim(),vacio:it.w.every(function(w){return CONN.test(w)})})});
