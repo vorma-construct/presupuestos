@@ -745,6 +745,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «menos los suelos que son de madera buena y se acuchillan, con cocina y baño»: el suelo se acuchilla, y lo demás aparte */
+ t0=t0.replace(/\bque\s+(?:son|es)\s+de\s+(?:madera|parquet|tarima)(?:\s+(?:buena|maciza|bonita|natural|noble))?\s+y\s+(se\s+acuchill\w+)\b/g,'que $1, ');
  /* «montaje de los dos muebles de baño» con dos baños: el mueble en los dos */
  t0=t0.replace(/\b(montaje|montar|colocar|poner)\s+(?:de\s+)?(?:los|las)\s+(?:dos|2|tres|3|ambos)\s+muebles\s+(?:de|del)\s+bano\b/g,'$1 del mueble de bano en los dos ');
  /* «cuatro puertas más la corredera de la cocina»: cinco en total, una de ellas la corredera de la cocina */
@@ -804,6 +806,7 @@ function analizar(bruto){
    else if(/^(el|la|los|las)$/.test(cw)&&ROOM.test(w[i+1]||'')&&(FIN.test(pw)||KEY.test(pw))&&!/^(cocina|bano|aseo|salon|pasillo|comedor|todo|casa|piso|vivienda)$/.test(pw))b=true;
    else if(/^(el|la|los|las)$/.test(cw)&&KEY.test(w[i+1]||'')&&(/^\d/.test(pw)||NUMW.test(pw)||/^(metros|m2|medio|cuadrados)$/.test(pw)))b=true;
    else if(/^(el|la)$/.test(cw)&&/^(principal|grande|pequen[oa]|otro|otra|de)$/.test(w[i+1]||'')&&(w[i+1]!=='de'||/^(invitados|cortesia|arriba|abajo|matrimonio)$/.test(w[i+2]||''))&&(FIN.test(pw)||KEY.test(pw)||/^(sanitarios|inodoro|lavabo|bide|grifo|griferia)$/.test(pw)))b=true;
+   else if(/^(el|la|los|las)$/.test(cw)&&(KEY.test(w[i+1]||'')||ROOM.test(w[i+1]||''))&&/^(puertas|radiadores|ventanas|armarios|enchufes)$/.test(pw)&&(/^\d+$/.test(w[i-2]||'')||NUMW.test(w[i-2]||'')))b=true;
    else if(VERB.test(cw)&&/^(puertas|radiadores|ventanas|armarios|enchufes)$/.test(pw)&&(/^\d+$/.test(w[i-2]||'')||NUMW.test(w[i-2]||''))&&!/^(cambiar|quitar|poner|sustituir|colocar|montar)$/.test(cw))b=true;
    else if(VERB.test(cw)&&/^(esta|estan|queda|quedan|toca|tocan|bien|nada|tienen|tiene)$/.test(pw)&&/\b(se queda|se quedan|como esta|como estan|no se toca|no se tocan|esta bien|estan bien|nada|ya (?:la |lo |los |las )?tienen?)\s*$/.test(w.slice(Math.max(ult,i-4),i).join(' ')))b=true;
    else if(/^(flotante|tarima|laminado|vinilo|parquet|porcelanico)$/.test(cw)&&(/^(lineales|ml)$/.test(pw)||/^(metros|m|\d+)$/.test(pw)&&w.slice(Math.max(ult,i-5),i).some(function(x){return /^rodapies?$/.test(x)})))b=true;
