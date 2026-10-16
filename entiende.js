@@ -85,6 +85,8 @@ function valorLetra(fr){var t=norm(fr).split(/\s+/).filter(Boolean),v=0,ok=false
 function cifrasMedida(s){var W='(?:'+Object.keys(NUMLET).sort(function(a,b){return b.length-a.length}).join('|')+')';
  var F='\\b('+W+'(?:\\s+(?:y\\s+)?'+W+')*(?:\\s+y\\s+medio)?)';
  var sinT=function(x){return x.normalize('NFD').replace(/[\u0300-\u036f]/g,'')};var t=sinT(String(s||''));
+ /* «tres metros con ochenta»: 3,80 */
+ t=t.replace(new RegExp('(?<!\\by\\s)\\b(\\d+|'+W+')\\s+metros?\\s+con\\s+'+F+'\\b(?!\\s*(?:metros|m2|de\\s+(?:alto|largo|ancho)))','gi'),function(m,a,b){var va=/^\d/.test(a)?+a:valorLetra(a),vb=valorLetra(b);if(va==null||vb==null||vb<10||vb>99||va>40)return m;return String(va)+','+vb+' metros'});
  /* «noventa y pico metros, noventa y cuatro creo»: vale el número exacto */
  t=t.replace(new RegExp(F+'\\s+y\\s+(?:pico|tantos|algo|pocos)\\b(\\s+(?:metros?|m2))?\\s*,?\\s+(?:(?:eh|creo|bueno|pues|o sea|exactamente|son|si|vale|mmm|espera)\\s*,?\\s+)*'+F,'gi'),function(m,a,u,b,off,str){if(valorLetra(b)==null)return m;var tras=String(str).slice(off+m.length),conU=/^\s*(?:metros?|m2|m\b)/.test(tras);return b+(conU?'':(u||(/\b(?:piso|casa|vivienda|chalet|bajo|atico|duplex)\b[^.,;]{0,40}$/.test(String(str).slice(0,off))?' metros':'')))});
  /* «dos metros sesenta»: 2,60 metros */
@@ -706,7 +708,7 @@ function analizar(bruto){
  if(!/(?:[,.;:](?!\d)|(?<!\d)[,.;:])/.test(String(bruto)))(function(){
   var ROOM=/^(vestidor|banos?|aseos?|cocinas?|habitacion(es)?|dormitorios?|salon(es)?|comedor|despachos?|pasillos?|recibidor|hall|terrazas?|trasteros?)$/,
    VERB=/^(quitar|poner|tirar|picar|pintar|cambiar|alicatar|lijar|enlucir|lucir|derribar|montar|instalar|colocar|reformar|renovar|abrir|levantar|arrancar|sacar|nivelar|empapelar|acuchillar|barnizar|sustituir|demoler|hacer)$/,
-   KEY=/^(puertas|contenedor|rodapie|rodapies|electricidad|luz|calefaccion|radiadores|gotele|mampara|plato|mueble|muebles|sanitarios|ventanas|limpieza|montacargas|boletin|falso|tarima|suelo|suelos|papel|instalacion|fontaneria|pintura|reforma|premarcos?|armarios?|encimera|tabique|pladur|alicatado|azulejos?|parquet|moqueta)$/,
+   KEY=/^(puertas|puerta|contenedor|rodapie|rodapies|electricidad|luz|calefaccion|radiadores|gotele|mampara|plato|mueble|muebles|sanitarios|ventanas|limpieza|montacargas|boletin|falso|tarima|suelo|suelos|papel|instalacion|fontaneria|pintura|reforma|premarcos?|armarios?|encimera|tabique|pladur|alicatado|azulejos?|parquet|moqueta)$/,
    FIN=/^(enter[oa]s?|complet[oa]s?|nuev[oa]s?|integral|metros|m2|ml|lineales|cuadrados|\d+(?:[.,]\d+)?|grande|pequen[oa]|principal|blanc[oa]s?|ascensor|todo|techos?|paredes|mampara|ducha|banera|boletin|entrada|flotante|suelo|gotele|puertas|radiadores|electricidad|calefaccion|contenedor|rodapie|muebles|nosotros|cliente|medio|\d+x\d+|blindada|madera|laminado|porcelanico|vinilo|lucido|pintado|pladur|cocina|bano|salon|pasillo|habitaciones|dormitorios|comedor|banos|nada|final|tarima|parquet|premarcos|armarios|casa|piso|vivienda|azulejos?|suelos|espejo|plato|tabique|ventana|puerta)$/,
    FUNC=/^(y|e|o|u|ni|que|de|del|a|al|para|por|en|con|sin|el|la|los|las|un|una|unos|unas|lo|le|les|se|me|nos|no|hay|quiere|quieren|queremos|quiero|va|van|vamos|voy|tambien|ademas|luego|despues|antes|solo|pero|mas|muy|este|esta|ese|esa|esos|esas|su|sus|mi|mis|tu|habria|tiene|tienen|tener|hace|hacen|son|es|estan|como|cual|donde|cuando|si|ya|puede|pueden|poder|dejar|deja|dejan|ir|pon|ponle|seria|apunta|mira|bueno|vale|pues|primero|segundo|igual|cada|sobre|entre|hasta|desde|toca|tocar|eh|mmm|quieres|necesita|necesitan|habra|tendra|gustaria|prefiere|prefieren|aparte|fuera|mejor|otra|otro)$/,
    NUMW=/^(uno|una|un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|trece|catorce|quince|dieciseis|veinte|treinta|cuarenta|cincuenta|sesenta|setenta|ochenta|noventa|cien)$/,
@@ -714,7 +716,9 @@ function analizar(bruto){
    ART=/^(un|una|uno|unos|unas|el|la|los|las|de|del|en|y|que|con|sin|para|por|a|al)$/;
   var w=t0.trim().split(/\s+/),o=[w[0]],ult=0;
   for(var i=1;i<w.length;i++){var pw=w[i-1],cw=w[i],fin=FIN.test(pw)||NUMW.test(pw),b=false,cuenta=(/^\d+$/.test(pw)||NUMW.test(pw))&&/s$/.test(cw);if(i>1&&COMP[w[i-2]+' '+pw])pw=w[i-2];
-   if(COMP[pw+' '+cw]||cuenta||ART.test(pw))b=false;
+   if(pw==='no'&&i>=2&&(ROOM.test(w[i-2])||KEY.test(w[i-2])||/^(entrada|techo|eso|esa|ese)$/.test(w[i-2]))&&(VERB.test(cw)&&w.slice(ult,i-1).indexOf(cw)>-1||KEY.test(cw)||ROOM.test(cw)))b=true;
+   else if(/^(flotante|tarima|laminado|vinilo|parquet|porcelanico)$/.test(cw)&&(/^(lineales|ml)$/.test(pw)||/^(metros|m|\d+)$/.test(pw)&&w.slice(Math.max(ult,i-5),i).some(function(x){return /^rodapies?$/.test(x)})))b=true;
+   else if(COMP[pw+' '+cw]||cuenta||ART.test(pw))b=false;
    else if(/^(pintar|lijar|acuchillar|barnizar|nivelar)$/.test(pw)&&/^(electricidad|luz|calefaccion|contenedor|limpieza|boletin|fontaneria|instalacion|tarima|flotante|suelo|falso|rodapie|montacargas|cocina|bano|ventanas|puertas)$/.test(cw)&&!(pw==='pintar'&&cw==='puertas'))b=true;
    else if(VERB.test(cw)&&VERB.test(pw))b=true;
    else if(VERB.test(cw)&&!FUNC.test(pw)&&!KEY.test(pw)&&!ROOM.test(pw)&&!FIN.test(pw)&&!NUMW.test(pw)&&!/^\d/.test(pw)&&pw.length>2&&w.slice(ult,i).some(function(x){return VERB.test(x)}))b=true;
