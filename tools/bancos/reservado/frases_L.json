@@ -1,0 +1,3723 @@
+[
+ {
+  "t": "en barakaldo baño completo de cinco metros y medio",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño completo con medida dicha: paquete de baño de 5,5 m².",
+  "fuera": []
+ },
+ {
+  "t": "en getxo pintar el salón y el pasillo paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Pintura de paredes y techos de dos estancias sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el gotelé de las paredes del dormitorio principal en etxebarri",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija"
+  ],
+  "justificacion": "Quitar gotelé de una estancia concreta sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las ocho puertas del piso en santurtzi",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8,
+   "pue": 8
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [],
+  "justificacion": "Ocho puertas del piso: quitar y poner ocho.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el rodapié viejo y poner nuevo cuarenta y dos metros lineales en portugalete",
+  "debe": [
+   "rod",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rod": 42,
+   "ron": 42
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Rodapié quitar y poner, cuarenta y dos metros lineales.",
+  "fuera": []
+ },
+ {
+  "t": "cocina entera de nueve metros en sestao los muebles los monta el cliente",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina completa de nueve metros sin montaje de muebles.",
+  "fuera": []
+ },
+ {
+  "t": "tarima flotante en el salón de veinticinco metros en leioa",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 25
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante en el salón de veinticinco metros.",
+  "fuera": []
+ },
+ {
+  "t": "falso techo de pladur en el pasillo doce metros en ortuella",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 12
+  },
+  "lugares": {
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de pladur de doce metros en el pasillo.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo sin mampara en basauri",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mam",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Baño completo sin medida y sin mampara.",
+  "fuera": []
+ },
+ {
+  "t": "poner dos radiadores uno en la habitación de los niños y otro en el dormitorio principal",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "habitación de los niños",
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos radiadores en dos estancias nombradas.",
+  "fuera": []
+ },
+ {
+  "t": "en galdakao solo pintar el salón",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Pintar el salón sin medida: queda pendiente.",
+  "fuera": []
+ },
+ {
+  "t": "instalación eléctrica nueva de todo el piso con boletín en durango",
+  "debe": [
+   "ele",
+   "bol"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "bol"
+  ],
+  "sin_medida": [],
+  "justificacion": "Electricidad de todo el piso con boletín.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el papel pintado del comedor y pintarlo en algorta",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "comedor"
+   ],
+   "pip": [
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "Quitar papel y pintar el comedor sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros y contenedor es un tercero sin ascensor en gernika",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "con",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Baño completo de cuatro metros, contenedor y suplemento por tercero sin ascensor.",
+  "fuera": []
+ },
+ {
+  "t": "reforma integral con baño y cocina en bermeo todavía no tengo medidas",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Reforma integral con baño y cocina completos sin ninguna medida.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante en todo el piso noventa metros en mungia",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 90
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "flo"
+  ],
+  "sin_medida": [],
+  "justificacion": "Flotante de noventa metros para todo el piso.",
+  "fuera": []
+ },
+ {
+  "t": "picar el yeso de las paredes de la cocina y lucirlas en erandio",
+  "debe": [
+   "pic",
+   "luc"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pic": [
+    "cocina"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pic",
+   "luc"
+  ],
+  "justificacion": "Picar y lucir paredes de la cocina sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "acuchillar y barnizar el parquet del salón y los dos dormitorios en sopela",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "acu": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "acu"
+  ],
+  "justificacion": "Acuchillado de varias estancias sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "derribar el tabique entre la cocina y el salón en deusto",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tab": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Un tabique a derribar; la cocina en sí no se reforma.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta de entrada en plentzia",
+  "debe": [
+   "pen"
+  ],
+  "no_debe": [
+   "pub",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pen": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo la puerta de entrada, no las interiores.",
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes y techos de todo el piso de ochenta metros en amorebieta",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Pintura de todo el piso; superficie derivable de los ochenta metros.",
+  "fuera": []
+ },
+ {
+  "t": "en arrigorriaga plato de ducha de ochenta por ochenta y mampara",
+  "debe": [
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pd8": 1,
+   "mam": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Plato de 80x80 y una mampara.",
+  "fuera": []
+ },
+ {
+  "t": "calefacción nueva para todo el piso con radiadores en lekeitio",
+  "debe": [
+   "cal"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "cal"
+  ],
+  "sin_medida": [],
+  "justificacion": "Calefacción completa del piso.",
+  "fuera": []
+ },
+ {
+  "t": "montar el mueble de baño y un armario que trae el cliente en ermua",
+  "debe": [
+   "mba",
+   "mar"
+  ],
+  "no_debe": [
+   "san",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "mba": 1,
+   "mar": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo montajes: un mueble de baño y un armario; el baño no se reforma.",
+  "fuera": []
+ },
+ {
+  "t": "Baño completo de 4,5 m² en Balmaseda, con mampara.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {
+   "mam": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño completo de 4,5 m² con mampara.",
+  "fuera": []
+ },
+ {
+  "t": "Cocina completa en Lekeitio, unos 8 metros. Los muebles los monta otro.",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina completa de 8 m² sin montaje de muebles.",
+  "fuera": []
+ },
+ {
+  "t": "Quitar el gotelé del salón y pintar paredes y techo. Es en Ondarroa.",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Salón sin medidas: gotelé, paredes y techo pendientes.",
+  "fuera": []
+ },
+ {
+  "t": "Rodapié blanco en todo el piso: 56,5 metros lineales. Markina.",
+  "debe": [
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ron": 56.5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ron"
+  ],
+  "sin_medida": [],
+  "justificacion": "Rodapié de 56,5 ml en todo el piso.",
+  "fuera": []
+ },
+ {
+  "t": "Seis puertas nuevas, no, cinco, que la del baño se queda. Zalla.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "san",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Autocorrección: cinco puertas.",
+  "fuera": []
+ },
+ {
+  "t": "Papel pintado en la habitación de los niños, una pared de 10 m². Güeñes.",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 10
+  },
+  "lugares": {
+   "ppa": [
+    "habitación de los niños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Papel nuevo en 10 m² de pared.",
+  "fuera": []
+ },
+ {
+  "t": "Falso techo en la cocina y el baño, sin tocar nada más. Derio.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "mco",
+   "ali",
+   "alc",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "tec"
+  ],
+  "justificacion": "Solo falso techo en dos estancias sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "Electricidad nueva y contenedor; es un 4º sin ascensor, en Zamudio.",
+  "debe": [
+   "ele",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Electricidad, contenedor y suplemento sin ascensor.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el dormitorio principal. Berango.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Pintar una estancia sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "Baño entero, 3,8 m², con plato de ducha de 70x110. Elorrio.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.8
+   ]
+  },
+  "cantidades": {
+   "pd7": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño completo de 3,8 m² con plato 70x110.",
+  "fuera": []
+ },
+ {
+  "t": "Quitar el flotante viejo del pasillo y poner nuevo, 9 m². Igorre.",
+  "debe": [
+   "sue",
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 9,
+   "flo": 9
+  },
+  "lugares": {
+   "sue": [
+    "pasillo"
+   ],
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de flotante en 9 m² de pasillo.",
+  "fuera": []
+ },
+ {
+  "t": "Fontanería nueva de la cocina y montaje de los muebles de cocina. Urduliz.",
+  "debe": [
+   "fco",
+   "mco"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Fontanería de cocina y montaje de muebles.",
+  "fuera": []
+ },
+ {
+  "t": "Reforma integral del piso de 75 m² en Gorliz, con instalación eléctrica nueva.",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 75
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele"
+  ],
+  "sin_medida": [],
+  "justificacion": "Reforma integral con tamaño del piso y electricidad.",
+  "fuera": []
+ },
+ {
+  "t": "Quitar la mampara vieja y poner una nueva. Muskiz.",
+  "debe": [
+   "qma",
+   "mam"
+  ],
+  "no_debe": [
+   "ali",
+   "alc",
+   "sol",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qma": 1,
+   "mam": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo cambio de mampara.",
+  "fuera": []
+ },
+ {
+  "t": "Dos radiadores más en el salón. Trapagaran.",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos radiadores en el salón.",
+  "fuera": []
+ },
+ {
+  "t": "Baño completo, sin medidas aún, en Ortuella.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Baño completo sin medidas: superficies pendientes.",
+  "fuera": []
+ },
+ {
+  "t": "estamos en un piso de deusto de noventa metros reforma integral vamos a hacer el baño completo de cinco metros la cocina entera de diez metros electricidad nueva en todo el piso suelo flotante en todo menos baño y cocina siete puertas nuevas y rodapié cuarenta y ocho metros lineales y contenedor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    10
+   ],
+   "piso": 90
+  },
+  "cantidades": {
+   "pub": 7,
+   "pue": 7,
+   "ron": 48
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Reforma integral de 90 m² con baño, cocina y oficios dichos con sus cantidades.",
+  "fuera": []
+ },
+ {
+  "t": "en santutxu un cuarto sin ascensor queremos pintar todo el piso paredes y techos quitar el gotelé del salón y del pasillo cambiar seis puertas y poner rodapié nuevo la cocina no se toca",
+  "debe": [
+   "pip",
+   "pit",
+   "lija",
+   "pub",
+   "pue",
+   "ron",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [
+   "pip",
+   "pit",
+   "mon",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "sin_medida": [
+   "pip",
+   "pit",
+   "lija",
+   "ron"
+  ],
+  "justificacion": "Pintura, gotelé, puertas y rodapié sin superficies; cocina excluida.",
+  "fuera": []
+ },
+ {
+  "t": "en algorta baño principal de seis metros completo con mampara y el baño pequeño de tres metros también completo pero sin mampara que lleva cortina y en el pequeño plato de ducha de ochenta por ochenta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam",
+   "pd8"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    6,
+    3
+   ]
+  },
+  "cantidades": {
+   "mam": 1,
+   "pd8": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños completos; una sola mampara y un plato 80x80.",
+  "fuera": []
+ },
+ {
+  "t": "piso en rekalde de sesenta y cinco metros reforma integral electricidad nueva calefacción con seis radiadores falso techo de pladur en el pasillo y en el baño pintar todo paredes y techos y contenedor",
+  "debe": [
+   "ele",
+   "cal",
+   "tec",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "piso": 65
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "baño"
+   ]
+  },
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "sin_medida": [
+   "tec"
+  ],
+  "justificacion": "Integral de 65 m²; falso techo en dos estancias sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "en barakaldo la cocina completa de ocho metros y medio con fontanería nueva y montaje de muebles el baño no se toca pintar la cocina y el salón y el salón tiene papel que hay que quitar",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "fco",
+   "mco",
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "san",
+   "mam",
+   "fba",
+   "mba"
+  ],
+  "estancias": {
+   "cocina": [
+    8.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "salón"
+   ],
+   "pip": [
+    "cocina",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa"
+  ],
+  "justificacion": "Cocina de 8,5 m² completa; baño excluido; papel del salón sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "vivienda en portugalete de ochenta metros reforma integral sin cocina baño completo de cuatro metros electricidad suelo flotante en todo el piso menos el baño ocho puertas rodapié en todo el perímetro y contenedor y es un segundo sin ascensor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "piso": 80
+  },
+  "cantidades": {
+   "pub": 8,
+   "pue": 8
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con",
+   "mon"
+  ],
+  "sin_medida": [
+   "ron"
+  ],
+  "justificacion": "Integral de 80 m² sin cocina; rodapié sin metros dichos.",
+  "fuera": []
+ },
+ {
+  "t": "en getxo pintar el dormitorio principal la habitación de los niños y el despacho paredes y techos quitar el gotelé en los tres y cambiar las tres puertas de esas habitaciones",
+  "debe": [
+   "pip",
+   "pit",
+   "lija",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "pue": 3
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio principal",
+    "habitación de los niños",
+    "despacho"
+   ],
+   "pit": [
+    "dormitorio principal",
+    "habitación de los niños",
+    "despacho"
+   ],
+   "lija": [
+    "dormitorio principal",
+    "habitación de los niños",
+    "despacho"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "justificacion": "Tres estancias nombradas sin medidas y tres puertas.",
+  "fuera": []
+ },
+ {
+  "t": "a ver en leioa un piso entero baño de cinco metros cocina de nueve metros instalación eléctrica nueva con boletín calefacción nueva y tarima flotante en sesenta metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "bol",
+   "cal",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {
+   "flo": 60
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "bol",
+   "cal"
+  ],
+  "sin_medida": [],
+  "justificacion": "Baño, cocina, instalaciones y 60 m² de flotante.",
+  "fuera": []
+ },
+ {
+  "t": "en sestao el baño completo de cuatro metros con plato de setenta por ciento diez y mampara y mueble de baño la cocina se queda como está pintar el pasillo y el salón y poner rodapié en el pasillo doce metros lineales",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam",
+   "mba",
+   "pip",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "pd8"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "ron": 12,
+   "pd7": 1,
+   "mam": 1,
+   "mba": 1
+  },
+  "lugares": {
+   "pip": [
+    "pasillo",
+    "salón"
+   ],
+   "ron": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Baño de 4 m² con plato 70x110; cocina excluida; pintura sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "reforma integral de un piso en basauri de setenta y dos metros derribar dos tabiques para unir cocina y salón cocina completa de doce metros baño de cuatro metros y medio electricidad calefacción suelo flotante seis puertas y contenedor",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "san",
+   "tab",
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4.5
+   ],
+   "cocina": [
+    12
+   ],
+   "piso": 72
+  },
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 72 m² con tabiques, cocina 12, baño 4,5 y seis puertas.",
+  "fuera": []
+ },
+ {
+  "t": "en galdakao quitar el papel pintado del dormitorio principal y de la habitación de los niños y luego poner papel nuevo en la de los niños y pintar las paredes del dormitorio principal y el techo de los dos",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ],
+   "ppa": [
+    "habitación de los niños"
+   ],
+   "pip": [
+    "dormitorio principal"
+   ],
+   "pit": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "ppa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Papel y pintura repartidos entre dos dormitorios sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "en durango piso de cien metros reforma integral dos baños completos uno de seis y otro de cuatro cocina de once metros electricidad nueva calefacción con radiadores falso techo en todo el piso pintar todo diez puertas y la puerta de entrada y contenedor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "cal",
+   "tec",
+   "pip",
+   "pub",
+   "pue",
+   "pen",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    4
+   ],
+   "cocina": [
+    11
+   ],
+   "piso": 100
+  },
+  "cantidades": {
+   "pub": 10,
+   "pue": 10,
+   "pen": 1
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "tec",
+   "pip",
+   "pub",
+   "pue",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 100 m² con dos baños, cocina y diez puertas más la de entrada.",
+  "fuera": []
+ },
+ {
+  "t": "en bermeo el baño de abajo completo sin mampara es de tres metros y medio quitar la bañera y poner plato de ducha de ochenta por ochenta y pintar la escalera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8",
+   "pip"
+  ],
+  "no_debe": [
+   "mam",
+   "pd7",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.5
+   ]
+  },
+  "cantidades": {
+   "pd8": 1
+  },
+  "lugares": {
+   "pip": [
+    "escalera"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Baño de 3,5 m² sin mampara con plato 80x80; escalera sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "en mungia electricidad nueva fontanería del baño y de la cocina y cambiar radiadores ocho no siete radiadores y contenedor sin tocar los alicatados ni los suelos",
+  "debe": [
+   "ele",
+   "fba",
+   "fco",
+   "rad",
+   "con"
+  ],
+  "no_debe": [
+   "ali",
+   "alc",
+   "sol",
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Instalaciones; autocorrección a siete radiadores; sin alicatados ni suelos.",
+  "fuera": []
+ },
+ {
+  "t": "en erandio tarima flotante en el salón de veintidós metros y en los dos dormitorios de doce metros cada uno quitando el flotante viejo rodapié nuevo treinta y ocho metros lineales y pintar esas tres estancias",
+  "debe": [
+   "flo",
+   "sue",
+   "ron",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 46,
+   "sue": 46,
+   "ron": 38
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorios"
+   ],
+   "sue": [
+    "salón",
+    "dormitorios"
+   ],
+   "pip": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante 22+12+12=46 m² cambiado, rodapié 38 ml y pintura de esas estancias.",
+  "fuera": []
+ },
+ {
+  "t": "en sopela la cocina entera de siete metros los muebles los monta el cliente trasdosado de pladur en el frente de la cocina lucir las paredes y pintar la cocina y el comedor",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "tra",
+   "luc",
+   "pip"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "cocina",
+    "comedor"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 7 m² sin montaje; trasdosado, lucido y pintura.",
+  "fuera": []
+ },
+ {
+  "t": "en plentzia un bajo de cincuenta metros reforma integral sin baño que ya está hecho cocina de seis metros electricidad nueva suelo flotante pintar paredes y techos y cinco puertas",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "ele",
+   "flo",
+   "pip",
+   "pit",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "san",
+   "mam",
+   "fba",
+   "mba",
+   "mon"
+  ],
+  "estancias": {
+   "cocina": [
+    6
+   ],
+   "piso": 50
+  },
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "flo",
+   "pip",
+   "pit",
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 50 m² en bajo, baño excluido.",
+  "fuera": []
+ },
+ {
+  "t": "en amorebieta derribar tabiquería unos quince metros cuadrados levantar un tabique de pladur de diez metros falso techo de pladur en el salón y la entrada y pintar todo el salón",
+  "debe": [
+   "tabm",
+   "pla",
+   "tec",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tabm": 15,
+   "pla": 10
+  },
+  "lugares": {
+   "tec": [
+    "salón",
+    "entrada"
+   ],
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "tec",
+   "pip"
+  ],
+  "justificacion": "Demolición y pladur con medida; techo y pintura sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "en arrigorriaga baño completo de cinco metros con mampara y mueble de baño la cocina completa de diez metros con montaje de muebles y fontanería electricidad de todo el piso y contenedor es un quinto sin ascensor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "mam",
+   "mba",
+   "mco",
+   "fco",
+   "ele",
+   "con",
+   "mon"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Baño y cocina completos con extras, electricidad y quinto sin ascensor.",
+  "fuera": []
+ },
+ {
+  "t": "en etxebarri pintar todo el piso de setenta metros quitando el gotelé de todas las paredes cambiar las siete puertas rodapié de cuarenta metros lineales y el baño y la cocina no se tocan",
+  "debe": [
+   "pip",
+   "lija",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "mco",
+   "ali",
+   "alc",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 7,
+   "pue": 7,
+   "ron": 40
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "lija",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "sin_medida": [],
+  "justificacion": "Pintura y gotelé del piso de 70 m², siete puertas, rodapié 40 ml; baño y cocina excluidos.",
+  "fuera": []
+ },
+ {
+  "t": "en ermua cocina completa de ocho metros sin trasdosado fontanería de cocina con las llaves de regulación conducto de ventilación para la campana y montaje de muebles",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "fco",
+   "llav",
+   "vent",
+   "mco"
+  ],
+  "no_debe": [
+   "tra",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 8 m² con fontanería, llaves, ventilación y montaje; sin trasdosado.",
+  "fuera": []
+ },
+ {
+  "t": "en balmaseda casa vieja picar el yeso de todas las paredes electricidad nueva desmontando la instalación vieja fontanería del baño y contenedor de siete metros cúbicos",
+  "debe": [
+   "pic",
+   "ele",
+   "ins",
+   "fba",
+   "con7"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "ins",
+   "con7",
+   "pic"
+  ],
+  "sin_medida": [
+   "pic"
+  ],
+  "justificacion": "Picado sin medida, electricidad, desmontaje, fontanería de baño y contenedor de 7 m³.",
+  "fuera": []
+ },
+ {
+  "t": "en lekeitio dos baños completos el grande de cinco metros y el pequeño de tres y medio el grande con mampara y el pequeño sin mampara dos platos de ducha de ochenta por ochenta y dos muebles de baño",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam",
+   "pd8",
+   "mba"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    3.5
+   ]
+  },
+  "cantidades": {
+   "mam": 1,
+   "pd8": 2,
+   "mba": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños con una mampara, dos platos 80x80 y dos muebles.",
+  "fuera": []
+ },
+ {
+  "t": "en ondarroa piso de ochenta y cinco metros reforma integral la cocina no se toca dos baños completos sin medidas todavía electricidad calefacción suelo flotante en todo y nueve puertas",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "piso": 85
+  },
+  "cantidades": {
+   "pub": 9,
+   "pue": 9
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Integral de 85 m² sin cocina; baños sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "en markina acuchillar el parquet de todo el piso sesenta metros pintar paredes y techos cambiar la puerta de entrada y montar dos armarios que trae el cliente",
+  "debe": [
+   "acu",
+   "pip",
+   "pit",
+   "pen",
+   "mar"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 60,
+   "pen": 1,
+   "mar": 2
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "acu",
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Acuchillado de 60 m², pintura, puerta de entrada y dos armarios.",
+  "fuera": []
+ },
+ {
+  "t": "en zalla baño de cuatro metros completo quitar la mampara vieja y poner nueva la cocina de nueve metros completa los muebles los monta el cliente falso techo en baño y cocina y pintar los techos de todo el piso",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "qma",
+   "mam",
+   "tec",
+   "pit"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [
+   "pit"
+  ],
+  "sin_medida": [
+   "pit"
+  ],
+  "justificacion": "Baño y cocina con medida; techos del piso sin superficie total.",
+  "fuera": []
+ },
+ {
+  "t": "en güeñes tercero sin ascensor electricidad nueva con boletín ayudas de albañilería a electricidad y a fontanería fontanería de baño y cocina y contenedor",
+  "debe": [
+   "ele",
+   "bol",
+   "aye",
+   "ayf",
+   "fba",
+   "fco",
+   "con",
+   "mon"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "bol",
+   "con",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Instalaciones con ayudas, contenedor y suplemento por tercero sin ascensor.",
+  "fuera": []
+ },
+ {
+  "t": "en derio quitar el papel de todo el piso pintar paredes y techos falso techo en el pasillo de ocho metros cambiar seis puertas y rodapié cuarenta y cuatro metros lineales",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit",
+   "tec",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 8,
+   "pub": 6,
+   "pue": 6,
+   "ron": 44
+  },
+  "lugares": {
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [
+   "qpa",
+   "pip",
+   "pit",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "sin_medida": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Papel y pintura sin superficie; techo 8 m², seis puertas, rodapié 44 ml.",
+  "fuera": []
+ },
+ {
+  "t": "Piso en Indautxu de 95 m², reforma integral: baño completo de 6 m², cocina de 12 m², instalación eléctrica nueva, calefacción, tarima flotante en todo el piso salvo baño y cocina, 8 puertas, rodapié de 52 metros lineales y contenedor. Es un séptimo con ascensor.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con"
+  ],
+  "no_debe": [
+   "mon"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ],
+   "cocina": [
+    12
+   ],
+   "piso": 95
+  },
+  "cantidades": {
+   "pub": 8,
+   "pue": 8,
+   "ron": 52
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "ron",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 95 m² completa; con ascensor, sin suplemento.",
+  "fuera": []
+ },
+ {
+  "t": "En Txurdinaga: pintar el salón, el pasillo y los tres dormitorios, quitando antes el gotelé. Techos también. La cocina no se toca.",
+  "debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo",
+    "dormitorios"
+   ],
+   "pit": [
+    "salón",
+    "pasillo",
+    "dormitorios"
+   ],
+   "lija": [
+    "salón",
+    "pasillo",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "justificacion": "Varias estancias sin medidas; cocina excluida.",
+  "fuera": []
+ },
+ {
+  "t": "Baño completo de 4,2 m² con plato de 70x110 y mampara, mueble de baño con espejo. Cocina completa de 9,5 m² con fontanería y montaje de muebles. En Santurtzi.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "pd7",
+   "mam",
+   "mba",
+   "fco",
+   "mco"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {
+   "bano": [
+    4.2
+   ],
+   "cocina": [
+    9.5
+   ]
+  },
+  "cantidades": {
+   "pd7": 1,
+   "mam": 1,
+   "mba": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño y cocina completos con medidas y extras.",
+  "fuera": []
+ },
+ {
+  "t": "Reforma integral en Leioa, 68 m². Derribo de un tabique, falso techo en todo el piso, electricidad nueva con boletín, pintar todo y cambiar 6 puertas. 4º sin ascensor.",
+  "debe": [
+   "tab",
+   "tec",
+   "ele",
+   "bol",
+   "pip",
+   "pub",
+   "pue",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 68
+  },
+  "cantidades": {
+   "tab": 1,
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "tec",
+   "ele",
+   "bol",
+   "pip",
+   "pub",
+   "pue",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 68 m² sin baño ni cocina.",
+  "fuera": []
+ },
+ {
+  "t": "En Zorrotza el cliente quiere: quitar papel pintado del salón (unos 30 m² de pared), poner papel nuevo en el dormitorio principal (12 m²) y pintar el resto del piso.",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qpa": 30,
+   "ppa": 12
+  },
+  "lugares": {
+   "qpa": [
+    "salón"
+   ],
+   "ppa": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Papel con medidas; pintura del resto sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "Cocina de 10 m² completa, sin montaje de muebles (los monta el cliente). Baño de 5 m² completo, sin mampara. Electricidad nueva y contenedor. En Sestao.",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "san",
+   "ele",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "mam"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Cocina y baño con medidas; exclusiones de montaje y mampara.",
+  "fuera": []
+ },
+ {
+  "t": "En Gernika, casa de dos plantas: calefacción nueva con radiadores, electricidad de toda la casa, acuchillar el suelo de madera de arriba (45 m²) y pintar toda la casa.",
+  "debe": [
+   "cal",
+   "ele",
+   "acu",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 45
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "cal",
+   "ele",
+   "pip"
+  ],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Instalaciones, acuchillado de 45 m² y pintura sin superficie.",
+  "fuera": []
+ },
+ {
+  "t": "Baño 1: 5,5 m², completo con mampara. Baño 2: 3 m², completo, sin mampara. Cocina: 11 m², completa. Además, falso techo de pladur en los dos baños. Piso en Galdakao.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "mam",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5.5,
+    3
+   ],
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {
+   "mam": 1
+  },
+  "lugares": {
+   "tec": [
+    "baños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños y cocina con medidas; una mampara; techo en baños.",
+  "fuera": []
+ },
+ {
+  "t": "En San Ignacio, reforma integral de 70 m²: picar yeso de paredes y pintar; suelo flotante; rodapié 46 ml; 7 puertas y puerta de entrada; electricidad; contenedor.",
+  "debe": [
+   "pic",
+   "pip",
+   "flo",
+   "ron",
+   "pub",
+   "pue",
+   "pen",
+   "ele",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 70
+  },
+  "cantidades": {
+   "ron": 46,
+   "pub": 7,
+   "pue": 7,
+   "pen": 1
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pic",
+   "pip",
+   "flo",
+   "ron",
+   "pub",
+   "pue",
+   "ele",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 70 m² con oficios y cantidades dichas; sin baño ni cocina.",
+  "fuera": []
+ },
+ {
+  "t": "Habitación de los niños: quitar gotelé, pintar y papel pintado en una pared de 8 m². Dormitorio principal: pintar y montar armario del cliente. Salón: tarima flotante, 24 m². En Bilbao, Otxarkoaga.",
+  "debe": [
+   "lija",
+   "pip",
+   "ppa",
+   "mar",
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 8,
+   "mar": 1,
+   "flo": 24
+  },
+  "lugares": {
+   "lija": [
+    "habitación de los niños"
+   ],
+   "ppa": [
+    "habitación de los niños"
+   ],
+   "pip": [
+    "habitación de los niños",
+    "dormitorio principal"
+   ],
+   "mar": [
+    "dormitorio principal"
+   ],
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Trabajos por estancia; gotelé y pintura sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "En Muskiz: dos baños completos de 4 m² cada uno, con dos platos de ducha de 80x80 y dos mamparas. La cocina se queda. Fontanería de los dos baños y contenedor.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8",
+   "mam",
+   "fba",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "pd7"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "pd8": 2,
+   "mam": 2,
+   "fba": 2
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Dos baños de 4 m² con extras; cocina excluida.",
+  "fuera": []
+ },
+ {
+  "t": "Reforma en Bakio: derribar 20 m² de tabiquería, nuevo tabique de pladur de 14 m², 2 premarcos y 2 puertas nuevas, cajón de corredera para la cocina, pintar todo y contenedor.",
+  "debe": [
+   "tabm",
+   "pla",
+   "pre",
+   "pub",
+   "cor",
+   "pip",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tabm": 20,
+   "pla": 14,
+   "pre": 2,
+   "pub": 2,
+   "cor": 1
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "con"
+  ],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Distribución con medidas; pintura sin superficie.",
+  "fuera": []
+ },
+ {
+  "t": "Piso en Sopela de 110 m²: reforma integral con tres baños completos (5, 4 y 3 m²), cocina de 14 m², electricidad, calefacción, flotante, 10 puertas, falso techo en pasillo y baños, contenedor y limpieza final.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "tec",
+   "con",
+   "limf"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    4,
+    3
+   ],
+   "cocina": [
+    14
+   ],
+   "piso": 110
+  },
+  "cantidades": {
+   "pub": 10,
+   "pue": 10
+  },
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "baños"
+   ]
+  },
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "con",
+   "limf"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral grande con tres baños y cocina.",
+  "fuera": []
+ },
+ {
+  "t": "En Erandio: quitar el suelo de madera del salón y los dormitorios (55 m²), nivelar el solado y poner porcelánico… no, mejor flotante. Rodapié nuevo 40 ml.",
+  "debe": [
+   "sue",
+   "niv",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 55,
+   "niv": 55,
+   "flo": 55,
+   "ron": 40
+  },
+  "lugares": {
+   "sue": [
+    "salón",
+    "dormitorios"
+   ],
+   "flo": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrige porcelánico a flotante; 55 m² y rodapié 40 ml.",
+  "fuera": []
+ },
+ {
+  "t": "Cocina completa de 7,5 m² con trasdosado en el frente, montaje de muebles y fontanería. Baño: no se toca. Pintar la cocina y el pasillo. En Basauri.",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "tra",
+   "mco",
+   "fco",
+   "pip"
+  ],
+  "no_debe": [
+   "san",
+   "mam",
+   "fba",
+   "mba"
+  ],
+  "estancias": {
+   "cocina": [
+    7.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "cocina",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 7,5 m² con extras; baño excluido.",
+  "fuera": []
+ },
+ {
+  "t": "En Barakaldo, 3º sin ascensor: baño completo (no sé las medidas), cocina completa (tampoco), pintar todo el piso y cambiar 5 puertas.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "mon",
+   "pip",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "mon",
+   "pip",
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc",
+   "pip"
+  ],
+  "justificacion": "Baño, cocina y pintura sin medidas; cinco puertas.",
+  "fuera": []
+ },
+ {
+  "t": "Electricidad nueva, boletín, calefacción con 6 radiadores y 2 toalleros, fontanería de baño y cocina, ayudas de albañilería. Piso de 80 m² en Getxo, sin obra de baño ni cocina.",
+  "debe": [
+   "ele",
+   "bol",
+   "cal",
+   "fba",
+   "fco",
+   "aye",
+   "ayf"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "ali",
+   "alc",
+   "sol",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "bol",
+   "cal"
+  ],
+  "sin_medida": [],
+  "justificacion": "Solo instalaciones; sin obra de baño ni cocina.",
+  "fuera": []
+ },
+ {
+  "t": "Portugalete: pintar paredes del salón (3,5 x 4,2… mejor digamos 50 m² de pared) y techo de 14,7 m². Quitar el gotelé del salón también.",
+  "debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pip": 50,
+   "pit": 14.7
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ],
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Paredes 50 m² corregidas, techo 14,7 m² y gotelé del salón.",
+  "fuera": []
+ },
+ {
+  "t": "Reforma integral, Durango, piso de 90 m². Todo nuevo: baño de 6 m², cocina de 10 m², electricidad, calefacción, suelo flotante, 8 puertas, rodapié. Sin falso techo.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "no_debe": [
+   "tec",
+   "tecq"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ],
+   "cocina": [
+    10
+   ],
+   "piso": 90
+  },
+  "cantidades": {
+   "pub": 8,
+   "pue": 8
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "flo",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "sin_medida": [
+   "ron"
+  ],
+  "justificacion": "Integral de 90 m²; rodapié sin metros; sin falso techo.",
+  "fuera": []
+ },
+ {
+  "t": "En Mungia: dormitorio principal y habitación de los niños, quitar papel y pintar; salón, quitar gotelé y pintar; pasillo, falso techo de 7 m².",
+  "debe": [
+   "qpa",
+   "pip",
+   "lija",
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 7
+  },
+  "lugares": {
+   "qpa": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ],
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "habitación de los niños",
+    "salón"
+   ],
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip",
+   "lija"
+  ],
+  "justificacion": "Trabajos por estancia; solo el techo tiene medida.",
+  "fuera": []
+ },
+ {
+  "t": "Bajo en Santurtzi, 60 m², reforma integral: baño completo de 4 m², cocina de 8 m², electricidad, flotante, 6 puertas, contenedor, limpieza final. Es un bajo, sin montacargas.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "con",
+   "limf"
+  ],
+  "no_debe": [
+   "mon"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    8
+   ],
+   "piso": 60
+  },
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "flo",
+   "pub",
+   "pue",
+   "con",
+   "limf"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 60 m² en bajo, sin suplemento de subida.",
+  "fuera": []
+ },
+ {
+  "t": "Leioa: quitar 2 puertas y recolocarlas, cambiar las otras 4 por nuevas, premarcos para pared de 70 en las nuevas y rodapié de 35,5 ml.",
+  "debe": [
+   "puer",
+   "recp",
+   "pub",
+   "pue",
+   "pre7",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "puer": 2,
+   "recp": 2,
+   "pub": 4,
+   "pue": 4,
+   "pre7": 4,
+   "ron": 35.5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos puertas recuperadas, cuatro nuevas con premarco de 70 y rodapié 35,5 ml.",
+  "fuera": []
+ },
+ {
+  "t": "eh pues a ver en zorrotza el baño eh el baño entero vale de de cuatro no cinco metros cinco y luego eh pintar pintar el pasillo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Autocorrección a baño de cinco metros; pasillo sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "a ver la cocina pues la cocina entera eh no espera la cocina no se toca al final solo el baño que es de tres metros y medio completo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cocina se retira; solo baño de 3,5 m².",
+  "fuera": []
+ },
+ {
+  "t": "pues eh puertas puertas seis no cinco cinco puertas y el rodapié eh treinta treinta y dos metros lineales en santutxu",
+  "debe": [
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5,
+   "ron": 32
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco puertas tras corregir y rodapié de 32 ml.",
+  "fuera": []
+ },
+ {
+  "t": "a ver eh pintar el salón dice el cliente que también el techo sí también el techo y quitar el gotelé eh no el gotelé no que ya está liso",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "lija",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Paredes y techo del salón sin medida; el gotelé se descarta.",
+  "fuera": []
+ },
+ {
+  "t": "eh reforma integral del piso pues todavía no sé los metros eh baño completo cocina completa electricidad y ya en sestao",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele"
+  ],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Integral sin medidas: baño y cocina pendientes.",
+  "fuera": []
+ },
+ {
+  "t": "pues mira en getxo eh mampara no sin mampara el cliente quiere cortina el baño completo de cuatro coma cinco metros eh y mueble de baño",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mba"
+  ],
+  "no_debe": [
+   "mam",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {
+   "mba": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño de 4,5 m² sin mampara con mueble.",
+  "fuera": []
+ },
+ {
+  "t": "a ver eh tarima flotante en el salón que tiene eh veinte no veintiocho metros veintiocho y en el pasillo eh no en el pasillo nada",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 28
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante de 28 m² solo en el salón.",
+  "fuera": []
+ },
+ {
+  "t": "eh contenedor sí contenedor y es un quinto eh tiene ascensor tiene ascensor sí y electricidad de todo el piso en leioa",
+  "debe": [
+   "con",
+   "ele"
+  ],
+  "no_debe": [
+   "mon",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "con",
+   "ele"
+  ],
+  "sin_medida": [],
+  "justificacion": "Con ascensor: sin suplemento.",
+  "fuera": []
+ },
+ {
+  "t": "pues el cliente me dice eh que los muebles de cocina los monta él la cocina completa sí de nueve metros eh no nueve coma ocho perdón nueve coma ocho metros",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    9.8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 9,8 m² tras corregir, sin montaje.",
+  "fuera": []
+ },
+ {
+  "t": "a ver radiadores eh cuatro radiadores no espera cinco son cinco radiadores en barakaldo",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco radiadores tras corregir.",
+  "fuera": []
+ },
+ {
+  "t": "eh pues pintar paredes de todo el piso eh noventa metros cuadrados de pared y techos eh los techos sesenta en durango",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pip": 90,
+   "pit": 60
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Paredes 90 m² y techos 60 m².",
+  "fuera": []
+ },
+ {
+  "t": "eh el papel pintado eh quitarlo del dormitorio principal y y pintar eh solo pintar no poner papel nuevo",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "ppa",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio principal"
+   ],
+   "pip": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "Quitar papel y pintar el dormitorio sin papel nuevo.",
+  "fuera": []
+ },
+ {
+  "t": "a ver falso techo en en la cocina eh no en el baño en el baño seis metros en galdakao",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 6
+  },
+  "lugares": {
+   "tec": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de 6 m² en el baño tras corregir.",
+  "fuera": []
+ },
+ {
+  "t": "pues eh baño baño completo dos baños uno de cinco y otro de eh tres coma dos y la cocina eh la cocina no",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    3.2
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños; cocina excluida.",
+  "fuera": []
+ },
+ {
+  "t": "eh cambiar la puerta de entrada y y las puertas de dentro eh siete puertas de dentro y el rodapié no el rodapié se queda",
+  "debe": [
+   "pen",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "ron",
+   "rod",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pen": 1,
+   "pub": 7,
+   "pue": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Entrada y siete interiores; rodapié excluido.",
+  "fuera": []
+ },
+ {
+  "t": "a ver el cliente dice que eh quiere suelo porcelánico no mejor flotante flotante en todo el piso que son eh setenta metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 70
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "flo"
+  ],
+  "sin_medida": [],
+  "justificacion": "Corrige a flotante de 70 m².",
+  "fuera": []
+ },
+ {
+  "t": "pues eh calefacción calefacción nueva y eh es un tercero sin ascensor y contenedor en basauri",
+  "debe": [
+   "cal",
+   "mon",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "cal",
+   "mon",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Calefacción, suplemento y contenedor.",
+  "fuera": []
+ },
+ {
+  "t": "eh a ver la habitación de los niños pintar y y quitar el gotelé eh y el dormitorio principal también lo mismo y eh el salón no",
+  "debe": [
+   "pip",
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "habitación de los niños",
+    "dormitorio principal"
+   ],
+   "lija": [
+    "habitación de los niños",
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "lija"
+  ],
+  "justificacion": "Dos dormitorios sin medidas; el salón no.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, a ver… el baño completo, de, eh, 4 metros… no, 4,6. Y sin mampara, que el cliente pone cortina. Sestao.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mam",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.6
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño de 4,6 m² tras corregir, sin mampara.",
+  "fuera": []
+ },
+ {
+  "t": "Pues… cocina completa, eh, la cocina de 10, ¿no? Sí, 10 metros. Y — espera, me dice el cliente — que los muebles los monta él.",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 10 m² sin montaje.",
+  "fuera": []
+ },
+ {
+  "t": "A ver, reforma integral en Getxo, eh, el piso tiene 85… 82 metros, 82. Electricidad, eh, calefacción, y puertas, ¿cuántas? Siete.",
+  "debe": [
+   "ele",
+   "cal",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 82
+  },
+  "cantidades": {
+   "pub": 7,
+   "pue": 7
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [],
+  "justificacion": "Integral de 82 m² tras corregir, siete puertas.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, pintar el salón. Y el pasillo. Bueno, y la entrada, que me dice ella. Sin medidas, ya las tomo.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo",
+    "entrada"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Tres estancias sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "Pues rodapié… eh, 38 metros, no, 38 y medio, 38,5 metros lineales. Y quitar el viejo, claro.",
+  "debe": [
+   "ron",
+   "rod"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ron": 38.5,
+   "rod": 38.5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Rodapié 38,5 ml quitar y poner.",
+  "fuera": []
+ },
+ {
+  "t": "A ver, eh, el gotelé… del dormitorio principal y de la habitación de los niños. Quitarlo. Y pintar. Eh… y el techo no.",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [
+   "pit",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Gotelé y paredes de dos dormitorios; techos excluidos.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, baño completo, el cliente dice — perdona — dice que la bañera se queda, o sea, no, el baño entero, sí, entero, 5 metros. Mungia.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al final baño entero de 5 m².",
+  "fuera": []
+ },
+ {
+  "t": "Pues, eh, contenedor, sí. Un 4º. Sin ascensor. Y, eh, la cocina no se toca, ¿eh?, que eso quede claro. Bermeo.",
+  "debe": [
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "con",
+   "mon"
+  ],
+  "sin_medida": [],
+  "justificacion": "Contenedor y suplemento; cocina excluida.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, falso techo… en el pasillo, unos, eh, 9 metros. Y en la cocina, no, en la cocina no, solo pasillo.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 9
+  },
+  "lugares": {
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de 9 m² solo en pasillo.",
+  "fuera": []
+ },
+ {
+  "t": "A ver: puertas… 6, eh, no, que la del baño se queda. 5. Cinco puertas nuevas. En Amorebieta.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "san",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco puertas tras corregir.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, papel pintado nuevo en el salón, eh, una pared, 12… 12,5 m². Y quitar el papel viejo de esa pared.",
+  "debe": [
+   "ppa",
+   "qpa"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 12.5,
+   "qpa": 12.5
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ],
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de papel en 12,5 m² de pared.",
+  "fuera": []
+ },
+ {
+  "t": "Pues, eh, a ver, todo: baño completo de 4, cocina completa de 8 y medio, electricidad… eh, sin calefacción, que ya la tiene. Y contenedor. Leioa.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "ele",
+   "con"
+  ],
+  "no_debe": [
+   "cal",
+   "rad"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    8.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Baño y cocina con medidas, electricidad y contenedor; sin calefacción.",
+  "fuera": []
+ }
+]
