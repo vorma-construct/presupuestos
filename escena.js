@@ -86,7 +86,7 @@ function escena(bruto,op){op=op||{};
   if(/\b(?:reform\w*|renov\w*|rehac\w*|moderniz\w*)\b(?!(?:\s+[a-z]+){0,3}?\s+(?:banos?|aseos?|cocinas?)\b)/.test(fr)||new RegExp('\\b(?:'+LIG+')\\b(?:\\s+(?:'+APE+'))?(?:\\s+(?:de\\s+|que tiene\\s+)?\\d+(?:[.,]\\d+)?(?:\\s*(?:m2|metros cuadrados|metros))?)?\\s+(?:tambien\\s+)?(?:enter[oa]s?|complet[oa]s?|integral(?:es)?|de cero|nuev[oa]s?\\b(?!\\s+(?:de|con)\\b))').test(fr)||/\b(?:reforma integral|obra integral|integral\b|todo nuevo|toda nueva|(?:se|lo|la)\s+(?:hacen?|reforman?)\s+(?:todo\s+)?enter[oa]|(?:piso|casa|vivienda)\s+(?:enter[oa]|complet[oa])|reformar\s+(?:el|la|todo el|toda la)\s+(?:piso|casa|vivienda))\b/.test(fr))return {lit:orig};
   /* 1) las estancias de cada pieza (las de antes, las cortas) */
   var malo=false,usaRef=false,ultBase=null,vistos=[];
-  T.forEach(function(p){if(p.t!=='R'||malo)return;var m=p.m;p.tambien=/\b(?:tambien|ademas)\b/.test(p.x)||false;
+  T.forEach(function(p){if(p.t!=='R'||malo)return;var m=p.m;var nxT=T[T.indexOf(p)+1];p.tambien=/\b(?:tambien|ademas)\b/.test(p.x)||!!(nxT&&nxT.t==='w'&&/^(?:tambien|igual)$/.test(nxT.x)&&(function(){var n2=T[T.indexOf(p)+2];return !n2||n2.t==='sep'||n2.t==='w'&&/^(?:y|e)$/.test(n2.x)})());p.tamTras=p.tambien&&!/\b(?:tambien|ademas)\b/.test(p.x);
    if(p.k==='exp'){var art=m[1],cnt=m[2],otro=m[3],base=m[4],ape=m[5],ms=m[6];var n=1;if(cnt)n=CNTW[cnt]||+cnt||1;else if(/(?:es|os|as)$/.test(base)&&!/^sala de estar$/.test(base))n=0;
     var arr=null;if(ms){arr=ms.replace(/^\s*de\s+/,'').split(/\s*(?:,|\by\b)\s*(?:de\s+)?/).filter(Boolean).map(numDe);if(arr.some(isNaN))arr=null;else if(arr.length===2&&n===1&&arr[1]<1)arr=[arr[0]+arr[1]]}
     if(/^(esos|esas|estos|estas)$/.test(art||'')&&!cnt)usaRef=true;
@@ -143,9 +143,17 @@ function escena(bruto,op){op=op||{};
    var pv=vecino(j,-1),tamb=it.rs.some(function(p){return p.tambien});
    if(pv&&pv.t==='W'&&!pv.rooms){var kpv=I2.indexOf(pv),gAnt=vecino(kpv,-1);
     /* «en el salón papel pintado quitar, en el pasillo también…»: el de delante y los de «también», juntos */
+    /* «quitar el gotelé del pasillo y pintarlo, y la habitación también»: lo de antes y esto, también en la habitación */
+    if(tamb&&it.rs.some(function(p){return p.tamTras})&&gAnt&&gAnt.t==='G'&&gAnt.usado==='tras'){var wA=vecino(I2.indexOf(gAnt),-1);if(wA&&wA.t==='W'&&wA.rooms){rs.forEach(function(r){if(wA.rooms.indexOf(r)<0)wA.rooms.push(r)});pv.rooms=wA.rooms;pv.tras=true;it.usado='tras';usaRef=true;var oT=I2[j+1];if(oT&&oT.t==='O'&&/^\s*(?:tambien|igual)\s*$/.test(oT.x)){oT.x='';oT.vacio=true}return}}
     if(tamb&&gAnt&&gAnt.t==='G'&&!gAnt.usado&&gAnt.rooms&&gAnt.rooms.length){pv.rooms=gAnt.rooms.concat(rs.filter(function(r){return gAnt.rooms.indexOf(r)<0}));gAnt.usado='delante';pv.delante=true}else pv.rooms=rs.slice();
     pv.negs=neg;pv.tras=true;it.usado='tras';return}
    if(pv&&pv.t==='W'&&pv.rooms&&pv.tras&&tamb){rs.forEach(function(r){if(pv.rooms.indexOf(r)<0)pv.rooms.push(r)});it.usado='tras'}});
+  /* «quitar el gotelé y pintar en el salón y en el dormitorio, y lo mismo en el pasillo»: el pasillo, al mismo trabajo */
+  I2.forEach(function(it,j){if(it.t!=='G'||it.usado||!it.rooms.length)return;var k=vecinoIdx(j,-1);var o=k>-1?I2[k]:null;
+   if(!o||o.t!=='O'||!/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual|tambien lo mismo)\s*$/.test(o.x))return;
+   var w=null;for(var q=k-1;q>=0;q--){var z=I2[q];if(z.t==='W'){w=z;break}if(z.t==='X')break}
+   if(!w||!w.rooms||!w.rooms.length)return;var dest=[w];for(var q2=I2.indexOf(w)-1;q2>=0;q2--){var z2=I2[q2];if(z2.t==='W'&&z2.rooms===w.rooms)dest.unshift(z2);else if(z2.t==='W'&&z2.rooms&&w.rooms&&z2.rooms.length===w.rooms.length&&z2.rooms.every(function(r,i){return r===w.rooms[i]}))dest.unshift(z2);else if(!transp(z2)&&z2.t!=='G')break}
+   dest.forEach(function(d){it.rooms.forEach(function(r){if(d.rooms.indexOf(r)<0)d.rooms.push(r)})});it.usado='tras';o.vacio=true;o.x='';usaRef=true});
   I2.forEach(function(it,j){if(it.t!=='G'||it.usado)return;var rs=it.rooms,neg=it.negs;
    var pv=vecino(j,-1),nx=vecino(j,1),tamb=it.rs.some(function(p){return p.tambien});
    if(pv&&pv.t==='W'&&pv.rooms&&tamb){rs.forEach(function(r){if(pv.rooms.indexOf(r)<0)pv.rooms.push(r)});it.usado='tras';return}
