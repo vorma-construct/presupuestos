@@ -50,6 +50,7 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
    var k=depDe(pk,l,id);if(k&&!(pk.hechas&&pk.hechas[k])&&!pk.okTodo&&P)return {t:'pregunta',pk:pk.id,k:k}}
   return null}
  if(usaMetros(l)&&!(num(l.q)>1)&&!l.okQ)return {t:'medida',m:'No has dicho cuántos '+(l.u==='ml'?'metros lineales':'metros')+' son: escríbelos.'};
+ if(usaMetros(l)&&l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo con los del suelo: ¿valen?'};
  if(l.sup)return {t:'supuesto',m:'Esto no lo has dicho: ¿lo incluyo?'};
  return null}
 /* unos metros que no se han dicho no valen 1: se quedan a cero (no suman) hasta que se escriban */
@@ -76,6 +77,7 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
  else if(p.t==='medidaCalc'){var pk2=paqDe(p.pk);h='<b>Los metros '+esc(delPaq(pk2))+' los he calculado yo ('+String(p.v).replace('.',',')+' m²).</b> <input id="pmx_'+p.pk+'" inputmode="decimal" placeholder="m² de verdad" style="width:90px;font-size:16px"> <button '+b+' onclick="pendMed(\''+p.pk+'\')">Poner</button><button '+b+' onclick="pendMedOk(\''+p.pk+'\')">Son esos</button>'}
  else if(p.t==='medida'){h='<b>'+esc(p.m)+'</b>'}
  else if(p.t==='precio'){h='<b>'+esc(p.m)+'</b>'}
+ else if(p.t==='calc'){h='<b>'+esc(p.m)+'</b> Si no, escríbelos en la cantidad.<br><button '+b+' onclick="pendQok('+p.i+')">Sí, valen</button>'}
  else if(p.t==='supuesto'){h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendOk('+p.i+')">Sí, inclúyelo</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="delLinea('+p.i+')">Quítalo</button>'}
  return '<div class="pendChip" style="background:#FFF4D6;border-left:4px solid #C98A00;border-radius:6px;padding:6px 8px;margin-top:4px;font-size:14px;line-height:1.35">'+h+'</div>'}
 
@@ -102,6 +104,7 @@ window.pendTodo=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return
 window.pendMed=function(id){var i=document.getElementById('pmx_'+id),pk=paqDe(id);if(!pk||!i)return;var v=normT(i.value||'');var m=api().medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}try{leer()}catch(_){}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;delete pk.calculado;api().rehacer(pk,true);if(pk.padre){var pd=paqDe(pk.padre);if(pd)api().rehacer(pd,true)}despues()};
 window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;if(si){pk.okEntero=1;delete pk.blando}else{cur.lineas=cur.lineas.filter(function(l){return l.paqId!==id});cur.paqs=(cur.paqs||[]).filter(function(x){return x!==pk})}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta()}catch(_){}};
 window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
+window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1}renderLineas();try{autoGuardar()}catch(_){}};
 window.pendOk=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.ok=1;delete l.sup}renderLineas();try{autoGuardar()}catch(_){}};
 
 /* lo que escribe a mano el usuario resuelve: unos metros > 1 o un precio */
