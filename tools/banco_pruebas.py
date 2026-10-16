@@ -112,6 +112,8 @@ async def trabajador(ctx, url, cola, res):
     pg = await ctx.new_page()
     pg.on('dialog', lambda d: asyncio.ensure_future(d.accept()))
     await pg.add_init_script("window.__errs=[];window.addEventListener('error',function(e){window.__errs.push(String(e.message||e))});")
+    if os.environ.get('SIN_ESCENA'):  # para comparar con el intérprete de antes (sin la escena)
+        await pg.add_init_script("window.__sinEscena=true;")
     await pg.goto(url, wait_until='domcontentloaded')
     await pg.wait_for_timeout(3500)
     while True:
