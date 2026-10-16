@@ -556,6 +556,7 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  var mFb=TD.match(/\bfontaneria\s+(?:de|del|para)?\s*(?:los\s+)?(dos|tres|2|3)\s+banos\b/);if(mFb&&has('fba')&&!get('fba').paqId&&num(get('fba').q)<=1)get('fba').q=({dos:2,tres:3})[mFb[1]]||+mFb[1];
  if(has('recp')||has('puer')){var mRc=TD.match(/\brecolocar puerta\s*,?\s*(?:(?:que\s+)?son\s+)?(\d+)\b(?!\s*(?:metros|m2))/)||(window.__unaRec?['','1']:TD.match(/\b(\d+)\s+puertas\b/));['recp','puer'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1)return;if(mRc)l.q=+mRc[1];else l.cuantas=1})}
  if(has('con7')&&has('con')&&!get('con').paqId)fuera('con');
+ if(has('sue')&&!has('sol')&&T('sol')&&!get('sue').paqId&&/\bsuelo\s+de\s+(?:baldosa|ceramic\w*|gres|terrazo)\b/.test(TD)&&!/\b(madera|parquet|tarima|flotante|laminado|moqueta)\b/.test(TD)){var lsu=get('sue'),tso=T('sol'),tgS=lsu.d.indexOf(' \u2014 ')>-1?lsu.d.slice(lsu.d.indexOf(' \u2014 ')):'';lsu.d=tso.d+tgS;lsu.p=tso.p;lsu.tid='sol'}
  if(has('tecq')&&has('tec')&&!get('tec').paqId){var lq=get('tecq'),lt=get('tec');lq.q=Math.max(num(lq.q),num(lt.q));fuera('tec')}
  if(has('pre7')&&has('pre')){var l7=get('pre7'),lp=get('pre');l7.q=Math.max(num(l7.q),num(lp.q));fuera('pre')}
  /* «dos dormitorios, suelo laminado, doce y catorce metros»: los dos suman */
@@ -577,7 +578,7 @@ if(finales.some(function(l){return idDe(l)==='con7'}))cur.lineas=cur.lineas.filt
 cur.lineas=cur.lineas.concat(finales);
 if(negados(A.todo).contenedor&&!/\bcontenedor\b[^,.;]{0,15}\b(?:si|tambien)\b/.test(A.todo))cur.lineas=cur.lineas.filter(function(l){var x=idDe(l);return x!=='con'&&x!=='con7'});
 /* «tres manos de pintura en paredes y techos» en una estancia o casa entera: las partidas a tres manos */
-if(/\btres manos\b/.test(A.todo)&&T('pip3')){var t3=/\btres manos\b[^,.;]{0,40}\btechos?\b|\btechos?\b[^,.;]{0,30}\btres manos\b/.test(A.todo),p3=/\btres manos\b[^,.;]{0,40}\bparedes\b|\bparedes\b[^,.;]{0,30}\btres manos\b|\bpintar\b[^,.;]{0,20}\btres manos\b/.test(A.todo)||!t3;cur.lineas.forEach(function(l){var x=idDe(l),sf=l.d.indexOf(' — ')>-1?l.d.slice(l.d.indexOf(' — ')):'';if(x==='pip'&&p3){l.d=T('pip3').d+sf;l.p=T('pip3').p;l.tid='pip3'}else if(x==='pit'&&t3&&T('pit3')){l.d=T('pit3').d+sf;l.p=T('pit3').p;l.tid='pit3'}})}
+if(/\btres manos\b/.test(A.todo)&&T('pip3')){var t3=/\btres manos\b[^,.;]{0,40}\btechos?\b(?!\s+(?:en\s+blanco|blancos?|normal\w*|de\s+siempre|con\s+una|a\s+una))|\btechos?\b[^,.;]{0,30}\btres manos\b/.test(A.todo),p3=/\btres manos\b[^,.;]{0,40}\bparedes\b|\bparedes\b[^,.;]{0,30}\btres manos\b|\bpintar\b[^,.;]{0,20}\btres manos\b/.test(A.todo)||!t3;cur.lineas.forEach(function(l){var x=idDe(l),sf=l.d.indexOf(' — ')>-1?l.d.slice(l.d.indexOf(' — ')):'';if(x==='pip'&&p3){l.d=T('pip3').d+sf;l.p=T('pip3').p;l.tid='pip3'}else if(x==='pit'&&t3&&T('pit3')){l.d=T('pit3').d+sf;l.p=T('pit3').p;l.tid='pit3'}})}
 /* las paredes calculadas (para el cuadro de puertas y ventanas): con el nombre que ha quedado */
 if(MEDpared&&PAREDpared.length){window.__MED=MEDpared;window.__PARED=PAREDpared.map(function(d){var l=finales.find(function(x){return x.d===d||x.d.indexOf(d+' \u2014 ')===0});return l?l.d:null}).filter(Boolean)}else window.__PARED=[];
 /* 4) el «reformar la casa» suelto: si se dicen trabajos (o estancias), son esos; si no, es el piso entero, como siempre */
@@ -780,6 +781,17 @@ function analizar(bruto){
  t0=t0.replace(new RegExp('\\b((?:el|la|los|las)\\s+(?:'+EST_PAL+'))\\s+((?:el|la|los|las)\\s+(?:'+EST_PAL+')\\s*,?\\s+y\\s+(?:el|la|los|las)\\s+(?:'+EST_PAL+'))\\b','g'),'$1, $2');
  /* «el suelo… nosotros solo quitamos el que hay»: el que hay es ese suelo */
  t0=t0.replace(/\b(suelo|tarima|parquet|rodapie|mampara|plato|banera|azulejo|alicatado|papel|moqueta|puertas?|radiadores?|muebles?)\b([^.]{0,70}?)\b(quitar|quitamos|quita|quitan|levantar|levantamos|arrancar|arrancamos|sacar|sacamos|desmontar|desmontamos)\s+(el|la|los|las)\s+(?:que\s+hay|que\s+tiene|de\s+ahora|actual(?:es)?|viej[oa]s?)\b/g,function(x,n,mid,v,art){return n+mid+v+' '+art+' '+n+' actual'});
+ /* «quitar el suelo de baldosa»: es suelo cerámico (no de madera) */
+ t0=t0.replace(/\b(quitar|levantar|picar|arrancar|sacar)\s+(?:el\s+)?suelo\s+(?:de\s+)?(?:baldosa|ceramico|ceramica|gres|terrazo|porcelanico)\b/g,'$1 baldosa');
+ /* «lijar» a secas, entre trabajos de paredes: lijar paredes */
+ t0=t0.replace(/\blijar\b(?!\s+(?:y\s+barnizar|el\s+suelo|suelo|el\s+parquet|parquet|la\s+tarima|tarima|las\s+puertas|puertas|la\s+madera|madera|las\s+paredes|paredes|la\s+pared|pared))(?=\s*(?:,|y\b|$))/g,function(x,off,str){var c=String(str).slice(Math.max(0,off-60),off+60);return /\b(papel|gotele|pintar|pintura|yeso|paredes)\b/.test(c)&&!/\b(suelo|parquet|tarima|acuchill)/.test(c)?'lijar paredes':x});
+ /* «tirar el tabique… y hacer uno nuevo de pladur»: un tabique nuevo */
+ t0=t0.replace(/\b(tabiques?\b[^.;]{0,60}?\b)(hacer|poner|levantar|montar)\s+(?:uno|otro)\s+(?:nuevo\s+)?(de pladur|de ladrillo)?/g,function(x,a,v,mat){return a+v+' tabique nuevo '+(mat||'')});
+ /* «radiadores: dos en el salón, uno en cada habitación, que son tres, y uno en la cocina» */
+ t0=t0.replace(/\b(?:un[oa]?|1)\s+en\s+cada\s+(habitacion|dormitorio|cuarto|bano)\s*,?\s*(?:que\s+)?son\s+(dos|tres|cuatro|cinco|seis|\d+)\b/g,function(x,r,n){return (valorLetra(n)||n)+' en las '+(r==='habitacion'?'habitaciones':r+'s')});
+ /* «radiadores: dos en el salón, tres en las habitaciones y uno en la cocina»: cada cuántos, dónde */
+ t0=t0.replace(/\b(radiadores|puertas|enchufes|armarios|ventanas|puntos de luz)\s*:?\s*((?:\s*,?\s*(?:y\s+)?(?:\d+|un[oa]?|dos|tres|cuatro|cinco|seis)\s+en\s+(?:el|la|los|las)\s+[a-z]+(?:\s+(?:principal|grande|pequen[oa]|de arriba|de abajo))?){2,})/g,function(x,n,lista){var its=lista.split(/\s*,\s*|\s+(?:y\s+)?(?=(?:\d+|un[oa]?|dos|tres|cuatro|cinco|seis)\s+en\b)/).map(function(z){return z.replace(/^\s*y\s+/,'').trim()}).filter(Boolean);var sg={radiadores:'radiador',puertas:'puerta',enchufes:'enchufe',armarios:'armario',ventanas:'ventana','puntos de luz':'punto de luz'}[n];return ' '+its.map(function(z){var m=z.match(/^(\d+|un[oa]?|dos|tres|cuatro|cinco|seis)\s+(en\s+.*)$/);if(!m)return z;var v=/^\d/.test(m[1])?+m[1]:(valorLetra(m[1])||1);return 'poner '+v+' '+(v===1?sg:n)+' '+m[2]}).join(', ')+' '});
+
  /* «contenedor de siete (metros)»: el de 7 */
  t0=t0.replace(/\bcontenedor(?:es)?\s+(?:grande\s+)?de\s+(?:siete|7)(?:\s*(?:metros cubicos|m3|metros|m))?\b/g,'contenedor con tasa');
  /* «fontanería de cocina y de dos baños»: las dos */
