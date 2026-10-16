@@ -210,7 +210,7 @@ function escena(bruto,op){op=op||{};
   if(window.__escDebug)window.__escDebug.push(I2.map(function(it){return it.t+':'+(it.x||(it.rs?it.rs.map(function(p){return p.x+(p.neg?'[no]':'')}).join('|'):''))+(it.rooms?' →'+it.rooms.map(function(r){return r.k}).join('+'):'')+(it.total?' T='+it.total:'')}));
   var conSala=I2.filter(function(it){return it.t==='W'&&it.rooms&&it.rooms.length});
   if(conSala.length&&!conSala.some(function(it){return it.copia}))ultWs=conSala.map(function(it){return it.x});
-  if(!conSala.length)return {lit:orig,descr:I2.every(function(it){return it.t!=='W'}),salas:vistos};
+  if(!conSala.length)return {lit:orig,descr:I2.every(function(it){return it.t!=='W'}),salas:vistos,cont:I2.some(function(it){return it.t==='X'&&CONT.test(' '+it.x+' ')})};
   conSala.forEach(function(it){it.rooms.forEach(function(r){todasUsadas[r.k]=1})});
   var nS={};conSala.forEach(function(it){it.rooms.forEach(function(r){nS[r.k]=1})});
   var util=usaRef||Object.keys(nS).length>1||conSala.some(function(it){return it.rooms.some(function(r){return (r.m2!=null||r.ms)&&r.mFr!==ifr})});
@@ -220,7 +220,7 @@ function escena(bruto,op){op=op||{};
  var algo=hechos.some(function(h){return h.I&&h.util});if(!algo)return null;
  var out=[];
  hechos.forEach(function(h){
-  if(!h.I||!h.util){if(h.descr&&h.salas&&h.salas.length&&h.salas.some(function(r){return todasUsadas[r.k]})&&h.salas.every(function(r){return todasUsadas[r.k]||mDe(r)==null}))return;out.push(h.lit!=null?h.lit:h.orig);return}
+  if(!h.I||!h.util){/* «las puertas del salón y del pasillo se recuperan»: lo que se hace (puertas…) no es solo describir la casa */if(h.descr&&!h.cont&&h.salas&&h.salas.length&&h.salas.some(function(r){return todasUsadas[r.k]})&&h.salas.every(function(r){return todasUsadas[r.k]||mDe(r)==null}))return;out.push(h.lit!=null?h.lit:h.orig);return}
   var items=[],porSala={};
   var lit=function(x){x=String(x||'').trim();if(!x)return;var u=items[items.length-1];if(u&&u.lit!=null&&!u.cerrado){var pega=/\b(?:puertas?|radiador(?:es)?|ventanas?|armarios?|persianas?)(?:\s+(?:de|del|nuev[oa]s|de paso|blancas|viej[oa]s|arriba|abajo|la|el|casa|piso|esas|zonas|entrada|dentro)){0,3}\s*$/.test(u.lit)&&new RegExp('^(?:'+VS+')\\b').test(x);
    /* «… y las cuatro puertas, cambiar»: «cambiar las cuatro puertas» */

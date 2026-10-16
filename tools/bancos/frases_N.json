@@ -2307,7 +2307,7 @@
   "no_debe": [],
   "estancias": {},
   "cantidades": {
-   "pub": 5
+   "pub": 4
   },
   "lugares": {
    "recp": [
@@ -2316,7 +2316,8 @@
   },
   "sin_lugar": [],
   "fuera": [],
-  "sin_medida": []
+  "sin_medida": [],
+  "justificacion": "«Cinco puertas nuevas, menos la del baño, que se recoloca»: de las cinco, la del baño no es nueva → 4 nuevas y 1 recolocada en el baño; la de entrada aparte."
  },
  {
   "t": "a ver tirar el tabique entre cocina y salón hacer uno nuevo de pladur en el dormitorio de ocho metros cuadrados con su premarco y pintar el salón y el dormitorio",
