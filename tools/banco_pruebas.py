@@ -303,6 +303,7 @@ def main():
         tot = sum(l['q'] * l['p'] for l in base.get('L', []))
         informe.append({'t': f['t'], 'fallos': fl, 'tipos': sorted({tipo_fallo(m) for m in fl}), 'lineas': len(base.get('L', [])), 'total': round(tot, 2),
                         'ids': sorted({l['id'] for l in base.get('L', []) if l['id']}),
+                        'pend': sorted({'%s:%s' % (l['id'], l.get('pend')) for l in base.get('L', []) if l.get('pend')}),
                         'estancias': [(p['tipo'], p['suelo'], p['calc']) for p in base.get('P', [])], 'info': base.get('info', '')})
         if fl: malos += 1
     if SALIDA:
