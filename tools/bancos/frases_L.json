@@ -2320,12 +2320,13 @@
   },
   "lugares": {
    "tec": [
-    "baños"
+    "baño",
+    "baño 2"
    ]
   },
   "sin_lugar": [],
   "sin_medida": [],
-  "justificacion": "Dos baños y cocina con medidas; una mampara; techo en baños.",
+  "justificacion": "Dos baños y cocina con medidas; una mampara; techo en baños. (Cada baño lleva su falso techo en su partida: «baño» y «baño 2».)",
   "fuera": []
  },
  {
@@ -2521,7 +2522,9 @@
   "lugares": {
    "tec": [
     "pasillo",
-    "baños"
+    "baño",
+    "baño 2",
+    "baño 3"
    ]
   },
   "sin_lugar": [
@@ -2533,7 +2536,7 @@
    "limf"
   ],
   "sin_medida": [],
-  "justificacion": "Integral grande con tres baños y cocina.",
+  "justificacion": "Integral grande con tres baños y cocina. (El falso techo va en cada uno de los tres baños, con su nombre.)",
   "fuera": []
  },
  {

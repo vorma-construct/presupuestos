@@ -1,0 +1,675 @@
+[
+ {
+  "t": "Baño 1: 5,5 m², completo con mampara. Baño 2: 3 m², completo, sin mampara. Cocina: 11 m², completa.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5.5,
+    3
+   ],
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {
+   "mam": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El 1 y el 2 son el nombre de cada baño, no sus metros; una sola mampara.",
+  "fuera": []
+ },
+ {
+  "t": "Baño 1: 4 m², completo. Baño 2: 2,5 m², completo. Falso techo de pladur en los dos baños.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "tec"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    2.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "baño",
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cada baño con sus metros y el falso techo en los dos.",
+  "fuera": []
+ },
+ {
+  "t": "baño número 1 de 6 metros completo y baño número 2 de 3 metros completo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    6,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«número 1/2» es el nombre.",
+  "fuera": []
+ },
+ {
+  "t": "Reforma integral de 95 m² con dos baños completos (6 y 3,5 m²) y cocina de 12 m².",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    3.5
+   ],
+   "cocina": [
+    12
+   ],
+   "piso": 95
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros entre paréntesis son de cada baño.",
+  "fuera": []
+ },
+ {
+  "t": "tres baños completos (5, 4 y 3 m²) y falso techo en pasillo y baños",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "tec"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "baño",
+    "baño 2",
+    "baño 3"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El techo va al pasillo y a cada baño.",
+  "fuera": []
+ },
+ {
+  "t": "pues eh baño baño completo dos baños uno de cuatro y otro de dos coma cinco",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    2.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El «baño» de antes es el arranque de «dos baños».",
+  "fuera": []
+ },
+ {
+  "t": "dos baños completos el grande de seis metros y el pequeño de tres el grande con mampara dos platos de ducha de ochenta por ochenta y dos muebles de baño",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam",
+   "pd8",
+   "mba"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    6,
+    3
+   ]
+  },
+  "cantidades": {
+   "mam": 1,
+   "pd8": 2,
+   "mba": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos platos y dos muebles: uno en cada baño; 80x80 no es 80x82.",
+  "fuera": []
+ },
+ {
+  "t": "en getxo el baño de arriba completo sin mampara es de cuatro metros y medio",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mam",
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros van con el baño aunque se digan después de «sin mampara».",
+  "fuera": []
+ },
+ {
+  "t": "En Basauri: baño completo (no sé las medidas) y cocina completa (tampoco).",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Baño y cocina enteros con los metros pendientes, no desaparecen ni van a 1 m.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo no sé las medidas todavía",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "justificacion": "Sin medida: queda preguntada.",
+  "fuera": []
+ },
+ {
+  "t": "Fontanería de baño y cocina y electricidad nueva, sin obra de baño ni cocina.",
+  "debe": [
+   "fba",
+   "fco",
+   "ele"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "ali",
+   "alc",
+   "sol",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo instalaciones.",
+  "fuera": []
+ },
+ {
+  "t": "lucido en la cocina de ocho metros, los muebles los monta el cliente",
+  "debe": [
+   "coc",
+   "luc",
+   "fco"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina entera con paredes lucidas y muebles de otro. (El suelo de la cocina queda como pregunta.)",
+  "fuera": []
+ },
+ {
+  "t": "Falso techo en la cocina y el baño, nada más.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "ali",
+   "alc",
+   "sol",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "tec"
+  ],
+  "justificacion": "Un falso techo en cada estancia, sin medidas.",
+  "fuera": []
+ },
+ {
+  "t": "falso techo de escayola en el baño y en la cocina",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "tec"
+  ],
+  "justificacion": "Uno en cada sitio.",
+  "fuera": []
+ },
+ {
+  "t": "Quitar el alicatado de la cocina, dieciocho metros, y el suelo de baldosa, siete metros.",
+  "debe": [
+   "ali",
+   "sol"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ali": 18,
+   "sol": 7
+  },
+  "lugares": {
+   "ali": [
+    "cocina"
+   ],
+   "sol": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El suelo también es de la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "conducto de ventilación para la campana de la cocina y nada más",
+  "debe": [
+   "vent"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "vent": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La campana es de la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "Montar el mueble del baño con espejo y un armario en el dormitorio.",
+  "debe": [
+   "mba",
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "mba": [
+    "baño"
+   ],
+   "mar": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cada partida en su estancia.",
+  "fuera": []
+ },
+ {
+  "t": "En el baño: quitar la mampara, plato de 80x80 nuevo y mampara nueva.",
+  "debe": [
+   "qma",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qma": [
+    "baño"
+   ],
+   "pd8": [
+    "baño"
+   ],
+   "mam": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Todo del baño.",
+  "fuera": []
+ },
+ {
+  "t": "Alicatado del baño con piezas de treinta por noventa, doce metros cuadrados, los azulejos los compra el cliente.",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 12
+  },
+  "lugares": {
+   "alsm": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "30x90 es el formato de la pieza; material del cliente.",
+  "fuera": []
+ },
+ {
+  "t": "el baño de los niños entero de cuatro metros y el baño de matrimonio solo cambiar la mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "mam": [
+    "baño de matrimonio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La mampara es del otro baño, no del de los niños.",
+  "fuera": []
+ },
+ {
+  "t": "Dos baños completos: el de arriba de cinco metros y el de abajo de tres. En los dos, plato de ducha de ochenta por ochenta y mampara.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {
+   "pd8": 2,
+   "mam": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«En los dos» vale para el plato y para la mampara.",
+  "fuera": []
+ },
+ {
+  "t": "en zalla baño de cinco metros completo y cocina de ocho metros completa y falso techo en baño y cocina",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El techo en cada una de las dos estancias enteras.",
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva fontanería del baño y contenedor sin tocar los alicatados",
+  "debe": [
+   "ele",
+   "fba",
+   "con"
+  ],
+  "no_debe": [
+   "ali",
+   "alc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin alicatado; el contenedor sí.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la escalera y el baño de tres metros completo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pip"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "escalera"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "La escalera es su propio sitio.",
+  "fuera": []
+ },
+ {
+  "t": "Montar el mueble del baño con espejo y un armario en el dormitorio.",
+  "debe": [
+   "mba",
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "mba": [
+    "baño"
+   ],
+   "mar": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos trabajos, cada uno en su estancia.",
+  "fuera": []
+ },
+ {
+  "t": "Picar el yeso de las paredes de la cocina, quince metros, y lucirlas de nuevo, quince metros.",
+  "debe": [
+   "pic",
+   "luc"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pic": 15,
+   "luc": 15
+  },
+  "lugares": {
+   "pic": [
+    "cocina"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Picado y lucido de la cocina.",
+  "fuera": []
+ }
+]

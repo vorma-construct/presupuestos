@@ -3531,14 +3531,6 @@
  {
   "t": "Reforma integral 64 m2, y en la cocina lucir las paredes en vez de alicatar.",
   "debe": [
-   "ali",
-   "sol",
-   "dfon",
-   "alc",
-   "tec",
-   "coc",
-   "fco",
-   "mco",
    "luc"
   ],
   "no_debe": [],
@@ -3546,7 +3538,11 @@
    "piso": 64
   },
   "cantidades": {},
-  "fuera": []
+  "fuera": [],
+  "justificacion": "Solo se dice que en la cocina se lucen las paredes: lucido de cocina con los metros por preguntar, y la pregunta de la reforma integral «¿se reforma la cocina?»; no se inventa la cocina entera.",
+  "sin_medida": [
+   "luc"
+  ]
  },
  {
   "t": "Piso de 58 metros, reforma completa, quitando el papel pintado de todas las habitaciones.",

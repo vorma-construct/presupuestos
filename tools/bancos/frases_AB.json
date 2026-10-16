@@ -2941,8 +2941,6 @@
   "t": "hay que reformar la casa de ochenta metros entera con tres habitaciones dos baños y cocina y quitar el gotelé de todo",
   "debe": [
    "pip",
-   "fba",
-   "fco",
    "lija"
   ],
   "no_debe": [],
@@ -2950,7 +2948,8 @@
    "piso": 80
   },
   "cantidades": {},
-  "fuera": []
+  "fuera": [],
+  "justificacion": "«con tres habitaciones, dos baños y cocina» describe la casa: si se reforman baños y cocina queda como pregunta de la reforma integral (¿cuántos baños? ¿se reforma la cocina?), sin partidas supuestas."
  },
  {
   "t": "renovar el baño de 4 m2 y la cocina de 10 m2 y poner suelo flotante en el resto de la casa que son 50 m2",
