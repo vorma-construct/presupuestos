@@ -95,7 +95,8 @@ function pintar(){var tb=document.getElementById('tb');if(!tb)return;var rows=tb
   var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:'l|'+i;var td=r.querySelector('td');if(!td)return;
   if(mostradas[k]){td.insertAdjacentHTML('beforeend','<div class="pendChip" style="color:#8A5A00;font-size:13px;margin-top:2px">Pendiente (lo de arriba)</div>');return}
   mostradas[k]=1;td.insertAdjacentHTML('beforeend',chip(p))});
- [].forEach.call(rows,function(r,i){var l=cur.lineas[i],qi=r.querySelector('.lq');if(!l||!qi)return;var p=porI[i];if(p&&(p.t==='medida'||p.t==='medidaPaq')&&!(num(l.q)>0)){qi.value='';qi.placeholder='¿?';qi.style.borderColor='#C98A00';var im=r.querySelector('.imp');if(im)im.textContent='—';cambiado=true}});
+ /* el 1 inventado que se ha puesto a cero no se queda en la casilla aunque lo primero que falte sea el precio (si no, el siguiente leer() lo daba por escrito a mano: «papel pintado» sin precio en Lucas acababa en 1 m²) */
+ [].forEach.call(rows,function(r,i){var l=cur.lineas[i],qi=r.querySelector('.lq');if(!l||!qi)return;var p=porI[i];if(((p&&(p.t==='medida'||p.t==='medidaPaq'))||l.qPend)&&!(num(l.q)>0)){qi.value='';qi.placeholder='¿?';qi.style.borderColor='#C98A00';var im=r.querySelector('.imp');if(im)im.textContent='—';cambiado=true}});
  if(cambiado&&calc0)try{calc0()}catch(_){}
  var C=cosas(),ban=document.getElementById('pendBanner'),tabla=tb.closest('table');
  if(!C.length){if(ban)ban.remove();return}
@@ -106,7 +107,8 @@ function pintar(){var tb=document.getElementById('tb');if(!tb)return;var rows=tb
 window.pintarPendientes=pintar;
 
 window.pendSiguiente=function(){var tr=document.querySelector('#tb tr.pendiente');if(!tr)return;tr.scrollIntoView({behavior:'smooth',block:'center'});tr.style.outline='3px solid #C98A00';setTimeout(function(){tr.style.outline=''},1600);var i=tr.querySelector('.pendChip input,.pendChip button');if(i&&i.tagName==='INPUT')setTimeout(function(){i.focus()},300)};
-function despues(){try{leer()}catch(_){}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta&&api().pintarTarjeta()}catch(_){}}
+/* después de rehacer una estancia la tabla aún enseña lo de antes: se pinta sin leerla (si se leía, los metros contestados volvían a los calculados y quedaban como escritos a mano) */
+function despues(){renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta&&api().pintarTarjeta()}catch(_){}}
 window.pendResp=function(id,k,v){if(window.paqResp)paqResp(id,k,v);else{var pk=paqDe(id);pk.r[k]=v;pk.hechas[k]=1;api().rehacer(pk);despues()}};
 window.pendNum=function(id,k){var i=document.getElementById('pn_'+id+'_'+k),v=parseInt(String(i&&i.value||'').replace(/\D/g,''),10);if(!(v>=0)){if(i)i.focus();return}pendResp(id,k,v)};
 window.pendTodo=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;pk.okTodo=1;pk.hechas=pk.hechas||{};var P=api().PAQ[pk.tipo];(P.preg||[]).forEach(function(q){pk.hechas[q.k]=1});if(pk.calculado)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
