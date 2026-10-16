@@ -227,7 +227,7 @@ function escena(bruto,op){op=op||{};
    var accs=it.copia||[acc];
    rooms.forEach(function(r){var s=porSala[r.k];if(!s){s={sala:r,acc:[]};porSala[r.k]=s;items.push(s)}accs.forEach(function(x){var xx=limpiar(x)+(it.total&&rooms.length===1?' '+it.total:'');if(s.acc.indexOf(xx)<0)s.acc.push(xx)})})});
   var frs=items.map(function(it){if(it.lit!=null)return it.lit;var r=it.sala,med='';
-   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y ')+' metros';else if(r.m2!=null)med=' de '+fmt(r.m2)+' metros';
+   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y de ')+' metros';else if(r.m2!=null)med=' de '+fmt(r.m2)+' metros';
    return 'en '+nombreDe(r)+med+' '+it.acc.join(', ')});
   cambia=true;info.push(frs);out.push(frs.join('. '))});
  function limpiar(x){var a=String(x||'').replace(/^\s*(?:(?:y|e|tambien|ademas|luego|despues|pues|bueno)\s+)+/,' ').replace(/^\s*(?:y|e|luego|despues)\s+/,' ').replace(/\b(pint|lij|quit|pon|cambi|lev|arranc|empapel|luc|alis|rasc)(ar|er|ir)(?:lo|la|los|las)\b/g,'$1$2').replace(/\b(pintar|lijar|lucir)\s+todo\b/g,'$1').replace(/\btambien\b/g,' ').replace(/\s+(?:y|e|de|del|en|y luego|que)\s*$/,'').replace(/\s+/g,' ').trim();
