@@ -1,4154 +1,4153 @@
 [
-{
-"t": "Buenas! bano completo en Portugalete 5m2, plato normal y el mueble lo montamos nosotros",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mba"
-],
-"no_debe": [
-"coc",
-"fco",
-"pd8"
-],
-"estancias": {
-"bano": [
-5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cosina entera en Algorta 9 m2 , muebles los montamos nosotros",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-9
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintra salon y pasillo paredes y techos, el gotele hay q quitarlo antes",
-"debe": [
-"lija",
-"pip",
-"pit"
-],
-"no_debe": [
-"qpa",
-"flo"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar papel de 2 habitaciones y pintar  paredes",
-"debe": [
-"qpa",
-"pip"
-],
-"no_debe": [
-"lija",
-"ppa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "flotante en 3 habitaciones aprox 35m2 + rodapie nuevo quitando el viejo",
-"debe": [
-"flo",
-"ron",
-"rod"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {
-"flo": 35
-},
-"fuera": []
-},
-{
-"t": "cambiar 6 puertas de paso y la de entrada blindada",
-"debe": [
-"pue",
-"pub",
-"pen"
-],
-"no_debe": [
-"pre"
-],
-"estancias": {},
-"cantidades": {
-"pub": 6
-},
-"fuera": []
-},
-{
-"t": "tirar el tabique entre cocina y salon + contenedor",
-"debe": [
-"tab",
-"con"
-],
-"no_debe": [
-"coc",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano sin falso techo q esta bien, plato 80x80 y mampara nueva",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd8",
-"mam"
-],
-"no_debe": [
-"tec",
-"pd7",
-"coc",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "solo quitar mampara vieja y poner otra nueva, nada mas en el bano",
-"debe": [
-"qma",
-"mam"
-],
-"no_debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "4 radiadores nuevos en Amorebieta, la instalacion de calefaccion se queda",
-"debe": [
-"rad"
-],
-"no_debe": [
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 4
-},
-"fuera": []
-},
-{
-"t": "calefaccion nueva en todo el caserio de Mungia",
-"debe": [
-"cal"
-],
-"no_debe": [
-"fba",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "lonja en Etxebarri: tirar tabique y pladur nuevo de 6 de largo x 2,7 alto",
-"debe": [
-"tab",
-"pla"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pla": 16.2
-},
-"fuera": []
-},
-{
-"t": "acuchillar parquet salon 25m2 y barnizar",
-"debe": [
-"acu"
-],
-"no_debe": [
-"flo",
-"sue"
-],
-"estancias": {},
-"cantidades": {
-"acu": 25
-},
-"fuera": []
-},
-{
-"t": "nivelar suelo y flotante encima, 50 m2 los dos",
-"debe": [
-"niv",
-"flo"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {
-"niv": 50,
-"flo": 50
-},
-"fuera": []
-},
-{
-"t": "electricidad nueva de todo el piso con boletin",
-"debe": [
-"ele",
-"bol"
-],
-"no_debe": [
-"fba",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "falso techo en el pasillo 8m2 pa meter focos",
-"debe": [
-"tec"
-],
-"no_debe": [
-"pit"
-],
-"estancias": {},
-"cantidades": {
-"tec": 8
-},
-"fuera": []
-},
-{
-"t": "quitar azulejos de la cocina y lucir las paredes. muebles se quedan",
-"debe": [
-"ali",
-"luc"
-],
-"no_debe": [
-"coc",
-"mco",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintar techos de todo el piso en blanco, paredes no",
-"debe": [
-"pit"
-],
-"no_debe": [
-"pip"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cambiar 7 ventanas de aluminio x pvc",
-"debe": [],
-"no_debe": [
-"pue",
-"pub",
-"pen"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "termo nuevo en el bano, solo eso",
-"debe": [],
-"no_debe": [
-"san",
-"fba",
-"ali",
-"sol",
-"alc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "persianas motorizadas en salon y habitaciones",
-"debe": [],
-"no_debe": [
-"pue",
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "encimera nueva de silestone, la cosina se queda como esta",
-"debe": [],
-"no_debe": [
-"coc",
-"mco",
-"fco",
-"alc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano entero 4,5m2 con bañera y sin mueble q lo tiene",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con"
-],
-"no_debe": [
-"pd7",
-"pd8",
-"mba",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4.5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "al final limpieza final y contenedor",
-"debe": [
-"limf",
-"con"
-],
-"no_debe": [
-"limp"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "ojo 5º sin ascensor. bano completo de 3m",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mon"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "premarcos para 3 puertas",
-"debe": [
-"pre"
-],
-"no_debe": [
-"pen"
-],
-"estancias": {},
-"cantidades": {
-"pre": 3
-},
-"fuera": []
-},
-{
-"t": "gotele fuera en 3 habitaciones y pintra",
-"debe": [
-"lija",
-"pip"
-],
-"no_debe": [
-"qpa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar suelo de madera del salon y poner tarima flotante",
-"debe": [
-"sue",
-"flo"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "rodapie blanco 40 ml, no hay viejo q quitar",
-"debe": [
-"ron"
-],
-"no_debe": [
-"rod"
-],
-"estancias": {},
-"cantidades": {
-"ron": 40
-},
-"fuera": []
-},
-{
-"t": "integral piso en Santurtzi 80m2, todo todo",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco"
-],
-"no_debe": [],
-"estancias": {
-"piso": 80
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "reforma integral 70m, la cocina no se toca q es nueva",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco"
-],
-"estancias": {
-"piso": 70
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "aire acondicionado en 2 habitaciones",
-"debe": [],
-"no_debe": [
-"ele",
-"cal",
-"rad"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "caldera nueva de gas, la vieja hace ruido",
-"debe": [],
-"no_debe": [
-"cal",
-"rad",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el tejado del caserio gotea, mirar",
-"debe": [],
-"no_debe": [
-"tec",
-"pit"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintar fachada de la lonja",
-"debe": [],
-"no_debe": [
-"pip",
-"pit"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "toldo para la terraza del atico",
-"debe": [],
-"no_debe": [
-"tec",
-"pue"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "grifo de la cosina gotea, cambiarlo",
-"debe": [],
-"no_debe": [
-"fco",
-"coc",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano pequeño de cortesia: solo quitar sanitarios viejos",
-"debe": [
-"san"
-],
-"no_debe": [
-"ali",
-"sol",
-"alc",
-"coc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "alicatar bano encima de lo q hay, 12m2 de pared",
-"debe": [
-"alc"
-],
-"no_debe": [
-"ali"
-],
-"estancias": {},
-"cantidades": {
-"alc": 12
-},
-"fuera": []
-},
-{
-"t": "quitar alicatado viejo de la cocina 18 m2",
-"debe": [
-"ali"
-],
-"no_debe": [
-"san"
-],
-"estancias": {},
-"cantidades": {
-"ali": 18
-},
-"fuera": []
-},
-{
-"t": "papel pintado fuera en dormitorio principal",
-"debe": [
-"qpa"
-],
-"no_debe": [
-"ppa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "poner papel pintado en una pared del salon",
-"debe": [
-"ppa"
-],
-"no_debe": [
-"qpa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "puerta blindada nueva con premarco",
-"debe": [
-"pen",
-"pre"
-],
-"no_debe": [
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "radiador del bano cambiar x uno nuevo",
-"debe": [
-"rad"
-],
-"no_debe": [
-"san",
-"fba",
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 1
-},
-"fuera": []
-},
-{
-"t": "cocina en Leioa: tirar todo y alicatar, los muebles los pone ikea",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "kocina de 7m, lucido en vez de azulejo, muebles montamos nosotros",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-7
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tirar tabique y hacer otro de pladur 3,5 x 2,5",
-"debe": [
-"tab",
-"pla"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pla": 8.75
-},
-"fuera": []
-},
-{
-"t": "falso techo en bano y cocina, lo demas igual",
-"debe": [
-"tec"
-],
-"no_debe": [
-"coc",
-"san",
-"fba",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "contenedor para escombro solo eso",
-"debe": [
-"con"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "4º sin ascensor, flotante 45 m2",
-"debe": [
-"mon",
-"flo"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"flo": 45
-},
-"fuera": []
-},
-{
-"t": "2 banos en Durango: uno 4m y otro 3m, los 2 enteros con ducha",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4,
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano grande 6m2 con bañera, falso techo si",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"tec"
-],
-"no_debe": [
-"pd7",
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "hola, cosina completa 10m2. muebles NO los montamos",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-10
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintar paredes 60m2 y techos 20m2",
-"debe": [
-"pip",
-"pit"
-],
-"no_debe": [
-"lija"
-],
-"estancias": {},
-"cantidades": {
-"pip": 60,
-"pit": 20
-},
-"fuera": []
-},
-{
-"t": "cambiar puertas de paso, son 5",
-"debe": [
-"pue",
-"pub"
-],
-"no_debe": [
-"pen"
-],
-"estancias": {},
-"cantidades": {
-"pue": 5,
-"pub": 5
-},
-"fuera": []
-},
-{
-"t": "electricidad nueva sin boletin q ya tiene",
-"debe": [
-"ele"
-],
-"no_debe": [
-"bol"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar 2 mamparas de 2 banos",
-"debe": [
-"qma"
-],
-"no_debe": [
-"mam",
-"san"
-],
-"estancias": {},
-"cantidades": {
-"qma": 2
-},
-"fuera": []
-},
-{
-"t": "mampara nueva frontal en el bano de arriba",
-"debe": [
-"mam"
-],
-"no_debe": [
-"qma",
-"san"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tarima en habitacion 12 m2 + rodapie",
-"debe": [
-"flo",
-"ron"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {
-"flo": 12
-},
-"fuera": []
-},
-{
-"t": "laminado en el pasillo, quitar antes la moqueta",
-"debe": [
-"flo"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "txoko de la lonja: pintar paredes y techo y contenedor",
-"debe": [
-"pip",
-"pit",
-"con"
-],
-"no_debe": [
-"coc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano completo en Galdakao 3,8m2 plato 80x80",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd8"
-],
-"no_debe": [
-"pd7",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3.8
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la sra quiere bano sin bañera, plato ducha, 4m2, mueble con espejo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mba"
-],
-"no_debe": [
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "lucir las paredes de la cocina, nada mas",
-"debe": [
-"luc"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cambiar la puerta de entrada x blindada",
-"debe": [
-"pen"
-],
-"no_debe": [
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "nivelar suelo salon y comedor 30m",
-"debe": [
-"niv"
-],
-"no_debe": [
-"flo"
-],
-"estancias": {},
-"cantidades": {
-"niv": 30
-},
-"fuera": []
-},
-{
-"t": "quitar parquet viejo de 3 habitaciones",
-"debe": [
-"sue"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "acuchillar y barnizar suelo de todo el piso",
-"debe": [
-"acu"
-],
-"no_debe": [
-"flo",
-"sue"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tirar 2 tabiques pa hacer salon grande + contenedor",
-"debe": [
-"tab",
-"con"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pladur pa separar habitacion 4 largo x 2,5 alto",
-"debe": [
-"pla"
-],
-"no_debe": [
-"tab"
-],
-"estancias": {},
-"cantidades": {
-"pla": 10
-},
-"fuera": []
-},
-{
-"t": "ventanas y persianas nuevas en todo el piso",
-"debe": [],
-"no_debe": [
-"pue",
-"pub",
-"pen"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano entero, el contenedor no q lo pone el vecino",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"pd7"
-],
-"no_debe": [
-"con",
-"coc",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cosina entera, sin contenedor q lleva la obra otro",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc"
-],
-"no_debe": [
-"con",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar papel del pasillo y la habitacion y pintar paredes y techos",
-"debe": [
-"qpa",
-"pip",
-"pit"
-],
-"no_debe": [
-"ppa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "Plentzia piso de verano, pintra todo paredes y techos",
-"debe": [
-"pip",
-"pit"
-],
-"no_debe": [
-"lija"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "2 radiadores nuevos en habitaciones",
-"debe": [
-"rad"
-],
-"no_debe": [
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 2
-},
-"fuera": []
-},
-{
-"t": "falso techo de pladur en salon 20m2",
-"debe": [
-"tec"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"tec": 20
-},
-"fuera": []
-},
-{
-"t": "bano 3m2 sin mueble y sin falso techo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7"
-],
-"no_debe": [
-"mba",
-"tec",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina 8m2 con lucido, muebles los trae y monta el cliente",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-8
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "alicatar la cocina de nuevo 22m2 de pared",
-"debe": [
-"alc"
-],
-"no_debe": [
-"luc"
-],
-"estancias": {},
-"cantidades": {
-"alc": 22
-},
-"fuera": []
-},
-{
-"t": "aire acondicionado en salon y caldera nueva",
-"debe": [],
-"no_debe": [
-"ele",
-"cal",
-"rad",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "integral 90m2 en Sopela, el bano no q lo hicieron hace 2 años",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"coc",
-"ali",
-"sol",
-"fco",
-"alc"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"piso": 90
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "reforma integral del piso de mi cuñado 65m, la cocina tb",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco"
-],
-"no_debe": [],
-"estancias": {
-"piso": 65
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "subir material sin ascensor 3º, pintar todo",
-"debe": [
-"mon",
-"pip",
-"pit"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar rodapie viejo y poner nuevo 55 metros lineales",
-"debe": [
-"rod",
-"ron"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"rod": 55,
-"ron": 55
-},
-"fuera": []
-},
-{
-"t": "puertas: quitar las viejas y poner 4 nuevas, y premarcos tb",
-"debe": [
-"pue",
-"pub",
-"pre"
-],
-"no_debe": [
-"pen"
-],
-"estancias": {},
-"cantidades": {
-"pub": 4
-},
-"fuera": []
-},
-{
-"t": "bano entero de 4m con mampara, plato de 70x110",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mam"
-],
-"no_debe": [
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina de 6m2 en Erandio entera y montamos muebles",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "limpieza final del piso",
-"debe": [
-"limf"
-],
-"no_debe": [
-"limp"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "gotele fuera en salon 40 m2 de pared y pintar",
-"debe": [
-"lija",
-"pip"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"lija": 40,
-"pip": 40
-},
-"fuera": []
-},
-{
-"t": "encimera y grifo nuevos, nada de obra",
-"debe": [],
-"no_debe": [
-"coc",
-"mco",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tejado y fachada del caserio, eso lo hace otro gremio",
-"debe": [],
-"no_debe": [
-"tec",
-"pip",
-"pit"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bano entero con bañera, 5m2, mueble y falso techo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"mba",
-"tec"
-],
-"no_debe": [
-"pd7",
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "electricidad: todo nuevo y boletin pa dar de alta",
-"debe": [
-"ele",
-"bol"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar mampara, poner plato 80x80 y mampara, lo demas se queda",
-"debe": [
-"qma",
-"pd8",
-"mam"
-],
-"no_debe": [
-"ali",
-"sol",
-"alc",
-"san"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "aupa pues nada un baño entero en zalla de cuatro coma dos metros con plato de ducha y el mueble también",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mba"
-],
-"no_debe": [
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4.2
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "esto es una cocina entera de nueve no perdona de once metros y los muebles los ponemos nosotros",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-11
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "mira el gotelé de todo el salón hay que quitarlo y luego pintar paredes y techo",
-"debe": [
-"lija",
-"pip",
-"pit"
-],
-"no_debe": [
-"qpa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el cliente quiere quitar el papel ese de flores del dormitorio y pintarlo de blanco las paredes",
-"debe": [
-"qpa",
-"pip"
-],
-"no_debe": [
-"ppa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tarima flotante en tres habitaciones que serán entre treinta y treinta y cinco metros",
-"debe": [
-"flo"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "buah las puertas cambiar todas son siete puertas de paso y ya está",
-"debe": [
-"pue",
-"pub"
-],
-"no_debe": [
-"pen"
-],
-"estancias": {},
-"cantidades": {
-"pue": 7,
-"pub": 7
-},
-"fuera": []
-},
-{
-"t": "y tirar el tabique de la cocina para hacerla abierta al salón o sea solo el tabique",
-"debe": [
-"tab"
-],
-"no_debe": [
-"coc",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el baño se hace entero pero falso techo no que el techo está perfecto y plato de ochenta por ochenta",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd8"
-],
-"no_debe": [
-"tec",
-"pd7",
-"coc",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "esto nada más quitar la mampara que está rota y poner una nueva vale",
-"debe": [
-"qma",
-"mam"
-],
-"no_debe": [
-"san",
-"ali",
-"fba"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "radiadores tres en las habitaciones de atrás y el resto se queda como está",
-"debe": [
-"rad"
-],
-"no_debe": [
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 3
-},
-"fuera": []
-},
-{
-"t": "calefacción toda nueva en el caserío que ahora tienen estufas de leña",
-"debe": [
-"cal"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "un tabique de pladur de cuatro metros de largo por dos sesenta de alto para hacer otra habitación",
-"debe": [
-"pla"
-],
-"no_debe": [
-"tab"
-],
-"estancias": {},
-"cantidades": {
-"pla": 10.4
-},
-"fuera": []
-},
-{
-"t": "acuchillar el parquet de todo el piso que está muy gastado pero bonito",
-"debe": [
-"acu"
-],
-"no_debe": [
-"flo",
-"sue"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "hay que nivelar el suelo de la lonja que está fatal y es de unos sesenta metros",
-"debe": [
-"niv"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"niv": 60
-},
-"fuera": []
-},
-{
-"t": "la electricidad entera nueva que es de los años sesenta y luego el boletín",
-"debe": [
-"ele",
-"bol"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "falso techo en la cocina y en el pasillo eh dos y pico metros el pasillo y la cocina no sé",
-"debe": [
-"tec"
-],
-"no_debe": [
-"coc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar los azulejos de la cocina y lucirla con yeso que no quiere azulejo la señora",
-"debe": [
-"ali",
-"luc"
-],
-"no_debe": [
-"coc",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintar los techos nada más de todo el piso las paredes las pinta él",
-"debe": [
-"pit"
-],
-"no_debe": [
-"pip"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "las ventanas quiere cambiar todas a pvc con rotura de puente térmico",
-"debe": [],
-"no_debe": [
-"pue",
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el termo eléctrico ese de cien litros cambiarlo por uno nuevo",
-"debe": [],
-"no_debe": [
-"fba",
-"fco",
-"san"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "las persianas de las habitaciones que no suben eso arreglarlas",
-"debe": [],
-"no_debe": [
-"pue",
-"ele"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la encimera de la cocina está quemada quiere cambiar la encimera solo",
-"debe": [],
-"no_debe": [
-"coc",
-"mco",
-"alc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño entero de cuatro y medio con bañera que la quiere mantener y sin mueble",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con"
-],
-"no_debe": [
-"pd7",
-"pd8",
-"mba",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4.5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "y limpieza final al terminar que lo quiere entregar al inquilino limpio",
-"debe": [
-"limf"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "es un sexto sin ascensor eh y baño completo de tres coma cinco",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mon"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3.5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "poner premarcos nuevos en dos huecos que no tienen",
-"debe": [
-"pre"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pre": 2
-},
-"fuera": []
-},
-{
-"t": "en la habitación del chaval quitar el gotelé y pintar de gris",
-"debe": [
-"lija",
-"pip"
-],
-"no_debe": [
-"qpa"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar el suelo de madera viejo que está levantado y poner laminado",
-"debe": [
-"sue",
-"flo"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "rodapié nuevo en todo el piso unos sesenta metros lineales y quitar el que hay",
-"debe": [
-"ron",
-"rod"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"ron": 60,
-"rod": 60
-},
-"fuera": []
-},
-{
-"t": "reforma integral de un piso en portugalete de setenta y cinco metros cuadrados todo nuevo",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco"
-],
-"no_debe": [],
-"estancias": {
-"piso": 75
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "piso entero reforma integral pero el baño se queda que es nuevo de hace un año",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"coc",
-"ali",
-"sol",
-"fco",
-"alc"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7",
-"pd8"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el aire acondicionado lo quiere en el salón eso no es nuestro",
-"debe": [],
-"no_debe": [
-"ele",
-"cal"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la caldera es vieja y quiere una de condensación",
-"debe": [],
-"no_debe": [
-"cal",
-"rad"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el tejado del caserío tiene goteras y la fachada está negra",
-"debe": [],
-"no_debe": [
-"tec",
-"pit",
-"pip"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "un toldo en el balcón para el sol de la tarde",
-"debe": [],
-"no_debe": [
-"tec"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cambiar el grifo del baño que gotea y el de la cocina",
-"debe": [],
-"no_debe": [
-"fba",
-"fco",
-"san",
-"coc"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en el baño pequeño solo quitar los sanitarios que los va a cambiar él",
-"debe": [
-"san"
-],
-"no_debe": [
-"ali",
-"sol",
-"fba"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "alicatar las paredes del baño nuevo son unos dieciocho metros de pared",
-"debe": [
-"alc"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"alc": 18
-},
-"fuera": []
-},
-{
-"t": "quitar todos los azulejos de la cocina pero los muebles se quedan",
-"debe": [
-"ali"
-],
-"no_debe": [
-"coc",
-"mco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "papel pintado quitar en el pasillo que es largo unos veinte metros de pared",
-"debe": [
-"qpa"
-],
-"no_debe": [
-"ppa"
-],
-"estancias": {},
-"cantidades": {
-"qpa": 20
-},
-"fuera": []
-},
-{
-"t": "y luego poner papel pintado nuevo en el dormitorio el que ha elegido ella",
-"debe": [
-"ppa"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la puerta de la entrada blindada nueva que les entraron a robar",
-"debe": [
-"pen"
-],
-"no_debe": [
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "radiador nuevo en el salón uno solo",
-"debe": [
-"rad"
-],
-"no_debe": [
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 1
-},
-"fuera": []
-},
-{
-"t": "cocina entera en gernika ocho metros y los muebles los trae una tienda que los monta ellos",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-8
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina de seis metros sin azulejos lucida y pintada y nosotros montamos los muebles",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tirar el tabique del pasillo y cerrar con pladur de cinco por dos cincuenta",
-"debe": [
-"tab",
-"pla"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pla": 12.5
-},
-"fuera": []
-},
-{
-"t": "falso techo en el baño y ya mmm sí solo eso",
-"debe": [
-"tec"
-],
-"no_debe": [
-"san",
-"ali"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pedir contenedor para el sábado que vaciamos el trastero",
-"debe": [
-"con"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tercero sin ascensor y el suelo flotante de todo cincuenta y cinco metros",
-"debe": [
-"mon",
-"flo"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"flo": 55
-},
-"fuera": []
-},
-{
-"t": "dos baños uno de cinco y otro de tres los dos enteros el grande con bañera y el pequeño con ducha",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-5,
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño entero de seis metros con plato grande setenta por ciento diez y falso techo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"tec"
-],
-"no_debe": [
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la cocina completa de diez metros los muebles los monta el cliente que es carpintero",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-10
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pintar las paredes son unos ochenta metros y los techos treinta",
-"debe": [
-"pip",
-"pit"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pip": 80,
-"pit": 30
-},
-"fuera": []
-},
-{
-"t": "las puertas cambiar cinco no seis que me faltaba la del baño",
-"debe": [
-"pue",
-"pub"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pue": 6,
-"pub": 6
-},
-"fuera": []
-},
-{
-"t": "electricidad nueva y el boletín no hace falta que ya lo tienen",
-"debe": [
-"ele"
-],
-"no_debe": [
-"bol"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar las mamparas de los dos baños y no poner nada que van a poner cortina",
-"debe": [
-"qma"
-],
-"no_debe": [
-"mam"
-],
-"estancias": {},
-"cantidades": {
-"qma": 2
-},
-"fuera": []
-},
-{
-"t": "una mampara nueva en el baño de la habitación grande",
-"debe": [
-"mam"
-],
-"no_debe": [
-"san"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tarima flotante en el dormitorio de unos catorce metros y rodapié",
-"debe": [
-"flo",
-"ron"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"flo": 14
-},
-"fuera": []
-},
-{
-"t": "laminado en todo el piso entre setenta y ochenta metros todavía no lo he medido bien",
-"debe": [
-"flo"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el txoko pintarlo y poner contenedor que hay muchas cosas viejas",
-"debe": [
-"pip",
-"con"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño completo en durango tres metros con plato de ochenta por ochenta",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd8"
-],
-"no_debe": [
-"pd7",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño entero cuatro metros mueble con espejo y luz y plato normal",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mba"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "lucir las paredes de la cocina que ahora tiene gotelé y quedan los muebles",
-"debe": [
-"luc"
-],
-"no_debe": [
-"coc",
-"mco",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la puerta de entrada blindada y el premarco que el que hay está podrido",
-"debe": [
-"pen",
-"pre"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "nivelar el suelo de las habitaciones antes del flotante que son unos treinta y dos metros",
-"debe": [
-"niv",
-"flo"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"niv": 32,
-"flo": 32
-},
-"fuera": []
-},
-{
-"t": "quitar el parquet de todo el piso que tiene termitas",
-"debe": [
-"sue"
-],
-"no_debe": [
-"acu"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "acuchillar el suelo del salón y el pasillo unos treinta metros",
-"debe": [
-"acu"
-],
-"no_debe": [
-"flo"
-],
-"estancias": {},
-"cantidades": {
-"acu": 30
-},
-"fuera": []
-},
-{
-"t": "tirar dos tabiques y llevar el escombro en contenedor",
-"debe": [
-"tab",
-"con"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pladur para hacer un vestidor de tres de largo por dos setenta de alto",
-"debe": [
-"pla"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pla": 8.1
-},
-"fuera": []
-},
-{
-"t": "las ventanas y las persianas todo eso lo lleva una carpintería de aluminio",
-"debe": [],
-"no_debe": [
-"pue",
-"pub"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño entero pero el contenedor no que se lo lleva él en la furgoneta",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"pd7"
-],
-"no_debe": [
-"con",
-"coc",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina entera sin contenedor que hay uno ya en la calle del vecino",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc"
-],
-"no_debe": [
-"con",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar papel pintado de las paredes del salón y pintar paredes y techo",
-"debe": [
-"qpa",
-"pip",
-"pit"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en el piso de algorta pintar todo paredes y techos el gotelé se queda",
-"debe": [
-"pip",
-"pit"
-],
-"no_debe": [
-"lija"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "radiadores nuevos en el salón y en la cocina dos en total",
-"debe": [
-"rad"
-],
-"no_debe": [
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"rad": 2
-},
-"fuera": []
-},
-{
-"t": "falso techo en el salón de veinticuatro metros que quiere luz indirecta",
-"debe": [
-"tec"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"tec": 24
-},
-"fuera": []
-},
-{
-"t": "baño de tres metros entero sin mueble que no cabe y sin falso techo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7"
-],
-"no_debe": [
-"mba",
-"tec",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina lucida en vez de azulejo de siete metros y los muebles no los montamos",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-7
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "alicatar la cocina otra vez con azulejo blanco unos veinticinco metros de pared",
-"debe": [
-"alc"
-],
-"no_debe": [
-"luc"
-],
-"estancias": {},
-"cantidades": {
-"alc": 25
-},
-"fuera": []
-},
-{
-"t": "aire acondicionado en todas las habitaciones con split",
-"debe": [],
-"no_debe": [
-"ele",
-"cal"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "integral de noventa y cinco metros en mungia el baño no que está nuevo",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"coc",
-"ali",
-"sol",
-"fco",
-"alc"
-],
-"no_debe": [
-"san",
-"fba"
-],
-"estancias": {
-"piso": 95
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "reforma integral de un piso de sesenta metros con cocina y baño",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco"
-],
-"no_debe": [],
-"estancias": {
-"piso": 60
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "es un cuarto sin ascensor y hay que pintar todo el piso",
-"debe": [
-"mon",
-"pip",
-"pit"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "quitar el rodapié viejo y poner rodapié blanco nuevo unos cuarenta y cinco metros",
-"debe": [
-"rod",
-"ron"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"rod": 45,
-"ron": 45
-},
-"fuera": []
-},
-{
-"t": "puertas cambiar tres y poner premarco en las tres",
-"debe": [
-"pue",
-"pub",
-"pre"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"pue": 3,
-"pub": 3,
-"pre": 3
-},
-"fuera": []
-},
-{
-"t": "baño entero de cuatro metros con mampara y plato setenta por ciento diez",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mam"
-],
-"no_debe": [
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "cocina entera de seis metros en leioa y los muebles nosotros",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "limpieza final y ya está que lo demás lo hizo otro",
-"debe": [
-"limf"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el gotelé quitarlo de cincuenta metros de pared y pintar",
-"debe": [
-"lija",
-"pip"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"lija": 50,
-"pip": 50
-},
-"fuera": []
-},
-{
-"t": "la encimera y el fregadero se los pone la tienda de la cocina",
-"debe": [],
-"no_debe": [
-"coc",
-"mco",
-"fco"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "tejado fachada y canalones eso no es nuestro eh",
-"debe": [],
-"no_debe": [
-"tec",
-"pip",
-"pit"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "baño completo cinco metros con bañera y mueble y falso techo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"mba",
-"tec"
-],
-"no_debe": [
-"pd7",
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "instalación eléctrica nueva de todo el piso y el boletín para la compañía",
-"debe": [
-"ele",
-"bol"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "plato de ducha de ochenta por ochenta y mampara quitando la vieja lo demás se queda",
-"debe": [
-"qma",
-"pd8",
-"mam"
-],
-"no_debe": [
-"ali",
-"sol",
-"alc",
-"san"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bueno pues en la casa de amorebieta el baño entero de cuatro metros con plato y mueble y la cocina entera de ocho que los muebles los montamos nosotros y la señora me ha dado café y todo eh",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"coc",
-"fco",
-"pd7",
-"mba",
-"mco"
-],
-"no_debe": [],
-"estancias": {
-"bano": [
-4
-],
-"cocina": [
-8
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "mira apúntate esto la cocina entera de nueve metros eso sí los muebles los trae su hijo que trabaja en una tienda y en el salón gotelé fuera y pintar paredes y techo y el baño se queda que lo hicieron hace poco",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"lija",
-"pip",
-"pit"
-],
-"no_debe": [
-"mco",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-9
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "visita en Bermeo: bano 3m entero c/ ducha, puertas cambiar 4, rodapie nuevo quitando viejo y flotante en habitaciones. El salon no q tiene parquet bueno y lo quiere acuchillar",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"pue",
-"pub",
-"ron",
-"rod",
-"flo",
-"acu"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {
-"pue": 4,
-"pub": 4
-},
-"fuera": []
-},
-{
-"t": "en el piso de la calle mayor de mungia radiadores cuatro electricidad nueva sin boletín y pintar paredes las ventanas las cambia el ayuntamiento que es vivienda de protección o algo así",
-"debe": [
-"rad",
-"ele",
-"pip"
-],
-"no_debe": [
-"bol",
-"pue"
-],
-"estancias": {},
-"cantidades": {
-"rad": 4
-},
-"fuera": []
-},
-{
-"t": "integral de ochenta metros en galdakao todo menos la calefacción que es nueva y el cliente quiere puerta blindada y además es un cuarto sin ascensor",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco",
-"pen",
-"mon"
-],
-"no_debe": [
-"cal",
-"rad"
-],
-"estancias": {
-"piso": 80
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "txoko en la lonja de Lekeitio: tirar tabique, pladur nuevo de 5 x 2,5, falso techo 30m2, pintar paredes y techo y contenedor. la cocinita del txoko se queda",
-"debe": [
-"tab",
-"pla",
-"tec",
-"pip",
-"pit",
-"con"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco"
-],
-"estancias": {},
-"cantidades": {
-"pla": 12.5,
-"tec": 30
-},
-"fuera": []
-},
-{
-"t": "pues el cliente es muy majo eh del athletic a muerte bueno a lo que voy baño entero de cinco con bañera sin mueble que lo tiene nuevo y la mampara de la otra ducha quitarla y poner nueva",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"qma",
-"mam"
-],
-"no_debe": [
-"mba",
-"pd7",
-"pd8",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en el caserío de mungia la cocina entera de doce metros con lucido nada de azulejos y nosotros montamos muebles calefacción nueva y la caldera esa la pone el gasista",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con",
-"mco",
-"cal"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-12
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "Visita Indautxu 2º con ascensor: quitar papel en 3 habitaciones, pintar todo, flotante 40m2 con rodapie (el viejo fuera), cambiar puertas 5. Las ventanas no q son nuevas",
-"debe": [
-"qpa",
-"pip",
-"flo",
-"ron",
-"rod",
-"pue",
-"pub"
-],
-"no_debe": [
-"mon"
-],
-"estancias": {},
-"cantidades": {
-"flo": 40,
-"pue": 5,
-"pub": 5
-},
-"fuera": []
-},
-{
-"t": "a ver el baño de arriba entero tres metros con ducha el de abajo solo quitar la mampara y poner nueva y en la cocina solo lucir paredes que los muebles se quedan",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"qma",
-"mam",
-"luc"
-],
-"no_debe": [
-"coc",
-"mco",
-"fco"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en durango un piso de setenta metros integral pero ojo la cocina la hace el cliente con otra empresa y el baño sí lo hacemos con plato ochenta por ochenta",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"pd8"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco",
-"pd7"
-],
-"estancias": {
-"piso": 70
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "pues visita larga eh la señora hablando de su nieto que estudia en leioa en fin cocina de siete metros entera montando muebles y en las habitaciones quitar el suelo de madera y poner flotante treinta metros",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"sue",
-"flo"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-7
-]
-},
-"cantidades": {
-"flo": 30
-},
-"fuera": []
-},
-{
-"t": "piso en Portugalete: gotele fuera en todo, pintar, falso techo en pasillo 6m2, radiadores tres nuevos, contenedor y limpieza final. el aire acondicionado lo pone su yerno",
-"debe": [
-"lija",
-"pip",
-"tec",
-"rad",
-"con",
-"limf"
-],
-"no_debe": [
-"ele",
-"cal"
-],
-"estancias": {},
-"cantidades": {
-"tec": 6,
-"rad": 3
-},
-"fuera": []
-},
-{
-"t": "baño entero de cuatro con plato normal la cocina no eso no que la cambian el año que viene y las puertas cambiar seis y la de entrada blindada",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"pue",
-"pub",
-"pen"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {
-"pub": 6
-},
-"fuera": []
-},
-{
-"t": "en la lonja de erandio que la quieren para oficina tirar los dos tabiques nivelar el suelo cincuenta metros flotante encima y electricidad nueva con boletín",
-"debe": [
-"tab",
-"niv",
-"flo",
-"ele",
-"bol"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"niv": 50,
-"flo": 50
-},
-"fuera": []
-},
-{
-"t": "reforma integral en Sopela 85m2, bano con bañera y cocina con lucido, muebles los montamos, 3º sin ascensor",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"fba",
-"coc",
-"fco",
-"luc",
-"mco",
-"mon"
-],
-"no_debe": [
-"pd7",
-"pd8"
-],
-"estancias": {
-"piso": 85
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "dos baños los dos enteros uno de tres coma cinco y otro de cuatro con mueble los dos el pequeño sin falso techo y luego cambiar el radiador del pasillo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"mba",
-"rad"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-3.5,
-4
-]
-},
-"cantidades": {
-"rad": 1
-},
-"fuera": []
-},
-{
-"t": "ostras la casa es de las antiguas de plentzia el suelo de madera acuchillarlo todo que es castaño y no se quita las paredes quitar papel y pintar y la electricidad toda nueva",
-"debe": [
-"acu",
-"qpa",
-"pip",
-"ele"
-],
-"no_debe": [
-"sue",
-"flo"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "Bano entero 5m2 + cocina entera 10m2 (muebles los pone ikea) + pintar todo el piso + contenedor. El termo lo cambia el fontanero suyo",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"coc",
-"fco",
-"pip",
-"pit"
-],
-"no_debe": [
-"mco"
-],
-"estancias": {
-"bano": [
-5
-],
-"cocina": [
-10
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en la casa de santurtzi el salón tirar el tabique a la cocina y la cocina entera de nueve metros con muebles montados por nosotros y radiadores dos y la encimera la elige ella en la tienda",
-"debe": [
-"tab",
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"rad"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-9
-]
-},
-"cantidades": {
-"rad": 2
-},
-"fuera": []
-},
-{
-"t": "piso en Deusto: integral 75m, cocina y bano incluidos, el bano sin bañera plato 70x110, y premarcos en todas las puertas. ventanas no",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco",
-"pd7",
-"pre"
-],
-"no_debe": [
-"pd8"
-],
-"estancias": {
-"piso": 75
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "bueno el chalé de algorta es grande eh el baño de invitados solo cambiar sanitarios el principal entero de seis metros con mampara y en el salón falso techo de treinta metros",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"mam",
-"tec"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-6
-]
-},
-"cantidades": {
-"tec": 30
-},
-"fuera": []
-},
-{
-"t": "visita Txurdinaga 7º con ascensor: cocina 8m2 entera montando muebles, quitar gotele salon y pintar, puertas 4 nuevas. El aire y la caldera no",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"lija",
-"pip",
-"pue",
-"pub"
-],
-"no_debe": [
-"mon",
-"cal",
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-8
-]
-},
-"cantidades": {
-"pue": 4,
-"pub": 4
-},
-"fuera": []
-},
-{
-"t": "en el caserío de gernika pues la cocina de quince metros entera con azulejo y nosotros montamos los muebles y en el baño solo quitar la mampara que la quieren cambiar por cortina",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"qma"
-],
-"no_debe": [
-"mam",
-"san",
-"fba"
-],
-"estancias": {
-"cocina": [
-15
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en balmaseda reforma integral del piso de su madre de sesenta y ocho metros todo eh cocina y baño también y la limpieza final que lo van a alquilar",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco",
-"limf"
-],
-"no_debe": [],
-"estancias": {
-"piso": 68
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "la cliente cambió de idea varias veces eh primero quería azulejos ahora lucido en la cocina de seis metros los muebles los monta su hermano y el baño de tres entero con ducha",
-"debe": [
-"coc",
-"sol",
-"fco",
-"luc",
-"con",
-"san",
-"ali",
-"fba",
-"alc",
-"pd7"
-],
-"no_debe": [
-"mco"
-],
-"estancias": {
-"cocina": [
-6
-],
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "piso Rekalde: quitar flotante viejo 45m2, nivelar, flotante nuevo, rodapie nuevo y quitar el viejo. pintar paredes. puertas se quedan",
-"debe": [
-"sue",
-"niv",
-"flo",
-"ron",
-"rod",
-"pip"
-],
-"no_debe": [
-"pue",
-"pub"
-],
-"estancias": {},
-"cantidades": {
-"sue": 45,
-"flo": 45
-},
-"fuera": []
-},
-{
-"t": "en mungia la casa nueva quieren solo falso techo en el salón y la cocina unos cuarenta metros entre los dos y pintar techos el baño nada ni tocarlo",
-"debe": [
-"tec",
-"pit"
-],
-"no_debe": [
-"san",
-"fba",
-"coc"
-],
-"estancias": {},
-"cantidades": {
-"tec": 40
-},
-"fuera": []
-},
-{
-"t": "dos baños enteros en leioa uno con bañera y otro con plato de ochenta por ochenta y la cocina entera también montamos muebles y quinto sin ascensor madre mía",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"coc",
-"fco",
-"pd8",
-"mco",
-"mon"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "Lonja Zornotza p/ peluqueria: tirar 2 tabiques, pladur 6x3, electricidad nueva c/ boletin, falso techo 35m2, pintar todo, contenedor. Persianas metalicas las pone otro",
-"debe": [
-"tab",
-"pla",
-"ele",
-"bol",
-"tec",
-"pip",
-"pit",
-"con"
-],
-"no_debe": [
-"pue"
-],
-"estancias": {},
-"cantidades": {
-"pla": 18,
-"tec": 35
-},
-"fuera": []
-},
-{
-"t": "pues la cocina entera de ocho metros y en el pasillo gotelé fuera y en las habitaciones el papel quitar y pintar todo y los radiadores cinco nuevos que los viejos pierden",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"lija",
-"qpa",
-"pip",
-"rad"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-8
-]
-},
-"cantidades": {
-"rad": 5
-},
-"fuera": []
-},
-{
-"t": "a ver integral del piso de etxebarri de setenta y dos metros pero la cocina se queda y el baño también que son nuevos solo electricidad suelos pintura y puertas",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con"
-],
-"no_debe": [
-"coc",
-"fco",
-"san",
-"fba"
-],
-"estancias": {
-"piso": 72
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "el baño entero cuatro metros con plato y sin falso techo y la puerta del baño cambiarla solo esa y premarco nuevo para esa puerta",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"pue",
-"pub",
-"pre"
-],
-"no_debe": [
-"tec",
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-4
-]
-},
-"cantidades": {
-"pue": 1,
-"pub": 1,
-"pre": 1
-},
-"fuera": []
-},
-{
-"t": "visita en Bolueta: cocina 9m2 entera sin montar muebles. bano 4m2 entero c/ mampara. pintar salon. el toldo y las ventanas nada",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"san",
-"fba",
-"pd7",
-"mam",
-"pip"
-],
-"no_debe": [
-"mco"
-],
-"estancias": {
-"cocina": [
-9
-],
-"bano": [
-4
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en la casa de lekeitio el suelo de madera del piso de arriba acuchillar y el de abajo quitarlo y poner flotante treinta metros y rodapié nuevo en el de abajo y nada más que el resto lo hacen ellos",
-"debe": [
-"acu",
-"sue",
-"flo",
-"ron"
-],
-"no_debe": [],
-"estancias": {},
-"cantidades": {
-"flo": 30
-},
-"fuera": []
-},
-{
-"t": "baño grande de seis con bañera mueble con espejo falso techo y el toallero ese fuera que ya lo tienen y en la cocina solo quitar azulejos y alicatar de nuevo veinte metros",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"mba",
-"tec"
-],
-"no_debe": [
-"rad",
-"pd7",
-"pd8",
-"coc",
-"mco"
-],
-"estancias": {
-"bano": [
-6
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "piso en Ondarroa integral 90m2 sin cocina (la hace el cliente), bano entero c/ plato 80x80, calefaccion nueva, puerta blindada y limpieza final",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"flo",
-"pue",
-"pub",
-"con",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"pd8",
-"cal",
-"pen",
-"limf"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco"
-],
-"estancias": {
-"piso": 90
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "eh la señora de la lonja de bermeo quiere hacer un txoko tirar el tabique hacer cocina entera de diez metros con muebles que montamos nosotros y el resto pintar paredes y techo",
-"debe": [
-"tab",
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"pip",
-"pit"
-],
-"no_debe": [
-"san",
-"fba",
-"pd7"
-],
-"estancias": {
-"cocina": [
-10
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "piso Zorrotza 4º sin ascensor: quitar papel y gotele, pintar todo, flotante 50m2, rodapie, puertas 6 y blindada. electricidad no q la hizo el año pasado",
-"debe": [
-"mon",
-"qpa",
-"lija",
-"pip",
-"pit",
-"flo",
-"ron",
-"pue",
-"pub",
-"pen"
-],
-"no_debe": [
-"ele",
-"bol"
-],
-"estancias": {},
-"cantidades": {
-"flo": 50,
-"pub": 6
-},
-"fuera": []
-},
-{
-"t": "en sopela casa de verano baño entero de tres con plato y mampara la cocina se queda y el aire acondicionado que quieren en la habitación eso lo mira otro",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mam"
-],
-"no_debe": [
-"coc",
-"fco",
-"mco",
-"ele"
-],
-"estancias": {
-"bano": [
-3
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "mira lo del caserío de derio calefacción toda nueva radiadores además dos más en la bajera y electricidad nueva con boletín el tejado lo arreglan ellos",
-"debe": [
-"cal",
-"rad",
-"ele",
-"bol"
-],
-"no_debe": [
-"tec"
-],
-"estancias": {},
-"cantidades": {
-"rad": 2
-},
-"fuera": []
-},
-{
-"t": "cocina 11m2 entera, montamos muebles. Bano no. Salon: tirar tabique y pladur 4x2,6. Contenedor y limpieza final",
-"debe": [
-"coc",
-"ali",
-"sol",
-"fco",
-"alc",
-"con",
-"mco",
-"tab",
-"pla",
-"limf"
-],
-"no_debe": [
-"san",
-"fba"
-],
-"estancias": {
-"cocina": [
-11
-]
-},
-"cantidades": {
-"pla": 10.4
-},
-"fuera": []
-},
-{
-"t": "en la casa de leioa no perdona era de algorta el baño entero de cinco coma cinco metros con plato y mueble y la limpieza final y la persiana del baño que no baja esa la arregla el persianero",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"mba",
-"limf"
-],
-"no_debe": [
-"coc",
-"fco"
-],
-"estancias": {
-"bano": [
-5.5
-]
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "reforma integral sesenta metros en santurtzi menos los suelos que son de madera buena y se acuchillan con cocina y baño y es un segundo sin ascensor",
-"debe": [
-"ins",
-"ele",
-"pip",
-"pit",
-"pue",
-"pub",
-"con",
-"acu",
-"mon",
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"coc",
-"fco"
-],
-"no_debe": [
-"flo",
-"sue"
-],
-"estancias": {
-"piso": 60
-},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "Galdakao: 2 banos, uno entero de 4m2 con ducha y otro solo cambiar mampara. cocina con lucido 7m2 montando muebles. radiadores 3",
-"debe": [
-"san",
-"ali",
-"sol",
-"fba",
-"alc",
-"con",
-"pd7",
-"qma",
-"mam",
-"coc",
-"fco",
-"luc",
-"mco",
-"rad"
-],
-"no_debe": [],
-"estancias": {
-"bano": [
-4
-],
-"cocina": [
-7
-]
-},
-"cantidades": {
-"rad": 3
-},
-"fuera": []
-},
-{
-"t": "bueno la señora se ha puesto a contar lo de su marido que estuvo en altos hornos a lo que vamos pintar paredes y techos de todo el piso y gotelé fuera y nada más que no tiene dinero para más",
-"debe": [
-"lija",
-"pip",
-"pit"
-],
-"no_debe": [
-"flo",
-"pue",
-"ele"
-],
-"estancias": {},
-"cantidades": {},
-"fuera": []
-},
-{
-"t": "en la lonja de la calle mayor de amorebieta el suelo nivelar setenta metros y flotante no que va a poner vinilo él y falso techo de setenta también",
-"debe": [
-"niv",
-"tec"
-],
-"no_debe": [
-"flo"
-],
-"estancias": {},
-"cantidades": {
-"niv": 70,
-"tec": 70
-},
-"fuera": []
-}
+ {
+  "t": "Buenas! bano completo en Portugalete 5m2, plato normal y el mueble lo montamos nosotros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mba"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "pd8"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cosina entera en Algorta 9 m2 , muebles los montamos nosotros",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintra salon y pasillo paredes y techos, el gotele hay q quitarlo antes",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "qpa",
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar papel de 2 habitaciones y pintar  paredes",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "lija",
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "flotante en 3 habitaciones aprox 35m2 + rodapie nuevo quitando el viejo",
+  "debe": [
+   "flo",
+   "ron",
+   "rod"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 35
+  },
+  "fuera": []
+ },
+ {
+  "t": "cambiar 6 puertas de paso y la de entrada blindada",
+  "debe": [
+   "pue",
+   "pub",
+   "pen"
+  ],
+  "no_debe": [
+   "pre"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique entre cocina y salon + contenedor",
+  "debe": [
+   "tab",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano sin falso techo q esta bien, plato 80x80 y mampara nueva",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "tec",
+   "pd7",
+   "coc",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "solo quitar mampara vieja y poner otra nueva, nada mas en el bano",
+  "debe": [
+   "qma",
+   "mam"
+  ],
+  "no_debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "4 radiadores nuevos en Amorebieta, la instalacion de calefaccion se queda",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "fuera": []
+ },
+ {
+  "t": "calefaccion nueva en todo el caserio de Mungia",
+  "debe": [
+   "cal"
+  ],
+  "no_debe": [
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "lonja en Etxebarri: tirar tabique y pladur nuevo de 6 de largo x 2,7 alto",
+  "debe": [
+   "tab",
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 16.2
+  },
+  "fuera": []
+ },
+ {
+  "t": "acuchillar parquet salon 25m2 y barnizar",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "flo",
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 25
+  },
+  "fuera": []
+ },
+ {
+  "t": "nivelar suelo y flotante encima, 50 m2 los dos",
+  "debe": [
+   "niv",
+   "flo"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "niv": 50,
+   "flo": 50
+  },
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva de todo el piso con boletin",
+  "debe": [
+   "ele",
+   "bol"
+  ],
+  "no_debe": [
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "falso techo en el pasillo 8m2 pa meter focos",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 8
+  },
+  "fuera": []
+ },
+ {
+  "t": "quitar azulejos de la cocina y lucir las paredes. muebles se quedan",
+  "debe": [
+   "ali",
+   "luc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintar techos de todo el piso en blanco, paredes no",
+  "debe": [
+   "pit"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cambiar 7 ventanas de aluminio x pvc",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "pub",
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "termo nuevo en el bano, solo eso",
+  "debe": [],
+  "no_debe": [
+   "san",
+   "fba",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "persianas motorizadas en salon y habitaciones",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "encimera nueva de silestone, la cosina se queda como esta",
+  "debe": [],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano entero 4,5m2 con bañera y sin mueble q lo tiene",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "mba",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "al final limpieza final y contenedor",
+  "debe": [
+   "limf",
+   "con"
+  ],
+  "no_debe": [
+   "limp"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "ojo 5º sin ascensor. bano completo de 3m",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "premarcos para 3 puertas",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pre": 3
+  },
+  "fuera": []
+ },
+ {
+  "t": "gotele fuera en 3 habitaciones y pintra",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar suelo de madera del salon y poner tarima flotante",
+  "debe": [
+   "sue",
+   "flo"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "rodapie blanco 40 ml, no hay viejo q quitar",
+  "debe": [
+   "ron"
+  ],
+  "no_debe": [
+   "rod"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ron": 40
+  },
+  "fuera": []
+ },
+ {
+  "t": "integral piso en Santurtzi 80m2, todo todo",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 80
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "reforma integral 70m, la cocina no se toca q es nueva",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {
+   "piso": 70
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "aire acondicionado en 2 habitaciones",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "cal",
+   "rad"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "caldera nueva de gas, la vieja hace ruido",
+  "debe": [],
+  "no_debe": [
+   "cal",
+   "rad",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el tejado del caserio gotea, mirar",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintar fachada de la lonja",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "toldo para la terraza del atico",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "grifo de la cosina gotea, cambiarlo",
+  "debe": [],
+  "no_debe": [
+   "fco",
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano pequeño de cortesia: solo quitar sanitarios viejos",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "alc",
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "alicatar bano encima de lo q hay, 12m2 de pared",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 12
+  },
+  "fuera": []
+ },
+ {
+  "t": "quitar alicatado viejo de la cocina 18 m2",
+  "debe": [
+   "ali"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ali": 18
+  },
+  "fuera": []
+ },
+ {
+  "t": "papel pintado fuera en dormitorio principal",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "poner papel pintado en una pared del salon",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "puerta blindada nueva con premarco",
+  "debe": [
+   "pen",
+   "pre"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "radiador del bano cambiar x uno nuevo",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 1
+  },
+  "fuera": []
+ },
+ {
+  "t": "cocina en Leioa: tirar todo y alicatar, los muebles los pone ikea",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "kocina de 7m, lucido en vez de azulejo, muebles montamos nosotros",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tirar tabique y hacer otro de pladur 3,5 x 2,5",
+  "debe": [
+   "tab",
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 8.75
+  },
+  "fuera": []
+ },
+ {
+  "t": "falso techo en bano y cocina, lo demas igual",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "san",
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "contenedor para escombro solo eso",
+  "debe": [
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "4º sin ascensor, flotante 45 m2",
+  "debe": [
+   "mon",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45
+  },
+  "fuera": []
+ },
+ {
+  "t": "2 banos en Durango: uno 4m y otro 3m, los 2 enteros con ducha",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano grande 6m2 con bañera, falso techo si",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "tec"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "hola, cosina completa 10m2. muebles NO los montamos",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes 60m2 y techos 20m2",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60,
+   "pit": 20
+  },
+  "fuera": []
+ },
+ {
+  "t": "cambiar puertas de paso, son 5",
+  "debe": [
+   "pue",
+   "pub"
+  ],
+  "no_debe": [
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pue": 5,
+   "pub": 5
+  },
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva sin boletin q ya tiene",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar 2 mamparas de 2 banos",
+  "debe": [
+   "qma"
+  ],
+  "no_debe": [
+   "mam",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qma": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "mampara nueva frontal en el bano de arriba",
+  "debe": [
+   "mam"
+  ],
+  "no_debe": [
+   "qma",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tarima en habitacion 12 m2 + rodapie",
+  "debe": [
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "fuera": []
+ },
+ {
+  "t": "laminado en el pasillo, quitar antes la moqueta",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "txoko de la lonja: pintar paredes y techo y contenedor",
+  "debe": [
+   "pip",
+   "pit",
+   "con"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano completo en Galdakao 3,8m2 plato 80x80",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.8
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la sra quiere bano sin bañera, plato ducha, 4m2, mueble con espejo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mba"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "lucir las paredes de la cocina, nada mas",
+  "debe": [
+   "luc"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta de entrada x blindada",
+  "debe": [
+   "pen"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "nivelar suelo salon y comedor 30m",
+  "debe": [
+   "niv"
+  ],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "niv": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "quitar parquet viejo de 3 habitaciones",
+  "debe": [
+   "sue"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "acuchillar y barnizar suelo de todo el piso",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "flo",
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tirar 2 tabiques pa hacer salon grande + contenedor",
+  "debe": [
+   "tab",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pladur pa separar habitacion 4 largo x 2,5 alto",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pla": 10
+  },
+  "fuera": []
+ },
+ {
+  "t": "ventanas y persianas nuevas en todo el piso",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "pub",
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano entero, el contenedor no q lo pone el vecino",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [
+   "con",
+   "coc",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cosina entera, sin contenedor q lleva la obra otro",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc"
+  ],
+  "no_debe": [
+   "con",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar papel del pasillo y la habitacion y pintar paredes y techos",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "Plentzia piso de verano, pintra todo paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "2 radiadores nuevos en habitaciones",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "falso techo de pladur en salon 20m2",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 20
+  },
+  "fuera": []
+ },
+ {
+  "t": "bano 3m2 sin mueble y sin falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7"
+  ],
+  "no_debe": [
+   "mba",
+   "tec",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina 8m2 con lucido, muebles los trae y monta el cliente",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "alicatar la cocina de nuevo 22m2 de pared",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "luc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 22
+  },
+  "fuera": []
+ },
+ {
+  "t": "aire acondicionado en salon y caldera nueva",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "cal",
+   "rad",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "integral 90m2 en Sopela, el bano no q lo hicieron hace 2 años",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "piso": 90
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "reforma integral del piso de mi cuñado 65m, la cocina tb",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 65
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "subir material sin ascensor 3º, pintar todo",
+  "debe": [
+   "mon",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar rodapie viejo y poner nuevo 55 metros lineales",
+  "debe": [
+   "rod",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rod": 55,
+   "ron": 55
+  },
+  "fuera": []
+ },
+ {
+  "t": "puertas: quitar las viejas y poner 4 nuevas, y premarcos tb",
+  "debe": [
+   "pue",
+   "pub",
+   "pre"
+  ],
+  "no_debe": [
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "fuera": []
+ },
+ {
+  "t": "bano entero de 4m con mampara, plato de 70x110",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina de 6m2 en Erandio entera y montamos muebles",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "limpieza final del piso",
+  "debe": [
+   "limf"
+  ],
+  "no_debe": [
+   "limp"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "gotele fuera en salon 40 m2 de pared y pintar",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 40,
+   "pip": 40
+  },
+  "fuera": []
+ },
+ {
+  "t": "encimera y grifo nuevos, nada de obra",
+  "debe": [],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tejado y fachada del caserio, eso lo hace otro gremio",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bano entero con bañera, 5m2, mueble y falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "mba",
+   "tec"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "electricidad: todo nuevo y boletin pa dar de alta",
+  "debe": [
+   "ele",
+   "bol"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar mampara, poner plato 80x80 y mampara, lo demas se queda",
+  "debe": [
+   "qma",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "alc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "aupa pues nada un baño entero en zalla de cuatro coma dos metros con plato de ducha y el mueble también",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mba"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.2
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "esto es una cocina entera de nueve no perdona de once metros y los muebles los ponemos nosotros",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "mira el gotelé de todo el salón hay que quitarlo y luego pintar paredes y techo",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el cliente quiere quitar el papel ese de flores del dormitorio y pintarlo de blanco las paredes",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tarima flotante en tres habitaciones que serán entre treinta y treinta y cinco metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "buah las puertas cambiar todas son siete puertas de paso y ya está",
+  "debe": [
+   "pue",
+   "pub"
+  ],
+  "no_debe": [
+   "pen"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pue": 7,
+   "pub": 7
+  },
+  "fuera": []
+ },
+ {
+  "t": "y tirar el tabique de la cocina para hacerla abierta al salón o sea solo el tabique",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el baño se hace entero pero falso techo no que el techo está perfecto y plato de ochenta por ochenta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd8"
+  ],
+  "no_debe": [
+   "tec",
+   "pd7",
+   "coc",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "esto nada más quitar la mampara que está rota y poner una nueva vale",
+  "debe": [
+   "qma",
+   "mam"
+  ],
+  "no_debe": [
+   "san",
+   "ali",
+   "fba"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "radiadores tres en las habitaciones de atrás y el resto se queda como está",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 3
+  },
+  "fuera": []
+ },
+ {
+  "t": "calefacción toda nueva en el caserío que ahora tienen estufas de leña",
+  "debe": [
+   "cal"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "un tabique de pladur de cuatro metros de largo por dos sesenta de alto para hacer otra habitación",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pla": 10.4
+  },
+  "fuera": []
+ },
+ {
+  "t": "acuchillar el parquet de todo el piso que está muy gastado pero bonito",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "flo",
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "hay que nivelar el suelo de la lonja que está fatal y es de unos sesenta metros",
+  "debe": [
+   "niv"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 60
+  },
+  "fuera": []
+ },
+ {
+  "t": "la electricidad entera nueva que es de los años sesenta y luego el boletín",
+  "debe": [
+   "ele",
+   "bol"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "falso techo en la cocina y en el pasillo eh dos y pico metros el pasillo y la cocina no sé",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar los azulejos de la cocina y lucirla con yeso que no quiere azulejo la señora",
+  "debe": [
+   "ali",
+   "luc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintar los techos nada más de todo el piso las paredes las pinta él",
+  "debe": [
+   "pit"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "las ventanas quiere cambiar todas a pvc con rotura de puente térmico",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el termo eléctrico ese de cien litros cambiarlo por uno nuevo",
+  "debe": [],
+  "no_debe": [
+   "fba",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "las persianas de las habitaciones que no suben eso arreglarlas",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la encimera de la cocina está quemada quiere cambiar la encimera solo",
+  "debe": [],
+  "no_debe": [
+   "coc",
+   "mco",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño entero de cuatro y medio con bañera que la quiere mantener y sin mueble",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "mba",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "y limpieza final al terminar que lo quiere entregar al inquilino limpio",
+  "debe": [
+   "limf"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "es un sexto sin ascensor eh y baño completo de tres coma cinco",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "poner premarcos nuevos en dos huecos que no tienen",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pre": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "en la habitación del chaval quitar el gotelé y pintar de gris",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar el suelo de madera viejo que está levantado y poner laminado",
+  "debe": [
+   "sue",
+   "flo"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "rodapié nuevo en todo el piso unos sesenta metros lineales y quitar el que hay",
+  "debe": [
+   "ron",
+   "rod"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 60,
+   "rod": 60
+  },
+  "fuera": []
+ },
+ {
+  "t": "reforma integral de un piso en portugalete de setenta y cinco metros cuadrados todo nuevo",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 75
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "piso entero reforma integral pero el baño se queda que es nuevo de hace un año",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7",
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el aire acondicionado lo quiere en el salón eso no es nuestro",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la caldera es vieja y quiere una de condensación",
+  "debe": [],
+  "no_debe": [
+   "cal",
+   "rad"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el tejado del caserío tiene goteras y la fachada está negra",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pit",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "un toldo en el balcón para el sol de la tarde",
+  "debe": [],
+  "no_debe": [
+   "tec"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cambiar el grifo del baño que gotea y el de la cocina",
+  "debe": [],
+  "no_debe": [
+   "fba",
+   "fco",
+   "san",
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en el baño pequeño solo quitar los sanitarios que los va a cambiar él",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "fba"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "alicatar las paredes del baño nuevo son unos dieciocho metros de pared",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 18
+  },
+  "fuera": []
+ },
+ {
+  "t": "quitar todos los azulejos de la cocina pero los muebles se quedan",
+  "debe": [
+   "ali"
+  ],
+  "no_debe": [
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "papel pintado quitar en el pasillo que es largo unos veinte metros de pared",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qpa": 20
+  },
+  "fuera": []
+ },
+ {
+  "t": "y luego poner papel pintado nuevo en el dormitorio el que ha elegido ella",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la puerta de la entrada blindada nueva que les entraron a robar",
+  "debe": [
+   "pen"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "radiador nuevo en el salón uno solo",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 1
+  },
+  "fuera": []
+ },
+ {
+  "t": "cocina entera en gernika ocho metros y los muebles los trae una tienda que los monta ellos",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina de seis metros sin azulejos lucida y pintada y nosotros montamos los muebles",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique del pasillo y cerrar con pladur de cinco por dos cincuenta",
+  "debe": [
+   "tab",
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 12.5
+  },
+  "fuera": []
+ },
+ {
+  "t": "falso techo en el baño y ya mmm sí solo eso",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "san",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pedir contenedor para el sábado que vaciamos el trastero",
+  "debe": [
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tercero sin ascensor y el suelo flotante de todo cincuenta y cinco metros",
+  "debe": [
+   "mon",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 55
+  },
+  "fuera": []
+ },
+ {
+  "t": "dos baños uno de cinco y otro de tres los dos enteros el grande con bañera y el pequeño con ducha",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño entero de seis metros con plato grande setenta por ciento diez y falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "tec"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la cocina completa de diez metros los muebles los monta el cliente que es carpintero",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pintar las paredes son unos ochenta metros y los techos treinta",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80,
+   "pit": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "las puertas cambiar cinco no seis que me faltaba la del baño",
+  "debe": [
+   "pue",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pue": 6,
+   "pub": 6
+  },
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva y el boletín no hace falta que ya lo tienen",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar las mamparas de los dos baños y no poner nada que van a poner cortina",
+  "debe": [
+   "qma"
+  ],
+  "no_debe": [
+   "mam"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qma": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "una mampara nueva en el baño de la habitación grande",
+  "debe": [
+   "mam"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tarima flotante en el dormitorio de unos catorce metros y rodapié",
+  "debe": [
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 14
+  },
+  "fuera": []
+ },
+ {
+  "t": "laminado en todo el piso entre setenta y ochenta metros todavía no lo he medido bien",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el txoko pintarlo y poner contenedor que hay muchas cosas viejas",
+  "debe": [
+   "pip",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño completo en durango tres metros con plato de ochenta por ochenta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño entero cuatro metros mueble con espejo y luz y plato normal",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mba"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "lucir las paredes de la cocina que ahora tiene gotelé y quedan los muebles",
+  "debe": [
+   "luc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la puerta de entrada blindada y el premarco que el que hay está podrido",
+  "debe": [
+   "pen",
+   "pre"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "nivelar el suelo de las habitaciones antes del flotante que son unos treinta y dos metros",
+  "debe": [
+   "niv",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 32,
+   "flo": 32
+  },
+  "fuera": []
+ },
+ {
+  "t": "quitar el parquet de todo el piso que tiene termitas",
+  "debe": [
+   "sue"
+  ],
+  "no_debe": [
+   "acu"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "acuchillar el suelo del salón y el pasillo unos treinta metros",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "tirar dos tabiques y llevar el escombro en contenedor",
+  "debe": [
+   "tab",
+   "con"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pladur para hacer un vestidor de tres de largo por dos setenta de alto",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 8.1
+  },
+  "fuera": []
+ },
+ {
+  "t": "las ventanas y las persianas todo eso lo lleva una carpintería de aluminio",
+  "debe": [],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño entero pero el contenedor no que se lo lleva él en la furgoneta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [
+   "con",
+   "coc",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina entera sin contenedor que hay uno ya en la calle del vecino",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc"
+  ],
+  "no_debe": [
+   "con",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar papel pintado de las paredes del salón y pintar paredes y techo",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en el piso de algorta pintar todo paredes y techos el gotelé se queda",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "radiadores nuevos en el salón y en la cocina dos en total",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "falso techo en el salón de veinticuatro metros que quiere luz indirecta",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 24
+  },
+  "fuera": []
+ },
+ {
+  "t": "baño de tres metros entero sin mueble que no cabe y sin falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7"
+  ],
+  "no_debe": [
+   "mba",
+   "tec",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina lucida en vez de azulejo de siete metros y los muebles no los montamos",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con"
+  ],
+  "no_debe": [
+   "mco",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "alicatar la cocina otra vez con azulejo blanco unos veinticinco metros de pared",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "luc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 25
+  },
+  "fuera": []
+ },
+ {
+  "t": "aire acondicionado en todas las habitaciones con split",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "integral de noventa y cinco metros en mungia el baño no que está nuevo",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc"
+  ],
+  "no_debe": [
+   "san",
+   "fba"
+  ],
+  "estancias": {
+   "piso": 95
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "reforma integral de un piso de sesenta metros con cocina y baño",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 60
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "es un cuarto sin ascensor y hay que pintar todo el piso",
+  "debe": [
+   "mon",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "quitar el rodapié viejo y poner rodapié blanco nuevo unos cuarenta y cinco metros",
+  "debe": [
+   "rod",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rod": 45,
+   "ron": 45
+  },
+  "fuera": []
+ },
+ {
+  "t": "puertas cambiar tres y poner premarco en las tres",
+  "debe": [
+   "pue",
+   "pub",
+   "pre"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pue": 3,
+   "pub": 3,
+   "pre": 3
+  },
+  "fuera": []
+ },
+ {
+  "t": "baño entero de cuatro metros con mampara y plato setenta por ciento diez",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "cocina entera de seis metros en leioa y los muebles nosotros",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "limpieza final y ya está que lo demás lo hizo otro",
+  "debe": [
+   "limf"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el gotelé quitarlo de cincuenta metros de pared y pintar",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 50,
+   "pip": 50
+  },
+  "fuera": []
+ },
+ {
+  "t": "la encimera y el fregadero se los pone la tienda de la cocina",
+  "debe": [],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "tejado fachada y canalones eso no es nuestro eh",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "baño completo cinco metros con bañera y mueble y falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "mba",
+   "tec"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "instalación eléctrica nueva de todo el piso y el boletín para la compañía",
+  "debe": [
+   "ele",
+   "bol"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "plato de ducha de ochenta por ochenta y mampara quitando la vieja lo demás se queda",
+  "debe": [
+   "qma",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "alc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bueno pues en la casa de amorebieta el baño entero de cuatro metros con plato y mueble y la cocina entera de ocho que los muebles los montamos nosotros y la señora me ha dado café y todo eh",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "coc",
+   "fco",
+   "pd7",
+   "mba",
+   "mco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "mira apúntate esto la cocina entera de nueve metros eso sí los muebles los trae su hijo que trabaja en una tienda y en el salón gotelé fuera y pintar paredes y techo y el baño se queda que lo hicieron hace poco",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "visita en Bermeo: bano 3m entero c/ ducha, puertas cambiar 4, rodapie nuevo quitando viejo y flotante en habitaciones. El salon no q tiene parquet bueno y lo quiere acuchillar",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "pue",
+   "pub",
+   "ron",
+   "rod",
+   "flo",
+   "acu"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {
+   "pue": 4,
+   "pub": 4
+  },
+  "fuera": []
+ },
+ {
+  "t": "en el piso de la calle mayor de mungia radiadores cuatro electricidad nueva sin boletín y pintar paredes las ventanas las cambia el ayuntamiento que es vivienda de protección o algo así",
+  "debe": [
+   "rad",
+   "ele",
+   "pip"
+  ],
+  "no_debe": [
+   "bol",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "fuera": []
+ },
+ {
+  "t": "integral de ochenta metros en galdakao todo menos la calefacción que es nueva y el cliente quiere puerta blindada y además es un cuarto sin ascensor",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco",
+   "pen",
+   "mon"
+  ],
+  "no_debe": [
+   "cal",
+   "rad"
+  ],
+  "estancias": {
+   "piso": 80
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "txoko en la lonja de Lekeitio: tirar tabique, pladur nuevo de 5 x 2,5, falso techo 30m2, pintar paredes y techo y contenedor. la cocinita del txoko se queda",
+  "debe": [
+   "tab",
+   "pla",
+   "tec",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pla": 12.5,
+   "tec": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "pues el cliente es muy majo eh del athletic a muerte bueno a lo que voy baño entero de cinco con bañera sin mueble que lo tiene nuevo y la mampara de la otra ducha quitarla y poner nueva",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "qma",
+   "mam"
+  ],
+  "no_debe": [
+   "mba",
+   "pd7",
+   "pd8",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en el caserío de mungia la cocina entera de doce metros con lucido nada de azulejos y nosotros montamos muebles calefacción nueva y la caldera esa la pone el gasista",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con",
+   "mco",
+   "cal"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    12
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "Visita Indautxu 2º con ascensor: quitar papel en 3 habitaciones, pintar todo, flotante 40m2 con rodapie (el viejo fuera), cambiar puertas 5. Las ventanas no q son nuevas",
+  "debe": [
+   "qpa",
+   "pip",
+   "flo",
+   "ron",
+   "rod",
+   "pue",
+   "pub"
+  ],
+  "no_debe": [
+   "mon"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 40,
+   "pue": 5,
+   "pub": 5
+  },
+  "fuera": []
+ },
+ {
+  "t": "a ver el baño de arriba entero tres metros con ducha el de abajo solo quitar la mampara y poner nueva y en la cocina solo lucir paredes que los muebles se quedan",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "qma",
+   "mam",
+   "luc"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en durango un piso de setenta metros integral pero ojo la cocina la hace el cliente con otra empresa y el baño sí lo hacemos con plato ochenta por ochenta",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "pd8"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco",
+   "pd7"
+  ],
+  "estancias": {
+   "piso": 70
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "pues visita larga eh la señora hablando de su nieto que estudia en leioa en fin cocina de siete metros entera montando muebles y en las habitaciones quitar el suelo de madera y poner flotante treinta metros",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "sue",
+   "flo"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {
+   "flo": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "piso en Portugalete: gotele fuera en todo, pintar, falso techo en pasillo 6m2, radiadores tres nuevos, contenedor y limpieza final. el aire acondicionado lo pone su yerno",
+  "debe": [
+   "lija",
+   "pip",
+   "tec",
+   "rad",
+   "con",
+   "limf"
+  ],
+  "no_debe": [
+   "ele",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 6,
+   "rad": 3
+  },
+  "fuera": []
+ },
+ {
+  "t": "baño entero de cuatro con plato normal la cocina no eso no que la cambian el año que viene y las puertas cambiar seis y la de entrada blindada",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "pue",
+   "pub",
+   "pen"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "pub": 6
+  },
+  "fuera": []
+ },
+ {
+  "t": "en la lonja de erandio que la quieren para oficina tirar los dos tabiques nivelar el suelo cincuenta metros flotante encima y electricidad nueva con boletín",
+  "debe": [
+   "tab",
+   "niv",
+   "flo",
+   "ele",
+   "bol"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 50,
+   "flo": 50
+  },
+  "fuera": []
+ },
+ {
+  "t": "reforma integral en Sopela 85m2, bano con bañera y cocina con lucido, muebles los montamos, 3º sin ascensor",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "fba",
+   "coc",
+   "fco",
+   "luc",
+   "mco",
+   "mon"
+  ],
+  "no_debe": [
+   "pd7",
+   "pd8"
+  ],
+  "estancias": {
+   "piso": 85
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "dos baños los dos enteros uno de tres coma cinco y otro de cuatro con mueble los dos el pequeño sin falso techo y luego cambiar el radiador del pasillo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "mba",
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    3.5,
+    4
+   ]
+  },
+  "cantidades": {
+   "rad": 1
+  },
+  "fuera": []
+ },
+ {
+  "t": "ostras la casa es de las antiguas de plentzia el suelo de madera acuchillarlo todo que es castaño y no se quita las paredes quitar papel y pintar y la electricidad toda nueva",
+  "debe": [
+   "acu",
+   "qpa",
+   "pip",
+   "ele"
+  ],
+  "no_debe": [
+   "sue",
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "Bano entero 5m2 + cocina entera 10m2 (muebles los pone ikea) + pintar todo el piso + contenedor. El termo lo cambia el fontanero suyo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "coc",
+   "fco",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en la casa de santurtzi el salón tirar el tabique a la cocina y la cocina entera de nueve metros con muebles montados por nosotros y radiadores dos y la encimera la elige ella en la tienda",
+  "debe": [
+   "tab",
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "rad"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {
+   "rad": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "piso en Deusto: integral 75m, cocina y bano incluidos, el bano sin bañera plato 70x110, y premarcos en todas las puertas. ventanas no",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco",
+   "pd7",
+   "pre"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {
+   "piso": 75
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "bueno el chalé de algorta es grande eh el baño de invitados solo cambiar sanitarios el principal entero de seis metros con mampara y en el salón falso techo de treinta metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "mam",
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ]
+  },
+  "cantidades": {
+   "tec": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "visita Txurdinaga 7º con ascensor: cocina 8m2 entera montando muebles, quitar gotele salon y pintar, puertas 4 nuevas. El aire y la caldera no",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "lija",
+   "pip",
+   "pue",
+   "pub"
+  ],
+  "no_debe": [
+   "mon",
+   "cal",
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {
+   "pue": 4,
+   "pub": 4
+  },
+  "fuera": []
+ },
+ {
+  "t": "en el caserío de gernika pues la cocina de quince metros entera con azulejo y nosotros montamos los muebles y en el baño solo quitar la mampara que la quieren cambiar por cortina",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "qma"
+  ],
+  "no_debe": [
+   "mam",
+   "san",
+   "fba"
+  ],
+  "estancias": {
+   "cocina": [
+    15
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en balmaseda reforma integral del piso de su madre de sesenta y ocho metros todo eh cocina y baño también y la limpieza final que lo van a alquilar",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco",
+   "limf"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 68
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "la cliente cambió de idea varias veces eh primero quería azulejos ahora lucido en la cocina de seis metros los muebles los monta su hermano y el baño de tres entero con ducha",
+  "debe": [
+   "coc",
+   "sol",
+   "fco",
+   "luc",
+   "con",
+   "san",
+   "ali",
+   "fba",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "cocina": [
+    6
+   ],
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "piso Rekalde: quitar flotante viejo 45m2, nivelar, flotante nuevo, rodapie nuevo y quitar el viejo. pintar paredes. puertas se quedan",
+  "debe": [
+   "sue",
+   "niv",
+   "flo",
+   "ron",
+   "rod",
+   "pip"
+  ],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 45,
+   "flo": 45
+  },
+  "fuera": []
+ },
+ {
+  "t": "en mungia la casa nueva quieren solo falso techo en el salón y la cocina unos cuarenta metros entre los dos y pintar techos el baño nada ni tocarlo",
+  "debe": [
+   "tec",
+   "pit"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 40
+  },
+  "fuera": []
+ },
+ {
+  "t": "dos baños enteros en leioa uno con bañera y otro con plato de ochenta por ochenta y la cocina entera también montamos muebles y quinto sin ascensor madre mía",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "coc",
+   "fco",
+   "pd8",
+   "mco",
+   "mon"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "Lonja Zornotza p/ peluqueria: tirar 2 tabiques, pladur 6x3, electricidad nueva c/ boletin, falso techo 35m2, pintar todo, contenedor. Persianas metalicas las pone otro",
+  "debe": [
+   "tab",
+   "pla",
+   "ele",
+   "bol",
+   "tec",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "no_debe": [
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pla": 18,
+   "tec": 35
+  },
+  "fuera": []
+ },
+ {
+  "t": "pues la cocina entera de ocho metros y en el pasillo gotelé fuera y en las habitaciones el papel quitar y pintar todo y los radiadores cinco nuevos que los viejos pierden",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "lija",
+   "qpa",
+   "pip",
+   "rad"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {
+   "rad": 5
+  },
+  "fuera": []
+ },
+ {
+  "t": "a ver integral del piso de etxebarri de setenta y dos metros pero la cocina se queda y el baño también que son nuevos solo electricidad suelos pintura y puertas",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "san",
+   "fba"
+  ],
+  "estancias": {
+   "piso": 72
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "el baño entero cuatro metros con plato y sin falso techo y la puerta del baño cambiarla solo esa y premarco nuevo para esa puerta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "pue",
+   "pub",
+   "pre"
+  ],
+  "no_debe": [
+   "tec",
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "pue": 1,
+   "pub": 1,
+   "pre": 1
+  },
+  "fuera": []
+ },
+ {
+  "t": "visita en Bolueta: cocina 9m2 entera sin montar muebles. bano 4m2 entero c/ mampara. pintar salon. el toldo y las ventanas nada",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "san",
+   "fba",
+   "pd7",
+   "mam",
+   "pip"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "cocina": [
+    9
+   ],
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en la casa de lekeitio el suelo de madera del piso de arriba acuchillar y el de abajo quitarlo y poner flotante treinta metros y rodapié nuevo en el de abajo y nada más que el resto lo hacen ellos",
+  "debe": [
+   "acu",
+   "sue",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 30
+  },
+  "fuera": []
+ },
+ {
+  "t": "baño grande de seis con bañera mueble con espejo falso techo y el toallero ese fuera que ya lo tienen y en la cocina solo quitar azulejos y alicatar de nuevo veinte metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "mba",
+   "tec"
+  ],
+  "no_debe": [
+   "rad",
+   "pd7",
+   "pd8",
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "piso en Ondarroa integral 90m2 sin cocina (la hace el cliente), bano entero c/ plato 80x80, calefaccion nueva, puerta blindada y limpieza final",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "flo",
+   "pue",
+   "pub",
+   "con",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "pd8",
+   "cal",
+   "pen",
+   "limf"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {
+   "piso": 90
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "eh la señora de la lonja de bermeo quiere hacer un txoko tirar el tabique hacer cocina entera de diez metros con muebles que montamos nosotros y el resto pintar paredes y techo",
+  "debe": [
+   "tab",
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "san",
+   "fba",
+   "pd7"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "piso Zorrotza 4º sin ascensor: quitar papel y gotele, pintar todo, flotante 50m2, rodapie, puertas 6 y blindada. electricidad no q la hizo el año pasado",
+  "debe": [
+   "mon",
+   "qpa",
+   "lija",
+   "pip",
+   "pit",
+   "flo",
+   "ron",
+   "pue",
+   "pub",
+   "pen"
+  ],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 50,
+   "pub": 6
+  },
+  "fuera": []
+ },
+ {
+  "t": "en sopela casa de verano baño entero de tres con plato y mampara la cocina se queda y el aire acondicionado que quieren en la habitación eso lo mira otro",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco",
+   "ele"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "mira lo del caserío de derio calefacción toda nueva radiadores además dos más en la bajera y electricidad nueva con boletín el tejado lo arreglan ellos",
+  "debe": [
+   "cal",
+   "rad",
+   "ele",
+   "bol"
+  ],
+  "no_debe": [
+   "tec"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "fuera": []
+ },
+ {
+  "t": "cocina 11m2 entera, montamos muebles. Bano no. Salon: tirar tabique y pladur 4x2,6. Contenedor y limpieza final",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "fco",
+   "alc",
+   "con",
+   "mco",
+   "tab",
+   "pla",
+   "limf"
+  ],
+  "no_debe": [
+   "san",
+   "fba"
+  ],
+  "estancias": {
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {
+   "pla": 10.4
+  },
+  "fuera": []
+ },
+ {
+  "t": "en la casa de leioa no perdona era de algorta el baño entero de cinco coma cinco metros con plato y mueble y la limpieza final y la persiana del baño que no baja esa la arregla el persianero",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "mba",
+   "limf"
+  ],
+  "no_debe": [
+   "coc",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    5.5
+   ]
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "reforma integral sesenta metros en santurtzi menos los suelos que son de madera buena y se acuchillan con cocina y baño y es un segundo sin ascensor",
+  "debe": [
+   "ins",
+   "ele",
+   "pip",
+   "pit",
+   "pue",
+   "pub",
+   "con",
+   "acu",
+   "mon",
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "coc",
+   "fco"
+  ],
+  "no_debe": [
+   "flo",
+   "sue"
+  ],
+  "estancias": {
+   "piso": 60
+  },
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "Galdakao: 2 banos, uno entero de 4m2 con ducha y otro solo cambiar mampara. cocina con lucido 7m2 montando muebles. radiadores 3",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "fba",
+   "alc",
+   "con",
+   "pd7",
+   "qma",
+   "mam",
+   "coc",
+   "fco",
+   "luc",
+   "mco",
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {
+   "rad": 3
+  },
+  "fuera": []
+ },
+ {
+  "t": "bueno la señora se ha puesto a contar lo de su marido que estuvo en altos hornos a lo que vamos pintar paredes y techos de todo el piso y gotelé fuera y nada más que no tiene dinero para más",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "flo",
+   "pue",
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "fuera": []
+ },
+ {
+  "t": "en la lonja de la calle mayor de amorebieta el suelo nivelar setenta metros y flotante no que va a poner vinilo él y falso techo de setenta también",
+  "debe": [
+   "niv",
+   "tec"
+  ],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "niv": 70,
+   "tec": 70
+  },
+  "fuera": []
+ }
 ]

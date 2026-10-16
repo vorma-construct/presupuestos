@@ -30,6 +30,9 @@ Rama: `revision-dictado` (main = versión publicada; no se ha publicado nada de 
   dictado de Cruces (no se dijo reforma entera); quitado «pub» de sin_lugar en Muskiz (la puerta nueva del hueco de la
   habitación sí es de esa habitación); quitado «pit» de no_debe en «nada de pintura» con baño entero (techo del baño).
 
+- frases_I: quitado «mco» de no_debe en «los muebles los trae su hijo que trabaja en una tienda»: «los trae» no dice
+  quién los monta; ahora la app deja el montaje como pregunta pendiente (punto 3: con dos lecturas posibles, preguntar).
+
 ## Medición (vorma y lucas, con la escena v2)
 Fallos por banco, antes de la escena → ahora: AB 0→0, CD 0→0, E 0→0, F 0→0, G 1→1, H 15→15, I 13→12, J 6→4,
 K 30→18, JKs 54→48. Lucas igual. Ninguna frase que iba bien se ha roto (se compara con `cmpbase.py`, y en Lucas
