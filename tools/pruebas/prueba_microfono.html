@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba del micrófono</title>
+<style>
+:root{--fondo:#F6F4EF;--tarjeta:#FFFFFF;--texto:#1D1B18;--suave:#5E5A52;--linea:#DDD7CC;--acento:#1F5F8B;--bien:#1B7A3A;--bienF:#E3F2E7;--mal:#B3261E;--malF:#FBE6E3;--decir:#FFF6DA}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--fondo:#161513;--tarjeta:#211F1C;--texto:#F1EEE8;--suave:#B4AEA3;--linea:#3A3631;--acento:#7DB7E0;--bien:#6FCF8E;--bienF:#1D3324;--mal:#F08A80;--malF:#3A1F1C;--decir:#3A331C}}
+:root[data-theme="dark"]{--fondo:#161513;--tarjeta:#211F1C;--texto:#F1EEE8;--suave:#B4AEA3;--linea:#3A3631;--acento:#7DB7E0;--bien:#6FCF8E;--bienF:#1D3324;--mal:#F08A80;--malF:#3A1F1C;--decir:#3A331C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);font:19px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:16px 16px 48px}
+h1{font-size:28px;line-height:1.2;margin:8px 0 6px}
+.intro{color:var(--suave);margin:0 0 14px}
+.como{background:var(--tarjeta);border:1px solid var(--linea);border-radius:14px;padding:12px 16px;margin-bottom:18px}
+.como summary{font-weight:700;cursor:pointer}
+.como ul{margin:8px 0 0;padding-left:20px}
+.frase{background:var(--tarjeta);border:1px solid var(--linea);border-radius:14px;padding:16px;margin:0 0 16px}
+.frase.ok{border-color:var(--bien);box-shadow:inset 6px 0 0 var(--bien)}
+.frase.ko{border-color:var(--mal);box-shadow:inset 6px 0 0 var(--mal)}
+.num{font-size:15px;font-weight:700;color:var(--acento);text-transform:uppercase;letter-spacing:.04em}
+h2{font-size:21px;margin:2px 0 10px}
+.di{background:var(--decir);border-radius:10px;padding:10px 12px;font-size:21px;font-weight:600;margin:0 0 10px}
+.paso{font-size:17px;color:var(--suave);margin:0 0 4px}
+.et{font-weight:700}
+p{margin:0 0 10px}
+.botones{display:flex;gap:10px;margin:12px 0 10px}
+.botones button{flex:1;min-height:56px;font:inherit;font-weight:700;border-radius:12px;border:2px solid var(--linea);background:var(--fondo);color:var(--texto)}
+.botones button.b[aria-pressed="true"]{background:var(--bienF);border-color:var(--bien);color:var(--bien)}
+.botones button.m[aria-pressed="true"]{background:var(--malF);border-color:var(--mal);color:var(--mal)}
+textarea{width:100%;min-height:84px;font:inherit;font-size:18px;padding:10px;border-radius:10px;border:1px solid var(--linea);background:var(--fondo);color:var(--texto)}
+.resumen{position:sticky;bottom:0;background:var(--tarjeta);border-top:1px solid var(--linea);padding:12px 16px;text-align:center;font-weight:700}
+.sabido{color:var(--suave);font-size:17px}
+.sabido h2{font-size:19px}
+.borrar{font:inherit;font-size:16px;background:none;border:none;color:var(--acento);text-decoration:underline;margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Prueba del micrófono</h1>
+<p class="intro">Ocho frases para dictar con la voz. Debajo de cada una está lo que tiene que salir. Marca si sale bien o mal y, si sale mal, apunta lo que salió.</p>
+<details class="como">
+<summary>Cómo hacerla</summary>
+<ul>
+<li>Antes de cada frase, empieza un presupuesto nuevo. La única que no: la frase ocho, que va en el mismo presupuesto de la frase dos.</li>
+<li>Toca «Dictar con voz», di la frase de corrido con tu voz normal y toca otra vez para parar.</li>
+<li>Si el móvil escribe los números con cifras («5 m²»), no pasa nada: tiene que salir igual.</li>
+<li>Lo que marques se queda guardado en este móvil aunque cierres la página.</li>
+</ul>
+</details>
+<div id="lista"></div>
+<section class="frase sabido">
+<h2>Lo que ya se sabe que hoy no sale bien</h2>
+<p>Si dices «porcelánico», paras el micro y luego dices «no, mejor flotante», no lo corrige. La corrección hay que decirla seguida.</p>
+<p>Si después de parar sigues con un trozo sin verbo («y el techo del salón, dieciocho metros»), no lo entiende. Con el verbo («y pintar el techo…») sí.</p>
+<button class="borrar" type="button" id="borrar">Borrar lo marcado y empezar de nuevo</button>
+</section>
+</main>
+<div class="resumen" id="resumen">Sin marcar todavía</div>
+<script>
+var FRASES=[
+ {t:'Dos baños con medidas distintas',di:['«Dos baños completos, uno de cinco metros con plato de ducha y otro de tres metros con bañera.»'],
+  sale:'Dos baños separados, «baño» y «baño 2», cada uno con su obra entera: quitar sanitarios, quitar azulejos y suelo, fontanería, alicatar paredes y suelo, falso techo, pintar el techo y el mueble. El primero con cinco metros de suelo y unos diecinueve y medio de pared; el segundo con tres de suelo y unos catorce y medio de pared. Plato de ducha solo en el primero, bañera solo en el segundo. Un contenedor.',
+  preg:'En cada baño: si lleva falso techo y si lleva mueble con espejo. Si la bañera no tiene precio en la tarifa, te pide que lo escribas.'},
+ {t:'Puertas nuevas y recuperadas',di:['«Cambiar cuatro puertas por nuevas y las dos del baño se recuperan.»'],
+  sale:'Cuatro puertas nuevas y quitar cuatro viejas. En el baño, desmontar dos puertas y volver a colocar esas dos. Nada más.',preg:'Ninguna.'},
+ {t:'Corrección hablada',paso:'Dila seguida, sin parar el micro en medio:',di:['«En el salón quitar el suelo y poner porcelánico, no, mejor flotante, veinte metros.»'],
+  sale:'En el salón: quitar el suelo veinte metros y suelo flotante veinte metros. Nada de porcelánico ni de alicatado. Además rodapié nuevo y quitar el viejo, unos dieciocho metros lineales.',
+  preg:'Que los metros del rodapié los ha calculado ella, y si valen.'},
+ {t:'Paredes y techo con medidas distintas',di:['«Pintar las paredes del dormitorio, treinta y cinco metros, y el techo, doce metros.»'],
+  sale:'En el dormitorio: pintar paredes treinta y cinco metros y pintar techo doce metros. Que no se cambien ni se sumen.',preg:'Ninguna.'},
+ {t:'Una negación y lo que pone el cliente',di:['«En el baño cambiar el plato de ducha sin tocar los azulejos, y la mampara la pone el cliente.»'],
+  sale:'Una sola partida: el plato de ducha en el baño. Nada de azulejos y nada de mampara.',preg:'Ninguna.'},
+ {t:'Reforma integral',di:['«Reforma integral de un piso de ochenta metros.»'],
+  sale:'Ninguna partida todavía: lo que no has dicho no se mete solo.',
+  preg:'Nueve: cuántos baños, si se reforma la cocina, si la luz es nueva, si la calefacción es nueva, qué se hace con las paredes, qué se hace con el suelo, cuántas puertas nuevas, si lleva contenedor y si lleva limpieza final.'},
+ {t:'El micro se para y sigues',di:['«Pintar las paredes del salón, cuarenta metros.»','«Y pintar el techo del salón, dieciocho metros.»'],paso2:'Toca para parar, espera un momento, vuelve a tocar «Dictar con voz» y di:',
+  sale:'En el salón: pintar paredes cuarenta metros y pintar techo dieciocho metros. Lo primero no sale dos veces ni se pega con lo segundo.',preg:'Ninguna.'},
+ {t:'Dictar dos veces lo mismo',paso:'En el mismo presupuesto de la frase dos, dila otra vez igual:',di:['«Cambiar cuatro puertas por nuevas y las dos del baño se recuperan.»'],
+  sale:'El aviso «Esto ya lo has dictado y está abajo: no lo meto dos veces». Siguen siendo cuatro puertas nuevas y dos recuperadas, sin repetirse.',preg:'Ninguna.'}
+];
+var NUM=['uno','dos','tres','cuatro','cinco','seis','siete','ocho'];
+var CLAVE='prueba_microfono_v1';
+function lee(){try{return JSON.parse(localStorage.getItem(CLAVE)||'{}')||{}}catch(e){return {}}}
+function graba(d){try{localStorage.setItem(CLAVE,JSON.stringify(d))}catch(e){}}
+var datos=lee();
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pinta(){
+ var h='';FRASES.forEach(function(f,i){var d=datos[i]||{};
+  h+='<section class="frase'+(d.v==='bien'?' ok':d.v==='mal'?' ko':'')+'" id="f'+i+'">'+
+   '<div class="num">Frase '+NUM[i]+'</div><h2>'+esc(f.t)+'</h2>'+
+   (f.paso?'<p class="paso">'+esc(f.paso)+'</p>':'<p class="paso">Di:</p>')+
+   '<div class="di">'+esc(f.di[0])+'</div>'+
+   (f.paso2?'<p class="paso">'+esc(f.paso2)+'</p><div class="di">'+esc(f.di[1])+'</div>':'')+
+   '<p><span class="et">Tiene que salir:</span> '+esc(f.sale)+'</p>'+
+   '<p><span class="et">Preguntas:</span> '+esc(f.preg)+'</p>'+
+   '<div class="botones"><button type="button" class="b" data-i="'+i+'" data-v="bien" aria-pressed="'+(d.v==='bien')+'">Sale bien</button>'+
+   '<button type="button" class="m" data-i="'+i+'" data-v="mal" aria-pressed="'+(d.v==='mal')+'">Sale mal</button></div>'+
+   '<textarea data-i="'+i+'" placeholder="Lo que salió (si algo no cuadra)">'+esc(d.n||'')+'</textarea></section>'});
+ document.getElementById('lista').innerHTML=h;resumen()}
+function resumen(){var b=0,m=0;FRASES.forEach(function(f,i){var d=datos[i]||{};if(d.v==='bien')b++;if(d.v==='mal')m++});
+ document.getElementById('resumen').textContent=(b+m)?('Bien: '+b+'  ·  Mal: '+m+'  ·  Faltan: '+(FRASES.length-b-m)):'Sin marcar todavía'}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('button[data-v]');if(!t)return;var i=t.getAttribute('data-i'),v=t.getAttribute('data-v');
+ datos[i]=datos[i]||{};datos[i].v=datos[i].v===v?'':v;graba(datos);
+ var s=document.getElementById('f'+i);s.className='frase'+(datos[i].v==='bien'?' ok':datos[i].v==='mal'?' ko':'');
+ s.querySelectorAll('button[data-v]').forEach(function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-v')===datos[i].v))});resumen()});
+document.addEventListener('input',function(e){var t=e.target;if(t.tagName!=='TEXTAREA')return;var i=t.getAttribute('data-i');datos[i]=datos[i]||{};datos[i].n=t.value;graba(datos)});
+document.getElementById('borrar').addEventListener('click',function(){if(!confirm('¿Borrar todo lo marcado?'))return;datos={};graba(datos);pinta()});
+pinta();
+</script>
+</body>
+</html>
