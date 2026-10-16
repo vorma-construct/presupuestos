@@ -222,6 +222,8 @@ def comprobar(f, r):
     # «sin_medida»: [ids] — no se dijo cuánto: tiene que quedar pendiente, no un número inventado
     for i in f.get('sin_medida', []):
         for l in L:
+            # si además va en «sin_lugar», es la partida de toda la casa: las de una estancia (con sus metros dichos) no cuentan
+            if i in f.get('sin_lugar', []) and ' — ' in l['d']: continue
             if l['id'] == i and not l.get('pend') and l['u'] in ('m2', 'm²', 'ml'):
                 fallos.append('sin medida «%s»: puso %s %s sin que se dijera' % (i, l['q'], l['u'])); break
     # «pregunta»: {id: tipo} — no se dijo y no se elige en silencio: esa partida sale con su pregunta pendiente (p. ej. {"alc": "material"})
