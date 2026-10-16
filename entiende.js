@@ -331,7 +331,7 @@ var hechos=[];
 /* 1) las estancias enteras, con sus metros y lo que se ha dicho de ellas */
 A.grupos.forEach(function(g){g.paqs=[];
  for(var k=0;k<g.n;k++){var m=g.medidas[k]||{};var pk=nuevoPaq(g.tipo,{suelo:m.suelo||0,perim:m.perim||0,alto:A.alto||0},1);pk.nom=g.nombres[k]||'';if(g.adj&&/^(otr[oa]|segund[oa])$/.test(g.adj)&&pk.nom)pk.nom=(/a$/.test(g.adj)?'otra ':'otro ')+pk.nom;
-  respuestas(pk,textoDe(g));g.paqs.push(pk);hechos.push(pk)}});
+  if(g.blando&&/^(bano|cocina)$/.test(g.tipo)&&!/\b(reform\w*|renov\w*|enter[oa]s?|complet[oa]s?|nuev[oa]s?|integral|de cero|rehac\w*|moderniz\w*|arregl\w*|cambiar\w*|hacer\w*)\b/.test(A.todo+' '+norm(A.bruto||'')))pk.blando=1;respuestas(pk,textoDe(g));g.paqs.push(pk);hechos.push(pk)}});
 function textoDe(g){/* lo que se dice de esa estancia: su frase y lo que va con ella («con mampara», «el techo lo dejamos»…) */return [g.texto].concat(A.obras.filter(function(o){return o.g===g}).map(function(o){return o.orig||o.texto})).concat(g.extraT||[]).join(' , ')}
 var pisos=[];
 A.pisos.forEach(function(p){var pk=nuevoPaq('piso',{suelo:p.suelo||0,perim:0,alto:A.alto||0},1);respuestas(pk,A.todo);if(A.nBan!=null){pk.r.banos=Math.min(6,A.nBan);pk.hechas.banos=1}pisos.push(pk);hechos.push(pk)});
@@ -1281,6 +1281,8 @@ window.encPuerta=function(que){leer();var c=T('cor'),pr=T('pre'),pb=T('pub');if(
  if(que==='cor'&&iN>-1){var q2=cur.lineas[iN].q||1;cur.lineas=cur.lineas.filter(function(l){return l.enc!=='normal'&&l.enc!=='normal2'});cur.lineas.splice(iN,0,{d:c.d,q:q2,u:c.u,p:c.p,enc:'cor'})}
  renderLineas();try{autoGuardar()}catch(_){}var b=document.getElementById('encBox');if(b)b.outerHTML=cajaEnc(que);try{if(window.__usoPregunta)__usoPregunta('Encastrar una puerta',que==='cor'?'Corredera dentro de la pared':'Puerta normal con su premarco')}catch(_){}};
 
+/* para las partidas pendientes (pendientes.js): las preguntas y las estancias */
+window.__paqApi={PAQ:PAQ,paqs:paqs,rehacer:rehacer,pintarTarjeta:pintarTarjeta,T:T,tagDe:tagDe,medidaTrozo:medidaTrozo};
 /* al abrir un presupuesto con estancias sin medir, vuelven las preguntas */
 var renderLineas0=window.renderLineas;
 })();

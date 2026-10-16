@@ -99,7 +99,8 @@ JS = r"""async (t)=>{
  try{convertir()}catch(e){return {fallo:'convertir: '+e.message}}
  await new Promise(r=>setTimeout(r,450));
  var T=tarifa(),idDe=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var x=T.find(function(t){return t.d===d||d.indexOf(t.d+' — ')===0});return x?x.id:''};
- var L=(cur.lineas||[]).map(function(l){return {id:idDe(l),d:String(l.d||''),q:num(l.q),u:l.u||'',p:num(l.p),paq:l.paqId||'',fb:!!l.fb}});
+ var PE={};try{(window.pendientes?pendientes():[]).forEach(function(x){PE[x.i]=x.t})}catch(e){}
+ var L=(cur.lineas||[]).map(function(l,i){return {id:idDe(l),d:String(l.d||''),q:num(l.q),u:l.u||'',p:num(l.p),paq:l.paqId||'',fb:!!l.fb,pend:PE[i]||''}});
  var P=(cur.paqs||[]).filter(function(pk){return cur.lineas.some(function(l){return l.paqId===pk.id})}).map(function(pk){return {id:pk.id,tipo:pk.tipo,suelo:pk.suelo||0,calc:!!pk.calculado,padre:pk.padre||'',n:pk.n||1}});
  var rev={E:[],A:[]};try{rev=revisar(false,true)}catch(e){rev.E=['revisar: '+e.message]}
  var doc=[];try{doc=revisarDocumento()}catch(e){doc=['documento: '+e.message]}
@@ -159,6 +160,23 @@ def huella(r):
     return (tuple(L), tuple(P))
 
 
+def tipo_fallo(m):
+    """de qué clase es un fallo: lo que cambia el alcance o el dinero va primero"""
+    if m.startswith('sobra'): return 'inventado'
+    if m.startswith('falta') and 'cantidad' not in m: return 'omitido'
+    if 'no ha sacado nada' in m: return 'omitido'
+    if m.startswith('sin medida'): return 'cantidad inventada'
+    if 'pendiente' in m: return 'pendiente'
+    if 'no dice que es de' in m or 'sale como de' in m or 'sin su estancia' in m: return 'etiqueta'
+    if 'total' in m or 'precio' in m or '€' in m: return 'precio'
+    if 'documento' in m: return 'documento'
+    if ': sale distinto' in m: return 'variante'
+    return 'cantidad'
+
+
+ORDEN_TIPOS = ['inventado', 'omitido', 'cantidad inventada', 'cantidad', 'precio', 'pendiente', 'documento', 'etiqueta', 'variante']
+
+
 def comprobar(f, r):
     fallos = []
     if 'fallo' in r:
@@ -196,6 +214,11 @@ def comprobar(f, r):
             fallos.append('«%s» con %s y se dijo %s' % (i, qs, q))
         if not qs and i not in f.get('debe', []):
             fallos.append('falta «%s» (cantidad %s)' % (i, q))
+    # «sin_medida»: [ids] — no se dijo cuánto: tiene que quedar pendiente, no un número inventado
+    for i in f.get('sin_medida', []):
+        for l in L:
+            if l['id'] == i and not l.get('pend') and l['u'] in ('m2', 'm²', 'ml'):
+                fallos.append('sin medida «%s»: puso %s %s sin que se dijera' % (i, l['q'], l['u'])); break
     # «lugares»: {id: ["salón", "pasillo"]} — entre las partidas de ese trabajo salen esas estancias
     import unicodedata
     def _n(x): return ''.join(c for c in unicodedata.normalize('NFD', x.lower()) if unicodedata.category(c) != 'Mn')
@@ -228,7 +251,7 @@ def comprobar(f, r):
     # total con sentido
     tot = sum(l['q'] * l['p'] for l in L)
     # lo que no está en la tarifa entra a cero para poner el precio: eso no es un fallo
-    if L and tot <= 0 and not all(l['fb'] or l['p'] <= 0 for l in L): fallos.append('total a cero')
+    if L and tot <= 0 and not all(l['fb'] or l['p'] <= 0 or l.get('pend') for l in L): fallos.append('total a cero')
     sup = float(est.get('piso') or 0) + sum(float(x) for t in ('bano', 'cocina', 'hab') for x in (est.get(t) or []))
     if tot > 150000: fallos.append('total disparatado: %.0f €' % tot)
     if est.get('piso') and tot / float(est['piso']) > 1500: fallos.append('casa a %.0f €/m²' % (tot / float(est['piso'])))
@@ -274,7 +297,7 @@ def main():
                             a, b2 = set(['n%d' % len(ca)]), set(['n%d' % len(cb)])
                     fl.append('%s: sale distinto (falta %s · sobra %s)' % (nom, sorted(map(str, a - b2))[:4], sorted(map(str, b2 - a))[:4]))
         tot = sum(l['q'] * l['p'] for l in base.get('L', []))
-        informe.append({'t': f['t'], 'fallos': fl, 'lineas': len(base.get('L', [])), 'total': round(tot, 2),
+        informe.append({'t': f['t'], 'fallos': fl, 'tipos': sorted({tipo_fallo(m) for m in fl}), 'lineas': len(base.get('L', [])), 'total': round(tot, 2),
                         'ids': sorted({l['id'] for l in base.get('L', []) if l['id']}),
                         'estancias': [(p['tipo'], p['suelo'], p['calc']) for p in base.get('P', [])], 'info': base.get('info', '')})
         if fl: malos += 1
@@ -284,6 +307,11 @@ def main():
         if x['fallos']:
             print('\n✗ «%s»' % x['t'][:150])
             for m in x['fallos'][:8]: print('    - ' + m)
+    import collections
+    cuenta = collections.Counter()
+    for x in informe:
+        for t in {tipo_fallo(m) for m in x['fallos']}: cuenta[t] += 1
+    if cuenta: print('\nFrases por tipo de fallo: ' + ' · '.join('%s %d' % (t, cuenta[t]) for t in ORDEN_TIPOS if cuenta[t]))
     print('\n%d de %d frases con fallos · %d dictados probados en %d s' % (malos, len(FRASES), len(claves), time.time() - t0))
     sys.exit(1 if malos else 0)
 
