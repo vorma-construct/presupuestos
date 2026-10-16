@@ -747,6 +747,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «pintar el salón el pasillo y la cocina»: lista sin «y» entre las primeras */
+ t0=t0.replace(new RegExp('\\b((?:el|la|los|las)\\s+(?:'+EST_PAL+'))\\s+((?:el|la|los|las)\\s+(?:'+EST_PAL+')\\s*,?\\s+y\\s+(?:el|la|los|las)\\s+(?:'+EST_PAL+'))\\b','g'),'$1, $2');
  /* «las puertas no, que las quiere recuperar, o sea desmontarlas y volverlas a poner»: se guardan y se vuelven a poner, no son nuevas */
  t0=t0.replace(/\b(?:(?:y\s+)?(?:las\s+)?puertas\s+(?:no\s*,?\s*)?(?:que\s+)?(?:las\s+)?(?:quiere|quieren|va\s+a|van\s+a)?\s*recuperar(?:las)?|(?:y\s+)?(?:las\s+)?puertas\s+se\s+recuperan|recuperar\s+(?:las\s+)?puertas)\b(?:\s*(?:,|:)?\s*(?:o\s+sea\s*,?\s*)?desmontar(?:las)?\s+y\s+volver(?:las)?\s+a\s+(?:poner|colocar|montar)(?:las)?)?/g,' , nada de puertas nuevas, desmontar puerta y guardar, recolocar puerta, ');
  /* «la cocina sí, pero el fregadero y la fontanería no se tocan»: cocina entera sin fontanería */
@@ -817,6 +819,7 @@ function analizar(bruto){
    else if(/^(el|la|los|las)$/.test(cw)&&KEY.test(w[i+1]||'')&&(/^\d/.test(pw)||NUMW.test(pw)||/^(metros|m2|medio|cuadrados)$/.test(pw)))b=true;
    else if(/^(el|la)$/.test(cw)&&/^(principal|grande|pequen[oa]|otro|otra|de)$/.test(w[i+1]||'')&&(w[i+1]!=='de'||/^(invitados|cortesia|arriba|abajo|matrimonio)$/.test(w[i+2]||''))&&(FIN.test(pw)||KEY.test(pw)||/^(sanitarios|inodoro|lavabo|bide|grifo|griferia)$/.test(pw)))b=true;
    else if(/^(el|la|los|las)$/.test(cw)&&(KEY.test(w[i+1]||'')||ROOM.test(w[i+1]||''))&&/^(puertas|radiadores|ventanas|armarios|enchufes)$/.test(pw)&&(/^\d+$/.test(w[i-2]||'')||NUMW.test(w[i-2]||'')))b=true;
+   else if((/^\d+$/.test(cw)||NUMW.test(cw))&&/^(puertas|radiadores|ventanas|armarios|enchufes|premarcos)$/.test(w[i+1]||'')&&(ROOM.test(pw)||/^(techos|paredes|todo|todos|todas)$/.test(pw))&&w.slice(ult,i).some(function(x){return VERB.test(x)}))b=true;
    else if(VERB.test(cw)&&/^(puertas|radiadores|ventanas|armarios|enchufes)$/.test(pw)&&(/^\d+$/.test(w[i-2]||'')||NUMW.test(w[i-2]||''))&&!/^(cambiar|quitar|poner|sustituir|colocar|montar)$/.test(cw))b=true;
    else if(VERB.test(cw)&&/^(esta|estan|queda|quedan|toca|tocan|bien|nada|tienen|tiene)$/.test(pw)&&/\b(se queda|se quedan|como esta|como estan|no se toca|no se tocan|esta bien|estan bien|nada|ya (?:la |lo |los |las )?tienen?)\s*$/.test(w.slice(Math.max(ult,i-4),i).join(' ')))b=true;
    else if(/^(flotante|tarima|laminado|vinilo|parquet|porcelanico)$/.test(cw)&&(/^(lineales|ml)$/.test(pw)||/^(metros|m|\d+)$/.test(pw)&&w.slice(Math.max(ult,i-5),i).some(function(x){return /^rodapies?$/.test(x)})))b=true;
