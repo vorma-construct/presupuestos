@@ -529,6 +529,7 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
   if(nU){var idU=porN[nU],ls=finales.filter(function(l){return idDe(l)===idU&&!l.paqId});if(ls.length){ls[0].q=vt;finales=finales.filter(function(l){return ls.indexOf(l)<1});if(idU==='pub'){var lq=finales.find(function(l){return idDe(l)==='pue'&&!l.paqId});if(lq)lq.q=vt}}}
   else{var m2s=cand.filter(function(l){return l.u==='m2'||l.u==='ml'});var ids={};m2s.forEach(function(l){ids[idDe(l)]=1});var kI=Object.keys(ids);if(kI.length===1&&m2s.length){m2s[0].q=vt;finales=finales.filter(function(l){return m2s.indexOf(l)<1})}else if(kI.length===2&&kI.every(function(k){return /^(ron|rod)$/.test(k)})&&/lineal|ml|rodapie/.test(mtot[0]+' '+antT))m2s.forEach(function(l){l.q=vt});else if(!m2s.length&&has('tab')&&/\btabique\w*/.test(antT)&&!/lineal/.test(mtot[0])&&window.tabiqueSegunMetros){var rT=tabiqueSegunMetros(vt),lT=get('tab');lT.q=rT.q;lT.u=rT.u;lT.p=rT.p;lT.d=rT.d;lT.tid=rT.id}}}
  /* premarcos para pared de 70: esos, con su cuenta */
+ if(has('tecq')&&has('tec')&&!get('tec').paqId){var lq=get('tecq'),lt=get('tec');lq.q=Math.max(num(lq.q),num(lt.q));fuera('tec')}
  if(has('pre7')&&has('pre')){var l7=get('pre7'),lp=get('pre');l7.q=Math.max(num(l7.q),num(lp.q));fuera('pre')}
  /* «dos dormitorios, suelo laminado, doce y catorce metros»: los dos suman */
  var mls=TD.match(/\b(\d+(?:[.,]\d+)?)\s*(?:,\s*|\s+y\s+)(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros)\b(?!\s*(?:de\s+)?(?:alto|altura|largo|ancho|lineales|x|por))/);if(mls&&/\b(dos|2)\s+(?:dormitorios|habitaciones|cuartos)\b/.test(TD)){var sA=num(mls[1]),sB=num(mls[2]);finales.forEach(function(l){if(!l.paqId&&l.u==='m2'&&(num(l.q)===sA||num(l.q)===sB)&&/suelo|flotante|parquet|tarima|laminado|solado|nivel|acuchill|techo|horizontales/i.test(l.d))l.q=n2(sA+sB)})}
@@ -745,6 +746,12 @@ function analizar(bruto){
  t0=t0.replace(/\b(la puerta del bano|la puerta de la cocina|la puerta del aseo)\s*,?\s+(?:cambiar|cambiarla|sustituir)\s+(?:solo\s+)?(?:esa|esa sola|nada mas)\b/g,' cambiar $1 ');
  /* «radiadores, además dos más en la bajera»: dos radiadores (más) */
  t0=t0.replace(/\bradiadores\s*,?\s+(?:ademas\s+|y\s+)?(dos|tres|cuatro|cinco|\d+)\s+mas\b/g,function(x,n){return ' , '+(({dos:2,tres:3,cuatro:4,cinco:5})[n]||n)+' radiadores mas'});
+ /* «la cocina sí, pero el fregadero y la fontanería no se tocan»: cocina entera sin fontanería */
+ t0=t0.replace(/\b(?:la\s+)?cocina\s+si\s*,?\s+pero\s+(?:que\s+)?(?:el\s+fregadero\s+(?:y|ni)\s+)?(?:la\s+)?fontaneria(?:\s+y\s+el\s+fregadero)?\s+no\s+se\s+toca\w*(?:\s+que\s+es\s+nueva)?/g,' la cocina entera pero la fontaneria no se toca, ');
+ /* «falso techo de calidad Q tres con Knauf»: el techo Knauf */
+ t0=t0.replace(/\bfalso\s+techo\s+(?:de\s+)?(?:(?:calidad|acabado)\s+)?(?:q\s*(?:tres|3)|que\s+tres)\b(?:\s+(?:con|de)\s+knauf)?|\bfalso\s+techo\s+(?:con|de)\s+knauf\b/g,'falso techo knauf');
+ /* «quitar la bañera, poner plato de ducha y ya está, reforma completa eso sí»: el baño entero */
+ t0=t0.replace(/\b(?:y\s+)?(?:ya\s+esta|nada\s+mas)\s*,?\s+(?:la\s+)?reforma\s+(?:complet|enter)[oa](?:\s+eso\s+si)?\b/g,function(x,off,str){return /\b(bano|aseo)\b/.test(String(str).slice(Math.max(0,off-150),off))?' , y el bano completo ':x});
  /* «menos los suelos que son de madera buena y se acuchillan, con cocina y baño»: el suelo se acuchilla, y lo demás aparte */
  t0=t0.replace(/\bque\s+(?:son|es)\s+de\s+(?:madera|parquet|tarima)(?:\s+(?:buena|maciza|bonita|natural|noble))?\s+y\s+(se\s+acuchill\w+)\b/g,'que $1, ');
  /* «montaje de los dos muebles de baño» con dos baños: el mueble en los dos */
