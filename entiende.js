@@ -1956,7 +1956,7 @@ var renderLineas0=window.renderLineas;
   var arranca=function(){var r=new SR();r.lang=(window.idiomaDictado?idiomaDictado():'es-ES');r.continuous=true;r.interimResults=true;var base=ta.value,oido=false;
    b.textContent='● Te escucho… (toca para parar)';b.classList.add('warn');aviso('Habla tranquilo: voy escribiendo lo que dices.');
    /* hay móviles que devuelven la misma frase dos veces, o cada vez todo lo dicho desde el principio: se junta sin repetir */
-   r.onresult=function(e){var fins=[],prov='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fins.push(t);else prov+=t}
+   r.onresult=function(e){var fins=[],prov='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fins.push(t);else prov+=(prov&&!/\s$/.test(prov)&&!/^\s/.test(t)?' ':'')+t}/* trozos provisionales sueltos: con espacio entre ellos («35 metrosy el techo» leía 12 en las paredes) */
     var fin=juntarVoz(fins),kf=clave(fin),kp=clave(prov);if(kf&&kp&&kp.indexOf(kf)===0){fin='';}else if(kf&&kp&&kf.indexOf(kp)>=0)prov='';
     oido=true;ta.value=(base?base+' ':'')+fin+(prov?(fin?' ':'')+prov.trim():'')};
    r.onerror=function(e){var c=e&&e.error;if(c==='not-allowed'||c==='service-not-allowed')aviso(SIN_PERMISO);else if(c==='no-speech')aviso('No te he oído. Vuelve a darle a «Dictar con voz» y habla cerca del móvil.');else if(c==='network')aviso('Para dictar hace falta internet. Si no tienes, toca el micro del teclado.');else if(c==='audio-capture')aviso('No encuentro el micrófono. Toca el micro del teclado y habla igual.');else if(c!=='aborted')aviso('No he podido escucharte ('+c+'). Toca el micro del teclado y habla igual.')};
