@@ -33,6 +33,10 @@ Rama: `revision-dictado` (main = versión publicada; no se ha publicado nada de 
 - frases_I: quitado «mco» de no_debe en «los muebles los trae su hijo que trabaja en una tienda»: «los trae» no dice
   quién los monta; ahora la app deja el montaje como pregunta pendiente (punto 3: con dos lecturas posibles, preguntar).
 
+- frases_O (escrito a ciegas): quitado «alsm» donde solo se dice el formato 30x90: en la tarifa «alsm» es alicatado SIN material
+  (lo pone el cliente); con material es «alc». Quitado «pit» de sin_medida en baños/cocinas enteros con sus metros dichos: el techo
+  de esa estancia son los metros del suelo, que sí se dijeron.
+
 ## Medición (vorma y lucas, con la escena v2)
 Fallos por banco, antes de la escena → ahora: AB 0→0, CD 0→0, E 0→0, F 0→0, G 1→1, H 15→15, I 13→12, J 6→4,
 K 30→18, JKs 54→48. Lucas igual. Ninguna frase que iba bien se ha roto (se compara con `cmpbase.py`, y en Lucas
