@@ -520,7 +520,7 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
 /* «…falso techo no, sin falso techo» dicho suelto: ni en el baño ni en la cocina */
 if((A.F||[]).some(function(fr){return /\b(?:sin\s+|no\s+(?:quiere\w*\s+)?(?:poner\s+)?)falso techo\b|\bfalso techo\s*(?:,\s*)?(?:no|tampoco|nada)\b|\bnada de falso techo\b/.test(fr)&&!new RegExp('\\b(?:salon|pasillo|dormitorio|habitacion|comedor|hall|recibidor|entrada|despacho)\\w*\\b').test(fr)})&&!/\bfalso techo\s+(?:de\s+pladur\s+)?(?:en|del|de la)\s+(?:el\s+|la\s+)?(?:bano|cocina|aseo)\b/.test(A.todo))todasPaq.forEach(function(pk){if(/^(bano|cocina)$/.test(pk.tipo)&&pk.r&&pk.r.techo!==false&&!(pk.hechas&&pk.hechas.techo)){pk.r.techo=false;pk.hechas=pk.hechas||{};pk.hechas.techo=1;pk.__re=1}});
 /* «los muebles de la cocina los monta el cliente» dicho suelto: la cocina va sin montaje */
-if(/\bmuebles?\s+(?:de\s+(?:la\s+)?cocina\s+)?(?:los|las|lo|la)\s+(?:pone|ponen|monta|montan|trae|traen|compra|compran)\s+(?:el cliente|la clienta|ella|el|ellos|otro|otra|su\s+\w+|ikea|la tienda|el de la tienda)\b|\bmuebles?\s+(?:de\s+(?:la\s+)?cocina\s+)?(?:del|de la)\s+cliente(?!\s*,?\s*(?:y\s+)?(?:los|lo)\s+montamos)\b/.test(A.todo)&&!/\b(?:montamos|montar)\s+(?:nosotros\s+)?(?:los\s+)?muebles\b|\bmuebles\s+(?:que\s+)?(?:los\s+)?montamos\b/.test(A.todo))todasPaq.forEach(function(pk){if(pk.tipo==='cocina'&&pk.r&&pk.r.muebles!==false){pk.r.muebles=false;pk.hechas=pk.hechas||{};pk.hechas.muebles=1;pk.__re=1}});
+if(/\bmuebles?\s+(?:de\s+(?:la\s+)?cocina\s+)?(?:los|las|lo|la)\s+(?:pone|ponen|monta|montan|trae|traen|compra|compran)\s+(?:el cliente|la clienta|ella|el|ellos|otro|otra|su\s+\w+|ikea|la tienda|el de la tienda)\b|\bmuebles?\s+(?:de\s+(?:la\s+)?cocina\s+)?(?:del|de la)\s+cliente(?!\s*,?\s*(?:y\s+)?(?:los|lo)\s+montamos)\b/.test(A.todo)&&!/\b(?:montamos|montar)\s+(?:nosotros\s+)?(?:los\s+)?muebles\b|\bmuebles\s+(?:que\s+)?(?:los\s+)?montamos\b/.test(A.todo)){todasPaq.forEach(function(pk){if(pk.tipo==='cocina'&&pk.r&&pk.r.muebles!==false){pk.r.muebles=false;pk.hechas=pk.hechas||{};pk.hechas.muebles=1;pk.__re=1}});if(todasPaq.some(function(pk){return pk.tipo==='cocina'}))finales=finales.filter(function(l){return !(idDe(l)==='mco'&&!l.paqId)})}
 todasPaq.forEach(function(pk){if(pk.__re){delete pk.__re;rehacer(pk,true)}});
 /* «contenedor de 7 metros cúbicos»: ese contenedor en vez del de la obra */
 if(finales.some(function(l){return idDe(l)==='con7'}))cur.lineas=cur.lineas.filter(function(l){return !(l.paqId&&l.tid==='con')});
@@ -735,6 +735,10 @@ function analizar(bruto){
   var w=t0.trim().split(/\s+/),o=[w[0]],ult=0;
   for(var i=1;i<w.length;i++){var pw=w[i-1],cw=w[i],fin=FIN.test(pw)||NUMW.test(pw),b=false,cuenta=(/^\d+$/.test(pw)||NUMW.test(pw))&&/s$/.test(cw);if(i>1&&COMP[w[i-2]+' '+pw])pw=w[i-2];
    if(pw==='no'&&i>=2&&(ROOM.test(w[i-2])||KEY.test(w[i-2])||/^(entrada|techo|eso|esa|ese)$/.test(w[i-2]))&&(VERB.test(cw)&&w.slice(ult,i-1).indexOf(cw)>-1||KEY.test(cw)||ROOM.test(cw)))b=true;
+   /* «la mampara la pone él la cocina…», «…con mampara la cocina se queda…», «…se queda como está cambiar la calefacción» */
+   else if(/^(el|ella|ellos|ellas)$/.test(pw)&&/^(pone|ponen|monta|montan|compra|compran|trae|traen|hace|hacen|pinta|pintan|quita|quitan|coloca|colocan)$/.test(w[i-2]||'')&&/^(el|la|los|las|y|luego|tambien)$/.test(cw))b=true;
+   else if(/^(el|la|los|las)$/.test(cw)&&ROOM.test(w[i+1]||'')&&(FIN.test(pw)||KEY.test(pw))&&!/^(cocina|bano|aseo|salon|pasillo|comedor|todo|casa|piso|vivienda)$/.test(pw))b=true;
+   else if(VERB.test(cw)&&/^(esta|estan|queda|quedan|toca|tocan|bien|nada|tienen|tiene)$/.test(pw)&&/\b(se queda|se quedan|como esta|como estan|no se toca|no se tocan|esta bien|estan bien|nada|ya (?:la |lo |los |las )?tienen?)\s*$/.test(w.slice(Math.max(ult,i-4),i).join(' ')))b=true;
    else if(/^(flotante|tarima|laminado|vinilo|parquet|porcelanico)$/.test(cw)&&(/^(lineales|ml)$/.test(pw)||/^(metros|m|\d+)$/.test(pw)&&w.slice(Math.max(ult,i-5),i).some(function(x){return /^rodapies?$/.test(x)})))b=true;
    else if(COMP[pw+' '+cw]||cuenta||ART.test(pw))b=false;
    else if(/^(pintar|lijar|acuchillar|barnizar|nivelar)$/.test(pw)&&/^(electricidad|luz|calefaccion|contenedor|limpieza|boletin|fontaneria|instalacion|tarima|flotante|suelo|falso|rodapie|montacargas|ventanas|puertas)$/.test(cw)&&!(pw==='pintar'&&/^(puertas|ventanas)$/.test(cw)))b=true;
@@ -768,6 +772,8 @@ function analizar(bruto){
  t0=t0.replace(/\b((?:el|la|los|las)\s+)?(rodapies?|suelo|flotante|tarima|puertas?|ventanas?|radiadores)\s+(?:\1?\2\s+)?tambien\s+(nuev[oa]s?)\b/g,'$1$2 $3');
  /* «la cocina y el baño no se tocan», «el baño y la cocina nada»: ninguna de las dos */
  t0=t0.replace(/\b(?:(?:el|la)\s+)?(cocina|bano|aseo)\s+y\s+(?:(?:el|la)\s+)?(cocina|bano|aseo)\s*,?\s+(?:no\s+se\s+(?:tocan?|hacen?|reforman?)|se\s+quedan?(?:\s+como\s+est\w+)?|nada|tampoco|ni\s+(?:se\s+)?toca\w*|ni\s+tocar\w*|no(?=\s*(?:[,.;]|$)))\b/g,' nada de $1 ni de $2 ');
+ /* «la cocina sin tocar nada», «el aseo ni tocarlo»: esa estancia no */
+ t0=t0.replace(/(^|[,.;:]\s*|\by\s+|\s)(?:la\s+|el\s+)(cocina|bano|aseo)\s+(?:sin tocar(?:\s+nada)?|ni tocar\w*|no se toca\w*)\b/g,'$1 nada de $2, ');
  t0=t0.replace(/\b(fontaneria|instalacion(?: de fontaneria| electrica)?|electricidad|luz|suelo|techo|alicatado|azulejos?|muebles?|plato|griferia|ventana|puerta)\s+(del|de la)\s+(bano|aseo|cocina)\s+(nuev[oa]s?)\b/g,'$1 $4 $2 $3');
  /* «pintar todo el piso, todo, paredes y techos»: las paredes y los techos de toda la casa */
  t0=t0.replace(/\bpintar\s+(?:todo\s+el\s+piso|toda\s+la\s+casa|toda\s+la\s+vivienda)\s*,?\s*(?:todo\s*,?\s*)?(?:(?:las\s+)?paredes\s+y\s+(?:los\s+)?techos|(?:los\s+)?techos\s+y\s+(?:las\s+)?paredes)?\b/g,'pintar paredes y techos de todo el piso');
