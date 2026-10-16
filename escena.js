@@ -174,6 +174,10 @@ function escena(bruto,op){op=op||{};
    var alFinal=I2.slice(j+1).every(function(z){return z.t==='sep'||z.t==='O'&&z.vacio});
    if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
    if(pv&&(pv.t==='W'||pv.t==='X')&&!pv.total){pv.total=it.x.trim();pv.totV=it.v;if(it.lin)pv.lin=true;it.usado=true}});
+  /* «el parquet del salón, acuchillar y barnizar»: el suelo es lo que se acuchilla, no un suelo nuevo */
+  I2.forEach(function(it,j){if(it.t!=='W'||new RegExp('\\b(?:'+VS+')\\b').test(it.x)||!/^\s*(?:y\s+)?(?:el|la|los|las)?\s*(?:suelo|parquet|tarima|madera|terrazo|marmol)\b/.test(it.x))return;
+   var k=vecinoIdx(j,1);if(k>-1&&I2[k].t==='G'&&I2[k].usado==='tras')k=vecinoIdx(k,1);var nx=k>-1?I2[k]:null;
+   if(nx&&nx.t==='W'&&/^\s*(?:y\s+)?(?:acuchill|barniz|lij|pul|abrillant|tratar|arregl|reparar|restaur|quitar|levantar|arrancar|sacar)\w*/.test(nx.x)&&!/\b(?:suelo|parquet|tarima)\b/.test(nx.x)){nx.x=nx.x.trim()+' '+it.x.trim().replace(/^y\s+/,'');if(!nx.rooms&&it.rooms)nx.rooms=it.rooms;it.t='O';it.x='';it.vacio=true}});
   /* «lo mismo» */
   I2.forEach(function(it){if(it.t==='W'&&/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual)\s*$/.test(it.x)&&ultAcc)it.copia=ultAcc;if(it.t==='W'&&it.rooms&&it.rooms.length)ultAcc=[it.x]});
   /* si en un grupo «… y en el salón no» se dice que no: fuera de ese trabajo */
@@ -218,7 +222,7 @@ function escena(bruto,op){op=op||{};
    if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y ')+' metros';else if(r.m2!=null)med=' de '+fmt(r.m2)+' metros';
    return 'en '+nombreDe(r)+med+' '+it.acc.join(', ')});
   cambia=true;info.push(frs);out.push(frs.join('. '))});
- function limpiar(x){var a=String(x||'').replace(/^\s*(?:y|e|tambien|ademas|luego|despues|pues|bueno|y luego|y despues)\s+/,' ').replace(/^\s*(?:y|e|luego|despues)\s+/,' ').replace(/\b(pint|lij|quit|pon|cambi|lev|arranc|empapel|luc|alis|rasc)(ar|er|ir)(?:lo|la|los|las)\b/g,'$1$2').replace(/\b(pintar|lijar|lucir)\s+todo\b/g,'$1').replace(/\btambien\b/g,' ').replace(/\s+(?:y|e|de|del|en|y luego|que)\s*$/,'').replace(/\s+/g,' ').trim();
+ function limpiar(x){var a=String(x||'').replace(/^\s*(?:(?:y|e|tambien|ademas|luego|despues|pues|bueno)\s+)+/,' ').replace(/^\s*(?:y|e|luego|despues)\s+/,' ').replace(/\b(pint|lij|quit|pon|cambi|lev|arranc|empapel|luc|alis|rasc)(ar|er|ir)(?:lo|la|los|las)\b/g,'$1$2').replace(/\b(pintar|lijar|lucir)\s+todo\b/g,'$1').replace(/\btambien\b/g,' ').replace(/\s+(?:y|e|de|del|en|y luego|que)\s*$/,'').replace(/\s+/g,' ').trim();
   a=a.replace(/^(?:y\s+)?con\s+(?=(?:el\s+|la\s+|su\s+)?(?:rodapie|tarima|flotante|parquet|laminado|vinilo|falso techo|papel pintado)\b)/,'poner ');
   /* «papel pintado quitar», «gotelé quitar»: el verbo delante */
   var mV=a.match(new RegExp('^((?:(?!\\b(?:'+VS+')\\b)[a-z0-9]+\\s+){1,4})('+VS+')$'));if(mV&&TRAB.test(mV[1])&&!/\b(?:y|e|o|ni)\s*$/.test(mV[1]))a=mV[2]+' '+mV[1].trim();
