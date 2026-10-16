@@ -47,7 +47,8 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
    if(pk.blando&&!pk.okEntero)return {t:'entero',pk:pk.id};
    if(usaMetros(l)&&!(pk.suelo>0))return {t:'medidaPaq',pk:pk.id,m:'Faltan los metros '+delPaq(pk)+'.'};
    if(usaMetros(l)&&pk.calculado&&!pk.okMed)return {t:'medidaCalc',pk:pk.id,v:pk.suelo};
-   var k=depDe(pk,l,id);if(k&&!(pk.hechas&&pk.hechas[k])&&!pk.okTodo&&P)return {t:'pregunta',pk:pk.id,k:k}}
+   var k=depDe(pk,l,id);if(k&&!(pk.hechas&&pk.hechas[k])&&!pk.okTodo&&P)return {t:'pregunta',pk:pk.id,k:k}
+   if(l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo'+(l.calcDe?' ('+l.calcDe+')':' con los del suelo')+': ¿valen?'}}
   return null}
  if(l.adiv&&!l.ok)return {t:'adiv',m:'Has dicho «'+(l.adivTxt||'')+'»: no lo tengo con esas palabras en la tarifa. ¿Es esta partida?'};
  if(usaMetros(l)&&!(num(l.q)>1)&&!l.okQ)return {t:'medida',m:'No has dicho cuántos '+(l.u==='ml'?'metros lineales':'metros')+' son: escríbelos.'};
@@ -57,7 +58,10 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
  return null}
 /* unos metros que no se han dicho no valen 1: se quedan a cero (no suman) hasta que se escriban */
 function sinMetrosInventados(){(cur.lineas||[]).forEach(function(l){if(l.ok||l.okQ||!usaMetros(l)||num(l.q)!==1)return;var pk=l.paqId&&paqDe(l.paqId);if(l.paqId&&!(pk&&!(pk.suelo>0)))return;l.q=0;l.qPend=1})}
-function pendientes(){sinMetrosInventados();var L=[];(cur.lineas||[]).forEach(function(l,i){var p=pendDe(l);if(p){p.i=i;L.push(p)}});return L}
+function pendientes(){sinMetrosInventados();var L=[];(cur.lineas||[]).forEach(function(l,i){var p=pendDe(l);if(p){p.i=i;L.push(p)}});
+ /* reforma integral: lo que no se ha dicho ni contestado no entra; queda como pregunta (sin partida) */
+ (api().paqs?api().paqs():(cur.paqs||[])).forEach(function(pk){if(pk.tipo!=='piso'||pk.okTodo)return;var P=api().PAQ&&api().PAQ.piso;(P&&P.preg||[]).forEach(function(q){if(!(pk.hechas&&pk.hechas[q.k]))L.push({t:'pregunta',pk:pk.id,k:q.k,i:-1})})});
+ return L}
 window.pendientes=pendientes;
 
 /* una sola cosa por resolver aunque afecte a varias partidas (la misma pregunta de la misma estancia) */
@@ -73,7 +77,7 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
  if(p.t==='pregunta'){var pk=paqDe(p.pk),q=pk&&preg(pk,p.k);if(!q)return '';h='<b>Falta saber, '+esc(delPaq(pk))+':</b> '+esc(q.t)+'<br>';
   if(q.ops)h+=q.ops.map(function(o){return '<button '+b+' onclick="pendResp(\''+pk.id+'\',\''+p.k+'\','+esc(JSON.stringify(o[0]))+')">'+esc(o[1])+'</button>'}).join('');
   else h+='<input id="pn_'+pk.id+'_'+p.k+'" inputmode="numeric" style="width:70px;font-size:16px" value="'+esc(pk.r[p.k])+'"> <button '+b+' onclick="pendNum(\''+pk.id+'\',\''+p.k+'\')">Vale</button>';
-  h+='<button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendTodo(\''+pk.id+'\')">Todo lo '+esc(delPaq(pk))+' está bien</button>'}
+  if(pk.tipo!=='piso')h+='<button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendTodo(\''+pk.id+'\')">Todo lo '+esc(delPaq(pk))+' está bien</button>'}
  else if(p.t==='entero'){var pk3=paqDe(p.pk);h='<b>Has nombrado '+esc(nomPaq(pk3))+', pero no has dicho que se reforme entero.</b> ¿Lo reformo entero?<br><button '+b+' onclick="pendEntero(\''+p.pk+'\',1)">Sí, entero</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendEntero(\''+p.pk+'\',0)">No, quítalo</button>'}
  else if(p.t==='medidaPaq'){h='<b>'+esc(p.m)+'</b> <input id="pmx_'+p.pk+'" inputmode="decimal" placeholder="m² o 3x2" style="width:90px;font-size:16px"> <button '+b+' onclick="pendMed(\''+p.pk+'\')">Vale</button>'}
  else if(p.t==='medidaCalc'){var pk2=paqDe(p.pk);h='<b>Los metros '+esc(delPaq(pk2))+' los he calculado yo ('+String(p.v).replace('.',',')+' m²).</b> <input id="pmx_'+p.pk+'" inputmode="decimal" placeholder="m² de verdad" style="width:90px;font-size:16px"> <button '+b+' onclick="pendMed(\''+p.pk+'\')">Poner</button><button '+b+' onclick="pendMedOk(\''+p.pk+'\')">Son esos</button>'}
@@ -97,6 +101,7 @@ function pintar(){var tb=document.getElementById('tb');if(!tb)return;var rows=tb
  if(!C.length){if(ban)ban.remove();return}
  var h='<b>Faltan '+C.length+(C.length===1?' cosa':' cosas')+' por confirmar.</b> Mientras tanto se guarda como borrador; el PDF y el envío a firmar esperan. <button class="mini" style="margin-left:6px" onclick="pendSiguiente()">Ir a la siguiente</button>';
  if(!ban&&tabla){tabla.insertAdjacentHTML('beforebegin','<div id="pendBanner" style="background:#FFF4D6;border:1px solid #C98A00;border-radius:8px;padding:10px;margin:8px 0;font-size:15px"></div>');ban=document.getElementById('pendBanner')}
+ var sueltas=C.filter(function(p){return p.i<0});if(sueltas.length)h+=sueltas.map(chip).join('');
  if(ban)ban.innerHTML=h}
 window.pintarPendientes=pintar;
 
@@ -108,11 +113,11 @@ window.pendTodo=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return
 window.pendMed=function(id){var i=document.getElementById('pmx_'+id),pk=paqDe(id);if(!pk||!i)return;var v=normT(i.value||'');var m=api().medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}try{leer()}catch(_){}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;delete pk.calculado;api().rehacer(pk,true);if(pk.padre){var pd=paqDe(pk.padre);if(pd)api().rehacer(pd,true)}despues()};
 window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;if(si){pk.okEntero=1;delete pk.blando}else{cur.lineas=cur.lineas.filter(function(l){return l.paqId!==id});cur.paqs=(cur.paqs||[]).filter(function(x){return x!==pk})}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta()}catch(_){}};
 window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
-window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1}renderLineas();try{autoGuardar()}catch(_){}};
+window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1;delete l.calc}renderLineas();try{autoGuardar()}catch(_){}};
 window.pendOk=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.ok=1;delete l.sup;delete l.adiv}renderLineas();try{autoGuardar()}catch(_){}};
 
 /* lo que escribe a mano el usuario resuelve: unos metros > 1 o un precio */
-var leer0=window.leer;window.leer=function(){var antes=(cur.lineas||[]).map(function(l){return {q:num(l.q),p:num(l.p)}});var r=leer0.apply(this,arguments);(cur.lineas||[]).forEach(function(l,i){var a=antes[i];if(!a)return;if(num(l.q)!==a.q&&(usaMetros(l)||l.cuantas)&&!l.paqId)l.okQ=num(l.q)>0;if(num(l.p)!==a.p&&num(l.p)>0)l.okP=1});return r};
+var leer0=window.leer;window.leer=function(){var antes=(cur.lineas||[]).map(function(l){return {q:num(l.q),p:num(l.p)}});var r=leer0.apply(this,arguments);(cur.lineas||[]).forEach(function(l,i){var a=antes[i];if(!a)return;if(num(l.q)!==a.q&&(usaMetros(l)||l.cuantas)&&!l.paqId)l.okQ=num(l.q)>0;if(num(l.q)!==a.q&&l.paqId&&num(l.q)>0){l.qMano=1;l.okQ=1}if(num(l.p)!==a.p&&num(l.p)>0)l.okP=1});return r};
 
 var render0=window.renderLineas;window.renderLineas=function(){var r=render0.apply(this,arguments);try{pintar()}catch(e){}return r};
 calc0=window.calc;if(calc0)window.calc=function(){var r=calc0.apply(this,arguments);clearTimeout(window.__tPend);window.__tPend=setTimeout(function(){try{leer();pintar()}catch(_){}},700);return r};

@@ -935,7 +935,6 @@
    "dfon",
    "fba",
    "alc",
-   "pit",
    "coc",
    "fco",
    "mco"
@@ -1354,22 +1353,7 @@
  },
  {
   "t": "reforma integral de un piso de ochenta metros",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 80
@@ -1379,22 +1363,7 @@
  },
  {
   "t": "Reformar el piso entero de 90 m2",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 90
@@ -1405,18 +1374,6 @@
  {
   "t": "pues la señora quiere reformar la casa entera de setenta metros con dos baños de cuatro metros y la cocina de diez",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco"
   ],
@@ -1437,18 +1394,6 @@
  {
   "t": "una casa de 90 metros con 2 baños de 4 metros y la cocina de 10, reforma integral",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco"
   ],
@@ -1469,20 +1414,6 @@
  {
   "t": "Reforma completa de la vivienda de 100 m2, es un cuarto sin ascensor",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "mon"
   ],
   "no_debe": [],
@@ -1495,20 +1426,7 @@
  {
   "t": "hay que reformar el piso entero que son 65 m2 y quitar el gotelé de todo",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
    "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "lija"
   ],
   "no_debe": [],
@@ -1521,20 +1439,6 @@
  {
   "t": "eh reforma integral del piso de ochenta y siete metros cuadrados con calefacción nueva",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "cal"
   ],
   "no_debe": [],
@@ -1547,20 +1451,6 @@
  {
   "t": "el cliente quiere reformar la casa de 120 metros entera y además poner puerta blindada",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "pen"
   ],
   "no_debe": [],
@@ -1573,18 +1463,6 @@
  {
   "t": "reformar el piso entero de sesenta metros y hacer el baño y la cocina nuevos",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "san",
@@ -1605,18 +1483,6 @@
  {
   "t": "Reforma integral, piso de 75 m2, con el baño nuevo de 5 m2 y la cocina nueva de 9 m2",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "san",
@@ -1643,20 +1509,6 @@
  {
   "t": "pues reformar toda la casa que son noventa y cinco metros con nivelación de suelo de todo el piso",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "niv"
   ],
   "no_debe": [],
@@ -1668,22 +1520,7 @@
  },
  {
   "t": "reforma completa de un piso de 50 metros y cambiar las ventanas y las persianas",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 50
@@ -1697,20 +1534,7 @@
  {
   "t": "hay que reformar la casa entera de ochenta metros y la fachada del edificio también la quiere pintar el presidente",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
+   "pip"
   ],
   "no_debe": [],
   "estancias": {
@@ -1724,20 +1548,7 @@
  {
   "t": "la señora quiere reformar el piso entero, tiene 85 metros, tres habitaciones, salón, cocina de 10 metros y un baño de 5",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
+   "fba"
   ],
   "no_debe": [],
   "estancias": {
@@ -1755,20 +1566,6 @@
  {
   "t": "reforma integral de la vivienda de 72 metros, tercero sin ascensor, con contenedor",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "mon",
    "con"
   ],
@@ -1782,18 +1579,6 @@
  {
   "t": "reformar la casa de 110 m2 con dos baños completos y la cocina completa",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "san",
@@ -1814,20 +1599,6 @@
  {
   "t": "pues o sea lo que es reforma integral del piso de sesenta y ocho metros y tirar dos tabiques para unir cocina y salón",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "tab"
   ],
   "no_debe": [],
@@ -1840,20 +1611,6 @@
  {
   "t": "Reforma integral piso 80 metros, calefacción, puerta de entrada nueva y armarios montados",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "cal",
    "pen",
    "mar"
@@ -1868,20 +1625,6 @@
  {
   "t": "reformar el piso entero de noventa metros sin ascensor y el tejado del caserío que lo mire también",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "mon"
   ],
   "no_debe": [],
@@ -1896,20 +1639,6 @@
  {
   "t": "hay que hacer la reforma completa de la vivienda de 58 metros y poner falso techo en el pasillo de 8 metros",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "tec"
   ],
   "no_debe": [],
@@ -2487,8 +2216,7 @@
  {
   "t": "Quitar el suelo de madera de todo el piso, que son 80 m2, y poner gres, 80 m2",
   "debe": [
-   "sue",
-   "alc"
+   "sue"
   ],
   "no_debe": [
    "ele",
@@ -2496,8 +2224,7 @@
   ],
   "estancias": {},
   "cantidades": {
-   "sue": 80,
-   "alc": 80
+   "sue": 80
   },
   "fuera": []
  },
@@ -2608,18 +2335,6 @@
  {
   "t": "Visita en Deusto: piso de 85 m2 reforma integral, dos baños de 4 m2 y 3 m2, cocina de 10 m2, quinto sin ascensor, calefacción nueva y puerta blindada",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "mon",
@@ -2696,18 +2411,6 @@
  {
   "t": "Eh, piso en Otxarkoaga de 60 metros, reforma integral con un baño y la cocina, y es un cuarto sin ascensor, hay que poner contenedor",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "mon",
@@ -2755,18 +2458,6 @@
  {
   "t": "Reforma de una casa en Getxo de 140 metros cuadrados, entera, con tres baños y cocina, más acuchillado del parquet de las habitaciones que son 50 metros",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "acu"
@@ -2783,18 +2474,6 @@
  {
   "t": "pues es un piso viejo de setenta metros lo quieren reformar entero y el baño que es de tres metros con plato de setenta por ciento diez y la cocina de ocho metros con los muebles nuevos",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "san",
@@ -2850,7 +2529,6 @@
    "dfon",
    "fba",
    "alc",
-   "pit",
    "coc",
    "fco",
    "mco",
@@ -2872,18 +2550,6 @@
  {
   "t": "o sea en la visita lo que quiere es la casa entera de noventa metros pero el baño ya lo hizo hace dos años asi que solo la cocina de diez metros y lo demás",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "coc",
@@ -2903,20 +2569,6 @@
  {
   "t": "Piso en Basurto, 78 m2, reforma integral; además quiere radiadores nuevos en la cocina y un armario montado en el dormitorio",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "rad",
    "mar"
   ],
@@ -3014,7 +2666,6 @@
    "coc",
    "dfon",
    "fco",
-   "pit",
    "mco",
    "sue",
    "flo"
@@ -3059,20 +2710,7 @@
  {
   "t": "Reforma integral de piso de 95 metros con 2 baños y cocina abierta al salón tirando un tabique y falso techo en todo el pasillo de 10 m2",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
-   "fco",
    "tab",
    "tec"
   ],
@@ -3088,18 +2726,6 @@
  {
   "t": "Hay que reformar la casa entera, son 80 metros, con dos baños de 4 y la cocina de 12, y el suelo hay que nivelarlo entero",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "niv"
@@ -3169,20 +2795,7 @@
  {
   "t": "pues la señora quiere reformar el piso entero de sesenta y cinco metros y además el trastero que lo pinten",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
+   "pip"
   ],
   "no_debe": [],
   "estancias": {
@@ -3194,20 +2807,9 @@
  {
   "t": "me gustaría hacer la reforma completa de la vivienda de 100 m2 con calefacción, tarima, puertas nuevas y el tejado de la casa también",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
    "flo",
-   "ron",
-   "sue",
-   "rod",
    "pub",
    "pue",
-   "limf",
-   "fba",
-   "fco",
    "cal"
   ],
   "no_debe": [],
@@ -3227,8 +2829,7 @@
    "sol",
    "dfon",
    "fba",
-   "alc",
-   "pit"
+   "alc"
   ],
   "no_debe": [
    "coc",
@@ -3296,18 +2897,6 @@
  {
   "t": "piso de 70 m2 reforma integral con un baño de 5 m2 y cocina de 8 m2, sexto sin ascensor, y quiere también la fachada del patio",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "mon"
@@ -3351,18 +2940,7 @@
  {
   "t": "hay que reformar la casa de ochenta metros entera con tres habitaciones dos baños y cocina y quitar el gotelé de todo",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
    "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "lija"
@@ -3444,22 +3022,7 @@
  },
  {
   "t": "reforma integral",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {},
   "cantidades": {},
@@ -3488,22 +3051,7 @@
  },
  {
   "t": "piso entero de 90 metros",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 90
@@ -3595,22 +3143,7 @@
  },
  {
   "t": "reformar la casa de ochenta metros",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 80
@@ -3644,18 +3177,6 @@
  {
   "t": "pues lo que quiere el cliente es una reforma integral de su piso de noventa y dos metros cuadrados y eh lo que es con dos baños de cinco metros cada uno y la cocina de doce metros",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco"
   ],
@@ -3676,18 +3197,6 @@
  {
   "t": "Reforma completa vivienda 66 m2, baño 4 m2, cocina 7 m2, 2º sin ascensor",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "mon"
@@ -3708,20 +3217,6 @@
  {
   "t": "hay que reformar el piso entero de cincuenta y cinco metros y cambiar la puerta de entrada por una blindada y poner armarios en las dos habitaciones",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "pen",
    "mar"
   ],
@@ -3737,18 +3232,6 @@
  {
   "t": "reformar la casa entera de 130 metros con tres baños de 4 metros, la cocina de 15 y calefacción",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "cal"
@@ -3771,16 +3254,6 @@
  {
   "t": "la señora quiere reforma integral del piso de setenta y cinco metros pero que no se toque el suelo de madera que solo lo acuchillen",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "acu"
   ],
   "no_debe": [],
@@ -3793,18 +3266,6 @@
  {
   "t": "pues una casa de noventa metros con dos baños de cuatro metros y la cocina de diez reforma integral sin ascensor",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "mon"
@@ -3826,20 +3287,6 @@
  {
   "t": "Reformar el piso entero (85 m2) y hacer falso techo en toda la casa de 85 m2",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "tec"
   ],
   "no_debe": [],
@@ -3854,20 +3301,6 @@
  {
   "t": "Eh, piso de 80 metros entero, y además meter un tabique de pladur para hacer otra habitación, 10 m2 de tabique",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "pla"
   ],
   "no_debe": [],
@@ -3882,20 +3315,6 @@
  {
   "t": "reforma integral de un bajo de 60 metros con nivelación del suelo y cambiar ventanas",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "niv"
   ],
   "no_debe": [],
@@ -3910,18 +3329,6 @@
  {
   "t": "Hay que reformar la vivienda completa, 110 m2, con el baño de 6 m2 y el aseo de 3 m2, y la cocina de 14 m2, y poner papel pintado en el salón",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "ppa"
@@ -3943,20 +3350,6 @@
  {
   "t": "pues reforma completa de la vivienda de setenta metros y lo que es la calefacción que tiene radiadores viejos cambiarla entera",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco",
    "cal"
   ],
   "no_debe": [],
@@ -3968,22 +3361,7 @@
  },
  {
   "t": "el cliente dice que es un piso de 45 metros pequeñito y lo quiere reformar entero",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 45
@@ -3993,22 +3371,7 @@
  },
  {
   "t": "Reforma integral de la casa del pueblo, 150 metros, con tejado nuevo y fachada",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 150
@@ -4021,21 +3384,7 @@
  },
  {
   "t": "reformar el piso entero de ochenta y dos metros y la cocina dejarla como está que es nueva",
-  "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
-   "fba"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "mco"
@@ -4049,17 +3398,6 @@
  {
   "t": "Hay que reformar la casa entera, 90 metros, dos baños uno de 5 y otro de 3,5, cocina de 11 metros, contenedor y limpieza final",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
    "limf",
    "fba",
    "fco",
@@ -4501,7 +3839,6 @@
    "dfon",
    "fba",
    "alc",
-   "pit",
    "coc",
    "fco",
    "mco",
@@ -4574,7 +3911,6 @@
    "dfon",
    "fba",
    "alc",
-   "pit",
    "lija"
   ],
   "no_debe": [
@@ -4590,18 +3926,6 @@
  {
   "t": "reformar la casa de 80 m2 con los dos baños nuevos y la cocina nueva y mudanza de los muebles",
   "debe": [
-   "ele",
-   "bol",
-   "ins",
-   "pip",
-   "pit",
-   "flo",
-   "ron",
-   "sue",
-   "rod",
-   "pub",
-   "pue",
-   "limf",
    "fba",
    "fco",
    "san",
@@ -7475,7 +6799,6 @@
  {
   "t": "poner suelo flotante en todo el piso de ochenta metros quitando el parquet viejo",
   "debe": [
-   "sue",
    "flo"
   ],
   "no_debe": [
@@ -7484,7 +6807,6 @@
   ],
   "estancias": {},
   "cantidades": {
-   "sue": 80,
    "flo": 80
   },
   "fuera": []

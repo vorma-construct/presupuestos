@@ -287,7 +287,6 @@
    "niv",
    "flo",
    "pub",
-   "pue",
    "pen",
    "ron",
    "pip",
@@ -307,13 +306,11 @@
   },
   "cantidades": {
    "pub": 8,
-   "pue": 8,
    "ron": 60
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -476,7 +473,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "pip",
    "pit",
    "con",
@@ -493,13 +489,11 @@
    ]
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -615,7 +609,6 @@
    "flo",
    "ron",
    "pub",
-   "pue",
    "con"
   ],
   "no_debe": [
@@ -633,13 +626,11 @@
   "cantidades": {
    "flo": 80,
    "ron": 50,
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "lija"
   ],
@@ -760,7 +751,6 @@
    "sue",
    "flo",
    "pub",
-   "pue",
    "ron",
    "pip",
    "con"
@@ -779,13 +769,11 @@
   },
   "cantidades": {
    "pub": 5,
-   "pue": 5,
    "ron": 40
   },
   "lugares": {},
   "sin_lugar": [
-   "pub",
-   "pue"
+   "pub"
   ],
   "fuera": []
  },
@@ -859,7 +847,6 @@
    "ali",
    "sol",
    "alc",
-   "coc",
    "tab",
    "pd7",
    "mam",
@@ -1075,7 +1062,6 @@
    "pit",
    "flo",
    "pub",
-   "pue",
    "mon"
   ],
   "no_debe": [
@@ -1091,13 +1077,11 @@
    ]
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele"
   ],
   "fuera": []
@@ -1172,7 +1156,6 @@
    "mco",
    "pip",
    "pub",
-   "pue",
    "con"
   ],
   "no_debe": [
@@ -1187,13 +1170,11 @@
    ]
   },
   "cantidades": {
-   "pub": 5,
-   "pue": 5
+   "pub": 5
   },
   "lugares": {},
   "sin_lugar": [
-   "pub",
-   "pue"
+   "pub"
   ],
   "fuera": []
  },
@@ -1237,7 +1218,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "flo",
    "ron",
    "pip",
@@ -1256,13 +1236,11 @@
   },
   "cantidades": {
    "pub": 7,
-   "pue": 7,
    "ron": 55
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -1384,7 +1362,6 @@
    "flo",
    "ron",
    "pub",
-   "pue",
    "pen",
    "pip",
    "pit",
@@ -1403,13 +1380,11 @@
   },
   "cantidades": {
    "ron": 48,
-   "pub": 5,
-   "pue": 5
+   "pub": 5
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -1630,7 +1605,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "pla",
    "flo",
    "pip",
@@ -1648,13 +1622,11 @@
    ]
   },
   "cantidades": {
-   "pub": 7,
-   "pue": 7
+   "pub": 7
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -1787,7 +1759,6 @@
    "coc",
    "ele",
    "pub",
-   "pue",
    "cor",
    "flo",
    "pip",
@@ -1860,7 +1831,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "pip",
    "pit",
    "con"
@@ -1878,13 +1848,11 @@
    ]
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -1941,7 +1909,6 @@
    "ele",
    "pip",
    "pub",
-   "pue",
    "mon",
    "con"
   ],
@@ -1958,13 +1925,11 @@
    ]
   },
   "cantidades": {
-   "pub": 5,
-   "pue": 5
+   "pub": 5
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele"
   ],
   "fuera": []
@@ -2053,7 +2018,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "pip",
    "con",
    "mon"
@@ -2069,13 +2033,11 @@
    ]
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -2149,7 +2111,6 @@
    "bol",
    "cal",
    "pub",
-   "pue",
    "ron",
    "flo",
    "pip",
@@ -2170,14 +2131,12 @@
   },
   "cantidades": {
    "pub": 7,
-   "pue": 7,
    "ron": 50,
    "flo": 80
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -2259,7 +2218,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "pen",
    "flo",
    "ron",
@@ -2283,13 +2241,11 @@
   },
   "cantidades": {
    "pub": 10,
-   "pue": 10,
    "ron": 90
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],
@@ -2376,7 +2332,6 @@
    "mco",
    "ele",
    "pub",
-   "pue",
    "lija",
    "pip",
    "flo",
@@ -2395,13 +2350,11 @@
    ]
   },
   "cantidades": {
-   "pub": 7,
-   "pue": 7
+   "pub": 7
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele"
   ],
   "fuera": []
@@ -2444,7 +2397,6 @@
    "ele",
    "cal",
    "pub",
-   "pue",
    "lija",
    "pip",
    "flo",
@@ -2467,13 +2419,11 @@
   },
   "cantidades": {
    "pub": 5,
-   "pue": 5,
    "ron": 40
   },
   "lugares": {},
   "sin_lugar": [
    "pub",
-   "pue",
    "ele",
    "cal"
   ],

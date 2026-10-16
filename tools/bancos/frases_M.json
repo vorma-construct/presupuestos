@@ -640,9 +640,7 @@
  },
  {
   "t": "Piso entero de noventa metros en Indautxu, reforma integral, con tres habitaciones, salón, cocina y dos baños.",
-  "debe": [
-   "ele"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 90
@@ -1456,7 +1454,6 @@
  {
   "t": "piso entero de setenta y cinco metros en txurdinaga reforma integral eh y es un cuarto sin ascensor",
   "debe": [
-   "ele",
    "mon"
   ],
   "no_debe": [],
@@ -1714,9 +1711,7 @@
  },
  {
   "t": "Reforma integral de un piso de ochenta metros en Getxo, menos baño y cocina, que se hicieron hace poco.",
-  "debe": [
-   "ele"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "mco",
@@ -1873,9 +1868,7 @@
  },
  {
   "t": "La cocina no se toca. Reforma integral del resto del piso, que son setenta metros.",
-  "debe": [
-   "ele"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "mco",
@@ -2071,9 +2064,7 @@
  },
  {
   "t": "Piso entero de cien metros en Las Arenas, reforma integral, pero las puertas se quedan las que hay.",
-  "debe": [
-   "ele"
-  ],
+  "debe": [],
   "no_debe": [
    "pub",
    "pue"

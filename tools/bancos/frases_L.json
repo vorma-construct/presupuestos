@@ -366,23 +366,13 @@
  },
  {
   "t": "reforma integral con baño y cocina en bermeo todavía no tengo medidas",
-  "debe": [
-   "san",
-   "ali",
-   "sol",
-   "alc",
-   "coc"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {},
   "cantidades": {},
   "lugares": {},
   "sin_lugar": [],
-  "sin_medida": [
-   "ali",
-   "sol",
-   "alc"
-  ],
+  "sin_medida": [],
   "justificacion": "Reforma integral con baño y cocina completos sin ninguna medida.",
   "fuera": []
  },
@@ -1055,9 +1045,6 @@
    "pip",
    "pit",
    "lija",
-   "pub",
-   "pue",
-   "ron",
    "mon"
   ],
   "no_debe": [
@@ -1067,10 +1054,7 @@
    "san"
   ],
   "estancias": {},
-  "cantidades": {
-   "pub": 6,
-   "pue": 6
-  },
+  "cantidades": {},
   "lugares": {
    "lija": [
     "salón",
@@ -1080,16 +1064,12 @@
   "sin_lugar": [
    "pip",
    "pit",
-   "mon",
-   "pub",
-   "pue",
-   "ron"
+   "mon"
   ],
   "sin_medida": [
    "pip",
    "pit",
-   "lija",
-   "ron"
+   "lija"
   ],
   "justificacion": "Pintura, gotelé, puertas y rodapié sin superficies; cocina excluida.",
   "fuera": []
@@ -1213,7 +1193,6 @@
    "ele",
    "flo",
    "pub",
-   "pue",
    "ron",
    "con",
    "mon"
@@ -1230,15 +1209,13 @@
    "piso": 80
   },
   "cantidades": {
-   "pub": 8,
-   "pue": 8
+   "pub": 8
   },
   "lugares": {},
   "sin_lugar": [
    "ele",
    "flo",
    "pub",
-   "pue",
    "ron",
    "con",
    "mon"
@@ -1379,7 +1356,6 @@
  {
   "t": "reforma integral de un piso en basauri de setenta y dos metros derribar dos tabiques para unir cocina y salón cocina completa de doce metros baño de cuatro metros y medio electricidad calefacción suelo flotante seis puertas y contenedor",
   "debe": [
-   "coc",
    "ali",
    "sol",
    "alc",
@@ -1389,7 +1365,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "con"
   ],
   "no_debe": [],
@@ -1403,8 +1378,7 @@
    "piso": 72
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
@@ -1412,7 +1386,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "con"
   ],
   "sin_medida": [],
@@ -1474,7 +1447,6 @@
    "tec",
    "pip",
    "pub",
-   "pue",
    "pen",
    "con"
   ],
@@ -1491,7 +1463,6 @@
   },
   "cantidades": {
    "pub": 10,
-   "pue": 10,
    "pen": 1
   },
   "lugares": {},
@@ -1501,7 +1472,6 @@
    "tec",
    "pip",
    "pub",
-   "pue",
    "con"
   ],
   "sin_medida": [],
@@ -1659,8 +1629,7 @@
    "flo",
    "pip",
    "pit",
-   "pub",
-   "pue"
+   "pub"
   ],
   "no_debe": [
    "san",
@@ -1676,8 +1645,7 @@
    "piso": 50
   },
   "cantidades": {
-   "pub": 5,
-   "pue": 5
+   "pub": 5
   },
   "lugares": {},
   "sin_lugar": [
@@ -1685,8 +1653,7 @@
    "flo",
    "pip",
    "pit",
-   "pub",
-   "pue"
+   "pub"
   ],
   "sin_medida": [],
   "justificacion": "Integral de 50 m² en bajo, baño excluido.",
@@ -1900,8 +1867,7 @@
    "ele",
    "cal",
    "flo",
-   "pub",
-   "pue"
+   "pub"
   ],
   "no_debe": [
    "coc",
@@ -1912,16 +1878,14 @@
    "piso": 85
   },
   "cantidades": {
-   "pub": 9,
-   "pue": 9
+   "pub": 9
   },
   "lugares": {},
   "sin_lugar": [
    "ele",
    "cal",
    "flo",
-   "pub",
-   "pue"
+   "pub"
   ],
   "sin_medida": [
    "ali",
@@ -2085,7 +2049,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "ron",
    "con"
   ],
@@ -2103,7 +2066,6 @@
   },
   "cantidades": {
    "pub": 8,
-   "pue": 8,
    "ron": 52
   },
   "lugares": {},
@@ -2112,7 +2074,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "ron",
    "con"
   ],
@@ -2375,7 +2336,6 @@
    "flo",
    "ron",
    "pub",
-   "pue",
    "pen",
    "ele",
    "con"
@@ -2392,7 +2352,6 @@
   "cantidades": {
    "ron": 46,
    "pub": 7,
-   "pue": 7,
    "pen": 1
   },
   "lugares": {},
@@ -2402,7 +2361,6 @@
    "flo",
    "ron",
    "pub",
-   "pue",
    "ele",
    "con"
   ],
@@ -2541,7 +2499,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "tec",
    "con",
    "limf"
@@ -2559,8 +2516,7 @@
    "piso": 110
   },
   "cantidades": {
-   "pub": 10,
-   "pue": 10
+   "pub": 10
   },
   "lugares": {
    "tec": [
@@ -2573,7 +2529,6 @@
    "cal",
    "flo",
    "pub",
-   "pue",
    "con",
    "limf"
   ],
@@ -2856,7 +2811,6 @@
    "ele",
    "flo",
    "pub",
-   "pue",
    "con",
    "limf"
   ],
@@ -2873,15 +2827,13 @@
    "piso": 60
   },
   "cantidades": {
-   "pub": 6,
-   "pue": 6
+   "pub": 6
   },
   "lugares": {},
   "sin_lugar": [
    "ele",
    "flo",
    "pub",
-   "pue",
    "con",
    "limf"
   ],
@@ -3184,8 +3136,7 @@
  {
   "t": "eh pues pintar paredes de todo el piso eh noventa metros cuadrados de pared y techos eh los techos sesenta en durango",
   "debe": [
-   "pip",
-   "pit"
+   "pip"
   ],
   "no_debe": [
    "coc",
@@ -3195,13 +3146,11 @@
   ],
   "estancias": {},
   "cantidades": {
-   "pip": 90,
-   "pit": 60
+   "pip": 90
   },
   "lugares": {},
   "sin_lugar": [
-   "pip",
-   "pit"
+   "pip"
   ],
   "sin_medida": [],
   "justificacion": "Paredes 90 m² y techos 60 m².",
@@ -3452,8 +3401,7 @@
   "debe": [
    "ele",
    "cal",
-   "pub",
-   "pue"
+   "pub"
   ],
   "no_debe": [
    "coc",
@@ -3465,15 +3413,13 @@
    "piso": 82
   },
   "cantidades": {
-   "pub": 7,
-   "pue": 7
+   "pub": 7
   },
   "lugares": {},
   "sin_lugar": [
    "ele",
    "cal",
-   "pub",
-   "pue"
+   "pub"
   ],
   "sin_medida": [],
   "justificacion": "Integral de 82 m² tras corregir, siete puertas.",

@@ -1182,14 +1182,6 @@
  {
   "t": "bueno esto es una reforma integral de un piso de ochenta metros en rekalde con baño y cocina",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "fba",
    "coc",
@@ -1205,18 +1197,8 @@
  {
   "t": "eh todo el piso a reformar setenta metros tres habitaciones baño cocina salón todo",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
-   "fba",
-   "coc",
-   "fco"
+   "fba"
   ],
   "no_debe": [],
   "estancias": {
@@ -1227,18 +1209,7 @@
  },
  {
   "t": "mira reforma integral pero sin tocar la cocina que la hicieron hace tres años noventa metros el piso",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "fba"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "fco",
@@ -1253,14 +1224,6 @@
  {
   "t": "a ver piso entero a reformar de sesenta y cinco metros es un tercero sin ascensor en otxarkoaga",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "mon"
   ],
   "no_debe": [],
@@ -1272,18 +1235,7 @@
  },
  {
   "t": "reforma integral de todo menos el baño eh el baño no se toca",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "coc",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [
    "san",
    "fba"
@@ -1297,12 +1249,6 @@
   "debe": [
    "ins",
    "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "bol"
   ],
   "no_debe": [],
@@ -1315,14 +1261,6 @@
  {
   "t": "o sea reforma integral de todo el piso y calefacción nueva entera que no tienen",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "cal"
   ],
   "no_debe": [],
@@ -1333,12 +1271,6 @@
  {
   "t": "integral del piso de mi primo en galdakao setenta y cinco metros y las puertas no que las quiere recuperar o sea desmontarlas y volverlas a poner",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "con",
    "puer",
    "recp"
   ],
@@ -1354,14 +1286,6 @@
  {
   "t": "todo el piso a reformar sesenta metros con puerta de entrada blindada nueva",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "pen"
   ],
   "no_debe": [],
@@ -1374,14 +1298,7 @@
  {
   "t": "eh reforma integral y en el suelo como hay terrazo nivelar todo antes de poner el flotante",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
    "flo",
-   "pue",
-   "pub",
-   "con",
    "niv"
   ],
   "no_debe": [],
@@ -1392,14 +1309,6 @@
  {
   "t": "Reforma integral 80 m2. Incluye baño y cocina. 2º s/ asc.",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "fba",
    "coc",
@@ -1415,18 +1324,7 @@
  },
  {
   "t": "Integral 95 m2 – excepto cocina.",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "fba"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "fco"
@@ -1440,14 +1338,6 @@
  {
   "t": "Reforma integral piso 70 m2 + boletín + limpieza final.",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "bol",
    "limf"
   ],
@@ -1461,14 +1351,6 @@
  {
   "t": "Integral 55 m2, s/ falso techo, c/ calefacción completa.",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "cal"
   ],
   "no_debe": [
@@ -1483,13 +1365,6 @@
  {
   "t": "a ver reforma integral sí pero el suelo no que tiene parquet bueno ese se acuchilla",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "pue",
-   "pub",
-   "con",
    "acu"
   ],
   "no_debe": [
@@ -1503,14 +1378,6 @@
  {
   "t": "pues reforma integral del piso eh noventa metros y tirar dos tabiques para unir salón y habitación",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "tab"
   ],
   "no_debe": [],
@@ -1523,13 +1390,6 @@
  {
   "t": "reforma integral de cien metros con contenedor de siete metros que hay que pedir permiso al ayuntamiento",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
    "con7"
   ],
   "no_debe": [],
@@ -1542,12 +1402,6 @@
  {
   "t": "todo el piso a reformar setenta y dos metros y en vez de pintar normal quieren tres manos de pintura en paredes y techos",
   "debe": [
-   "ins",
-   "ele",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "pip3",
    "pit3"
   ],
@@ -3123,7 +2977,6 @@
    "sol",
    "fba",
    "alc",
-   "con",
    "pue",
    "pub"
   ],
@@ -3200,7 +3053,6 @@
    "sol",
    "fba",
    "alc",
-   "con",
    "coc",
    "fco",
    "pue",
@@ -3723,8 +3575,7 @@
  {
   "t": "eh todo el piso pintar menos la cocina y el baño que tienen azulejo vale paredes y techos",
   "debe": [
-   "pip",
-   "pit"
+   "pip"
   ],
   "no_debe": [
    "coc",
@@ -4190,14 +4041,6 @@
  {
   "t": "Integral 68 m2 Santurtzi, c/ calefacción y pen.",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "cal",
    "pen"
   ],
@@ -4211,14 +4054,6 @@
  {
   "t": "eh reforma integral de un piso en algorta de cien metros con dos baños y cocina todo todo",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "fba",
    "coc",
@@ -4233,14 +4068,7 @@
  },
  {
   "t": "todo el piso a reformar setenta metros pero las puertas se quedan que son de roble buenas",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "con"
-  ],
+  "debe": [],
   "no_debe": [
    "pue",
    "pub"

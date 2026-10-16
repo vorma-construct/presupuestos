@@ -72,7 +72,7 @@ var REGLAS=[
 [/\b(falso techo[^,.;]*?)\s*,?\s*(?:y\s+)?pintarlo\b/g,'$1, pintar techos'],
 [/\b(?:dejar|poner)\s+(?:las\s+)?paredes\s+lisas\b/g,' lijar paredes '],
 /* tabiques */
-[/\b(?:abrir|unir|juntar)\s+(?:la\s+)?cocina\s+(?:al|con el|y el)\s+salon\b|\bcocina\s+(?:abierta|americana)\b|\bjuntar\s+(?:dos|las)\s+(?:habitaciones|cuartos)\b|\bunir\s+(?:dos|las)\s+(?:habitaciones|cuartos)\b/g,' tirar tabique '],
+[/\b(?:abrir|unir|juntar)\s+(?:la\s+)?cocina\s+(?:al|con el|y el)\s+salon\b|\b(?:hacer|dejar|dejarla|convertir\w*(?:\s+en)?|abrir|quiere|quieren)\s+(?:la\s+|una\s+)?cocina\s+(?:abierta|americana)\b|\bjuntar\s+(?:dos|las)\s+(?:habitaciones|cuartos)\b|\bunir\s+(?:dos|las)\s+(?:habitaciones|cuartos)\b/g,' tirar tabique '],
 [/\b(?:dividir|separar|partir)\b[^,.;]{0,30}\b(?:con\s+)?(?:un\s+)?(?:tabique|pared|pladur)\b|\bhacer\s+(?:una\s+)?habitacion\s+(?:nueva|mas)\b/g,' hacer tabique de pladur '],
 /* electricidad */
 [/\b(?:sacar|hacer|tramitar|pedir)\s+(?:el\s+)?boletin\w*(?:\s+de\s+la\s+luz|\s+electrico)?\b/g,' boletin '],
@@ -186,8 +186,10 @@ piso:{nombre:'Piso entero',preg:[
  {k:'calef',t:'¿Calefacción nueva?',ops:[[true,'Sí'],[false,'No']]},
  {k:'paredes',t:'Paredes:',ops:[['gotele','Quitar gotelé y pintar'],['pintar','Solo pintar']]},
  {k:'suelo',t:'Suelo:',ops:[['tarima','Quitar el que hay y tarima nueva'],['no','No se toca']]},
- {k:'puertas',t:'¿Cuántas puertas de paso nuevas?',num:[0,40]}],
- def:{banos:1,cocina:true,luz:true,calef:false,paredes:'gotele',suelo:'tarima',puertas:4}}
+ {k:'puertas',t:'¿Cuántas puertas de paso nuevas?',num:[0,40]},
+ {k:'con',t:'¿Contenedor de escombro?',ops:[[true,'Sí'],[false,'No']]},
+ {k:'limf',t:'¿Limpieza final?',ops:[[true,'Sí'],[false,'No']]}],
+ def:{banos:1,cocina:true,luz:true,calef:false,paredes:'gotele',suelo:'tarima',puertas:4,con:true,limf:true}}
 };
 var EST={bano:'el baño',cocina:'la cocina',hab:'la habitación',piso:'el piso'};
 
@@ -223,13 +225,13 @@ if(pk.tipo==='hab'){var W3=pared(1,s.ventana?1:0);
  if(s.suelo!=='no'){add('flo',sq);add('ron',perim>0?n2(perim-0.8):1)}
  if(s.puerta){add('pue',1);add('pub',1)}
  if(s.armario)add('mar',1)}
-if(pk.tipo==='piso'){if(!s.luz&&(s.banos>0||s.cocina))add('ins',1);var mojado=paqs().filter(function(h){return h.padre===pk.id}).reduce(function(a,h){return a+(h.suelo||0)},0);var Sseco=S>0?Math.max(1,n2(S-mojado)):1;var Wp=S>0?n2(Sseco*2.7):1;/* paredes de un piso: unas 2,7 veces el suelo */
- if(s.luz){add('ins',1);add('ele',1);add('bol',1)}
- if(s.calef)add('cal',1);
- if(s.paredes==='gotele')add('lija',Wp);add('pip',Wp);add('pit',Sseco);
- if(s.suelo==='tarima'){add('sue',Sseco);add('rod',S>0?n2(Sseco*0.9):1);add('flo',Sseco);add('ron',S>0?n2(Sseco*0.9):1)}
- if(s.puertas>0){add('pue',s.puertas);add('pub',s.puertas)}
- add('con',1);add('limf',1)}
+if(pk.tipo==='piso'){var hP=pk.hechas||{};/* reforma integral: solo lo contestado o dicho; lo demás queda como pregunta, sin partidas ni metros supuestos */if(hP.luz&&!s.luz&&(hP.banos&&s.banos>0||hP.cocina&&s.cocina))add('ins',1);var mojado=paqs().filter(function(h){return h.padre===pk.id}).reduce(function(a,h){return a+(h.suelo||0)},0);var Sseco=S>0?Math.max(1,n2(S-mojado)):1;var Wp=S>0?n2(Sseco*2.7):1;/* paredes de un piso: unas 2,7 veces el suelo */
+ if(hP.luz&&s.luz){add('ins',1);add('ele',1);add('bol',1)}
+ if(hP.calef&&s.calef)add('cal',1);
+ if(hP.paredes){var n0=L.length;if(s.paredes==='gotele')add('lija',Wp);add('pip',Wp);add('pit',Sseco);L.slice(n0).forEach(function(l){if(S>0&&(l.tid==='pip'||l.tid==='lija')){l.calc=1;l.calcDe='las paredes, unas 2,7 veces el suelo de la casa sin baño ni cocina'}else if(S>0&&l.tid==='pit'){l.calc=1;l.calcDe='los techos, el suelo de la casa'+(mojado>0?' menos baño y cocina':'')}})}
+ if(hP.suelo&&s.suelo==='tarima'){var n1=L.length;add('sue',Sseco);add('rod',S>0?n2(Sseco*0.9):1);add('flo',Sseco);add('ron',S>0?n2(Sseco*0.9):1);L.slice(n1).forEach(function(l){if(S>0&&(l.tid==='rod'||l.tid==='ron')){l.calc=1;l.calcDe='el rodapié, el 90 % del suelo'}else if(S>0){l.calc=1;l.calcDe='el suelo de la casa'+(mojado>0?' menos baño y cocina':'')}})}
+ if(hP.puertas&&s.puertas>0){add('pue',s.puertas);add('pub',s.puertas)}
+ if(hP.con&&s.con)add('con',1);if(hP.limf&&s.limf)add('limf',1)}
 if(pk.quitar&&pk.quitar.length)L=L.filter(function(l){return pk.quitar.indexOf(l.tid)<0||l.tid==='alc'&&pk.quitar.indexOf('alc-suelo')<0&&pk.quitar.indexOf('alc')<0});
 if(pk.quitar&&pk.quitar.indexOf('alc-suelo')>-1)L=L.filter(function(l){return !(l.tid==='alc'&&/en el suelo/.test(l.d))});
 L.forEach(function(l){l.paqId=pk.id;l.paquete=titPaq(pk)});
@@ -252,7 +254,7 @@ function medidasDichas(t){var r={bano:[],cocina:[]},re=/\b(?:(un|una|dos|tres|\d
  return r}
 /* el piso con baños y cocina: cada uno con sus preguntas; los que no tienen metros, calculados por los de la casa */
 function hijosDelPiso(pk){var hijos=paqs().filter(function(x){return x.padre===pk.id});
- var quiere={bano:pk.r.banos||0,cocina:pk.r.cocina?1:0};
+ var hQ=pk.hechas||{};var quiere={bano:hQ.banos?(pk.r.banos||0):paqs().filter(function(x){return x.padre===pk.id&&x.tipo==='bano'&&!x.calculado}).length,cocina:hQ.cocina?(pk.r.cocina?1:0):paqs().filter(function(x){return x.padre===pk.id&&x.tipo==='cocina'&&!x.calculado}).length};
  ['bano','cocina'].forEach(function(tp){var ya=hijos.filter(function(h){return h.tipo===tp});
   for(var i=ya.length;i<quiere[tp];i++){var h=nuevoPaq(tp,{suelo:0,perim:0,alto:pk.alto},i+1);h.padre=pk.id;var e=metrosCalculados(tp,pk.suelo);if(e>0){h.suelo=e;h.calculado=1}cur.lineas=cur.lineas.concat(lineasDe(h))}
   ya.slice(quiere[tp]).forEach(function(h){cur.lineas=cur.lineas.filter(function(l){return l.paqId!==h.id});cur.paqs=paqs().filter(function(x){return x!==h})})});
@@ -262,7 +264,7 @@ if(pk.tipo==='piso')hijosDelPiso(pk);
 var antes={};cur.lineas.forEach(function(l){if(l.paqId===pk.id)antes[claveL(l)]=l});
 var idx=cur.lineas.findIndex(function(l){return l.paqId===pk.id});if(idx<0)idx=cur.lineas.length;
 cur.lineas=cur.lineas.filter(function(l){return l.paqId!==pk.id});
-var nuevas=lineasDe(pk).map(function(l){var a=antes[claveL(l)];if(a&&a.p>0)l.p=a.p;return l});/* respeta el precio que ya haya puesto */
+var nuevas=lineasDe(pk).map(function(l){var a=antes[claveL(l)];if(a&&a.p>0)l.p=a.p;/* y la cantidad que haya escrito a mano o confirmado: contestar otra pregunta no la cambia */if(a&&(a.qMano||a.okQ)){l.q=a.q;if(a.qMano)l.qMano=1;if(a.okQ)l.okQ=1;delete l.calc}if(a&&a.ok)l.ok=1;return l});/* respeta el precio que ya haya puesto */
 cur.lineas.splice.apply(cur.lineas,[Math.min(idx,cur.lineas.length),0].concat(nuevas));
 ajustarPuertasPiso();ajustarSueltasPiso();unaVez()}
 /* «reforma integral… seis puertas»: las seis son de toda la casa, contando la del baño y la de la cocina */
@@ -276,10 +278,12 @@ function ajustarSueltasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)ret
  var tgS=function(l){var d=String(l.d||''),k=d.indexOf(' \u2014 ');return k>-1?d.slice(k+3).trim():''};
  cur.lineas.forEach(function(l){if(l.paqId)return;var id=idL2(l);if(!/^(lija|qpa|pic|ppa)$/.test(id)||l.u!=='m2')return;var tg=tgS(l);if(!tg)return;var pp=cur.lineas.find(function(x){return x.paqId&&/^(pip|pip3)$/.test(idL2(x))&&tgS(x)===tg});var dicho=new RegExp('\\b'+String(num(l.q)).replace('.',',')+'\\s*(?:m2|metros)').test(String((window.__A&&__A.todo)||''));if(pp&&num(pp.q)>1&&!dicho)l.q=pp.q});
  /* «reforma integral… el suelo se acuchilla»: lo de toda la casa suelto, con los metros del suelo del piso (sin baños ni cocina) */
- var pP=paqs().find(function(p){return p.tipo==='piso'}),cM0=window.__A&&__A.casaM;if(pP&&cM0&&cM0.suelo>0){var sP0=n2(paqs().filter(function(p){return p.padre===pP.id&&/^(bano|cocina)$/.test(p.tipo)}).reduce(function(a,p){return a+num(p.suelo||0)},0));if(sP0>0)cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;if(/^(acu|niv|tar)$/.test(idL2(l))&&Math.abs(num(l.q)-cM0.suelo)<0.5&&!new RegExp('\\b'+String(num(l.q))+'\\s*(?:m2|metros)[^,.;]{0,20}\\b(?:de\\s+)?(?:suelo|parquet|tarima|acuchill)').test(String(__A.todo||'')))l.q=n2(Math.max(1,cM0.suelo-sP0))})}
+ var pP=paqs().find(function(p){return p.tipo==='piso'}),cM0=window.__A&&__A.casaM;if(pP&&cM0&&cM0.suelo>0){var sP0=n2(paqs().filter(function(p){return p.padre===pP.id&&/^(bano|cocina)$/.test(p.tipo)}).reduce(function(a,p){return a+num(p.suelo||0)},0));if(sP0>0)cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;var dS0=function(q){return new RegExp('\\b'+String(q).replace('.','[.,]')+'\\s*(?:m2|metros)[^,.;]{0,20}\\b(?:de\\s+)?(?:suelo|parquet|tarima|flotante|acuchill|pared|pintura)').test(String(__A.todo||''))};if(/^(acu|niv|tar|flo|sue|pit|pit3)$/.test(idL2(l))&&Math.abs(num(l.q)-cM0.suelo)<0.5&&!dS0(num(l.q))){l.q=n2(Math.max(1,cM0.suelo-sP0));if(!l.okQ){l.calc=1;l.calcDe='el suelo de la casa ('+String(cM0.suelo).replace('.',',')+' m²) menos baño y cocina'}}else if(/^(pip|pip3|lija|pic|qpa)$/.test(idL2(l))&&Math.abs(num(l.q)-n2(cM0.suelo*2.7))<1&&!dS0(num(l.q))){l.q=n2(Math.max(1,cM0.suelo-sP0)*2.7);if(!l.okQ){l.calc=1;l.calcDe='las paredes, unas 2,7 veces el suelo de la casa sin baño ni cocina'}}})}
  /* «piso de 70 metros… baño entero… pintar todo, flotante»: lo de toda la casa, sin el baño ni la cocina (ya van con lo suyo) */
  var cM=window.__A&&__A.casaM;if(cM&&cM.suelo>0&&!paqs().some(function(p){return p.tipo==='piso'})){var hz=paqs().filter(function(p){return /^(bano|cocina)$/.test(p.tipo)&&p.suelo>0});if(hz.length){var sS=hz.reduce(function(a,p){return a+num(p.suelo)},0),sP=cur.lineas.filter(function(x){return x.paqId&&hz.some(function(p){return p.id===x.paqId})&&/^(alc|ali)$/.test(idL2(x))&&/paredes|^(?!.*suelo)/.test(String(x.d))&&idL2(x)==='ali'}).reduce(function(a,x){return a+num(x.q)},0);
   cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;var id=idL2(l);if(/^(pit|pit3|flo|sue|niv|tar|acu)$/.test(id)&&Math.abs(num(l.q)-cM.suelo)<0.5){var qN=n2(Math.max(1,cM.suelo-sS));if(qN!==num(l.q)&&!l.okQ)l.calc=1;l.q=qN}else if(/^(pip|pip3|lija|pic|qpa)$/.test(id)&&sP>0&&num(l.q)>sP*1.5&&!new RegExp('\\b'+String(num(l.q)).replace('.',',')+'\\s*(?:m2|metros)').test(String(__A.todo||'')))l.q=n2(num(l.q)-sP)})}}
+ /* «reforma integral 64 m²… en la cocina lucir las paredes»: los metros de la casa no son los de una estancia; sin medida, se pregunta */
+ var pPx=paqs().find(function(p){return p.tipo==='piso'}),cMx={suelo:(window.__A&&__A.casaM&&__A.casaM.suelo)||(pPx&&pPx.suelo)||0};if(cMx.suelo>0)cur.lineas.forEach(function(l){if(l.paqId||!/^(m2|ml)$/.test(l.u)||Math.abs(num(l.q)-cMx.suelo)>=0.5||l.okQ)return;if(!(tgS(l)||/\b(cocina|ba\u00f1o|aseo|habitaci\u00f3n|dormitorio|sal\u00f3n|pasillo)\b/i.test(String(l.d||''))))return;if(new RegExp('\\b'+String(num(l.q)).replace('.','[.,]')+'\\s*(?:m2|metros)(?:\\s+(?:cuadrados|de|del|en|el|la|las|los))*\\s+(?:pared|suelo|techo|lucid|alicat|azulej|pintur|cocina|bano|aseo|salon|habitacion|dormitorio|pasillo)').test(String(__A.todo||'')))return;l.q=1;delete l.calc});
  var pk=paqs().find(function(p){return p.tipo==='piso'});if(!pk)return;pk.fijas=pk.fijas||{};
  var IDS={ron:'q',rod:'q',flo:'q',sue:'q',niv:'q',ele:'x',cal:'x',bol:'x',ins:'x',limf:'x',con:'x',lija:'x',pip:'x',pit:'x',pue:'x',pub:'x'},quitar=[];
  cur.lineas.forEach(function(l){if(l.paqId)return;var id=idL2(l);if(!IDS[id]||/ — /.test(String(l.d||'')))return;var pl=cur.lineas.find(function(x){return x.paqId===pk.id&&idL2(x)===id});if(!pl)return;if(IDS[id]==='q'&&num(l.q)>1&&num(l.q)<2000)pk.fijas[id]=num(l.q);quitar.push(l)});
@@ -399,7 +403,7 @@ try{A.obras.forEach(function(o,io){
  if(!nuevas.some(function(l){return !l.fb})){var tAd=o.orig||o.texto,ad=adivinarPartida(tAd+(o.r?' '+o.r:'')+(o.g&&o.g.tipo?' '+o.g.tipo:''));if(ad&&!/^\s*(?:y\s+)?(?:no|sin|nada|ni)\b/.test(tAd)&&!(/\bque\s+(?:es|son|esta|estan|era|eran|tiene|tienen|ya)\b/.test(tAd)&&!VERBO_OBRA.test(tAd))&&!/\b(?:cerradura|bombin|manillas?|pomos?|bisagras?|mirilla|cisterna|grifos?|persianas?|cristal(?:es)?|ventanas?|toldo|cerrojo)\b/.test(norm(tAd))){var mAd=String(tAd).match(/(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros lineales|metros|ml|m)\b/),qAd=1;if(/^(m2|ml)$/.test(ad.u))qAd=mAd?num(mAd[1]):0;else{var cAd=String(tAd).match(/\b(\d+)\b(?!\s*(?:metros|m2|m\b|ml))/);if(cAd)qAd=+cAd[1]}nuevas=[{d:ad.d,q:qAd,u:ad.u,p:ad.p,tid:ad.id,adiv:1,adivTxt:String(tAd).trim().slice(0,60)}]}}
  if(fueraNG.length)nuevas=nuevas.filter(function(l){return fueraNG.indexOf(idDe(l))<0});
  if(nuevas.some(function(l){return idDe(l)==='luc'}))nuevas=nuevas.filter(function(l){return idDe(l)!=='yes'});
- (function(){var pb=nuevas.find(function(l){return idDe(l)==='pub'});if(!pb||nuevas.some(function(l){return idDe(l)==='pue'})||!(/\b(cambiar|sustituir|renovar|cambio)\b/.test(o.texto)||/\bpuertas\s+nuevas\b/.test(o.texto)&&!/\b(poner|colocar|montar|instalar|meter)\b/.test(o.texto)&&!/\b(?:no|sin)\s+(?:tiene\s+|hay\s+)?puertas\b/.test(A.todo)))return;var tq=T('pue');if(tq)nuevas.push({d:tq.d,q:pb.q,u:tq.u,p:tq.p,tid:'pue'})})();
+ (function(){var pb=nuevas.find(function(l){return idDe(l)==='pub'});if(!pb||nuevas.some(function(l){return idDe(l)==='pue'})||!(/\b(cambiar|sustituir|renovar|cambio)\b/.test(o.texto)||/\bpuertas\s+nuevas\b/.test(o.texto)&&!/\b(poner|colocar|montar|instalar|meter)\b/.test(o.texto)||/\btodo nuevo\b/.test(A.todo)&&/^\s*(?:las\s+)?puertas\s*$/.test(o.texto)&&!/\b(?:no|sin)\s+(?:tiene\s+|hay\s+)?puertas\b/.test(A.todo)))return;var tq=T('pue');if(tq)nuevas.push({d:tq.d,q:pb.q,u:tq.u,p:tq.p,tid:'pue'})})();
  if((window.__PARED||[]).length){MEDpared=window.__MED;PAREDpared=window.__PARED.slice()}
  /* sin medida, en una estancia entera con metros: el suelo, las paredes, el techo y el rodapié de esa estancia */
  var medO=pqG?{suelo:pqG.suelo,perim:pqG.perim,alto:pqG.alto,sinVent:pqG.r.ventana===false}:o.medO?{suelo:o.medO.suelo,perim:o.medO.perim,alto:A.alto||0}:null;
@@ -556,6 +560,8 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  /* «… Son 30 metros de pared.»: los metros de pared, para lo que se hace en las paredes y no tiene metros */
  var mPar=TD.match(/\b(?:son|seran|hay|en total)\s+(?:unos\s+)?(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros)\s+de\s+parede?s?\b/);if(mPar){var vPar=num(mPar[1]);finales.forEach(function(l){if(l.paqId||!/^(m2)$/.test(l.u)||num(l.q)>1)return;if(FAM(idDe(l),l.d)==='pared'||/^(yes|pip3)$/.test(idDe(l)))l.q=vPar})}
  var mFb=TD.match(/\bfontaneria\s+(?:de|del|para)?\s*(?:los\s+)?(dos|tres|2|3)\s+banos\b/);if(mFb&&has('fba')&&!get('fba').paqId&&num(get('fba').q)<=1)get('fba').q=({dos:2,tres:3})[mFb[1]]||+mFb[1];
+ /* «puertas» sin decir cuántas: no se pone una sola en silencio, se pregunta */
+ ['pub','pue'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1||l.cuantas||/ \u2014 /.test(String(l.d||'')))return;if(/\bpuertas\b/.test(TD)&&!/\b(?:\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(?:puertas|de\s+(?:paso|esas|ellas))\b|\bpuertas\b[^.;]{0,30}?\b(?:\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\b(?!\s*(?:metros|m2|mm|cm|por))/.test(TD))l.cuantas=1});
  if(has('recp')||has('puer')){var mRc=TD.match(/\brecolocar puerta\s*,?\s*(?:(?:que\s+)?son\s+)?(\d+)\b(?!\s*(?:metros|m2))/)||(window.__unaRec?['','1']:TD.match(/\b(\d+)\s+puertas\b/));['recp','puer'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1)return;if(mRc)l.q=+mRc[1];else if(!/\b(?:la|una|esa|esta)\s+puerta\b/.test(TD)||/\bpuertas\b/.test(TD))l.cuantas=1})}
  if(has('con7')&&has('con')&&!get('con').paqId)fuera('con');
  if(/\b(?:encima|por encima|sobre (?:eso|lo nivelado|el nivelado))\b/.test(TD)){var lnv=finales.filter(function(l){return /^(niv|sue|acu)$/.test(idDe(l))&&!l.paqId&&num(l.q)>1});finales.forEach(function(l){if(idDe(l)!=='flo'||l.paqId||num(l.q)>1)return;var tgX=function(z){var d=String(z.d||''),k=d.indexOf(' \u2014 ');return k>-1?d.slice(k+3):''};var b=lnv.find(function(x){return tgX(x)===tgX(l)})||(lnv.length===1?lnv[0]:null);if(b){l.q=b.q;delete l.qPend}})}
@@ -853,6 +859,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(montaje|montar|colocar|poner)\s+(?:de\s+)?(?:los|las)\s+(?:dos|2|tres|3|ambos)\s+muebles\s+(?:de|del)\s+bano\b/g,'$1 del mueble de bano en los dos ');
  /* «cuatro puertas más la corredera de la cocina»: cinco en total, una de ellas la corredera de la cocina */
  t0=t0.replace(/\b(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+puertas\s+(?:mas|y ademas|aparte de|ademas de)\s+(?:la|una)\s+(?:puerta\s+)?(corredera\s+(?:de la cocina|del bano|del aseo))\b/g,function(x,n,c){var v=/^\d+$/.test(n)?+n:valorLetra(n);return v?(v+1)+' puertas, y la puerta '+c:x});
+ /* «la cocina la hace el cliente y el baño sí lo hacemos, con plato»: ese baño se reforma entero */
+ t0=t0.replace(/\b(el\s+bano|el\s+aseo|la\s+cocina)\s+si\s+(?:lo|la)\s+(?:hacemos|hacen|hace|reformamos|haremos)\b(?:\s+nosotros)?/g,'$1 completo');
  /* «… con mampara. Fuera de eso, pintar…»: «fuera de eso» es «aparte», no quitar la mampara */
  t0=t0.replace(/\b(?:y\s+)?(?:fuera|aparte|a parte|ademas)\s+de\s+(?:eso|esto|todo eso|lo del bano|lo de la cocina)\b\s*,?/g,'. ');
  /* «dos baños, uno entero de cuatro con ducha y el otro solo cambiar la mampara»: uno entero y en el otro, lo dicho */
@@ -1208,7 +1216,7 @@ function analizar(bruto){
   /* «falso techo en la cocina 12 metros y en el pasillo 6»: lo mismo en otra estancia */
   if(F.length&&sepAnt[itz]!=='.'&&!VERBO_OBRA.test(fr)&&!/\b(enter[oa]s?|complet[oa]s?|integral|reform\w*)\b/.test(fr)&&!/^\s*(?:y\s+)?(?:tambien\s+)?(?:enter[oa]|complet[oa]|integral|reform\w*|tod[oa] nuev[oa]|nuev[oa])\b/.test(sigT)&&new RegExp('^\\s*(?:y\\s+)?(?:en\\s+|del?\\s+)?(?:el|la|los|las)?\\s*('+EST_PAL+')\\b(?:\\s+(?:que\\s+)?(?:son|es|tiene|mide|de|unos)\\b)*[^a-z]*(?:\\d|$)').test(fr)&&(/\d/.test(fr)||new RegExp('^\\s*(?:y\\s+)?(?:tambien\\s+)?(?:en\\s+|del?\\s+)?(?:el|la|los|las)?\\s*('+EST_PAL+')\\s*$').test(fr)&&!new RegExp('^\\s*(?:y\\s+)?(?:solo\\s+)?(?:'+VERBO_OBRA.source.replace(/^\\b\(|\)\\b$/g,'')+')\\b').test(sigT)&&!(/^\s*(?:y\s+)?(?:falso techo|tarima|suelo|parquet|flotante|papel pintado|rodapie|gotele|moqueta|pladur|alicatado|azulejo)\b/.test(sigT)&&!new RegExp('\\b('+EST_PAL+')\\b').test(sigT)))){var pv=F[F.length-1];
    /* «picar las paredes del pasillo y del salón, son unos 60 metros»: los metros son de todo (una sola partida) */
-   if(/\d/.test(fr)&&!/\d/.test(pv)&&/^\s*(?:y\s+)?del?\s+/.test(fr)&&!/\b(reform\w*|renov\w*)\b/.test(pv)){F[F.length-1]=pv+' y '+fr.trim()+' ';return}var kc=pv.lastIndexOf(' con ');if(kc>-1&&/^\s*(?:y\s+)?(?:en|del?)\s+/.test(fr)&&/\b(reform\w*|renov\w*|integral|enter[oa]s?)\b/.test(pv.slice(0,kc)))pv=' '+pv.slice(kc+5);if(!/\b(reform\w*|renov\w*|rehac\w*|integral|enter[oa]s?|complet[oa]s?)\b/.test(pv)&&!RE_PISO.test(pv)&&(VERBO_OBRA.test(pv)||/\b(falso techo|tarima|flotante|alicatado|gotele|rodapie|azulejo|fontaneria|instalacion|electricidad|calefaccion|pladur|tabique|puertas?|radiador\w*|suelo|pintura|mampara|plato)\b/.test(pv))){var trab=pv.replace(new RegExp('\\b(?:(?:en|de|del)\\s+)?(?:el\\s+|la\\s+|los\\s+|las\\s+)?(?:(?:\\d+|un|una|dos|tres|cuatro|cinco)\\s+)?('+EST_PAL+')\\b'+TRAS_EST,'g'),' ').replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?(?:\s*(?:x|por)\s*\d+(?:[.,]\d+)?)?\s*(?:m2|m²|metros cuadrados|metros|mts|m)?\b/g,' ');fr=' '+trab.trim()+' '+fr.trim()+' '}}
+   if(/\d/.test(fr)&&!/\d/.test(pv)&&/^\s*(?:y\s+)?del?\s+/.test(fr)&&!/\b(reform\w*|renov\w*)\b/.test(pv)){F[F.length-1]=pv+' y '+fr.trim()+' ';return}var kc=pv.lastIndexOf(' con ');if(kc>-1&&/^\s*(?:y\s+)?(?:en|del?)\s+/.test(fr)&&/\b(reform\w*|renov\w*|integral|enter[oa]s?)\b/.test(pv.slice(0,kc)))pv=' '+pv.slice(kc+5);if(!/\b(reform\w*|renov\w*|rehac\w*|integral|enter[oa]s?|complet[oa]s?)\b/.test(pv)&&!RE_PISO.test(pv)&&(VERBO_OBRA.test(pv)||/\b(falso techo|tarima|flotante|alicatado|gotele|rodapie|azulejo|fontaneria|instalacion|electricidad|calefaccion|pladur|tabique|puertas?|radiador\w*|suelo|pintura|mampara|plato)\b/.test(pv))){var trab=pv.replace(new RegExp('\\b(?:(?:en|de|del)\\s+)?(?:el\\s+|la\\s+|los\\s+|las\\s+)?(?:(?:\\d+|un|una|dos|tres|cuatro|cinco)\\s+)?('+EST_PAL+')\\b'+TRAS_EST,'g'),' ').replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?(?:\s*(?:x|por)\s*\d+(?:[.,]\d+)?)?\s*(?:m2|m²|metros cuadrados|metros|mts|m)?\b/g,' ');/* lo del baño (plato, mampara…) no pasa a la cocina */if(!(/\b(plato|mampara|ducha|banera|sanitarios|inodoro)\b/.test(trab)&&!/\b(bano|aseo|banos|aseos)\b/.test(fr)))fr=' '+trab.trim()+' '+fr.trim()+' '}}
   fr=fr.replace(new RegExp('\\b('+VERBO_OBRA.source.replace(/^\\b\(|\)\\b$/g,'')+')(?:lo|la|los|las|le|les)\\b','g'),'$1');
   /* «dos radiadores en el salón y uno en la cocina» */
   /* «el baño grande… el pequeño, solo cambiar el plato», «el dormitorio de 12 y el otro de 10»: es otra estancia igual */
@@ -1600,6 +1608,14 @@ function respuestas(pk,t){var s=pk.r,h=pk.hechas,si=function(k,v){s[k]=v;h[k]=1}
   if(/\bpuertas?\b/.test(t))si('puerta',true);if(/\barmarios?\b/.test(t))si('armario',true)}
  if(pk.tipo==='piso'){
   if(/\bcalefaccion\b/.test(t)&&!/\bsin calefaccion\b|\bcalefaccion no\b/.test(t)&&!N.calef)si('calef',true);
+  if(/\b(electricidad|instalacion electrica|electrica nueva|luz nueva|cableado|luz)\b/.test(t)&&!N.luz&&!h.luz)si('luz',true);
+  var TODA='(?:todo el piso|toda la casa|toda la vivienda|todo el resto|el resto del piso|todas las paredes|todas las habitaciones|en todo|de todo|todo)';
+  if(new RegExp('\\bgotele\\b[^,.;]{0,25}\\b'+TODA+'\\b|\\b'+TODA+'\\b[^,.;]{0,25}\\bgotele\\b').test(t)&&!N.gotele&&!h.paredes)si('paredes','gotele');else if(new RegExp('\\bpint(?:ar|ura|amos|an)\\b[^,.;]{0,25}\\b'+TODA+'\\b|\\b'+TODA+'\\b[^,.;]{0,15}\\bpint(?:ar|ura)\\b').test(t)&&!h.paredes&&!N.techoPint)si('paredes','pintar');
+  if(new RegExp('\\b(?:flotante|tarima|laminado|vinilo)\\b[^,.;]{0,25}\\b'+TODA+'\\b|\\b'+TODA+'\\b[^,.;]{0,15}\\b(?:flotante|tarima|laminado|vinilo)\\b').test(t)&&!N.suelo&&!h.suelo)si('suelo','tarima');
+  /* «integral… electricidad, gotelé, pintura, suelos»: lo que se enumera suelto, sin estancia, es de toda la casa */
+  var LST=/^\s*(?:(?:y|e|quitar|el|la|los|las|fuera|nuevas?|nuevos?|todo|tambien|solo)\s+|(?:electricidad|instalacion electrica|gotele|pintura|pintar|suelos?|puertas|calefaccion|fontaneria|carpinteria|contenedor|limpieza final)\b\s*)+$/;((window.__A&&__A.F)||[]).forEach(function(c){c=norm(String(c||''));if(!LST.test(c)||h.paredes)return;if(/\bgotele\b/.test(c)&&!N.gotele)si('paredes','gotele');else if(/\bpint(?:ura|ar)\b/.test(c)&&!N.techoPint)si('paredes','pintar')});
+  if(/\bcontenedor\b/.test(t)&&!N.contenedor)si('con',true);
+  if(/\blimpieza\s+final\b/.test(t))si('limf',true);
   if(/\bsuelo\b[^,.;]{0,30}\b(no se toca|no lo toca\w*|se queda|se deja|como esta|solo (?:lo )?acuchill\w*|se acuchilla\w*|acuchill\w*|no se cambia)\b|\bsuelo\b[^.;]{0,40}\bse acuchilla\b[^.;]{0,15}\bno se cambia\b|\bacuchill\w*\s+(?:y\s+barniz\w*\s+)?(?:el\s+)?(?:suelo|parquet|tarima)\b|\b(no se toque|no tocar|sin tocar|dejar)\b[^,.;]{0,15}\bsuelo\b|\bsolo (?:lo )?acuchill\w*/.test(t))si('suelo','no');
   if(/\bcocina\b[^,.;]{0,25}\b(no se toca|como esta|se queda|la deja\w*|dejarla|no la toca\w*)\b|\b(sin|menos|excepto)\s+(?:la\s+)?cocina\b|\bla cocina no\b(?!\s+\w)/.test(t))si('cocina',false);
   if(/\b(?:el\s+)?bano\b[^,.;]{0,25}\b(no se toca|como esta|se queda|ya esta hecho|lo deja\w*)\b|\b(sin|menos|excepto)\s+(?:el\s+)?bano\b/.test(t))si('banos',0);

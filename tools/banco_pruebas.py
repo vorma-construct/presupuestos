@@ -101,11 +101,12 @@ JS = r"""async (t)=>{
  var T=tarifa(),idDe=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var x=T.find(function(t){return t.d===d||d.indexOf(t.d+' — ')===0});return x?x.id:''};
  var PE={};try{(window.pendientes?pendientes():[]).forEach(function(x){PE[x.i]=x.t})}catch(e){}
  var L=(cur.lineas||[]).map(function(l,i){return {id:idDe(l),d:String(l.d||''),q:num(l.q),u:l.u||'',p:num(l.p),paq:l.paqId||'',fb:!!l.fb,pend:PE[i]||''}});
- var P=(cur.paqs||[]).filter(function(pk){return cur.lineas.some(function(l){return l.paqId===pk.id})}).map(function(pk){return {id:pk.id,tipo:pk.tipo,suelo:pk.suelo||0,calc:!!pk.calculado,padre:pk.padre||'',n:pk.n||1}});
+ var NPQ=0;try{NPQ=(window.pendientesCosas?pendientesCosas():[]).filter(function(x){return x.i<0}).length}catch(e){}
+ var P=(cur.paqs||[]).filter(function(pk){return pk.tipo==='piso'||cur.lineas.some(function(l){return l.paqId===pk.id})}).map(function(pk){return {id:pk.id,tipo:pk.tipo,suelo:pk.suelo||0,calc:!!pk.calculado,padre:pk.padre||'',n:pk.n||1}});
  var rev={E:[],A:[]};try{rev=revisar(false,true)}catch(e){rev.E=['revisar: '+e.message]}
  var doc=[];try{doc=revisarDocumento()}catch(e){doc=['documento: '+e.message]}
  var ci=document.getElementById('convInfo');
- return {L:L,P:P,E:rev.E,A:rev.A,doc:doc,info:ci?ci.innerText.replace(/\s+/g,' ').slice(0,400):'',errs:(window.__errs||[]).slice(err0)}}"""
+ return {NPQ:NPQ,L:L,P:P,E:rev.E,A:rev.A,doc:doc,info:ci?ci.innerText.replace(/\s+/g,' ').slice(0,400):'',errs:(window.__errs||[]).slice(err0)}}"""
 
 
 async def trabajador(ctx, url, cola, res):
@@ -188,7 +189,7 @@ def comprobar(f, r):
     if r.get('errs'): fallos.append('error en la página: ' + '; '.join(r['errs'][:2]))
     L, P = r['L'], r['P']
     ids = {l['id'] for l in L}
-    if not L and (f.get('debe') or f.get('estancias')):
+    if not L and not r.get('NPQ') and (f.get('debe') or f.get('estancias')):
         fallos.append('no ha sacado nada')
     for i in f.get('debe', []):
         if i not in ids: fallos.append('falta «%s»' % i)

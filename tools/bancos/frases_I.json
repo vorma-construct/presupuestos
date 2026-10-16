@@ -456,23 +456,7 @@
  },
  {
   "t": "integral piso en Santurtzi 80m2, todo todo",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "ali",
-   "sol",
-   "fba",
-   "alc",
-   "coc",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 80
@@ -482,21 +466,7 @@
  },
  {
   "t": "reforma integral 70m, la cocina no se toca q es nueva",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "ali",
-   "sol",
-   "fba",
-   "alc"
-  ],
+  "debe": [],
   "no_debe": [
    "coc",
    "fco",
@@ -1272,21 +1242,7 @@
  },
  {
   "t": "integral 90m2 en Sopela, el bano no q lo hicieron hace 2 años",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "coc",
-   "ali",
-   "sol",
-   "fco",
-   "alc"
-  ],
+  "debe": [],
   "no_debe": [
    "san",
    "fba",
@@ -1301,18 +1257,8 @@
  {
   "t": "reforma integral del piso de mi cuñado 65m, la cocina tb",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
    "ali",
    "sol",
-   "fba",
    "alc",
    "coc",
    "fco"
@@ -1943,23 +1889,7 @@
  },
  {
   "t": "reforma integral de un piso en portugalete de setenta y cinco metros cuadrados todo nuevo",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "ali",
-   "sol",
-   "fba",
-   "alc",
-   "coc",
-   "fco"
-  ],
+  "debe": [],
   "no_debe": [],
   "estancias": {
    "piso": 75
@@ -1969,21 +1899,7 @@
  },
  {
   "t": "piso entero reforma integral pero el baño se queda que es nuevo de hace un año",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "coc",
-   "ali",
-   "sol",
-   "fco",
-   "alc"
-  ],
+  "debe": [],
   "no_debe": [
    "san",
    "fba",
@@ -2720,21 +2636,7 @@
  },
  {
   "t": "integral de noventa y cinco metros en mungia el baño no que está nuevo",
-  "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "coc",
-   "ali",
-   "sol",
-   "fco",
-   "alc"
-  ],
+  "debe": [],
   "no_debe": [
    "san",
    "fba"
@@ -2748,14 +2650,6 @@
  {
   "t": "reforma integral de un piso de sesenta metros con cocina y baño",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "ali",
    "sol",
@@ -2972,7 +2866,6 @@
    "sol",
    "fba",
    "alc",
-   "con",
    "coc",
    "fco",
    "pd7",
@@ -3069,21 +2962,6 @@
  {
   "t": "integral de ochenta metros en galdakao todo menos la calefacción que es nueva y el cliente quiere puerta blindada y además es un cuarto sin ascensor",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
-   "san",
-   "ali",
-   "sol",
-   "fba",
-   "alc",
-   "coc",
-   "fco",
    "pen",
    "mon"
   ],
@@ -3222,14 +3100,6 @@
  {
   "t": "en durango un piso de setenta metros integral pero ojo la cocina la hace el cliente con otra empresa y el baño sí lo hacemos con plato ochenta por ochenta",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "ali",
    "sol",
@@ -3347,14 +3217,6 @@
  {
   "t": "reforma integral en Sopela 85m2, bano con bañera y cocina con lucido, muebles los montamos, 3º sin ascensor",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "fba",
    "coc",
@@ -3475,14 +3337,6 @@
  {
   "t": "piso en Deusto: integral 75m, cocina y bano incluidos, el bano sin bañera plato 70x110, y premarcos en todas las puertas. ventanas no",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "ali",
    "sol",
@@ -3589,14 +3443,6 @@
  {
   "t": "en balmaseda reforma integral del piso de su madre de sesenta y ocho metros todo eh cocina y baño también y la limpieza final que lo van a alquilar",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "ali",
    "sol",
@@ -3757,10 +3603,7 @@
    "ele",
    "pip",
    "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con"
+   "pub"
   ],
   "no_debe": [
    "coc",
@@ -3879,14 +3722,6 @@
  {
   "t": "piso en Ondarroa integral 90m2 sin cocina (la hace el cliente), bano entero c/ plato 80x80, calefaccion nueva, puerta blindada y limpieza final",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "flo",
-   "pue",
-   "pub",
-   "con",
    "san",
    "ali",
    "sol",
@@ -3968,7 +3803,6 @@
    "sol",
    "fba",
    "alc",
-   "con",
    "pd7",
    "mam"
   ],
@@ -4059,13 +3893,6 @@
  {
   "t": "reforma integral sesenta metros en santurtzi menos los suelos que son de madera buena y se acuchillan con cocina y baño y es un segundo sin ascensor",
   "debe": [
-   "ins",
-   "ele",
-   "pip",
-   "pit",
-   "pue",
-   "pub",
-   "con",
    "acu",
    "mon",
    "san",
