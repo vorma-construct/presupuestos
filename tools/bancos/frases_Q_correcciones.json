@@ -1,0 +1,1152 @@
+[
+ {
+  "t": "En Erandio: quitar el suelo de madera del salón y los dormitorios (55 m²), nivelar el solado y poner porcelánico… no, mejor flotante. Rodapié nuevo 40 ml.",
+  "debe": [
+   "sue",
+   "niv",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 55,
+   "niv": 55,
+   "flo": 55,
+   "ron": 40
+  },
+  "lugares": {
+   "sue": [
+    "salón",
+    "dormitorios"
+   ],
+   "niv": [
+    "salón",
+    "dormitorios"
+   ],
+   "flo": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrige porcelánico a flotante; nivelar el solado es nivelar el suelo; los 55 m² valen para todo el suelo de esas estancias.",
+  "fuera": []
+ },
+ {
+  "t": "en erandio quitar el suelo de madera del salon y los dormitorios cincuenta y cinco metros nivelar el solado y poner porcelanico no mejor flotante rodapie nuevo cuarenta metros lineales",
+  "debe": [
+   "sue",
+   "niv",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 55,
+   "niv": 55,
+   "flo": 55,
+   "ron": 40
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo sin puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "A ver, reforma integral en Getxo, eh, el piso tiene 85… 82 metros, 82. Electricidad, eh, calefacción, y puertas, ¿cuántas? Siete.",
+  "debe": [
+   "ele",
+   "cal",
+   "pub"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 82
+  },
+  "cantidades": {
+   "pub": 7
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "pub"
+  ],
+  "sin_medida": [],
+  "justificacion": "Piso de 82 tras corregir; «¿cuántas? Siete» son siete puertas.",
+  "fuera": []
+ },
+ {
+  "t": "a ver reforma integral en getxo el piso tiene ochenta y cinco ochenta y dos metros ochenta y dos electricidad calefaccion y puertas cuantas siete",
+  "debe": [
+   "ele",
+   "cal",
+   "pub"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {
+   "piso": 82
+  },
+  "cantidades": {
+   "pub": 7
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "pub"
+  ],
+  "sin_medida": [],
+  "justificacion": "Corrección diciendo el número otra vez, sin puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "Eh, papel pintado nuevo en el salón, eh, una pared, 12… 12,5 m². Y quitar el papel viejo de esa pared.",
+  "debe": [
+   "ppa",
+   "qpa"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 12.5,
+   "qpa": 12.5
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ],
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "12,5 corregido; esa pared, los mismos metros.",
+  "fuera": []
+ },
+ {
+  "t": "papel pintado nuevo en el salon una pared 12 12,5 m2 y quitar el papel viejo de esa pared",
+  "debe": [
+   "ppa",
+   "qpa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 12.5,
+   "qpa": 12.5
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ],
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Afinar el número sin puntos: vale 12,5.",
+  "fuera": []
+ },
+ {
+  "t": "eh quitar el rodapié viejo y poner rodapié lacado nuevo en el salón y el pasillo unos veinticinco no veintiocho metros lineales",
+  "debe": [
+   "rod",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rod": 28,
+   "ron": 28
+  },
+  "lugares": {
+   "rod": [
+    "salón",
+    "pasillo"
+   ],
+   "ron": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "28 ml; el viejo se quita de las mismas estancias.",
+  "fuera": []
+ },
+ {
+  "t": "en mungia electricidad nueva fontanería del baño y de la cocina y cambiar radiadores ocho no siete radiadores y contenedor sin tocar los alicatados ni los suelos",
+  "debe": [
+   "ele",
+   "fba",
+   "fco",
+   "rad",
+   "con"
+  ],
+  "no_debe": [
+   "ali",
+   "alc",
+   "sol",
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "ele",
+   "con"
+  ],
+  "sin_medida": [],
+  "justificacion": "Siete radiadores; sin alicatados ni suelos.",
+  "fuera": []
+ },
+ {
+  "t": "Portugalete: pintar paredes del salón (3,5 x 4,2… mejor digamos 50 m² de pared) y techo de 14,7 m². Quitar el gotelé del salón también.",
+  "debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 50,
+   "pit": 14.7,
+   "lija": 50
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las medidas 3,5 x 4,2 se corrigen a 50 m² de pared.",
+  "fuera": []
+ },
+ {
+  "t": "portugalete pintar paredes del salon tres coma cinco por cuatro coma dos no mejor digamos cincuenta metros de pared y techo de catorce coma siete metros quitar el gotele del salon tambien",
+  "debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 50,
+   "pit": 14.7,
+   "lija": 50
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo en letra y sin puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón poner porcelánico, no, mejor flotante, 20 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de material.",
+  "fuera": []
+ },
+ {
+  "t": "en el salon poner porcelanico no mejor flotante veinte metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de material sin comas.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño quitar la bañera y poner una bañera, no, un plato de ducha de 80 por 80",
+  "debe": [
+   "san",
+   "pd8"
+  ],
+  "no_debe": [
+   "fba",
+   "ali",
+   "alc",
+   "sol",
+   "mba",
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd8": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La bañera nueva se corrige a plato; no es baño completo.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño quitar la bañera y poner bañera no mejor plato de ducha",
+  "debe": [
+   "san",
+   "pd7"
+  ],
+  "no_debe": [
+   "fba",
+   "ali",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd7": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Bañera corregida a plato, sin comas.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño quitar la bañera, no, perdona, la mampara, y poner mampara nueva",
+  "debe": [
+   "qma",
+   "mam"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "mam": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo que se quita es la mampara, no la bañera.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño poner mampara, no, mejor cortina, y plato de ducha de 80 por 80",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "mam"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd8": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cortina en vez de mampara: la mampara fuera.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cuatro metros con bañera no perdona con plato de ducha y cambiar cinco puertas",
+  "debe": [
+   "san",
+   "fba",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño completo con plato; las puertas se quedan.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar ocho no siete radiadores",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cantidad corregida.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar ocho radiadores, no perdona, siete",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar 8 radiadores no 7",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "pon cuatro radiadores… no, cinco radiadores",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "poner radiadores en el salón, dos, no, tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 3
+  },
+  "lugares": {
+   "rad": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "poner seis puertas no mejor cinco puertas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cinco puertas nuevas no seis puertas nuevas y la de entrada",
+  "debe": [
+   "pub",
+   "pue",
+   "pen"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6,
+   "pue": 6,
+   "pen": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Seis puertas, más la de entrada.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar tres puertas no mejor cuatro y la de entrada",
+  "debe": [
+   "pub",
+   "pen"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "pen": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar seis puertas no perdona siete y pintar todo el piso de setenta metros",
+  "debe": [
+   "pub",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 7,
+   "pip": 70,
+   "pit": 70
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La corrección de puertas no borra la pintura.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón, no, el dormitorio, 30 metros de pared",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 30
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de estancia.",
+  "fuera": []
+ },
+ {
+  "t": "pintar las paredes del salón no mejor del dormitorio treinta metros",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 30
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en el salón, no, en el dormitorio, poner flotante de 12 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el salón no espera en el dormitorio de 14 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 14
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar el papel del salón, no, del dormitorio, y pintar",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio"
+   ],
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de estancia con comas.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el papel del salon no perdona del dormitorio y pintar",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio"
+   ],
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "pintar el pasillo no perdona el salón paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "flotante en el salón 20 metros bueno no 22",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 22
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "poner tarima flotante en el salon veinte metros bueno no veintidos y quitar el gotele del pasillo",
+  "debe": [
+   "flo",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 22
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ],
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "flotante en el dormitorio de catorce no de quince metros y pintar el salón",
+  "debe": [
+   "flo",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 15
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en el dormitorio principal flotante doce metros no doce y medio",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.5
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en el salón flotante 20 metros, en el pasillo porcelánico, no, mejor también flotante, 8 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo también flotante, 8 m.",
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes del salón 40 metros… mejor 45",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 45
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes del salón cuarenta mejor dicho cuarenta y cinco metros",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 45
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón 40 metros de paredes y el dormitorio cuarenta no treinta metros de paredes",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Salón 40, dormitorio 30.",
+  "fuera": []
+ },
+ {
+  "t": "rodapié nuevo de 30… 35 metros lineales",
+  "debe": [
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 35
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "rodapié nuevo veinticinco… no, veintiocho metros lineales en el salón",
+  "debe": [
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 28
+  },
+  "lugares": {
+   "ron": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar el rodapié viejo y poner rodapié nuevo en el salón, veinticinco no veintiocho metros lineales",
+  "debe": [
+   "rod",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rod": 28,
+   "ron": 28
+  },
+  "lugares": {
+   "rod": [
+    "salón"
+   ],
+   "ron": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "falso techo en la cocina de 9 metros, no, de 10 metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 10
+  },
+  "lugares": {
+   "tec": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "falso techo de pladur en el pasillo 8 metros no 9 metros y pintar las paredes del salón",
+  "debe": [
+   "tec",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 9
+  },
+  "lugares": {
+   "tec": [
+    "pasillo"
+   ],
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique de la cocina bueno no hacer un hueco",
+  "debe": [
+   "hue"
+  ],
+  "no_debe": [
+   "tab",
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "hue": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "No se tira el tabique: se hace un hueco, en la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cinco metros no de cuatro y medio con mampara",
+  "debe": [
+   "san",
+   "fba",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "la cocina completa de diez metros, bueno no, de once",
+  "debe": [
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "pintar todo el piso de setenta, no, de setenta y cinco metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 75,
+   "pit": 75
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en la cocina, alicatar 20 metros, no, mejor lucir las paredes, 20 metros",
+  "debe": [
+   "luc"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "luc": 20
+  },
+  "lugares": {
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lucir en vez de alicatar.",
+  "fuera": []
+ },
+ {
+  "t": "en santutxu cocina completa de nueve metros y en el salón poner porcelánico no mejor flotante veinte metros y pintar el pasillo",
+  "debe": [
+   "coc",
+   "fco",
+   "flo",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La corrección del suelo no toca la cocina ni la pintura.",
+  "fuera": []
+ }
+]

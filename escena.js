@@ -174,7 +174,7 @@ function escena(bruto,op){op=op||{};
    it.usado=false;if(neg.length&&!rs.length)neg.forEach(function(r){excl[r.k]=1})});
   /* un trabajo sin sitio detrás de otro con sitio: el mismo sitio («… tarima flotante y pintar») */
   var ultW=null;I2.forEach(function(it){if(it.t==='X'){ultW=null;return}if(it.t!=='W')return;
-   if(!it.rooms&&ultW&&ultW.rooms&&ultW.rooms.length&&!/^\s*(?:y\s+)?(?:luego\s+|despues\s+)?(?:rodapie)/.test(it.x))it.rooms=ultW.rooms.slice(),it.hereda=true;
+   if(!it.rooms&&ultW&&ultW.rooms&&ultW.rooms.length&&!/^\s*(?:y\s+)?(?:luego\s+|despues\s+)?(?:rodapie)/.test(it.x))it.rooms=ultW.rooms.slice(),it.hereda=true,it.hereDe=ultW;
    if(it.rooms)ultW=it});
   /* «el parquet del salón, acuchillar y barnizar»: el suelo es lo que se acuchilla, no un suelo nuevo */
   I2.forEach(function(it,j){if(it.t!=='W'||new RegExp('\\b(?:'+VS+')\\b').test(it.x)||!/\b(?:suelo|parquet|tarima|madera|terrazo|marmol|gotele|papel|moqueta)\b/.test(it.x))return;
@@ -191,6 +191,8 @@ function escena(bruto,op){op=op||{};
    var alFinal=I2.slice(j+1).every(function(z){return z.t==='sep'||z.t==='O'&&z.vacio});
    if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&!I2.some(function(z){return z.t==='W'&&(z.total||/^\s*(?:y\s+)?(?:el|la|los|las)\s+(?:techos?|paredes|suelos?)\s*$/.test(z.x))})&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
    if(pv&&(pv.t==='W'||pv.t==='X')&&!pv.total){pv.total=it.x.trim();pv.totV=it.v;if(it.lin)pv.lin=true;it.usado=true}});
+  /* «quitar el suelo del salón y los dormitorios (55 m²), nivelar y poner flotante»: el suelo nuevo de esas mismas estancias, los mismos metros */
+  I2.forEach(function(it){var p0=it.hereDe;if(it.t!=='W'||!it.hereda||it.total||!p0||!p0.total||p0.lin||!it.rooms||it.rooms.length<2||it.rooms.length!==p0.rooms.length)return;var SU=/\b(?:suelos?|parquet|tarima|flotante|moqueta|terrazo|baldosa|vinilo|laminado|porcelanico)\b/;if(!SU.test(p0.x)||!SU.test(it.x)&&!/\bnivel/.test(it.x)||/\b(?:rodapie|paredes?|techos?|pint\w*|papel|gotele)\b/.test(it.x))return;it.total=p0.total;it.totV=p0.totV});
   /* «acuchillar el suelo de salón y habitaciones, son 60 metros, acuchillar y barnizar»: lo mismo dicho otra vez, no otra partida */
   var mismasSalas=function(a,b){return a&&b&&a.length===b.length&&a.every(function(r){return b.indexOf(r)>-1})};
   I2.forEach(function(it,j){if(it.t!=='W'||!it.rooms||it.total)return;var vs=limpiar(it.x).split(/\s+/).filter(function(w){return !/^(y|e|el|la|los|las|de|del|todo)$/.test(w)});if(!vs.length)return;
