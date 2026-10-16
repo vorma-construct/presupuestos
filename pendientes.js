@@ -39,6 +39,9 @@ var EVID={pip:/pint|pared/,pit:/techo|pint\w*\s+(?:todo|tod[ao]s?|la casa|el pis
 /* al dictar: las partidas sueltas nuevas se miran contra lo dicho */
 function marcarSupuestos(txt){var t=normT(txt);(cur.lineas||[]).forEach(function(l){if(l.__ev)return;l.__ev=1;if(l.paqId||l.fb)return;var id=idL(l),re=EVID[id];if(re&&!re.test(t))l.sup=1})}
 
+/* partidas parecidas que el dictado no elige en silencio: la pregunta y sus respuestas (cada una, la partida de la tarifa que queda) */
+var ELIGE={material:{m:'¿El azulejo lo pone el cliente o lo ponemos nosotros?',ops:[['alc','Lo ponemos nosotros'],['alsm','Lo pone el cliente']]},
+ plato:{m:'¿De qué medida es el plato de ducha?',ops:[['pd7','70x110'],['pd8','80x80']]}};
 /* lo que falta de cada partida (null si nada) */
 function pendDe(l){if(l.ok)return null;var id=idL(l);
  if(!(num(l.p)>0))return {t:'precio',m:'No tiene precio: escríbelo.'};
@@ -53,6 +56,8 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
  if(l.adiv&&!l.ok)return {t:'adiv',m:'Has dicho «'+(l.adivTxt||'')+'»: no lo tengo con esas palabras en la tarifa. ¿Es esta partida?'};
  if(usaMetros(l)&&!(num(l.q)>1)&&!l.okQ)return {t:'medida',m:'No has dicho cuántos '+(l.u==='ml'?'metros lineales':'metros')+' son: escríbelos.'};
  if(usaMetros(l)&&l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo con los del suelo: ¿valen?'};
+ /* dos partidas de la tarifa para lo mismo y el dictado no dijo cuál: se pregunta (después de los metros, que se vacían si no se dijeron) */
+ if(l.elige&&ELIGE[l.elige]&&!l.okElige)return {t:l.elige,m:ELIGE[l.elige].m};
  if(l.cuantas&&!l.okQ)return {t:'cuantas',m:'No has dicho cuántas son ('+num(l.q)+'): ¿es '+(num(l.q)===1?'una sola':'esa cantidad')+'?'};
  if(l.sup)return {t:'supuesto',m:'Esto no lo has dicho: ¿lo incluyo?'};
  return null}
@@ -85,6 +90,7 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
  else if(p.t==='precio'){h='<b>'+esc(p.m)+'</b>'}
  else if(p.t==='cuantas'){h='<b>'+esc(p.m)+'</b> Si no, escribe cuántas en la cantidad.<br><button '+b+' onclick="pendQok('+p.i+')">Sí, es así</button>'}
  else if(p.t==='calc'){h='<b>'+esc(p.m)+'</b> Si no, escríbelos en la cantidad.<br><button '+b+' onclick="pendQok('+p.i+')">Sí, valen</button>'}
+ else if(ELIGE[p.t]){h='<b>'+esc(p.m)+'</b><br>'+ELIGE[p.t].ops.map(function(o){return '<button '+b+' onclick="pendElige('+p.i+',\''+o[0]+'\')">'+esc(o[1])+'</button>'}).join('')}
  else if(p.t==='adiv'){h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendOk('+p.i+')">Sí, es esta</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="delLinea('+p.i+')">No, quítala</button>'}
  else if(p.t==='supuesto'){h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendOk('+p.i+')">Sí, inclúyelo</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="delLinea('+p.i+')">Quítalo</button>'}
  return '<div class="pendChip" style="background:#FFF4D6;border-left:4px solid #C98A00;border-radius:6px;padding:6px 8px;margin-top:4px;font-size:14px;line-height:1.35">'+h+'</div>'}
@@ -114,6 +120,8 @@ window.pendMed=function(id){var i=document.getElementById('pmx_'+id),pk=paqDe(id
 window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;if(si){pk.okEntero=1;delete pk.blando}else{cur.lineas=cur.lineas.filter(function(l){return l.paqId!==id});cur.paqs=(cur.paqs||[]).filter(function(x){return x!==pk})}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta()}catch(_){}};
 window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
 window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1;delete l.calc}renderLineas();try{autoGuardar()}catch(_){}};
+/* la respuesta cambia solo esa partida (alc ↔ alsm, pd7 ↔ pd8): misma cantidad y misma estancia */
+window.pendElige=function(i,id){try{leer()}catch(_){}var l=cur.lineas[i],t=(window.tarifa?tarifa():[]).find(function(x){return x.id===id});if(l&&t){var k=String(l.d||'').indexOf(' — ');l.d=t.d+(k>-1?l.d.slice(k):'');l.p=t.p;l.u=t.u;if(l.tid)l.tid=id;l.okElige=1;delete l.elige}renderLineas();try{autoGuardar()}catch(_){}};
 window.pendOk=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.ok=1;delete l.sup;delete l.adiv}renderLineas();try{autoGuardar()}catch(_){}};
 
 /* lo que escribe a mano el usuario resuelve: unos metros > 1 o un precio */
