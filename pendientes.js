@@ -7,6 +7,7 @@
    · una partida que el dictado ha supuesto pero no se ha dicho («rodapié» al poner suelo flotante).
    Con algo pendiente se puede guardar el borrador, pero no sacar el PDF ni mandarlo a firmar. */
 (function(){
+var calc0=null;
 function api(){return window.__paqApi||{}}
 function normT(x){return (window.norm?norm(String(x||'')):String(x||'').toLowerCase()).replace(/\s+/g,' ')}
 function idL(l){if(l.tid)return l.tid;var d=String(l.d||'');var t=(window.tarifa?tarifa():[]).find(function(x){return x.d===d||d.indexOf(x.d+' — ')===0});return t?t.id:''}
@@ -79,12 +80,13 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
  return '<div class="pendChip" style="background:#FFF4D6;border-left:4px solid #C98A00;border-radius:6px;padding:6px 8px;margin-top:4px;font-size:14px;line-height:1.35">'+h+'</div>'}
 
 function pintar(){var tb=document.getElementById('tb');if(!tb)return;var rows=tb.querySelectorAll('tr'),P=pendientes(),porI={};P.forEach(function(p){porI[p.i]=p});
- var mostradas={};
+ var mostradas={},cambiado=false;
  [].forEach.call(rows,function(r,i){var old=r.querySelector('.pendChip');if(old)old.remove();var p=porI[i];r.classList.toggle('pendiente',!!p);if(!p)return;
   var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:'l|'+i;var td=r.querySelector('td');if(!td)return;
   if(mostradas[k]){td.insertAdjacentHTML('beforeend','<div class="pendChip" style="color:#8A5A00;font-size:13px;margin-top:2px">Pendiente (lo de arriba)</div>');return}
   mostradas[k]=1;td.insertAdjacentHTML('beforeend',chip(p))});
- [].forEach.call(rows,function(r,i){var l=cur.lineas[i],qi=r.querySelector('.lq');if(!l||!qi)return;var p=porI[i];if(p&&(p.t==='medida'||p.t==='medidaPaq')&&!(num(l.q)>0)){qi.value='';qi.placeholder='¿?';qi.style.borderColor='#C98A00';var im=r.querySelector('.imp');if(im)im.textContent='—'}});
+ [].forEach.call(rows,function(r,i){var l=cur.lineas[i],qi=r.querySelector('.lq');if(!l||!qi)return;var p=porI[i];if(p&&(p.t==='medida'||p.t==='medidaPaq')&&!(num(l.q)>0)){qi.value='';qi.placeholder='¿?';qi.style.borderColor='#C98A00';var im=r.querySelector('.imp');if(im)im.textContent='—';cambiado=true}});
+ if(cambiado&&calc0)try{calc0()}catch(_){}
  var C=cosas(),ban=document.getElementById('pendBanner'),tabla=tb.closest('table');
  if(!C.length){if(ban)ban.remove();return}
  var h='<b>Faltan '+C.length+(C.length===1?' cosa':' cosas')+' por confirmar.</b> Mientras tanto se guarda como borrador; el PDF y el envío a firmar esperan. <button class="mini" style="margin-left:6px" onclick="pendSiguiente()">Ir a la siguiente</button>';
@@ -106,7 +108,7 @@ window.pendOk=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.ok=1;
 var leer0=window.leer;window.leer=function(){var antes=(cur.lineas||[]).map(function(l){return {q:num(l.q),p:num(l.p)}});var r=leer0.apply(this,arguments);(cur.lineas||[]).forEach(function(l,i){var a=antes[i];if(!a)return;if(num(l.q)!==a.q&&usaMetros(l)&&!l.paqId)l.okQ=num(l.q)>0;if(num(l.p)!==a.p&&num(l.p)>0)l.okP=1});return r};
 
 var render0=window.renderLineas;window.renderLineas=function(){var r=render0.apply(this,arguments);try{pintar()}catch(e){}return r};
-var calc0=window.calc;if(calc0)window.calc=function(){var r=calc0.apply(this,arguments);clearTimeout(window.__tPend);window.__tPend=setTimeout(function(){try{leer();pintar()}catch(_){}},700);return r};
+calc0=window.calc;if(calc0)window.calc=function(){var r=calc0.apply(this,arguments);clearTimeout(window.__tPend);window.__tPend=setTimeout(function(){try{leer();pintar()}catch(_){}},700);return r};
 
 /* las partidas que añade el usuario a mano no son supuestos */
 var add0=window.addLinea;if(add0)window.addLinea=function(){var r=add0.apply(this,arguments);var l=cur.lineas[cur.lineas.length-1];if(l){l.__ev=1;l.ok=l.ok||(num(l.p)>0?1:0)}try{pintar()}catch(_){}return r};
