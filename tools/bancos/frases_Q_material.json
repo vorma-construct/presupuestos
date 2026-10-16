@@ -1,0 +1,577 @@
+[
+ {
+  "t": "alicatado con piezas grandes de treinta por noventa en la pared del baño quince metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 15
+  },
+  "lugares": {
+   "alc": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio.",
+  "pregunta": {
+   "alc": "material"
+  }
+ },
+ {
+  "t": "alicatar la pared de la cocina doce metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 12
+  },
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio.",
+  "pregunta": {
+   "alc": "material"
+  }
+ },
+ {
+  "t": "en el aseo alicatar ocho metros de pared",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 8
+  },
+  "lugares": {
+   "alc": [
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio.",
+  "pregunta": {
+   "alc": "material"
+  }
+ },
+ {
+  "t": "poner baldosa en el suelo de la terraza veinte metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 20
+  },
+  "lugares": {
+   "alc": [
+    "terraza"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio.",
+  "pregunta": {
+   "alc": "material"
+  }
+ },
+ {
+  "t": "alicatar la cocina doce metros y el baño veinte metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "alc": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio. Las dos partidas, cada una con su estancia.",
+  "pregunta": {
+   "alc": "material"
+  }
+ },
+ {
+  "t": "alicatar la cocina doce metros, los azulejos los pone el cliente",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 12
+  },
+  "lugares": {
+   "alsm": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la cocina quince metros, el cliente compra los azulejos",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 15
+  },
+  "lugares": {
+   "alsm": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la cocina doce metros con azulejo del cliente",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 12
+  },
+  "lugares": {
+   "alsm": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "colocar azulejo del cliente en la terraza quince metros",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 15
+  },
+  "lugares": {
+   "alsm": [
+    "terraza"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta. Antes se perdía «del cliente» y salía con material.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "poner baldosa en el suelo de la cocina nueve metros, la baldosa la trae el cliente",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 9
+  },
+  "lugares": {
+   "alsm": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta. Antes salía además otro alicatado de paredes con metros calculados.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la cocina doce metros sin material",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatado en la cocina diez metros solo la colocación",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 10
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "solo colocar los azulejos del baño, veinte metros",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el azulejo lo pone el cliente: solo colocación (alsm), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatado de la pared de la cocina diez metros con material",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 10
+  },
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el material lo ponemos nosotros: alicatado con material (alc), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la pared del baño doce metros, el azulejo lo ponemos nosotros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 12
+  },
+  "lugares": {
+   "alc": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el material lo ponemos nosotros: alicatado con material (alc), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la cocina doce metros, nosotros ponemos el azulejo",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 12
+  },
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el material lo ponemos nosotros: alicatado con material (alc), sin pregunta. Antes salían además dos alicatados más (paredes calculadas y suelo).",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatar la pared del baño diez metros, el azulejo es nuestro",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 10
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el material lo ponemos nosotros: alicatado con material (alc), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "alicatado de la terraza quince metros con material incluido",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 15
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Se dice que el material lo ponemos nosotros: alicatado con material (alc), sin pregunta.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "en el baño alicatar quince metros de pared y cambiar la bañera por un plato de ducha",
+  "debe": [
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [
+   "alsm",
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 15
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio. No se dice la medida del plato: plato con la pregunta 70x110 / 80x80.",
+  "pregunta": {
+   "alc": "material",
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "poner plato de ducha en el baño",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice la medida del plato: plato con la pregunta 70x110 / 80x80.",
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "cambiar la bañera por un plato de ducha de ochenta por ochenta",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Medida dicha: 80x80, sin pregunta.",
+  "sin_pregunta": [
+   "plato"
+  ]
+ },
+ {
+  "t": "poner plato de ducha de setenta por ciento diez en el baño",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Medida dicha: 70x110, sin pregunta.",
+  "sin_pregunta": [
+   "plato"
+  ]
+ },
+ {
+  "t": "baño completo de cinco metros",
+  "debe": [
+   "alc",
+   "san"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Baño completo: el paquete ya lleva su alicatado con material; no se añade la pregunta de material.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "cocina completa de nueve metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Cocina completa: paquete con su alicatado; sin pregunta de material.",
+  "sin_pregunta": [
+   "material"
+  ]
+ },
+ {
+  "t": "pintar el salón veinte metros y alicatar la cocina diez metros",
+  "debe": [
+   "pip",
+   "alc"
+  ],
+  "no_debe": [
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 10
+  },
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "No se dice quién pone el azulejo: alicatado con la pregunta de material, sin elegir en silencio. La pregunta solo afecta al alicatado.",
+  "pregunta": {
+   "alc": "material"
+  }
+ }
+]

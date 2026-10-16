@@ -2073,15 +2073,21 @@
  {
   "t": "alicatado con piezas grandes de treinta por noventa en la pared del baño quince metros",
   "debe": [
-   "alsm"
+   "alc"
   ],
   "no_debe": [
    "coc",
    "san"
   ],
   "estancias": {},
-  "cantidades": {},
-  "fuera": []
+  "cantidades": {
+   "alc": 15
+  },
+  "fuera": [],
+  "pregunta": {
+   "alc": "material"
+  },
+  "justificacion": "No se dice quién pone el azulejo: no se elige en silencio entre con material (alc) y solo colocación (alsm); sale alicatado con la pregunta «¿El azulejo lo pone el cliente o lo ponemos nosotros?», que al contestarla pasa a alsm si lo pone el cliente."
  },
  {
   "t": "ayudas de albañilería a la fontanería y a la electricidad que eso lo hace un fontanero y un electricista de fuera",

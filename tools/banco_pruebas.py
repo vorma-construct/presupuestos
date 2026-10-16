@@ -224,6 +224,13 @@ def comprobar(f, r):
         for l in L:
             if l['id'] == i and not l.get('pend') and l['u'] in ('m2', 'm²', 'ml'):
                 fallos.append('sin medida «%s»: puso %s %s sin que se dijera' % (i, l['q'], l['u'])); break
+    # «pregunta»: {id: tipo} — no se dijo y no se elige en silencio: esa partida sale con su pregunta pendiente (p. ej. {"alc": "material"})
+    for i, tp in (f.get('pregunta') or {}).items():
+        if not any(l['id'] == i and l.get('pend') == tp for l in L):
+            fallos.append('«%s» sin su pregunta pendiente «%s»' % (i, tp))
+    # «sin_pregunta»: [tipos] — se dijo: ninguna partida con esa pregunta
+    for tp in f.get('sin_pregunta', []):
+        if any(l.get('pend') == tp for l in L): fallos.append('pregunta de más «%s» (ya se dijo)' % tp)
     # «lugares»: {id: ["salón", "pasillo"]} — entre las partidas de ese trabajo salen esas estancias
     import unicodedata
     def _n(x): return ''.join(c for c in unicodedata.normalize('NFD', x.lower()) if unicodedata.category(c) != 'Mn')
