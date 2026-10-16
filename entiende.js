@@ -725,6 +725,7 @@ function familias(t,L,tipo){t=' '+t+' ';var idL=function(l){if(l.tid)return l.ti
  if(/\bcerradura|\bmanilla|\bbisagra/.test(t)&&!/\b(cambiar|poner)\s+(?:la\s+|las\s+|\d+\s+)?puertas?\b/.test(t))L=L.filter(function(l){var i=idL(l);return i!=='pen'&&i!=='pub'&&i!=='pue'});
  FAMS.forEach(function(f){var src=f.id==='pub'?sinEntrada:t;if(!f.n.test(src))return;if(f.id==='pd7'&&tiene('pd8')){var c8=+(t.match(/\b(\d+)\s+platos?\b/)||[])[1]||cuenta(t,/\bplatos?\b/);if(c8>1)L.forEach(function(l){if(idL(l)==='pd8')l.q=c8});return}
   if(f.id==='pub'&&/\b(encastr|empotr|corredera)/.test(t)&&!/\b(batiente|de paso|nuevas|normal(?:es)?)\b/.test(t)&&!tiene('pub'))return;
+  if(f.id==='pub'&&/\b(quitar|desmontar|sacar|arrancar|tirar|retirar)\b/.test(t)&&!/\b(cambiar|poner|colocar|nuev[oa]s?|sustituir|renovar|montar)\b/.test(t)&&!tiene('pub'))return;
   if(f.id==='rad'&&tiene('cal'))return;if(f.id==='pen'&&/\bcerradura|\bmanilla/.test(t))return;
   var c=cuenta(src,f.n);
   if(!tiene(f.id)&&(!f.solo||f.solo.test(src)))pon(f.id,c||1);else if(tiene(f.id)&&c)pon(f.id,c);
@@ -851,6 +852,10 @@ function analizar(bruto){
  /* «quitar la cocina vieja y montar la nueva»: los muebles de la cocina nueva */
  t0=t0.replace(/\b(quitar|desmontar|tirar)\s+la\s+cocina\s+vieja\s*,?\s+y\s+(?:montar|poner|instalar)\s+la\s+nueva\b/g,'$1 la cocina vieja y montar los muebles de cocina nuevos');
  /* «cinco puertas nuevas, bueno, seis», «tres radiadores, no, cuatro»: vale lo último (antes de quitar las muletillas) */
+ /* «seis seis puertas»: el número repetido, una vez */
+ t0=t0.replace(/\b(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|puertas|radiadores|ventanas|armarios|premarcos)\s+\1\b/g,'$1');
+ /* «puertas nuevas, seis», «Puertas: seis nuevas», «las puertas viejas, ocho», «puertas nuevas en siete»: cuántas */
+ t0=t0.replace(/\b((?:las\s+|los\s+)?(?:puertas|radiadores|ventanas|armarios|premarcos|enchufes)((?:\s+(?:nuev[oa]s|viej[oa]s|blancas|lacadas|de paso|interiores))*))\s*(?:[,:]\s*|\s+en\s+)(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|\d+)\b((?:\s+(?:nuev[oa]s|viej[oa]s))?)(?!\s*(?:metros|m2|m\b|puertas|habitaciones|dormitorios|banos|de\s+ellas|de\s+ellos))/g,function(x,np,adj,n,adj2,off,str){var pre=String(str).slice(Math.max(0,off-20),off);if(/\b(?:de|las|los)\s+$/.test(pre)&&!/^(?:las|los)\s/.test(np))return x;var v=/^\d/.test(n)?+n:valorLetra(n);var noun=np.replace(/^(?:las|los)\s+/,'');return ' '+v+' '+noun+(adj2||'')});
  t0=t0.replace(/\b(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(puertas|radiadores|ventanas|armarios|premarcos|enchufes)((?:\s+(?:nuev[oa]s|de paso|blancas|lacadas|interiores))?)\s*,?\s*(?:eh\s*,?\s*)*(?:bueno|no|perdona|perdon|digo|mejor|espera)\s*,?\s*(?:(?:eh|no|bueno|perdona)\s*,?\s*)*(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b(?!\s*(?:metros|m2|m\b|puertas|radiadores|ventanas))/g,function(x,a,n,ad,b){return ' '+(({dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12})[b]||b)+' '+n+ad+' '});
  /* «con bañera, no, con plato de ducha»: con plato */
  t0=t0.replace(/\bcon\s+(?:la\s+|una\s+|un\s+)?(banera|plato(?: de ducha)?|ducha|mampara|cortina)\s*,?\s+(?:no|bueno no|perdona|mejor)\s*,?\s+con\s+(?:la\s+|una\s+|un\s+)?(banera|plato(?: de ducha)?|ducha|mampara|cortina)\b/g,'con $2');
@@ -958,6 +963,8 @@ function analizar(bruto){
   t0=t0.replace(new RegExp('\\b(pintar)\\s+'+LIST+'\\s*,?\\s*'+QUE+'(?:\\s+(?:nada mas|solo|solamente))?\\b','g'),function(x,v,l,q){var dl=l.replace(/\b(el|la|los|las)\s+/g,'').split(/\s*(?:,|\by\b)\s*/).filter(Boolean).map(function(r){return (/^(dos|tres|cuatro|\d+)\s/.test(r)?'de los ':(/^(cocina|entrada|habitacion)/.test(r)?'de la ':'del '))+r}).join(' y ');return v+' '+q.replace(/^solo\s+/,'')+' '+dl});
   t0=t0.replace(/\bpintar\s+(?:los\s+)?techos\s+y\s+(?:las\s+)?paredes\b/g,'pintar paredes y techos');})();
  /* la escena (escena.js): qué estancias se nombran, con sus metros, y qué se hace en cada una — «en el salón y en el principal…», «en las tres…», «esas mismas estancias» —; se vuelve a escribir una frase por estancia */
+ /* «cambiar 5 puertas puertas no seis puertas»: la repetida fuera y vale la corrección */
+ t0=t0.replace(/\b(puertas|radiadores|ventanas|armarios|premarcos)\s+\1\b/g,'$1').replace(/\b(\d+)\s+(puertas|radiadores|ventanas|armarios|premarcos)\s*,?\s+(?:no|perdona|perdon|mejor|bueno no|digo|o sea)\s*,?\s+(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|\d+)\b(?:\s+\2)?/g,function(x,a,n,b){return ' '+(/^\d/.test(b)?b:valorLetra(b))+' '+n});
  window.__escena=null;window.__escIn=t0;if(window.escena){try{var esc=escena(t0,{sinPuntos:!__conPuntos});window.__escena=esc;if(esc&&esc.texto)t0=' '+esc.texto+' '}catch(eE){window.__escena={error:String(eE&&eE.message||eE)}}}
  /* «en los dos», «las tres», «de esas dos», «en ambos»: las últimas estancias nombradas (no baños ni cocinas) */
  (function(){var APE='(?:\\s+(?:principal|grande|pequen[oa]|del? (?:matrimonio|los ninos|las ninas|la nina|el nino|invitados|la abuela|arriba|abajo|al lado|fondo)|del fondo))?';var reR=new RegExp('\\b(salon(?:es)?|pasillos?|dormitorios?|habitacion(?:es)?|comedor|despachos?|recibidor|hall|vestidor|trastero|entrada)\\b'+APE.replace('(?:','(').replace(/\)\?$/,')?'),'g');var NN={dos:2,ambos:2,ambas:2,tres:3,cuatro:4};
