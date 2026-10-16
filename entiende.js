@@ -153,7 +153,7 @@ var sq=S>0?S:1;
 if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  add('san',1);add('ali',W);add('sol',sq);add('dfon',1);add('fba',1);
  add('alc',W,' — en las paredes');add('alc',sq,' — en el suelo');
- if(s.ducha==='ducha')add('pd7',1);else if(s.ducha==='banera')libre('Suministro y colocación de bañera de acero esmaltado de 160x70 cm',1,'ud');
+ if(s.ducha==='ducha')add('pd7',1);else if(s.ducha==='banera'){add('ban',1);L.forEach(function(l){if(l.tid==='fba')l.d=l.d.replace('plato de ducha','bañera')})}
  if(s.techo)add('tec',sq);add('pit',sq);
  if(s.mueble)add('mba',1);
  if(s.ventana===false)add('vent',1);
@@ -280,7 +280,7 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i],fr0=fr;if(/^[,;.:]$/.test(fr))
  var estAqui=(fr.match(/\b(banos?|aseos?|cocina|piso|casa|vivienda|habitacion|salon|dormitorio)\b/)||[])[1];
  if(/\b(?:poner|hacer|dejar|reformar|renovar|cambiar|arreglar|modernizar)(?:lo|la|los|las)\b|\b(?:ponerlo|hacerla)\b/.test(fr)&&/\b(modern\w*|nuev\w*|entero|entera|bonit\w*|al dia|a estrenar|completo|completa|todo|toda)\b|\breformarl[oa]\b|\brenovarl[oa]\b/.test(fr)){var e=estAqui||ultEst;if(e)fr=' reformar el '+e+' '+(fr.match(/\d+(?:[.,]\d+)?\s*(?:x|por)?\s*\d*(?:[.,]\d+)?\s*(?:m2|metros cuadrados|metros|m)?/)||[''])[0]}
  else if(ultPaq&&/^\s*(?:en\s+)?(?:el|la|los|las|mi)?\s*(banos?|aseos?|cocina|habitacion(?:es)?|salon|dormitorios?)\b[^a-z]*(?:de\s+\d.*)?$/.test(fr)){fr=' reformar el '+fr.trim()+' '}
- else if(/^\s*(?:y\s+)?(?:poner|colocar|montar|meter)\s+(?:uno|una|otro|otra|los|las)?\s*(?:nuev[oa]s?)\s*$/.test(fr)&&ultObj){fr={cocina:' montar cocina ',rodapie:' rodapie nuevo ',puerta:' puertas nuevas ',suelo:' suelo flotante ',plato:' plato de ducha ',banera:' plato de ducha '}[ultObj]||fr}
+ else if(/^\s*(?:y\s+)?(?:poner|colocar|montar|meter)\s+(?:uno|una|otro|otra|los|las)?\s*(?:nuev[oa]s?)\s*$/.test(fr)&&ultObj){fr={cocina:' montar cocina ',rodapie:' rodapie nuevo ',puerta:' puertas nuevas ',suelo:' suelo flotante ',plato:' plato de ducha ',banera:' banera nueva '}[ultObj]||fr}
  if(estAqui)ultEst=estAqui;var ob=(fr.match(/\b(cocina|rodapie|puerta|suelo|plato|banera)\w*/)||[])[1];if(ob)ultObj=ob;
  /* «reformar el baño de mi casa» es el baño, no la casa entera */
  var mPiso=fr.match(RE_PISO);
@@ -290,7 +290,7 @@ for(var i=0;i<trozos.length;i++){var fr=trozos[i],fr0=fr;if(/^[,;.:]$/.test(fr))
   if(!/\b(integral|entera|entero|completa|completo|toda|todo)\b/.test(fr)&&!(medP.suelo>0)){pisoGen.push({fr:fr});resto.push(' ');ultPaq='piso';continue}
   tipo='piso'}
  /* lo concreto cuenta también si va entre el verbo y la estancia: «cambiar la puerta del baño» es la puerta, no el baño entero */
- else if(RE_BANO.test(fr)&&!CONCRETO_BANO.test(fr.replace(/\b(?:cuarto de )?(?:banos?|aseos?|servicio)\b/g,' ')))tipo='bano';
+ else if(RE_BANO.test(fr)&&!CONCRETO_BANO.test(fr.replace(/\b(?:cuarto de )?(?:banos?|aseos?|servicio)\b|\bcon\s+(?:una\s+)?(?:banera|ducha|plato de ducha)\b/g,' ')))tipo='bano';
  else if(RE_COCINA.test(fr)&&!CONCRETO_COC.test(fr.replace(/\bcocinas?\b/g,' ')))tipo='cocina';
  else if(RE_HAB.test(fr)&&!CONCRETO_HAB.test(fr.replace(/\b(?:habitacion(?:es)?|dormitorios?|cuartos?|salon|sala de estar)\b/g,' ')))tipo='hab';
  /* "baño: quitar bañera, plato..." -> son trabajos sueltos del baño, no el paquete */
@@ -317,7 +317,10 @@ var sinVent=/\b(no tiene|sin|no hay|no lleva)\s+(?:ninguna\s+)?ventana/.test(nor
 var CUANT={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,dieciseis:16,diecisiete:17,dieciocho:18,diecinueve:19,veinte:20};
 function cuantosDe(t,que){var m=norm(t).match(new RegExp('\\b(\\d+|'+Object.keys(CUANT).join('|')+')\\s+(?:'+que+')\\b'));return m?(CUANT[m[1]]||+m[1]):null}
 var nBan=cuantosDe(bruto,'banos|aseos'),nPue=cuantosDe(bruto,'puertas');
+/* «con bañera», «poner una bañera nueva»: el baño lleva bañera, no plato (salvo que también diga plato o ducha) */
+var nb=norm(bruto),conBan=/\b(?:con|poner|colocar|montar|instalar|meter|cambiar)\s+(?:una|la|otra)?\s*(?:nueva\s+)?banera\b|\bbanera nueva\b/.test(nb)&&!/\bplato\b|\b(?:poner|con|colocar|montar)\s+(?:una\s+)?ducha\b/.test(nb);
 nuevos.forEach(function(x){var pk=nuevoPaq(x.tipo,x.med,x.n);if((sinVent||conVent)&&'ventana' in pk.r){pk.r.ventana=!sinVent;pk.hechas.ventana=1}
+if(conBan&&x.tipo==='bano'){pk.r.ducha='banera';pk.hechas.ducha=1}
 if(x.tipo==='piso'){if(nBan!=null){pk.r.banos=Math.min(6,nBan);pk.hechas.banos=1}if(nPue!=null){pk.r.puertas=Math.min(40,nPue);pk.hechas.puertas=1}}
 cur.lineas=cur.lineas.concat(lineasDe(pk));hechos.push(pk)});
 /* el piso y las estancias dichas aparte («reformar la casa de 87 metros… y arreglar el baño»): ese baño y esa cocina son DEL piso.
