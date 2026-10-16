@@ -37,7 +37,7 @@ function mDe(r){return r.m2!=null?r.m2:(r.ms&&r.ms.length?r.ms.reduce(function(a
 var PRE='(?:(?:en|de|del|para|a|al|y|e|tambien|ademas|luego|despues|solo|o)\\s+)*';
 /* una estancia dicha: «en el dormitorio principal de 13 metros», «las dos habitaciones de 12 y de 10», «el despacho nueve» */
 var R_EXP=new RegExp(PRE+'(?:(el|la|los|las|esos|esas|estos|estas|este|esta|su|sus|mi|mis)\\s+)?(?:(dos|tres|cuatro|cinco|seis|\\d)\\s+)?(?:(otr[oa]s?)\\s+)?('+LIG+')\\b(?:\\s+('+APE+')\\b)?'+
- '(?:\\s+(?:(?:que\\s+)?(?:tiene|mide|son|es de|tendra|tendran|tienen|miden)\\s+|que\\s+son\\s+|de\\s+|con\\s+)?(?:unos\\s+|unas\\s+|mas o menos\\s+)?('+NUMW+'(?:\\s*(?:,|y)\\s*(?:de\\s+)?'+NUMW+')*)(?:\\s*(?:m2|metros cuadrados|metros|m)\\b(?!\\s*(?:lineales|de\\s+(?:alto|largo|ancho|altura|rodapie|pared|paredes))))?(?![\\w])(?!\\s*(?:puertas|radiador\\w*|ventanas|armarios|enchufes|ml\\b|metros lineales|lineales)))?','y');
+ '(?:\\s+(?:(?:que\\s+)?(?:tiene|mide|son|es de|tendra|tendran|tienen|miden)\\s+|que\\s+son\\s+|de\\s+|con\\s+)?(?:unos\\s+|unas\\s+|mas o menos\\s+)?('+NUMW+'(?:\\s*(?:,|y)\\s*(?:de\\s+)?'+NUMW+')*)(?!\\s*(?:m2|metros cuadrados|metros|m)?\\s*de\\s+(?:pared|paredes|techos?)\\b)(?:\\s*(?:m2|metros cuadrados|metros|m)\\b(?!\\s*(?:lineales|de\\s+(?:alto|largo|ancho|altura|rodapie|pared|paredes))))?(?![\\w])(?!\\s*(?:puertas|radiador\\w*|ventanas|armarios|enchufes|ml\\b|metros lineales|lineales)))?','y');
 /* una estancia corta: «el principal», «la de matrimonio», «el pequeño», «el otro» */
 var R_EL=new RegExp(PRE+'(el|la)\\s+('+APE+'|otr[oa])\\b(?!\\s+(?:'+LIG+'|bano|aseo|cocina|puerta|ventana|radiador|armario|metros|m2|\\d))','y');
 /* las de antes: «en los tres», «de esas dos», «ambos», «esas mismas estancias», «todo eso» */
@@ -189,13 +189,16 @@ function escena(bruto,op){op=op||{};
    if(pv&&pv.t==='G'&&pv.usado==='delante'){/* «en el salón, 25 metros, quitar…» */var r0=pv.rooms;if(r0.length===1&&r0[0].n===1&&r0[0].m2==null&&!it.lin){r0[0].m2=it.v;r0[0].mFr=-1;it.usado=true;return}}
    if(pv&&pv.t==='G'&&pv.usado==='tras'){var kk=vecinoIdx(k,-1);if(kk>-1&&I2[kk].t==='W')pv=I2[kk]}
    var alFinal=I2.slice(j+1).every(function(z){return z.t==='sep'||z.t==='O'&&z.vacio});
-   if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&!I2.some(function(z){return z.t==='W'&&(z.total||/^\s*(?:y\s+)?(?:el|la|los|las)\s+(?:techos?|paredes|suelos?)\s*$/.test(z.x))})&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
+   if(pv&&pv.t==='W'&&alFinal&&!it.lin&&(pv.delante||pv.hereda)&&!I2.some(function(z){return z.t==='W'&&(z.total||/^\s*(?:y\s+)?(?:el|la|los|las)\s+(?:techos?|paredes|suelos?)\s*$/.test(z.x))})&&I2.filter(function(z){return z.t==='W'&&z.rooms&&z.rooms.length===1&&pv.rooms&&z.rooms[0]===pv.rooms[0]}).length>=2&&pv.rooms&&pv.rooms.length===1&&pv.rooms[0].n===1&&pv.rooms[0].m2==null&&!/rodapie|moldura|zocalo/.test(pv.x)&&!/\b(?:pared|paredes|techos?)\b/.test(pv.x)&&!/\bde\s+(?:pared|paredes|techos?)\b/.test(it.x)){pv.rooms[0].m2=it.v;pv.rooms[0].mFr=-1;it.usado=true;return}
    if(pv&&(pv.t==='W'||pv.t==='X')&&!pv.total){pv.total=it.x.trim();pv.totV=it.v;if(it.lin)pv.lin=true;it.usado=true}});
   /* «acuchillar el suelo de salón y habitaciones, son 60 metros, acuchillar y barnizar»: lo mismo dicho otra vez, no otra partida */
   var mismasSalas=function(a,b){return a&&b&&a.length===b.length&&a.every(function(r){return b.indexOf(r)>-1})};
   I2.forEach(function(it,j){if(it.t!=='W'||!it.rooms||it.total)return;var vs=limpiar(it.x).split(/\s+/).filter(function(w){return !/^(y|e|el|la|los|las|de|del|todo)$/.test(w)});if(!vs.length)return;
    for(var q=j-1;q>=0;q--){var p0=I2[q];if(p0.t!=='W'||!p0.total||!mismasSalas(p0.rooms,it.rooms))continue;var px=' '+limpiar(p0.x)+' ';var raiz=function(w){return w.replace(/(ar|er|ir|ado|ados|ada|adas)$/,'')};
     if(vs.every(function(w){return px.indexOf(' '+w+' ')>-1||/^barniz/.test(w)||new RegExp('\\b'+raiz(w)).test(px)})){it.t='O';it.x='';it.vacio=true}break}});
+  /* «quitar el suelo del salón y los dormitorios (55 m²), nivelar el solado y poner flotante»: el mismo suelo de las mismas estancias, con ese total */
+  var SUELO=/\b(suelo|solado|nivel\w*|flotante|tarima|parquet|laminad\w*|vinil\w*|baldosa|porcelanico|moqueta|acuchill\w*)\b/;
+  I2.forEach(function(it,j){if(it.t!=='W'||!it.rooms||it.rooms.length<2||it.total||!SUELO.test(it.x)||/\b(pared|paredes|techos?|rodapie\w*|acuchill\w*|barniz\w*|pulir)\b/.test(it.x))return;for(var q=j-1;q>=0;q--){var p0=I2[q];if(p0.t!=='W'||!p0.total||p0.lin||!mismasSalas(p0.rooms,it.rooms))continue;if(SUELO.test(p0.x)&&!/\b(pared|paredes|techos?|rodapie\w*)\b/.test(p0.x)){it.total=p0.total;it.totV=p0.totV}break}});
   /* «lo mismo» */
   I2.forEach(function(it){if(it.t==='W'&&!it.copia&&/^\s*(?:y\s+)?(?:lo mismo|igual|exactamente igual)\s*$/.test(it.x)&&ultAcc)it.copia=ultAcc;if(it.t==='W'&&it.rooms&&it.rooms.length)ultAcc=[it.x]});
   /* si en un grupo «… y en el salón no» se dice que no: fuera de ese trabajo */

@@ -1,0 +1,2235 @@
+[
+ {
+  "t": "En Basauri pintar las paredes del comedor, treinta y ocho metros cuadrados, y el techo, dieciséis metros.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 38,
+   "pit": 16
+  },
+  "lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Paredes y techo del comedor con medidas distintas: cada una la suya y las dos del comedor.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar las paredes de la habitación grande, treinta metros, y el techo, doce.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 30,
+   "pit": 12
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande"
+   ],
+   "pit": [
+    "habitación grande"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El techo es de la misma habitación, con sus doce metros (no los treinta de las paredes).",
+  "fuera": []
+ },
+ {
+  "t": "En Gernika. Pintar el salón, paredes cuarenta metros y techo dieciocho. En el pasillo, falso techo de pladur, cinco metros, y luego pintarlo.",
+  "debe": [
+   "pip",
+   "pit",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 40,
+   "tec": 5
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ],
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Techo del salón con sus metros; «pintarlo» detrás del falso techo es pintar ese techo.",
+  "fuera": []
+ },
+ {
+  "t": "en sestao quitar el papel de toda la casa pintar paredes y techos falso techo en la cocina de seis metros",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 6
+  },
+  "lugares": {
+   "tec": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Los seis metros son del falso techo de la cocina; los techos de toda la casa no se dijeron.",
+  "fuera": []
+ },
+ {
+  "t": "Quitar el gotelé del dormitorio grande, unos cuarenta metros de pared, y pintar el resto de la casa.",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 40
+  },
+  "lugares": {
+   "lija": [
+    "dormitorio grande"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "El resto de la casa no mide lo que las paredes del dormitorio.",
+  "fuera": []
+ },
+ {
+  "t": "Salón: quitar gotelé, pintar y papel pintado en una pared de diez metros cuadrados.",
+  "debe": [
+   "lija",
+   "pip",
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 10
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "ppa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Los diez metros son del papel de una pared; el gotelé y la pintura del salón quedan sin medir.",
+  "fuera": []
+ },
+ {
+  "t": "Cocina completa de diez metros. Y un tabique de pladur nuevo.",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "pla"
+  ],
+  "justificacion": "Un tabique no mide lo que el suelo de la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "Dos premarcos para el tabique nuevo de pladur, que son unos nueve metros cuadrados.",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 9
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros del tabique dichos detrás con «que son».",
+  "fuera": []
+ },
+ {
+  "t": "Tabique de pladur para hacer un despacho en el salón, ocho metros cuadrados.",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 8
+  },
+  "lugares": {
+   "pla": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El tabique va en el salón; el despacho es lo que se saca.",
+  "fuera": []
+ },
+ {
+  "t": "en sopela tarima flotante en el salón de veinte metros y en las dos habitaciones de diez metros cada una quitando el flotante viejo y pintar esas tres estancias",
+  "debe": [
+   "flo",
+   "sue",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 40,
+   "sue": 40
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "habitaciones"
+   ],
+   "pip": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Cada una» son diez y diez: 20+10+10, repartidos por estancia; las paredes del salón son las suyas, no las de las dos habitaciones.",
+  "fuera": []
+ },
+ {
+  "t": "en getxo pintar el comedor y el pasillo paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "comedor",
+    "pasillo"
+   ],
+   "pit": [
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Paredes y techos de las dos estancias, sin medidas (una partida para las dos).",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el pasillo. Y el comedor. Y la entrada también.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo",
+    "comedor",
+    "entrada"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Las estancias sueltas detrás de «pintar» también se pintan.",
+  "fuera": []
+ },
+ {
+  "t": "Papel pintado en el dormitorio del niño, unos veinte metros de pared.",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 20
+  },
+  "lugares": {
+   "ppa": [
+    "dormitorio del niño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La estancia con su apellido.",
+  "fuera": []
+ },
+ {
+  "t": "en la habitación del niño quitar el papel y pintar",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "habitación del niño"
+   ],
+   "pip": [
+    "habitación del niño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "«Del niño» es el apellido de la habitación.",
+  "fuera": []
+ },
+ {
+  "t": "rayar el yeso tosco de las paredes y poner guardavivos en el pasillo y en el comedor",
+  "debe": [
+   "yes"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "yes": [
+    "pasillo",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "yes"
+  ],
+  "justificacion": "Los guardavivos van en la partida del rayado; en las dos estancias.",
+  "fuera": []
+ },
+ {
+  "t": "Picar el yeso de las paredes de la cocina, veinte metros cuadrados, y lucirlas de nuevo con yeso, también veinte metros.",
+  "debe": [
+   "pic",
+   "luc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 20,
+   "luc": 20
+  },
+  "lugares": {
+   "pic": [
+    "cocina"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El lucido es de esas mismas paredes de la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "Papel pintado nuevo en el comedor, una pared, nueve metros. Y quitar el papel viejo de esa pared.",
+  "debe": [
+   "ppa",
+   "qpa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 9,
+   "qpa": 9
+  },
+  "lugares": {
+   "ppa": [
+    "comedor"
+   ],
+   "qpa": [
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Esa pared» es la del comedor, la misma de nueve metros.",
+  "fuera": []
+ },
+ {
+  "t": "Pintura de las dos habitaciones, solo techos. Las paredes con papel nuevo, cuarenta metros en las dos.",
+  "debe": [
+   "pit",
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 40
+  },
+  "lugares": {
+   "pit": [
+    "habitaciones"
+   ],
+   "ppa": [
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pit"
+  ],
+  "justificacion": "«En las dos» son esas dos habitaciones; los cuarenta son del papel.",
+  "fuera": []
+ },
+ {
+  "t": "A ver, el gotelé del salón y del pasillo. Quitarlo. Y pintar.",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "El «quitarlo» y el «y pintar» van con el gotelé de las dos estancias.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar todo el piso, paredes y techos. Y en la habitación de la abuela, quitar el papel pintado.",
+  "debe": [
+   "pip",
+   "pit",
+   "qpa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "habitación de la abuela"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit",
+   "qpa"
+  ],
+  "justificacion": "«De la abuela» es el nombre de la habitación, no una persona que se quita.",
+  "fuera": []
+ },
+ {
+  "t": "hay que quitar el papel de dos habitaciones, la de invitados y la pequeña",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "habitación de invitados",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa"
+  ],
+  "justificacion": "Cada habitación por su nombre.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el gotelé del salón del comedor y de las dos habitaciones y pintarlo todo",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón",
+    "comedor",
+    "dos habitaciones"
+   ],
+   "pip": [
+    "salón",
+    "comedor",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Una lista sin el primer «y»; «pintarlo todo» es pintar esas mismas.",
+  "fuera": []
+ },
+ {
+  "t": "En el salón y el comedor quitar el gotelé y pintar paredes y techos, lo mismo en el pasillo.",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ],
+   "pip": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "«Lo mismo en el pasillo» copia los trabajos al pasillo.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el comedor y el salón paredes y techos y en el pasillo lo mismo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "comedor",
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "comedor",
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "El pasillo también se pinta.",
+  "fuera": []
+ },
+ {
+  "t": "el pasillo y el comedor falso techo de pladur y el baño también en total veinticinco metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "san",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 25
+  },
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "comedor",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Una medida para las tres: una partida con las tres, no un baño completo inventado ni los metros dos veces.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el baño no, pintar las habitaciones paredes.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "El «no» no deja un pintar suelto.",
+  "fuera": []
+ },
+ {
+  "t": "Rodapié nuevo en los dormitorios, treinta metros lineales, y pintar los dormitorios.",
+  "debe": [
+   "ron",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ron": 30
+  },
+  "lugares": {
+   "pip": [
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Los metros del rodapié no son el suelo de los dormitorios.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el papel del pasillo y luego pintarlo",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "pasillo"
+   ],
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "El papel ya tiene su verbo delante: no se le da la vuelta.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar el suelo de toda la casa quitar el flotante de sesenta metros y poner otro nuevo",
+  "debe": [
+   "sue",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "sue": 60,
+   "flo": 60
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Es el mismo suelo de toda la casa: los sesenta valen para lo nuevo.",
+  "fuera": []
+ },
+ {
+  "t": "Piso de setenta metros. En el comedor una pared con papel pintado nuevo, lo demás pintar.",
+  "debe": [
+   "ppa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "ppa": [
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "ppa"
+  ],
+  "justificacion": "El papel de una pared no mide las paredes de toda la casa.",
+  "fuera": []
+ },
+ {
+  "t": "en el dormitorio quitar el papel y solo pintar, no poner papel nuevo",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "El papel nuevo está negado.",
+  "fuera": []
+ },
+ {
+  "t": "Baño completo de cinco metros y cocina completa de diez. Falso techo en baño y cocina.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El falso techo va en los dos.",
+  "fuera": []
+ },
+ {
+  "t": "La buhardilla lleva falso techo de pladur, quince metros. Paredes de la buhardilla, rayado del yeso tosco y pintura en color.",
+  "debe": [
+   "tec",
+   "yes",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 15
+  },
+  "lugares": {
+   "tec": [
+    "buhardilla"
+   ],
+   "yes": [
+    "buhardilla"
+   ],
+   "pip": [
+    "buhardilla"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "yes",
+   "pip"
+  ],
+  "justificacion": "Todo de la buhardilla; los quince metros son del techo, no de las paredes.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el suelo de madera del salón y del pasillo (30 m²), nivelar el solado y poner flotante",
+  "debe": [
+   "sue",
+   "niv",
+   "flo"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 30,
+   "niv": 30,
+   "flo": 30
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El mismo suelo de las mismas estancias; nivelar el solado no es poner baldosa.",
+  "fuera": []
+ },
+ {
+  "t": "El salón tiene veinte metros y el pasillo seis. Pintar el salón y el pasillo, paredes y techos.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 26
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El pasillo seis» son seis metros; cada estancia con lo suyo (20+6).",
+  "fuera": []
+ },
+ {
+  "t": "Papel pintado nuevo en el salón, en una pared de once metros cuadrados.",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 11
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros de la pared van con su papel.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón quitar el gotelé, son cuarenta metros de pared, y pintar las otras paredes del piso",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 40
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Las otras paredes no miden lo que las del salón.",
+  "fuera": []
+ },
+ {
+  "t": "el trastero que lo pinten",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "trastero"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "«Que lo pinten» es pintar el trastero.",
+  "fuera": []
+ },
+ {
+  "t": "pues la señora quiere reformar el piso entero de sesenta y cinco metros y además el trastero que lo pinten",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "piso": 65
+  },
+  "cantidades": {},
+  "fuera": [],
+  "justificacion": "(Del banco AB; arreglada en la rama ag-superficies.)",
+  "sin_lugar": [],
+  "sin_medida": [],
+  "lugares": {}
+ },
+ {
+  "t": "eh bueno el baño el baño entero eh tres metros con ochenta eh sin mampara sin mampara que quiere poner una cortina y el plato de ochenta por ochenta y eh luego pintar el pasillo y el baño no el pasillo y la entrada eso paredes y es en santutxu",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8",
+   "pip"
+  ],
+  "no_debe": [
+   "mam",
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    3.8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo",
+    "entrada"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco J; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Vale, en Elorrio. Lo que quieren: las ocho puertas nuevas, rodapié nuevo de sesenta y dos metros quitando el viejo, y pintar todo el piso, paredes y techos. Y en la habitación de la abuela, quitar el papel pintado antes de pintar. Baño y cocina se quedan.",
+  "debe": [
+   "pip",
+   "pit",
+   "pub",
+   "pue",
+   "qpa",
+   "rod",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8,
+   "pue": 8,
+   "ron": 62
+  },
+  "lugares": {
+   "qpa": [
+    "habitación de la abuela"
+   ]
+  },
+  "sin_lugar": [
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "fuera": [],
+  "justificacion": "(Del banco K; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Vale Barakaldo Lutxana Tercero sin ascensor Cocina entera de ocho metros y baño entero de cinco La mampara no que pone bañera   bueno no plato pero sin mampara Pintar la cocina y el pasillo Contenedor",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc",
+   "san",
+   "pip",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "mam"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ],
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "cocina",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "En Ondarroa segundo sin ascensor Baño completo de cuatro metros Cambiar cuatro radiadores Pintar el baño no pintar los dormitorios paredes Rodapié nuevo en los dormitorios veinticuatro metros Contenedor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "rad",
+   "pip",
+   "ron",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "rad": 4,
+   "ron": 24
+  },
+  "lugares": {
+   "pip": [
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Vale apunta Portugalete cuarto sin ascensor Reforma del baño entero cuatro metros y medio con plato de ducha de ochenta por ochenta y mampara La cocina de ocho metros también entera Los sanitarios los compra ella Y en el pasillo y el salón quitar gotelé y pintar",
+  "debe": [
+   "alc",
+   "ali",
+   "coc",
+   "lija",
+   "mam",
+   "mon",
+   "pd8",
+   "pip",
+   "san",
+   "sol"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4.5
+   ],
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo",
+    "salón"
+   ],
+   "pip": [
+    "pasillo",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Te cuento lo que quieren en este de Erandio Pintar todo el piso paredes y techos que son unos setenta metros pero antes hay que quitar el papel de dos habitaciones la de matrimonio y la pequeña Y cambiar las puertas cinco no seis que la de la cocina también Lo demás no se toca",
+  "debe": [
+   "pip",
+   "pit",
+   "qpa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "habitación de matrimonio",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Lo de Romo en Getxo Cocina entera de diez metros y medio El baño no que lo hicieron hace poco Luego quitar el gotelé del salón del pasillo y de las dos habitaciones y pintarlo todo Y montar dos armarios que traen ellos",
+  "debe": [
+   "alc",
+   "ali",
+   "coc",
+   "lija",
+   "mar",
+   "pip",
+   "sol"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {
+   "cocina": [
+    10.5
+   ]
+  },
+  "cantidades": {
+   "mar": 2
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Vale en Elorrio Lo que quieren las ocho puertas nuevas rodapié nuevo de sesenta y dos metros quitando el viejo y pintar todo el piso paredes y techos Y en la habitación de la abuela quitar el papel pintado antes de pintar Baño y cocina se quedan",
+  "debe": [
+   "pip",
+   "pit",
+   "pub",
+   "pue",
+   "qpa",
+   "rod",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8,
+   "pue": 8,
+   "ron": 62
+  },
+  "lugares": {
+   "qpa": [
+    "habitación de la abuela"
+   ]
+  },
+  "sin_lugar": [
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "Bueno te digo Piso en Galdakao de setenta metros Reforma total Baño de cuatro metros Cocina de ocho Seis puertas El suelo flotante de las habitaciones del salón y del pasillo En el salón una pared con papel pintado nuevo Lo demás pintar Electricidad nueva",
+  "debe": [
+   "alc",
+   "ali",
+   "coc",
+   "ele",
+   "flo",
+   "pip",
+   "ppa",
+   "pub",
+   "pue",
+   "san",
+   "sol"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    8
+   ],
+   "piso": 70
+  },
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [
+   "pub",
+   "pue"
+  ],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "A ver en Plentzia No es integral que viven ahí La cocina de once metros entera y en el baño solo cambiar la bañera por plato de ducha de setenta por ciento diez con mampara Pintar el salón y la cocina Ni puertas ni suelos",
+  "debe": [
+   "alc",
+   "ali",
+   "coc",
+   "mam",
+   "pd7",
+   "pip",
+   "sol"
+  ],
+  "no_debe": [
+   "flo",
+   "pub"
+  ],
+  "estancias": {
+   "cocina": [
+    11
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "(Del banco JKs; arreglada en la rama ag-superficies.)",
+  "sin_medida": []
+ },
+ {
+  "t": "en getxo pintar el salón y el pasillo paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Pintura de paredes y techos de dos estancias sin medidas. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "piso en rekalde de sesenta y cinco metros reforma integral electricidad nueva calefacción con seis radiadores falso techo de pladur en el pasillo y en el baño pintar todo paredes y techos y contenedor",
+  "debe": [
+   "ele",
+   "cal",
+   "tec",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "piso": 65
+  },
+  "cantidades": {},
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "baño"
+   ]
+  },
+  "sin_lugar": [
+   "ele",
+   "cal",
+   "pip",
+   "pit",
+   "con"
+  ],
+  "sin_medida": [
+   "tec"
+  ],
+  "justificacion": "Integral de 65 m²; falso techo en dos estancias sin medida. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "en galdakao quitar el papel pintado del dormitorio principal y de la habitación de los niños y luego poner papel nuevo en la de los niños y pintar las paredes del dormitorio principal y el techo de los dos",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ],
+   "ppa": [
+    "habitación de los niños"
+   ],
+   "pip": [
+    "dormitorio principal"
+   ],
+   "pit": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "ppa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Papel y pintura repartidos entre dos dormitorios sin medidas. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "en erandio tarima flotante en el salón de veintidós metros y en los dos dormitorios de doce metros cada uno quitando el flotante viejo rodapié nuevo treinta y ocho metros lineales y pintar esas tres estancias",
+  "debe": [
+   "flo",
+   "sue",
+   "ron",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 46,
+   "sue": 46,
+   "ron": 38
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorios"
+   ],
+   "sue": [
+    "salón",
+    "dormitorios"
+   ],
+   "pip": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante 22+12+12=46 m² cambiado, rodapié 38 ml y pintura de esas estancias. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "en derio quitar el papel de todo el piso pintar paredes y techos falso techo en el pasillo de ocho metros cambiar seis puertas y rodapié cuarenta y cuatro metros lineales",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit",
+   "tec",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 8,
+   "pub": 6,
+   "pue": 6,
+   "ron": 44
+  },
+  "lugares": {
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [
+   "qpa",
+   "pip",
+   "pit",
+   "pub",
+   "pue",
+   "ron"
+  ],
+  "sin_medida": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Papel y pintura sin superficie; techo 8 m², seis puertas, rodapié 44 ml. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "En Zorrotza el cliente quiere: quitar papel pintado del salón (unos 30 m² de pared), poner papel nuevo en el dormitorio principal (12 m²) y pintar el resto del piso.",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qpa": 30,
+   "ppa": 12
+  },
+  "lugares": {
+   "qpa": [
+    "salón"
+   ],
+   "ppa": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Papel con medidas; pintura del resto sin medida. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "Habitación de los niños: quitar gotelé, pintar y papel pintado en una pared de 8 m². Dormitorio principal: pintar y montar armario del cliente. Salón: tarima flotante, 24 m². En Bilbao, Otxarkoaga.",
+  "debe": [
+   "lija",
+   "pip",
+   "ppa",
+   "mar",
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 8,
+   "mar": 1,
+   "flo": 24
+  },
+  "lugares": {
+   "lija": [
+    "habitación de los niños"
+   ],
+   "ppa": [
+    "habitación de los niños"
+   ],
+   "pip": [
+    "habitación de los niños",
+    "dormitorio principal"
+   ],
+   "mar": [
+    "dormitorio principal"
+   ],
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Trabajos por estancia; gotelé y pintura sin medida. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "En Erandio: quitar el suelo de madera del salón y los dormitorios (55 m²), nivelar el solado y poner porcelánico… no, mejor flotante. Rodapié nuevo 40 ml.",
+  "debe": [
+   "sue",
+   "niv",
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sue": 55,
+   "niv": 55,
+   "flo": 55,
+   "ron": 40
+  },
+  "lugares": {
+   "sue": [
+    "salón",
+    "dormitorios"
+   ],
+   "flo": [
+    "salón",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrige porcelánico a flotante; 55 m² y rodapié 40 ml. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "eh el papel pintado eh quitarlo del dormitorio principal y y pintar eh solo pintar no poner papel nuevo",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [
+   "ppa",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "dormitorio principal"
+   ],
+   "pip": [
+    "dormitorio principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "Quitar papel y pintar el dormitorio sin papel nuevo. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "Eh, pintar el salón. Y el pasillo. Bueno, y la entrada, que me dice ella. Sin medidas, ya las tomo.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo",
+    "entrada"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Tres estancias sin medidas. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "A ver, eh, el gotelé… del dormitorio principal y de la habitación de los niños. Quitarlo. Y pintar. Eh… y el techo no.",
+  "debe": [
+   "lija",
+   "pip"
+  ],
+  "no_debe": [
+   "pit",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ],
+   "pip": [
+    "dormitorio principal",
+    "habitación de los niños"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "lija",
+   "pip"
+  ],
+  "justificacion": "Gotelé y paredes de dos dormitorios; techos excluidos. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "Eh, papel pintado nuevo en el salón, eh, una pared, 12… 12,5 m². Y quitar el papel viejo de esa pared.",
+  "debe": [
+   "ppa",
+   "qpa"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 12.5,
+   "qpa": 12.5
+  },
+  "lugares": {
+   "ppa": [
+    "salón"
+   ],
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cambio de papel en 12,5 m² de pared. (Del banco L; arreglada en la rama ag-superficies.)",
+  "fuera": []
+ },
+ {
+  "t": "Papel pintado en el dormitorio del niño, unos 25 metros de pared.",
+  "debe": [
+   "ppa"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 25
+  },
+  "lugares": {
+   "ppa": [
+    "dormitorio del niño"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco N; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "a ver en el pasillo quitar el papel y pintar en el dormitorio principal lo mismo y en la habitación del niño solo pintar",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "pasillo",
+    "dormitorio principal"
+   ],
+   "pip": [
+    "pasillo",
+    "dormitorio principal",
+    "habitación del niño"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "qpa",
+   "pip"
+  ],
+  "justificacion": "(Del banco N; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "salón y comedor pintar paredes y techos el salón son dieciocho metros y el comedor doce y en el pasillo lo mismo pero el pasillo no sé cuánto mide",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ],
+   "pit": [
+    "salón",
+    "comedor",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco N; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "el pasillo y el salón falso techo de pladur y el baño también en total treinta metros y pintar los techos de los tres",
+  "debe": [
+   "tec",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 30
+  },
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "salón",
+    "baño"
+   ],
+   "pit": [
+    "pasillo",
+    "salón",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco N; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "eh pues a ver presupuesto para la señora miren en galdakao muy maja ella quiere pintar el salón paredes y techo y bueno el pasillo también solo paredes",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "bueno la cocina no se toca eh solo pintar el salón y las dos habitaciones paredes y techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "habitaciones"
+   ],
+   "pit": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "a ver tabique de pladur nuevo para hacer una habitación en el salón unos diez metros cuadrados de tabique y un cajón de puerta corredera",
+  "debe": [
+   "pla",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 10
+  },
+  "lugares": {
+   "pla": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "eh lijar las paredes y dejarlas con yeso a buena vista en el pasillo que tiene muchas imperfecciones",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "lija"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "eh rayar el yeso tosco de las paredes y poner guardavivos en el dormitorio y en la sala",
+  "debe": [
+   "yes"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "yes": [
+    "dormitorio",
+    "sala"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "yes"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Presupuesto para Begoña en Getxo. Pintar las paredes del salón, unos cuarenta y cinco metros cuadrados, y el techo, veinte metros.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 45,
+   "pit": 20
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Picar el yeso de las paredes de la cocina, veinticinco metros cuadrados, y lucirlas de nuevo con yeso, también veinticinco metros.",
+  "debe": [
+   "pic",
+   "luc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 25,
+   "luc": 25
+  },
+  "lugares": {
+   "pic": [
+    "cocina"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Bueno, presupuesto para Maite en Algorta. Reforma del baño completo, de cinco metros, con plato de ochenta por ochenta y mampara. En el salón y el comedor quitar el gotelé y pintar paredes y techos, lo mismo en las dos habitaciones. La cocina no se toca. Es un tercero sin ascensor.",
+  "debe": [
+   "san",
+   "fba",
+   "pd8",
+   "mam",
+   "pip",
+   "pit",
+   "mon"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor",
+    "habitaciones"
+   ],
+   "pit": [
+    "salón",
+    "comedor",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [
+   "mon"
+  ],
+  "fuera": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Bueno, en Bermeo, un cuarto sin ascensor. Cocina completa de siete metros, los muebles los trae y los monta la tienda. Calefacción nueva en todo el piso. Tres premarcos de setenta milímetros para los tabiques nuevos de pladur, que son unos doce metros cuadrados. Un contenedor normal de escombro y madera.",
+  "debe": [
+   "coc",
+   "fco",
+   "cal",
+   "pre7",
+   "pla",
+   "con",
+   "mon"
+  ],
+  "no_debe": [
+   "mco"
+  ],
+  "estancias": {
+   "cocina": [
+    7
+   ]
+  },
+  "cantidades": {
+   "pre7": 3,
+   "pla": 12
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "cal",
+   "mon"
+  ],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Bueno, en Ondarroa. Tres habitaciones con papel pintado: en las tres quitar el papel. En la del niño papel nuevo, doce metros. Las otras dos se pintan, paredes y techo. Rodapié lacado nuevo en las tres, treinta metros lineales.",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip",
+   "pit",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 12,
+   "ron": 30
+  },
+  "lugares": {
+   "qpa": [
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "qpa",
+   "pip",
+   "pit"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "En Gernika, para Nerea. Pintar el salón, paredes cincuenta metros y techo veinte. El comedor igual, pero el techo no. En el pasillo, falso techo de pladur, seis metros, y luego pintarlo.",
+  "debe": [
+   "pip",
+   "pit",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 6
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ],
+   "tec": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Vale, en Lekeitio. Calefacción nueva con radiadores en toda la casa y dos radiadores más aparte en la buhardilla. La buhardilla lleva falso techo continuo calidad Q tres, dieciocho metros. Paredes de la buhardilla, rayado del yeso tosco y pintura en color. Es un tercero sin ascensor.",
+  "debe": [
+   "cal",
+   "rad",
+   "tecq",
+   "yes",
+   "pip",
+   "mon"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2,
+   "tecq": 18
+  },
+  "lugares": {
+   "rad": [
+    "buhardilla"
+   ],
+   "tecq": [
+    "buhardilla"
+   ],
+   "yes": [
+    "buhardilla"
+   ],
+   "pip": [
+    "buhardilla"
+   ]
+  },
+  "sin_lugar": [
+   "cal",
+   "mon"
+  ],
+  "fuera": [],
+  "sin_medida": [
+   "yes",
+   "pip"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "Bueno, para Iker en Derio. El salón: quitar papel pintado, cuarenta metros de pared, y después papel nuevo en una sola pared, diez metros. Las otras paredes se pintan. El techo del salón, falso techo de pladur, veintidós metros. En la cocina lo mismo de falso techo, nueve metros. La cocina no se reforma.",
+  "debe": [
+   "qpa",
+   "ppa",
+   "pip",
+   "tec"
+  ],
+  "no_debe": [
+   "coc",
+   "fco",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "qpa": 40,
+   "ppa": 10
+  },
+  "lugares": {
+   "qpa": [
+    "salón"
+   ],
+   "ppa": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "tec": [
+    "salón",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ },
+ {
+  "t": "A ver, en Bilbao, para Mikel. Limpieza periódica durante la obra porque viven dentro con dos niños y el perro. Pintura de las tres habitaciones, solo techos. Las paredes con papel nuevo, sesenta metros en las tres. Antes, picar el yeso de una pared de la habitación grande, ocho metros.",
+  "debe": [
+   "limp",
+   "pit",
+   "ppa",
+   "pic"
+  ],
+  "no_debe": [
+   "pip",
+   "pip3"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "ppa": 60,
+   "pic": 8
+  },
+  "lugares": {
+   "pit": [
+    "habitaciones"
+   ],
+   "ppa": [
+    "habitaciones"
+   ],
+   "pic": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pit"
+  ],
+  "justificacion": "(Del banco O; arreglada en la rama ag-superficies.)"
+ }
+]
