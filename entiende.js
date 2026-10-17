@@ -2415,6 +2415,8 @@ function analizar(bruto){
   .replace(/\b(el|la|los|las)\s+((?:[a-z]+\s+){0,4}?[a-z]+)\s+se\s+(tira|quita|cambia|pinta|levanta|arranca|pica|quitan|cambian|pintan|tiran|levantan)\b/g,function(x,a,o,v){return ({tira:'tirar',tiran:'tirar',quita:'quitar',quitan:'quitar',cambia:'cambiar',cambian:'cambiar',pinta:'pintar',pintan:'pintar',levanta:'levantar',levantan:'levantar',arranca:'arrancar',pica:'picar'})[v]+' '+a+' '+o})
   .replace(/\b(?:las|los)\s+quieren\s+(?:blancas|lacadas|nuevas|nuevos|de otro color)(?:\s+(?:blancas|lacadas))?\b/g,function(x){return ' cambiar puertas '})
   .replace(/\bpremarcos?\b([^,.;]{0,40}?)\b(?:pared|tabique)\s+de\s+(?:70|setenta)(?:\s*mm|\s+milimetros)?\b/g,'premarco 70 $1')
+  /* «premarcos para pared de setenta… no, de los normales»: corregido, los premarcos normales */
+  .replace(/\bpremarco 70\b([^.;]{0,25}?)\s*[,.…]*\s*(?:no|mejor|bueno\s+no|perdona)\s*,?\s*(?:mejor\s+)?(?:de\s+)?(?:los\s+)?(?:normales|de siempre|corrientes|estandar|de toda la vida)\b/g,'premarcos $1 ')
   .replace(/\b(?:que\s+)?(?:ya\s+)?(?:estan|esta|son|llevan|lleva|tienen|tiene)\s+(?:alicatad\w*|de azulejo|con azulejo|con baldosa|baldosa|de baldosa|de lamas|de gres|de marmol)\b/g,' ');
  /* «y puertas, ¿cuántas? Siete»: siete puertas */
  t0=t0.replace(/\bpuertas[\s,¿?]*cuantas[\s,¿?]*(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\b(?!\s*(?:metros|m2|m\b))/g,function(x,n){return ' '+({dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12}[n]||n)+' puertas '});
