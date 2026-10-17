@@ -55,6 +55,8 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
  if(!(num(l.p)>0))return {t:'precio',m:'No tiene precio: escríbelo.'};
  if(l.paqId){var pk=paqDe(l.paqId);if(pk){var A=api(),P=A.PAQ&&A.PAQ[pk.tipo];
    if(pk.padre){var pd=paqDe(pk.padre);var kk=pk.tipo==='bano'?'banos':pk.tipo==='cocina'?'cocina':'';if(pd&&kk&&!(pd.hechas&&pd.hechas[kk])&&!pd.okTodo)return {t:'pregunta',pk:pd.id,k:kk}}
+   /* el plato que se dijo sin su medida: se pregunta su medida aunque falte decir si la estancia es entera (si no lo es, el plato se queda igual) */
+   if(pk.blando&&!pk.okEntero&&l.elige&&ELIGE[l.elige]&&!l.okElige&&(pk.dichos||[]).indexOf(id)>-1)return {t:l.elige,m:ELIGE[l.elige].m};
    if(pk.blando&&!pk.okEntero)return {t:'entero',pk:pk.id};
    if(usaMetros(l)&&!(pk.suelo>0))return {t:'medidaPaq',pk:pk.id,m:'Faltan los metros '+delPaq(pk)+'.'};
    if(usaMetros(l)&&pk.calculado&&!pk.okMed)return {t:'medidaCalc',pk:pk.id,v:pk.suelo};
@@ -93,7 +95,7 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
   if(q.ops)h+=q.ops.map(function(o){return '<button '+b+' onclick="pendResp(\''+pk.id+'\',\''+p.k+'\','+esc(JSON.stringify(o[0]))+')">'+esc(o[1])+'</button>'}).join('');
   else h+='<input id="pn_'+pk.id+'_'+p.k+'" inputmode="numeric" style="width:70px;font-size:16px" value="'+esc(pk.r[p.k])+'"> <button '+b+' onclick="pendNum(\''+pk.id+'\',\''+p.k+'\')">Vale</button>';
   if(pk.tipo!=='piso')h+='<button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendTodo(\''+pk.id+'\')">Todo lo '+esc(delPaq(pk))+' está bien</button>'}
- else if(p.t==='entero'){var pk3=paqDe(p.pk);h='<b>Has nombrado '+esc(nomPaq(pk3))+', pero no has dicho que se reforme entero.</b> ¿Lo reformo entero?<br><button '+b+' onclick="pendEntero(\''+p.pk+'\',1)">Sí, entero</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendEntero(\''+p.pk+'\',0)">No, quítalo</button>'}
+ else if(p.t==='entero'){var pk3=paqDe(p.pk);h='<b>Has nombrado '+esc(nomPaq(pk3))+', pero no has dicho que se reforme entero.</b> ¿Lo reformo entero?<br><button '+b+' onclick="pendEntero(\''+p.pk+'\',1)">Sí, entero</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendEntero(\''+p.pk+'\',0)">'+(pk3&&pk3.dichos&&pk3.dichos.length?'No, solo lo dicho':'No, quítalo')+'</button>'}
  else if(p.t==='medidaPaq'){h='<b>'+esc(p.m)+'</b> <input id="pmx_'+p.pk+'" inputmode="decimal" placeholder="m² o 3x2" style="width:90px;font-size:16px"> <button '+b+' onclick="pendMed(\''+p.pk+'\')">Vale</button>'}
  else if(p.t==='medidaCalc'){var pk2=paqDe(p.pk);h='<b>Los metros '+esc(delPaq(pk2))+' los he calculado yo ('+String(p.v).replace('.',',')+' m²).</b> <input id="pmx_'+p.pk+'" inputmode="decimal" placeholder="m² de verdad" style="width:90px;font-size:16px"> <button '+b+' onclick="pendMed(\''+p.pk+'\')">Poner</button><button '+b+' onclick="pendMedOk(\''+p.pk+'\')">Son esos</button>'}
  else if(p.t==='medida'){h='<b>'+esc(p.m)+'</b>'}
@@ -130,7 +132,9 @@ window.pendResp=function(id,k,v){if(window.paqResp)paqResp(id,k,v);else{var pk=p
 window.pendNum=function(id,k){var i=document.getElementById('pn_'+id+'_'+k),v=parseInt(String(i&&i.value||'').replace(/\D/g,''),10);if(!(v>=0)){if(i)i.focus();return}pendResp(id,k,v)};
 window.pendTodo=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;pk.okTodo=1;pk.hechas=pk.hechas||{};var P=api().PAQ[pk.tipo];(P.preg||[]).forEach(function(q){pk.hechas[q.k]=1});if(pk.calculado)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
 window.pendMed=function(id){var i=document.getElementById('pmx_'+id),pk=paqDe(id);if(!pk||!i)return;var v=normT(i.value||'');var m=api().medidaTrozo(/\d\s*(x|por)\s*\d/.test(v)?v:v+' metros');if(!(m.suelo>0)){i.style.borderColor='#B3261E';i.focus();return}try{leer()}catch(_){}pk.suelo=m.suelo;pk.perim=m.perim;if(m.alto)pk.alto=m.alto;delete pk.calculado;api().rehacer(pk,true);if(pk.padre){var pd=paqDe(pk.padre);if(pd)api().rehacer(pd,true)}despues()};
-window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;if(si){pk.okEntero=1;delete pk.blando}else{cur.lineas=cur.lineas.filter(function(l){return l.paqId!==id});cur.paqs=(cur.paqs||[]).filter(function(x){return x!==pk})}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta()}catch(_){}};
+/* «No»: la estancia no se hace entera; lo que se dijo de ella (el plato, el alicatado…) se queda, suelto en esa estancia */
+function dichoEnt(pk,l){var D=pk.dichos||[],t=l.tid||'';if(t==='alc'||t==='alsm')return D.indexOf(/en el suelo/.test(String(l.d||''))?'alc-suelo':'alc-paredes')>-1;if(!t)return D.indexOf('banera')>-1&&/bañera/i.test(String(l.d||''));return D.indexOf(t)>-1}
+window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)return;if(si){pk.okEntero=1;delete pk.blando}else{cur.lineas.forEach(function(l){if(l.paqId===id&&dichoEnt(pk,l)){delete l.paqId;delete l.paquete;if(/^(alc|alsm)$/.test(l.tid||'')&&!/en el suelo/.test(String(l.d||''))&&!(pk.r&&pk.r.paredM>0)){l.calc=1;l.calcDe='las paredes, calculadas con el suelo de la estancia'}}});cur.lineas=cur.lineas.filter(function(l){return l.paqId!==id});cur.paqs=(cur.paqs||[]).filter(function(x){return x!==pk})}renderLineas();try{autoGuardar()}catch(_){}try{api().pintarTarjeta()}catch(_){}};
 window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
 window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1;delete l.calc}renderLineas();try{autoGuardar()}catch(_){}};
 /* la respuesta cambia solo esa partida (alc ↔ alsm, pd7 ↔ pd8): misma cantidad y misma estancia */
