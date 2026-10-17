@@ -55,7 +55,7 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
   return null}
  if(l.adiv&&!l.ok)return {t:'adiv',m:'Has dicho «'+(l.adivTxt||'')+'»: no lo tengo con esas palabras en la tarifa. ¿Es esta partida?'};
  if(usaMetros(l)&&!(num(l.q)>1)&&!l.okQ)return {t:'medida',m:'No has dicho cuántos '+(l.u==='ml'?'metros lineales':'metros')+' son: escríbelos.'};
- if(usaMetros(l)&&l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo con los del suelo: ¿valen?'};
+ if(usaMetros(l)&&l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo'+(l.calcDe?' ('+l.calcDe+')':' con los del suelo')+': ¿valen?'};
  /* dos partidas de la tarifa para lo mismo y el dictado no dijo cuál: se pregunta (después de los metros, que se vacían si no se dijeron) */
  if(l.elige&&ELIGE[l.elige]&&!l.okElige)return {t:l.elige,m:ELIGE[l.elige].m};
  if(l.cuantas&&!l.okQ)return {t:'cuantas',m:'No has dicho cuántas son ('+num(l.q)+'): ¿es '+(num(l.q)===1?'una sola':'esa cantidad')+'?'};
