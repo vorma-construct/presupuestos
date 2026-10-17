@@ -29,7 +29,7 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
  /* las mismas medidas en 3 o más estancias */
  var g={};L.forEach(function(l){if(l.okPortero||l.u!=='m2'||!(num(l.q)>0))return;var lu=lugar(l.d);if(!lu)return;var k=nrm(base(l.d)).slice(0,50)+'|'+num(l.q);(g[k]=g[k]||[]).push(l)});
  var vistos={};Object.keys(g).forEach(function(k){var ls=g[k],lus={};ls.forEach(function(l){lus[lugar(l.d)]=1});var n=Object.keys(lus);if(n.length<3)return;
-  var tipos={};n.forEach(function(x){tipos[nrm(x).replace(/\s*\d+$/,'').trim()]=1});if(Object.keys(tipos).length<2)return;/* «tres habitaciones de 12 metros» sí son iguales: solo salta si se repite en estancias de distinto tipo */
+  var tipos={};n.forEach(function(x){tipos[nrm(x).replace(/\s*\d+$/,'').replace(/^(otro|otra|segundo|segunda|tercer|tercero|tercera|el|la)\s+/,'').replace(/\s+(de arriba|de abajo|grande|pequeno|pequena|principal)$/,'').trim()]=1});if(Object.keys(tipos).length<2)return;/* «tres habitaciones de 12 metros» sí son iguales: solo salta si se repite en estancias de distinto tipo */
   var clave=n.sort().join('|');if(vistos[clave])return;vistos[clave]=1;
   /* todas las líneas de esas estancias que tienen esa misma medida u otra repetida igual */
   var todas=L.filter(function(l){return l.u==='m2'&&n.indexOf(lugar(l.d))>-1&&!l.okPortero});
