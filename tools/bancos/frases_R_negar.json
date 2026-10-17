@@ -1,0 +1,1939 @@
+[
+ {
+  "t": "quitar el gotele del salon de veinte metros, el pasillo no",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo se niega: solo el lijado del salón con sus metros (calculados de paredes).",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "quitar el gotele del salon de veinte metros"
+ },
+ {
+  "t": "Quitar el gotelé del salón de 20 m², el pasillo no.",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con cifras, tildes y punto.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "quitar el gotelé del salón de 20 metros"
+ },
+ {
+  "t": "quitar el gotele del salon de veinte metros el pasillo no",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "quitar el gotele del salon de veinte metros"
+ },
+ {
+  "t": "pintar el salon y el pasillo, el dormitorio no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "El dormitorio no se pinta.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon y el pasillo"
+ },
+ {
+  "t": "Pintar el salón y el pasillo. El dormitorio no.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos y mayúsculas.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon y el pasillo"
+ },
+ {
+  "t": "pintar el salon de veinte metros y el pasillo de ocho, el dormitorio no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con metros: salón y pasillo con los suyos, nada del dormitorio.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon de veinte metros y el pasillo de ocho"
+ },
+ {
+  "t": "pintar el salon, el dormitorio no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Una estancia y la negada.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "poner flotante en el salon, en el pasillo no",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Flotante solo en el salón.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "poner flotante en el salon"
+ },
+ {
+  "t": "poner flotante en el salon y en el pasillo, en el pasillo no",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo nombrado y luego negado: fuera.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "poner flotante en el salon"
+ },
+ {
+  "t": "quitar el gotele del salon, el pasillo no",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lijado solo del salón.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "quitar el gotele del salon"
+ },
+ {
+  "t": "pintar el salon. el dormitorio no hace falta",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«no hace falta» tras punto.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon, el dormitorio no hace falta",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con coma.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon y el comedor, bueno el comedor no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección: el comedor fuera, el salón se queda.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon y el comedor bueno el comedor no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon y el dormitorio, el dormitorio tampoco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«tampoco» también niega.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon de veinte metros y el dormitorio de doce, el techo del salon no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin el techo del salón: paredes del salón (calculadas) y paredes y techo del dormitorio.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "igual_que": "pintar las paredes del salon de veinte metros. pintar el dormitorio de doce metros"
+ },
+ {
+  "t": "Pintar el salón de 20 m² y el dormitorio de 12 m². El techo del salón no.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con cifras y punto.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "igual_que": "pintar las paredes del salon de veinte metros. pintar el dormitorio de doce metros"
+ },
+ {
+  "t": "pintar el salon y el pasillo, el techo del pasillo no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Sin metros: el pasillo solo paredes.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "pintar el salon de veinte metros y el dormitorio de doce, las paredes del dormitorio no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Del dormitorio solo el techo.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon de veinte metros. pintar los techos del dormitorio de doce metros"
+ },
+ {
+  "t": "alicatar la cocina pero el suelo no",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "fco",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "alc"
+  ],
+  "justificacion": "Solo las paredes de la cocina.",
+  "fuera": [],
+  "igual_que": "alicatar las paredes de la cocina"
+ },
+ {
+  "t": "alicatar la cocina, pero el suelo no",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "mco",
+   "fco",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [
+   "alc"
+  ],
+  "justificacion": "Igual con coma.",
+  "fuera": [],
+  "igual_que": "alicatar las paredes de la cocina"
+ },
+ {
+  "t": "el piso son ochenta metros, pintar todo menos el baño",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "La casa menos el baño: metros calculados, a confirmar (los del baño no se saben).",
+  "fuera": [],
+  "igual_que": "el piso son ochenta metros, pintar todo",
+  "pregunta": {
+   "pip": "calc",
+   "pit": "calc"
+  }
+ },
+ {
+  "t": "Pintar toda la casa menos el baño y la cocina. La casa son 90 m².",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san",
+   "sol",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de la casa al final: valen igual; ni baño ni cocina como partidas.",
+  "fuera": [],
+  "igual_que": "la casa son noventa metros, pintar toda la casa",
+  "pregunta": {
+   "pip": "calc",
+   "pit": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa menos el baño y la cocina, la casa son noventa metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san",
+   "sol",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Sin puntos.",
+  "fuera": [],
+  "igual_que": "la casa son noventa metros, pintar toda la casa",
+  "pregunta": {
+   "pip": "calc",
+   "pit": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa menos la cocina",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Sin metros: la casa sin la cocina, metros por decir.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar seis radiadores menos el del baño",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "rad"
+  ],
+  "sin_medida": [],
+  "justificacion": "Seis menos uno: cinco, de la casa (no del baño).",
+  "fuera": [],
+  "igual_que": "cambiar cinco radiadores"
+ },
+ {
+  "t": "Cambiar 6 radiadores, menos el del baño.",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "rad"
+  ],
+  "sin_medida": [],
+  "justificacion": "Con cifras.",
+  "fuera": [],
+  "igual_que": "cambiar cinco radiadores"
+ },
+ {
+  "t": "eh pues siete puertas nuevas menos dos que se aprovechan",
+  "debe": [
+   "pub",
+   "pue",
+   "recp",
+   "puer"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5,
+   "recp": 2,
+   "puer": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco nuevas y dos que se recuperan.",
+  "fuera": [],
+  "igual_que": "siete puertas, cinco nuevas y dos se recuperan"
+ },
+ {
+  "t": "Siete puertas nuevas, menos dos que se recuperan.",
+  "debe": [
+   "pub",
+   "pue",
+   "recp",
+   "puer"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5,
+   "recp": 2,
+   "puer": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con puntuación.",
+  "fuera": [],
+  "igual_que": "siete puertas, cinco nuevas y dos se recuperan"
+ },
+ {
+  "t": "a ver en el baño de cuatro metros cambiar todo menos el inodoro y en la cocina solo pintar",
+  "debe": [
+   "ali",
+   "sol",
+   "alc",
+   "fba",
+   "pip"
+  ],
+  "no_debe": [
+   "san",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baño entero de 4 sin los sanitarios; la cocina, solo pintar (sin metros).",
+  "fuera": [],
+  "igual_que": "baño completo de cuatro metros menos el inodoro y en la cocina solo pintar"
+ },
+ {
+  "t": "En el baño de 4 m² cambiar todo menos el inodoro.",
+  "debe": [
+   "ali",
+   "sol",
+   "alc",
+   "fba"
+  ],
+  "no_debe": [
+   "san",
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo el baño.",
+  "fuera": [],
+  "igual_que": "baño completo de cuatro metros menos el inodoro"
+ },
+ {
+  "t": "reforma del baño de cuatro metros, no la cocina no se toca",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "fba"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El baño entero de 4; la cocina no.",
+  "fuera": [],
+  "igual_que": "reforma del baño de cuatro metros"
+ },
+ {
+  "t": "Reforma del baño de 4 m². No, la cocina no se toca.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "fba"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con puntos.",
+  "fuera": [],
+  "igual_que": "reforma del baño de cuatro metros"
+ },
+ {
+  "t": "el baño completo no, solo cambiar el inodoro",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "alc",
+   "fba",
+   "coc",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "No es el baño entero: solo el inodoro (sin obra de baño).",
+  "fuera": [],
+  "igual_que": "cambiar el inodoro"
+ },
+ {
+  "t": "el baño completo no, solo cambiar la mampara",
+  "debe": [
+   "mam"
+  ],
+  "no_debe": [
+   "ali",
+   "sol",
+   "alc",
+   "fba",
+   "coc",
+   "mco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo la mampara del baño.",
+  "fuera": [],
+  "igual_que": "cambiar la mampara del baño"
+ },
+ {
+  "t": "quitar el papel del salon, no hay que pintar",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "qpa"
+  ],
+  "justificacion": "Solo quitar el papel.",
+  "fuera": [],
+  "igual_que": "quitar el papel del salon"
+ },
+ {
+  "t": "Quitar el papel del salón de 18 m², no hace falta pintar.",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con metros: solo el papel.",
+  "fuera": [],
+  "igual_que": "quitar el papel del salon de dieciocho metros"
+ },
+ {
+  "t": "el pasillo no lleva tarima, solo pintar, ocho metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "flo",
+   "sue",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo pintar el pasillo de 8.",
+  "fuera": [],
+  "igual_que": "pintar el pasillo de ocho metros"
+ },
+ {
+  "t": "El pasillo no lleva tarima, solo pintar. Ocho metros.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "flo",
+   "sue",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos.",
+  "fuera": [],
+  "igual_que": "pintar el pasillo de ocho metros"
+ },
+ {
+  "t": "quitar gotele y pintar en el salon y en el pasillo, en el pasillo no hace falta quitar gotele",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "En el pasillo solo pintar.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "en el salon quitar gotele y pintar. en el pasillo pintar"
+ },
+ {
+  "t": "quitar gotele y pintar en el salon de veinte metros y en el pasillo de ocho, en el pasillo no hace falta quitar el gotele",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con metros.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "en el salon de veinte metros quitar gotele y pintar. en el pasillo de ocho metros pintar"
+ },
+ {
+  "t": "poner tarima y rodapie en el salon y en el pasillo, el pasillo no lleva tarima",
+  "debe": [
+   "flo",
+   "ron"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón"
+   ],
+   "ron": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo, solo rodapié.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "en el salon poner tarima y rodapie. en el pasillo poner rodapie"
+ },
+ {
+  "t": "solo pintar el salon de veinte metros, no poner papel en el dormitorio",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "ppa",
+   "qpa",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El dormitorio no se toca: solo el salón.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "solo pintar el salon de veinte metros"
+ },
+ {
+  "t": "quitar el gotele del salon, bueno, del salon no, del pasillo",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corregido: el pasillo en vez del salón.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "igual_que": "quitar el gotele del pasillo"
+ },
+ {
+  "t": "quitar el gotele del salon bueno del salon no del pasillo",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "igual_que": "quitar el gotele del pasillo"
+ },
+ {
+  "t": "pintar el pasillo, no espera, el pasillo ya esta pintado, pintar el salon",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo ya está pintado: solo el salón.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ],
+   "pit": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon no el comedor",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin pausa no se sabe si es «el salón, y el comedor no» o «el comedor en vez del salón»: sale el salón con la pregunta.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "pregunta": {
+   "pip": "duda",
+   "pit": "duda"
+  }
+ },
+ {
+  "t": "pintar el dormitorio no el salon",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual al revés.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "pregunta": {
+   "pip": "duda",
+   "pit": "duda"
+  }
+ },
+ {
+  "t": "pintar el salon, no el comedor",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con la pausa es una negación: el salón, sin pregunta.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "igual_que": "pintar el salon",
+  "sin_pregunta": [
+   "duda"
+  ]
+ },
+ {
+  "t": "pintar el salon y el pasillo el dormitorio no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas: el dormitorio fuera, el salón y el pasillo se quedan.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon y el pasillo"
+ },
+ {
+  "t": "pintar el salon de veinte metros y el dormitorio de doce el techo del salon no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas, la parte negada.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "igual_que": "pintar las paredes del salon de veinte metros. pintar el dormitorio de doce metros"
+ },
+ {
+  "t": "pintar el salon y el pasillo las paredes del pasillo no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas: del pasillo solo el techo.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "quitar el papel del salon no hay que pintar",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas: solo quitar el papel.",
+  "fuera": [],
+  "igual_que": "quitar el papel del salon"
+ },
+ {
+  "t": "pintar el salon el dormitorio no hace falta",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "poner flotante en el salon en el pasillo no",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "poner flotante en el salon"
+ },
+ {
+  "t": "el pasillo no lleva tarima solo pintar ocho metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "flo",
+   "sue",
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin comas: solo pintar el pasillo de 8.",
+  "fuera": [],
+  "igual_que": "pintar el pasillo de ocho metros"
+ },
+ {
+  "t": "pintar el salon y el comedor y el pasillo, el comedor no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El de en medio de la lista, fuera.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "comedor"
+   ],
+   "pit": [
+    "comedor"
+   ]
+  },
+  "igual_que": "pintar el salon y el pasillo"
+ },
+ {
+  "t": "quitar el gotele del salon y del pasillo, el salon no",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El primero de la lista, fuera.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "igual_que": "quitar el gotele del pasillo"
+ },
+ {
+  "t": "pintar la habitacion y el salon, la habitacion no",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Femenino.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "habitación"
+   ],
+   "pit": [
+    "habitación"
+   ]
+  },
+  "igual_que": "pintar el salon"
+ },
+ {
+  "t": "pintar el salon y el pasillo y cambiar seis radiadores, el pasillo no",
+  "debe": [
+   "pip",
+   "pit",
+   "rad"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La negación no se lleva lo de los radiadores.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ],
+   "pit": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "reforma del baño de cinco metros y medio pero el alicatado lo dejamos",
+  "debe": [
+   "sol",
+   "alc",
+   "fba"
+  ],
+  "no_debe": [
+   "ali",
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    5.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El alicatado de las paredes no; el suelo se levanta y se pone nuevo, con la pregunta de si también se queda.",
+  "fuera": [],
+  "pregunta": {
+   "sol": "duda",
+   "alc": "duda"
+  }
+ },
+ {
+  "t": "Reforma del baño de 5,5 m², pero el alicatado lo dejamos.",
+  "debe": [
+   "sol",
+   "alc",
+   "fba"
+  ],
+  "no_debe": [
+   "ali",
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    5.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con cifras.",
+  "fuera": [],
+  "pregunta": {
+   "sol": "duda",
+   "alc": "duda"
+  }
+ },
+ {
+  "t": "reforma del baño de cinco metros y medio, el alicatado y el suelo se quedan",
+  "debe": [
+   "fba",
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "alc",
+   "sol",
+   "coc",
+   "mco"
+  ],
+  "estancias": {
+   "bano": [
+    5.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Ni alicatado ni suelo: sin pregunta.",
+  "fuera": [],
+  "sin_pregunta": [
+   "duda"
+  ]
+ },
+ {
+  "t": "Pintar toda la casa, 80 m², menos la cocina.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros en medio: son de la casa; paredes calculadas (no los 80 como paredes), todo a confirmar por la cocina.",
+  "fuera": [],
+  "igual_que": "la casa son ochenta metros, pintar toda la casa",
+  "pregunta": {
+   "pip": "calc",
+   "pit": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa de noventa metros menos el baño y la cocina",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [
+   "coc",
+   "mco",
+   "fco",
+   "alc",
+   "san",
+   "sol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Sin comas.",
+  "fuera": [],
+  "igual_que": "la casa son noventa metros, pintar toda la casa",
+  "pregunta": {
+   "pip": "calc",
+   "pit": "calc"
+  }
+ }
+]
