@@ -601,14 +601,17 @@
   "estancias": {},
   "cantidades": {
    "pub": 7,
-   "pip": 70,
+   "pip": 189,
    "pit": 70
   },
   "lugares": {},
   "sin_lugar": [],
   "sin_medida": [],
-  "justificacion": "La corrección de puertas no borra la pintura.",
-  "fuera": []
+  "justificacion": "La corrección de puertas no borra la pintura. Los 70 metros son los de la casa (suelo): el techo 70 y las paredes calculadas (unos 189 m², a confirmar), como «pintar la casa entera de 70 metros»; antes salía pip 70 porque «todo el pisode 70» quedaba pegado y no se veía la casa.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
  },
  {
   "t": "pintar el salón, no, el dormitorio, 30 metros de pared",
@@ -1089,14 +1092,17 @@
   "no_debe": [],
   "estancias": {},
   "cantidades": {
-   "pip": 75,
+   "pip": 202.5,
    "pit": 75
   },
   "lugares": {},
   "sin_lugar": [],
   "sin_medida": [],
-  "justificacion": "",
-  "fuera": []
+  "justificacion": "Vale el 75 corregido; son los metros de la casa: techo 75 y paredes calculadas (202,5 m², a confirmar), no 75 m² de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
  },
  {
   "t": "en la cocina, alicatar 20 metros, no, mejor lucir las paredes, 20 metros",

@@ -1,0 +1,1955 @@
+[
+ {
+  "t": "pintar la habitación grande cuarenta metros de pared y la pequeña treinta",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 70
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la habitacion grande 40 metros de pared y la pequeña 30",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 70
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar la habitación grande, cuarenta metros de pared, y la pequeña, treinta.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 70
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la habitacion grande 40 m2 de pared y la pequeña 30",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 70
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el dormitorio principal treinta y cinco metros de paredes y el pequeño veinticinco",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio principal",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el dormitorio grande 30 metros de pared y el pequeño 22",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 52
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio grande",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón y el pasillo, el salón cuarenta metros de pared y el pasillo veinte",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón cuarenta metros de pared y el pasillo veinte",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el salón cuarenta metros de pared, y el pasillo, veinte.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón 40,5 metros de pared y el pasillo 20",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60.5
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "en el salón pintar cuarenta metros de pared y en el pasillo veinte",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "pintar las paredes del salón cuarenta metros y las del pasillo veinte",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Cada metro en su estancia (40 salón, 20 pasillo).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el despacho veinte metros de paredes y el vestidor doce",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 32
+  },
+  "lugares": {
+   "pip": [
+    "despacho",
+    "vestidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "lijar y pintar el salón cincuenta metros de paredes y el comedor treinta",
+  "debe": [
+   "pip",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80,
+   "lija": 80
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor"
+   ],
+   "lija": [
+    "salón",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde. Los dos trabajos van a las dos estancias.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón y el comedor, el salón treinta metros de pared y el comedor veinticinco",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 55
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la habitación grande cuarenta metros de pared y la pequeña lo mismo",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80
+  },
+  "lugares": {
+   "pip": [
+    "habitación grande",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La pequeña lo mismo» detrás de una estancia del mismo tipo con sus metros de pared: lo mismo, también los metros (40 + 40).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón treinta y cinco metros de pared y el techo dieciocho",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 35,
+   "pit": 18
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Pared y techo de la misma estancia, cada uno con sus metros.",
+  "fuera": []
+ },
+ {
+  "t": "salón 22 m2, habitación 13 m2, habitación 10,5 m2, todo suelo flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "2 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "salon 20 m2, dormitorio 12 m2, dormitorio 9 m2, todo tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 41
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "salón 25 m2, habitación 12 m2, habitación 9 m2, habitación 8 m2, todo tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 54
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "Salón de 22 metros, habitación de 13, habitación de 10,5. Todo suelo flotante.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "2 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "tarima flotante: salón veinticinco metros, dormitorio doce, dormitorio diez",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 47
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "el pasillo seis metros de suelo flotante y el recibidor cuatro",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 10
+  },
+  "lugares": {
+   "flo": [
+    "pasillo",
+    "recibidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El pasillo 6 metros de suelo flotante y el recibidor 4»: el recibidor lleva el mismo suelo con sus metros (no se pierde).",
+  "fuera": []
+ },
+ {
+  "t": "el pasillo 6 metros de suelo flotante y el recibidor 4",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 10
+  },
+  "lugares": {
+   "flo": [
+    "pasillo",
+    "recibidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El pasillo 6 metros de suelo flotante y el recibidor 4»: el recibidor lleva el mismo suelo con sus metros (no se pierde).",
+  "fuera": []
+ },
+ {
+  "t": "el salon 24 metros de suelo flotante y el pasillo 7",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 31
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El pasillo 6 metros de suelo flotante y el recibidor 4»: el recibidor lleva el mismo suelo con sus metros (no se pierde).",
+  "fuera": []
+ },
+ {
+  "t": "poner tarima en el salón veinte metros y en el pasillo ocho",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 28
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El pasillo 6 metros de suelo flotante y el recibidor 4»: el recibidor lleva el mismo suelo con sus metros (no se pierde).",
+  "fuera": []
+ },
+ {
+  "t": "el salón son veinte metros de suelo, ponemos flotante, y las paredes cuarenta metros pintar",
+  "debe": [
+   "flo",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20,
+   "pip": 40
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Suelo 20 (flotante) y paredes 40 (pintar, dicho detrás): sin línea suelta ni paredes calculadas.",
+  "fuera": []
+ },
+ {
+  "t": "quitar gotele y pintar habitaciones, una de doce, otra de diez y otra de nueve metros",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3,
+   "lija": 96.3
+  },
+  "lugares": {
+   "lija": [
+    "3 habitaciones"
+   ],
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc",
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "quitar gotele y pintar tres habitaciones de doce, diez y nueve metros",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3,
+   "lija": 96.3
+  },
+  "lugares": {
+   "lija": [
+    "3 habitaciones"
+   ],
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc",
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "pintar tres habitaciones, la primera de doce metros, la segunda de diez y la tercera de nueve",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3
+  },
+  "lugares": {
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar tres habitaciones la primera de 12 metros la segunda de 10 y la tercera de 9",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3
+  },
+  "lugares": {
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar las habitaciones: doce, diez y nueve metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3
+  },
+  "lugares": {
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar una habitación de doce metros, otra de diez y otra de nueve",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 31,
+   "pip": 96.3
+  },
+  "lugares": {
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "poner flotante en dos dormitorios, uno de doce y otro de diez metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 22
+  },
+  "lugares": {
+   "flo": [
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en las habitaciones: catorce, once y nueve con cinco metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 34.5
+  },
+  "lugares": {
+   "flo": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde. «Nueve con cinco» es 9,5.",
+  "fuera": []
+ },
+ {
+  "t": "pintar dos habitaciones, una de catorce y otra de once metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pip": [
+    "2 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "quitar gotelé y pintar dormitorios, uno de catorce, otro de doce y otro de diez metros",
+  "debe": [
+   "lija",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 36
+  },
+  "lugares": {
+   "pip": [
+    "3 dormitorios"
+   ],
+   "lija": [
+    "3 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc",
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "pintar cuatro habitaciones, la primera de 14, la segunda de 12, la tercera de 10 y la cuarta de 8 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 44
+  },
+  "lugares": {
+   "pip": [
+    "4 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar los dormitorios: catorce y once metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pip": [
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la habitación de doce metros y la otra habitación lo mismo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 24
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La otra habitación lo mismo» tras una habitación con sus metros: la otra, igual (también los metros): dos habitaciones.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la habitación de once metros y la otra lo mismo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 22
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La otra habitación lo mismo» tras una habitación con sus metros: la otra, igual (también los metros): dos habitaciones.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar el dormitorio de doce metros y el otro dormitorio lo mismo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 24
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La otra habitación lo mismo» tras una habitación con sus metros: la otra, igual (también los metros): dos habitaciones.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la habitación de doce metros, y la otra habitación, lo mismo.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 24
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La otra habitación lo mismo» tras una habitación con sus metros: la otra, igual (también los metros): dos habitaciones.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la casa entera, son ochenta metros de suelo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 80,
+   "pip": 216.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa, ochenta metros cuadrados",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 80,
+   "pip": 216.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa de ochenta metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 80,
+   "pip": 216.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa que son 80 m2 de suelo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 80,
+   "pip": 216.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar el piso entero, tiene noventa metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 90,
+   "pip": 243.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la vivienda, noventa y cinco metros cuadrados",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 95,
+   "pip": 256.5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la casa entera, que tiene cien metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 100,
+   "pip": 270.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar toda la casa, cien metros cuadrados de suelo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 100,
+   "pip": 270.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar el piso entero que mide setenta y cinco metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 75,
+   "pip": 202.5
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar todas las paredes de la casa menos las del baño, unos ciento diez metros, y los techos cuarenta y cinco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 110,
+   "pit": 45
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Las paredes de la casa sin las del baño, con sus 110 metros dichos, y los techos 45: no es «pintar el baño».",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "baño"
+   ]
+  }
+ },
+ {
+  "t": "pintar toda la casa que son 180 m2 de paredes y 60 de techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 180,
+   "pit": 60
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Paredes 180 y techos 60, cada uno lo suyo (el 180 no es el suelo de la casa).",
+  "fuera": []
+ },
+ {
+  "t": "pintar toda la casa, ciento ochenta metros de paredes y sesenta de techos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 180,
+   "pit": 60
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Paredes 180 y techos 60, cada uno lo suyo (el 180 no es el suelo de la casa).",
+  "fuera": []
+ },
+ {
+  "t": "pintar toda la casa que son 180 m2 de paredes",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 180
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Paredes 180; los techos de toda la casa también, sin sus metros: se preguntan.",
+  "fuera": [],
+  "pregunta": {
+   "pit": "medida"
+  }
+ },
+ {
+  "t": "habitación de doce metros pintar paredes treinta metros techo doce",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 30,
+   "pit": 12
+  },
+  "lugares": {
+   "pip": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros dichos de las paredes (30) mandan sobre los calculados con el suelo.",
+  "fuera": []
+ },
+ {
+  "t": "en el dormitorio de 14 metros pintar paredes 36 metros y techo 14",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 36,
+   "pit": 14
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros dichos de las paredes (36) mandan sobre los calculados con el suelo.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón de veinticinco metros de suelo y la cocina de nueve",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La cocina de nueve» tras «veinticinco metros de suelo»: también de suelo; sus paredes, calculadas (30), a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar el salón de veinte metros cuadrados de suelo y el pasillo de seis",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 26
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los dos de suelo; paredes calculadas a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar paredes treinta y dos con cinco metros",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 32.5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Treinta y dos con cinco» es 32,5.",
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes cuarenta y uno con cinco metros",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 41.5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Treinta y dos con cinco» es 32,5.",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el salón de 20,5 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20.5
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los decimales no se cortan (antes salía 20 o 11, calculado).",
+  "fuera": [],
+  "sin_pregunta": [
+   "calc"
+  ]
+ },
+ {
+  "t": "poner suelo flotante en el dormitorio de 11,5 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 11.5
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los decimales no se cortan (antes salía 20 o 11, calculado).",
+  "fuera": [],
+  "sin_pregunta": [
+   "calc"
+  ]
+ },
+ {
+  "t": "falso techo en el baño y la cocina, cuatro y nueve metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 13
+  },
+  "lugares": {
+   "tec": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Falso techo en el baño y la cocina, cuatro y nueve metros»: cada número, por orden, de cada estancia.",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "falso techo en el pasillo y en el baño, seis y cuatro metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 10
+  },
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Falso techo en el baño y la cocina, cuatro y nueve metros»: cada número, por orden, de cada estancia.",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "poner falso techo en el baño y en la cocina, cinco y diez metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 15
+  },
+  "lugares": {
+   "tec": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Falso techo en el baño y la cocina, cuatro y nueve metros»: cada número, por orden, de cada estancia.",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "falso techo en la cocina y en el baño, ocho y cinco metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 13
+  },
+  "lugares": {
+   "tec": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Falso techo en el baño y la cocina, cuatro y nueve metros»: cada número, por orden, de cada estancia.",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "quitar gotelé en el salón 45 metros, en el pasillo 18 y en las tres habitaciones 90",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 153
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo",
+    "tres habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los 90 son de las tres habitaciones juntas (no se pierden).",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "tres habitaciones de doce metros cada una, suelo flotante",
+  "debe": [
+   "flo",
+   "ron"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 36
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El rodapié sale del suelo (no se ha medido): calculado, a confirmar (no en silencio).",
+  "fuera": [],
+  "pregunta": {
+   "ron": "calc"
+  }
+ },
+ {
+  "t": "suelo flotante en el salón veinte metros y en las dos habitaciones lo mismo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«En las dos habitaciones lo mismo»: el flotante también en ellas (no se pierden); sus metros, otra estancia distinta, quedan por preguntar.",
+  "fuera": [],
+  "pregunta": {
+   "flo": "medida"
+  }
+ },
+ {
+  "t": "suelo flotante en el salón veinte metros, y en las dos habitaciones lo mismo.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dos habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«En las dos habitaciones lo mismo»: el flotante también en ellas (no se pierden); sus metros, otra estancia distinta, quedan por preguntar.",
+  "fuera": [],
+  "pregunta": {
+   "flo": "medida"
+  }
+ },
+ {
+  "t": "pintar el comedor treinta metros de pared y el recibidor diez",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 40
+  },
+  "lugares": {
+   "pip": [
+    "comedor",
+    "recibidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el cuarto grande 28 metros de pared y el pequeño 19",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 47
+  },
+  "lugares": {
+   "pip": [
+    "cuarto grande",
+    "cuarto pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "lijar el salón 45 metros de paredes y el pasillo 15",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 60
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la habitación principal 35 metros de pared y la de invitados 25",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 60
+  },
+  "lugares": {
+   "pip": [
+    "habitación principal",
+    "habitación de invitados"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista con elipsis: la segunda estancia, sin trabajo propio, lleva el mismo trabajo y su número es de lo mismo (de pared), no el suelo de esa estancia; ninguna se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "flotante salón 21,5 m2, habitación 11 m2, habitación 9,5 m2",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 42
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "2 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "poner parquet: dormitorio 14 metros, dormitorio 11 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 25
+  },
+  "lugares": {
+   "flo": [
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "poner parquet dormitorio 14 metros dormitorio 11 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 25
+  },
+  "lugares": {
+   "flo": [
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lista de estancias con sus metros de suelo y un trabajo para todas («todo …»): cada una con lo suyo; la habitación repetida es otra más (no se pierde ni se pisa).",
+  "fuera": []
+ },
+ {
+  "t": "pintar 3 habitaciones: 12, 11 y 10 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 33
+  },
+  "lugares": {
+   "pip": [
+    "3 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "quitar gotelé de dos dormitorios, el primero de 13 y el segundo de 9 metros",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 66.1
+  },
+  "lugares": {
+   "lija": [
+    "2 dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Habitaciones contadas una a una (una/otra, la primera/la segunda, «habitaciones: 12, 10 y 9»): como «3 habitaciones de 12, 10 y 9 metros» — techo 31 y paredes calculadas a confirmar; ninguna se pierde.",
+  "fuera": [],
+  "pregunta": {
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "pintar el piso, que son setenta metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 70,
+   "pip": 189.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "pintar la casa entera que tiene 90 m2 de suelo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 90,
+   "pip": 243.0
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip",
+   "pit"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los metros de suelo (o «metros cuadrados») de la casa: techo con esos metros y paredes calculadas (unas 2,7 veces), a confirmar; no se toman como metros de pared.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "falso techo en el pasillo y el recibidor, siete y cinco metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 12
+  },
+  "lugares": {
+   "tec": [
+    "pasillo",
+    "recibidor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Falso techo en el baño y la cocina, cuatro y nueve metros»: cada número, por orden, de cada estancia.",
+  "fuera": [],
+  "sin_pregunta": [
+   "medida"
+  ]
+ },
+ {
+  "t": "pintar paredes doce con cinco metros",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 12.5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Doce con cinco» es 12,5.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante en la habitación de diez metros y en la otra lo mismo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "2 habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«La otra habitación lo mismo» tras una habitación con sus metros: la otra, igual (también los metros): dos habitaciones.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón de veinte metros. En el comedor lo mismo.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«En el comedor lo mismo»: el comedor también se pinta (no se pierde); al ser otra estancia distinta, sus metros se preguntan (como «en el dormitorio lo mismo» del banco R_correg).",
+  "fuera": [],
+  "pregunta": {
+   "pip": "medida"
+  }
+ }
+]

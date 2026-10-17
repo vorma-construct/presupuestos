@@ -141,7 +141,8 @@ var dd=t.d;if(id==='alc'&&p.alcSuelo)dd=t.d+' \u2014 en las paredes';
 cur.lineas.push({d:dd,q:q,u:t.u,p:t.p,paquete:p.nombre});yaD[norm(t.d).slice(0,40)]=1;añad++;
 if(id==='alc'&&p.alcSuelo){cur.lineas.push({d:t.d+' \u2014 en el suelo',q:MD.suelo>0?MD.suelo:1,u:t.u,p:t.p,paquete:p.nombre});añad++}})});
 /* frases que no han encajado con nada de la tarifa: entran a cero, con su cantidad, y se pide el precio */
-var frases=txt.split(/[,;.]| y (?=(?:poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat|lijar|nivelar|reformar|arreglar|sustituir|renovar|abrir|forrar|revestir|alisar|enlucir|chapar|embaldos|enlos|acuchill|barniz)\b)/).map(function(f){return f.trim()}).filter(function(f){return f.replace(/[^a-z]/g,'').length>=6});
+/* «20,5 metros»: la coma de los decimales no parte la frase */
+var frases=txt.replace(/(\d)[,.](\d)/g,'$1#$2').split(/[,;.]| y (?=(?:poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat|lijar|nivelar|reformar|arreglar|sustituir|renovar|abrir|forrar|revestir|alisar|enlucir|chapar|embaldos|enlos|acuchill|barniz)\b)/).map(function(f){return f.replace(/(\d)#(\d)/g,'$1,$2')}).map(function(f){return f.trim()}).filter(function(f){return f.replace(/[^a-z]/g,'').length>=6});
 var sinPrecio=[];
 frases.forEach(function(fr){if(/^(?:un|una|dos|tres|\d+)\s+(?:puertas?|ventanas?)$/.test(fr.trim()))return;if(paq.some(function(p){return p.re.test(fr)}))return;
 var fr2=fr;(window.SINON||[]).forEach(function(r){fr2=fr2.replace(r[0],r[1])});
