@@ -1,0 +1,1464 @@
+[
+ {
+  "t": "puertas de paso nuevas siete no ocho",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8,
+   "pue": 8
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cuenta detrás y corregida: «siete no ocho» → ocho.",
+  "fuera": []
+ },
+ {
+  "t": "radiadores nuevos seis",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cuenta dicha detrás del nombre.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de las tres habitaciones",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "pue": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Una por habitación: tres.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo y cocina de nueve completa y tres puertas nuevas y electricidad nueva",
+  "debe": [
+   "pub",
+   "pue",
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "pue": 3
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pub",
+   "pue"
+  ],
+  "sin_medida": [],
+  "justificacion": "Las tres puertas son de la casa, no de la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "tres puertas nuevas menos la del baño que es corredera",
+  "debe": [
+   "pub",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2,
+   "cor": 1
+  },
+  "lugares": {
+   "cor": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos normales y la corredera del baño.",
+  "fuera": []
+ },
+ {
+  "t": "dos radiadores en el salón y en cada habitación uno son tres habitaciones",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos más tres; las habitaciones solo cuentan radiadores, no son trabajos de pintura.",
+  "fuera": []
+ },
+ {
+  "t": "cinco puertas nuevas y quitar el gotele del salón bueno las puertas son seis",
+  "debe": [
+   "pub",
+   "pue",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno, las puertas son seis» corrige el cinco.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de las habitaciones son tres y la del baño",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "pue": 4
+  },
+  "lugares": {
+   "pub": [
+    "habitaciones",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres de las habitaciones y una del baño.",
+  "fuera": []
+ },
+ {
+  "t": "las puertas las pone él solo alicatar el baño veinte metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las puertas las pone el cliente: ni puertas ni pregunta.",
+  "fuera": []
+ },
+ {
+  "t": "no quiere puertas nuevas solo pintar el piso de setenta metros",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Negado: sin puertas.",
+  "fuera": []
+ },
+ {
+  "t": "puertas tres nuevas y dos recuperadas",
+  "debe": [
+   "pub",
+   "recp",
+   "puer"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "recp": 2,
+   "puer": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres nuevas y dos recuperadas.",
+  "fuera": []
+ },
+ {
+  "t": "puertas cuatro nuevas eh no tres nuevas y una recuperada",
+  "debe": [
+   "pub",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "recp": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corregido a tres nuevas y una recuperada.",
+  "fuera": []
+ },
+ {
+  "t": "quitar las puertas viejas cinco",
+  "debe": [
+   "pue"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cuenta detrás.",
+  "fuera": []
+ },
+ {
+  "t": "desmontar las puertas sin romperlas para reutilizar dos",
+  "debe": [
+   "puer"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "puer": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos se desmontan con cuidado para volver a ponerlas.",
+  "fuera": []
+ },
+ {
+  "t": "una puerta nueva en el baño y otra en la cocina",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {
+   "pub": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Una en cada sitio.",
+  "fuera": []
+ },
+ {
+  "t": "radiadores nuevos, seis",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "radiadores nuevos 6",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con cifra.",
+  "fuera": []
+ },
+ {
+  "t": "poner radiadores nuevos siete",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los radiadores viejos cuatro",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "radiadores de aluminio nuevos cinco",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los radiadores",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin cuenta: se pregunta, no uno en silencio.",
+  "fuera": [],
+  "pregunta": {
+   "rad": "cuantas"
+  }
+ },
+ {
+  "t": "cambiar los radiadores, son cinco",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los radiadores de los tres dormitorios",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los radiadores de las habitaciones que son cuatro",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "dos radiadores en el salón y en cada dormitorio uno, son tres dormitorios",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en cada habitación un radiador son cuatro habitaciones",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "un radiador en el salón y otro en el pasillo",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "radiadores seis no siete",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección.",
+  "fuera": []
+ },
+ {
+  "t": "radiadores nuevos seis, bueno, siete",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección con «bueno».",
+  "fuera": []
+ },
+ {
+  "t": "cocina completa de diez metros y dos radiadores nuevos",
+  "debe": [
+   "rad",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "rad"
+  ],
+  "sin_medida": [],
+  "justificacion": "Los dos radiadores no son de la cocina entera.",
+  "fuera": []
+ },
+ {
+  "t": "puertas nuevas siete",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "puertas de paso nuevas, siete, no, ocho",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "las puertas nuevas 6",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas viejas, son cinco",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar las puertas viejas seis",
+  "debe": [
+   "pue"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "puertas cinco nuevas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "puertas cinco nuevas y una recuperada",
+  "debe": [
+   "pub",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "recp": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "puertas, cuatro nuevas y dos recuperadas",
+  "debe": [
+   "pub",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "recp": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de los dos dormitorios",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2,
+   "pue": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de los tres dormitorios y la de la cocina",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "pue": 4
+  },
+  "lugares": {
+   "pub": [
+    "dormitorios",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de las habitaciones, son cuatro, y la del salón",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de los dormitorios que son dos",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin cuenta: se pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "pub": "cuantas",
+   "pue": "cuantas"
+  }
+ },
+ {
+  "t": "quitar las puertas",
+  "debe": [
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": [],
+  "pregunta": {
+   "pue": "cuantas"
+  }
+ },
+ {
+  "t": "cuatro puertas nuevas y pintar el salón, bueno, las puertas son cinco",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cuenta corregida al final.",
+  "fuera": []
+ },
+ {
+  "t": "seis puertas nuevas y quitar gotele bueno cinco puertas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cuatro puertas nuevas menos la del aseo que es corredera",
+  "debe": [
+   "pub",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "cor": 1
+  },
+  "lugares": {
+   "cor": [
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cinco puertas nuevas, menos la de la cocina, que va corredera",
+  "debe": [
+   "pub",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "cor": 1
+  },
+  "lugares": {
+   "cor": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "una puerta nueva en el salón y otra en el pasillo",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {
+   "pub": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "desmontar las puertas con cuidado para recuperar tres",
+  "debe": [
+   "puer",
+   "recp"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "puer": 3,
+   "recp": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "no quiere puertas nuevas",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "no quieren puertas nuevas, solo cambiar el suelo de la cocina de 9 metros",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cinco metros y cuatro puertas nuevas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pub"
+  ],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "baño completo y cocina completa y tres puertas nuevas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pub"
+  ],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de las tres habitaciones y pintar el salón de veinte metros",
+  "debe": [
+   "pub",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "montar armarios en los tres dormitorios",
+  "debe": [
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "mar": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "montar armarios, tres",
+  "debe": [
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "mar": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "montar los armarios",
+  "debe": [
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": [],
+  "pregunta": {
+   "mar": "cuantas"
+  }
+ },
+ {
+  "t": "premarcos nuevos cuatro",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pre": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las ventanas, son cinco",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "debe_texto": {
+   "Cambiar 5 ventanas": 5
+  },
+  "justificacion": "Ventanas (fuera de tarifa): con su cuenta.",
+  "fuera": []
+ },
+ {
+  "t": "ventanas nuevas cuatro",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "debe_texto": {
+   "4 ventanas nuevas": 4
+  },
+  "justificacion": "Cuenta detrás.",
+  "fuera": []
+ },
+ {
+  "t": "poner toalleros dos",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "debe_texto": {
+   "Poner 2 toalleros": 2
+  },
+  "justificacion": "Cuenta detrás.",
+  "fuera": []
+ },
+ {
+  "t": "Radiadores nuevos: seis.",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Cambiar las puertas de las tres habitaciones.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "pue": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Puertas de paso nuevas, siete... no, ocho.",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 8
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Quitar las puertas viejas: cinco.",
+  "debe": [
+   "pue"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pue": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Cambiar las puertas de las habitaciones, son tres, y la del baño.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "pue": 4
+  },
+  "lugares": {
+   "pub": [
+    "habitaciones",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Tres puertas nuevas, menos la del baño, que es corredera.",
+  "debe": [
+   "pub",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2,
+   "cor": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Dos radiadores en el salón, y en cada habitación uno. Son tres habitaciones.",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Puertas: tres nuevas y dos recuperadas.",
+  "debe": [
+   "pub",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "recp": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Una puerta nueva en el baño, y otra en la cocina.",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {
+   "pub": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Cinco puertas nuevas. Quitar el gotelé del salón. Bueno, las puertas son seis.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6,
+   "pue": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Cinco puertas nuevas. Pintar el salón. No, seis puertas.",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Desmontar las puertas sin romperlas, para reutilizar dos.",
+  "debe": [
+   "puer"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "puer": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Las puertas las pone él. Solo alicatar el baño, veinte metros.",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alc": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "No quiere puertas nuevas. Solo pintar el piso de setenta metros.",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los radiadores de las tres habitaciones y el del salón",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {
+   "rad": [
+    "habitaciones",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "montar los armarios de los dos dormitorios",
+  "debe": [
+   "mar"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "mar": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de los tres dormitorios y la del baño la recuperamos",
+  "debe": [
+   "pub",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "recp": 1
+  },
+  "lugares": {
+   "recp": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La del baño no es nueva: se recupera.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las puertas de las tres habitaciones y la del baño que es corredera",
+  "debe": [
+   "pub",
+   "cor"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "cor": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La del baño es la corredera, no una más de las normales.",
+  "fuera": []
+ },
+ {
+  "t": "pues mira cambiar cinco puertas no no seis seis puertas y esto es en deusto",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar cinco puertas no seis",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ }
+]
