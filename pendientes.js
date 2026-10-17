@@ -28,7 +28,7 @@ function depDe(pk,l,id){var d=String(l.d||'');
 function usaMetros(l){return /^(m2|ml|m²)$/.test(String(l.u||''))}
 
 /* palabras que tienen que haberse dicho para que una partida suelta no sea un supuesto */
-var EVID={pip:/pint|pared/,pit:/techo|pint\w*\s+(?:todo|tod[ao]s?|la casa|el piso|entero|entera)\b|pintura/,pip3:/pint|pared/,pit3:/techo/,
+var EVID={pip:/pint|pared/,pit:/techo|pint\w*\s+(?:todo|tod[ao]s?|la casa|el piso|entero|entera)\b|pintura\s+(?:de\s+|en\s+)?(?:todo|toda|la casa|el piso)\b/,pip3:/pint|pared/,pit3:/techo/,
  lija:/gotele|lij|alisar/,qpa:/papel/,ppa:/papel/,pic:/picar|yeso/,yes:/yeso|enluc|tendido/,
  flo:/flotante|tarima|laminad|parquet|vinilo|suelo/,sue:/suelo|parquet|tarima|moqueta|flotante|laminad|madera/,niv:/nivel|recrecid|solera/,acu:/acuchill|barniz/,
  ron:/rodapie/,rod:/rodapie/,pub:/puerta/,pue:/puerta/,pen:/entrada|blindad|acorazad/,cor:/corredera/,pre:/premarco/,
@@ -37,7 +37,13 @@ var EVID={pip:/pint|pared/,pit:/techo|pint\w*\s+(?:todo|tod[ao]s?|la casa|el pis
  mam:/mampara/,qma:/mampara/,pd7:/plato|ducha/,pd8:/plato|ducha/,mba:/mueble|lavabo/,mco:/mueble/,mar:/armario/};
 
 /* al dictar: las partidas sueltas nuevas se miran contra lo dicho */
-function marcarSupuestos(txt){var t=normT(txt);(cur.lineas||[]).forEach(function(l){if(l.__ev)return;l.__ev=1;if(l.paqId||l.fb)return;var id=idL(l),re=EVID[id];if(re&&!re.test(t))l.sup=1})}
+/* lo dicho de una estancia: las frases que la nombran y las que no nombran ninguna («pintar el salón y la cocina, el techo de la cocina también»: el techo es de la cocina, no del salón) */
+var EST_RE=/\b(?:salon|comedor|pasillo|habitacion(?:es)?|dormitorios?|cuartos?|despacho|recibidor|hall|vestidor|entrada|cocinas?|banos?|aseos?|terrazas?)\b/;
+function dichoDe(l,t){var k=String(l.d||'').indexOf(' \u2014 ');if(k<0)return t;var tg=normT(String(l.d).slice(k+3)).replace(/,.*$/,'').replace(/^\d+\s+/,'').trim();var w=(tg.match(EST_RE)||[])[0];if(!w)return t;
+ var F=((window.__A&&__A.F)||[]).map(normT),sing=w.replace(/(?:es|s)$/,'');var reW=new RegExp('\\b'+sing+'(?:es|s)?\\b'),suyas=F.filter(function(f){return reW.test(f)});if(!suyas.length)return t;
+ /* «la habitación grande… y la pequeña…»: con apellido, las frases de esa (si las hay) */var reT=new RegExp('\\b'+tg.replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,'\\s+')+'\\b');if(tg!==w&&F.some(function(f){return reT.test(f)})){reW=reT}
+ return F.filter(function(f){return reW.test(f)||!EST_RE.test(f)}).join(' , ')}
+function marcarSupuestos(txt){var t=normT(txt);(cur.lineas||[]).forEach(function(l){if(l.__ev)return;l.__ev=1;if(l.paqId||l.fb)return;var id=idL(l),re=EVID[id];if(re&&(!re.test(t)||/^(pit|pit3)$/.test(id)&&!re.test(dichoDe(l,t))))l.sup=1})}
 
 /* partidas parecidas que el dictado no elige en silencio: la pregunta y sus respuestas (cada una, la partida de la tarifa que queda) */
 var ELIGE={material:{m:'¿El azulejo lo pone el cliente o lo ponemos nosotros?',ops:[['alc','Lo ponemos nosotros'],['alsm','Lo pone el cliente']]},
