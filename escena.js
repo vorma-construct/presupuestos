@@ -31,7 +31,7 @@ function apeN(a){return String(a||'').replace(/pequen[oa]/,'pequen').replace(/ch
 function nombreDe(e){var b=sing(e.base);if(e.n>1||e.n===0){var pl=b==='habitacion'?'habitaciones':(b==='salon'?'salones':(/r$/.test(b)?b+'es':b+'s'));return (fem(b)?'las ':'los ')+(e.n?({2:'dos',3:'tres',4:'cuatro',5:'cinco'}[e.n]||e.n)+' ':'')+pl+(e.ape?' '+e.ape:'')}
  return (fem(b)?'la ':'el ')+(e.otro?(fem(b)?'otra ':'otro '):'')+b+(e.ape?' '+e.ape:'')}
 function fmt(n){return String(Math.round(n*100)/100).replace('.',',')}
-function mDe(r){return r.m2!=null?r.m2:(r.ms&&r.ms.length?r.ms.reduce(function(a,b){return a+b},0):null)}
+function mDe(r){return r.m2!=null?r.m2:(r.ms&&r.ms.length?r.ms.reduce(function(a,b){return a+b},0):(r.mCada!=null&&r.n>1?r.mCada*r.n:null))}
 
 /* ---- las piezas ---- */
 var PRE='(?:(?:en|de|del|para|a|al|y|e|tambien|ademas|luego|despues|solo|o)\\s+)*';
@@ -93,17 +93,17 @@ function escena(bruto,op){op=op||{};
  frases=frases.map(function(f){return f.replace(/(\d)#(\d)/g,'$1,$2').replace(/\s+/g,' ')});
  var ultWs=null; var reg=[],excl={},ultSet=null,ultAcc=null,cambia=false,info=[],todasUsadas={};
  var clave=function(e){return sing(e.base)+(e.n>1?'#'+e.n:(e.n===0?'#pl':''))+(e.otro?'#otro':'')+(e.ape?'|'+apeN(e.ape):'')};
- var frAct=0,escTres=false;var alta=function(e){var k=clave(e),x=reg.find(function(r){return r.k===k});
+ var frAct=0,escTres=false,altaJunta=false;var alta=function(e){altaJunta=false;var k=clave(e),x=reg.find(function(r){return r.k===k});
   /* «las habitaciones» después de «dos habitaciones de 12 y de 10»: son esas */
   if(!x&&e.n===0&&!(e.ms&&e.ms.length)){var pls=reg.filter(function(r){return sing(r.base)===sing(e.base)&&r.n>1&&apeN(r.ape)===apeN(e.ape)});if(pls.length===1)x=pls[0]}
   /* «salón 22 m2, habitación 13 m2, habitación 10,5 m2», «la habitación de 12, otra habitación de 10 y otra de 9»: la misma estancia dicha otra vez con otros metros, en la misma frase, es otra más; van juntas, cada una con sus metros («las dos habitaciones de 13 y de 10,5») */
   if(e.ms&&e.ms.length===1&&!e.ape&&(e.n||1)===1){var xb=reg.find(function(r){return sing(r.base)===sing(e.base)&&!r.ape&&r.mFr===frAct&&(r.n===1&&r.m2!=null&&!r.otro||r.multi&&r.ms)});
-   if(xb&&(e.otro||x===xb||!x&&xb.multi)&&!(xb.n===1&&xb.m2===e.ms[0]&&!e.otro)){if(xb.n===1){xb.ms=[xb.m2];xb.m2=null}xb.ms=xb.ms.concat([e.ms[0]]);xb.n=xb.ms.length;xb.multi=true;xb.k=clave(xb);return xb}}
+   if(xb&&(e.otro||x===xb||!x&&xb.multi)&&!(xb.n===1&&xb.m2===e.ms[0]&&!e.otro)){if(xb.n===1){xb.ms=[xb.m2];xb.m2=null}xb.ms=xb.ms.concat([e.ms[0]]);xb.n=xb.ms.length;xb.multi=true;xb.k=clave(xb);altaJunta=true;return xb}}
   /* «las dos habitaciones» después de «habitación 13, habitación 10,5»: son esas */
   if(!x&&e.n>1&&!(e.ms&&e.ms.length)){var pm=reg.filter(function(r){return sing(r.base)===sing(e.base)&&r.n===e.n&&r.ms&&apeN(r.ape)===apeN(e.ape||'')});if(pm.length===1)x=pm[0]}
 
   if(!x){x={k:k,base:e.base,ape:e.ape||'',n:e.n===0?0:(e.n||1),otro:e.otro,m2:null,ms:null};reg.push(x)}
-  if(e.ms&&e.ms.length){x.mFr=frAct;if(x.n>1&&e.ms.length===x.n)x.ms=e.ms;else if(e.ms.length===1&&x.n===1)x.m2=e.ms[0];/* «en las tres habitaciones 90»: los metros de todas juntas */else if(e.ms.length===1&&x.n>1&&!x.ms)x.mTot=e.ms[0]}return x};
+  if(e.ms&&e.ms.length){x.mFr=frAct;if(x.n>1&&e.ms.length===x.n)x.ms=e.ms;else if(e.ms.length===1&&x.n===1)x.m2=e.ms[0];/* «en las tres habitaciones 90»: los metros de todas juntas */else if(e.ms.length===1&&x.n>1&&!x.ms){if(e.cada)x.mCada=e.ms[0];else x.mTot=e.ms[0]}}return x};
  var prevH=null;var hechos=frases.map(function(fr,ifr){var __h=(function(){frAct=ifr;var orig=fr;var heredaDescr=false;
   if(!fr.replace(/[^a-z0-9]/g,''))return {lit:fr};
   var T=piezas(fr);
@@ -131,7 +131,7 @@ function escena(bruto,op){op=op||{};
     var arr=null;if(ms){/* «10,5»: la coma del decimal no parte la lista */arr=ms.replace(/^\s*de\s+/,'').replace(/(\d),(\d)/g,'$1#$2').split(/\s*(?:,|\by\b)\s*(?:de\s+)?/).filter(Boolean).map(function(x){return numDe(x.replace('#',','))});if(arr.some(isNaN))arr=null;else if(arr.length===2&&n===1&&arr[1]<1)arr=[arr[0]+arr[1]]}
     if(p.dim&&arr&&arr.length===1&&n===1)arr=[Math.round(p.dim[0]*p.dim[1]*100)/100];
     if(/^(esos|esas|estos|estas)$/.test(art||'')&&!cnt)usaRef=true;
-    escTres=false;p.rs=[alta({base:base,ape:ape||'',n:n||(arr&&arr.length>1?arr.length:0),otro:!!otro,ms:arr})];if(p.dim&&p.rs[0].n===1&&p.rs[0].m2!=null)p.rs[0].dim=fmt(p.dim[0])+' por '+fmt(p.dim[1]);ultBase=base;if(escTres){malo=true;return}}
+    escTres=false;/* «las tres habitaciones de 6 metros»: con «de», los metros son de cada una (como los cuenta el intérprete); «en las tres habitaciones 90», de todas juntas */var cadaU=!!(ms&&n>1&&arr&&arr.length===1&&/\bde\s+(?:unos\s+|unas\s+|mas o menos\s+)?$/.test(m[0].slice(0,m[0].lastIndexOf(ms))));p.rs=[alta({base:base,ape:ape||'',n:n||(arr&&arr.length>1?arr.length:0),otro:!!otro,ms:arr,cada:cadaU})];p.junta=altaJunta;if(p.dim&&p.rs[0].n===1&&p.rs[0].m2!=null)p.rs[0].dim=fmt(p.dim[0])+' por '+fmt(p.dim[1]);ultBase=base;if(escTres){malo=true;return}}
    else if(p.k==='el'){var ap=m[2],a=apeN(ap);var cand=reg.filter(function(r){return /^otr/.test(ap)?r.otro:apeN(r.ape)===a&&r.n===1});
     if(p.msE>0){if(cand.length===1){if(cand[0].m2==null&&!(cand[0].ms&&cand[0].ms.length)){cand[0].m2=p.msE;cand[0].mFr=frAct}}else if(!cand.length&&ultBase)cand=[alta({base:ultBase,ape:/^otr/.test(ap)?'':ap,n:1,otro:/^otr/.test(ap),ms:[p.msE]})]}
     if(cand.length===1)p.rs=[cand[0]];
@@ -158,7 +158,7 @@ function escena(bruto,op){op=op||{};
    if(p.t==='R'){var u=I.length?I[I.length-1]:null,u2=I.length>1?I[I.length-2]:null;/* «flotante: salón 22, pasillo 13, comedor 10»: la lista sigue tras varias comas (la coma de antes se queda en la fila) */if(u&&u.t==='sep'&&u2&&u2.t==='sep'){for(var kU=I.length-1;kU>=0&&I[kU].t==='sep';kU--);u2=kU>=0?I[kU]:null}
     /* «… en el salón y en el pasillo también»: un mismo grupo (con «y», «también», comas) */
     var prepDe=function(x){return /^\s*(?:y\s+|e\s+)?(?:tambien\s+)?(?:en|de|del|para)\b/.test(x)};/* «quitar el papel del dormitorio y pintar el salón, el dormitorio son doce metros»: la estancia de antes con sus metros, tras una coma, dice cómo es (no se suma al grupo de delante) */
-    var yaDicha=p.k==='exp'&&p.m&&p.m[6]&&p.rs&&p.rs.length===1&&T.slice(0,T.indexOf(p)).some(function(q){return q.t==='R'&&q.rs&&q.rs.indexOf(p.rs[0])>-1});
+    var yaDicha=p.k==='exp'&&p.m&&p.m[6]&&!p.junta&&p.rs&&p.rs.length===1&&T.slice(0,T.indexOf(p)).some(function(q){return q.t==='R'&&q.rs&&q.rs.indexOf(p.rs[0])>-1});
     var aparte=yaDicha&&u&&u.t==='G'&&!/^\s*(?:y|e)\b/.test(p.x);if(aparte)redicha=true;
     /* «la otra de diez también y en el pasillo de seis pintar solo»: tras «también», la estancia que empieza con «y en» es otro grupo */var trasTamb=u&&u.t==='G'&&u.rs[u.rs.length-1].tamTras&&/^\s*(?:y|e)\s+(?:en|para)\b/.test(p.x);if(u&&u.t==='G'&&!aparte&&!trasTamb)u.rs.push(p);else if(u&&u.t==='sep'&&u2&&u2.t==='G'&&!yaDicha&&(/^\s*(?:y|e)\b/.test(p.x)||!op.sinPuntos||!(prepDe(u2.rs[u2.rs.length-1].x)&&/^\s*(?:el|la|los|las)\b/.test(p.x))))u2.rs.push(p);else I.push({t:'G',rs:[p]});return}
    if(p.t==='N'){var g=I.length?I[I.length-1]:null;if(g&&g.t==='G'){g.rs[g.rs.length-1].neg=true;g.cerrado=true}else I.push({t:'S',w:[p.x]});return}
@@ -361,7 +361,7 @@ function escena(bruto,op){op=op||{};
    if(sing(a1.base)!==sing(b1.base)||a1.ape||b1.ape||!(a1.otro||b1.otro)||a1.n!==1||b1.n!==1||a1.m2==null||b1.m2==null||sA.acc.join('|')!==sB.acc.join('|'))continue;
    sA.sala={base:a1.base,n:2,ms:[a1.m2,b1.m2],ape:''};items.splice(iB,1);break}}
   var frs=items.map(function(it){if(it.lit!=null)return it.lit;var r=it.sala,med='';
-   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y de ')+' metros';else if(r.m2!=null)med=' de '+(r.dim||fmt(r.m2)+' metros');
+   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y de ')+' metros';else if(r.m2!=null)med=' de '+(r.dim||fmt(r.m2)+' metros');else if(r.mCada!=null&&r.n>1&&!it.acc.some(function(x){return /\d/.test(x)}))med=' de '+fmt(r.mCada)+' metros';
    if(!med&&r.mTot!=null)return 'en '+nombreDe(r)+' '+it.acc.map(function(x){return /\d/.test(x)?x:x+' '+fmt(r.mTot)+' metros'}).join(', ');
    return 'en '+nombreDe(r)+med+' '+it.acc.join(', ')});
   cambia=true;info.push(frs);out.push(frs.join('. '))});
