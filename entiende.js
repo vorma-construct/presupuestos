@@ -2128,11 +2128,11 @@ var CLI_SUJ='(?:el|la)\\s+(?:cliente|clienta|propietari[oa]|duen[oa])|la propied
 var CLI_SUJ2=CLI_SUJ+'|ellos|ellas|ella|el(?=\\s*(?:[,.;]|$|\\by\\b|\\be\\b|\\bpero\\b|\\bnosotros\\b|\\bque\\b))';
 var CLI_NUMW='un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce';
 var CLI_FILL='(?:(?:el|la|los|las|lo|un|una|unos|unas|todo|toda|todos|todas|su|sus|tambien|\\d+|'+CLI_NUMW+')\\s+){0,3}';
-var CLI_PRE='(?:(?:ya|se|tambien|solo|lo|la|los|las)\\s+)*(?:(?:va|van)\\s+a\\s+(?:(?:lo|la|los|las|se)\\s+)?|(?:ha|han|habia|tiene|tienen)\\s+)?';
+var CLI_PRE='(?:(?:ya|se|nos|tambien|solo|lo|la|los|las)\\s+)*(?:(?:va|van)\\s+a\\s+(?:(?:lo|la|los|las|se)\\s+)?|(?:ha|han|habia|tiene|tienen)\\s+)?';
 var CLI_VST='compr|traid|trae|traen|traer|aport|suministr|pag|consig|proporcion|quit|desmont|arranc|levant|tir|retir|sac|pic|demol|demuel|derrib|hac|hech|hag|encarg|ocup|mont|instal|coloc|pint|pon|pues|lleva|alicat|limpi|baj|arregl';
-var CLI_VERBO='((?<=\\bya\\s)tienen?|(?:'+CLI_VST+')[a-z]*)';
+var CLI_VERBO='((?<=\\bya\\s)tienen?|(?:da|dan|dara|daran)(?![a-z])|(?:'+CLI_VST+')[a-z]*)';
 function cliVerbo(w){w=String(w||'');
- if(/^(?:compr|traid|trae|traen|traer|aport|suministr|pag|consig|proporcion|tiene|tienen)/.test(w))return 'mat';
+ if(/^(?:compr|traid|trae|traen|traer|aport|suministr|pag|consig|proporcion|tiene|tienen)/.test(w)||/^(?:da|dan|dara|daran)$/.test(w))return 'mat';
  if(/^(?:quit|desmont|arranc|levant|tir|retir|sac|pic|demol|demuel|derrib)/.test(w))return 'quita';
  if(/^(?:hac|hech|hag|encarg|ocup|mont|instal|coloc|pint|pon|pues|lleva|alicat|limpi|baj|arregl)/.test(w))return 'hace';
  return null}
@@ -2194,22 +2194,38 @@ function clienteAntes(t){var R=[];window.__cliInfo=R;
   {f:'de',re:'\\s(?:que\\s+)?(?:(?:es|son|va|van|corre|corren|queda|quedan)\\s+)?(?:cosa\\s+)?(?:(?:del?|de la)\\s+(?:cliente|clienta|propietari[oa])|(?:a|por|de)\\s+(?:cargo|cuenta)\\s+(?:del?|de la)\\s+(?:cliente|clienta|propietari[oa])|suy[oa]s?)\\b'}];
  formas.forEach(function(F){paso(new RegExp(F.re,'g'),function(m){var w=F.f==='de'?'':F.f==='encarga'?'encarga':m[1],v=F.f==='de'?'de':cliVerbo(w);if(!v)return null;if(/(?:ar|er|ir)$/.test(w)&&!/\b(?:va|van)\s+a\b/.test(m[0]))return null;
   var antes=t.slice(0,m.index),corte=Math.max(antes.lastIndexOf('.'),antes.lastIndexOf(';'),antes.lastIndexOf(','));var ven=antes.slice(corte+1);
+  var fin=m.index+m[0].length,comp=compDe(fin);
   /* el objeto: lo último que se nombra justo antes */
-  var ca=cliCatDe(ven,false);if(!ca)return null;
+  var ca=cliCatDe(ven,false);
+  if(!ca){
+   /* «baño de cinco metros, todo el material lo pone el cliente»: todo lo que se pone, sin suministro */
+   var mG=ven.match(/(?:\b(?:todo|toda)\s+)?(?:\b(?:el|los)\s+)?\bmaterial(?:es)?\s*$/);
+   if(mG&&F.f!=='encarga'&&v!=='quita'&&!/\b(?:alicat\w*|azulej\w*|baldosa\w*|ceramica|porcelanico|gres)\b/.test(t)){apunta({k:'*',modo:'mat'});return [m.index-mG[0].length,fin+comp,' , ']}
+   /* «nosotros no hacemos la electricidad, la hace el cliente»: lo de la frase de antes */
+   if(F.f!=='clit'||!/^\s*(?:\b(?:y|pero|eso|que|no|eh|pues|bueno|vale)\b\s*)*$/.test(ven))return null;
+   if(corte<0||antes.charAt(corte)!==',')return null;var a2=antes.slice(0,corte),c2,ca2=null;for(var vu=0;vu<3&&!ca2;vu++){c2=Math.max(a2.lastIndexOf('.'),a2.lastIndexOf(';'),a2.lastIndexOf(','));var cl=a2.slice(c2+1);if(/^\s*(?:\b(?:eh|pues|bueno|vale|mira|y)\b\s*)*$/.test(cl)&&a2.charAt(c2)===','){a2=a2.slice(0,c2);continue}ca2=cliCatDe(cl.replace(/\s+$/,''),false);break}if(!ca2)return null;
+   var rs2=decide(ca2.c,v,w,!!comp,false);if(!rs2)return null;rs2.forEach(function(r){apunta(r,0)});
+   return [m.index,fin+comp,rs2[0].modo==='mat'?' , ':texto(rs2,'',false)]}
   var oIni=corte+1+ca.pos,deMat=false,mm=t.slice(0,oIni).match(/\b(?:(?:el|la)\s+)?material\s+(?:de|del|para)\s+(?:(?:el|la|los|las)\s+)?$/);if(mm){oIni-=mm[0].length;deMat=true}
-  var obj=t.slice(oIni,m.index).replace(/\s+$/,'');
-  if(F.f==='de'&&/\b(?:casa|piso|vivienda|cocina|bano|nombre|telefono|direccion)\b/.test(obj.replace(new RegExp(ca.c.re),'')))return null;
-  var fin=m.index+m[0].length,comp=compDe(fin),yaV=YAV.test(t.slice(0,oIni));
-  var rs=decide(ca.c,v,w,!!comp||yaV&&v!=='quita',deMat);if(!rs)return null;
-  rs.forEach(function(r){apunta(r,cliN(ca.m[0]))});
-  return [oIni,fin+comp,texto(rs,obj,yaV)]})});
+  /* «el plato de ducha y la mampara los compra el cliente»: las dos */
+  var its=[{ca:ca,ini:oIni,fin:m.index}];if(!deMat)while(its.length<4){var pre=t.slice(corte+1,its[0].ini),mY=pre.match(/(?:\s*,\s*|\s+(?:y|e)\s+)$/);if(!mY)break;var ca3=cliCatDe(pre.slice(0,pre.length-mY[0].length),false);if(!ca3)break;its.unshift({ca:ca3,ini:corte+1+ca3.pos,fin:corte+1+pre.length-mY[0].length})}
+  oIni=its[0].ini;
+  if(F.f==='de'&&/\b(?:casa|piso|vivienda|cocina|bano|nombre|telefono|direccion)\b/.test(t.slice(oIni,m.index).replace(new RegExp(ca.c.re),'')))return null;
+  var yaV=YAV.test(t.slice(0,oIni)),out=[],alguno=false;
+  its.forEach(function(it){var obj=t.slice(it.ini,it.fin).replace(/\s+$/,'');var rs=decide(it.ca.c,v,w,!!comp||yaV&&v!=='quita',deMat);if(!rs){out.push(' '+obj+' ');return}alguno=true;rs.forEach(function(r){apunta(r,cliN(it.ca.m[0]))});out.push(texto(rs,obj,yaV))});
+  if(!alguno)return null;
+  return [oIni,fin+comp,out.join(' , ')]})});
  /* 3) «cuatro puertas nuevas, nosotros solo la colocación», «sin material»: lo que se acaba de nombrar, solo colocación (el azulejo ya va aparte) */
  var reSolo=/\b(?:nosotros\s+)?solo\s+(?:la\s+)?(?:colocacion|mano de obra|montaje|instalacion)\b|\bnosotros\s+solo\s+(?:(?:lo|la|los|las)\s+)?(?:colocamos|montamos|ponemos|instalamos)\b|\bsin\s+(?:el\s+)?(?:suministro|material)\b|\bmaterial\s+no\s+incluido\b/g,ms;
  while((ms=reSolo.exec(t))){var an=t.slice(0,ms.index),cs=Math.max(an.lastIndexOf('.'),an.lastIndexOf(';'));an=an.slice(Math.max(cs+1,an.length-60)).replace(/(?:[\s,]+|\b(?:y|eh|pues|bueno|vale)\b)*$/,'');
   if(/\b(?:alicat\w*|azulej\w*|baldosa\w*|ceramica|porcelanico|gres|revestir)\b/.test(an))continue;var cS=cliCatDe(an,false);if(!cS||!cS.c.cosa||!(cS.c.sum.length||cS.c.col))continue;apunta({k:cS.c.k,modo:'mat'},cliN(cS.m[0]))}
+ /* «la cocina la hacemos nosotros pero , nada de electricidad»: lo que queda colgando de la frase quitada */
+ if(R.length)t=t.replace(/(?:\bnosotros\s+)?(?:\bno\s+)?\b(?:(?:lo|la|los|las)\s+)?(?:hacemos|haremos|ponemos|llevamos|montamos|colocamos)(?:\s+nosotros)?(?:\s+(?:pero|y))?(?=\s*,)/g,' ');
  return t}
 window.clienteAntes=clienteAntes;
 function clienteDespues(finales){var R=window.__cliInfo||[];if(!R.length)return;
+ /* «todo el material lo pone el cliente»: cada cosa que lleva suministro, sin él */
+ if(R.some(function(r){return r.k==='*'})){var R2=[];R.forEach(function(r){if(r.k!=='*'){R2.push(r);return}CLI_CATS.forEach(function(c){if(c.cosa&&c.sum.length&&!R2.some(function(x){return x.k===c.k}))R2.push({k:c.k,modo:'mat',n:0,auto:1})})});R=R2}
  var prev=window.__lineasPrevias||[],T=function(id){return tarifa().find(function(x){return x.id===id})};
  var idL=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var x=tarifa().find(function(z){return z.d===d||d.indexOf(z.d+' — ')===0});return x?x.id:''};
  /* un dictado que solo dice esto («el cliente compra las puertas y nosotros las colocamos») contesta a lo dictado antes: vale para esas partidas */
@@ -2236,7 +2252,7 @@ function clienteDespues(finales){var R=window.__cliInfo||[];if(!R.length)return;
    var d='Colocación de '+c.nom+' que aporta el cliente'+tag(l);sinPaq(l,id);
    if(hechas[d]){if(num(l.q)>num(hechas[d].q))hechas[d].q=l.q;fuera(l);return}
    var nl={d:d,q:num(l.q)||1,u:l.u||'ud',p:0,fb:'f'+Math.random().toString(36).slice(2,9)};if(l.cuantas&&!r.n)nl.cuantas=1;if(r.n&&nl.u==='ud')nl.q=r.n;hechas[d]=nl;cambia(l,nl)});
-  if(!vistas){var tc=c.col&&T(c.col);
+  if(!vistas&&!r.auto){var tc=c.col&&T(c.col);
    if(tc&&tc.u==='ud')cambia(null,{d:tc.d,q:r.n||1,u:tc.u,p:tc.p,tid:c.col,cuantas:r.n?undefined:1});
    else if(!c.col&&c.sum.length&&(T(c.sum[0])||{}).u==='ud')cambia(null,{d:'Colocación de '+c.nom+' que aporta el cliente',q:r.n||1,u:'ud',p:0,fb:'f'+Math.random().toString(36).slice(2,9),cuantas:r.n?undefined:1})}});
  /* los radiadores los pone el cliente: la calefacción de la tarifa los lleva dentro, no vale tal cual */

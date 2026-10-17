@@ -993,5 +993,298 @@
   "sin_medida": [],
   "fuera": [],
   "justificacion": "La electricidad la hace su electricista; las ayudas son nuestras."
+ },
+ {
+  "t": "la reforma de la cocina de ocho metros la hacemos nosotros pero la electricidad corre por cuenta del cliente",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«corre por cuenta del cliente»."
+ },
+ {
+  "t": "el contenedor lo pone el cliente, baño completo de cinco metros",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "con",
+   "con7"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "El contenedor lo pone él."
+ },
+ {
+  "t": "nosotros no hacemos la electricidad, la hace el cliente, reforma de cocina de ocho metros",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {
+   "cocina": [
+    8
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«la hace el cliente» se refiere a lo de la frase de antes."
+ },
+ {
+  "t": "el alicatado lo hace el cliente, nosotros la fontaneria del baño",
+  "debe": [
+   "fba"
+  ],
+  "no_debe": [
+   "alc",
+   "alsm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "El alicatado lo hace él."
+ },
+ {
+  "t": "el propietario quitará él las puertas viejas, poner cinco puertas nuevas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [
+   "pue",
+   "puer"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Quitar las viejas lo hace él; las nuevas, nuestras."
+ },
+ {
+  "t": "quitar el papel del salon y el cliente pone el papel nuevo",
+  "debe": [
+   "qpa"
+  ],
+  "no_debe": [
+   "ppa"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "qpa": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "El papel nuevo lo pone él."
+ },
+ {
+  "t": "cambiar seis radiadores, los radiadores los compra el cliente",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Radiadores del cliente, dicho después.",
+  "debe_texto": {
+   "Colocación de radiadores que aporta el cliente": 6
+  }
+ },
+ {
+  "t": "el cliente nos da las puertas y nosotros las montamos, son tres",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "cor"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«nos da».",
+  "debe_texto": {
+   "Colocación de puertas que aporta el cliente": 3
+  }
+ },
+ {
+  "t": "las puertas las pone el cliente pero las colocamos nosotros, cuatro",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "cor"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«las pone el cliente pero las colocamos nosotros»: el material es suyo.",
+  "debe_texto": {
+   "Colocación de puertas que aporta el cliente": 4
+  }
+ },
+ {
+  "t": "cuatro puertas que tiene compradas el cliente, colocarlas",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "cor"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«que tiene compradas».",
+  "debe_texto": {
+   "Colocación de puertas que aporta el cliente": 4
+  }
+ },
+ {
+  "t": "el plato de ducha y la mampara los compra el cliente y nosotros los colocamos",
+  "debe": [],
+  "no_debe": [
+   "pd7",
+   "pd8",
+   "mam"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos cosas a la vez.",
+  "debe_texto": {
+   "Colocación de plato de ducha que aporta el cliente": 1,
+   "Colocación de mampara que aporta el cliente": 1
+  }
+ },
+ {
+  "t": "el cliente compra las puertas y los radiadores, nosotros los colocamos, cuatro puertas y cinco radiadores",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "rad"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos cosas con sus cantidades.",
+  "debe_texto": {
+   "Colocación de puertas que aporta el cliente": 4,
+   "Colocación de radiadores que aporta el cliente": 5
+  }
+ },
+ {
+  "t": "el cliente aporta el rodapie, colocar treinta metros de rodapie",
+  "debe": [],
+  "no_debe": [
+   "ron"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Rodapié del cliente: colocación de 30 ml sin precio.",
+  "debe_texto": {
+   "Colocación de rodapié que aporta el cliente": 30
+  }
+ },
+ {
+  "t": "reforma de baño de cinco metros, los azulejos los compra el cliente",
+  "debe": [
+   "alsm",
+   "san"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Baño entero con el azulejo del cliente: alicatado sin material."
+ },
+ {
+  "t": "baño de cinco metros, todo el material lo pone el cliente",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc",
+   "pd7",
+   "pd8"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Todo el material es suyo: nada con suministro.",
+  "debe_texto": {
+   "Colocación de plato de ducha que aporta el cliente": 1
+  }
  }
 ]
