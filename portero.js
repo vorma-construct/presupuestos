@@ -35,6 +35,20 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
   /* todas las líneas de esas estancias que tienen esa misma medida u otra repetida igual */
   var todas=L.filter(function(l){return l.u==='m2'&&!l.paqId&&n.indexOf(lugar(l.d))>-1&&!l.okPortero});
   P.push({tipo:'medidas',lineas:todas,txt:String(num(ls[0].q)).replace('.',',')+' m² iguales en '+n.length+' sitios ('+n.slice(0,5).join(', ')+'). Parecen puestas a ojo: pon las medidas de verdad o confirma que son esas.'})});
+ /* OBRA DE CASA ENTERA: lo que toda casa lleva (y si el total por metro es de risa). Con la tarifa del albañil una casa entera completa sale sobre 300 €/m²; por debajo de 250 falta algo seguro */
+ try{var pz=(c.paqs||[]).find(function(p){return p.tipo==='piso'&&num(p.suelo)>0});
+  /* con preguntas de la casa sin contestar todavía no: al contestarlas se completa sola */
+  var sinC=pz&&['banos','cocina','luz','paredes','suelo','puertas'].some(function(k){return !(pz.hechas||{})[k]});
+  if(pz&&!sinC&&!c.okTotal){var r=pz.r||{},hh=pz.hechas||{},m2=num(pz.suelo),ids=L.map(function(l){var t='';try{t=(l.tid||'')}catch(_){}return t+' '+nrm(l.d)});
+   var hay=function(re){return ids.some(function(x){return re.test(x)})},falta=[];
+   if(!(hh.luz&&r.luz===false)&&!hay(/^ele\b|instalacion electrica nueva/))falta.push('la electricidad');
+   if(!(hh.suelo&&r.suelo==='no')&&!hay(/^(flo|sue|tar|par|vin)\b|suelo flotante|tarima|laminado/))falta.push('los suelos');
+   if(!(hh.puertas&&!(num(r.puertas)>0))&&!hay(/^pub\b|puertas? batiente|puerta de paso/))falta.push('las puertas');
+   if(!(hh.paredes&&r.paredes==='no')&&!hay(/^pip\b|paramentos verticales \(paredes\)/))falta.push('la pintura de las paredes');
+   var eur=m2>0?Math.round(tot/m2):0;
+   var entera=r.cocina!==false&&num(r.banos)>0;/* sin cocina o sin baño es normal que salga barata: ahí solo se mira lo que falta */
+   if(falta.length||(entera&&eur>0&&eur<250))P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²'+(falta.length?'. Falta '+falta.join(', ').replace(/, ([^,]*)$/,' y $1')+'.':', muy poco para una casa entera: mira qué falta.')});
+   else if(eur>1200)P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²: mucho para una reforma. Mira si hay algo repetido.'})}}catch(_){}
  return P}
 window.porteroProblemas=problemas;
 
@@ -48,12 +62,12 @@ function mostrar(P,seguir){var vie=document.getElementById('porteroBox');if(vie)
   +'<div style="color:#555;font-size:13px;margin-bottom:10px">El cliente todavía no lo ha visto.</div>';
  P.forEach(function(p,i){h+='<div style="border-left:5px solid #B3261E;background:#FBE3E0;border-radius:8px;padding:10px 12px;margin:8px 0">'+p.txt
   +'<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">'
-  +(p.tipo==='medidas'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Poner medidas</button>':'<button type="button" data-i="'+i+'" data-a="quitar" class="mini">Quitar la línea</button>')
+  +(p.tipo==='total'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Mirar el presupuesto</button>':p.tipo==='medidas'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Poner medidas</button>':'<button type="button" data-i="'+i+'" data-a="quitar" class="mini">Quitar la línea</button>')
   +'<button type="button" data-i="'+i+'" data-a="ok" class="mini sec">Está bien así</button></div></div>'});
  h+='</div>';d.innerHTML=h;document.body.appendChild(d);
  d.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b){if(ev.target===d)d.remove();return}try{leer()}catch(_){}P=problemas(cur);/* leer() rehace las líneas: se buscan otra vez */var p=P[+b.getAttribute('data-i')],a=b.getAttribute('data-a');if(!p){d.remove();if(seguir)seguir();return}
   if(a==='quitar'){cur.lineas=cur.lineas.filter(function(l){return p.lineas.indexOf(l)<0})}
-  else if(a==='ok'){p.lineas.forEach(function(l){l.okPortero=1})}
+  else if(a==='ok'){p.lineas.forEach(function(l){l.okPortero=1});if(p.tipo==='total')cur.okTotal=1}
   else if(a==='ver'){d.remove();try{renderLineas()}catch(_){}var e=document.getElementById('revBox')||document.getElementById('lineas');if(e)e.scrollIntoView({behavior:'smooth',block:'center'});return}
   try{renderLineas()}catch(_){}try{autoGuardar()}catch(_){}
   var R=problemas(cur);if(R.length){P=R;mostrar(R,seguir)}else{d.remove();if(seguir)seguir()}})}

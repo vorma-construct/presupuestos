@@ -1,0 +1,239 @@
+[
+ {
+  "t": "pintar el salón de 6 metros, otro salón de 6 metros y la habitación de 6 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 73.5,
+   "pit": 18
+  },
+  "lugares": {
+   "pip": [
+    "salones",
+    "habitación"
+   ],
+   "pit": [
+    "salones",
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El segundo salón va una vez (2 salones 49/12), no además como «otro salón».",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón de 6 metros, el salón 2 de 6 metros, la habitación de 6 metros y la habitación 2 de 6 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 98,
+   "pit": 24
+  },
+  "lugares": {
+   "pip": [
+    "salones",
+    "habitaciones"
+   ],
+   "pit": [
+    "salones",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos salones y dos habitaciones de 6: paredes 98 y techos 24, sin contar ninguna dos veces.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón y tres habitaciones, todas de 6 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 98,
+   "pit": 24
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "habitaciones"
+   ],
+   "pit": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«todas de 6 metros»: cada habitación de 6 (73,5/18) y el salón 24,5/6.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón y las dos habitaciones, cada una de 10 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 94.8,
+   "pit": 30
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "habitaciones"
+   ],
+   "pit": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«cada una de 10 metros»: salón 31,6/10 y dos habitaciones 63,2/20.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el pasillo de 5 metros y el salón 2 de 15 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 61.1,
+   "pit": 20
+  },
+  "lugares": {
+   "pip": [
+    "pasillo",
+    "salón"
+   ],
+   "pit": [
+    "pasillo",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el salón 2» sin otro salón antes es el salón: pasillo 22,4/5 y salón 38,7/15 por separado.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón 1 de 20 metros y el salón 2 de 15 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 83.5,
+   "pit": 35
+  },
+  "lugares": {
+   "pip": [
+    "salones"
+   ],
+   "pit": [
+    "salones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Salón 1 y salón 2: dos salones de 20 y 15.",
+  "fuera": []
+ },
+ {
+  "t": "pintar dos salones de 6 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 49,
+   "pit": 12
+  },
+  "lugares": {
+   "pip": [
+    "salones"
+   ],
+   "pit": [
+    "salones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos salones de 6 cada uno, con techo.",
+  "fuera": []
+ },
+ {
+  "t": "pintar la habitación 1 de 10 metros, la habitación 2 de 12 metros y la habitación 3 de 9 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 96.3,
+   "pit": 31
+  },
+  "lugares": {
+   "pip": [
+    "habitaciones"
+   ],
+   "pit": [
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres habitaciones numeradas, cada una con sus metros.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salón de 20 metros y tres habitaciones de 10 metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 139.5,
+   "pit": 50
+  },
+  "lugares": {
+   "pip": [
+    "salón",
+    "habitaciones"
+   ],
+   "pit": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Salón 44,7/20 y tres habitaciones de 10 cada una 94,8/30.",
+  "fuera": []
+ }
+]
