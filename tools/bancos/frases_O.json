@@ -2304,10 +2304,11 @@
   "debe": [
    "tab",
    "niv",
-   "flo",
    "ron"
   ],
-  "no_debe": [],
+  "no_debe": [
+   "flo"
+  ],
   "estancias": {},
   "cantidades": {
    "niv": 30
@@ -2315,10 +2316,6 @@
   "lugares": {
    "niv": [
     "salón"
-   ],
-   "flo": [
-    "salón",
-    "habitaciones"
    ],
    "ron": [
     "salón",
@@ -2328,9 +2325,12 @@
   "sin_lugar": [],
   "fuera": [],
   "sin_medida": [
-   "flo",
    "ron"
-  ]
+  ],
+  "debe_texto": {
+   "Colocación de suelo que aporta el cliente": null
+  },
+  "justificacion": "«El material del suelo lo compra el cliente»: el flotante va sin suministro (colocación sin precio, con sus estancias), no el de suministro y colocación."
  },
  {
   "t": "Para Oihana, en Bakio. Cocina completa de ocho metros con muebles montados por nosotros. Alicatar las paredes de la cocina con piezas de treinta por noventa, dieciséis metros. Baño no. Salón y comedor, pintar paredes y techos con tres manos. El pasillo igual.",

@@ -235,6 +235,12 @@ def comprobar(f, r):
     # «sin_pregunta»: [tipos] — se dijo: ninguna partida con esa pregunta
     for tp in f.get('sin_pregunta', []):
         if any(l.get('pend') == tp for l in L): fallos.append('pregunta de más «%s» (ya se dijo)' % tp)
+    # «debe_texto»: {"Colocación de puertas que aporta el cliente": 4} — una partida cuya descripción empieza así (lo que no está en la tarifa, sin precio), con esa cantidad (null: cualquiera)
+    dt = f.get('debe_texto') or {}
+    for tx, q in (dt.items() if isinstance(dt, dict) else [(x, None) for x in dt]):
+        qs = [l['q'] for l in L if l['d'].startswith(tx)]
+        if not qs: fallos.append('falta la partida «%s»' % tx)
+        elif q is not None and not any(abs(x - float(q)) < 0.15 for x in qs): fallos.append('«%s» con %s y se dijo %s' % (tx, qs, q))
     # «lugares»: {id: ["salón", "pasillo"]} — entre las partidas de ese trabajo salen esas estancias
     import unicodedata
     def _n(x): return ''.join(c for c in unicodedata.normalize('NFD', x.lower()) if unicodedata.category(c) != 'Mn')
