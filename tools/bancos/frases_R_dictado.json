@@ -1,0 +1,822 @@
+[
+ {
+  "t": "bueno pues a ver en el salon que tiene unos veinticinco metros quitar el gotele y pintar luego en la habitacion de matrimonio de catorce metros poner flotante y en la pequeña de nueve solo pintar",
+  "debe": [
+   "lija",
+   "pip",
+   "pit",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 14,
+   "lija": 50,
+   "pit": 25
+  },
+  "lugares": {
+   "flo": [
+    "habitación de matrimonio"
+   ],
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "habitación pequeña"
+   ],
+   "pit": [
+    "salón",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cada trabajo en la estancia que se nombra delante: gotelé y pintura en el salón (25 m² de suelo, paredes calculadas), flotante 14 en la de matrimonio (sin pintura inventada), pintar en la pequeña (paredes calculadas desde sus 9 m²). Igual con y sin puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "Bueno, pues a ver, en el salón, que tiene unos veinticinco metros, quitar el gotelé y pintar. Luego en la habitación de matrimonio, de catorce metros, poner flotante, y en la pequeña, de nueve, solo pintar.",
+  "debe": [
+   "lija",
+   "pip",
+   "pit",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 14,
+   "lija": 50,
+   "pit": 25
+  },
+  "lugares": {
+   "flo": [
+    "habitación de matrimonio"
+   ],
+   "lija": [
+    "salón"
+   ],
+   "pip": [
+    "salón",
+    "habitación pequeña"
+   ],
+   "pit": [
+    "salón",
+    "habitación pequeña"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cada trabajo en la estancia que se nombra delante: gotelé y pintura en el salón (25 m² de suelo, paredes calculadas), flotante 14 en la de matrimonio (sin pintura inventada), pintar en la pequeña (paredes calculadas desde sus 9 m²). Igual con y sin puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "en el comedor que tiene dieciocho metros quitar el papel y pintar luego en el dormitorio principal de doce metros poner tarima flotante y en el pequeño de diez solo pintar",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12,
+   "pit": 18
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio principal"
+   ],
+   "qpa": [
+    "comedor"
+   ],
+   "pip": [
+    "comedor",
+    "dormitorio pequeño"
+   ],
+   "pit": [
+    "comedor",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Estancia, trabajo, estancia, trabajo: la tarima es del principal; el pequeño solo se pinta; el papel es del comedor.",
+  "fuera": []
+ },
+ {
+  "t": "En el comedor, que tiene dieciocho metros, quitar el papel y pintar. Luego en el dormitorio principal, de doce metros, poner tarima flotante, y en el pequeño, de diez, solo pintar.",
+  "debe": [
+   "qpa",
+   "pip",
+   "pit",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12,
+   "pit": 18
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio principal"
+   ],
+   "qpa": [
+    "comedor"
+   ],
+   "pip": [
+    "comedor",
+    "dormitorio pequeño"
+   ],
+   "pit": [
+    "comedor",
+    "dormitorio pequeño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Estancia, trabajo, estancia, trabajo: la tarima es del principal; el pequeño solo se pinta; el papel es del comedor.",
+  "fuera": []
+ },
+ {
+  "t": "acuchillar el parquet del salon veinte metros y barnizar las puertas",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "cor",
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 20
+  },
+  "lugares": {
+   "acu": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Barnizar las puertas no está en la tarifa: va aparte a precio, sin cajón de corredera ni puertas nuevas.",
+  "fuera": [
+   "barnizar las puertas"
+  ]
+ },
+ {
+  "t": "Acuchillar el parquet del salón, veinte metros, y barnizar las puertas.",
+  "debe": [
+   "acu"
+  ],
+  "no_debe": [
+   "cor",
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "acu": 20
+  },
+  "lugares": {
+   "acu": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Barnizar las puertas no está en la tarifa: va aparte a precio, sin cajón de corredera ni puertas nuevas.",
+  "fuera": [
+   "barnizar las puertas"
+  ]
+ },
+ {
+  "t": "pintar el pasillo y barnizar las cinco puertas",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "cor",
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Las cinco puertas se barnizan (fuera de tarifa), no son cinco puertas nuevas.",
+  "fuera": [
+   "barnizar las puertas"
+  ]
+ },
+ {
+  "t": "Barnizar las cinco puertas.",
+  "debe": [],
+  "no_debe": [
+   "cor",
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Barnizar puertas: fuera de tarifa.",
+  "fuera": [
+   "barnizar las puertas"
+  ]
+ },
+ {
+  "t": "el trastero que lo pinten y el garaje tambien",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "trastero",
+    "garaje"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Se pintan el trastero y el garaje (los dos), sin medida: pendiente.",
+  "fuera": []
+ },
+ {
+  "t": "El trastero, que lo pinten, y el garaje también.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "trastero",
+    "garaje"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Se pintan el trastero y el garaje (los dos), sin medida: pendiente.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el trastero y el garaje tambien",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "trastero",
+    "garaje"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "Se pintan el trastero y el garaje (los dos), sin medida: pendiente.",
+  "fuera": []
+ },
+ {
+  "t": "la bajera que la pinten y el trastero tambien",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "bajera",
+    "trastero"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip"
+  ],
+  "justificacion": "La bajera y el trastero, los dos a pintar, sin medida.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el salón cuarenta metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 40,
+   "pip": 63.2
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros pegados a la estancia son su suelo: techo 40 y paredes calculadas (63,2, a confirmar); no paredes 40 y techo 40 a la vez. Igual con y sin coma.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el salón, cuarenta metros.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 40,
+   "pip": 63.2
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros pegados a la estancia son su suelo: techo 40 y paredes calculadas (63,2, a confirmar); no paredes 40 y techo 40 a la vez. Igual con y sin coma.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salon 40 m2",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 40,
+   "pip": 63.2
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los metros pegados a la estancia son su suelo: techo 40 y paredes calculadas (63,2, a confirmar); no paredes 40 y techo 40 a la vez. Igual con y sin coma.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el dormitorio doce metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 12,
+   "pip": 34.6
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con y sin coma: 12 de suelo, paredes calculadas.",
+  "fuera": []
+ },
+ {
+  "t": "Pintar el dormitorio, doce metros.",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 12,
+   "pip": 34.6
+  },
+  "lugares": {
+   "pip": [
+    "dormitorio"
+   ],
+   "pit": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual con y sin coma: 12 de suelo, paredes calculadas.",
+  "fuera": []
+ },
+ {
+  "t": "Dos baños completos uno de cinco metros con plato de ducha y otro de tres metros con bañera",
+  "debe": [
+   "san",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños, cada uno con sus metros (5 y 3); el plato es del primero. Igual con coma, con dos puntos o sin nada.",
+  "fuera": []
+ },
+ {
+  "t": "Dos baños completos, uno de cinco metros con plato de ducha y otro de tres metros con bañera.",
+  "debe": [
+   "san",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños, cada uno con sus metros (5 y 3); el plato es del primero. Igual con coma, con dos puntos o sin nada.",
+  "fuera": []
+ },
+ {
+  "t": "Dos baños completos: uno de cinco metros con plato de ducha y otro de tres metros con bañera.",
+  "debe": [
+   "san",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños, cada uno con sus metros (5 y 3); el plato es del primero. Igual con coma, con dos puntos o sin nada.",
+  "fuera": []
+ },
+ {
+  "t": "Dos baños completos: uno de seis metros con bañera, y otro de cuatro metros con plato de ducha.",
+  "debe": [
+   "san",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños con sus metros aunque vaya con dos puntos y comas.",
+  "fuera": []
+ },
+ {
+  "t": "Cambiar cinco puertas por nuevas y recuperar las otras dos",
+  "debe": [
+   "pub",
+   "pue",
+   "puer",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5,
+   "puer": 2,
+   "recp": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco nuevas (quitar las viejas) y dos que se desmontan, se guardan y se vuelven a poner.",
+  "fuera": []
+ },
+ {
+  "t": "Cambiar cinco puertas por nuevas, y recuperar las otras dos.",
+  "debe": [
+   "pub",
+   "pue",
+   "puer",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5,
+   "pue": 5,
+   "puer": 2,
+   "recp": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco nuevas (quitar las viejas) y dos que se desmontan, se guardan y se vuelven a poner.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar cuatro puertas y las otras tres recuperarlas",
+  "debe": [
+   "pub",
+   "pue",
+   "puer",
+   "recp"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4,
+   "pue": 4,
+   "puer": 3,
+   "recp": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cuatro nuevas y tres recuperadas.",
+  "fuera": []
+ },
+ {
+  "t": "recuperar dos puertas",
+  "debe": [
+   "puer",
+   "recp"
+  ],
+  "no_debe": [
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "puer": 2,
+   "recp": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Recuperar no es poner puertas nuevas.",
+  "fuera": []
+ },
+ {
+  "t": "el salón tiene veinte metros y el pasillo seis poner tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo se dice cómo son las estancias y luego la tarima: tarima en las dos con sus metros; nada de pintura que nadie ha pedido.",
+  "fuera": []
+ },
+ {
+  "t": "El salón tiene veinte metros y el pasillo seis. Poner tarima flotante.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo se dice cómo son las estancias y luego la tarima: tarima en las dos con sus metros; nada de pintura que nadie ha pedido.",
+  "fuera": []
+ },
+ {
+  "t": "El salón tiene veinte metros, y el pasillo, seis. Poner tarima flotante.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo se dice cómo son las estancias y luego la tarima: tarima en las dos con sus metros; nada de pintura que nadie ha pedido.",
+  "fuera": []
+ },
+ {
+  "t": "El dormitorio tiene doce metros. Poner tarima flotante.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cómo es el dormitorio y luego la tarima: tarima de 12, sin pintura.",
+  "fuera": []
+ },
+ {
+  "t": "El salón tiene veinte metros y el pasillo seis. Cambiar las puertas.",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Decir los metros de las estancias no es pedir pintarlas.",
+  "fuera": []
+ },
+ {
+  "t": "en el salón acuchillar treinta metros y pintar",
+  "debe": [
+   "acu",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Los 30 metros son del acuchillado; la pintura del salón queda pendiente de medida (igual con y sin puntos).",
+  "fuera": []
+ },
+ {
+  "t": "En el salón. Acuchillar treinta metros. Y pintar.",
+  "debe": [
+   "acu",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Los 30 metros son del acuchillado; la pintura del salón queda pendiente de medida (igual con y sin puntos).",
+  "fuera": []
+ },
+ {
+  "t": "en el salón, acuchillar treinta metros, y pintar",
+  "debe": [
+   "acu",
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "acu": 30
+  },
+  "lugares": {
+   "acu": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [
+   "pip",
+   "pit"
+  ],
+  "justificacion": "Los 30 metros son del acuchillado; la pintura del salón queda pendiente de medida (igual con y sin puntos).",
+  "fuera": []
+ }
+]
