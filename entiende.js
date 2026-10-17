@@ -592,7 +592,9 @@ if(pk.tipo==='piso'){var hP=pk.hechas||{};/* reforma integral: solo lo contestad
  if(hP.puertas&&s.puertas>0){add('pue',s.puertas);add('pub',s.puertas)}
  /* «reforma integral… puertas» sin decir cuántas: van, pero con la pregunta del piso (una sola: «¿Cuántas puertas de paso nuevas?») */
  else if(!hP.puertas&&s.puertasDichas){add('pue',1);add('pub',1)}
- if(hP.con&&s.con)add('con',1);if(hP.limf&&s.limf)add('limf',1)}
+ if(hP.con&&s.con)add('con',1);if(hP.limf&&s.limf)add('limf',1);
+ /* lo supuesto por ser obra de casa entera se ve y se confirma («a confirmar») */
+ if(pk.supuestas&&pk.supuestas.length){var SUPI={luz:/^(ins|ele|bol)$/,paredes:/^(lija|pip|pit)$/,suelo:/^(sue|rod|flo|ron)$/,puertas:/^(pue|pub)$/,con:/^con$/,limf:/^limf$/};L.forEach(function(l){var k=pk.supuestas.find(function(k){return SUPI[k]&&SUPI[k].test(l.tid)});if(!k)return;l.supuesto=k;if(!l.calc){l.calc=1;l.calcDe='lo he puesto por ser una obra de casa entera; si no va, quítalo'}})}}
 if(pk.quitar&&pk.quitar.length)L=L.filter(function(l){return pk.quitar.indexOf(l.tid)<0||l.tid==='alc'&&pk.quitar.indexOf('alc-suelo')<0&&pk.quitar.indexOf('alc')<0});
 if(pk.quitar&&pk.quitar.indexOf('alc-suelo')>-1)L=L.filter(function(l){return !(/^(?:alc|alsm)$/.test(l.tid)&&/en el suelo/.test(l.d))});
 if(pk.quitar&&pk.quitar.indexOf('alc-paredes')>-1)L=L.filter(function(l){return !(/^(?:alc|alsm)$/.test(l.tid)&&!/en el suelo/.test(l.d))});
@@ -649,6 +651,14 @@ function ajustarPuertasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)ret
 function ajustarSueltasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var t=TT2.find(function(x){return x.d===d||d.indexOf(x.d+' — ')===0});return t?t.id:''};
  /* «el salón de 20 metros… quitar el gotelé del salón y pintar»: lo que se hace en la misma pared, los mismos metros que la pintura */
  var tgS=function(l){var d=String(l.d||''),k=d.indexOf(' \u2014 ');return k>-1?d.slice(k+3).trim():''};
+ /* obra de casa entera: la pintura y el suelo de salón y habitaciones SIN medidas ya van en las de toda la casa (paredes, techos, suelo de lo seco): no se cobran otra vez ni se quedan preguntando metros */
+ (function(){var pz=paqs().find(function(p){return p.tipo==='piso'});if(!pz||!pz.hechas)return;var hz=pz.hechas,rz=pz.r||{};var SECA=/^(?:\d+\s+|dos\s+|tres\s+|cuatro\s+|las?\s+|los\s+)?(?:salon(?:es)?|habitacion(?:es)?|dormitorios?|cuartos?|pasillos?|comedor(?:es)?|despachos?|recibidor|hall|entrada)\b/;
+  var cubre=function(id){return (/^(pip|pit|lija)$/.test(id)&&hz.paredes&&rz.paredes!=='no')||(/^(flo|sue|ron|rod)$/.test(id)&&hz.suelo&&rz.suelo==='tarima')};
+  cur.lineas=cur.lineas.filter(function(l){if(l.paqId)return true;var tg=norm(tgS(l)).replace(/\s+de\s+(?:arriba|abajo)$/,'');
+   if(tg&&SECA.test(tg)&&(!(num(l.q)>1)||l.qPend)&&cubre(idL2(l)))return false;
+   /* «en el salón cambiar suelo» suelto a cero euros: es el suelo de la casa */
+   if(l.fb&&!(num(l.p)>0)&&/\b(?:suelo|pintar|pintura|techos?)\b/.test(norm(l.d||''))&&/\b(?:salon|habitacion\w*|dormitorio\w*|pasillo|comedor)\b/.test(norm(l.d||''))&&(hz.suelo||hz.paredes))return false;
+   return true})})();
  cur.lineas.forEach(function(l){if(l.paqId)return;var id=idL2(l);if(!/^(lija|qpa|pic|ppa)$/.test(id)||l.u!=='m2')return;var tg=tgS(l);if(!tg)return;var pp=cur.lineas.find(function(x){return x.paqId&&/^(pip|pip3)$/.test(idL2(x))&&tgS(x)===tg});var dicho=new RegExp('\\b'+String(num(l.q)).replace('.',',')+'\\s*(?:m2|metros)').test(String((window.__A&&__A.todo)||''));if(pp&&num(pp.q)>1&&!dicho)l.q=pp.q});
  /* «reforma integral… el suelo se acuchilla»: lo de toda la casa suelto, con los metros del suelo del piso (sin baños ni cocina) */
  var pP=paqs().find(function(p){return p.tipo==='piso'}),cM0=window.__A&&__A.casaM;if(pP&&cM0&&cM0.suelo>0){var sP0=n2(paqs().filter(function(p){return p.padre===pP.id&&/^(bano|cocina)$/.test(p.tipo)}).reduce(function(a,p){return a+num(p.suelo||0)},0));if(sP0>0)cur.lineas.forEach(function(l){if(l.paqId||/ \u2014 /.test(String(l.d||'')))return;var dS0=function(q){return new RegExp('\\b'+String(q).replace('.','[.,]')+'\\s*(?:m2|metros)[^,.;]{0,20}\\b(?:de\\s+)?(?:suelo|parquet|tarima|flotante|acuchill|pared|pintura)').test(String(__A.todo||''))||new RegExp('\\b(?:suelo|parquet|tarima|flotante|laminado|vinilo|acuchill\\w*)\\b(?:(?!\\b(?:piso|casa|vivienda)\\b)[^,.;]){0,20}?\\b'+String(q).replace('.','[.,]')+'\\s*(?:m2|metros)').test(String(__A.todo||''))};if(/^(acu|niv|tar|flo|sue|pit|pit3)$/.test(idL2(l))&&Math.abs(num(l.q)-cM0.suelo)<0.5&&!dS0(num(l.q))){l.q=n2(Math.max(1,cM0.suelo-sP0));if(!l.okQ){l.calc=1;l.calcDe='el suelo de la casa ('+String(cM0.suelo).replace('.',',')+' m²) menos baño y cocina'}}else if(/^(pip|pip3|lija|pic|qpa)$/.test(idL2(l))&&Math.abs(num(l.q)-n2(cM0.suelo*2.7))<1&&!dS0(num(l.q))){l.q=n2(Math.max(1,cM0.suelo-sP0)*2.7);if(!l.okQ){l.calc=1;l.calcDe='las paredes, unas 2,7 veces el suelo de la casa sin baño ni cocina'}}})}
@@ -3333,6 +3343,23 @@ function respuestas(pk,t){var s=pk.r,h=pk.hechas,si=function(k,v){s[k]=v;h[k]=1}
   if(/\b(?:el\s+)?bano\b[^,.;]{0,25}\b(no se toca|como esta|se queda|ya esta hecho|lo deja\w*)\b|\b(sin|menos|excepto)\s+(?:el\s+)?bano\b/.test(t))si('banos',0);
   if(/\bsolo pintar\b|\bsin gotele\b|\bno (?:tiene|hay) gotele\b/.test(t))si('paredes','pintar');
   if(/\b(luz|electricidad|instalacion electrica)\b[^,.;]{0,20}\b(no se toca|esta bien|se queda)\b/.test(t))si('luz',false);
+  /* OBRA DE CASA ENTERA («obra de una casa con 120 metros», «reforma integral», «toda la casa»): lo que no se ha dicho ni negado se supone como en cualquier casa
+     (electricidad, paredes y techos, suelo, una puerta por estancia, contenedor y limpieza). Va marcado como supuesto para que se vea y se quite con un toque. La calefacción no se supone. */
+  if(pk.tipo==='piso'&&!pk.noSuponer&&/\b(?:reformar la (?:casa|vivienda) de|reforma\w* integral|obra integral|integral|obra (?:de|en) (?:una|la|su) (?:casa|vivienda|piso)|toda la (?:casa|vivienda)|todo el piso|(?:casa|vivienda|piso) enter[oa]|reformar (?:toda )?la casa|reforma\w* (?:de )?(?:toda )?la casa)\b/.test(t)){
+   var tT=' '+norm(String((window.__A&&(__A.bruto||__A.todo))||t))+' ';/* el dictado entero: las estancias dichas («con cocina, dos baños…») ya no están en el texto de la obra */var sup=[],pon=function(k,v){if(h[k]||N[k])return;s[k]=v;h[k]=1;sup.push(k)};
+   /* «con cocina, dos baños»: dicho dentro de la obra de la casa, se reforman */
+   var mB=tT.match(/\b(un|uno|una|dos|tres|cuatro|\d)\s+(?:banos|bano|aseos?)\b/),NB={un:1,uno:1,una:1,dos:2,tres:3,cuatro:4};if(!N.bano){if(mB)pon('banos',NB[mB[1]]||num(mB[1])||1);else if(/\b(?:bano|aseo)\b/.test(tT))pon('banos',1)}
+   if(!N.cocina&&/\bcocina\b/.test(tT))pon('cocina',true);
+   if(!N.luz)pon('luz',true);
+   if(!N.techoPint&&!N.paredes)pon('paredes',/\bgotele\b/.test(tT)&&!N.gotele?'gotele':'pintar');
+   if(!N.suelo)pon('suelo','tarima');
+   if(!N.puertas&&!/\bpuertas\b[^,.;]{0,30}\b(?:se\s+)?(?:recuper\w*|recoloc\w*|aprovech\w*|guard\w*|lacad\w*|pintad\w*|no se (?:tocan|cambian))\b/.test(tT)){
+    var nE=0,mH=tT.match(/\b(\d+|una|dos|tres|cuatro|cinco|seis)\s+(?:habitaciones|dormitorios|cuartos)\b/),NUM={una:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6};
+    nE+=mH?(NUM[mH[1]]||num(mH[1])||0):(/\b(?:habitacion|dormitorio)\b/.test(tT)?1:0);
+    if(/\bsalon\b/.test(tT))nE+=1;if(h.cocina&&s.cocina)nE+=1;if(h.banos)nE+=num(s.banos)||0;
+    if(!(nE>0))nE=4;pon('puertas',nE)}
+   pon('con',true);pon('limf',true);
+   if(sup.length)pk.supuestas=sup}
   /* «recuperar cinco puertas», «seis puertas recuperadas»: esas se desmontan y se vuelven a poner, no cuentan como puertas nuevas; y si no se dice ninguna nueva, la casa no lleva puertas nuevas */
   var tRec=/\brecuperar\s+(?:\d+|las)\s+puertas\b|\brecolocar puerta\b/.test(t);
   if(tRec){t=t.replace(/\brecuperar\s+(?:\d+|las)\s+puertas\b[^,.;]*|\bdesmontar\s+(?:\d+\s+)?puertas?\b[^,.;]*?\by\s+guardar\b|\brecolocar puerta(?:\s+\d+)?\b/g,' ');if(!h.puertas&&!/\bnuev[oa]s\b|\b(?:cambiar|sustituir|renovar|poner)\s+(?:las\s+)?(?:\d+\s+)?puertas\b/.test(t.replace(/\bnada de puertas nuevas\b/g,' ')))si('puertas',0)}
