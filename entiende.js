@@ -3348,12 +3348,16 @@ function respuestas(pk,t){var s=pk.r,h=pk.hechas,si=function(k,v){s[k]=v;h[k]=1}
   if(pk.tipo==='piso'&&!pk.noSuponer&&/\b(?:reformar la (?:casa|vivienda) de|reforma\w* integral|obra integral|integral|obra (?:de|en) (?:una|la|su) (?:casa|vivienda|piso)|toda la (?:casa|vivienda)|todo el piso|(?:casa|vivienda|piso) enter[oa]|reformar (?:toda )?la casa|reforma\w* (?:de )?(?:toda )?la casa)\b/.test(t)){
    var tT=' '+norm(String((window.__A&&(__A.bruto||__A.todo))||t))+' ';/* el dictado entero: las estancias dichas («con cocina, dos baños…») ya no están en el texto de la obra */var sup=[],pon=function(k,v){if(h[k]||N[k])return;s[k]=v;h[k]=1;sup.push(k)};
    /* «con cocina, dos baños»: dicho dentro de la obra de la casa, se reforman */
-   var mB=tT.match(/\b(un|uno|una|dos|tres|cuatro|\d)\s+(?:banos|bano|aseos?)\b/),NB={un:1,uno:1,una:1,dos:2,tres:3,cuatro:4};if(!N.bano){if(mB)pon('banos',NB[mB[1]]||num(mB[1])||1);else if(/\b(?:bano|aseo)\b/.test(tT))pon('banos',1)}
-   if(!N.cocina&&/\bcocina\b/.test(tT))pon('cocina',true);
+   /* solo cuando se dicen como estancias de la obra (no «fontanería para la cocina y el baño», ni «menos la cocina», ni «la cocina está bien») */
+   var noEst=function(w){return new RegExp('\\b(?:sin|menos|excepto|salvo)\\s+(?:el\\s+|la\\s+|los\\s+)?'+w+'|\\b'+w+'\\b[^,.;]{0,25}\\b(?:esta bien|no se toca|se queda|como esta|ya esta|no)\\b').test(tT)||/\bfontaneria\b/.test(tT)};
+   var mB=tT.match(/\b(un|uno|una|dos|tres|cuatro|\d)\s+(?:banos|bano|aseos?)\b/),NB={un:1,uno:1,una:1,dos:2,tres:3,cuatro:4};if(!N.bano&&!noEst('(?:banos?|aseos?)')){if(mB)pon('banos',NB[mB[1]]||num(mB[1])||1);else if(/\b(?:bano|aseo)\b/.test(tT))pon('banos',1)}
+   if(!N.cocina&&!noEst('cocina')&&/\bcocina\b/.test(tT))pon('cocina',true);
    if(!N.luz)pon('luz',true);
-   if(!N.techoPint&&!N.paredes)pon('paredes',/\bgotele\b/.test(tT)&&!N.gotele?'gotele':'pintar');
+   /* «el cliente quiere pintar el salón» (una sola estancia): solo esa; «pintar el salón y las habitaciones» o nada dicho: toda la casa */
+   var mP=tT.match(/\bpint\w*\b([^.;]{0,80})/),soloUna=false;if(mP&&!/\b(?:todo|toda|todas|todos|casa|piso|vivienda)\b/.test(mP[1])){var nR=(mP[1].match(/\b(?:salon|comedor|habitacion\w*|dormitorio\w*|pasillo|cuarto|despacho|hall|recibidor)\b/g)||[]).length;soloUna=nR===1}
+   if(!N.techoPint&&!N.paredes&&!soloUna)pon('paredes',/\bgotele\b/.test(tT)&&!N.gotele?'gotele':'pintar');
    if(!N.suelo)pon('suelo','tarima');
-   if(!N.puertas&&!/\bpuertas\b[^,.;]{0,30}\b(?:se\s+)?(?:recuper\w*|recoloc\w*|aprovech\w*|guard\w*|lacad\w*|pintad\w*|no se (?:tocan|cambian))\b/.test(tT)){
+   if(!N.puertas&&!s.puertasDichas&&!/\bpuertas?\b/.test(tT)){/* si se nombran las puertas sin decir cuántas, se pregunta (con su número propuesto); si no se nombran, una por estancia */
     var nE=0,mH=tT.match(/\b(\d+|una|dos|tres|cuatro|cinco|seis)\s+(?:habitaciones|dormitorios|cuartos)\b/),NUM={una:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6};
     nE+=mH?(NUM[mH[1]]||num(mH[1])||0):(/\b(?:habitacion|dormitorio)\b/.test(tT)?1:0);
     if(/\bsalon\b/.test(tT))nE+=1;if(h.cocina&&s.cocina)nE+=1;if(h.banos)nE+=num(s.banos)||0;
