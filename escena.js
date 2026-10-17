@@ -61,7 +61,7 @@ function piezas(s){var T=[],i=0,m,VS=(API().VERBO_OBRA||/pintar|quitar|poner/).s
   var lastR=T.length&&T[T.length-1].t==='R';
   /* «pintar las paredes del salón son 50 metros», «el techo del dormitorio 12»: los metros son de las paredes o del techo, no del suelo de la estancia */
   if(T.length&&T[T.length-1].t==='w'&&/^(?:paredes|pared|techos?)$/.test(T[T.length-1].x)&&(m=try_(R_EXP))&&m[6]&&/^\s*(?:de|del)\s/.test(m[0])&&(m=try_(R_EXP0))){T.push({t:'R',k:'exp',m:m,x:m[0]});i+=m[0].length;continue}
-  if((m=try_(R_EXP))){T.push({t:'R',k:'exp',m:m,x:m[0]});i+=m[0].length;continue}
+  if((m=try_(R_EXP))){var pR={t:'R',k:'exp',m:m,x:m[0]};i+=m[0].length;/* «la habitación de 3 por 3 y el salón de 5 por 4»: largo por ancho (los metros son el producto; se escribe tal cual) */var mDm=m[6]&&/^\s*\d+(?:[.,]\d+)?\s*$/.test(m[6])&&s.slice(i).match(/^\s*(?:m\s+|metros?\s+)?(?:por|x)\s*(\d+(?:[.,]\d+)?)(?![.,]?\d)(?:\s*(?:m|metros)\b)?/);if(mDm){pR.dim=[numDe(m[6]),numDe(mDm[1])];pR.x+=mDm[0];i+=mDm[0].length}T.push(pR);continue}
   if((m=try_(R_ANA))){T.push({t:'R',k:'ana',m:m,x:m[0]});i+=m[0].length;continue}
   if((m=try_(R_ELM))){T.push({t:'R',k:'el',m:m,x:m[0],msE:numDe(m[3])});i+=m[0].length;continue}
   if((m=try_(R_EL))){T.push({t:'R',k:'el',m:m,x:m[0]});i+=m[0].length;continue}
@@ -87,9 +87,11 @@ function escena(bruto,op){op=op||{};
  frases=frases.map(function(f){return f.replace(/(\d)#(\d)/g,'$1,$2').replace(/\s+/g,' ')});
  var ultWs=null; var reg=[],excl={},ultSet=null,ultAcc=null,cambia=false,info=[],todasUsadas={};
  var clave=function(e){return sing(e.base)+(e.n>1?'#'+e.n:(e.n===0?'#pl':''))+(e.otro?'#otro':'')+(e.ape?'|'+apeN(e.ape):'')};
- var frAct=0;var alta=function(e){var k=clave(e),x=reg.find(function(r){return r.k===k});
+ var frAct=0,escTres=false;var alta=function(e){var k=clave(e),x=reg.find(function(r){return r.k===k});
   /* «las habitaciones» después de «dos habitaciones de 12 y de 10»: son esas */
   if(!x&&e.n===0&&!(e.ms&&e.ms.length)){var pls=reg.filter(function(r){return sing(r.base)===sing(e.base)&&r.n>1&&apeN(r.ape)===apeN(e.ape)});if(pls.length===1)x=pls[0]}
+  /* «flotante: salón 22, habitación 13, habitación 10 y medio»: la misma estancia nombrada otra vez en la misma frase con otros metros es OTRA (no se pisan los metros) */
+  if(x&&x.n===1&&!e.otro&&e.ms&&e.ms.length===1&&x.m2!=null&&x.mFr===frAct&&Math.abs(x.m2-e.ms[0])>0.01){var kO=k.replace(/(\|.*)?$/,'#otro$1');if(!reg.some(function(r){return r.k===kO}))return alta({base:e.base,ape:e.ape,n:1,otro:true,ms:e.ms});/* una tercera con el mismo nombre: no se sabe nombrar, la frase se deja como se dijo */escTres=true;return x}
   if(!x){x={k:k,base:e.base,ape:e.ape||'',n:e.n===0?0:(e.n||1),otro:e.otro,m2:null,ms:null};reg.push(x)}
   if(e.ms&&e.ms.length){x.mFr=frAct;if(x.n>1&&e.ms.length===x.n)x.ms=e.ms;else if(e.ms.length===1&&x.n===1)x.m2=e.ms[0]}return x};
  var prevH=null;var hechos=frases.map(function(fr,ifr){var __h=(function(){frAct=ifr;var orig=fr;var heredaDescr=false;
@@ -106,9 +108,10 @@ function escena(bruto,op){op=op||{};
   (function(){var u=reg[reg.length-1];if(u&&u.ape&&u.n===1&&/^(habitacion|dormitorio|cuarto)$/.test(sing(u.base)))ultBase=u.base})();
   T.forEach(function(p){if(p.t!=='R'||malo)return;var m=p.m;var nxT=T[T.indexOf(p)+1];p.tambien=/\b(?:tambien|ademas)\b/.test(p.x)||!!(nxT&&nxT.t==='w'&&/^(?:tambien|igual)$/.test(nxT.x)&&(function(){var n2=T[T.indexOf(p)+2];return !n2||n2.t==='sep'||n2.t==='w'&&/^(?:y|e)$/.test(n2.x)})());p.tamTras=p.tambien&&!/\b(?:tambien|ademas)\b/.test(p.x);
    if(p.k==='exp'){var art=m[1],cnt=m[2],otro=m[3],base=m[4],ape=m[5],ms=m[6];var n=1;if(cnt)n=CNTW[cnt]||+cnt||1;else if(/(?:es|os|as)$/.test(base)&&!/^sala de estar$/.test(base))n=0;
-    var arr=null;if(ms){arr=ms.replace(/^\s*de\s+/,'').split(/\s*(?:,|\by\b)\s*(?:de\s+)?/).filter(Boolean).map(numDe);if(arr.some(isNaN))arr=null;else if(arr.length===2&&n===1&&arr[1]<1)arr=[arr[0]+arr[1]]}
+    var arr=null;if(ms){arr=ms.replace(/^\s*de\s+/,'').split(/\s*(?:,(?!\d)|\by\b)\s*(?:de\s+)?/)/* «comedor 10,5 metros»: la coma del decimal no parte */.filter(Boolean).map(numDe);if(arr.some(isNaN))arr=null;else if(arr.length===2&&n===1&&arr[1]<1)arr=[arr[0]+arr[1]]}
+    if(p.dim&&arr&&arr.length===1&&n===1)arr=[Math.round(p.dim[0]*p.dim[1]*100)/100];
     if(/^(esos|esas|estos|estas)$/.test(art||'')&&!cnt)usaRef=true;
-    p.rs=[alta({base:base,ape:ape||'',n:n||(arr&&arr.length>1?arr.length:0),otro:!!otro,ms:arr})];ultBase=base}
+    escTres=false;p.rs=[alta({base:base,ape:ape||'',n:n||(arr&&arr.length>1?arr.length:0),otro:!!otro,ms:arr})];if(p.dim&&p.rs[0].n===1&&p.rs[0].m2!=null)p.rs[0].dim=fmt(p.dim[0])+' por '+fmt(p.dim[1]);ultBase=base;if(escTres){malo=true;return}}
    else if(p.k==='el'){var ap=m[2],a=apeN(ap);var cand=reg.filter(function(r){return /^otr/.test(ap)?r.otro:apeN(r.ape)===a&&r.n===1});
     if(p.msE>0){if(cand.length===1){if(cand[0].m2==null&&!(cand[0].ms&&cand[0].ms.length)){cand[0].m2=p.msE;cand[0].mFr=frAct}}else if(!cand.length&&ultBase)cand=[alta({base:ultBase,ape:/^otr/.test(ap)?'':ap,n:1,otro:/^otr/.test(ap),ms:[p.msE]})]}
     if(cand.length===1)p.rs=[cand[0]];
@@ -132,7 +135,7 @@ function escena(bruto,op){op=op||{};
    if(p.t==='w'){if(!cur)cur={t:'S',w:[]};cur.w.push(p.x);return}
    cerrar();
    if(p.t==='sep'){I.push({t:'sep'});return}
-   if(p.t==='R'){var u=I.length?I[I.length-1]:null,u2=I.length>1?I[I.length-2]:null;
+   if(p.t==='R'){var u=I.length?I[I.length-1]:null,u2=I.length>1?I[I.length-2]:null;/* «flotante: salón 22, pasillo 13, comedor 10»: la lista sigue tras varias comas (la coma de antes se queda en la fila) */if(u&&u.t==='sep'&&u2&&u2.t==='sep'){for(var kU=I.length-1;kU>=0&&I[kU].t==='sep';kU--);u2=kU>=0?I[kU]:null}
     /* «… en el salón y en el pasillo también»: un mismo grupo (con «y», «también», comas) */
     var prepDe=function(x){return /^\s*(?:y\s+|e\s+)?(?:tambien\s+)?(?:en|de|del|para)\b/.test(x)};/* «quitar el papel del dormitorio y pintar el salón, el dormitorio son doce metros»: la estancia de antes con sus metros, tras una coma, dice cómo es (no se suma al grupo de delante) */
     var yaDicha=p.k==='exp'&&p.m&&p.m[6]&&p.rs&&p.rs.length===1&&T.slice(0,T.indexOf(p)).some(function(q){return q.t==='R'&&q.rs&&q.rs.indexOf(p.rs[0])>-1});
@@ -242,7 +245,10 @@ function escena(bruto,op){op=op||{};
   var util=usaRef||Object.keys(nS).length>1||conSala.some(function(it){return it.rooms.some(function(r){return (r.m2!=null||r.ms)&&r.mFr!==ifr})});
   /* «el salón tiene veinte metros y el pasillo seis poner tarima flotante» (sin puntos): lo dicho de cómo son las estancias, y luego el trabajo de todas */
   var descrDel=conSala.some(function(it){return it.delante&&it.rooms.length>1&&it.rooms.every(function(r){return r.n===1&&mDe(r)!=null})&&I2.some(function(g){return g.t==='G'&&g.usado==='delante'&&g.rs.some(function(p){return /\b(?:tiene|mide|miden|tienen)\b/.test(p.x)})})});
-  if(op.sinPuntos&&!usaRef&&!listaTot&&!redicha&&!descrDel&&!window.__escSP)util=false;
+  /* «pintar la habitación de doce y la otra habitación de diez» (sin puntos): dos estancias del mismo nombre en un trabajo, una frase para cada una (el intérprete solo se queda con la primera) */var dosIguales=conSala.some(function(it){return it.rooms.length>1&&it.rooms.some(function(r){return r.otro&&r.n===1&&it.rooms.some(function(r2){return r2!==r&&!r2.otro&&sing(r2.base)===sing(r.base)})})});
+  /* «en la habitación de 3 por 3 y en el salón de 5 por 4 quitar el gotelé y pintar»: varias estancias con su largo por ancho en un trabajo, una frase para cada una */
+  var dimVarias=conSala.some(function(it){return it.rooms.length>1&&it.rooms.some(function(r){return r.dim})});
+  if(op.sinPuntos&&!usaRef&&!listaTot&&!redicha&&!descrDel&&!dosIguales&&!dimVarias&&!window.__escSP)util=false;
   return {I:I2,orig:orig,util:util,salas:vistos}})();prevH=__h;return __h});
  /* 4) se escribe otra vez: una frase por estancia */
  var algo=hechos.some(function(h){return h.I&&h.util});if(!algo)return null;
@@ -279,7 +285,7 @@ function escena(bruto,op){op=op||{};
    var accs=it.copia||[acc];
    rooms.forEach(function(r){var s=porSala[r.k];if(!s){s={sala:r,acc:[]};porSala[r.k]=s;items.push(s)}accs.forEach(function(x){var xx=limpiar(x)+(it.total&&rooms.length===1?' '+it.total:'');if(s.acc.indexOf(xx)<0)s.acc.push(xx)})})});
   var frs=items.map(function(it){if(it.lit!=null)return it.lit;var r=it.sala,med='';
-   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y de ')+' metros';else if(r.m2!=null)med=' de '+fmt(r.m2)+' metros';
+   if(r.n>1&&r.ms&&r.ms.length===r.n)med=' de '+r.ms.map(fmt).join(' y de ')+' metros';else if(r.m2!=null)med=' de '+(r.dim||fmt(r.m2)+' metros');
    return 'en '+nombreDe(r)+med+' '+it.acc.join(', ')});
   cambia=true;info.push(frs);out.push(frs.join('. '))});
  function limpiar(x){var a=String(x||'').replace(/^\s*(?:(?:y|e|tambien|ademas|luego|despues|pues|bueno)\s+)+/,' ').replace(/^\s*(?:y|e|luego|despues)\s+/,' ').replace(/\b(pint|lij|quit|pon|cambi|lev|arranc|empapel|luc|alis|rasc)(ar|er|ir)(?:lo|la|los|las)\b/g,'$1$2').replace(/\b(pintar|lijar|lucir)\s+todo\b/g,'$1').replace(/\btambien\b/g,' ').replace(/\s+(?:y|e|de|del|en|y luego|que)\s*$/,'').replace(/\s+/g,' ').trim();

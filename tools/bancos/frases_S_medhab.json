@@ -1,0 +1,1134 @@
+[
+ {
+  "t": "suelo flotante en la habitación de tres veinte por cuatro",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.8
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 3,20 × 4 = 12,8 m² (antes 3 m²).",
+  "igual_que": "suelo flotante en la habitación de 3,20 por 4"
+ },
+ {
+  "t": "suelo flotante en la habitación de tres con veinte por cuatro",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.8
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 3,20 × 4 = 12,8 m² (antes 3 m²).",
+  "igual_que": "suelo flotante en la habitación de 3,20 por 4"
+ },
+ {
+  "t": "suelo flotante en la habitación de tres metros veinte por cuatro metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.8
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 3,20 × 4 = 12,8 m² (antes 3 m²).",
+  "igual_que": "suelo flotante en la habitación de 3,20 por 4"
+ },
+ {
+  "t": "suelo flotante en la habitación de tres coma dos por cuatro",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.8
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 3,20 × 4 = 12,8 m² (antes 3 m²).",
+  "igual_que": "suelo flotante en la habitación de 3,20 por 4"
+ },
+ {
+  "t": "Suelo flotante en la habitación de 3,20x4.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12.8
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 3,20 × 4 = 12,8 m² (antes 3 m²).",
+  "igual_que": "suelo flotante en la habitación de 3,20 por 4"
+ },
+ {
+  "t": "pintar la habitación de tres diez por tres veinte",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 9.92
+  },
+  "lugares": {
+   "pip": [
+    "habitación"
+   ],
+   "pit": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. Techo 3,10 × 3,20 = 9,92 m² (antes 3 m² de techo y 66 de paredes).",
+  "igual_que": "pintar la habitación de 3,10 por 3,20"
+ },
+ {
+  "t": "pintar la habitación de tres con diez por tres con veinte",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 9.92
+  },
+  "lugares": {
+   "pip": [
+    "habitación"
+   ],
+   "pit": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. Techo 3,10 × 3,20 = 9,92 m² (antes 3 m² de techo y 66 de paredes).",
+  "igual_que": "pintar la habitación de 3,10 por 3,20"
+ },
+ {
+  "t": "baño de dos diez por uno ochenta reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.78
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 2,10 × 1,80 = 3,78 m² (antes 2 m²).",
+  "igual_que": "baño de 2,10 por 1,80 reforma entera"
+ },
+ {
+  "t": "baño de dos con diez por uno con ochenta reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.78
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 2,10 × 1,80 = 3,78 m² (antes 2 m²).",
+  "igual_que": "baño de 2,10 por 1,80 reforma entera"
+ },
+ {
+  "t": "baño de dos metros diez por uno ochenta reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.78
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 2,10 × 1,80 = 3,78 m² (antes 2 m²).",
+  "igual_que": "baño de 2,10 por 1,80 reforma entera"
+ },
+ {
+  "t": "baño de dos coma diez por uno coma ochenta reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.78
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 2,10 × 1,80 = 3,78 m² (antes 2 m²).",
+  "igual_que": "baño de 2,10 por 1,80 reforma entera"
+ },
+ {
+  "t": "baño de 2,10x1,80 reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.78
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 2,10 × 1,80 = 3,78 m² (antes 2 m²).",
+  "igual_que": "baño de 2,10 por 1,80 reforma entera"
+ },
+ {
+  "t": "el salón mide cuatro veinte por tres ochenta, poner suelo flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 15.96
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 4,20 × 3,80.",
+  "igual_que": "el salón de 4,20 por 3,80, poner suelo flotante"
+ },
+ {
+  "t": "el dormitorio tiene tres y medio por tres, tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 10.5
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras.",
+  "igual_que": "el dormitorio de 3,5 por 3, tarima flotante"
+ },
+ {
+  "t": "tarima flotante en el pasillo de seis por uno veinte",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 7.2
+  },
+  "lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras. 6 × 1,20 = 7,2.",
+  "igual_que": "tarima flotante en el pasillo de 6 por 1,20"
+ },
+ {
+  "t": "tarima flotante en el dormitorio de dos ochenta por tres diez",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 8.68
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Largo por ancho dicho a la española: tiene que salir lo mismo que en cifras.",
+  "igual_que": "tarima flotante en el dormitorio de 2,80 por 3,10"
+ },
+ {
+  "t": "la habitación tiene tres por cuatro, poner tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«La habitación tiene/mide A por B» son los metros de esa estancia, igual que «la habitación de A por B». (antes flo a 0 y sin estancia).",
+  "igual_que": "la habitación de 3 por 4, poner tarima flotante"
+ },
+ {
+  "t": "la habitación mide tres por cuatro, poner tarima flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«La habitación tiene/mide A por B» son los metros de esa estancia, igual que «la habitación de A por B».",
+  "igual_que": "la habitación de 3 por 4, poner tarima flotante"
+ },
+ {
+  "t": "la habitación mide tres metros por tres y medio, pintar y suelo flotante",
+  "debe": [
+   "flo",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 10.5
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ],
+   "pip": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«La habitación tiene/mide A por B» son los metros de esa estancia, igual que «la habitación de A por B». (antes el suelo y las paredes a 0 y el techo con 10,5).",
+  "igual_que": "la habitación de 3 por 3,5, pintar y suelo flotante"
+ },
+ {
+  "t": "el salón tiene cinco por cuatro, quitar el gotelé y pintar",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«La habitación tiene/mide A por B» son los metros de esa estancia, igual que «la habitación de A por B».",
+  "igual_que": "el salón de 5 por 4, quitar el gotelé y pintar"
+ },
+ {
+  "t": "plato de ducha de ochenta por ochenta y mampara",
+  "debe": [
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "80 × 80 es el plato (en centímetros), no una estancia."
+ },
+ {
+  "t": "cambiar el plato de ducha por uno de setenta por ciento diez",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Medida de plato en centímetros: no se lee como metros."
+ },
+ {
+  "t": "suelo flotante: salón veintidós metros, habitación uno trece, habitación dos diez y medio",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«Habitación uno trece, habitación dos diez y medio»: el «uno/dos» es el nombre (13 m² y 10,5 m², no 1,13 ni 2,10); cada una con sus metros, ninguna pisa a otra. (antes salón 22 + habitación 2)."
+ },
+ {
+  "t": "suelo flotante: salón 22 metros, habitación 1 13 metros, habitación 2 10,5 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«Habitación uno trece, habitación dos diez y medio»: el «uno/dos» es el nombre (13 m² y 10,5 m², no 1,13 ni 2,10); cada una con sus metros, ninguna pisa a otra."
+ },
+ {
+  "t": "suelo flotante: salón 22 metros, habitación 13 metros, habitación 10,5 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos habitaciones con metros distintos en la misma lista son dos habitaciones."
+ },
+ {
+  "t": "suelo flotante: habitación uno doce metros, habitación dos doce metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 24
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Habitación 1 y habitación 2 iguales: son dos, 12 + 12."
+ },
+ {
+  "t": "suelo flotante en la habitación uno de doce metros y en la habitación dos de diez",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 22
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«Habitación uno trece, habitación dos diez y medio»: el «uno/dos» es el nombre (13 m² y 10,5 m², no 1,13 ni 2,10); cada una con sus metros, ninguna pisa a otra."
+ },
+ {
+  "t": "suelo flotante: salón veinte metros, pasillo seis metros, comedor doce metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 38
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Una lista de tres estancias con sus metros: las tres (antes se perdía la tercera)."
+ },
+ {
+  "t": "suelo flotante: salón 22 metros, pasillo 13 metros, comedor 10,5 metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 45.5
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo",
+    "comedor"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Lista de tres con un decimal al final: 10,5 (antes 0)."
+ },
+ {
+  "t": "suelo flotante en la habitación de trece metros y en la otra habitación de diez y medio",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 23.5
+  },
+  "lugares": {
+   "flo": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«La otra habitación» es otra, con sus metros."
+ },
+ {
+  "t": "el baño mide dos por dos y medio hay que hacerlo entero con plato mampara mueble y techo de pladur",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam",
+   "mba",
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia. (antes no salía la reforma)."
+ },
+ {
+  "t": "el baño de cinco metros hay que hacerlo entero con plato y mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia."
+ },
+ {
+  "t": "el baño tiene cinco metros, hay que hacerlo nuevo, con plato y mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia."
+ },
+ {
+  "t": "la cocina mide tres por tres hay que hacerla entera",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia. (antes solo una línea sin nada)."
+ },
+ {
+  "t": "la cocina de nueve metros, hay que hacerla nueva",
+  "debe": [
+   "coc",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia."
+ },
+ {
+  "t": "vamos a ver el baño mide dos por dos y medio hay que quitar todo poner plato y mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia. (antes salía quitar papel pintado adivinado)."
+ },
+ {
+  "t": "el baño de 5 metros, hay que quitar todo, poner plato, mampara y alicatar",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd7",
+   "mam"
+  ],
+  "no_debe": [
+   "qpa"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Decir que el baño/la cocina se hace entero/a (o se quita todo) con sus metros dichos de cualquier forma es la reforma entera de esa estancia."
+ },
+ {
+  "t": "reforma de dos baños iguales de cuatro metros",
+  "debe": [
+   "san",
+   "ali"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos baños iguales: los dos con esos metros (no el segundo a 0)."
+ },
+ {
+  "t": "reforma de dos baños iguales de cuatro metros y medio",
+  "debe": [
+   "san",
+   "ali"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4.5,
+    4.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos baños iguales: los dos con esos metros (no el segundo a 0)."
+ },
+ {
+  "t": "dos baños de cuatro metros, los dos iguales, reforma completa",
+  "debe": [
+   "san",
+   "ali"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos baños iguales: los dos con esos metros (no el segundo a 0)."
+ },
+ {
+  "t": "en el baño grande plato de ducha y en el pequeño bañera, el grande tiene seis metros y el pequeño cuatro",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "san",
+   "ali",
+   "fba"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pd7": 1
+  },
+  "lugares": {
+   "pd7": [
+    "baño grande"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Plato en el grande, bañera en el pequeño; decir sus metros no es reformarlos enteros ni repetir el plato."
+ },
+ {
+  "t": "la cocina: quitar los muebles viejos, lucir paredes treinta metros, suelo nuevo nueve metros, montar muebles del cliente",
+  "debe": [
+   "luc",
+   "mco",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "luc": 30,
+   "alc": 9
+  },
+  "lugares": {
+   "luc": [
+    "cocina"
+   ],
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "El lucido de 30 m² de la cocina no se pierde (antes desaparecía) y el suelo dice que es de la cocina."
+ },
+ {
+  "t": "la cocina: lucir paredes treinta metros, suelo nuevo nueve metros",
+  "debe": [
+   "luc",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "luc": 30,
+   "alc": 9
+  },
+  "lugares": {
+   "luc": [
+    "cocina"
+   ],
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Igual, sin quitar muebles."
+ },
+ {
+  "t": "el baño de cuatro metros, quitar todo el alicatado y poner nuevo, el suelo también",
+  "debe": [
+   "ali",
+   "alc",
+   "sol"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "sol": 4
+  },
+  "lugares": {
+   "ali": [
+    "baño"
+   ],
+   "alc": [
+    "baño"
+   ],
+   "sol": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Paredes calculadas del baño y el suelo también: quitar y poner 4 m² (antes «Poner el suelo» suelto y sin estancia)."
+ },
+ {
+  "t": "en el baño de cuatro metros quitar todo el alicatado y poner nuevo",
+  "debe": [
+   "ali",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "ali": [
+    "baño"
+   ],
+   "alc": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«Todo el alicatado» es el alicatado: lo mismo.",
+  "igual_que": "en el baño de cuatro metros quitar el alicatado y poner nuevo"
+ },
+ {
+  "t": "picar el yeso de la cocina quince metros y lucir",
+  "debe": [
+   "pic",
+   "luc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 15,
+   "luc": 15
+  },
+  "lugares": {
+   "pic": [
+    "cocina"
+   ],
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Los 15 m² son del yeso de las paredes y se lucen esas mismas (antes 35,9 y 38,7 calculados de un suelo de 15)."
+ },
+ {
+  "t": "baño de cinco metros con plato de ducha y mampara, la cocina de ocho metros con azulejo y suelo, y pintar el salón cuarenta metros",
+  "debe": [
+   "san",
+   "alc",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "El alicatado de la cocina dice que es de la cocina."
+ },
+ {
+  "t": "la habitación de tres por tres y el salón de cinco por cuatro, tarima flotante en los dos",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 29
+  },
+  "lugares": {
+   "flo": [
+    "habitación",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Dos estancias con su largo por ancho: 9 y 20 m² (antes 3 y 5)."
+ },
+ {
+  "t": "en la habitación de tres por tres y en el salón de cinco por cuatro quitar el gotelé y pintar",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 29
+  },
+  "lugares": {
+   "pip": [
+    "habitación",
+    "salón"
+   ],
+   "pit": [
+    "habitación",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Cada estancia con su largo por ancho (antes se perdía la habitación).",
+  "igual_que": "en la habitación de 3 por 3 y en el salón de 5 por 4 quitar el gotelé y pintar"
+ },
+ {
+  "t": "la cocina tiene dos ochenta por tres veinte, alicatar paredes",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "Paredes calculadas con el largo y el ancho dichos a la española.",
+  "igual_que": "la cocina de 2,80 por 3,20, alicatar paredes"
+ },
+ {
+  "t": "el baño no hay que hacerlo entero, solo cambiar el plato",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "san",
+   "ali",
+   "fba"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«No hay que hacerlo entero»: no es la reforma entera."
+ },
+ {
+  "t": "quitar las puertas una por una y poner nuevas",
+  "debe": [],
+  "no_debe": [
+   "flo",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "fuera": [],
+  "justificacion": "«Una por una» no es una medida."
+ }
+]
