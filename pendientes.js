@@ -53,6 +53,8 @@ function pendDe(l){if(l.ok)return null;var id=idL(l);
    if(usaMetros(l)&&!(pk.suelo>0))return {t:'medidaPaq',pk:pk.id,m:'Faltan los metros '+delPaq(pk)+'.'};
    if(usaMetros(l)&&pk.calculado&&!pk.okMed)return {t:'medidaCalc',pk:pk.id,v:pk.suelo};
    var k=depDe(pk,l,id);if(k&&!(pk.hechas&&pk.hechas[k])&&!pk.okTodo&&P)return {t:'pregunta',pk:pk.id,k:k}
+   /* «baño… con plato de ducha» sin decir la medida: cuál de los dos platos (como en la partida suelta) */
+   if(l.elige&&ELIGE[l.elige]&&!l.okElige&&!pk.okTodo)return {t:l.elige,m:ELIGE[l.elige].m};
    if(l.calc&&!l.okQ&&num(l.q)>1)return {t:'calc',m:'Estos '+(l.u==='ml'?'metros lineales':'metros')+' ('+String(num(l.q)).replace('.',',')+') los he calculado yo'+(l.calcDe?' ('+l.calcDe+')':' con los del suelo')+': ¿valen?'}}
   return null}
  if(l.adiv&&!l.ok)return {t:'adiv',m:'Has dicho «'+(l.adivTxt||'')+'»: no lo tengo con esas palabras en la tarifa. ¿Es esta partida?'};
@@ -126,7 +128,7 @@ window.pendEntero=function(id,si){try{leer()}catch(_){}var pk=paqDe(id);if(!pk)r
 window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okMed=1;renderLineas();try{autoGuardar()}catch(_){}};
 window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1;delete l.calc}renderLineas();try{autoGuardar()}catch(_){}};
 /* la respuesta cambia solo esa partida (alc ↔ alsm, pd7 ↔ pd8): misma cantidad y misma estancia */
-window.pendElige=function(i,id){try{leer()}catch(_){}var l=cur.lineas[i],t=(window.tarifa?tarifa():[]).find(function(x){return x.id===id});if(l&&t){var k=String(l.d||'').indexOf(' — ');l.d=t.d+(k>-1?l.d.slice(k):'');l.p=t.p;l.u=t.u;if(l.tid)l.tid=id;l.okElige=1;delete l.elige}renderLineas();try{autoGuardar()}catch(_){}};
+window.pendElige=function(i,id){try{leer()}catch(_){}var l=cur.lineas[i],t=(window.tarifa?tarifa():[]).find(function(x){return x.id===id});if(l&&t){/* el plato de un baño entero: la estancia lo recuerda (si se rehace, no se vuelve a preguntar) */if(l.paqId&&l.elige==='plato'){var pkE=paqDe(l.paqId);if(pkE&&pkE.r){pkE.r.plato=id==='pd8'?'80':'70';pkE.r.platoDicho=1}}var k=String(l.d||'').indexOf(' — ');l.d=t.d+(k>-1?l.d.slice(k):'');l.p=t.p;l.u=t.u;if(l.tid)l.tid=id;l.okElige=1;delete l.elige}renderLineas();try{autoGuardar()}catch(_){}};
 /* la duda contestada vale para todas las partidas de esa misma duda; «No, era el comedor»: esas partidas pasan a esa estancia */
 window.pendDuda=function(i,alt){try{leer()}catch(_){}var l0=cur.lineas[i];if(!l0)return;var dd=l0.duda;/* «El suelo también se queda»: esas partidas fuera, y la estancia lo recuerda si se rehace */
  if(alt&&l0.dudaQuita){var pk=l0.paqId&&paqDe(l0.paqId);if(pk){pk.quitar=pk.quitar||[];l0.dudaQuita.forEach(function(q){if(pk.quitar.indexOf(q)<0)pk.quitar.push(q)})}cur.lineas=cur.lineas.filter(function(l){return l.duda!==dd});renderLineas();try{autoGuardar()}catch(_){}return}

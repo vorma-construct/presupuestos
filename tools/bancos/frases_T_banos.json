@@ -1,0 +1,1888 @@
+[
+ {
+  "t": "un baño de cuatro metros y otro igual los dos completos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro igual»: otro baño de 4; los dos completos (no se pierde el segundo).",
+  "fuera": []
+ },
+ {
+  "t": "Un baño de cuatro metros, y otro igual. Los dos completos.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo con puntos.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cinco metros y otro igual",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro igual» copia la medida y el «completo».",
+  "fuera": []
+ },
+ {
+  "t": "reforma de un baño de tres metros completo y otro idéntico",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«idéntico» es «igual».",
+  "fuera": []
+ },
+ {
+  "t": "dos baños uno de cuatro y otro igual, los dos enteros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«uno… y otro igual» dentro de «dos baños».",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo con mampara y lo mismo en el aseo pero de dos metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 2
+  },
+  "lugares": {
+   "mam": [
+    "baño",
+    "aseo"
+   ],
+   "san": [
+    "baño",
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El aseo copia lo del baño (completo con mampara) con su propia medida.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros y lo mismo en el aseo pero de dos metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos estancias (baño 4 y aseo 2); no se dijo que se hagan enteras: se pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "san": "entero"
+  }
+ },
+ {
+  "t": "baño de cinco metros completo y el aseo igual pero de dos y medio",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    2.5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño",
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el aseo igual pero de dos y medio»: otro baño completo de 2,5.",
+  "fuera": []
+ },
+ {
+  "t": "el aseo de dos metros completo y el baño igual de cinco",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    2,
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "aseo",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al revés: primero el aseo y el baño copia.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño de arriba de cuatro metros reforma completa y en el de abajo lo mismo de tres",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el de abajo lo mismo de tres»: el baño de abajo, completo, de 3.",
+  "fuera": []
+ },
+ {
+  "t": "En el baño de arriba, de cuatro metros, reforma completa; y en el de abajo, lo mismo, de tres.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntuación: la medida del de abajo es la suya (3), no la copiada.",
+  "fuera": []
+ },
+ {
+  "t": "Baño de arriba: cinco metros, completo. El de abajo: lo mismo, de tres.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con dos puntos.",
+  "fuera": []
+ },
+ {
+  "t": "el baño de arriba de seis metros completo y el de abajo igual pero de tres y medio",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    3.5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«igual pero de tres y medio».",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cuatro metros, sin mueble y con mampara, y otro igual",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [
+   "mba"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La copia lleva también el «sin mueble» y la mampara.",
+  "fuera": []
+ },
+ {
+  "t": "baño principal de seis metros con bañera completo y el del pasillo lo mismo pero con ducha de tres",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo, pero con ducha en vez de bañera y de 3 metros.",
+  "fuera": [],
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "baño de cuatro metros completo sin mampara y el aseo lo mismo pero con mampara de dos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 1
+  },
+  "lugares": {
+   "mam": [
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«lo mismo pero con mampara»: el aseo sí lleva mampara; el baño no.",
+  "fuera": [],
+  "no_lugares": {
+   "mam": [
+    "baño"
+   ]
+  }
+ },
+ {
+  "t": "en el baño de arriba de cuatro metros cambiar sanitarios y en el de abajo lo mismo",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Solo sanitarios, en los dos baños (lo mismo).",
+  "fuera": []
+ },
+ {
+  "t": "el baño de la habitación principal de tres metros y el del pasillo de cuatro reforma de los dos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {
+   "bano": [
+    3,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos baños (3 y 4); la «habitación principal» es el apellido del baño, no otra estancia.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "habitacion"
+   ]
+  }
+ },
+ {
+  "t": "El baño de la habitación principal, tres metros, y el del pasillo, cuatro metros. Reforma de los dos.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {
+   "bano": [
+    3,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntos.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "habitacion"
+   ]
+  }
+ },
+ {
+  "t": "reformar los dos baños el de la habitación principal de cuatro metros y el del pasillo de tres",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«reformar los dos baños»: los dos enteros, cada uno con sus metros.",
+  "fuera": []
+ },
+ {
+  "t": "el baño del dormitorio principal de cinco metros completo y el del pasillo de tres completo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«del dormitorio principal» es el apellido del baño.",
+  "fuera": [],
+  "no_lugares": {
+   "pit": [
+    "dormitorio"
+   ]
+  }
+ },
+ {
+  "t": "el baño del pasillo de cuatro metros completo y el de la habitación principal de seis completo con bañera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pip"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    6
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al revés, y el principal con bañera.",
+  "fuera": []
+ },
+ {
+  "t": "dos baños el de arriba con bañera y el de abajo con ducha los dos de cuatro metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«los dos de cuatro metros»: cada uno de 4; no se dijo que se hagan enteros: se pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "san": "entero"
+  }
+ },
+ {
+  "t": "Dos baños: el de arriba con bañera y el de abajo con ducha, los dos de cuatro metros, completos.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Completos: el de abajo con plato (se pregunta la medida).",
+  "fuera": [],
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "dos baños completos el de arriba y el de abajo ambos de cinco metros",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de arriba",
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«ambos de cinco metros».",
+  "fuera": []
+ },
+ {
+  "t": "los dos baños iguales de cuatro metros cada uno reforma completa",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«los dos iguales de cuatro cada uno»: 4 y 4.",
+  "fuera": []
+ },
+ {
+  "t": "Los dos baños, iguales, de cuatro metros cada uno: reforma completa.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "tres baños iguales de tres metros cada uno completos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3,
+    3,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres baños de 3.",
+  "fuera": []
+ },
+ {
+  "t": "un aseo de dos metros y un baño de cinco los dos completos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    2,
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "aseo",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Aseo y baño, los dos completos.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo y otro de tres metros el de tres solo cambiar sanitarios",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño",
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El de 3 solo sanitarios (el «baño 2»); el de 4 completo.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros y otro de tres metros el de tres solo cambiar sanitarios",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Del de 4 no se dijo qué se hace: se pregunta si entero; el de 3 solo sanitarios.",
+  "fuera": [],
+  "pregunta": {
+   "ali": "entero"
+  }
+ },
+ {
+  "t": "un baño de cinco metros entero y otro de dos el de dos solo poner mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 1,
+   "mam": 1
+  },
+  "lugares": {
+   "mam": [
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El de 2 solo la mampara.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño plato de ducha de ochenta en el otro baño de setenta",
+  "debe": [
+   "pd8",
+   "pd7"
+  ],
+  "no_debe": [
+   "san",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd8": [
+    "baño"
+   ],
+   "pd7": [
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el otro baño de setenta»: otro plato, de 70 (no 70 m²).",
+  "fuera": []
+ },
+ {
+  "t": "En el baño, plato de ducha de ochenta; en el otro baño, de setenta.",
+  "debe": [
+   "pd8",
+   "pd7"
+  ],
+  "no_debe": [
+   "san",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd8": [
+    "baño"
+   ],
+   "pd7": [
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Con puntuación.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño de arriba plato de ochenta y en el de abajo de setenta",
+  "debe": [
+   "pd8",
+   "pd7"
+  ],
+  "no_debe": [
+   "san",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pd8": [
+    "baño de arriba"
+   ],
+   "pd7": [
+    "baño de abajo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cada plato en su baño.",
+  "fuera": []
+ },
+ {
+  "t": "pues Jon dice que el baño de cuatro metros lo hacemos y la cocina de diez ya veremos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el baño lo hacemos»: entero; «la cocina ya veremos»: se pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "coc": "entero"
+  }
+ },
+ {
+  "t": "baño de cuatro metros completo y la cocina a lo mejor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«la cocina a lo mejor»: no se mete entera en silencio.",
+  "fuera": [],
+  "pregunta": {
+   "coc": "entero"
+  }
+ },
+ {
+  "t": "el baño lo hacemos entero de cinco metros y a lo mejor la cocina de nueve",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ],
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«a lo mejor la cocina»: pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "coc": "entero"
+  }
+ },
+ {
+  "t": "la cocina de doce metros la reformamos y el baño de cuatro ya veremos",
+  "debe": [
+   "coc",
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    12
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al revés: la cocina sí, el baño se pregunta.",
+  "fuera": [],
+  "pregunta": {
+   "san": "entero"
+  }
+ },
+ {
+  "t": "baño completo de cuatro metros menos el mueble del lavabo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mba"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«menos el mueble del lavabo»: el baño entero sin mueble.",
+  "fuera": []
+ },
+ {
+  "t": "Baño completo de cuatro metros, excepto el mueble.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mba"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«excepto el mueble».",
+  "fuera": []
+ },
+ {
+  "t": "reforma de cocina de diez metros pero la cliente quiere mantener el suelo y alicatar solo hasta media altura",
+  "debe": [
+   "coc",
+   "alc"
+  ],
+  "no_debe": [
+   "sol"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Media altura: los metros del alicatado, calculados y a confirmar; el suelo no.",
+  "fuera": [],
+  "pregunta": {
+   "alc": "calc"
+  }
+ },
+ {
+  "t": "baño de cuatro metros completo con azulejo hasta media altura",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El alicatado de paredes a media altura: calculado, a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "alc": "calc"
+  }
+ },
+ {
+  "t": "baño de tres metros completo con ventana sin puerta nueva con mueble con plato de ochenta con falso techo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8",
+   "mba",
+   "tec"
+  ],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {
+   "bano": [
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«sin puerta nueva»: sin puerta.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo, la puerta no",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«la puerta no».",
+  "fuera": []
+ },
+ {
+  "t": "cocina de diez metros entera sin puerta nueva",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [
+   "pue",
+   "pub"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "En la cocina igual.",
+  "fuera": []
+ },
+ {
+  "t": "baño de tres metros reforma completa no espera el baño es de tres y medio",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    3.5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La medida corregida: 3,5.",
+  "fuera": []
+ },
+ {
+  "t": "Baño de tres metros, reforma completa. No, perdona, el baño mide cuatro.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corregida a 4.",
+  "fuera": []
+ },
+ {
+  "t": "baño de tres por dos alicatado hasta el techo plato de ducha y mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El plato sin medida: se pregunta cuál.",
+  "fuera": [],
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "baño de cuatro metros mampara no plato sí",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "mam"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«plato sí» sin medida: se pregunta; sin mampara.",
+  "fuera": [],
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "el baño de dos metros y medio por dos metros alicatar todo y el azulejo lo pone el cliente",
+  "debe": [
+   "alsm"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "alsm": 5
+  },
+  "lugares": {
+   "alsm": [
+    "en el suelo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«alicatar todo» (paredes y suelo) y el azulejo lo pone el cliente: sin material en los dos; sin la duda de si lo hace él entero.",
+  "fuera": [],
+  "sin_pregunta": [
+   "duda"
+  ]
+ },
+ {
+  "t": "el baño de dos metros y medio por dos metros alicatar paredes y suelo",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 5
+  },
+  "lugares": {
+   "alc": [
+    "en el suelo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El alicatado del suelo son los 5 m² del suelo, no los metros de pared.",
+  "fuera": []
+ },
+ {
+  "t": "el baño de dos metros y medio por dos metros alicatar todo",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 5
+  },
+  "lugares": {
+   "alc": [
+    "en el suelo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«alicatar todo»: paredes y suelo.",
+  "fuera": []
+ },
+ {
+  "t": "eh pues el baño mide como dos por dos o sea cuatro metros reforma entera",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«dos por dos o sea cuatro metros»: 4.",
+  "fuera": []
+ },
+ {
+  "t": "la cocina tiene tres por tres o sea nueve metros entera",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "En la cocina igual.",
+  "fuera": []
+ },
+ {
+  "t": "tengo dos baños, uno de cuatro que lo quiero completo y otro de tres igual",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro de tres igual»: completo como el primero, con sus 3 metros.",
+  "fuera": []
+ },
+ {
+  "t": "el baño grande de seis metros completo y el pequeño igual pero de tres",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el pequeño igual pero de tres».",
+  "fuera": []
+ },
+ {
+  "t": "el baño de invitados de dos metros completo y el principal lo mismo de cinco",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    2,
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de invitados",
+    "baño principal"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el principal lo mismo de cinco».",
+  "fuera": []
+ },
+ {
+  "t": "baño de 4 m2 completo. Aseo: lo mismo, 2 m2.",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño",
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "En cifras y con dos puntos.",
+  "fuera": []
+ },
+ {
+  "t": "dos aseos iguales de dos metros cada uno completos",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    2,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "aseo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos aseos de 2.",
+  "fuera": []
+ },
+ {
+  "t": "en el baño cambiar sanitarios y en el otro igual",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [
+   "ali",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño",
+    "baño 2"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sanitarios en los dos baños (sin reformarlos enteros).",
+  "fuera": []
+ },
+ {
+  "t": "un baño de cuatro completo con bañera y el otro igual pero con plato de ochenta",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "pd8"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "pd8": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El otro igual pero con plato de 80 (sin la bañera).",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo y otro de tres metros igual",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro de tres metros igual».",
+  "fuera": []
+ },
+ {
+  "t": "el baño de abajo de cinco metros entero y el de arriba de tres, igual",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {
+   "san": [
+    "baño de abajo",
+    "baño de arriba"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el de arriba de tres, igual».",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo con mampara, y el aseo de dos igual pero sin mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 1
+  },
+  "lugares": {
+   "mam": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El aseo igual pero sin mampara.",
+  "fuera": [],
+  "no_lugares": {
+   "mam": [
+    "aseo"
+   ]
+  }
+ },
+ {
+  "t": "baño de cuatro metros completo, otro de tres completo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro de tres completo» (sin decir «baño»): otro baño, no se pierde.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo y otro de tres completo con mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 1
+  },
+  "lugares": {
+   "mam": [
+    "otro baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La mampara es del otro.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo con bañera y otro de tres completo con ducha",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El otro con ducha: plato a preguntar.",
+  "fuera": [],
+  "pregunta": {
+   "pd7": "plato"
+  }
+ },
+ {
+  "t": "baño de cuatro metros completo, otro de tres completo, y los dos con mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "san": 2,
+   "mam": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«los dos con mampara»: una en cada baño.",
+  "fuera": []
+ },
+ {
+  "t": "baño de cuatro metros completo y poner otro radiador en el pasillo",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "san": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«otro radiador» no es otro baño.",
+  "fuera": []
+ },
+ {
+  "t": "baño completo de cinco metros y el otro día me dijo que quería mampara",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {
+   "san": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«el otro día» no es otro baño.",
+  "fuera": []
+ },
+ {
+  "t": "tres baños, uno de cinco, otro de cuatro y otro de dos, los tres enteros, y es un ático sin ascensor",
+  "debe": [
+   "san",
+   "ali",
+   "sol",
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    4,
+    2
+   ]
+  },
+  "cantidades": {
+   "san": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres baños, cada uno con sus metros; lo del ático no es de los baños.",
+  "fuera": []
+ }
+]
