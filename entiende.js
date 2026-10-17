@@ -564,7 +564,7 @@ var sq=S>0?S:1;
 if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  add('san',1);add('ali',W);add('sol',sq);add('dfon',1);add('fba',1);
  add('alc',W,' — en las paredes');add('alc',sq,' — en el suelo');
- if(s.ducha==='ducha'){add(s.plato==='80'?'pd8':'pd7',1);/* plato sin su medida dicha: se pregunta cuál (70x110 u 80x80) */if(!s.platoDicho&&L.length&&/^pd[78]$/.test(L[L.length-1].tid))L[L.length-1].elige='plato'}else if(s.ducha==='banera')libre('Suministro y colocación de bañera de acero esmaltado de 160x70 cm',1,'ud');
+ if(s.ducha==='ducha'){add(s.plato==='80'?'pd8':'pd7',1);/* plato sin su medida dicha: se pregunta cuál (70x110 u 80x80) */if(!s.platoDicho&&L.length&&/^pd[78]$/.test(L[L.length-1].tid))L[L.length-1].elige='plato'}else if(s.ducha==='banera'){if(T('ban')){add('ban',1);L.forEach(function(l){if(l.tid==='fba')l.d=l.d.replace('plato de ducha','bañera')})}else libre('Suministro y colocación de bañera de acero esmaltado de 160x70 cm',1,'ud')}
  if(s.techo)add('tec',sq);add('pit',sq);
  if(s.mueble)add('mba',1);
  if(s.ventana===false)add('vent',1);
