@@ -27,12 +27,13 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
   if(copia)P.push({tipo:'copia',lineas:[l],txt:'«'+base(l.d).slice(0,60)+'» no es un trabajo de tu tarifa: parece un trozo de lo que dictaste, y cobra '+eur(imp(l))+'.'});
   else if(grande)P.push({tipo:'grande',lineas:[l],txt:'«'+base(l.d).slice(0,60)+'» no es de tu tarifa y es '+Math.round(imp(l)/tot*100)+' % de todo el presupuesto ('+eur(imp(l))+').'})});
  /* las mismas medidas en 3 o más estancias */
- var g={};L.forEach(function(l){if(l.okPortero||l.u!=='m2'||!(num(l.q)>0))return;var lu=lugar(l.d);if(!lu)return;var k=nrm(base(l.d)).slice(0,50)+'|'+num(l.q);(g[k]=g[k]||[]).push(l)});
+ var g={};/* las de un baño, cocina o piso ya pasan por sus preguntas de medidas («Son esos»): aquí solo las sueltas */
+ L.forEach(function(l){if(l.okPortero||l.paqId||l.u!=='m2'||!(num(l.q)>0))return;var lu=lugar(l.d);if(!lu)return;var k=nrm(base(l.d)).slice(0,50)+'|'+num(l.q);(g[k]=g[k]||[]).push(l)});
  var vistos={};Object.keys(g).forEach(function(k){var ls=g[k],lus={};ls.forEach(function(l){lus[lugar(l.d)]=1});var n=Object.keys(lus);if(n.length<3)return;
   var tipos={};n.forEach(function(x){tipos[nrm(x).replace(/\s*\d+$/,'').replace(/^(otro|otra|segundo|segunda|tercer|tercero|tercera|el|la)\s+/,'').replace(/\s+(de arriba|de abajo|grande|pequeno|pequena|principal)$/,'').trim()]=1});if(Object.keys(tipos).length<2)return;/* «tres habitaciones de 12 metros» sí son iguales: solo salta si se repite en estancias de distinto tipo */
   var clave=n.sort().join('|');if(vistos[clave])return;vistos[clave]=1;
   /* todas las líneas de esas estancias que tienen esa misma medida u otra repetida igual */
-  var todas=L.filter(function(l){return l.u==='m2'&&n.indexOf(lugar(l.d))>-1&&!l.okPortero});
+  var todas=L.filter(function(l){return l.u==='m2'&&!l.paqId&&n.indexOf(lugar(l.d))>-1&&!l.okPortero});
   P.push({tipo:'medidas',lineas:todas,txt:String(num(ls[0].q)).replace('.',',')+' m² iguales en '+n.length+' sitios ('+n.slice(0,5).join(', ')+'). Parecen puestas a ojo: pon las medidas de verdad o confirma que son esas.'})});
  return P}
 window.porteroProblemas=problemas;
