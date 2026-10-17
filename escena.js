@@ -72,6 +72,10 @@ function escena(bruto,op){op=op||{};
  t=t.replace(/\b(?:eh+|em+|mm+|ehm+)\b/g,' ').replace(/[ \t]+/g,' ');
  if(!new RegExp('\\b('+LIG+')\\b').test(t))return null;
  /* «de salón y habitaciones son 60 metros», «en salón y habitaciones 50 metros»: con dos o más estancias, la medida es del trabajo (de todas), no de la última */
+ /* «en el salón, que tiene unos 25 metros, quitar…», «en la habitación de matrimonio, de 14 metros, poner…», «en la pequeña, de nueve, solo pintar»: los metros entre comas son de esa estancia (como sin comas) */
+ t=t.replace(new RegExp('\\b((?:'+LIG+')(?:\\s+(?:'+APE+'))?|(?:el|la)\\s+(?:'+APE+'))\\s*(?:,\\s*)+((?:que\\s+)?(?:tiene|mide|es de|de)\\s+(?:unos\\s+|unas\\s+)?'+NUMW+'(?:\\s*(?:m2|metros cuadrados|metros|m)\\b)?)(?=\\s*(?:[,;]|\\.(?!\\d)|$))','g'),'$1 $2');
+ /* «El salón tiene veinte metros, y el pasillo, seis.»: los metros del pasillo */
+ t=t.replace(new RegExp('(\\b(?:tiene|mide)\\s+[^.;]{0,40}?\\s+(?:y|e)\\s+(?:el|la)\\s+(?:'+LIG+')(?:\\s+(?:'+APE+'))?)\\s*(?:,\\s*)+((?:unos\\s+|unas\\s+)?'+NUMW+'(?:\\s*(?:m2|metros cuadrados|metros|m)\\b)?)(?=\\s*(?:[,;]|\\.(?!\\d)|$))','g'),'$1 $2');
  var listaTot=false;t=t.replace(new RegExp('(\\b(?:'+LIG+')\\b\\s+(?:y|e)\\s+(?:(?:el|la|los|las|en|de|del)\\s+)*(?:dos\\s+|tres\\s+)?(?:'+LIG+')\\b(?:\\s+(?:'+APE+')\\b)?)\\s*,?\\s+(?:(?:que\\s+)?(?:son|seran|en total)\\s+)?(?=(?:unos\\s+|unas\\s+)?\\d+(?:[.,]\\d+)?\\s*(?:m2|metros|m\\b))','g'),function(x,a){listaTot=true;return a+', son '});
  var VS=(API().VERBO_OBRA||/pintar|quitar|poner/).source.replace(/^\\b\(|\)\\b$/g,'');
  /* frases: por punto o punto y coma (no los decimales) */
@@ -84,9 +88,12 @@ function escena(bruto,op){op=op||{};
   if(!x&&e.n===0&&!(e.ms&&e.ms.length)){var pls=reg.filter(function(r){return sing(r.base)===sing(e.base)&&r.n>1&&apeN(r.ape)===apeN(e.ape)});if(pls.length===1)x=pls[0]}
   if(!x){x={k:k,base:e.base,ape:e.ape||'',n:e.n===0?0:(e.n||1),otro:e.otro,m2:null,ms:null};reg.push(x)}
   if(e.ms&&e.ms.length){x.mFr=frAct;if(x.n>1&&e.ms.length===x.n)x.ms=e.ms;else if(e.ms.length===1&&x.n===1)x.m2=e.ms[0]}return x};
- var hechos=frases.map(function(fr,ifr){frAct=ifr;var orig=fr;
+ var prevH=null;var hechos=frases.map(function(fr,ifr){var __h=(function(){frAct=ifr;var orig=fr;var heredaDescr=false;
   if(!fr.replace(/[^a-z0-9]/g,''))return {lit:fr};
-  var T=piezas(fr);if(!T.some(function(p){return p.t==='R'}))return {lit:orig};
+  var T=piezas(fr);
+  /* «El salón tiene veinte metros y el pasillo seis. Poner tarima flotante.»: tras decir solo cómo son las estancias, un trabajo sin sitio es de esas estancias */
+  if(!T.some(function(p){return p.t==='R'})&&!/\d/.test(fr)&&prevH&&prevH.descr&&!prevH.cont&&prevH.salas&&prevH.salas.length&&prevH.salas.every(function(r){return r.n===1&&mDe(r)!=null})&&new RegExp('^\\s*(?:(?:y|e|luego|despues|pues|entonces|bueno|hay que|quiere|quieren)\\s+)*(?:'+VS+')\\b').test(fr)&&TRAB.test(' '+fr+' ')&&!PES.test(fr)&&!CASA.test(fr)&&!CONT.test(fr)){fr=' '+prevH.salas.map(function(r,i){return (i?'y ':'')+'en '+nombreDe(r)}).join(' ')+' '+fr;T=piezas(fr);heredaDescr=true}
+  if(!T.some(function(p){return p.t==='R'}))return {lit:orig};
   /* «reformar el salón», «el salón entero», «reforma integral»: estancias enteras, las lleva el intérprete como siempre */
   if(/\b(?:reform\w*|renov\w*|rehac\w*|moderniz\w*)\b(?!(?:\s+[a-z]+){0,3}?\s+(?:banos?|aseos?|cocinas?)\b)/.test(fr)||new RegExp('\\b(?:'+LIG+')\\b(?:\\s+(?:'+APE+'))?(?:\\s+(?:de\\s+|que tiene\\s+)?\\d+(?:[.,]\\d+)?(?:\\s*(?:m2|metros cuadrados|metros))?)?\\s+(?:tambien\\s+)?(?:enter[oa]s?|complet[oa]s?|integral(?:es)?|de cero|nuev[oa]s?\\b(?!\\s+(?:de|con)\\b))').test(fr)||/\b(?:reforma integral|obra integral|integral\b|todo nuevo|toda nueva|(?:se|lo|la)\s+(?:hacen?|reforman?)\s+(?:todo\s+)?enter[oa]|(?:piso|casa|vivienda)\s+(?:enter[oa]|complet[oa])|reformar\s+(?:el|la|todo el|toda la)\s+(?:piso|casa|vivienda))\b/.test(fr))return {lit:orig};
   /* 1) las estancias de cada pieza (las de antes, las cortas) */
@@ -113,7 +120,7 @@ function escena(bruto,op){op=op||{};
    /* para «en los tres» de luego: el último grupo de estancias seguidas */
    var j=T.indexOf(p),prevR=null;for(var k=j-1;k>=0;k--){var q=T[k];if(q.t==='sep'||q.t==='N'||q.t==='w'&&CONN.test(q.x))continue;if(q.t==='R')prevR=q;break}
    ultSet=prevR&&prevR.__grupo?prevR.__grupo.concat(p.rs.filter(function(r){return prevR.__grupo.indexOf(r)<0})):p.rs.slice();p.__grupo=ultSet});
-  if(malo)return {lit:orig};
+  if(malo)return {lit:orig};if(heredaDescr)usaRef=true;
   /* 2) en grupos: trozos de palabras (trabajos y lo demás), grupos de estancias, medidas */
   var I=[],cur=null;
   var cerrar=function(){if(cur){I.push(cur);cur=null}};
@@ -163,6 +170,8 @@ function escena(bruto,op){op=op||{};
     /* «en el salón papel pintado quitar, en el pasillo también…»: el de delante y los de «también», juntos */
     /* «quitar el gotelé del pasillo y pintarlo, y la habitación también»: lo de antes y esto, también en la habitación */
     if(tamb&&it.rs.some(function(p){return p.tamTras})&&gAnt&&gAnt.t==='G'&&gAnt.usado==='tras'){var wA=vecino(I2.indexOf(gAnt),-1);if(wA&&wA.t==='W'&&wA.rooms){rs.forEach(function(r){if(wA.rooms.indexOf(r)<0)wA.rooms.push(r)});pv.rooms=wA.rooms;pv.tras=true;it.usado='tras';usaRef=true;var oT=I2[j+1];if(oT&&oT.t==='O'&&/^\s*(?:tambien|igual)\s*$/.test(oT.x)){oT.x='';oT.vacio=true}return}}
+    /* «en el salón de 25 quitar el gotelé, en la de matrimonio de 14 poner flotante y en la pequeña de 9 solo pintar»: estancia, trabajo, estancia, trabajo… — cada trabajo es de la estancia de delante (si la de delante no tiene otro trabajo y a esta le sigue el suyo) */
+    if(!tamb&&rs.length){var kgA=vecinoIdx(kpv,-1);while(kgA>-1&&I2[kgA].t==='M')kgA=vecinoIdx(kgA,-1);var gA2=kgA>-1?I2[kgA]:null,nxW=vecino(j,1);if(gA2&&gA2.t==='G'&&!gA2.usado&&gA2.rooms&&gA2.rooms.length&&!(gA2.negs&&gA2.negs.length)&&nxW&&nxW.t==='W'&&!nxW.rooms){pv.rooms=gA2.rooms.slice();pv.delante=true;gA2.usado='delante';return}}
     if(tamb&&gAnt&&gAnt.t==='G'&&!gAnt.usado&&gAnt.rooms&&gAnt.rooms.length){pv.rooms=gAnt.rooms.concat(rs.filter(function(r){return gAnt.rooms.indexOf(r)<0}));gAnt.usado='delante';pv.delante=true}else pv.rooms=rs.slice();
     pv.negs=neg;pv.tras=true;it.usado='tras';return}
    if(pv&&pv.t==='W'&&pv.rooms&&pv.tras&&tamb){rs.forEach(function(r){if(pv.rooms.indexOf(r)<0)pv.rooms.push(r)});it.usado='tras'}});
@@ -218,8 +227,10 @@ function escena(bruto,op){op=op||{};
   conSala.forEach(function(it){it.rooms.forEach(function(r){todasUsadas[r.k]=1})});
   var nS={};conSala.forEach(function(it){it.rooms.forEach(function(r){nS[r.k]=1})});
   var util=usaRef||Object.keys(nS).length>1||conSala.some(function(it){return it.rooms.some(function(r){return (r.m2!=null||r.ms)&&r.mFr!==ifr})});
-  if(op.sinPuntos&&!usaRef&&!listaTot&&!window.__escSP)util=false;
-  return {I:I2,orig:orig,util:util,salas:vistos}});
+  /* «el salón tiene veinte metros y el pasillo seis poner tarima flotante» (sin puntos): lo dicho de cómo son las estancias, y luego el trabajo de todas */
+  var descrDel=conSala.some(function(it){return it.delante&&it.rooms.length>1&&it.rooms.every(function(r){return r.n===1&&mDe(r)!=null})&&I2.some(function(g){return g.t==='G'&&g.usado==='delante'&&g.rs.some(function(p){return /\b(?:tiene|mide|miden|tienen)\b/.test(p.x)})})});
+  if(op.sinPuntos&&!usaRef&&!listaTot&&!descrDel&&!window.__escSP)util=false;
+  return {I:I2,orig:orig,util:util,salas:vistos}})();prevH=__h;return __h});
  /* 4) se escribe otra vez: una frase por estancia */
  var algo=hechos.some(function(h){return h.I&&h.util});if(!algo)return null;
  var out=[];
