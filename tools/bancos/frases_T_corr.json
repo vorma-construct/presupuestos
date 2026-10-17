@@ -1,0 +1,962 @@
+[
+ {
+  "t": "cocina de diez metros alicatada bueno no lucida y pintada",
+  "debe": [
+   "luc",
+   "pip"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "luc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del acabado: vale «lucida y pintada» (antes no salía nada).",
+  "fuera": [],
+  "igual_que": "cocina de diez metros lucir y pintar"
+ },
+ {
+  "t": "la cocina de doce metros, alicatada, perdona, lucida y pintada",
+  "debe": [
+   "luc",
+   "pip"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual, con «perdona» entre pausas.",
+  "fuera": [],
+  "igual_que": "la cocina de doce metros lucir y pintar"
+ },
+ {
+  "t": "cocina de diez metros lucida y pintada no mejor alicatada",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "luc",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al revés: vale el alicatado (antes quedaba lucido y pintado).",
+  "fuera": [],
+  "igual_que": "cocina de diez metros alicatar"
+ },
+ {
+  "t": "cocina de ocho metros lucir y pintar, bueno no, mejor alicatar",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [
+   "luc",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo con infinitivos.",
+  "fuera": [],
+  "igual_que": "cocina de ocho metros alicatar"
+ },
+ {
+  "t": "cocina de nueve metros alicatar las paredes no que vamos a lucir y pintar",
+  "debe": [
+   "luc",
+   "pip"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«No, que vamos a…»: corrige el alicatado (antes quedaba el alicatado negado).",
+  "fuera": [],
+  "igual_que": "cocina de nueve metros lucir y pintar las paredes"
+ },
+ {
+  "t": "pintar paredes cuarenta metros y techo veinte metros no el techo son veinticinco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 40,
+   "pit": 25
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El techo corregido a 25 (antes desaparecía).",
+  "fuera": [],
+  "igual_que": "pintar paredes cuarenta metros y techo veinticinco metros"
+ },
+ {
+  "t": "pintar el techo treinta metros, no perdona, el techo son treinta y cinco",
+  "debe": [
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 35
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Medida corregida con «son».",
+  "fuera": []
+ },
+ {
+  "t": "pintar paredes setenta metros no las paredes son ochenta",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Paredes corregidas.",
+  "fuera": []
+ },
+ {
+  "t": "pintar habitación diez metros no la habitación son doce metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 12
+  },
+  "lugares": {
+   "pit": [
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Una habitación de 12 (antes salían dos, 10 y 12).",
+  "fuera": [],
+  "igual_que": "pintar habitación doce metros"
+ },
+ {
+  "t": "habitación de diez metros pintar perdón habitación de doce metros pintar",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Repetida entera con «perdón»: una de 12.",
+  "fuera": [],
+  "igual_que": "habitación de doce metros pintar"
+ },
+ {
+  "t": "dormitorio doce metros pintar, perdón, dormitorio catorce metros pintar",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 14
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante con dormitorio.",
+  "fuera": [],
+  "igual_que": "dormitorio catorce metros pintar"
+ },
+ {
+  "t": "pintar el salón de veinte metros, bueno no, el salón son veinticinco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante salón.",
+  "fuera": [],
+  "igual_que": "pintar el salón de veinticinco metros"
+ },
+ {
+  "t": "alicatar el baño quince metros y la cocina veinte bueno la cocina dieciocho",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 33
+  },
+  "lugares": {
+   "alc": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Bueno la cocina dieciocho» corrige solo la cocina (antes se ignoraba). (Sin «igual_que»: dicho sin corregir, «y la cocina dieciocho» sale hoy como suelo calculado, 42,4 m²; lo corregido toma los 18 como del alicatado, igual que los 15 del baño.)",
+  "fuera": []
+ },
+ {
+  "t": "alicatar el baño doce metros bueno el baño catorce",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 14
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante en el salón veinte metros y no en las habitaciones",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Y no en las habitaciones»: solo el salón (antes nada).",
+  "fuera": [],
+  "igual_que": "suelo flotante en el salón veinte metros"
+ },
+ {
+  "t": "tarima flotante en las habitaciones treinta metros y no en el pasillo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 30
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "falso techo de pladur en el baño cuatro metros y no en la cocina",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 4
+  },
+  "lugares": {
+   "tec": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo hacía la antigua: tec 4 en el baño.",
+  "fuera": [],
+  "no_lugares": {
+   "tec": [
+    "cocina"
+   ]
+  },
+  "igual_que": "falso techo de pladur en el baño cuatro metros"
+ },
+ {
+  "t": "quitar el gotelé del salón treinta metros y no del comedor",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 30
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante con gotelé.",
+  "fuera": [],
+  "no_lugares": {
+   "lija": [
+    "comedor"
+   ]
+  }
+ },
+ {
+  "t": "alicatar el baño pero no la cocina quince metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 15
+  },
+  "lugares": {
+   "alc": [
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La medida es del baño, no de la cocina negada.",
+  "fuera": [],
+  "no_lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "igual_que": "alicatar el baño quince metros"
+ },
+ {
+  "t": "alicatar la cocina pero no el baño dieciocho metros",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 18
+  },
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Al revés.",
+  "fuera": [],
+  "no_lugares": {
+   "alc": [
+    "baño"
+   ]
+  }
+ },
+ {
+  "t": "pintar el salón veinte metros pero no el pasillo",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ],
+   "pit": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "pintar el salón y el pasillo pero el pasillo no que lo pinta él veinticinco metros el salón",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El pasillo lo pinta el cliente: fuera; los 25 son del salón (antes se cobraba el pasillo).",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ],
+   "pit": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "pintar el salón veinticinco metros"
+ },
+ {
+  "t": "pintar el salón y el dormitorio pero el dormitorio no que lo pinta su hijo veinte metros el salón",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "dormitorio"
+   ]
+  },
+  "igual_que": "pintar el salón veinte metros"
+ },
+ {
+  "t": "pintar el salón y el pasillo, el pasillo no que ya está pintado, el salón veinticinco metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante «que ya está pintado».",
+  "fuera": [],
+  "no_lugares": {
+   "pip": [
+    "pasillo"
+   ]
+  }
+ },
+ {
+  "t": "suelo flotante en todo menos en el pasillo el salón veinte y la habitación doce",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "habitación"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Nada en el pasillo (antes salía pendiente en el pasillo).",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "pasillo"
+   ]
+  },
+  "igual_que": "suelo flotante en el salón veinte y la habitación doce"
+ },
+ {
+  "t": "tarima flotante en toda la casa menos en la cocina, el salón veinticinco y el dormitorio catorce",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 39
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "cocina"
+   ]
+  }
+ },
+ {
+  "t": "suelo flotante salón veinte metros habitación doce menos la habitación que ya lo tiene",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La habitación que ya lo tiene, fuera (antes habitación fantasma con pintura).",
+  "fuera": [],
+  "igual_que": "suelo flotante en el salón veinte metros"
+ },
+ {
+  "t": "suelo flotante salón veinticinco metros dormitorio doce menos el dormitorio que ya está bien",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 25
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "no_lugares": {
+   "flo": [
+    "dormitorio"
+   ]
+  }
+ },
+ {
+  "t": "tarima flotante salón veinte metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La estancia sin «en»: es en esa estancia.",
+  "fuera": [],
+  "igual_que": "tarima flotante en el salón veinte metros"
+ },
+ {
+  "t": "pintar tres habitaciones de diez metros menos la del niño",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres menos una: dos (antes una sola o las tres).",
+  "fuera": [],
+  "igual_que": "pintar dos habitaciones de diez metros"
+ },
+ {
+  "t": "pintar tres dormitorios de diez metros salvo el pequeño",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": [],
+  "igual_que": "pintar dos dormitorios de diez metros"
+ },
+ {
+  "t": "pintar cuatro habitaciones de diez metros menos dos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Menos dos.",
+  "fuera": [],
+  "igual_que": "pintar dos habitaciones de diez metros"
+ },
+ {
+  "t": "pintar cuatro habitaciones de once metros menos la de invitados",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 33
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "habitación doce metros suelo flotante no hace falta quitar el suelo viejo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«No hace falta quitar»: flotante sin quitar (antes nada).",
+  "fuera": [],
+  "igual_que": "habitación doce metros suelo flotante"
+ },
+ {
+  "t": "suelo flotante en la habitación de doce metros, no hay que levantar el suelo que hay",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante en el dormitorio once metros, no hay que quitar el suelo viejo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 11
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "salón de veinte metros parquet nuevo, no hace falta levantar el que hay",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«El que hay»: es el parquet; encima.",
+  "fuera": []
+ },
+ {
+  "t": "salón de veinte metros parquet nuevo, sin quitar el suelo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Sin quitar el suelo»: no se quita (antes lo cobraba).",
+  "fuera": []
+ },
+ {
+  "t": "el cliente se encarga de quitar los muebles de cocina y nosotros el resto de la reforma de cocina de diez metros",
+  "debe": [
+   "mco",
+   "alc"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«Se encarga de quitar»: lo de quitar la cocina vieja no se cobra.",
+  "fuera": []
+ },
+ {
+  "t": "reforma de cocina de diez metros, el cliente se encarga de quitar los muebles viejos",
+  "debe": [
+   "mco"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {
+   "cocina": [
+    10
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "el cliente se encarga de quitar los sanitarios y nosotros la reforma del baño de cinco metros",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante baño.",
+  "fuera": []
+ },
+ {
+  "t": "salón de treinta metros suelo flotante bueno no tarima de madera",
+  "debe": [],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corregido a tarima de madera: el flotante no (queda su partida sin precio).",
+  "fuera": []
+ },
+ {
+  "t": "pintar ochenta metros de paredes menos diez de la cocina",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 70
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "pip"
+  ],
+  "sin_medida": [],
+  "justificacion": "La resta sin que la partida diga «cocina».",
+  "fuera": []
+ },
+ {
+  "t": "alicatar sesenta metros menos doce de la cocina",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 48
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "alc"
+  ],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante cincuenta metros menos ocho del baño y cuatro de la cocina",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 38
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las dos restas (antes solo la primera).",
+  "fuera": []
+ },
+ {
+  "t": "pintar cien metros de paredes menos quince del baño y diez de la cocina",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 75
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Variante.",
+  "fuera": []
+ },
+ {
+  "t": "suelo flotante sesenta metros menos seis del baño, ocho de la cocina y tres del aseo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 43
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres restas.",
+  "fuera": []
+ },
+ {
+  "t": "pintar cien metros menos veinte que ya están bien",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 80
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cola «que ya están bien» entera fuera.",
+  "fuera": []
+ }
+]
