@@ -1,0 +1,817 @@
+[
+ {
+  "t": "pon cuatro radiadores, eh, no, cinco, en el salon dos y en las habitaciones tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto por estancias: 5 radiadores (2 salón + 3 habitaciones), no 5 + 1.",
+  "fuera": []
+ },
+ {
+  "t": "Pon cuatro radiadores, eh, no, cinco, en el salón dos y en las habitaciones tres.",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto por estancias: 5 radiadores (2 salón + 3 habitaciones), no 5 + 1.",
+  "fuera": []
+ },
+ {
+  "t": "pon cuatro radiadores eh no cinco en el salon dos y en las habitaciones tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto por estancias: 5 radiadores (2 salón + 3 habitaciones), no 5 + 1.",
+  "fuera": []
+ },
+ {
+  "t": "pon cinco radiadores, en el salon dos y en las habitaciones tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto por estancias: 5 radiadores (2 salón + 3 habitaciones), no 5 + 1.",
+  "fuera": []
+ },
+ {
+  "t": "poner radiadores en el salon dos y en las habitaciones tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "habitaciones"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto por estancias: 5 radiadores (2 salón + 3 habitaciones), no 5 + 1.",
+  "fuera": []
+ },
+ {
+  "t": "cinco radiadores: en el salón dos y en la cocina tres",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 3
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Reparto de 5 radiadores: 2 salón y 3 cocina (son unidades, no metros).",
+  "fuera": []
+ },
+ {
+  "t": "pon cinco radiadores, en el salon dos y en la cocina uno",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 5
+  },
+  "lugares": {
+   "rad": [
+    "salón",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "5 radiadores: 2 salón, 1 cocina y los otros 2 sin estancia; total 5.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar seis puertas, en el pasillo cuatro y en los dormitorios dos",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {
+   "pub": [
+    "pasillo",
+    "dormitorios"
+   ],
+   "pue": [
+    "pasillo",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Seis puertas cambiadas: 4 en el pasillo y 2 en los dormitorios, las dos partes con su verbo.",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el dormitorio de diez metros, me equivoque, de doce, y en el salon de veinte",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«me equivoqué» corrige el número: dormitorio 12 y salón 20 (32 m² de flotante).",
+  "fuera": []
+ },
+ {
+  "t": "Poner flotante en el dormitorio de diez metros, me equivoqué, de doce, y en el salón de veinte.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«me equivoqué» corrige el número: dormitorio 12 y salón 20 (32 m² de flotante).",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el dormitorio de diez metros me equivoque de doce y en el salon de veinte",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«me equivoqué» corrige el número: dormitorio 12 y salón 20 (32 m² de flotante).",
+  "fuera": []
+ },
+ {
+  "t": "pintar la cocina de doce metros, me he equivocado, de catorce",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina de 14 (corregido), paredes estimadas desde 14.",
+  "fuera": [],
+  "pregunta": {
+   "pip": "calc"
+  }
+ },
+ {
+  "t": "quitar gotele en el salon treinta metros, no, el salon son veinticinco",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 25
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La corrección nombra otra vez el salón: vale 25, igual que «quitar gotelé en el salón 25 metros».",
+  "fuera": []
+ },
+ {
+  "t": "Quitar gotelé en el salón treinta metros, no, el salón son veinticinco.",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 25
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La corrección nombra otra vez el salón: vale 25, igual que «quitar gotelé en el salón 25 metros».",
+  "fuera": []
+ },
+ {
+  "t": "quitar gotele en el salon treinta metros no el salon son veinticinco",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 25
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La corrección nombra otra vez el salón: vale 25, igual que «quitar gotelé en el salón 25 metros».",
+  "fuera": []
+ },
+ {
+  "t": "quitar gotele en el dormitorio doce metros, no, el dormitorio tiene catorce",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 14
+  },
+  "lugares": {
+   "lija": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección con la estancia repetida: 14.",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el dormitorio de catorce metros y en el salon de veinte bueno veintidos",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 36
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno» seguido de otro número parecido corrige: salón 22.",
+  "fuera": []
+ },
+ {
+  "t": "Poner flotante en el dormitorio de catorce metros y en el salón de veinte, bueno, veintidós.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 36
+  },
+  "lugares": {
+   "flo": [
+    "dormitorio",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno» seguido de otro número parecido corrige: salón 22.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salon que son veinte metros, bueno, unos veinticinco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pit": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno, unos veinticinco» corrige: salón de 25 (techo 25).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salon que son veinte metros bueno unos veinticinco",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 25
+  },
+  "lugares": {
+   "pit": [
+    "salón"
+   ],
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno, unos veinticinco» corrige: salón de 25 (techo 25).",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salon de veinte metros, bueno, veintidos",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 22
+  },
+  "lugares": {
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno, veintidós» corrige: 22.",
+  "fuera": []
+ },
+ {
+  "t": "alicatar la cocina doce metros bueno catorce metros y el baño cinco",
+  "debe": [
+   "alc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "alc": 14
+  },
+  "lugares": {
+   "alc": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cocina 14 (corregido) y baño 5.",
+  "fuera": []
+ },
+ {
+  "t": "poner flotante en el salon veinte metros, bueno, en el pasillo seis metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 26
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno» aquí es muletilla: salón 20 y pasillo 6, las dos.",
+  "fuera": []
+ },
+ {
+  "t": "pintar el salon veinte metros, bueno, y el pasillo seis metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pit": 26
+  },
+  "lugares": {
+   "pit": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno» muletilla: salón 20 y pasillo 6.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el gotele del salon de veinte metros. en el pasillo, que son seis metros, lo mismo. y en el dormitorio poner flotante, doce metros",
+  "debe": [
+   "lija",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ],
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el pasillo, que son seis metros, lo mismo»: también quitar gotelé del pasillo (paredes estimadas desde 6 m²).",
+  "fuera": [],
+  "pregunta": {
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "Quitar el gotelé del salón de veinte metros. En el pasillo, que son seis metros, lo mismo. Y en el dormitorio poner flotante, doce metros.",
+  "debe": [
+   "lija",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 12
+  },
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ],
+   "flo": [
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el pasillo, que son seis metros, lo mismo»: también quitar gotelé del pasillo (paredes estimadas desde 6 m²).",
+  "fuera": [],
+  "pregunta": {
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "quitar el gotele del salon de veinte metros y en el pasillo que son seis metros lo mismo",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el pasillo, que son seis metros, lo mismo»: también quitar gotelé del pasillo (paredes estimadas desde 6 m²).",
+  "fuera": [],
+  "pregunta": {
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "en el salon flotante veinte metros y en el dormitorio lo mismo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el dormitorio lo mismo»: flotante también en el dormitorio, sin los metros del salón (queda la medida pendiente).",
+  "fuera": [],
+  "pregunta": {
+   "flo": "medida"
+  }
+ },
+ {
+  "t": "En el salón flotante veinte metros, y en el dormitorio lo mismo.",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el dormitorio lo mismo»: flotante también en el dormitorio, sin los metros del salón (queda la medida pendiente).",
+  "fuera": [],
+  "pregunta": {
+   "flo": "medida"
+  }
+ },
+ {
+  "t": "en el salon poner flotante veinte metros y en el dormitorio lo mismo",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«en el dormitorio lo mismo»: flotante también en el dormitorio, sin los metros del salón (queda la medida pendiente).",
+  "fuera": [],
+  "pregunta": {
+   "flo": "medida"
+  }
+ },
+ {
+  "t": "en el salon poner flotante veinte metros y en el dormitorio lo mismo, doce metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 32
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "dormitorio"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo con sus metros: dormitorio 12.",
+  "fuera": []
+ },
+ {
+  "t": "en el salon quitar el suelo y poner porcelanico veinte metros no mejor flotante",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 20
+  },
+  "lugares": {
+   "flo": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Micro en dos pulsaciones: solo flotante 20 en el salón.",
+  "fuera": []
+ },
+ {
+  "t": "pintar las paredes del salon cuarenta metros y el techo del salon dieciocho metros",
+  "debe": [
+   "pip",
+   "pit"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 40,
+   "pit": 18
+  },
+  "lugares": {
+   "pip": [
+    "salón"
+   ],
+   "pit": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Micro en dos pulsaciones: paredes 40 y techo 18 del salón.",
+  "fuera": []
+ },
+ {
+  "t": "pues mira quitar gotele en el salon treinta metros, eh, no, el salon son veinticinco",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "lija": 25
+  },
+  "lugares": {
+   "lija": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección con muletillas: 25.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el gotele del salon de veinte metros. en el pasillo, eh, que son seis metros, lo mismo",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "lija": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo mismo en el pasillo con muletilla: gotelé del pasillo (paredes estimadas desde 6).",
+  "fuera": [],
+  "pregunta": {
+   "lija": "calc"
+  }
+ },
+ {
+  "t": "poner flotante en el salon veinte metros bueno en el pasillo seis metros",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "flo": 26
+  },
+  "lugares": {
+   "flo": [
+    "salón",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«bueno» de muletilla sin comas: salón 20 y pasillo 6.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar tres puertas, no, cuatro, en el pasillo dos y en los dormitorios dos",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {
+   "pub": [
+    "pasillo",
+    "dormitorios"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Corrección del total y reparto: 4 puertas (2 pasillo, 2 dormitorios).",
+  "fuera": []
+ }
+]
