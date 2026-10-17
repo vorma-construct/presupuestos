@@ -3351,7 +3351,7 @@ function respuestas(pk,t){var s=pk.r,h=pk.hechas,si=function(k,v){s[k]=v;h[k]=1}
    /* solo cuando se dicen como estancias de la obra (no «fontanería para la cocina y el baño», ni «menos la cocina», ni «la cocina está bien») */
    /* una estancia cuenta como parte de la obra si alguna vez se nombra sin «sin / ni / menos / la de la / del…» delante ni «no se toca / más adelante / ahora no / se recupera / está bien…» detrás; y nunca si es solo «fontanería para la cocina y el baño» */
    var noEst=function(w){if(/\bfontaneria\b/.test(tT))return true;var re=new RegExp('\\b'+w+'\\b','g'),m,ok=false;while((m=re.exec(tT))){var an=tT.slice(Math.max(0,m.index-22),m.index),de=tT.slice(m.index+m[0].length,m.index+m[0].length+55);
-     if(/\b(?:sin|ni|menos|excepto|salvo|de)\s+(?:el\s+|la\s+|los\s+)?(?:(?:bano|banos|aseo|cocina)\s+(?:ni|y)\s+(?:el\s+|la\s+)?)?$/.test(an)||/\b(?:la|el)\s+de\s+(?:la|el)\s+$/.test(an))continue;
+     if(/\b(?:sin|ni|menos|excepto|salvo|de)\s+(?:el\s+|la\s+|los\s+)?(?:(?:bano|banos|aseo|cocina)\s+(?:ni|y)\s+(?:el\s+|la\s+)?)?$/.test(an)||/\b(?:la|el)\s+de\s+(?:la|el)\s+$/.test(an)||/\ben\s+(?:el|la)\s+$/.test(an))continue;/* «en el baño cambiar el plato»: un trabajo en el baño, no el baño entero */
      if(/^[^.;]{0,50}?\b(?:no se toca\w*|que no se toca\w*|mas adelante|ahora no|se recupera\w*|esta bien|se queda\w*|como esta|ya esta hecho|no)\b/.test(de)&&!/^\s*(?:,\s*)?(?:si|completa|entera|nueva)\b/.test(de))continue;
      ok=true;break}return !ok};
    var mB=tT.match(/\b(un|uno|una|dos|tres|cuatro|\d)\s+(?:banos|bano|aseos?)\b/),NB={un:1,uno:1,una:1,dos:2,tres:3,cuatro:4};if(!N.bano&&!noEst('(?:banos?|aseos?)')){if(mB)pon('banos',NB[mB[1]]||num(mB[1])||1);else if(/\b(?:bano|aseo)\b/.test(tT))pon('banos',1)}
