@@ -1,0 +1,1630 @@
+[
+ {
+  "t": "puerta de entrada nueva y cinco de paso y quitar las viejas",
+  "debe": [
+   "pen",
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«cinco de paso» son cinco puertas de paso: no se pierden.",
+  "fuera": []
+ },
+ {
+  "t": "puerta blindada nueva y seis de paso",
+  "debe": [
+   "pen",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«seis de paso»: seis puertas de paso.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta de la entrada y cuatro de paso",
+  "debe": [
+   "pen",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«cuatro de paso»: cuatro puertas de paso.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta del baño y la de la cocina",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2,
+   "pue": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«y la de la cocina» es otra puerta: dos.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta del salón y la del dormitorio",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«y la del dormitorio»: otra puerta, dos.",
+  "fuera": []
+ },
+ {
+  "t": "poner premarcos en tres puertas",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pre": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Son premarcos para tres puertas, no tres puertas nuevas.",
+  "fuera": []
+ },
+ {
+  "t": "colocar premarcos en las cuatro puertas",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pre": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Premarcos en cuatro puertas: no puertas nuevas.",
+  "fuera": []
+ },
+ {
+  "t": "premarcos de madera en cinco puertas",
+  "debe": [
+   "pre"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "pre": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Premarcos, no puertas.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los cristales de la puerta del salón",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los cristales no son una puerta nueva: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar los cristales de la puerta": 1
+  }
+ },
+ {
+  "t": "cambiar la cerradura de la puerta de entrada",
+  "debe": [],
+  "no_debe": [
+   "pen",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cerradura no es la puerta de entrada: partida propia.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la cerradura": 1
+  }
+ },
+ {
+  "t": "cambiar la cerradura",
+  "debe": [],
+  "no_debe": [
+   "pen",
+   "pub"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "No está en la tarifa: partida propia, nunca perdida.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la cerradura": 1
+  }
+ },
+ {
+  "t": "cambiar la manilla de la puerta del baño",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La manilla no es una puerta.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la manilla": 1
+  }
+ },
+ {
+  "t": "cambiar las bisagras de las puertas",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las bisagras no son puertas.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar las bisagras": null
+  }
+ },
+ {
+  "t": "cambiar las puertas del armario del dormitorio",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue",
+   "mar"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las puertas del armario no son puertas de paso ni montar un armario.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar las puertas del armario": null
+  }
+ },
+ {
+  "t": "cambiar la cisterna del inodoro",
+  "debe": [],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cisterna no es quitar los sanitarios.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la cisterna": 1
+  }
+ },
+ {
+  "t": "cambiar el termostato del radiador",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El termostato no es un radiador nuevo.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el termostato": 1
+  }
+ },
+ {
+  "t": "pintar las puertas",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Pintar puertas no es poner puertas ni pintar paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar las puertas": null
+  }
+ },
+ {
+  "t": "pintar el salón y las puertas",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«y las puertas» tras pintar: también se pintan, no son nuevas.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar las puertas": null
+  }
+ },
+ {
+  "t": "pintar los radiadores",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "pip",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Pintar radiadores no es poner radiadores ni pintar paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar los radiadores": null
+  }
+ },
+ {
+  "t": "en el garaje poner una puerta basculante nueva",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Basculante de garaje: no es una puerta de paso.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner 1 puerta basculante": 1
+  }
+ },
+ {
+  "t": "cambiar la puerta del garaje",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La del garaje no es una puerta de paso.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la puerta del garaje": 1
+  }
+ },
+ {
+  "t": "poner una puerta metálica en el trastero",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue",
+   "chi"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Metálica: no es la de la tarifa.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner 1 puerta metalica": 1
+  }
+ },
+ {
+  "t": "cambiar la puerta de la terraza",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La de la terraza es carpintería exterior.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la puerta de la terraza": 1
+  }
+ },
+ {
+  "t": "en el pasillo dos puertas nuevas y en el salón una puerta doble",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La doble se parece a la de la tarifa: ¿es esta? (pendiente).",
+  "fuera": [],
+  "pregunta": {
+   "pub": "adiv"
+  }
+ },
+ {
+  "t": "poner una puerta doble en el salón",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puerta doble: ¿es esta?",
+  "fuera": [],
+  "pregunta": {
+   "pub": "adiv"
+  }
+ },
+ {
+  "t": "seis radiadores y una caldera nueva",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Radiadores sueltos y la caldera aparte; la calefacción entera ya lleva radiadores (no se cobra dos veces).",
+  "fuera": [],
+  "debe_texto": {
+   "Cambio de caldera": 1
+  }
+ },
+ {
+  "t": "cuatro radiadores nuevos y cambiar la caldera",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual: cuatro radiadores y la caldera aparte.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambio de caldera": 1
+  }
+ },
+ {
+  "t": "calefacción nueva con seis radiadores y caldera",
+  "debe": [
+   "cal"
+  ],
+  "no_debe": [
+   "rad"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La calefacción entera se dice: va la de la tarifa.",
+  "fuera": []
+ },
+ {
+  "t": "en la cocina hacer la fontanería nueva y la electricidad",
+  "debe": [
+   "fco"
+  ],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La electricidad de la cocina no es la instalación de todo el piso.",
+  "fuera": [],
+  "debe_texto": {
+   "Electricidad": 1
+  }
+ },
+ {
+  "t": "en el baño cambiar la fontanería y la electricidad",
+  "debe": [
+   "fba"
+  ],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La del baño, no la de todo el piso.",
+  "fuera": [],
+  "debe_texto": {
+   "Electricidad": 1
+  }
+ },
+ {
+  "t": "electricidad nueva en todo el piso",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Todo el piso: la de la tarifa.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el falso techo de escayola de la cocina y poner pladur de nueve metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 9
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo que se pone es un techo (no un tabique) y quitar el viejo es partida propia.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar el falso techo de escayola": null
+  }
+ },
+ {
+  "t": "quitar el techo de escayola del baño y poner pladur",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual: techo de pladur.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar el techo de escayola": 1
+  }
+ },
+ {
+  "t": "poner aislamiento térmico en la pared de la habitación de doce metros con trasdosado de pladur",
+  "debe": [],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Trasdosado con aislamiento: no es un tabique; los doce son del suelo de la habitación.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner aislamiento termico": null
+  }
+ },
+ {
+  "t": "trasdosado de pladur en la pared del salón, quince metros",
+  "debe": [],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Trasdosado de una pared: partida propia con sus metros.",
+  "fuera": [],
+  "debe_texto": {
+   "Trasdosado de pladur en la pared": 15
+  }
+ },
+ {
+  "t": "aislamiento térmico en la pared de la habitación, veinte metros de pared",
+  "debe": [],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin verbo también es un trabajo.",
+  "fuera": [],
+  "debe_texto": {
+   "Aislamiento termico": 20
+  }
+ },
+ {
+  "t": "tabique de pladur en el salón de ocho metros",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 8
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Esto sí es un tabique.",
+  "fuera": []
+ },
+ {
+  "t": "en el garaje pintar el suelo con pintura epoxi que son treinta metros",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Pintura epoxi del suelo: no es pintura de paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "En el garaje pintar el suelo con pintura epoxi": 30
+  }
+ },
+ {
+  "t": "pintar el suelo del garaje",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El suelo no son paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar el suelo del garaje": null
+  }
+ },
+ {
+  "t": "suelo de vinilo en la cocina de diez metros",
+  "debe": [],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Suelo de vinilo: partida propia con los metros del suelo.",
+  "fuera": [],
+  "debe_texto": {
+   "Suministro y colocación de suelo de vinilo": 10
+  }
+ },
+ {
+  "t": "suelo de vinilo en la habitación de doce metros",
+  "debe": [],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Igual, en la habitación.",
+  "fuera": [],
+  "debe_texto": {
+   "Suministro y colocación de suelo de vinilo": 12
+  }
+ },
+ {
+  "t": "tratar la humedad de la pared del salón",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "No está en la tarifa: partida propia.",
+  "fuera": [],
+  "debe_texto": {
+   "Tratar la humedad": null
+  }
+ },
+ {
+  "t": "humedades en la pared de la habitación tratar la humedad y pintar que son diez metros de pared",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 10
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El tratamiento de humedad no se pierde.",
+  "fuera": [],
+  "debe_texto": {
+   "Humedades en la pared": null
+  }
+ },
+ {
+  "t": "en el baño hay que quitar el bidé y el inodoro y poner inodoro suspendido",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar los sanitarios y el inodoro nuevo aparte (no se pierde).",
+  "fuera": [],
+  "debe_texto": {
+   "Colocar inodoro nuevo": 1
+  }
+ },
+ {
+  "t": "cambiar el inodoro",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar el viejo y poner el nuevo (sin precio).",
+  "fuera": [],
+  "debe_texto": {
+   "Colocar inodoro nuevo": 1
+  }
+ },
+ {
+  "t": "desatascar el desagüe de la cocina",
+  "debe": [],
+  "no_debe": [
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Partida propia.",
+  "fuera": [],
+  "debe_texto": {
+   "Desatascar el desague": 1
+  }
+ },
+ {
+  "t": "cambiar las ventanas del salón y la cocina que son tres ventanas",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres en total entre las dos (no 1 + 3).",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar 3 ventanas": 3
+  }
+ },
+ {
+  "t": "cambiar las puertas del salón y la cocina que son tres puertas",
+  "debe": [
+   "pub",
+   "pue"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3,
+   "pue": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres en total, no tres en cada sitio.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las persianas del salón que son dos",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos persianas (no un salón de dos metros).",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar las persianas del salon": 2
+  }
+ },
+ {
+  "t": "instalar aire acondicionado en el salón y en dos habitaciones",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Uno en cada sitio: tres.",
+  "fuera": [],
+  "debe_texto": {
+   "Instalar aire acondicionado": 3
+  }
+ },
+ {
+  "t": "poner un radiador en el salón y en dos habitaciones",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Uno en cada sitio: tres.",
+  "fuera": []
+ },
+ {
+  "t": "poner un radiador en el salón y en las tres habitaciones",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Uno en el salón y tres en las habitaciones: cuatro.",
+  "fuera": []
+ },
+ {
+  "t": "poner tela asfáltica treinta metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Treinta metros de tela (superficie).",
+  "fuera": [],
+  "debe_texto": {
+   "Poner tela asfaltica": 30
+  }
+ },
+ {
+  "t": "una puerta corredera y tres de paso",
+  "debe": [
+   "cor",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "cor": 1,
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«tres de paso»: tres puertas de paso.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los herrajes de las puertas del pasillo",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los herrajes no son puertas.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar los herrajes": null
+  }
+ },
+ {
+  "t": "poner tiradores nuevos en las puertas de la cocina",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tiradores, no puertas.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner tiradores nuevos": null
+  }
+ },
+ {
+  "t": "pintar las rejas de las ventanas",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Rejas: no es pintura de paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar las rejas": null
+  }
+ },
+ {
+  "t": "pintar la barandilla de la escalera",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Barandilla: no es pintura de paredes.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar la barandilla": null
+  }
+ },
+ {
+  "t": "pintar el salón y las cinco puertas",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cinco puertas pintadas, no nuevas.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar las 5 puertas": 5
+  }
+ },
+ {
+  "t": "pintar el salón, cambiar las ventanas y las puertas",
+  "debe": [
+   "pip",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Aquí «y las puertas» va con cambiar: puertas nuevas.",
+  "fuera": []
+ },
+ {
+  "t": "salon pintar veinte metros dos habitaciones pintar diez y doce metros puertas cinco",
+  "debe": [
+   "pip",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "«puertas cinco» suelto en la lista: cinco puertas nuevas.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar el termo",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "ele",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El termo no se parece a un radiador por «termostática».",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el termo": 1
+  }
+ },
+ {
+  "t": "suelo de microcemento en el baño de cinco metros",
+  "debe": [],
+  "no_debe": [
+   "flo",
+   "alc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Partida propia con los metros del suelo.",
+  "fuera": [],
+  "debe_texto": {
+   "Suelo de microcemento": 5
+  }
+ },
+ {
+  "t": "cambiar la puerta de entrada y la cerradura",
+  "debe": [
+   "pen"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La cerradura suelta detrás lleva el «cambiar»: no se pierde.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la cerradura": 1
+  }
+ },
+ {
+  "t": "cambiar las puertas de paso y las manillas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las manillas también se cambian (partida propia).",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar las manillas": null
+  }
+ },
+ {
+  "t": "quitar el gotelé y las molduras del salón",
+  "debe": [
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las molduras no se pierden.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar las molduras": null
+  }
+ },
+ {
+  "t": "cambiar los radiadores del salón y la cocina, son cuatro",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Cuatro entre las dos estancias.",
+  "fuera": []
+ },
+ {
+  "t": "instalar aire acondicionado en las tres habitaciones",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Uno en cada habitación: tres.",
+  "fuera": [],
+  "debe_texto": {
+   "Instalar aire acondicionado": 3
+  }
+ },
+ {
+  "t": "arreglar la persiana del salón",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La persiana del salón no es reformar el salón (no se pinta).",
+  "fuera": [],
+  "debe_texto": {
+   "Arreglar la persiana": 1
+  }
+ },
+ {
+  "t": "arreglar los enchufes de la habitación",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Los enchufes no son reformar la habitación ni la instalación de todo el piso.",
+  "fuera": [],
+  "debe_texto": {
+   "Arreglar los enchufes": null
+  }
+ },
+ {
+  "t": "cerrar la terraza con aluminio",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Partida propia.",
+  "fuera": [],
+  "debe_texto": {
+   "Cerrar la terraza con aluminio": 1
+  }
+ },
+ {
+  "t": "reformar la cocina de nueve metros y poner la encimera de granito",
+  "debe": [
+   "coc",
+   "fco"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La encimera no se pierde.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner la encimera de granito": 1
+  }
+ },
+ {
+  "t": "cocina completa de ocho metros y suelo de vinilo en el salón de veinte metros",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [
+   "flo"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El vinilo del salón con sus metros.",
+  "fuera": [],
+  "debe_texto": {
+   "Suministro y colocación de suelo de vinilo": 20
+  }
+ },
+ {
+  "t": "cambiar las puertas de toda la casa que son siete y la de entrada",
+  "debe": [
+   "pub",
+   "pen"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Siete de paso y la de entrada.",
+  "fuera": []
+ },
+ {
+  "t": "poner tarima en las habitaciones y pintar las puertas",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Pintar puertas no es poner puertas.",
+  "fuera": [],
+  "debe_texto": {
+   "Pintar las puertas": null
+  }
+ },
+ {
+  "t": "en el aseo solo cambiar el inodoro",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El inodoro nuevo va aparte, sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "En el aseo colocar inodoro nuevo": 1
+  }
+ },
+ {
+  "t": "trasdosado en la pared del dormitorio",
+  "debe": [],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Trasdosado: no es un tabique.",
+  "fuera": [],
+  "debe_texto": {
+   "Trasdosado en la pared": null
+  }
+ },
+ {
+  "t": "quitar el falso techo y poner uno de pladur",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Lo nuevo es un techo de pladur.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar el falso techo": null
+  }
+ },
+ {
+  "t": "en la cocina fontanería nueva, en el salón tarima, y la electricidad nueva de todo el piso",
+  "debe": [
+   "fco",
+   "flo",
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La de todo el piso sí es la de la tarifa.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar la puerta del baño y la de la cocina y la del salón",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tres puertas.",
+  "fuera": []
+ },
+ {
+  "t": "en el garaje poner una puerta seccional",
+  "debe": [],
+  "no_debe": [
+   "pub",
+   "pue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Seccional de garaje: no es de paso.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner 1 puerta seccional": 1
+  }
+ },
+ {
+  "t": "dos radiadores nuevos y la caldera nueva",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "rad": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Radiadores sueltos y caldera aparte.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambio de caldera": 1
+  }
+ },
+ {
+  "t": "poner suelo radiante en el salón",
+  "debe": [],
+  "no_debe": [
+   "flo",
+   "sue"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Suelo radiante es calefacción, no suelo flotante.",
+  "fuera": [],
+  "debe_texto": {
+   "Poner suelo radiante": null
+  }
+ },
+ {
+  "t": "cambiar el grifo de la ducha",
+  "debe": [],
+  "no_debe": [
+   "pd7",
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El grifo no es un plato de ducha.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el grifo de la ducha": 1
+  }
+ },
+ {
+  "t": "cambiar el desagüe del plato de ducha",
+  "debe": [],
+  "no_debe": [
+   "pd7",
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El desagüe no es un plato nuevo.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el desague": 1
+  }
+ },
+ {
+  "t": "cambiar el cristal de la mampara",
+  "debe": [],
+  "no_debe": [
+   "mam",
+   "qma"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El cristal no es una mampara nueva.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el cristal de la mampara": 1
+  }
+ },
+ {
+  "t": "cambiar el tubo del radiador",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El tubo no es un radiador.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el tubo del radiador": 1
+  }
+ },
+ {
+  "t": "cambiar la tapa del inodoro",
+  "debe": [],
+  "no_debe": [
+   "san"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La tapa no es quitar sanitarios.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la tapa del inodoro": 1
+  }
+ },
+ {
+  "t": "cambiar la lámpara del techo del salón",
+  "debe": [],
+  "no_debe": [
+   "tec",
+   "pit",
+   "pip"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La lámpara no es el techo ni reformar el salón.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la lampara": 1
+  }
+ },
+ {
+  "t": "cambiar la luz del pasillo",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "La luz del pasillo no es la instalación de todo el piso.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar la luz del pasillo": 1
+  }
+ },
+ {
+  "t": "cambiar el cuadro eléctrico",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "El cuadro no es la instalación de todo el piso.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el cuadro": 1
+  }
+ },
+ {
+  "t": "Poner los premarcos de las 4 puertas nuevas del piso",
+  "debe": [
+   "pre",
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pre": 4,
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Aquí las puertas nuevas sí se dicen.",
+  "fuera": []
+ }
+]
