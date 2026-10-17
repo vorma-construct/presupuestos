@@ -2150,6 +2150,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+puertas\s+(?:mas|y ademas|aparte de|ademas de)\s+(?:la|una)\s+(?:puerta\s+)?(corredera\s+(?:de la cocina|del bano|del aseo))\b/g,function(x,n,c){var v=/^\d+$/.test(n)?+n:valorLetra(n);return v?(v+1)+' puertas, y la puerta '+c:x});
  /* «la cocina la hace el cliente y el baño sí lo hacemos, con plato»: ese baño se reforma entero */
  t0=t0.replace(/\b(el\s+bano|el\s+aseo|la\s+cocina)\s+si\s+(?:lo|la)\s+(?:hacemos|hacen|hace|reformamos|haremos)\b(?:\s+nosotros)?/g,'$1 completo');
+ /* «quiere hacer una obra en un piso, pintar el salón»: sin metros, es solo la presentación del trabajo, no una partida */
+ t0=t0.replace(/\b(?:(?:quiere|quieren|queremos|vamos a|hay que|para)\s+)?hacer\s+(?:una\s+)?obra\s+(?:de|en)\s+(?:una|la|su|un|el)\s+(?:casa|piso|vivienda|bajo|apartamento)(?=\s*(?:[,.;:]|$|\s+y\s))/g,' ');
  /* «quiere hacer una obra de una casa con 120 metros»: es la casa (sus metros y lo que se haga en ella), no un trabajo de 120 metros */
  t0=t0.replace(/\b(?:(?:quiere|quieren|queremos|vamos a|hay que|para)\s+)?hacer\s+(?:una\s+)?obra\s+(?:de|en)\s+(?:una|la|su|un|el)\s+(casa|piso|vivienda|bajo|apartamento)\s+(?:con|que tiene|de)(?=\s+(?:unos\s+)?\d)/g,function(x,c){return ' reformar la '+(c==='piso'||c==='bajo'||c==='apartamento'?'casa':c)+' de '});
  /* «… con mampara. Fuera de eso, pintar…»: «fuera de eso» es «aparte», no quitar la mampara */
