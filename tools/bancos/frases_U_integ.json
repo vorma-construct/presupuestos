@@ -1,0 +1,1054 @@
+[
+ {
+  "t": "rehabilitación integral de la vivienda de ochenta metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 80
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "rehabilitación completa de la vivienda de noventa metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 90
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "remodelación integral del piso de setenta metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 70
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "la vivienda de ochenta metros hay que rehabilitarla entera",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 80
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "en Basauri rehabilitación integral de un piso de sesenta y cinco metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 65
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "remodelación completa de la casa de cien metros",
+  "debe": [],
+  "no_debe": [],
+  "estancias": {
+   "piso": 100
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«rehabilitar/remodelar» es reformar: la casa entera con sus metros y sus preguntas"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros el cliente quiere pintar él",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros el cliente pinta él mismo",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros y luego pintar ya pinta el cliente",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral del piso de ochenta metros la pintura se la hace el cliente",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral de setenta metros y pintar pinta su hijo",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral del piso de noventa metros con electricidad nueva y la pintura la hace el cliente",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit",
+   "lija"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace el cliente: no se cobra (ni se calcula)"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros el cliente quiere pintar el salón",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "pip": [
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "sin «él»: es que se pinte el salón (lo hacemos)"
+ },
+ {
+  "t": "el cliente quiere quitar el papel del dormitorio de doce metros y pintarlo",
+  "debe": [
+   "qpa",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«el cliente quiere quitar»: lo quiere, lo hacemos nosotros"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros la electricidad la quiere hacer él",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol",
+   "ins"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la electricidad la hace él"
+ },
+ {
+  "t": "reforma integral de un piso de cien metros quitar todos los tabiques y redistribuir con pladur",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pla",
+   "tabm"
+  ],
+  "justificacion": "los metros del piso son de suelo: los del pladur (y el derribo de varios tabiques), sin decir, se preguntan"
+ },
+ {
+  "t": "reforma integral de un piso de cien metros tirar todos los tabiques y hacer la distribución nueva con pladur",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pla",
+   "tabm"
+  ],
+  "justificacion": "los metros del piso son de suelo: los del pladur (y el derribo de varios tabiques), sin decir, se preguntan"
+ },
+ {
+  "t": "reforma integral de noventa metros quitar los tabiques y hacer tabiques de pladur",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pla",
+   "tabm"
+  ],
+  "justificacion": "los metros del piso son de suelo: los del pladur (y el derribo de varios tabiques), sin decir, se preguntan"
+ },
+ {
+  "t": "rehabilitación integral del piso de ochenta metros tirar la tabiquería y levantar tabiques de pladur",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "pla",
+   "tabm"
+  ],
+  "justificacion": "los metros del piso son de suelo: los del pladur (y el derribo de varios tabiques), sin decir, se preguntan"
+ },
+ {
+  "t": "tirar todos los tabiques",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "tabm"
+  ],
+  "justificacion": "más de dos tabiques sin metros: por metro, con los metros a preguntar (no el lote de uno o dos)"
+ },
+ {
+  "t": "tirar varios tabiques del piso",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "tabm"
+  ],
+  "justificacion": "más de dos tabiques sin metros: por metro, con los metros a preguntar (no el lote de uno o dos)"
+ },
+ {
+  "t": "tirar toda la tabiquería del piso",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_medida": [
+   "tabm"
+  ],
+  "justificacion": "más de dos tabiques sin metros: por metro, con los metros a preguntar (no el lote de uno o dos)"
+ },
+ {
+  "t": "tirar dos tabiques",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "dos tabiques: el lote"
+ },
+ {
+  "t": "reforma integral de un piso de cien metros y hacer un tabique de pladur de diez metros",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pla": 10
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "los metros dichos del pladur valen"
+ },
+ {
+  "t": "vale en Gernika Ane quiere tirar un tabique entre la cocina y el salón la cocina tiene nueve metros y el salón quince poner flotante en los dos y pintar los dos",
+  "debe": [
+   "tab",
+   "flo",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "ali",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 24
+  },
+  "lugares": {
+   "flo": [
+    "cocina",
+    "salón"
+   ],
+   "pip": [
+    "cocina",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el tabique está entre las dos; los metros son de cada una; «los dos» son la cocina y el salón"
+ },
+ {
+  "t": "tirar el tabique entre la cocina y el salón la cocina tiene nueve metros y el salón quince poner flotante en los dos y pintar los dos",
+  "debe": [
+   "tab",
+   "flo",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "ali",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 24
+  },
+  "lugares": {
+   "flo": [
+    "cocina",
+    "salón"
+   ],
+   "pip": [
+    "cocina",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el tabique está entre las dos; los metros son de cada una; «los dos» son la cocina y el salón"
+ },
+ {
+  "t": "tirar el tabique entre la cocina y el salón, la cocina tiene nueve metros y el salón quince, flotante en los dos y pintar los dos",
+  "debe": [
+   "tab",
+   "flo",
+   "pip"
+  ],
+  "no_debe": [
+   "coc",
+   "ali",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 24
+  },
+  "lugares": {
+   "flo": [
+    "cocina",
+    "salón"
+   ],
+   "pip": [
+    "cocina",
+    "salón"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el tabique está entre las dos; los metros son de cada una; «los dos» son la cocina y el salón"
+ },
+ {
+  "t": "la cocina tiene nueve metros y el salón quince, flotante en la cocina y en el salón",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "ali",
+   "mco"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 24
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la cocina dicha sola era su medida"
+ },
+ {
+  "t": "la cocina de nueve metros y el pasillo de seis poner flotante en los dos",
+  "debe": [
+   "flo"
+  ],
+  "no_debe": [
+   "coc",
+   "ali"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "flo": 15
+  },
+  "lugares": {
+   "flo": [
+    "cocina",
+    "pasillo"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«los dos» son la cocina y el pasillo"
+ },
+ {
+  "t": "el baño de cuatro metros y la cocina de nueve reformar los dos",
+  "debe": [
+   "san",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ],
+   "cocina": [
+    9
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "reformar los dos: las dos estancias enteras"
+ },
+ {
+  "t": "pues nada el piso de Bilbao en Santutxu de Jon reforma integral de setenta metros y las tres puertas cambiarlas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuántas puertas se ha dicho: esas, sin preguntar"
+ },
+ {
+  "t": "reforma integral de setenta metros las puertas nuevas que son cuatro",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuántas puertas se ha dicho: esas, sin preguntar"
+ },
+ {
+  "t": "las tres puertas cambiarlas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 3
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuántas puertas se ha dicho: esas, sin preguntar"
+ },
+ {
+  "t": "reforma integral de ochenta metros y las cinco puertas hay que cambiarlas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuántas puertas se ha dicho: esas, sin preguntar"
+ },
+ {
+  "t": "reforma integral de un piso de cincuenta metros y las puertas de paso nuevas que son seis",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 6
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuántas puertas se ha dicho: esas, sin preguntar"
+ },
+ {
+  "t": "reforma integral de un piso de cincuenta metros con un baño y la cocina el suelo flotante y las puertas nuevas que son cuatro",
+  "debe": [
+   "flo",
+   "pub",
+   "san",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el flotante es de la casa (no de la cocina dicha antes) y son cuatro puertas"
+ },
+ {
+  "t": "eh pues mira la visita de Leire en Durango piso de setenta metros quiere la electricidad nueva y pintar todo y en el baño de cuatro metros reforma completa con plato de ochenta y en la cocina de ocho metros cambiar muebles que trae ella",
+  "debe": [
+   "san",
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la reforma completa es la del baño nombrado (con su plato de 80), no la de la casa entera"
+ },
+ {
+  "t": "piso de setenta metros pintar todo y en el baño de cuatro metros reforma completa con plato de ochenta",
+  "debe": [
+   "san",
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la reforma completa es la del baño nombrado (con su plato de 80), no la de la casa entera"
+ },
+ {
+  "t": "piso de ochenta metros con la electricidad nueva y el baño de cinco metros reforma completa con plato de ochenta",
+  "debe": [
+   "san",
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {
+   "bano": [
+    5
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la reforma completa es la del baño nombrado (con su plato de 80), no la de la casa entera"
+ },
+ {
+  "t": "en Etxebarri la casa de Lourdes quiere hacer dos baños el baño uno de cuatro metros con ducha de setenta por ciento diez y el baño dos de tres metros con ducha de ochenta por ochenta y los dos con mampara",
+  "debe": [
+   "san",
+   "pd7",
+   "pd8",
+   "mam"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {
+   "mam": 2
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "dos baños, cada uno con su plato; la mampara en los dos"
+ },
+ {
+  "t": "quiere hacer dos baños el baño uno de cuatro metros y el baño dos de tres metros",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "son esos dos baños, no cuatro"
+ },
+ {
+  "t": "reformar el baño de cuatro metros con plato de setenta por ciento diez y el baño de tres metros con plato de ochenta",
+  "debe": [
+   "san",
+   "pd7",
+   "pd8"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "dos baños de metros distintos: dos baños"
+ },
+ {
+  "t": "reformar el baño uno de cuatro metros y el baño dos de tres metros",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "dos baños"
+ },
+ {
+  "t": "dos baños el primero de cuatro metros con ducha de ochenta y el segundo de tres metros con bañera",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {
+   "bano": [
+    4,
+    3
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el primero y el segundo: cada uno con lo suyo"
+ },
+ {
+  "t": "reforma integral del piso de ochenta metros con dos baños, el baño de cinco metros con plato de ochenta y el baño de tres metros con bañera",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    5,
+    3
+   ],
+   "piso": 80
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "los dos baños de la casa con lo suyo"
+ },
+ {
+  "t": "baño de cuatro metros reforma completa con ducha de ochenta",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_pregunta": [
+   "plato"
+  ],
+  "justificacion": "ducha de ochenta: el plato de 80"
+ },
+ {
+  "t": "baño completo de cuatro metros con ducha de setenta",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_pregunta": [
+   "plato"
+  ],
+  "justificacion": "ducha de setenta: el plato de 70"
+ },
+ {
+  "t": "apunta Bermeo Joseba el salón veinte metros flotante y pintar la cocina nueve metros alicatar y muebles del cliente el baño cuatro metros plato de ducha de ochenta y mampara y la habitación once metros pintar",
+  "debe": [
+   "alc",
+   "mco",
+   "pd8",
+   "mam",
+   "flo"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "alc": [
+    "cocina",
+    "baño"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«del cliente» son los muebles; el alicatado de la cocina lo hacemos y el baño lleva su alicatado"
+ },
+ {
+  "t": "en la cocina de diez metros alicatar y los muebles del cliente",
+  "debe": [
+   "alc",
+   "mco"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {
+   "alc": [
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "lo mismo"
+ },
+ {
+  "t": "tirar todos los tabiques de la casa que son unos treinta metros",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tabm": 30
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "con sus metros: por metro"
+ },
+ {
+  "t": "reforma integral de ochenta metros pintar no que lo pinta él",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la pintura la hace él"
+ },
+ {
+  "t": "reforma integral de ochenta metros la pintura corre a cargo del cliente",
+  "debe": [],
+  "no_debe": [
+   "pip",
+   "pit"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "a cargo del cliente: no se cobra"
+ },
+ {
+  "t": "reforma integral de ochenta metros y las cuatro puertas también cambiarlas",
+  "debe": [
+   "pub"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pub": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "cuatro puertas"
+ },
+ {
+  "t": "pintar todo el piso de ochenta metros y el salón de veinte metros quitar gotelé",
+  "debe": [
+   "pip",
+   "lija"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pip": 216
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el salón va aparte: la pintura de la casa es el resto (216 en total, no 260)"
+ },
+ {
+  "t": "piso de setenta metros pintar todo y el baño de cuatro metros reforma completa",
+  "debe": [
+   "san",
+   "pip"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4
+   ]
+  },
+  "cantidades": {
+   "pip": 171.8
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "la casa sin lo alicatado del baño, una sola vez"
+ },
+ {
+  "t": "cambiar el plato por uno de ochenta",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el plato nuevo es el de 80"
+ },
+ {
+  "t": "en el baño cambiar el plato viejo por otro de setenta por ciento diez",
+  "debe": [
+   "pd7"
+  ],
+  "no_debe": [
+   "pd8"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "sin_pregunta": [
+   "plato"
+  ],
+  "justificacion": "el plato nuevo es el de 70x110"
+ },
+ {
+  "t": "reforma integral de setenta metros y en el baño cambiar el plato por uno de ochenta",
+  "debe": [
+   "pd8"
+  ],
+  "no_debe": [
+   "pd7"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el plato dicho, de 80"
+ },
+ {
+  "t": "dos baños el primero con bañera y el segundo con plato de ducha los dos de cuatro metros reforma completa",
+  "debe": [
+   "san"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    4,
+    4
+   ]
+  },
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "el primero y el segundo, los dos de cuatro"
+ },
+ {
+  "t": "reforma integral de noventa metros el baño son seis metros y la cocina diez y las puertas nueve con la del baño",
+  "debe": [
+   "san",
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {
+   "bano": [
+    6
+   ],
+   "cocina": [
+    10
+   ],
+   "piso": 90
+  },
+  "cantidades": {
+   "pub": 9
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "fuera": [],
+  "justificacion": "«la del baño» es una puerta, no otro baño"
+ }
+]
