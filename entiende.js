@@ -10,14 +10,65 @@ function n2(x){return Math.round(x*10)/10}
 var STOPA=/^(para|pero|como|todo|toda|todos|todas|hay|hace|hacer|quiere|quieren|tiene|tienen|esta|estan|este|esto|esos|esas|ellos|ella|nosotros|tambien|luego|despues|antes|solo|bien|nuevo|nueva|nuevos|nuevas|viejo|vieja|viejos|viejas|cada|unos|unas|metros|cuadrados|lineales|medidas?|cliente|clienta|dejar\w*|listo|lista|mismo|misma|parte|partes|vale|bueno|pues|entonces|casa|piso|vivienda|salon|pasillo|cocina|bano|aseo|habitacion\w*|dormitorio\w*|comedor|terraza|despacho|entrada|paredes|pared|techos?|suelos?|poner|quitar|cambiar|retirada|tirada|centro|autorizado|medios|manuales|incluso|segun|hasta|desde|sobre|entre|con|sin|del|las|los|una|uno)$/;
 function raices(t){return norm(String(t||'')).replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(function(w){return w.length>=4&&!STOPA.test(w)&&!/^\d/.test(w)}).map(function(w){return w.slice(0,4)})}
 var __idfA=null;function idfA(){if(__idfA)return __idfA;var df={},L=tarifa();L.forEach(function(t){var vs={};raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' ')).forEach(function(r){vs[r]=1});Object.keys(vs).forEach(function(r){df[r]=(df[r]||0)+1})});var N=L.length||1,idf={};Object.keys(df).forEach(function(r){idf[r]=Math.log(1+N/df[r])});__idfA={idf:idf,N:N};return __idfA}
-function adivinarPartida(texto){var R=raices(texto);if(R.length<2)return null;var I=idfA(),best=null,seg=0;
- tarifa().forEach(function(t){var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0,n=0,vis={};R.forEach(function(r){if(vis[r])return;if(dr.indexOf(r)>-1){vis[r]=1;sc+=I.idf[r]||0;n++}});if(n<2)return;if(!best||sc>best.sc){seg=best?best.sc:seg;best={t:t,sc:sc,n:n}}else if(sc>seg)seg=sc});
+function adivinarPartida(texto,sinPolo){var R=raices(texto);if(R.length<2)return null;var I=idfA(),best=null,seg=0;
+ /* «tabique de ladrillo nuevo»: lo que se hace nuevo no se adivina como un derribo, y «quitar el radiador» no es poner uno */
+ var tN=' '+norm(String(texto||''))+' ',dmP=/\b(?:quitar|picar|tirar|derrib\w*|demol\w*|desmont\w*|arranc\w*|retir\w*|sacar|eliminar|levantar\s+(?:el|la|los|las)\s+(?:suelo|parquet|tarima|baldosa\w*|azulejo\w*|moqueta))\b/.test(tN),hcP=/\b(?:poner|colocar|hacer|montar|instalar|construir|nuev[oa]s?|levantar\s+(?:un|una|otro|otra)\b)/.test(tN),polo=sinPolo?'':dmP&&!hcP?'d':hcP&&!dmP?'h':'',fueraPolo=function(t){return polo&&['con','con7','mon','limp','limf'].indexOf(t.id)<0&&(t.c==='Demoliciones')!==(polo==='d')};
+ /* «papel nuevo no»: lo que se dice que no, no se adivina */
+ if(/\b(?:no|tampoco)(?:\s+[a-z]+)?\s*$/.test(tN))return null;
+ tarifa().forEach(function(t){if(fueraPolo(t))return;var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0,n=0,vis={};R.forEach(function(r){if(vis[r])return;if(dr.indexOf(r)>-1){vis[r]=1;sc+=I.idf[r]||0;n++}});if(n<2)return;if(!best||sc>best.sc){seg=best?best.sc:seg;best={t:t,sc:sc,n:n}}else if(sc>seg)seg=sc});
  if(!best||best.sc<3)return null;
  if(best.sc<seg*1.4){/* empate: lo que dice de dónde (cocina, baño, paredes, techos) decide */var CX=['cocina','bano','aseo','paredes','pared','techo','techos','suelo','verticales','horizontales'],tw=' '+norm(String(texto))+' ';if(/\b(?:salon|pasillo|habitacion\w*|dormitorio\w*|comedor)\b/.test(tw)&&!/\btechos?\b/.test(tw))tw+=' verticales paredes ';
-  var cands=tarifa().map(function(t){var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0;R.forEach(function(r,k){if(R.indexOf(r)===k&&dr.indexOf(r)>-1)sc+=I.idf[r]||0});var dn=' '+norm(String(t.d||''))+' '+norm((t.k||[]).join(' '))+' ';var cx=CX.filter(function(w){return tw.indexOf(' '+w+' ')>-1&&dn.indexOf(' '+w+' ')>-1}).length;return {t:t,sc:sc,cx:cx}}).filter(function(c){return c.sc>=best.sc/1.4}).sort(function(a,b){return b.cx-a.cx||b.sc-a.sc});
+  var cands=tarifa().filter(function(t){return !fueraPolo(t)}).map(function(t){var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0;R.forEach(function(r,k){if(R.indexOf(r)===k&&dr.indexOf(r)>-1)sc+=I.idf[r]||0});var dn=' '+norm(String(t.d||''))+' '+norm((t.k||[]).join(' '))+' ';var cx=CX.filter(function(w){return tw.indexOf(' '+w+' ')>-1&&dn.indexOf(' '+w+' ')>-1}).length;return {t:t,sc:sc,cx:cx}}).filter(function(c){return c.sc>=best.sc/1.4}).sort(function(a,b){return b.cx-a.cx||b.sc-a.sc});
   if(cands.length<2||cands[0].cx<=cands[1].cx)return null;return cands[0].t}
  return best.t}
-window.__adivinarPartida=adivinarPartida;window.__raicesA=raices;window.__idfA=idfA;
+window.__adivinarPartida=adivinarPartida;
+/* ALCANCE: una partida grande de la tarifa (la instalación eléctrica de TODO el piso, la fontanería de un baño o de una cocina, un radiador nuevo, un tabique de pladur,
+   el derribo de la cocina, un derribo de tabique…) no sale por una palabra suelta que se le parece («luz», «eléctrico», «fontanería», «radiador», «pladur», «tabique», «cocina»).
+   Si lo dicho es otro trabajo («un punto de luz y dos enchufes», «cambiar el cuadro eléctrico», «luz nueva en el trastero», «desmontar la fontanería vieja», «quitar / mover el radiador»,
+   «bajar el techo con pladur», «abrir hueco en el tabique», «el tabique de la cocina»), esa partida no va: si otra partida ya recoge lo dicho, basta; si no, se escribe tal cual
+   se dijo, con su cantidad y SIN precio (pendiente de precio). Nunca se cobra en silencio una partida que no es. */
+var A_DEM=/\b(?:quitar|retirar|desmont\w*|arranc\w*|sacar|eliminar|anular|tirar|derrib\w*|demol\w*)\b/,A_HAC=/\b(?:nuev[oa]s?|poner|colocar|instalar|hacer|montar|meter|sustituir|renovar|cambiar(?!\s+(?:\w+\s+){0,4}?de\s+(?:sitio|lugar|pared|posicion)))\b/,
+ A_MOV=/\b(?:mover\w*|trasladar\w*|desplazar\w*|de\s+sitio|de\s+lugar|recolocar|purgar|pint\w*|lacar|barniz\w*|arreglar|reparar)\b/,
+ A_TODO=/\b(?:tod[oa]s?\s+(?:el|la|los|las)\s+(?:piso|casa|vivienda|apartamento|instalacion|luz|electricidad)|(?:piso|casa|vivienda)\s+(?:enter[oa]|complet[oa])|(?:luz|electricidad|instalacion electrica)\s+(?:\w+\s+)?tod[oa]|integral|general)\b/,
+ A_NUEVAS=['ele','fba','fco','cal','rad','vent','llav','bol','pla','tec','tecq','tra','chi','mam','pd7','pd8'];
+function alcanceLibre(txt,nom,txtQ){var t=String(txt||''),dl=t.replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|m²|metros cuadrados|metros lineales|metros|ml|m|ud|uds|unidades)\b/g,'').replace(/^\s*(?:quiero|hay que|habria que|tambien|y|e)\s+/,'').replace(/^\s*(?:con|de|del|para)\s+/,'').replace(/\s+/g,' ').trim();if(dl.length<4)return null;
+ var d=dl.charAt(0).toUpperCase()+dl.slice(1);if(nom&&d.toLowerCase().indexOf(nom)<0)d+=' — '+(nom==='bano'?'baño':nom);
+ /* «tabique de ladrillo nuevo, ocho metros»: los metros dichos detrás (sin estancia por medio) son del trabajo */
+ if(txtQ&&!nom&&!/\d/.test(t))t=String(txtQ);
+ var ml=t.match(/(\d+(?:[.,]\d+)?)\s*(?:ml|metros lineales)\b/),m2=t.match(/(\d+(?:[.,]\d+)?)\s*(?:m2|m²|metros cuadrados|metros)\b(?!\s*lineales)/),q=1,u='ud';
+ /* «trastero de cinco metros con luz nueva»: esos metros son del trastero, no del trabajo */
+ if(m2&&new RegExp('\\b(?:'+EST_PAL+')\\b\\s*(?:de|que tiene|tiene|mide|que mide|que es de|es de)\\s*$').test(t.slice(0,m2.index).replace(/\s+$/,'')+' '))m2=null;
+ if(ml){q=num(ml[1]);u='ml'}else if(m2){q=num(m2[1]);u='m2'}else{var c=t.match(/\b(\d+)\s+(?!metros|m2|m\b|ml)[a-z]/);if(c&&+c[1]>1&&+c[1]<=40&&!/\by\s+\d+\s/.test(t))q=+c[1]}
+ var ap=(window.aprendidoParecido?aprendidoParecido(d):0)||0,l={d:d,q:q,u:u,p:ap};if(!(ap>0))l.fb='f'+Math.random().toString(36).slice(2,9);return l}
+function alcance(o,prev,L,todo){if(!L||!L.length)return null;var TT=tarifa(),idL=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var x=TT.find(function(z){return z.d===d||d.indexOf(z.d+' — ')===0});return x?x.id:''};
+ var tx=' '+norm(String(o.orig||o.texto||''))+' ',sinV=!VERBO_OBRA.test(tx)&&!/\bnuev[oa]s?\b/.test(tx);
+ /* «ayudas de albañilería a la fontanería y a la electricidad»: un trozo sin verbo sigue lo de antes */
+ var ctx=prev&&sinV?' '+norm(String(prev.orig||prev.texto||''))+' , '+tx:tx;
+ var nom=o.r||(o.g&&/^(bano|cocina)$/.test(o.g.tipo)?o.g.tipo:'')||(prev&&/^\s*(?:y\s+)?(?:con|de|del|para)\s/.test(tx)?prev.r||'':'')||'';
+ /* «electricidad solo en la cocina», «el trastero con luz nueva»: la luz de una estancia (la estancia va pegada a la luz), no la de todo el piso */
+ var ELW='electric\\w*|luz|cablead\\w*|instalacion electrica',local=new RegExp('\\b(?:'+ELW+')\\b(?:\\s+\\S+){0,3}?\\s+(?:en|de|del|para)\\s+(?:(?:el|la|los|las)\\s+)?(?:'+EST_PAL+')\\b|\\b(?:'+EST_PAL+')\\b(?:\\s+(?:de\\s+)?\\d+(?:[.,]\\d+)?(?:\\s+(?:metros cuadrados|metros|m2|m))?)?(?:\\s+\\S+){0,2}?\\s+(?:con\\s+)?(?:(?:la|su)\\s+)?(?:'+ELW+')\\b').test(tx)||!!nom&&!/^(?:piso|casa|vivienda)$/.test(nom)&&new RegExp('\\b(?:'+ELW+')\\b').test(tx);
+ /* «ayudas de albañilería a la electricidad y a la fontanería»: esa electricidad y esa fontanería son las ayudas, no las instalaciones (pero «electricidad nueva con boletín, ayudas de albañilería…» sí lleva la electricidad) */
+ var ayuda=/\bayudas?\b/.test(ctx),quitaAy=function(z){return z.replace(/\bayudas?\b(?:\s+(?:de|a la)\s+albanileria)?(?:\s*[,:]?\s*(?:(?:y|e)\s+)?(?:a|al|a la|para|para la|de|de la|en|en la)\s+(?:la\s+)?(?:instalacion\s+(?:de\s+)?)?(?:electricidad|fontaneria|electricista|fontanero|gremios?|instalaciones?|calefaccion))*(?:\s+incluidas?)?/g,' ')},sinAy=quitaAy(ctx),tdA=quitaAy(' '+norm(String(todo||''))+' '),ayE=ayuda&&!new RegExp('\\b(?:'+ELW+')\\b').test(sinAy)&&!new RegExp('\\b(?:'+ELW+')\\b').test(tdA),ayF=ayuda&&!/\bfontaner\w*/.test(sinAy)&&!/\bfontaner\w*/.test(tdA);
+ /* «quitar el radiador», «desmontar la fontanería vieja», «mover el radiador a la otra pared»: el verbo de quitar o de mover va con lo que se nombra, y nada se pone nuevo */
+ var OBJ={ele:'electric\\w*|luz|cablead\\w*',fba:'fontaner\\w*|tuberi\\w*',fco:'fontaner\\w*|tuberi\\w*',cal:'calefacc\\w*|radiador\\w*|caldera',rad:'radiador\\w*',vent:'extractor\\w*|ventilac\\w*|conducto\\w*',llav:'llaves?',bol:'boletin',pla:'pladur|tabique\\w*',tec:'techos?|escayola|pladur',tecq:'techos?|escayola',tra:'trasdos\\w*',chi:'chimenea',mam:'mamparas?',pd7:'plato\\w*|ducha',pd8:'plato\\w*|ducha',mco:'muebles?|cocina',mba:'muebles?',mar:'armario\\w*',pen:'puertas?',pub:'puertas?',niv:'suelo|nivel\\w*'};
+ var solo=function(id){return !!OBJ[id]&&!A_HAC.test(tx)&&(/\b(?:de\s+(?:sitio|lugar|pared|posicion)|a\s+(?:la\s+|el\s+)?otr[oa]\s+(?:pared|sitio|lado|habitacion))\b/.test(tx)&&new RegExp('\\b(?:'+OBJ[id]+')\\b').test(tx)||new RegExp('(?:'+A_DEM.source+'|'+A_MOV.source+')\\s+(?:(?:el|la|los|las|un|una|unos|unas|todo|toda|todos|todas|dos|tres|cuatro|\\d+|viej[oa]s?|antigu[oa]s?|actual(?:es)?|de|del)\\s+){0,3}(?:'+OBJ[id]+')\\b').test(tx))};
+ var NO={
+  ele:function(){return !A_TODO.test(tx)&&(/\b(?:puntos? de luz|enchuf\w*|interruptor\w*|conmutador\w*|cuadro\w*|tomas?\s+de\s+\w+|lampara\w*|focos?|apliques?|plafon\w*|downlight\w*|led|leds|timbre|portero\w*|videoportero\w*|antena\w*|diferencial\w*)\b/.test(tx)||local)||ayE},
+  fba:function(){return ayF},fco:function(){return ayF},
+  coc:function(){return /\b(?:tabiques?|tabiqueria|pared(?:es)?|muros?)\b/.test(tx)&&!/\b(?:muebles?|electrodomestic\w*|encimera|cocina vieja|armarios?)\b/.test(tx)},
+  tab:function(){return /\bhuecos?\b/.test(tx)&&!/\b(?:tirar|derrib\w*|demol\w*|quitar)\b[^,.;]{0,25}\b(?:tabiques?|pared(?:es)?|muros?)\b/.test(tx)},
+  pla:function(){return /\bladrill\w*/.test(tx)&&!/\bpladur\b/.test(tx)||/\btechos?\b/.test(ctx)&&!/\b(?:tabiques?|pared(?:es)?|trasdos\w*|dividir|separar|partir|armario\w*|mueble\w*|chimenea)\b/.test(tx)}};
+ var SUST={ele:ayE?'aye':'',fba:ayF?'ayf':'',fco:ayF?'ayf':'',pla:/\btechos?\b/.test(ctx)&&!/\bladrill\w*/.test(tx)?'tec':''};
+ var fuera=[],out=[];L.forEach(function(l){var id=idL(l),no=(NO[id]&&NO[id]())||A_NUEVAS.indexOf(id)>-1&&solo(id);
+  /* «falso techo de escayola»: la tarifa lo tiene de pladur: ¿es esta? */
+  if(!no&&/^(tec|tecq)$/.test(id)&&/\bescayola\b/.test(tx)&&!/\bpladur\b/.test(tx)&&!l.adiv){l.adiv=1;l.adivTxt=String(o.orig||o.texto).trim().slice(0,60)}
+  if(no)fuera.push({l:l,id:id});else out.push(l)});
+ if(!fuera.length)return null;
+ fuera.forEach(function(f){var si=SUST[f.id],ts=si&&T(si);if(!ts||out.some(function(x){return idL(x)===si}))return;var k=String(f.l.d).indexOf(' — ');out.push({d:ts.d+(k>-1?String(f.l.d).slice(k):''),q:ts.u===f.l.u?f.l.q:1,u:ts.u,p:ts.p,tid:si})});
+ /* «cambiar enchufes y toda la luz del piso»: los enchufes van en la instalación de todo el piso, que se dice aparte */
+ if(fuera.every(function(f){return f.id==='ele'})&&A_TODO.test(' '+norm(String(todo||''))+' ')&&new RegExp('\\b(?:'+ELW+')\\b').test(norm(String(todo||'')).replace(tx.trim(),' ')))return out;
+ if(!out.some(function(x){return !x.fb})){var lb=alcanceLibre(o.orig||o.texto,nom&&!/^(piso|casa|vivienda)$/.test(nom)?nom:'',o.texto);if(lb&&!out.some(function(x){return x.d===lb.d}))out.push(lb)}
+ return out}window.__raicesA=raices;window.__idfA=idfA;
 function fmt(x){return String(n2(x)).replace('.',',')}
 
 /* ---------- 1) frases de la calle -> palabras del oficio ---------- */
@@ -52,6 +103,17 @@ var REGLAS=[
 [/\b((?:rayar|rayado|picar|enlucir|enlucido)\b[^,.;]{0,40}?\byeso\b[^,.;]{0,30}?)\s*,?\s+y\s+(?:poner|colocar)\s+(?:los\s+)?guardavivos\b/g,'$1'],
 /* «acuchillar el parquet y barnizar»: el acuchillado ya lleva su barniz */
 [/\b(acuchill\w*)(\s+(?:el|la)\s+(?:parquet|tarima|suelo|madera))?\s*,?\s+y\s+barniz\w*\b/g,'$1$2'],
+/* «quitar y poner baldosa»: quitar la baldosa y poner baldosa (el objeto es de los dos verbos) */
+[/\b(quitar|levantar|picar|arrancar|sacar|desmontar)\s+y\s+(poner|colocar|montar)\s+((?:(?:el|la|los|las)\s+)?(?:baldosa\w*|gres|azulejo\w*|suelo|plato(?: de ducha)?|mampara|rodapie\w*|tarima|parquet|flotante|radiador\w*|puertas?|papel(?: pintado)?|sanitarios|inodoro))\b/g,'$1 $3, $2 $3'],
+/* «quitar el yeso de las paredes y enlucir de nuevo»: quitar el yeso es picarlo */
+[/\b(?:quitar|arrancar|sacar|rascar|levantar)\s+(?:todo\s+)?(?:el\s+)?yeso\b(?!\s+(?:tosco|nuevo))/g,' picar el yeso '],
+/* «suelo nivelado», «dejar el suelo nivelado»: nivelar */
+[/\b(?:dejar\s+)?(?:el\s+)?(?:suelo|solado)\s+nivelad[oa]\b|\bnivelad[oa]\s+(?:del?\s+)?(?:el\s+)?suelo\b/g,' nivelar suelo '],
+/* «llaves de paso nuevas», «fontanería de la cocina y llaves»: las llaves de regulación */
+[/\bllaves?\s+de\s+(?:paso|corte|regulacion|agua)\b/g,' llaves de regulacion '],
+[/\b(fontaner\w*[^,.;]{0,40}?\s+y\s+(?:las\s+)?)llaves\b(?!\s+de\b)/g,'$1llaves de regulacion'],
+/* «techo de escayola en la cocina»: un falso techo (de escayola: a confirmar, la tarifa lo tiene de pladur) */
+[/\btechos?\s+de\s+escayola\b/g,function(m,off,all){var a=String(all).slice(Math.max(0,off-30),off).split(/[,.;]/).pop();if(/\b(?:falso|pint\w*|quitar|picar|tirar|arranc\w*|desmont\w*|levant\w*|retir\w*|reparar|arreglar|repasar|tapar)\b[^,]*$|\b(?:el|los)\s*$/.test(a))return m;return ' falso techo de escayola '}],
 [/\s+y\s+(?=(?:poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat|lijar|nivelar|alisar|enlucir|embaldos|acuchill|barniz|pulir|abrir|bajar|cerrar)\b)/g,', '],
 [/\b(reform\w*|renov\w*|arregl\w*|moderniz\w*|hacer)\s+y\s+(?!(?:el|la|los|las|un|una|mi)\b)\w+\s+(?:(?:el|la|un|una|mi)\s+)?(banos?|aseos?|cocina|habitacion|dormitorio|piso|casa)\b/g,'$1 el $2'],
 [/(?<!\bespejo)(?<!\bentre\s+(?:el\s+|la\s+)?[a-z]+)\s+y\s+(?!medio\b|cuarto\b|luz\b|\d|otr[oa]s?\b|el otro\b|la otra\b|un[oa]? de\b|de \d|al (?:fontanero|electricista)\b)/g,', '],
@@ -76,7 +138,7 @@ var REGLAS=[
 [/\b(?:cambiar|renovar|poner nuevo|hacer nuevo)\s+(?:el\s+)?suelo\s+(?:de\s+|del\s+)(?:la\s+)?(bano|aseo|cocina|terraza)\b/g,function(m,e){return ' picar suelo del '+e+', baldosa en el suelo del '+e+' '}],
 [/\b(?:cambiar|renovar)\s+(?:el\s+)?suelo\s+de\s+(?:madera|parquet|tarima)\s+por\s+(?:un\s+)?(?:laminado|tarima|flotante|suelo flotante)\b/g,' quitar suelo, suelo flotante '],
 [/\b(sin|no|ni)\s+(?:hay que\s+|se va a\s+|vamos a\s+)?(?:cambiar|renovar|tocar)\s+(?:el\s+|los\s+)?suelos?\b/g,' sin tocar el suelo '],
-[/(?<!\bsin tocar el\s)\b(?:cambiar|renovar)\s+(?:el\s+)?suelo\b(?!\s+(?:de|del)\s+(?:la\s+)?(?:bano|aseo|cocina|terraza))/g,' quitar suelo, suelo flotante '],
+[/(?<!\bsin tocar el\s)\b(?:cambiar|renovar)\s+(?:el\s+)?suelo\b(?!\s+(?:de|del)\s+(?:la\s+)?(?:bano|aseo|cocina|terraza))/g,function(m,off,all){/* «en la terraza cambiar el suelo… quitar y poner baldosa»: es suelo cerámico, no tarima (se queda como se dijo) */var a=String(all).slice(Math.max(0,off-40),off).split(/[.;]/).pop(),b=String(all).slice(off+m.length,off+m.length+80).split(/[.;]/)[0];if(/\b(?:terraza|balcon|bano|aseo|cocina)\b[^,]*$/.test(a)||/\b(?:baldosa\w*|gres|ceramic\w*|porcelanic\w*|plaqueta\w*|terrazo)\b/.test(b))return m;return ' quitar suelo, suelo flotante '}],
 [/\b(?:poner|colocar)\s+(baldosa|baldosas|gres|porcelanico)\b(?![^,.;]*\b(?:pared|paredes)\b)/g,' baldosa en el suelo '],
 [/\bpulir\s+(?:el\s+)?(parquet|parque|suelo|tarima)\b/g,' acuchillar '],
 [/\b(?:suelo|piso)\s+(?:esta\s+)?(?:desnivelad\w*|torcid\w*|hundid\w*)\b|\bdesnivel\w*/g,' nivelar '],
@@ -103,7 +165,8 @@ var REGLAS=[
 [/\bpicar\s+(?:todo\s+)?(?:el\s+)?(bano|aseo)\b/g,' quitar alicatado de las paredes del bano, picar suelo del bano '],
 [/\b(?:cambiar|poner|colocar|montar|meter)\s+(?:el\s+|un\s+|uno\s+)?(?:vater|water|inodoro|retrete)(?:\s+nuev[oa]s?)?\b/g,' quitar sanitarios, colocar inodoro nuevo '],
 [/(^|[,;.]|\by\b)\s*(?:un\s+|el\s+)?(?:vater|water|inodoro|retrete)\s+nuev[oa]s?\b/g,'$1 quitar sanitarios, colocar inodoro nuevo '],
-[/\bno tiene ventana\b|\bsin ventana\b/g,' extractor '],
+/* «habitación de diez metros, no tiene ventana»: sin ventana solo pide extractor en un baño, aseo o cocina; en una habitación o un salón solo describe la estancia (no es un trabajo) */
+[/\bno tiene ventana\b|\bsin ventana\b/g,function(m,off,all){var a=String(all).slice(Math.max(0,off-70),off),b=String(all).slice(off+m.length,off+m.length+40);if(!/\b(?:bano|aseo|cocina|servicio|lavadero)\b/.test(a+' '+b)&&/\b(?:habitacion\w*|dormitorio\w*|salon\w*|comedor|despacho|cuarto(?!\s+de\s+bano)|pasillo|recibidor|trastero|vestidor|buhardilla)\b/.test(a))return ' ';return ' extractor '}],
 [/\bmueble\b(?!\s+(?:de\s+|del\s+)?(?:cocina|pladur|tele|television|bano|lavabo))/g,function(m,o,all){return /\b(bano|aseo|lavabo|ducha|plato)\b/.test(all)?'mueble de bano':m}]
 ];
 function traducir(txt){REGLAS.forEach(function(r){txt=txt.replace(r[0],r[1])});return txt.replace(/\s+/g,' ').replace(/\s+,/g,',').replace(/,\s*,/g,',')}
@@ -581,7 +644,10 @@ try{A.obras.forEach(function(o,io){
  if(/\bpremarcos?\b[^,.;]{0,40}\bpara\s+(?:las\s+|los\s+)?(?:\d+\s+)?puertas\b/.test(o.texto)&&!/\b(cambiar|poner|colocar|sustituir|montar)\s+(?:las\s+|\d+\s+)?puertas\b/.test(o.texto))nuevas=nuevas.filter(function(l){var x=idDe(l);return x!=='pub'&&x!=='pue'});
  /* lo que el motor de siempre ha sacado por parecido (no por sus palabras): a confirmar */
  nuevas.forEach(function(l){if(l.parec&&!l.adiv){l.adiv=1;l.adivTxt=String(l.parTxt||o.orig||o.texto).trim().slice(0,60)}});
- if(!nuevas.some(function(l){return !l.fb})){var tAd=o.orig||o.texto,ad=adivinarPartida(tAd+(o.r?' '+o.r:'')+(o.g&&o.g.tipo?' '+o.g.tipo:''));if(ad&&!/^\s*(?:y\s+)?(?:no|sin|nada|ni)\b/.test(tAd)&&!(/\bque\s+(?:es|son|esta|estan|era|eran|tiene|tienen|ya)\b/.test(tAd)&&!VERBO_OBRA.test(tAd))&&!/\b(?:cerradura|bombin|manillas?|pomos?|bisagras?|mirilla|cisterna|grifos?|persianas?|cristal(?:es)?|ventanas?|toldo|cerrojo)\b/.test(norm(tAd))){var mAd=String(tAd).match(/(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros lineales|metros|ml|m)\b/),qAd=1;if(/^(m2|ml)$/.test(ad.u))qAd=mAd?num(mAd[1]):0;else{var cAd=String(tAd).match(/\b(\d+)\b(?!\s*(?:metros|m2|m\b|ml))/);if(cAd)qAd=+cAd[1]}nuevas=[{d:ad.d,q:qAd,u:ad.u,p:ad.p,tid:ad.id,adiv:1,adivTxt:String(tAd).trim().slice(0,60)}]}}
+ (function(){var rA=alcance(o,A.obras[io-1],nuevas,A.todo);if(rA){nuevas=rA;o.__alc=1}})();
+ if(!o.__alc&&!nuevas.some(function(l){return !l.fb})){var tAd=o.orig||o.texto,ad=adivinarPartida(tAd+(o.r?' '+o.r:'')+(o.g&&o.g.tipo?' '+o.g.tipo:''));if(ad&&!/^\s*(?:y\s+)?(?:no|sin|nada|ni)\b/.test(tAd)&&!(/\bque\s+(?:es|son|esta|estan|era|eran|tiene|tienen|ya)\b/.test(tAd)&&!VERBO_OBRA.test(tAd))&&!/\b(?:cerradura|bombin|manillas?|pomos?|bisagras?|mirilla|cisterna|grifos?|persianas?|cristal(?:es)?|ventanas?|toldo|cerrojo)\b/.test(norm(tAd))){var mAd=String(tAd).match(/(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros lineales|metros|ml|m)\b/),qAd=1;if(/^(m2|ml)$/.test(ad.u))qAd=mAd?num(mAd[1]):0;else{var cAd=String(tAd).match(/\b(\d+)\b(?!\s*(?:metros|m2|m\b|ml))/);if(cAd)qAd=+cAd[1]}nuevas=[{d:ad.d,q:qAd,u:ad.u,p:ad.p,tid:ad.id,adiv:1,adivTxt:String(tAd).trim().slice(0,60)}]}}
+ /* «tabique de ladrillo nuevo ocho metros»: se parece a una partida, pero al revés (un derribo): no es esa; se escribe como se dijo, con su cantidad y sin precio */
+ if(!o.__alc&&!nuevas.length){var tPo=o.orig||o.texto;if(!/^\s*(?:y\s+)?(?:no|sin|nada|ni)\b/.test(tPo)&&!adivinarPartida(tPo)&&adivinarPartida(tPo,true)){var lPo=alcanceLibre(tPo,o.r||(o.g&&/^(bano|cocina)$/.test(o.g.tipo)?o.g.tipo:''),o.texto);if(lPo)nuevas=[lPo]}}
  if(fueraNG.length)nuevas=nuevas.filter(function(l){return fueraNG.indexOf(idDe(l))<0});
  if(nuevas.some(function(l){return idDe(l)==='luc'}))nuevas=nuevas.filter(function(l){return idDe(l)!=='yes'});
  (function(){var pb=nuevas.find(function(l){return idDe(l)==='pub'});if(!pb||nuevas.some(function(l){return idDe(l)==='pue'})||!(/\b(cambiar|sustituir|renovar|cambio)\b/.test(o.texto)||/\bpuertas\s+nuevas\b/.test(o.texto)&&!/\b(poner|colocar|montar|instalar|meter)\b/.test(o.texto)||/\btodo nuevo\b/.test(A.todo)&&/^\s*(?:las\s+)?puertas\s*$/.test(o.texto)&&!/\b(?:no|sin)\s+(?:tiene\s+|hay\s+)?puertas\b/.test(A.todo)))return;var tq=T('pue');if(tq)nuevas.push({d:tq.d,q:pb.q,u:tq.u,p:tq.p,tid:'pue'})})();
@@ -716,6 +782,9 @@ if(mpz&&lpb&&!finales.some(function(l){return idDe(l)==='pue'})&&!cur.lineas.som
 finales.forEach(function(l){if(idDe(l)==='pen'&&!l.paqId&&num(l.q)>1&&!/\b(?:\d+|dos|tres|cuatro)\s+puertas?\s+(?:de\s+)?(?:entrada|blindadas?|acorazadas?|de la calle)\b|\b(?:\d+|dos|tres|cuatro)\s+(?:blindadas|acorazadas)\b/.test(A.todo))l.q=1});
 /* el derribo de tabiques una vez: por lote (hasta dos tabiques) o por metro, según los metros dichos */
 (function(){var lm=finales.find(function(l){return idDe(l)==='tabm'&&!l.paqId}),lt=finales.filter(function(l){return idDe(l)==='tab'&&!l.paqId});if(!lm||!lt.length||!window.tabiqueSegunMetros)return;var r=tabiqueSegunMetros(num(lm.q));if(r.id==='tab'){finales=finales.filter(function(l){return l!==lm});lt[0].d=r.d.indexOf(lt[0].d)===0?lt[0].d:lt[0].d}else finales=finales.filter(function(l){return lt.indexOf(l)<0})})();
+/* «tirar el tabique del baño y el de la cocina», «el tabique del baño y la cocina, dos tabiques»: el derribo se cobra por lote de uno o dos tabiques; dos tabiques de dos estancias son UN lote (una partida, de las dos), no dos */
+(function(){var lt=finales.filter(function(l){return idDe(l)==='tab'&&!l.paqId&&num(l.q)===1});if(lt.length!==2||finales.some(function(l){return idDe(l)==='tabm'}))return;var TDt=' '+norm(String(A.todo||''))+' ';if(/\b(?:tres|cuatro|cinco|seis|siete|ocho|[3-9]|\d\d)\s+tabiques\b|\bvarios\s+tabiques\b|\btabiqueria\b/.test(TDt)||(TDt.match(/\b(?:dos|2)\s+tabiques\b/g)||[]).length>1||/\b(?:dos|2)\s+tabiques\b[^.;]{0,60}\b(?:otro|otros|uno|un)\s+(?:tabique|mas)\b/.test(TDt))return;
+ var tg=lt.map(function(l){var k=String(l.d).indexOf(' \u2014 ');return k>-1?String(l.d).slice(k+3):''});if(!tg[0]||!tg[1]||tg[0]===tg[1])return;var t0=T('tab');if(!t0)return;lt[0].d=t0.d+' \u2014 '+tg[0]+' y '+tg[1];finales=finales.filter(function(l){return l!==lt[1]})})();
 /* un solo contenedor y una sola limpieza final, salvo que se digan varios */
 ['con','limf','mon','bol','ele','ins'].forEach(function(id){var ls=finales.filter(function(l){return idDe(l)===id});if(ls.length<2)return;var keep=ls.find(function(l){return l.paqId})||ls[0];var mx=Math.max.apply(null,ls.map(function(l){return num(l.q)||1}));keep.q=mx;finales=finales.filter(function(l){return idDe(l)!==id||l===keep})});
 /* «cambiar las puertas, son 6 puertas»: lo que se quita, las mismas */

@@ -1,0 +1,1389 @@
+[
+ {
+  "t": "punto de luz nuevo en el pasillo y dos enchufes",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "Punto de luz nuevo en el pasillo, y dos enchufes.",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "poner tres puntos de luz en el salón",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar los enchufes de la cocina",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "poner focos en el pasillo",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las lámparas del salón",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "poner un diferencial nuevo en el cuadro",
+  "debe": [],
+  "no_debe": [
+   "ele",
+   "bol"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Puntos de luz, enchufes, focos o el cuadro no son la instalación eléctrica de todo el piso: partida propia sin precio.",
+  "fuera": []
+ },
+ {
+  "t": "cambiar el cuadro eléctrico",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el cuadro electrico": 1
+  }
+ },
+ {
+  "t": "Cambiar el cuadro de la luz.",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el cuadro de la luz": 1
+  }
+ },
+ {
+  "t": "trastero de cinco metros con luz nueva",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Trastero con luz nueva": 1
+  }
+ },
+ {
+  "t": "El trastero, de seis metros, con luz nueva.",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Luz nueva": 1
+  }
+ },
+ {
+  "t": "luz nueva en el garaje",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Luz nueva en el garaje": 1
+  }
+ },
+ {
+  "t": "en el baño cambiar la luz",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "En el bano cambiar la luz": 1
+  }
+ },
+ {
+  "t": "electricidad nueva solo en la cocina",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Electricidad solo en la cocina": 1
+  }
+ },
+ {
+  "t": "electricidad nueva en la cocina solamente",
+  "debe": [],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Electricidad en la cocina solamente": 1
+  }
+ },
+ {
+  "t": "ayudas de albañilería a la fontanería y a la electricidad",
+  "debe": [
+   "ayf",
+   "aye"
+  ],
+  "no_debe": [
+   "ele",
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las ayudas de albañilería a los gremios no son las instalaciones.",
+  "fuera": []
+ },
+ {
+  "t": "Ayudas de albañilería a la fontanería y a la electricidad.",
+  "debe": [
+   "ayf",
+   "aye"
+  ],
+  "no_debe": [
+   "ele",
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las ayudas de albañilería a los gremios no son las instalaciones.",
+  "fuera": []
+ },
+ {
+  "t": "ayudas de albañilería a electricidad y fontanería",
+  "debe": [
+   "ayf",
+   "aye"
+  ],
+  "no_debe": [
+   "ele",
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las ayudas de albañilería a los gremios no son las instalaciones.",
+  "fuera": []
+ },
+ {
+  "t": "Ayudas de albañilería: a la electricidad y a la fontanería.",
+  "debe": [
+   "ayf",
+   "aye"
+  ],
+  "no_debe": [
+   "ele",
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Las ayudas de albañilería a los gremios no son las instalaciones.",
+  "fuera": []
+ },
+ {
+  "t": "ayuda de albañilería al electricista",
+  "debe": [
+   "aye"
+  ],
+  "no_debe": [
+   "ele"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "instalación eléctrica nueva en todo el piso",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: la instalación de todo el piso sí sale.",
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: la instalación de todo el piso sí sale.",
+  "fuera": []
+ },
+ {
+  "t": "renovar la instalación eléctrica de toda la casa",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: la instalación de todo el piso sí sale.",
+  "fuera": []
+ },
+ {
+  "t": "Cambiar enchufes y toda la luz del piso, quinto sin ascensor.",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: la instalación de todo el piso sí sale.",
+  "fuera": []
+ },
+ {
+  "t": "electricidad nueva con boletín y ayudas de albañilería a la electricidad",
+  "debe": [
+   "ele"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: la instalación de todo el piso sí sale.",
+  "fuera": []
+ },
+ {
+  "t": "desmontar la fontanería vieja del baño",
+  "debe": [
+   "dfon"
+  ],
+  "no_debe": [
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Desmontar la fontanería vieja es el desmontaje, no fontanería nueva.",
+  "fuera": []
+ },
+ {
+  "t": "Desmontar la fontanería vieja del baño.",
+  "debe": [
+   "dfon"
+  ],
+  "no_debe": [
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Desmontar la fontanería vieja es el desmontaje, no fontanería nueva.",
+  "fuera": []
+ },
+ {
+  "t": "quitar la fontanería antigua del baño",
+  "debe": [
+   "dfon"
+  ],
+  "no_debe": [
+   "fba",
+   "fco"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Desmontar la fontanería vieja es el desmontaje, no fontanería nueva.",
+  "fuera": []
+ },
+ {
+  "t": "desmontar la fontanería vieja de la cocina",
+  "debe": [
+   "dfon"
+  ],
+  "no_debe": [
+   "fco",
+   "fba"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Desmontar la fontanería del baño y hacer fontanería nueva.",
+  "debe": [
+   "dfon",
+   "fba"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control: se dice las dos cosas.",
+  "fuera": []
+ },
+ {
+  "t": "fontanería nueva en el baño",
+  "debe": [
+   "fba"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar el radiador de la cocina",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar el radiador de la cocina": 1
+  }
+ },
+ {
+  "t": "Quitar el radiador del pasillo.",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar el radiador del pasillo": 1
+  }
+ },
+ {
+  "t": "quitar los dos radiadores del salón",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Quitar los 2 radiadores del salon": 2
+  }
+ },
+ {
+  "t": "mover el radiador de la habitación",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Mover el radiador de la habitacion": 1
+  }
+ },
+ {
+  "t": "mover el radiador del baño a la otra pared",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Mover el radiador": 1
+  }
+ },
+ {
+  "t": "cambiar el radiador del baño de sitio",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Cambiar el radiador del bano de sitio": 1
+  }
+ },
+ {
+  "t": "purgar los radiadores",
+  "debe": [],
+  "no_debe": [
+   "rad",
+   "cal"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Quitar, mover o purgar un radiador no es poner un radiador nuevo: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Purgar los radiadores": 1
+  }
+ },
+ {
+  "t": "poner un radiador nuevo en el baño",
+  "debe": [
+   "rad"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control.",
+  "fuera": []
+ },
+ {
+  "t": "abrir hueco de puerta en el tabique y poner premarco",
+  "debe": [
+   "hue",
+   "pre"
+  ],
+  "no_debe": [
+   "tab",
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Abrir un hueco en el tabique no es derribarlo.",
+  "fuera": []
+ },
+ {
+  "t": "Abrir hueco de puerta en el tabique, y poner premarco.",
+  "debe": [
+   "hue",
+   "pre"
+  ],
+  "no_debe": [
+   "tab",
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Abrir un hueco en el tabique no es derribarlo.",
+  "fuera": []
+ },
+ {
+  "t": "abrir un hueco en el tabique del pasillo para una puerta",
+  "debe": [
+   "hue"
+  ],
+  "no_debe": [
+   "tab",
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique del baño y la cocina dos tabiques",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "coc",
+   "tabm"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tab": 1
+  },
+  "lugares": {
+   "tab": [
+    "baño",
+    "cocina"
+   ]
+  },
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Dos tabiques son un lote de derribo; la cocina es dónde está el tabique, no demoler la cocina.",
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique de la cocina, y en el baño también tirar el tabique",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tab": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "tirar el tabique de la cocina",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "derribar la pared de la cocina",
+  "debe": [
+   "tab"
+  ],
+  "no_debe": [
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar la cocina vieja",
+  "debe": [
+   "coc"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control.",
+  "fuera": []
+ },
+ {
+  "t": "derribar tabiques veinte metros cuadrados",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [
+   "tab"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tabm": 20
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "tabm"
+  ],
+  "sin_medida": [],
+  "justificacion": "Sin inventar cuántos tabiques son.",
+  "fuera": []
+ },
+ {
+  "t": "derribar tabiques treinta metros cuadrados",
+  "debe": [
+   "tabm"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tabm": 30
+  },
+  "lugares": {},
+  "sin_lugar": [
+   "tabm"
+  ],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "tabique de ladrillo nuevo ocho metros",
+  "debe": [],
+  "no_debe": [
+   "tab",
+   "tabm",
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Un tabique de ladrillo nuevo no es un derribo ni un tabique de pladur: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Tabique de ladrillo nuevo": 8
+  }
+ },
+ {
+  "t": "levantar un tabique de ladrillo de diez metros",
+  "debe": [],
+  "no_debe": [
+   "tab",
+   "tabm",
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Un tabique de ladrillo nuevo no es un derribo ni un tabique de pladur: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Levantar un tabique de ladrillo": 10
+  }
+ },
+ {
+  "t": "hacer una pared de ladrillo nueva",
+  "debe": [],
+  "no_debe": [
+   "tab",
+   "tabm",
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Un tabique de ladrillo nuevo no es un derribo ni un tabique de pladur: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Hacer una pared de ladrillo nueva": 1
+  }
+ },
+ {
+  "t": "Tabique de ladrillo nuevo, ocho metros.",
+  "debe": [],
+  "no_debe": [
+   "tab",
+   "tabm",
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Un tabique de ladrillo nuevo no es un derribo ni un tabique de pladur: partida propia sin precio.",
+  "fuera": [],
+  "debe_texto": {
+   "Tabique de ladrillo nuevo": 8
+  }
+ },
+ {
+  "t": "hacer un tabique de pladur en el salón",
+  "debe": [
+   "pla"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control.",
+  "fuera": []
+ },
+ {
+  "t": "bajar el techo del pasillo con pladur siete metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Bajar el techo con pladur es falso techo, no un tabique de pladur.",
+  "fuera": []
+ },
+ {
+  "t": "Bajar el techo del pasillo con pladur, siete metros.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 7
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Bajar el techo con pladur es falso techo, no un tabique de pladur.",
+  "fuera": []
+ },
+ {
+  "t": "techo de pladur en el baño cuatro metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "tec": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Bajar el techo con pladur es falso techo, no un tabique de pladur.",
+  "fuera": []
+ },
+ {
+  "t": "bajar el techo de la cocina con pladur",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [
+   "pla"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "techo de escayola en la cocina diez metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 10
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de escayola: la tarifa lo tiene de pladur, queda a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "tec": "adiv"
+  }
+ },
+ {
+  "t": "falso techo de escayola en el pasillo de cinco metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 5
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de escayola: la tarifa lo tiene de pladur, queda a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "tec": "adiv"
+  }
+ },
+ {
+  "t": "falso techo de escayola en el salón doce metros",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de escayola: la tarifa lo tiene de pladur, queda a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "tec": "adiv"
+  }
+ },
+ {
+  "t": "Techo de escayola en el baño, cuatro metros.",
+  "debe": [
+   "tec"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "tec": 4
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Falso techo de escayola: la tarifa lo tiene de pladur, queda a confirmar.",
+  "fuera": [],
+  "pregunta": {
+   "tec": "adiv"
+  }
+ },
+ {
+  "t": "habitación de diez metros no tiene ventana pintar",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "vent"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin ventana en una habitación no pide extractor.",
+  "fuera": []
+ },
+ {
+  "t": "Habitación de diez metros, no tiene ventana, pintar.",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "vent"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin ventana en una habitación no pide extractor.",
+  "fuera": []
+ },
+ {
+  "t": "el dormitorio no tiene ventana, pintar",
+  "debe": [
+   "pip"
+  ],
+  "no_debe": [
+   "vent"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Sin ventana en una habitación no pide extractor.",
+  "fuera": []
+ },
+ {
+  "t": "el baño no tiene ventana",
+  "debe": [
+   "vent"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Control.",
+  "fuera": []
+ },
+ {
+  "t": "quitar el yeso de las paredes y enlucir de nuevo cuarenta metros",
+  "debe": [
+   "pic",
+   "yes"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 40,
+   "yes": 40
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Quitar el yeso de las paredes y enlucir de nuevo, cuarenta metros.",
+  "debe": [
+   "pic",
+   "yes"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 40,
+   "yes": 40
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "arrancar el yeso y enlucir treinta metros",
+  "debe": [
+   "pic",
+   "yes"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "pic": 30,
+   "yes": 30
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "quitar el yeso viejo de las paredes del salón",
+  "debe": [
+   "pic"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "derribo de tabique y suelo nivelado del salón veinte metros",
+  "debe": [
+   "tab",
+   "niv"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "Derribo de tabique, y suelo nivelado del salón, veinte metros.",
+  "debe": [
+   "tab",
+   "niv"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 20
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "dejar el suelo nivelado en la habitación quince metros",
+  "debe": [
+   "niv"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "niv": 15
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "llaves de paso nuevas en la cocina y el lavadero",
+  "debe": [
+   "llav"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "llav": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "llave de paso nueva en el baño",
+  "debe": [
+   "llav"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "llav": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "cambiar las llaves de corte de la cocina",
+  "debe": [
+   "llav"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {
+   "llav": 1
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "fontanería de la cocina nueva y llaves",
+  "debe": [
+   "fco",
+   "llav"
+  ],
+  "no_debe": [],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "",
+  "fuera": []
+ },
+ {
+  "t": "en la terraza cambiar el suelo dieciocho metros quitar y poner baldosa",
+  "debe": [
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "sue",
+   "flo",
+   "ron",
+   "rod"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sol": 18,
+   "alc": 18
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baldosa de terraza: suelo cerámico, sin tarima ni rodapié.",
+  "fuera": []
+ },
+ {
+  "t": "En la terraza, cambiar el suelo, 18 metros: quitar y poner baldosa.",
+  "debe": [
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "sue",
+   "flo",
+   "ron",
+   "rod"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sol": 18,
+   "alc": 18
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baldosa de terraza: suelo cerámico, sin tarima ni rodapié.",
+  "fuera": []
+ },
+ {
+  "t": "terraza de doce metros quitar y poner baldosa",
+  "debe": [
+   "sol",
+   "alc"
+  ],
+  "no_debe": [
+   "sue",
+   "flo",
+   "ron",
+   "rod"
+  ],
+  "estancias": {},
+  "cantidades": {
+   "sol": 12,
+   "alc": 12
+  },
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Baldosa de terraza: suelo cerámico, sin tarima ni rodapié.",
+  "fuera": []
+ },
+ {
+  "t": "en la cocina tabique de ladrillo nuevo",
+  "debe": [],
+  "no_debe": [
+   "tab",
+   "tabm",
+   "pla",
+   "coc"
+  ],
+  "estancias": {},
+  "cantidades": {},
+  "lugares": {},
+  "sin_lugar": [],
+  "sin_medida": [],
+  "justificacion": "Tabique de ladrillo: partida propia sin precio, de la cocina.",
+  "fuera": [],
+  "debe_texto": {
+   "Tabique de ladrillo nuevo": 1
+  }
+ }
+]

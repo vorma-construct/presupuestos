@@ -70,7 +70,8 @@ function parecida(txt){var n=norm(txt||'');if(!n)return null;var rs=raices(n);if
 indice().forEach(function(e){if(e.dem!==dem)return;if(!fuertes(rs).some(function(r){return e.r[r]}))return;if(e.t.id==='recp'&&!/recuper|recoloc|volver a poner|la misma|existente/.test(n))return;var s=0;rs.forEach(function(r){if(e.r[r])s+=(r.length>=5?2:1)});
 /* palabras fuertes: si la tarifa la tiene y el texto tambien, cuenta doble */
 if(s>0){var fuerte=/pladur|alicat|solad|pint|yeso|enluc|tabiq|tarima|flotan|rodapi|puert|ducha|contened|fontan|electr|calefac|techo|armario|cocina|sanitar|premarc|corred|nivel|acuchill|extract|ventilac|papel|mampar|radiad|parquet|gotel|laminad|moqueta|boletin|chimenea|trasdos/;var mf=n.match(fuerte),tf=norm(e.t.d+' '+e.t.k.join(' ')).match(fuerte);var fu=!!(mf&&tf&&mf[0]===tf[0]);if(fu)s+=3}
-if(s>0&&(!mejor||s>mejor.score))mejor={t:e.t,score:s,fu:fu}});
+/* nf: cuántas palabras de verdad (no de relleno) comparte con la partida. Si la única que comparte es una palabra suelta que sale en muchos trabajos («eléctrico», «fontanería», «techo», «tabique», «pladur», «radiador», «cocina»…), se parece pero no es seguro («cuadro eléctrico» no es la instalación eléctrica de todo el piso): a confirmar */
+if(s>0&&(!mejor||s>mejor.score))mejor={t:e.t,score:s,fu:fu,nf:fuertes(rs).filter(function(r){return e.r[r]}).length,suelta:!!(mf&&/^(?:electr|fontan|techo|tabiq|pladur|ventilac|radiad|cocina|calefac|extract)/.test(mf[0]))}});
 return mejor&&mejor.score>=3?mejor:null}
 window.parecida=parecida;
 var precioAprendido0=window.precioAprendido;
@@ -85,7 +86,8 @@ var M2_TABIQUE=7.5,MAX_POR_UD=2;
 if(!TARIFA_BASE.some(function(t){return t.id==='tabm'}))TARIFA_BASE.push({id:'tabm',c:'Demoliciones',d:'Derribo de tabiquería de ladrillo por metro cuadrado (obra de varios tabiques), retirada de escombro y tirada al centro autorizado',u:'m2',p:0,k:['derribo de tabiqueria','tabiqueria por metro','tabiques por metro']});
 function tabiqueSegunMetros(m2){var n=Math.max(1,Math.round(m2/M2_TABIQUE));var T=tarifa();
  if(n<=MAX_POR_UD){var t=T.find(function(x){return x.id==='tab'});return{id:'tab',q:1,u:'ud',p:t.p,d:t.d+' \u2014 '+(n===1?'un tabique':'dos tabiques')+' ('+String(m2).replace('.',',')+' m\u00b2 medidos)'}}
- var tm=T.find(function(x){return x.id==='tabm'});return{id:'tabm',q:m2,u:'m2',p:tm.p,d:tm.d+' \u2014 unos '+n+' tabiques'}}
+ /* con más de dos tabiques, por metro cuadrado: sin poner cuántos tabiques son (nadie lo ha dicho) */
+ var tm=T.find(function(x){return x.id==='tabm'});return{id:'tabm',q:m2,u:'m2',p:tm.p,d:tm.d}}
 window.tabiqueSegunMetros=tabiqueSegunMetros;
 function convertirTabiquesArq(){(ARQ.med||[]).forEach(function(p){if(p.tabHecho)return;var id=window.casar?casar(p.t):null;if(id!=='tab'||!/^m2$/.test(p.u))return;var r=tabiqueSegunMetros(p.q);p.tabHecho=true;p.sel=r.id;p.u=r.u;p.q=r.q;p.pr=r.p;p.dTab=r.d})}
 var renderArq0=window.renderArq;window.renderArq=function(){try{convertirTabiquesArq()}catch(e){}return renderArq0.apply(this,arguments)};
@@ -150,7 +152,7 @@ var enc=T.some(function(t){return t.k.some(function(k){var kk=norm(k);var rx=new
 if(enc)return;
 if(!/\b(poner|colocar|hacer|montar|instalar|cambiar|quitar|picar|tirar|sacar|levantar|echar|meter|pintar|alicat\w*|lijar|nivelar|reformar|arreglar|reparar|sustituir|renovar|abrir|cerrar|tapar|forrar|revestir|sellar|impermeabilizar|desatascar|limpiar|acuchillar|barnizar|lacar|enlucir|rasear|microcemento|mampara|grifo|grifer\w*|radiador|caldera|persiana|encimera|silicona|marmol|granito|piedra|madera|hierro|aluminio|cristal|espejo|aire acondicionado|split|toldo|placas? solares?|tejado|canalon\w*|cubierta|fachada|ventanas?|persianas?|cerramiento|escalera|barandilla|termo|suelo radiante|domotica|alarma|ventanal\w*|claraboya|velux|bomba de calor|aerotermia)\b/.test(fr))return;
 var frSin=fr.replace(DIM_RE,' ');var par=/\b(ventana\w*|persiana\w*|toldo|tejado|canalon\w*|cubierta|fachada|placas? solares?|aire acondicionado|split|cerramiento|escalera|barandilla|claraboya|velux|bomba de calor|aerotermia|alarma|domotica)\b/.test(fr)||/* «barnizar las puertas», «lacar las puertas»: fuera de tarifa (no es la corredera ni las puertas nuevas) */ /\b(?:barniz\w*|lacar|lacad\w*)\b[^,.;]{0,25}\bpuertas?\b/.test(fr)?null:parecida(fr),c=cantidadDe(frSin);
-if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push(par.fu?{d:t.d,q:q,u:t.u,p:t.p}:{d:t.d,q:q,u:t.u,p:t.p,parec:1,parTxt:fr});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
+if(par){var t=par.t;if(yaD[norm(t.d).slice(0,40)])return;var q=c.q;if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.suelo>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)&&!/m2|metros cuadrados/.test(fr))q=paredNeta(MD);cur.lineas.push(par.fu&&(par.nf>=2||!par.suelta)?{d:t.d,q:q,u:t.u,p:t.p}:{d:t.d,q:q,u:t.u,p:t.p,parec:1,parTxt:fr});yaD[norm(t.d).slice(0,40)]=1;añad++;return}
 var dl=fr.replace(/(?:de\s+|unos\s+)?\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m|ud|uds|unidades)\b/g,'').replace(/^(?:quiero|hay que|habria que|tambien|y)\s+/,'').replace(/\s+/g,' ').replace(/[\s,]+$/,'').trim();if(dl.length<4)dl=fr;var d=dl.charAt(0).toUpperCase()+dl.slice(1);var ap=aprendidoParecido(dl);
 if(yaD[norm(d).slice(0,40)])return;
 /* lo que no entiende también se mide: si no dice cuánto, con las medidas de lo dictado (paredes, suelo o perímetro) */
