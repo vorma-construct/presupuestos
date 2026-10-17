@@ -44,6 +44,8 @@ var ELIGE={material:{m:'¿El azulejo lo pone el cliente o lo ponemos nosotros?',
  plato:{m:'¿De qué medida es el plato de ducha?',ops:[['pd7','70x110'],['pd8','80x80']]}};
 /* lo que falta de cada partida (null si nada) */
 function pendDe(l){if(l.ok)return null;var id=idL(l);
+ /* una duda concreta del dictado («pintar el salón no el comedor» sin pausa, «el alicatado lo dejamos»: ¿y el suelo?); la ponen negarPartes y negarPartesDespues en entiende.js */
+ if(l.duda&&!l.okDuda)return {t:'duda',m:l.duda};
  if(!(num(l.p)>0))return {t:'precio',m:'No tiene precio: escríbelo.'};
  if(l.paqId){var pk=paqDe(l.paqId);if(pk){var A=api(),P=A.PAQ&&A.PAQ[pk.tipo];
    if(pk.padre){var pd=paqDe(pk.padre);var kk=pk.tipo==='bano'?'banos':pk.tipo==='cocina'?'cocina':'';if(pd&&kk&&!(pd.hechas&&pd.hechas[kk])&&!pd.okTodo)return {t:'pregunta',pk:pd.id,k:kk}}
@@ -70,7 +72,7 @@ function pendientes(){sinMetrosInventados();var L=[];(cur.lineas||[]).forEach(fu
 window.pendientes=pendientes;
 
 /* una sola cosa por resolver aunque afecte a varias partidas (la misma pregunta de la misma estancia) */
-function cosas(){var vis={},C=[];pendientes().forEach(function(p){var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:'l|'+p.i;if(vis[k])return;vis[k]=1;C.push(p)});return C}
+function cosas(){var vis={},C=[];pendientes().forEach(function(p){var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:p.t==='duda'?'d|'+p.m:'l|'+p.i;if(vis[k])return;vis[k]=1;C.push(p)});return C}
 window.pendientesCosas=cosas;
 
 function nomPaq(pk){var n=pk.nom||({bano:'baño',cocina:'cocina',hab:'habitación',piso:'piso'})[pk.tipo]||'estancia';n=String(n).replace(/^(el|la|los|las)\s+/,'');var fem=/^(cocina|habitaci|sala|terraza|galer|entrada|buhardilla|otra)/.test(n);return (fem?'la ':'el ')+n+(pk.n>1?' '+pk.n:'')}
@@ -92,13 +94,14 @@ function chip(p){var b='class="mini" style="padding:4px 10px;margin:4px 6px 0 0;
  else if(p.t==='calc'){h='<b>'+esc(p.m)+'</b> Si no, escríbelos en la cantidad.<br><button '+b+' onclick="pendQok('+p.i+')">Sí, valen</button>'}
  else if(ELIGE[p.t]){h='<b>'+esc(p.m)+'</b><br>'+ELIGE[p.t].ops.map(function(o){return '<button '+b+' onclick="pendElige('+p.i+',\''+o[0]+'\')">'+esc(o[1])+'</button>'}).join('')}
  else if(p.t==='adiv'){h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendOk('+p.i+')">Sí, es esta</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="delLinea('+p.i+')">No, quítala</button>'}
+ else if(p.t==='duda'){var ld=cur.lineas[p.i]||{};h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendDuda('+p.i+',0)">'+esc(ld.dudaSi||'Sí')+'</button>'+(ld.dudaAlt||ld.dudaQuita?'<button '+b.replace('class="mini"','class="mini sec"')+' onclick="pendDuda('+p.i+',1)">'+esc(ld.dudaNo||'No')+'</button>':'')}
  else if(p.t==='supuesto'){h='<b>'+esc(p.m)+'</b><br><button '+b+' onclick="pendOk('+p.i+')">Sí, inclúyelo</button><button '+b.replace('class="mini"','class="mini sec"')+' onclick="delLinea('+p.i+')">Quítalo</button>'}
  return '<div class="pendChip" style="background:#FFF4D6;border-left:4px solid #C98A00;border-radius:6px;padding:6px 8px;margin-top:4px;font-size:14px;line-height:1.35">'+h+'</div>'}
 
 function pintar(){var tb=document.getElementById('tb');if(!tb)return;var rows=tb.querySelectorAll('tr'),P=pendientes(),porI={};P.forEach(function(p){porI[p.i]=p});
  var mostradas={},cambiado=false;
  [].forEach.call(rows,function(r,i){var old=r.querySelector('.pendChip');if(old)old.remove();var p=porI[i];r.classList.toggle('pendiente',!!p);if(!p)return;
-  var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:'l|'+i;var td=r.querySelector('td');if(!td)return;
+  var k=p.t==='pregunta'?'q|'+p.pk+'|'+p.k:p.t==='entero'?'e|'+p.pk:(p.t==='medidaPaq'||p.t==='medidaCalc')?'m|'+p.pk:p.t==='duda'?'d|'+p.m:'l|'+i;var td=r.querySelector('td');if(!td)return;
   if(mostradas[k]){td.insertAdjacentHTML('beforeend','<div class="pendChip" style="color:#8A5A00;font-size:13px;margin-top:2px">Pendiente (lo de arriba)</div>');return}
   mostradas[k]=1;td.insertAdjacentHTML('beforeend',chip(p))});
  /* el 1 inventado que se ha puesto a cero no se queda en la casilla aunque lo primero que falte sea el precio (si no, el siguiente leer() lo daba por escrito a mano: «papel pintado» sin precio en Lucas acababa en 1 m²) */
@@ -124,6 +127,10 @@ window.pendMedOk=function(id){try{leer()}catch(_){}var pk=paqDe(id);if(pk)pk.okM
 window.pendQok=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.okQ=1;delete l.calc}renderLineas();try{autoGuardar()}catch(_){}};
 /* la respuesta cambia solo esa partida (alc ↔ alsm, pd7 ↔ pd8): misma cantidad y misma estancia */
 window.pendElige=function(i,id){try{leer()}catch(_){}var l=cur.lineas[i],t=(window.tarifa?tarifa():[]).find(function(x){return x.id===id});if(l&&t){var k=String(l.d||'').indexOf(' — ');l.d=t.d+(k>-1?l.d.slice(k):'');l.p=t.p;l.u=t.u;if(l.tid)l.tid=id;l.okElige=1;delete l.elige}renderLineas();try{autoGuardar()}catch(_){}};
+/* la duda contestada vale para todas las partidas de esa misma duda; «No, era el comedor»: esas partidas pasan a esa estancia */
+window.pendDuda=function(i,alt){try{leer()}catch(_){}var l0=cur.lineas[i];if(!l0)return;var dd=l0.duda;/* «El suelo también se queda»: esas partidas fuera, y la estancia lo recuerda si se rehace */
+ if(alt&&l0.dudaQuita){var pk=l0.paqId&&paqDe(l0.paqId);if(pk){pk.quitar=pk.quitar||[];l0.dudaQuita.forEach(function(q){if(pk.quitar.indexOf(q)<0)pk.quitar.push(q)})}cur.lineas=cur.lineas.filter(function(l){return l.duda!==dd});renderLineas();try{autoGuardar()}catch(_){}return}
+ (cur.lineas||[]).forEach(function(l){if(l.duda!==dd)return;if(alt&&l.dudaAlt){var k=String(l.d||'').indexOf(' \u2014 ');l.d=(k>-1?l.d.slice(0,k):l.d)+' \u2014 '+l.dudaAlt}l.okDuda=1});renderLineas();try{autoGuardar()}catch(_){}};
 window.pendOk=function(i){try{leer()}catch(_){}var l=cur.lineas[i];if(l){l.ok=1;delete l.sup;delete l.adiv}renderLineas();try{autoGuardar()}catch(_){}};
 
 /* lo que escribe a mano el usuario resuelve: unos metros > 1 o un precio */

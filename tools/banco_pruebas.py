@@ -6,7 +6,9 @@ Uso:
 
 frases.json: lista de {"t": texto, "debe": [ids], "no_debe": [ids], "estancias": {"bano":[m2], "cocina":[m2], "hab":[m2], "piso": m2},
                        "cantidades": {id: cantidad}, "fuera": [trabajos fuera de tarifa],
-                       "lugares": {id: [estancias]}, "sin_lugar": [ids]}  (también vale una lista de textos sueltos)
+                       "lugares": {id: [estancias]}, "sin_lugar": [ids], "no_lugares": {id: [estancias negadas]},
+                       "igual_que": "lo mismo dicho de otra forma (p. ej. lo que queda tras negar algo): mismas partidas y mismo total"}
+                       (también vale una lista de textos sueltos)
 
 Comprueba en cada dictado:
   · que la página no da ningún error
@@ -240,6 +242,11 @@ def comprobar(f, r):
         tags = ' '.join(_n(l['d'].split(' — ', 1)[1]) for l in L if l['id'] == i and ' — ' in l['d'])
         for s_ in sitios:
             if _n(s_) not in tags: fallos.append('«%s» no dice que es de %s' % (i, s_))
+    # «no_lugares»: {id: ["dormitorio"]} — esa estancia se dijo que NO: ninguna partida de ese trabajo es de ella
+    for i, sitios in (f.get('no_lugares') or {}).items():
+        tags = ' '.join(_n(l['d'].split(' — ', 1)[1]) for l in L if l['id'] == i and ' — ' in l['d'])
+        for s_ in sitios:
+            if _n(s_) in tags: fallos.append('«%s» sale en %s y se dijo que no' % (i, s_))
     # «sin_lugar»: [ids] — son de toda la casa, no de una estancia
     for i in f.get('sin_lugar', []):
         for l in L:
@@ -287,6 +294,8 @@ def main():
         if VARIANTES:
             for nom, v in variantes(f['t']).items():
                 textos[(i, nom)] = v
+        if f.get('igual_que'):  # lo mismo dictado directamente (lo que queda tras negar algo): tiene que salir lo mismo
+            textos[(i, 'igual')] = f['igual_que']
     claves = list(textos.keys())
     print('Probando %d dictados (%d frases%s) en la app de %s…' % (len(claves), len(FRASES), ' y sus variantes' if VARIANTES else '', EMP), flush=True)
     res = asyncio.run(correr({str(k): textos[k] for k in claves}))
@@ -310,6 +319,17 @@ def main():
                             ca = sorted((x['id'] or x['d'][:40]) for x in base.get('L', [])); cb = sorted((x['id'] or x['d'][:40]) for x in rv.get('L', []))
                             a, b2 = set(['n%d' % len(ca)]), set(['n%d' % len(cb)])
                     fl.append('%s: sale distinto (falta %s · sobra %s)' % (nom, sorted(map(str, a - b2))[:4], sorted(map(str, b2 - a))[:4]))
+        if f.get('igual_que'):
+            ri = res.get(str((i, 'igual')), {'fallo': 'sin resultado'})
+            if 'fallo' in ri: fl.append('igual que «%s»: %s' % (f['igual_que'][:40], ri['fallo']))
+            elif 'fallo' not in base:
+                pa = sorted((x['id'] or x['d'][:40], round(x['q'], 1)) for x in base.get('L', []))
+                pb = sorted((x['id'] or x['d'][:40], round(x['q'], 1)) for x in ri.get('L', []))
+                ta_ = round(sum(x['q'] * x['p'] for x in base.get('L', [])), 2); tb_ = round(sum(x['q'] * x['p'] for x in ri.get('L', [])), 2)
+                if pa != pb or abs(ta_ - tb_) > 0.01:
+                    import collections
+                    ca_, cb_ = collections.Counter(map(str, pa)), collections.Counter(map(str, pb))
+                    fl.append('total distinto de dictar «%s»: %.2f € y %.2f € (falta %s · sobra %s)' % (f['igual_que'][:50], ta_, tb_, sorted((cb_ - ca_).elements())[:4], sorted((ca_ - cb_).elements())[:4]))
         tot = sum(l['q'] * l['p'] for l in base.get('L', []))
         informe.append({'t': f['t'], 'fallos': fl, 'tipos': sorted({tipo_fallo(m) for m in fl}), 'lineas': len(base.get('L', [])), 'total': round(tot, 2),
                         'ids': sorted({l['id'] for l in base.get('L', []) if l['id']}),
