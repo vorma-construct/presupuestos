@@ -1,96 +1,753 @@
 [
- {"t": "reforma integral de un piso de cien metros con tres habitaciones, en las habitaciones suelo flotante cuarenta metros",
-  "resp": [["suelo", "tarima"]], "total": {"flo": 100, "sue": 100},
-  "por_que": "«Suelo: tarima nueva» es para el resto de la casa: los 40 m² de flotante de las habitaciones no se cobran dos veces"},
- {"t": "reforma integral de cien metros con tres habitaciones, en las habitaciones suelo flotante cuarenta metros",
-  "resp": [["suelo", "tarima"], ["paredes", "pintar"]], "total": {"flo": 100, "pip": 270},
-  "por_que": "contestar otra pregunta del piso después no vuelve a meter los 40 m²"},
- {"t": "reforma integral de ochenta metros, quitar gotelé del salón cincuenta metros",
-  "resp": [["paredes", "gotele"]], "total": {"lija": 216, "pip": 216},
-  "por_que": "el gotelé del salón (50) ya va aparte: el del piso es el resto"},
- {"t": "reforma integral del piso de noventa metros, pintar el salón cuarenta metros de paredes",
-  "resp": [["paredes", "pintar"]], "total": {"pip": 243, "pit": 90},
-  "por_que": "las paredes del salón (40) ya van aparte"},
- {"t": "reforma integral de noventa metros, pintar el salón cuarenta metros de paredes y el techo veinte",
-  "resp": [["paredes", "pintar"]], "total": {"pip": 243, "pit": 90},
-  "por_que": "paredes y techo del salón aparte, cada uno de lo suyo"},
- {"t": "reforma integral de noventa metros con cocina y baño, pintar el salón cuarenta metros de paredes",
-  "resp": [["paredes", "pintar"]], "total": {"pip": 203.9},
-  "por_que": "con baño y cocina: las paredes del resto (sin baño, cocina ni salón)"},
- {"t": "reforma integral de cien metros, en el salón quitar el suelo y poner flotante, veinticinco metros",
-  "resp": [["suelo", "tarima"]], "total": {"sue": 100, "flo": 100},
-  "por_que": "el salón con su suelo (25) y el resto de la casa (75)"},
- {"t": "reforma integral de cien metros, el salón se acuchilla, treinta metros",
-  "resp": [["suelo", "tarima"]], "total": {"sue": 70, "flo": 70, "acu": 30},
-  "por_que": "el salón se acuchilla: la tarima nueva es del resto"},
- {"t": "reforma integral de noventa metros, pintar el salón cuarenta metros de paredes, en el dormitorio quitar el papel treinta metros",
-  "resp": [["paredes", "gotele"]], "total": {"lija": 213, "pip": 243, "qpa": 30},
-  "por_que": "el dormitorio ya se prepara quitando el papel: el gotelé es del resto"},
- {"t": "reforma integral de cien metros, tarima en toda la casa, en las habitaciones flotante cuarenta metros",
-  "resp": [], "total": {"flo": 100},
-  "por_que": "dicho todo en el dictado: igual, sin repetir los 40"},
- {"t": "cocina de diez metros y baño de cuatro el cliente compra los azulejos", "resp": [["suelo", false]], "total": {"alc": 0, "alsm": 49.9}, "por_que": "el azulejo lo compra el cliente: contestar «¿Suelo nuevo?» no vuelve a cobrar el azulejo (alsm, no alc)"},
- {"t": "cocina de diez metros y baño de cuatro el cliente compra los azulejos", "resp": [["ducha", "banera"], ["techo", false]], "total": {"alc": 0, "alsm": 59.9}, "por_que": "contestar preguntas del baño tampoco"},
- {"t": "baño de cinco metros reforma completa el azulejo lo pone el cliente", "resp": [["ducha", "banera"]], "total": {"alc": 0, "alsm": 24.5}, "por_que": "¿Ducha o bañera? no toca quién pone el azulejo"},
- {"t": "reforma integral de ochenta y cinco metros quitar gotele y suelo flotante en todo electricidad sí calefacción no puertas siete", "resp": [["banos", 2], ["con", false]], "total": {"con": 0}, "por_que": "«¿Contenedor? No» vale para toda la casa, también el baño"},
- {"t": "reforma integral de ochenta y cinco metros quitar gotele y suelo flotante en todo electricidad sí calefacción no puertas siete", "resp": [["con", false], ["banos", 2]], "total": {"con": 0}, "por_que": "contestado «No» antes de decir los baños: los baños que se añaden después tampoco lo traen"},
- {"t": "reforma de cocina de diez metros los muebles los monta el cliente", "resp": [["suelo", false]], "total": {"mco": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros el plato de ducha lo compra el cliente", "resp": [["techo", false]], "total": {"pd7": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros sin falso techo", "resp": [["ventana", false]], "total": {"tec": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros el cliente quita los muebles viejos", "resp": [["suelo", false]], "total": {"coc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros sin contenedor", "resp": [["suelo", false]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros el suelo no se toca", "resp": [["techo", true]], "total": {"sol": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros con bañera bueno no plato de ducha", "resp": [["techo", false]], "total": {"pd7": 1}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros con azulejo bueno no lucido", "resp": [["suelo", false]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros el mueble no", "resp": [["techo", false]], "total": {"mba": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros el alicatado lo hace el cliente", "resp": [["ducha", "banera"]], "total": {"alc": 5, "alsm": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros la fontanería la hace su cuñado", "resp": [["ducha", "banera"]], "total": {"fba": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros los azulejos los pone el cliente", "resp": [["paredes", "azulejo"]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros el cliente compra los azulejos", "resp": [["paredes", "lucir"], ["paredes", "azulejo"]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de baño de cinco metros y cocina de diez el cliente pone los muebles", "resp": [["suelo", false], ["ducha", "banera"]], "total": {"mco": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros, no hace falta contenedor", "resp": [["ducha", "banera"]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma del baño de cinco metros, el desescombro lo hace el cliente", "resp": [["ducha", "banera"]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral de cien metros sin contenedor", "resp": [["paredes", "pintar"], ["con", false]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral de noventa metros con un baño, el contenedor no hace falta", "resp": [["ducha", "banera"], ["paredes", "pintar"]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral de noventa metros con un baño y cocina", "resp": [["con", false], ["paredes", "pintar"]], "total": {"con": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral de noventa metros con un baño y cocina", "resp": [["con", true]], "total": {"con": 1}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "baño de cuatro metros reforma completa los azulejos los trae el cliente y nosotros los colocamos", "resp": [["techo", false], ["ducha", "banera"]], "total": {"alc": 0, "alsm": 21.2}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de nueve metros, el azulejo lo compra la clienta", "resp": [["muebles", false], ["suelo", true]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral de noventa metros con un baño de cinco metros, el cliente compra los azulejos", "resp": [["paredes", "pintar"], ["ducha", "banera"]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros alicatada bueno no lucida y pintada", "resp": [["suelo", false]], "total": {"alc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros sin falso techo", "resp": [["suelo", false]], "total": {"tec": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma de cocina de diez metros, el cliente se encarga de quitar los muebles viejos", "resp": [["suelo", false], ["techo", true]], "total": {"coc": 0}, "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"},
- {"t": "reforma integral del piso de setenta metros el baño de cuatro metros la cocina de nueve metros y tres habitaciones de diez metros cada una",
-  "resp": [["piso:paredes", "gotele"]], "total": {"pit": 70, "pip": 153.9},
-  "por_que": "«Paredes» del piso es el resto: las tres habitaciones (con su tarjeta) no se pintan otra vez; el techo suma justo los 70 m² de la casa"},
- {"t": "reforma integral del piso de ochenta metros el salón de veinte metros y dos habitaciones de doce metros",
-  "resp": [["piso:paredes", "pintar"]], "total": {"pit": 80},
-  "por_que": "lo de cada estancia más el resto del piso: el techo, los 80 m² de la casa, ni uno más"},
- {"t": "piso de noventa metros tres habitaciones pintar todo el piso quitando el gotelé",
-  "resp": [["num", "pmx_", "12"]], "total": {"pit": 90, "pip": 243},
-  "por_que": "al dar los metros de una habitación, su pintura sale de la de toda la casa (no se suma encima)"},
- {"t": "piso de noventa metros con dos habitaciones pintar todo el piso",
-  "resp": [["num", "pmx_", "12"], ["num", "pmx_", "10"]], "total": {"pit": 90, "pip": 243},
-  "por_que": "las dos habitaciones con sus metros: el resto de la casa es lo que queda"},
- {"t": "reforma integral del piso de setenta metros el cliente quiere pintar él",
-  "resp": [["piso:suelo", "tarima"]], "total": {"pip": 0, "pit": 0, "flo": 70}, "sin_pregunta": ["paredes"],
-  "por_que": "la pintura la hace el cliente: no se cobra ni se pregunta"},
- {"t": "reforma integral del piso de setenta metros la pintura la hace el cliente",
-  "resp": [["piso:luz", true]], "total": {"pip": 0, "ele": 1}, "sin_pregunta": ["paredes"],
-  "por_que": "lo mismo dicho al revés"},
- {"t": "reforma integral de un piso de cien metros quitar todos los tabiques y redistribuir con pladur",
-  "resp": [["piso:suelo", "tarima"]], "total": {"pla": 0, "flo": 100},
-  "por_que": "los metros de la casa son de suelo: el pladur (y el derribo de los tabiques), sin sus metros, se preguntan (no 100 m² de pladur)"},
- {"t": "piso de setenta metros pintar todo y el baño de cuatro metros reforma completa",
-  "resp": [["techo", true], ["mueble", true], ["ducha", "ducha"]], "total": {"pip": 171.8, "pit": 70},
-  "por_que": "contestar las preguntas del baño no vuelve a restar sus paredes de la pintura de la casa cada vez (antes bajaba 17,2 m² por respuesta)"},
- {"t": "pintar todo el piso de ochenta metros y el salón de veinte metros quitar gotelé",
-  "resp": [], "total": {"pip": 216, "pit": 80},
-  "por_que": "la pintura del salón (con su gotelé) va aparte: la de la casa es el resto, no se pinta dos veces"},
- {"t": "reforma integral de setenta metros y en el baño cambiar el plato por uno de ochenta",
-  "resp": [["num", "_banos", "1"]], "total": {"pd8": 1, "pd7": 0, "san": 1},
-  "por_que": "al contestar «1 baño», el baño es el dicho: su plato de 80 va en él (no queda un plato suelto más el del baño calculado)"},
- {"t": "reforma integral de setenta metros y en el baño poner mampara",
-  "resp": [["num", "_banos", "1"]], "total": {"mam": 1, "san": 1},
-  "por_que": "la mampara dicha se queda (el baño de la reforma no la lleva), una sola vez"}
+ {
+  "t": "reforma integral de un piso de cien metros con tres habitaciones, en las habitaciones suelo flotante cuarenta metros",
+  "resp": [
+   [
+    "suelo",
+    "tarima"
+   ]
+  ],
+  "total": {
+   "flo": 100,
+   "sue": 100
+  },
+  "por_que": "«Suelo: tarima nueva» es para el resto de la casa: los 40 m² de flotante de las habitaciones no se cobran dos veces"
+ },
+ {
+  "t": "reforma integral de cien metros con tres habitaciones, en las habitaciones suelo flotante cuarenta metros",
+  "resp": [
+   [
+    "suelo",
+    "tarima"
+   ],
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "flo": 100,
+   "pip": 270
+  },
+  "por_que": "contestar otra pregunta del piso después no vuelve a meter los 40 m²"
+ },
+ {
+  "t": "reforma integral de ochenta metros, quitar gotelé del salón cincuenta metros",
+  "resp": [
+   [
+    "paredes",
+    "gotele"
+   ]
+  ],
+  "total": {
+   "lija": 216,
+   "pip": 216
+  },
+  "por_que": "el gotelé del salón (50) ya va aparte: el del piso es el resto"
+ },
+ {
+  "t": "reforma integral del piso de noventa metros, pintar el salón cuarenta metros de paredes",
+  "resp": [
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "pip": 243,
+   "pit": 90
+  },
+  "por_que": "las paredes del salón (40) ya van aparte"
+ },
+ {
+  "t": "reforma integral de noventa metros, pintar el salón cuarenta metros de paredes y el techo veinte",
+  "resp": [
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "pip": 243,
+   "pit": 90
+  },
+  "por_que": "paredes y techo del salón aparte, cada uno de lo suyo"
+ },
+ {
+  "t": "reforma integral de noventa metros con cocina y baño, pintar el salón cuarenta metros de paredes",
+  "resp": [
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "pip": 203.9
+  },
+  "por_que": "con baño y cocina: las paredes del resto (sin baño, cocina ni salón)"
+ },
+ {
+  "t": "reforma integral de cien metros, en el salón quitar el suelo y poner flotante, veinticinco metros",
+  "resp": [
+   [
+    "suelo",
+    "tarima"
+   ]
+  ],
+  "total": {
+   "sue": 100,
+   "flo": 100
+  },
+  "por_que": "el salón con su suelo (25) y el resto de la casa (75)"
+ },
+ {
+  "t": "reforma integral de cien metros, el salón se acuchilla, treinta metros",
+  "resp": [
+   [
+    "suelo",
+    "tarima"
+   ]
+  ],
+  "total": {
+   "sue": 70,
+   "flo": 70,
+   "acu": 30
+  },
+  "por_que": "el salón se acuchilla: la tarima nueva es del resto"
+ },
+ {
+  "t": "reforma integral de noventa metros, pintar el salón cuarenta metros de paredes, en el dormitorio quitar el papel treinta metros",
+  "resp": [
+   [
+    "paredes",
+    "gotele"
+   ]
+  ],
+  "total": {
+   "lija": 213,
+   "pip": 243,
+   "qpa": 30
+  },
+  "por_que": "el dormitorio ya se prepara quitando el papel: el gotelé es del resto"
+ },
+ {
+  "t": "reforma integral de cien metros, tarima en toda la casa, en las habitaciones flotante cuarenta metros",
+  "resp": [],
+  "total": {
+   "flo": 100
+  },
+  "por_que": "dicho todo en el dictado: igual, sin repetir los 40"
+ },
+ {
+  "t": "cocina de diez metros y baño de cuatro el cliente compra los azulejos",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "alc": 0,
+   "alsm": 49.9
+  },
+  "por_que": "el azulejo lo compra el cliente: contestar «¿Suelo nuevo?» no vuelve a cobrar el azulejo (alsm, no alc)"
+ },
+ {
+  "t": "cocina de diez metros y baño de cuatro el cliente compra los azulejos",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ],
+   [
+    "techo",
+    false
+   ]
+  ],
+  "total": {
+   "alc": 0,
+   "alsm": 59.9
+  },
+  "por_que": "contestar preguntas del baño tampoco"
+ },
+ {
+  "t": "baño de cinco metros reforma completa el azulejo lo pone el cliente",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "alc": 0,
+   "alsm": 24.5
+  },
+  "por_que": "¿Ducha o bañera? no toca quién pone el azulejo"
+ },
+ {
+  "t": "reforma integral de ochenta y cinco metros quitar gotele y suelo flotante en todo electricidad sí calefacción no puertas siete",
+  "resp": [
+   [
+    "banos",
+    2
+   ],
+   [
+    "con",
+    false
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "«¿Contenedor? No» vale para toda la casa, también el baño"
+ },
+ {
+  "t": "reforma integral de ochenta y cinco metros quitar gotele y suelo flotante en todo electricidad sí calefacción no puertas siete",
+  "resp": [
+   [
+    "con",
+    false
+   ],
+   [
+    "banos",
+    2
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "contestado «No» antes de decir los baños: los baños que se añaden después tampoco lo traen"
+ },
+ {
+  "t": "reforma de cocina de diez metros los muebles los monta el cliente",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "mco": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros el plato de ducha lo compra el cliente",
+  "resp": [
+   [
+    "techo",
+    false
+   ]
+  ],
+  "total": {
+   "pd7": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros sin falso techo",
+  "resp": [
+   [
+    "ventana",
+    false
+   ]
+  ],
+  "total": {
+   "tec": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros el cliente quita los muebles viejos",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "coc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros sin contenedor",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros el suelo no se toca",
+  "resp": [
+   [
+    "techo",
+    true
+   ]
+  ],
+  "total": {
+   "sol": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros con bañera bueno no plato de ducha",
+  "resp": [
+   [
+    "techo",
+    false
+   ]
+  ],
+  "total": {
+   "pd7": 1
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros con azulejo bueno no lucido",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros el mueble no",
+  "resp": [
+   [
+    "techo",
+    false
+   ]
+  ],
+  "total": {
+   "mba": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros el alicatado lo hace el cliente",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "alc": 5,
+   "alsm": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros la fontanería la hace su cuñado",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "fba": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros los azulejos los pone el cliente",
+  "resp": [
+   [
+    "paredes",
+    "azulejo"
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros el cliente compra los azulejos",
+  "resp": [
+   [
+    "paredes",
+    "lucir"
+   ],
+   [
+    "paredes",
+    "azulejo"
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de baño de cinco metros y cocina de diez el cliente pone los muebles",
+  "resp": [
+   [
+    "suelo",
+    false
+   ],
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "mco": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros, no hace falta contenedor",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma del baño de cinco metros, el desescombro lo hace el cliente",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral de cien metros sin contenedor",
+  "resp": [
+   [
+    "paredes",
+    "pintar"
+   ],
+   [
+    "con",
+    false
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral de noventa metros con un baño, el contenedor no hace falta",
+  "resp": [
+   [
+    "ducha",
+    "banera"
+   ],
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral de noventa metros con un baño y cocina",
+  "resp": [
+   [
+    "con",
+    false
+   ],
+   [
+    "paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "con": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral de noventa metros con un baño y cocina",
+  "resp": [
+   [
+    "con",
+    true
+   ]
+  ],
+  "total": {
+   "con": 1
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "baño de cuatro metros reforma completa los azulejos los trae el cliente y nosotros los colocamos",
+  "resp": [
+   [
+    "techo",
+    false
+   ],
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "alc": 0,
+   "alsm": 21.2
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de nueve metros, el azulejo lo compra la clienta",
+  "resp": [
+   [
+    "muebles",
+    false
+   ],
+   [
+    "suelo",
+    true
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral de noventa metros con un baño de cinco metros, el cliente compra los azulejos",
+  "resp": [
+   [
+    "paredes",
+    "pintar"
+   ],
+   [
+    "ducha",
+    "banera"
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros alicatada bueno no lucida y pintada",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "alc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros sin falso techo",
+  "resp": [
+   [
+    "suelo",
+    false
+   ]
+  ],
+  "total": {
+   "tec": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma de cocina de diez metros, el cliente se encarga de quitar los muebles viejos",
+  "resp": [
+   [
+    "suelo",
+    false
+   ],
+   [
+    "techo",
+    true
+   ]
+  ],
+  "total": {
+   "coc": 0
+  },
+  "por_que": "una respuesta no deshace lo dicho en el dictado (lo del cliente, lo negado, lo corregido)"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros el baño de cuatro metros la cocina de nueve metros y tres habitaciones de diez metros cada una",
+  "resp": [
+   [
+    "piso:paredes",
+    "gotele"
+   ]
+  ],
+  "total": {
+   "pit": 70,
+   "pip": 153.9
+  },
+  "por_que": "«Paredes» del piso es el resto: las tres habitaciones (con su tarjeta) no se pintan otra vez; el techo suma justo los 70 m² de la casa"
+ },
+ {
+  "t": "reforma integral del piso de ochenta metros el salón de veinte metros y dos habitaciones de doce metros",
+  "resp": [
+   [
+    "piso:paredes",
+    "pintar"
+   ]
+  ],
+  "total": {
+   "pit": 80
+  },
+  "por_que": "lo de cada estancia más el resto del piso: el techo, los 80 m² de la casa, ni uno más"
+ },
+ {
+  "t": "piso de noventa metros tres habitaciones pintar todo el piso quitando el gotelé",
+  "resp": [],
+  "total": {
+   "pit": 90,
+   "pip": 243
+  },
+  "por_que": "al dar los metros de una habitación, su pintura sale de la de toda la casa (no se suma encima) (desde que «tres habitaciones» al describir la casa ya no crea estancias aparte, no hay metros de habitación que contestar: se comprueba que el total de la casa no se duplica)"
+ },
+ {
+  "t": "piso de noventa metros con dos habitaciones pintar todo el piso",
+  "resp": [],
+  "total": {
+   "pit": 90,
+   "pip": 243
+  },
+  "por_que": "las dos habitaciones con sus metros: el resto de la casa es lo que queda (desde que «tres habitaciones» al describir la casa ya no crea estancias aparte, no hay metros de habitación que contestar: se comprueba que el total de la casa no se duplica)"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros el cliente quiere pintar él",
+  "resp": [
+   [
+    "piso:suelo",
+    "tarima"
+   ]
+  ],
+  "total": {
+   "pip": 0,
+   "pit": 0,
+   "flo": 70
+  },
+  "sin_pregunta": [
+   "paredes"
+  ],
+  "por_que": "la pintura la hace el cliente: no se cobra ni se pregunta"
+ },
+ {
+  "t": "reforma integral del piso de setenta metros la pintura la hace el cliente",
+  "resp": [
+   [
+    "piso:luz",
+    true
+   ]
+  ],
+  "total": {
+   "pip": 0,
+   "ele": 1
+  },
+  "sin_pregunta": [
+   "paredes"
+  ],
+  "por_que": "lo mismo dicho al revés"
+ },
+ {
+  "t": "reforma integral de un piso de cien metros quitar todos los tabiques y redistribuir con pladur",
+  "resp": [
+   [
+    "piso:suelo",
+    "tarima"
+   ]
+  ],
+  "total": {
+   "pla": 0,
+   "flo": 100
+  },
+  "por_que": "los metros de la casa son de suelo: el pladur (y el derribo de los tabiques), sin sus metros, se preguntan (no 100 m² de pladur)"
+ },
+ {
+  "t": "piso de setenta metros pintar todo y el baño de cuatro metros reforma completa",
+  "resp": [
+   [
+    "techo",
+    true
+   ],
+   [
+    "mueble",
+    true
+   ],
+   [
+    "ducha",
+    "ducha"
+   ]
+  ],
+  "total": {
+   "pip": 171.8,
+   "pit": 70
+  },
+  "por_que": "contestar las preguntas del baño no vuelve a restar sus paredes de la pintura de la casa cada vez (antes bajaba 17,2 m² por respuesta)"
+ },
+ {
+  "t": "pintar todo el piso de ochenta metros y el salón de veinte metros quitar gotelé",
+  "resp": [],
+  "total": {
+   "pip": 216,
+   "pit": 80
+  },
+  "por_que": "la pintura del salón (con su gotelé) va aparte: la de la casa es el resto, no se pinta dos veces"
+ },
+ {
+  "t": "reforma integral de setenta metros y en el baño cambiar el plato por uno de ochenta",
+  "resp": [
+   [
+    "num",
+    "_banos",
+    "1"
+   ]
+  ],
+  "total": {
+   "pd8": 1,
+   "pd7": 0,
+   "san": 1
+  },
+  "por_que": "al contestar «1 baño», el baño es el dicho: su plato de 80 va en él (no queda un plato suelto más el del baño calculado)"
+ },
+ {
+  "t": "reforma integral de setenta metros y en el baño poner mampara",
+  "resp": [
+   [
+    "num",
+    "_banos",
+    "1"
+   ]
+  ],
+  "total": {
+   "mam": 1,
+   "san": 1
+  },
+  "por_que": "la mampara dicha se queda (el baño de la reforma no la lleva), una sola vez"
+ }
 ]
