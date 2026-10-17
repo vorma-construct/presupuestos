@@ -964,6 +964,8 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  /* «… Son 30 metros de pared.»: los metros de pared, para lo que se hace en las paredes y no tiene metros */
  var mPar=TD.match(/\b(?:son|seran|hay|en total)\s+(?:unos\s+)?(\d+(?:[.,]\d+)?)\s*(?:m2|metros cuadrados|metros)\s+de\s+parede?s?\b/);if(mPar){var vPar=num(mPar[1]);finales.forEach(function(l){if(l.paqId||!/^(m2)$/.test(l.u)||num(l.q)>1)return;/* «… son 40 metros de pared, y pintar las otras paredes»: las otras no son esas */if(lOtras.indexOf(l)>-1)return;if(FAM(idDe(l),l.d)==='pared'||/^(yes|pip3)$/.test(idDe(l)))l.q=vPar})}
  var mFb=TD.match(/\bfontaneria\s+(?:de|del|para)?\s*(?:los\s+)?(dos|tres|2|3)\s+banos\b/);if(mFb&&has('fba')&&!get('fba').paqId&&num(get('fba').q)<=1)get('fba').q=({dos:2,tres:3})[mFb[1]]||+mFb[1];
+ /* radiadores, armarios, ventanas… sin decir cuántos: se pregunta (ver cuantasSinDecir) */
+ cuantasSinDecir(finales,TD);
  /* «puertas» sin decir cuántas: no se pone una sola en silencio, se pregunta */
  ['pub','pue'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1||l.cuantas||/ \u2014 /.test(String(l.d||'')))return;if(/\bpuertas\b/.test(TD)&&!/\b(?:\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(?:puertas|de\s+(?:paso|esas|ellas))\b|\bpuertas\b[^.;]{0,30}?\b(?:\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\b(?!\s*(?:metros|m2|mm|cm|por))/.test(TD))l.cuantas=1});
  if(has('recp')||has('puer')){var mRc=TD.match(/\brecolocar puerta\s*,?\s*(?:(?:que\s+)?son\s+)?(\d+)\b(?!\s*(?:metros|m2))/)||(window.__unaRec?['','1']:TD.match(/\b(\d+)\s+puertas\b/));['recp','puer'].forEach(function(id){var l=has(id)&&get(id);if(!l||l.paqId||num(l.q)>1)return;if(mRc)l.q=+mRc[1];else if(!/\b(?:la|una|esa|esta)\s+puerta\b/.test(TD)||/\bpuertas\b/.test(TD))l.cuantas=1})}
@@ -985,6 +987,8 @@ finales.forEach(function(l){delete l.__io;delete l.__fam;delete l.__ml});
  /* plato de ducha suelto sin decir la medida: 70x110 (pd7) u 80x80 (pd8), se pregunta */
  (function(){var B=' '+norm(String(A.bruto||''))+' '+TD+' ';/* «plato de ochenta por ciento veinte»: esa medida no está en la tarifa, se pregunta cuál */var mPr=B.match(/\bplatos?\b(?:\s+de)?(?:\s+ducha)?(?:\s+de)?\s+(\d+)\s*(?:x|por)\s*(\d+)\b/);if(mPr&&['70x110','110x70','80x80'].indexOf(mPr[1]+'x'+mPr[2])<0){B=B.split(mPr[0]).join(' plato ');var pl1=null;finales=finales.filter(function(l){if(l.paqId||l.fb||!/^(pd7|pd8)$/.test(idDe(l)))return true;if(!pl1){pl1=l;return true}return false})}if(/\b(?:70|setenta)\s*(?:x|por)\s*(?:110|ciento diez)\b|\b(?:80|ochenta)\s*(?:x|por)\s*(?:80|ochenta)\b|\bplatos?\b(?:\s+de)?(?:\s+ducha)?(?:\s+de)?\s+(?:70|80|setenta|ochenta)\b/.test(B))return;if(T('pd7')&&T('pd8'))finales.forEach(function(l){if(!l.paqId&&!l.fb&&/^(pd7|pd8)$/.test(idDe(l)))l.elige='plato'})})();
  if((A.F||[]).some(function(c){return /^\s*(?:y\s+)?nada de puertas(?:\s+nuevas)?\s*$/.test(c)}))finales=finales.filter(function(l){return !(idDe(l)==='pub'&&!l.paqId)});
+ /* «las puertas las pone él, solo alicatar el baño» («nada de puertas nuevas, solo …»): ni puertas nuevas ni la pregunta de cuántas */
+ if((A.F||[]).some(function(c){return /^\s*(?:y\s+)?nada de puertas(?:\s+nuevas)?\s+(?:solo|nada mas que|unicamente)\b/.test(c)})&&!/\b(?:\d+|dos|tres|cuatro|cinco|seis)\s+puertas\b/.test(TD))finales=finales.filter(function(l){return !(idDe(l)==='pub'&&!l.paqId)});
  finales.forEach(function(l){if(l.adiv&&/^(recp|puer)$/.test(idDe(l))&&/\b(recolocar|recuperar\w*|guardar\w*|volver\w* a (?:poner|colocar))\b/.test(TD))delete l.adiv});
  finales=finales.filter(function(l){if(!l.adiv)return true;var id=idDe(l);return !finales.some(function(x){return x!==l&&!x.adiv&&idDe(x)===id})&&!cur.lineas.some(function(x){return x.paqId&&idDe(x)===id})});
  if(has('sue')&&!has('sol')&&T('sol')&&!get('sue').paqId&&/\bsuelo\s+de\s+(?:baldosa|ceramic\w*|gres|terrazo)\b/.test(TD)&&!/\b(madera|parquet|tarima|flotante|laminado|moqueta)\b/.test(TD)){var lsu=get('sue'),tso=T('sol'),tgS=lsu.d.indexOf(' \u2014 ')>-1?lsu.d.slice(lsu.d.indexOf(' \u2014 ')):'';lsu.d=tso.d+tgS;lsu.p=tso.p;lsu.tid='sol'}
@@ -1132,6 +1136,65 @@ var FAMS=[
  {id:'limf',n:/\blimpieza\b(?! periodica| de obra periodica)/},
  {id:'ele',n:/\b(?:luz|electricidad|instalacion electrica|cableado)\b/,solo:/\b(nuev[oa]|hacer|cambiar|renovar|toda|entera)\b/},
  {id:'ron',n:/\brodapie\b/,quitar:'rod',solo:/\b(poner|nuevo|cambiar|colocar|montar)\b/}];
+/* LECTOR DE CANTIDADES de lo que se cuenta por unidades (puertas, radiadores, ventanas, armarios, enchufes, toalleros, premarcos…).
+   Deja cada cuenta dicha en una sola forma, «N cosas», que el resto del motor ya entiende, se diga como se diga:
+   · detrás: «radiadores nuevos seis», «quitar las puertas viejas cinco», «puertas tres nuevas y dos recuperadas»
+   · por estancias: «cambiar las puertas de las tres habitaciones», «las puertas de las habitaciones son tres», «… y la del baño» (una más)
+   · «en cada habitación uno, son tres habitaciones» · «una puerta en el baño y otra en la cocina» (cada una en su sitio)
+   · la cuenta corregida al final: «cinco puertas nuevas… bueno, las puertas son seis»
+   Lo que no lleva cuenta se queda sin número y luego se pregunta «¿cuántas?» (nunca una en silencio: ver «cuantasSinDecir»). */
+var CU_NOM='puertas|radiadores|ventanas|armarios|premarcos|enchufes|toalleros|persianas|focos|apliques|interruptores|mamparas|puntos de luz';
+var CU_SG='puerta|radiador|ventana|armario|premarco|enchufe|toallero|persiana|foco|aplique|interruptor|mampara|punto de luz';
+var CU_ADJ='(?:\\s+(?:nuev[oa]s|viej[oa]s|de paso|blanc[oa]s|lacad[oa]s|interiores|actuales|de madera|de aluminio|de pvc|electricos|termoelectricos|de ahora|que hay))';
+var CU_N='(\\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|trece|catorce|quince|dieciseis|diecisiete|dieciocho|diecinueve|veinte)';
+var CU_HAB='(?:habitaciones|dormitorios|cuartos|estancias)';
+var CU_EST1='(?:bano|aseo|cocina|salon|comedor|pasillo|despacho|entrada|recibidor|trastero|despensa|habitacion|dormitorio|cuarto|vestidor|terraza|galeria)(?:\\s+(?:principal|grande|pequen[oa]|de matrimonio|de invitados|de arriba|de abajo))?';
+/* lo que detrás del número dice que no es una cuenta de esas cosas (medidas, manos, estancias…) */
+var CU_NO='(?![.,]\\d)(?!\\s*(?:metros|m2|m\\b|ml\\b|cm\\b|mm\\b|centimetros|milimetros|x\\b|por\\b|de\\s+(?:alto|largo|ancho|ellas|ellos|esas|esos)|elementos|manos|capas|euros|horas|dias|semanas|anos|plantas|pisos|y\\s+medio|con\\s+\\d|banos|aseos|cocinas|'+CU_HAB+'|'+CU_NOM+'))';
+function cuV(n){n=String(n||'');return /^\d/.test(n)?+n:/^un/.test(n)?1:(valorLetra(n)||0)}
+/* ¿hay ya un número justo delante? («4 puertas de las 3 habitaciones»: la cuenta ya está dicha) */
+function cuConNum(str,off){return /\b(?:\d+|un[oa]?|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(?:(?:las|los)\s+)?$/.test(String(str).slice(Math.max(0,off-14),off))}
+/* la cuenta corregida al final: «cinco puertas nuevas y quitar el gotelé, bueno, las puertas son seis» → seis puertas nuevas (y lo de en medio, igual) */
+function cuCorrigeAlFinal(t){return t.replace(new RegExp('\\b'+CU_N+'\\s+('+CU_NOM+')('+CU_ADJ+'*)([^;]{0,120}?)\\s*[,.]?\\s*\\b(?:bueno|no|perdona|perdon|mejor dicho|mejor|digo|o sea|en realidad)\\b\\s*,?\\s*(?:(?:las|los)\\s+\\2\\s+(?:son|seran)\\s+'+CU_N+'|'+CU_N+'\\s+\\2)\\b(?!'+CU_ADJ+')(?!\\s+(?:recuperad|recolocad|aprovechad|correder|de\\s+(?:las|los|el|la)|en\\s+(?:el|la|los|las)|que|se)\\b)','g'),function(x,n1,nom,adj,mid,a,b){if(new RegExp('\\b(?:'+CU_NOM+'|'+CU_SG+')\\b').test(mid)||/\b(?:menos|salvo|excepto|quitando)\b/.test(mid))return x;mid=mid.replace(/(?:\s*,?\s*\b(?:no|bueno|eh+|perdona|perdon|mejor|digo|o sea)\b)+\s*,?\s*$/,'');var k=cuV(a||b);if(!(k>0&&k<=40)||!(cuV(n1)>0))return x;return ' '+k+' '+nom+adj+mid+' '})}
+function lectorCantidades(t,fase){
+ if(fase==='antes'){
+  /* «en cada habitación uno, son tres habitaciones», «en cada dormitorio un radiador»: «uno en cada…» (lo cuentan las reglas de «en cada») */
+  t=t.replace(new RegExp('\\ben\\s+cada\\s+(habitacion|dormitorio|cuarto|bano)\\s+(?:un[oa]?|1)\\b(\\s+(?:'+CU_SG+'))?(?:\\s+nuev[oa])?','g'),function(x,r,o){return ' 1'+(o||'')+' en cada '+r});
+  /* «… y en cada habitación uno. Son tres habitaciones.»: la cuenta de habitaciones va con lo de antes aunque haya punto */
+  t=t.replace(/(\ben\s+cada\s+(?:habitacion|dormitorio|cuarto|bano))\s*[.;]\s*((?:y\s+)?(?:que\s+)?son\s+(?:\d+|dos|tres|cuatro|cinco|seis)\s+(?:habitaciones|dormitorios|cuartos|banos))\b/g,'$1 , $2');
+  /* «tres puertas nuevas y dos recuperadas»: las dos también son puertas */
+  t=t.replace(new RegExp('(\\bpuertas\\b[^.;]{0,60}?\\by\\s+)'+CU_N.replace('(\\d+|','(\\d+|una|')+'\\s+(recuperad|recolocad|aprovechad|reutilizad)(?:as|a)\\b','g'),function(x,a,n,v){var k=cuV(n);return k?a+k+' puertas '+v+'as':x});
+  /* «… y recuperar dos», «desmontar las puertas sin romperlas para reutilizar dos»: dos puertas */
+  t=t.replace(new RegExp('(\\bpuertas\\b[^.;]{0,60}?\\b(?:recuperar|recolocar|aprovechar|reutilizar)\\s+)'+CU_N+'\\b'+CU_NO,'g'),function(x,a,n){var k=cuV(n);return k>1?a+k+' puertas':x});
+  t=cuCorrigeAlFinal(t);
+  t=t.replace(/\b(?:desmontar|quitar|sacar)\s+las\s+puertas\s+(?:sin\s+romperlas|con\s+cuidado)\s*,?\s+(?:y\s+)?(?:para\s+)?(recuperar|recolocar|aprovechar|reutilizar)\s+(\d+)\s+puertas\b/g,' desmontar $2 puertas y recolocarlas ');
+  return t}
+ /* «baño completo y cocina de nueve completa y tres puertas nuevas»: las puertas no son de la cocina */
+ t=t.replace(new RegExp('\\b((?:complet[oa]s?|enter[oa]s?)(?:\\s+de\\s+\\d+(?:[.,]\\d+)?\\s*(?:m2|metros cuadrados|metros)?)?)\\s+y\\s+(?=(?:\\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\\s+(?:'+CU_NOM+')\\b)','g'),function(x,a,off,str){var n=String(str).slice(off+x.length).match(/^\S+/)[0];return cuV(n)>1?a+' , ':x});
+ /* «tres puertas nuevas menos la del baño, que es corredera»: dos normales y la corredera del baño */
+ t=t.replace(new RegExp('\\b(\\d+)\\s+puertas('+CU_ADJ+'*)\\s*,?\\s*(?:todas\\s+)?(?:menos|salvo|excepto)\\s+(?:la|una)\\s+(?:puerta\\s+)?(?:del?|de la|en el|en la)\\s+('+CU_EST1+')\\s*,?\\s*(?:que\\s+)?(?:es|va|sera|ira|lleva|la ponemos|se pone|ponemos)?\\s*(?:una\\s+|de\\s+)?(?:puerta\\s+)?corredera\\b','g'),function(x,n,adj,e){var k=+n-1;if(!(k>0))return x;return ' '+k+' puertas'+adj+' , y 1 puerta corredera en '+(/^(cocina|entrada|despensa|habitacion|terraza|galeria)/.test(e)?'la ':'el ')+e+' '});
+ /* la cuenta detrás: «radiadores nuevos seis», «puertas de paso nuevas 8», «quitar las puertas viejas cinco», «puertas tres nuevas» */
+ t=t.replace(new RegExp('\\b(?:(las|los)\\s+)?('+CU_NOM+')('+CU_ADJ+'*)\\s*,?\\s+'+CU_N+'\\b('+CU_ADJ+'?)'+CU_NO,'g'),function(x,art,nom,adj,n,adj2,off,str){if(cuConNum(str,off))return x;var pre=String(str).slice(Math.max(0,off-12),off);if(!art&&/\b(?:de|del)\s+$/.test(pre))return x;var k=cuV(n);if(!(k>1&&k<=40))return x;return ' '+k+' '+nom+adj+(adj2||'')+' '});
+ /* por estancias: «las puertas de las tres habitaciones», «armarios en los dos dormitorios»: una en cada una */
+ t=t.replace(new RegExp('\\b(?:(?:las|los)\\s+)?('+CU_NOM+')('+CU_ADJ+'*)\\s+(de|en|para)\\s+(las|los|sus)\\s+'+CU_N+'\\s+('+CU_HAB+')\\b','g'),function(x,nom,adj,de,art,n,hab,off,str){if(cuConNum(str,off))return x;var k=cuV(n);if(!(k>1&&k<=20))return x;return ' '+k+' '+nom+adj+' '+de+' '+art+' '+hab});
+ /* «las puertas de las habitaciones, que son tres»: tantas como habitaciones */
+ t=t.replace(new RegExp('\\b(?:(?:las|los)\\s+)?('+CU_NOM+')('+CU_ADJ+'*)\\s+(de|en|para)\\s+(las|los|sus)\\s+('+CU_HAB+')\\s*,?\\s*(?:que\\s+)?son\\s+'+CU_N+'\\b'+CU_NO,'g'),function(x,nom,adj,de,art,hab,n,off,str){if(cuConNum(str,off))return x;var k=cuV(n);if(!(k>1&&k<=20))return x;return ' '+k+' '+nom+adj+' '+de+' '+art+' '+hab+' '});
+ /* «… de las tres habitaciones y la del baño»: una más, en su sitio (si no se dice que esa se queda, se recupera o es otra cosa) */
+ t=t.replace(new RegExp('(\\b\\d+\\s+(?:'+CU_NOM+')'+CU_ADJ+'*\\s+(?:de|en|para)\\s+(?:las|los|sus)\\s+(?:\\d+\\s+)?'+CU_HAB+')\\s*,?\\s+(?:y|mas)\\s+(?:tambien\\s+)?(?:la|el|una|uno)\\s+(?:(?:'+CU_SG+')\\s+)?(del?|de la|en el|en la)\\s+('+CU_EST1+')\\b(?!\\s*,?\\s*(?:se|la|lo|le|que|no|tampoco|ya|esta|queda|sigue|correder\\w*|recuper\\w*|recoloc\\w*|aprovech\\w*)\\b)','g'),'$1 y $2 $3 ');
+ /* «una puerta nueva en el baño y otra en la cocina»: cada una en su sitio */
+ t=t.replace(new RegExp('\\b(?:un[oa]?|1)\\s+('+CU_SG+')((?:\\s+nuev[oa])?)\\s+en\\s+(el|la)\\s+('+CU_EST1+')\\s*,?\\s+y\\s+(?:otr[oa]|un[oa]\\s+mas|un[oa])\\s+en\\s+(el|la)\\s+(?=[a-z])','g'),function(x,o,nv,a1,e1,a2){return ' 1 '+o+nv+' en '+a1+' '+e1+' , y 1 '+o+nv+' en '+a2+' '});
+ /* la cuenta corregida al final: «cinco puertas nuevas y quitar el gotelé, bueno, las puertas son seis» → seis puertas nuevas */
+ t=cuCorrigeAlFinal(t);
+ return t}
+/* lo que se cuenta y no se ha dicho cuántos («cambiar los radiadores», «montar armarios», «cambiar las ventanas»): no se deja una en silencio, se pregunta */
+function cuantasSinDecir(L,TD){var SG={rad:'radiador',mar:'armario',pre:'premarco',pre7:'premarco',mam:'mampara'},PL=function(s){return s==='punto de luz'?'puntos de luz':/[aeiou]$/.test(s)?s+'s':s+'es'};
+ var idL=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var x=tarifa().find(function(z){return z.d===d||d.indexOf(z.d+' \u2014 ')===0});return x?x.id:''};
+ L.forEach(function(l){if(l.paqId||l.cuantas||num(l.q)>1||l.u!=='ud'||/ \u2014 /.test(String(l.d||'')))return;var id=idL(l),sg=SG[id];if(!sg&&l.fb){var m=norm(String(l.d||'')).match(new RegExp('\\b('+CU_SG+')(?:s|es)\\b'));sg=m&&m[1]}if(!sg)return;var pl=PL(sg);
+  if(!new RegExp('\\b'+pl+'\\b').test(TD))return;
+  /* una sola dicha («un radiador», «el armario del salón»), o la cuenta dicha */
+  if(new RegExp('\\b(?:un|una|el|la|1|otro|otra)\\s+(?:\\w+\\s+)?'+sg+'\\b').test(TD))return;
+  if(new RegExp('\\b(?:\\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\\s+(?:\\w+\\s+){0,2}'+pl+'\\b|\\b'+pl+'\\b[^,.;]{0,30}?\\b(?:\\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\\b'+CU_NO).test(TD))return;
+  l.cuantas=1})}
 function cuenta(t,n){var tot=t.match(/\b(?:son|que son)\s+(\d+)\s+(?:\w+\s+)?en total\b|\ben total\s+(?:son\s+)?(\d+)\b/);if(tot&&new RegExp(n.source).test(t))return +(tot[1]||tot[2]);var best=null;var re=new RegExp(n.source,'g'),m;while((m=re.exec(t))){var a=t.slice(Math.max(0,m.index-22),m.index),b=t.slice(m.index+m[0].length,m.index+m[0].length+40);
   var x=a.match(/(\d+)\s+(?:(?:nuev[oa]s|viej[oa]s|blanc[oa]s|grandes?|pequen[oa]s|de paso)\s+)?$/);
   /* «dos radiadores en el salón y uno en la cocina» */
@@ -1618,6 +1681,8 @@ function analizar(bruto){
  t0=t0.replace(/\blijar\b(?!\s+(?:y\s+barnizar|el\s+suelo|suelo|el\s+parquet|parquet|la\s+tarima|tarima|las\s+puertas|puertas|la\s+madera|madera|las\s+paredes|paredes|la\s+pared|pared))(?=\s*(?:,|y\b|$))/g,function(x,off,str){var c=String(str).slice(Math.max(0,off-60),off+60),c0=String(str).slice(Math.max(0,off-60),off),c1=String(str).slice(off,off+60);c=c0.slice(c0.lastIndexOf('.')+1)+c1.split('.')[0];return /\b(papel|gotele|pintar|pintura|yeso|paredes)\b/.test(c)&&!/\b(suelo|parquet|tarima|acuchill)/.test(c)?'lijar paredes':x});
  /* «tirar el tabique… y hacer uno nuevo de pladur»: un tabique nuevo */
  t0=t0.replace(/\b(tabiques?\b[^.;]{0,60}?\b)(hacer|poner|levantar|montar)\s+(?:uno|otro)\s+(?:nuevo\s+)?(de pladur|de ladrillo)?/g,function(x,a,v,mat){return a+v+' tabique nuevo '+(mat||'')});
+ /* lector de cantidades, primera pasada (ver lectorCantidades) */
+ t0=lectorCantidades(t0,'antes');
  /* «radiadores: dos en el salón, uno en cada habitación, que son tres, y uno en la cocina» */
  /* (la muletilla «, eh,» entre la cuenta y lo demás no corta estas reglas) */
  t0=t0.replace(/\s*,\s*eh+\s*,\s*/g,' , ');
@@ -2075,6 +2140,8 @@ function analizar(bruto){
  t0=t0.replace(/\b(?:tiene|tienen|hay|con)\s+(dos|tres|cuatro)\s+(banos|aseos)(?:\s+y\s+(?:una|la)\s+cocina)?\b(?=[\s\S]*\b(?:los|las)\s+\1\s+\2\b)/g,' ');
  /* «vamos, que casi es una integral»: es una forma de hablar */
  t0=t0.replace(/\b(?:vamos\s+)?que\s+casi\s+es\s+(?:una\s+)?(?:reforma\s+)?integral\b/g,' ');
+ /* lector de cantidades: cada cuenta dicha, en una sola forma «N cosas» (ver lectorCantidades) */
+ t0=lectorCantidades(t0);
  /* «cambiar los radiadores, que son cuatro»: cuatro radiadores */
  t0=t0.replace(/\b(?:(?:los|las)\s+)?(puertas|radiadores|ventanas|armarios|persianas)\s*,?\s*(?:que\s+)?son\s+(\d+)\b(?!\s*(?:[.,]\d|metros|m2|m\b))/g,'$2 $1');
  /* «quitando el parquet», «tirando el tabique»: como «quitar», «tirar» */
@@ -2772,6 +2839,7 @@ function negados(t){t=' '+norm(String(t||'')).replace(/[,.;:]/g,' , ')+' ';var o
  /* «sin mampara», «sin rodapié», «no azulejo», «techo no», «suelo no», «no calefacción» */
  var NOM_NEG='(?:falso techo|techos?|suelos?|montacargas|(?:tarima\\s+)?flotante|tarima|parquet|laminado|vinilo|mamparas?|rodapies?|muebles?|azulejos?|alicatado|banera|plato|sanitarios|calefaccion|cocina|bano|aseo|puertas|gotele|luz|electricidad|contenedor|acuchill\\w*|chimeneas?|boletin|fontaneria)';
  var re4=new RegExp('(?<!\\b(?:zona|zonas|parte|partes|donde|hueco)\\s)\\b(?:sin|no)\\s+(?:el\\s+|la\\s+|los\\s+|las\\s+)?('+NOM_NEG+')\\b','g');while((m=re4.exec(t))){if(/^techos?$/.test(m[1]))out.techoPint=1;if(/^(?:azulejos?|alicatado)$/.test(m[1])&&/^no\b/.test(m[0]))out.azulejoNo=1;else marca(m[1]);if(/^mamparas?$/.test(m[1]))out.mampara=1;if(/^rodapies?$/.test(m[1]))out.rodapie=1}
+ /* «no quiere puertas nuevas, solo pintar»: no */var reQ=new RegExp('\\bno\\s+(?:quiere|quieren|necesita|necesitan|lleva|llevan|hace falta|hacen falta)\\s+(?:poner\\s+|cambiar\\s+)?(?:las\\s+|los\\s+)?(puertas)\\b','g');while((m=reQ.exec(t)))marca(m[1]);
  var re5=new RegExp('\\b('+NOM_NEG+')\\s+no\\b(?!\\s+(?:tiene|hay|lleva|se puede|es|esta|son))','g');while((m=re5.exec(t))){if(/^techos?$/.test(m[1])&&!/falso\s+$/.test(t.slice(0,m.index)))out.techoPint=1;marca(m[1]);if(/^mamparas?$/.test(m[1]))out.mampara=1;if(/^rodapies?$/.test(m[1]))out.rodapie=1}
  var re7=/\bno\b[^,.;]{0,30}?((?:\bni\s+(?:(?:los|las|el|la)\s+)?[a-z]+(?:\s+de\s+[a-z]+)?\s*)+)/g;while((m=re7.exec(t)))marca(m[1]);
  var re8=new RegExp('\\b(?:se\\s+quedan?|se\\s+dejan?|no\\s+se\\s+tocan?|se\\s+mantienen?)\\b[^,.;]{0,30}?\\b(?:y\\s+)?(?:el|la|los|las)\\s+('+NOM_NEG+')(?:\\s+tambien\\b|\\s*(?:,\\s*)?$)','g');while((m=re8.exec(t)))marca(m[1]);
