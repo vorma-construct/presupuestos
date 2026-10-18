@@ -82,6 +82,8 @@ function versionOk(){return fetch('version.json?t='+Date.now(),{cache:'no-store'
 function portero(fn,nombre){return function(){var self=this,args=arguments;
   if(nombre==='imprimir'&&args[0]==='precios')return fn.apply(self,args);
   try{leer()}catch(_){}
+  /* reforma completa: el precio por metro de Ajustes, con las cantidades de ahora */
+  try{if(window.ajustarPrecioM2){ajustarPrecioM2();renderLineas();leer()}}catch(_){}
   var P=problemas(cur);if(P.length){mostrar(P,function(){window[nombre].apply(self,args)});return}
   return fn.apply(self,args)}}
 

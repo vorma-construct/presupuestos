@@ -641,13 +641,28 @@ var nuevas=lineasDe(pk).map(function(l){var a=antes[claveL(l)];if(a&&a.p>0)l.p=a
 cur.lineas.splice.apply(cur.lineas,[Math.min(idx,cur.lineas.length),0].concat(nuevas));
 /* «¿Contenedor de escombro? No» en el piso: tampoco el de su baño o su cocina (ver lineasDe) */
 if(pk.tipo==='piso'&&pk.hechas&&pk.hechas.con&&!pk.r.con){var hijC=paqs().filter(function(h){return h.padre===pk.id}).map(function(h){return h.id});cur.lineas=cur.lineas.filter(function(l){return !(l.tid==='con'&&hijC.indexOf(l.paqId)>-1)})}
-ajustarPuertasPiso();ajustarSueltasPiso();unaVez()}
+ajustarPuertasPiso();ajustarSueltasPiso();ajustarPrecioM2();unaVez()}
 /* «reforma integral… seis puertas»: las seis son de toda la casa, contando la del baño y la de la cocina */
 function ajustarPuertasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var t=TT2.find(function(x){return x.d===d||d.indexOf(x.d+' \u2014 ')===0});return t?t.id:''};
  paqs().forEach(function(pk){if(pk.tipo!=='piso'||!pk.hechas||!pk.hechas.puertas||!(pk.r.puertas>0))return;var hij=paqs().filter(function(h){return h.padre===pk.id}).map(function(h){return h.id});
   var cnt=cur.lineas.filter(function(l){return hij.indexOf(l.paqId)>-1&&(idL2(l)==='pub'||idL2(l)==='cor')}).reduce(function(a,l){return a+(num(l.q)||0)},0);
   var qn=Math.max(1,pk.r.puertas-cnt);/* lo escrito a mano o confirmado no lo pisa ninguna respuesta (y quitar las viejas va con las nuevas escritas) */var lpM=cur.lineas.find(function(l){return l.paqId===pk.id&&idL2(l)==='pub'&&(l.qMano||l.okQ)});cur.lineas.forEach(function(l){if(l.paqId===pk.id&&(idL2(l)==='pub'||idL2(l)==='pue')){if(l.qMano||l.okQ)return;l.q=lpM&&idL2(l)==='pue'?num(lpM.q):qn}})})}catch(_){}}
 /* «reforma integral… rodapié nuevo, 45 metros», «…electricidad nueva»: lo dicho suelto que ya va en la casa entera no se cobra dos veces; si trae metros, son los de la casa */
+/* REFORMA COMPLETA AL PRECIO DE MERCADO: una casa entera con cocina, baño, electricidad, pintura, suelo y puertas sale al precio por metro de Ajustes
+   («Precio por metro de una reforma completa», 900 € sin IVA por defecto: calidad media en Bilbao 2026, 600-900 según azkarservicios.es y Cronoshare, 900-1.200 según empresas de Bilbao). Las partidas son las mismas: cada una sube en proporción.
+   Lo que el albañil cambia a mano se respeta y el resto se ajusta para llegar al total. */
+function ajustarPrecioM2(){try{
+ var L=cur.lineas||[],pz=paqs().find(function(p){return p.tipo==='piso'&&num(p.suelo)>0}),r=pz&&pz.r||{},h=pz&&pz.hechas||{};
+ var obj=num((window.AJ&&AJ.m2Integral)||900);
+ var id=function(l){return l.tid||''},hay=function(re){return L.some(function(l){return re.test(id(l))})};
+ var completa=pz&&obj>0&&h.cocina&&r.cocina!==false&&h.banos&&num(r.banos)>0&&hay(/^fba$/)&&hay(/^fco$/)&&hay(/^ele$/)&&hay(/^pip$/)&&hay(/^(flo|sue|tar)$/)&&hay(/^pub$/);
+ L.forEach(function(l){if(l.pBase>0&&l.pM2>0&&Math.abs(num(l.p)-Math.round(l.pBase*l.pM2*100)/100)>0.011)l.pFija=1});/* tocado a mano */
+ if(!completa){L.forEach(function(l){if(l.pBase>0&&l.pM2>0&&!l.pFija){l.p=l.pBase}delete l.pM2});delete cur.m2Aplicado;return}
+ var fijo=0,var0=0;L.forEach(function(l){if(l.imp)return;if(!(l.pBase>0))l.pBase=num(l.p);var q=num(l.q);if(l.pFija)fijo+=q*num(l.p);else var0+=q*l.pBase});
+ var meta=obj*num(pz.suelo)-fijo;if(!(var0>0)||meta<=var0){L.forEach(function(l){if(l.pBase>0&&!l.pFija)l.p=l.pBase;delete l.pM2});delete cur.m2Aplicado;return}
+ var f=meta/var0;L.forEach(function(l){if(l.imp||l.pFija||!(l.pBase>0))return;l.pM2=f;l.p=Math.round(l.pBase*f*100)/100});
+ cur.m2Aplicado={obj:obj,m2:num(pz.suelo),f:Math.round(f*100)/100}}catch(_){}}
+window.ajustarPrecioM2=ajustarPrecioM2;
 function ajustarSueltasPiso(){try{var TT2=tarifa(),idL2=function(l){if(l.tid)return l.tid;var d=String(l.d||'');var t=TT2.find(function(x){return x.d===d||d.indexOf(x.d+' — ')===0});return t?t.id:''};
  /* «el salón de 20 metros… quitar el gotelé del salón y pintar»: lo que se hace en la misma pared, los mismos metros que la pintura */
  var tgS=function(l){var d=String(l.d||''),k=d.indexOf(' \u2014 ');return k>-1?d.slice(k+3).trim():''};
@@ -1223,7 +1238,7 @@ cur.lineas.forEach(function(l){delete l.__v});
 window.__ultDict={num:cur.num,creado:cur.creado,tal:ta.value,parte:aConv,h:huella(aConv),ds:nuevasDs};
 /* «quitar gotelé de toda la casa doscientos metros… y techos setenta»: si los techos (o el suelo) de la casa miden mucho menos, los metros dichos con las paredes son los de las paredes (lo dicho manda sobre lo calculado) */
 (function(){var lsP=cur.lineas.filter(function(l){return !l.paqId&&!l.okQ&&l.calc&&l.u==='m2'&&!/ \u2014 /.test(l.d)&&FAM(idDe(l),l.d)==='pared'&&/^las paredes, unas 2,7 veces los /.test(l.calcDe||'')});if(!lsP.length)return;var hz=cur.lineas.filter(function(l){return !l.paqId&&!l.calc&&l.u==='m2'&&!/ \u2014 /.test(l.d)&&/^(techo|suelo)$/.test(FAM(idDe(l),l.d))&&num(l.q)>1});lsP.forEach(function(l){var X=num((l.calcDe.match(/los (\d+(?:,\d+)?) m/)||[])[1]);if(!(X>0))return;if(hz.some(function(h){return num(h.q)*1.8<=X})){l.q=X;delete l.calc;delete l.calcDe}})})();
-ajustarPuertasPiso();ajustarSueltasPiso();(function(){var vis={};cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.fb||(window.__lineasPrevias||[]).indexOf(l)>-1)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();
+ajustarPuertasPiso();ajustarSueltasPiso();ajustarPrecioM2();(function(){var vis={};cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.fb||(window.__lineasPrevias||[]).indexOf(l)>-1)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();
 /* lo que quedó dudoso o calculado al negar una estancia o una parte (ver negarPartes) */
 try{negarPartesDespues()}catch(eN){}
 /* lo que ha metido este dictado, tal cual ha quedado (para que una corrección dicha en otra pulsación del micro lo sustituya) */
