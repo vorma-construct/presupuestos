@@ -198,7 +198,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v245';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v246';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -248,6 +248,17 @@ var TARIFA_BASE=[
 {id:'lavm',soloKit:1,c:'Carpintería y sanitarios',d:'Suministro de mueble de baño con lavabo integrado, espejo y aplique de luz, gama media (material a 350 € en formato comercial)',u:'ud',p:350,k:[]},
 {id:'ino',soloKit:1,c:'Carpintería y sanitarios',d:'Suministro y colocación de inodoro de porcelana vitrificada con tanque bajo, mecanismo de doble descarga y tapa, gama media (material a 150 € en formato comercial)',u:'ud',p:253,k:[]},
 {id:'gri',soloKit:1,c:'Carpintería y sanitarios',d:'Suministro y colocación de grifería monomando de lavabo y de ducha o bañera con su barra y rociador, gama media (material a 80 € cada una en formato comercial)',u:'ud',p:288,k:[]},
+{id:'ven',c:'Carpintería y sanitarios',d:'Suministro y colocación de ventana de PVC con doble acristalamiento, con remates y sellados',u:'ud',p:460,k:['ventana de pvc','ventanas de pvc','cambiar las ventanas','cambiar ventanas','poner ventanas','instalar ventanas','colocar ventanas','suministrar ventanas']},
+{id:'dven',c:'Demoliciones',d:'Desmontaje de ventana existente con su marco, retirada y tirada al centro autorizado',u:'ud',p:20,k:['desmontar ventanas','desmontar las ventanas','quitar las ventanas','quitar ventanas','desmontar ventana']},
+{id:'per',c:'Carpintería y sanitarios',d:'Suministro y colocación de persiana enrollable con cajón y cinta',u:'ud',p:264.5,k:['poner persiana','poner persianas','instalar persianas','colocar persianas','persiana enrollable','persianas enrollables','persiana nueva','persianas nuevas']},
+{id:'ter',c:'Instalaciones',d:'Suministro e instalación de termo eléctrico de 100 litros con sus conexiones y válvula de seguridad',u:'ud',p:460,k:['termo electrico','instalar un termo','instalar termo','poner un termo','termo nuevo']},
+{id:'imp',c:'Revestimientos',d:'Impermeabilización de suelo y paredes de la zona de ducha bajo el revestimiento (lámina o mortero)',u:'m2',p:34.5,k:['impermeabilizar','impermeabilizacion']},
+{id:'pro',c:'Demoliciones',d:'Protección de zonas comunes (portal, ascensor y recorrido) y de suelos durante la obra',u:'ud',p:276,k:['proteger el portal','proteccion de zonas comunes','proteger las zonas comunes','proteger el ascensor']},
+{id:'enc',c:'Montajes',d:'Suministro y colocación de encimera de cocina laminada, gama media',u:'ml',p:345,k:['encimera nueva','metros de encimera','colocar encimera']},
+{id:'mcs',c:'Montajes',d:'Suministro y montaje de muebles de cocina, bajos y altos, gama media (por metro lineal)',u:'ml',p:632.5,k:['muebles bajos','muebles altos','suministrar muebles de cocina']},
+{id:'ench',c:'Instalaciones',d:'Base de enchufe nueva con su línea y mecanismo',u:'ud',p:86.5,k:['bases de enchufe','base de enchufe','enchufes nuevos','instalar enchufes','poner enchufes','colocar enchufes']},
+{id:'pluz',c:'Instalaciones',d:'Punto de luz nuevo con su interruptor',u:'ud',p:103.5,k:['puntos de luz','puntos de iluminacion','punto de luz']},
+{id:'lum',c:'Instalaciones',d:'Suministro y colocación de luminaria LED',u:'ud',p:57.5,k:['luminarias','luminaria','focos led']},
 {id:'mar',c:'Montajes',d:'Montaje de armario con puertas, baldas y cajones, ajustes del mismo (suministrado por el cliente)',u:'ud',p:345,k:['montar armario','armario','armarios']},
 {id:'con7',c:'Demoliciones',d:'Alquiler de contenedor de 7 m³, transporte de residuos a vertedero específico, con tasa de ocupación de vía pública',u:'ud',p:299,k:['contenedor con tasa','contenedor 7']},
 {id:'limp',c:'Demoliciones',d:'Limpieza periódica de obra en vivienda',u:'ud',p:328,k:['limpieza periodica','limpieza de obra']},
@@ -412,9 +423,11 @@ txt=txt.replace(/\b(un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once
 window.__MED=medidasDe(txt);window.__PARED=[];var __nCalc=0;
 T.forEach(function(t){var pos=-1,kl=0;for(var i=0;i<t.k.length;i++){var kk=norm(t.k[i]);
 /* tolerar articulos por medio: "quitar el suelo" encuentra la clave "quitar suelo" */
-var rx=new RegExp(kk.split(' ').map(function(w){return w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}).join('(?:\\s+(?:el|la|los|las|un|una|de|del))?\\s+'),'g');
+/* «instalar 5 ventanas», «desmontar 5 ventanas»: el número por medio también (y es cuántas) */
+var conN=/^(?:instalar|colocar|desmontar|suministrar|quitar)\s/.test(kk);
+var rx=new RegExp(kk.split(' ').map(function(w){return w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}).join(conN?'(?:\\s+(?:el|la|los|las|un|una|de|del|[2-9]|\\d\\d+))?\\s+':'(?:\\s+(?:el|la|los|las|un|una|de|del))?\\s+'),'g');
 var hits=[],mm;while((mm=rx.exec(txt))!==null){hits.push({i:mm.index,l:mm[0].length});if(rx.lastIndex===mm.index)rx.lastIndex++}
-var hi=0;var from=0,p;while(hi<hits.length){p=hits[hi].i;kl=hits[hi].l;hi++;{from=p+1;if(t.c!=='Demoliciones'&&/(quitar|picar|demol|tirar|sacar|levantar|retirar)\s*(el|la|los|las)?\s*(?:\d+\s+|dos\s+|tres\s+|cuatro\s+)?$/.test(txt.slice(Math.max(0,p-18),p)))continue;if(pos<0||p<pos){pos=p}break}}}if(pos<0)return;if(ya[norm(t.d).slice(0,40)])return;var q=1;if(t.id!=='mon'){var U=t.u==='ml'?'(ml|metros lineales|metros|m)':t.u!=='ud'?'(m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m)':'(ud|uds|unidades|puertas|armarios|radiadores|banos|baños)';var after=txt.slice(pos+kl,pos+kl+60);var m=null;
+var hi=0;var from=0,p;while(hi<hits.length){p=hits[hi].i;kl=hits[hi].l;hi++;{from=p+1;if(t.c!=='Demoliciones'&&(/(quitar|picar|demol|tirar|sacar|levantar|retirar)\s*(el|la|los|las)?\s*(?:\d+\s+|dos\s+|tres\s+|cuatro\s+)?$/.test(txt.slice(Math.max(0,p-18),p))||/* «quitar 48 metros cuadrados de suelo laminado»: lo que se quita, con sus metros por medio */ /\b(?:quitar|picar|tirar|sacar|levantar|retirar|desmontar|arrancar)\s+(?:(?:el|la|los|las)\s+)?\d+(?:[.,]\d+)?\s*(?:m2|metros cuadrados|metros lineales|metros|ml)\s+de\s+(?:(?:el|la|los|las)\s+)?(?:suelo\s+|tarima\s+)?$/.test(txt.slice(Math.max(0,p-60),p))))continue;if(pos<0||p<pos){pos=p}break}}}if(pos<0)return;if(ya[norm(t.d).slice(0,40)])return;var q=1;if(t.id!=='mon'){var U=t.u==='ml'?'(ml|metros lineales|metros|m)':t.u!=='ud'?'(m2|m\u00b2|metros cuadrados|metros lineales|metros|ml|m)':'(ud|uds|unidades|puertas|armarios|radiadores|banos|baños)';var after=txt.slice(pos+kl,pos+kl+60);var m=null;
 /* en partidas por metro cuadrado manda el "N metros cuadrados" mas cercano, aunque haya un "2 metros de alto" por medio */
 if(t.u==='m2'){var rxm2=/(\d+(?:[.,]\d+)?)\s*(?:m2|m\u00b2|metros cuadrados)\b/g,mm,mej=null,dist=1e9;
 while((mm=rxm2.exec(txt))!==null){var d=Math.abs(mm.index-pos);if(d<dist){dist=d;mej=mm}}
@@ -423,6 +436,7 @@ if(mej)m=mej}
 var MD=window.__MED||{},calc=false;
 if(t.u==='m2'&&PARED.indexOf(t.id)>-1&&MD.alto>0&&MD.perim>0&&(!MD.casa||PINTA.indexOf(t.id)>-1)){
 q=paredNeta(MD);calc=true;m={1:String(q)};window.__PARED=window.__PARED||[];window.__PARED.push(t.d)}
+if(!m&&t.u==='ud'&&/^(?:instalar|colocar|desmontar|suministrar|quitar)\s/.test(txt.slice(pos,pos+kl))){m=txt.slice(pos,pos+kl).match(/\s(\d+)\s+(?!m2|metros|ml\b)[a-z]/);if(m&&!(+m[1]>1))m=null}
 if(!m)m=after.match(new RegExp('^[\\s,:]*(?:de\\s+|unos\\s+)?(\\d+(?:[.,]\\d+)?)\\s*'+U+'\\b'));
 if(!m){var before=txt.slice(Math.max(0,pos-30),pos);m=before.match(new RegExp('(\\d+(?:[.,]\\d+)?)\\s*'+U+'\\b[^\\d]*$'));if(m&&t.u==='ud'&&m[2]&&!/^(ud|uds|unidades)$/.test(m[2])&&norm(t.d).indexOf(norm(m[2]).slice(0,5))<0)m=null;if(!m&&t.u==='ud')m=before.match(/(\d+)\s*$/)}
 /* si no viene pegado, buscar la cantidad dentro de la misma frase (hasta la coma o el punto) */
@@ -1818,7 +1832,7 @@ function alVolverApp(){if(document.visibilityState!=='hidden'&&Date.now()-__ultV
 document.addEventListener('visibilitychange',alVolverApp);window.addEventListener('focus',alVolverApp);window.addEventListener('pageshow',function(e){if(e&&e.persisted)alVolverApp()});
 /* después de ponerse la versión nueva, vuelve al presupuesto que estaba abierto */
 try{var __ra=sessionStorage.getItem('vr_reabrir');if(__ra){sessionStorage.removeItem('vr_reabrir');if(DB.presus&&DB.presus[__ra])setTimeout(function(){try{abrir(__ra)}catch(_){}},400)}}catch(_){}
-</script><script src="oficio.js?v245"></script><script src="entiende.js?v245"></script><script src="escena.js?v244"></script><script src="arquitecto.js?v239"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v242"></script><script src="portero.js?v245"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v246"></script><script src="entiende.js?v246"></script><script src="escena.js?v244"></script><script src="arquitecto.js?v239"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v242"></script><script src="portero.js?v245"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v242"></script>
 <script src="dictados.js?v238"></script>
