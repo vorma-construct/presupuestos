@@ -567,6 +567,13 @@ if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  if(s.ducha==='ducha'){add(s.plato==='80'?'pd8':'pd7',1);/* plato sin su medida dicha: se pregunta cuál (70x110 u 80x80) */if(!s.platoDicho&&L.length&&/^pd[78]$/.test(L[L.length-1].tid))L[L.length-1].elige='plato'}else if(s.ducha==='banera'){if(T('ban')){add('ban',1);L.forEach(function(l){if(l.tid==='fba')l.d=l.d.replace('plato de ducha','bañera')})}else libre('Suministro y colocación de bañera de acero esmaltado de 160x70 cm',1,'ud')}
  if(s.techo)add('tec',sq);add('pit',sq);
  if(s.mueble)add('mba',1);
+ /* BAÑO COMPLETO = con todo lo que lleva un baño, a precio medio de material («material a … € en formato comercial»): el mueble con lavabo, el inodoro, la grifería y la mampara.
+    Lo que se dice aparte en el dictado ya va por su partida (no se pone dos veces); lo que pone el cliente o se quita con «sin…», no va. */
+ (function(){var TX=' '+norm(String((window.__A&&(__A.bruto||__A.todo))||''))+' ';
+  if(s.mueble&&!/\b(?:lavabo|mueble (?:de|del|con) lavabo)\b/.test(TX))add('lavm',1);
+  if(!/\b(?:inodoro|vater|water|taza)\b/.test(TX))add('ino',1);
+  if(!/\b(?:grifer\w*|grifos?)\b/.test(TX))add('gri',1);
+  if(s.ducha==='ducha'&&!/\b(?:mamparas?|cortina)\b/.test(TX))add('mam',1)})();
  if(s.ventana===false)add('vent',1);
  if(s.puerta){add('pue',1);add('pub',1)}
  if(!sinCon)add('con',1)}
