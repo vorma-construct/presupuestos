@@ -573,9 +573,11 @@ if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  /* BAÑO COMPLETO = con todo lo que lleva un baño, a precio medio de material («material a … € en formato comercial»): el mueble con lavabo, el inodoro, la grifería y la mampara.
     Lo que se dice aparte en el dictado ya va por su partida (no se pone dos veces); lo que pone el cliente o se quita con «sin…», no va. */
  (function(){var TX=' '+norm(String((window.__A&&(__A.bruto||__A.todo))||''))+' ';
-  if(s.mueble&&!/\b(?:lavabo|mueble (?:de|del|con) lavabo)\b/.test(TX))add('lavm',1);
-  if(!/\b(?:inodoro|vater|water|taza)\b/.test(TX))add('ino',1);
-  if(!/\b(?:grifer\w*|grifos?)\b/.test(TX))add('gri',1);
+  /* inodoro, lavabo y grifería solo los pone el baño (no se adivinan sueltos): van siempre, salvo que se diga que no o que los pone el cliente */
+  var noVa=function(w){return new RegExp('\\b(?:sin|no|ni)\\s+(?:el\\s+|la\\s+|los\\s+|un\\s+|una\\s+)?(?:'+w+')|\\b(?:'+w+')\\b[^.;]{0,35}\\b(?:lo pone|la pone|los pone|las pone|lo trae|la trae|lo compra|la compra|se queda|se mantiene|no se cambia|no se toca)\\b').test(TX)};
+  if(s.mueble&&!noVa('lavabo|mueble de lavabo|mueble del lavabo'))add('lavm',1);
+  if(!noVa('inodoro|vater|water|taza'))add('ino',1);
+  if(!noVa('grifer\\w*|grifos?'))add('gri',1);
   if(s.ducha==='ducha'&&!/\b(?:mamparas?|cortina)\b/.test(TX))add('mam',1)})();
  if(s.ventana===false)add('vent',1);
  if(s.puerta){add('pue',1);add('pub',1)}
