@@ -15,10 +15,10 @@ function adivinarPartida(texto,sinPolo){var R=raices(texto);if(R.length<2)return
  var tN=' '+norm(String(texto||''))+' ',dmP=/\b(?:quitar|picar|tirar|derrib\w*|demol\w*|desmont\w*|arranc\w*|retir\w*|sacar|eliminar|levantar\s+(?:el|la|los|las)\s+(?:suelo|parquet|tarima|baldosa\w*|azulejo\w*|moqueta))\b/.test(tN),hcP=/\b(?:poner|colocar|hacer|montar|instalar|construir|nuev[oa]s?|levantar\s+(?:un|una|otro|otra)\b)/.test(tN),polo=sinPolo?'':dmP&&!hcP?'d':hcP&&!dmP?'h':'',fueraPolo=function(t){return polo&&['con','con7','mon','limp','limf'].indexOf(t.id)<0&&(t.c==='Demoliciones')!==(polo==='d')};
  /* «papel nuevo no»: lo que se dice que no, no se adivina */
  if(/\b(?:no|tampoco)(?:\s+[a-z]+)?\s*$/.test(tN))return null;
- tarifa().forEach(function(t){if(fueraPolo(t))return;var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0,n=0,vis={};R.forEach(function(r){if(vis[r])return;if(dr.indexOf(r)>-1){vis[r]=1;sc+=I.idf[r]||0;n++}});if(n<2)return;if(!best||sc>best.sc){seg=best?best.sc:seg;best={t:t,sc:sc,n:n}}else if(sc>seg)seg=sc});
+ tarifa().forEach(function(t){if(fueraPolo(t)||t.soloKit)return;var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0,n=0,vis={};R.forEach(function(r){if(vis[r])return;if(dr.indexOf(r)>-1){vis[r]=1;sc+=I.idf[r]||0;n++}});if(n<2)return;if(!best||sc>best.sc){seg=best?best.sc:seg;best={t:t,sc:sc,n:n}}else if(sc>seg)seg=sc});
  if(!best||best.sc<3)return null;
  if(best.sc<seg*1.4){/* empate: lo que dice de dónde (cocina, baño, paredes, techos) decide */var CX=['cocina','bano','aseo','paredes','pared','techo','techos','suelo','verticales','horizontales'],tw=' '+norm(String(texto))+' ';if(/\b(?:salon|pasillo|habitacion\w*|dormitorio\w*|comedor)\b/.test(tw)&&!/\btechos?\b/.test(tw))tw+=' verticales paredes ';
-  var cands=tarifa().filter(function(t){return !fueraPolo(t)}).map(function(t){var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0;R.forEach(function(r,k){if(R.indexOf(r)===k&&dr.indexOf(r)>-1)sc+=I.idf[r]||0});var dn=' '+norm(String(t.d||''))+' '+norm((t.k||[]).join(' '))+' ';var cx=CX.filter(function(w){return tw.indexOf(' '+w+' ')>-1&&dn.indexOf(' '+w+' ')>-1}).length;return {t:t,sc:sc,cx:cx}}).filter(function(c){return c.sc>=best.sc/1.4}).sort(function(a,b){return b.cx-a.cx||b.sc-a.sc});
+  var cands=tarifa().filter(function(t){return !fueraPolo(t)&&!t.soloKit}).map(function(t){var dr=raices(String(t.d||'').split(/\s+/).slice(0,25).join(' ')+' '+(t.k||[]).join(' '));var sc=0;R.forEach(function(r,k){if(R.indexOf(r)===k&&dr.indexOf(r)>-1)sc+=I.idf[r]||0});var dn=' '+norm(String(t.d||''))+' '+norm((t.k||[]).join(' '))+' ';var cx=CX.filter(function(w){return tw.indexOf(' '+w+' ')>-1&&dn.indexOf(' '+w+' ')>-1}).length;return {t:t,sc:sc,cx:cx}}).filter(function(c){return c.sc>=best.sc/1.4}).sort(function(a,b){return b.cx-a.cx||b.sc-a.sc});
   if(cands.length<2||cands[0].cx<=cands[1].cx)return null;return cands[0].t}
  return best.t}
 window.__adivinarPartida=adivinarPartida;
@@ -567,6 +567,13 @@ if(pk.tipo==='bano'){var W=pared(1,s.ventana?1:0);
  if(s.ducha==='ducha'){add(s.plato==='80'?'pd8':'pd7',1);/* plato sin su medida dicha: se pregunta cuál (70x110 u 80x80) */if(!s.platoDicho&&L.length&&/^pd[78]$/.test(L[L.length-1].tid))L[L.length-1].elige='plato'}else if(s.ducha==='banera'){if(T('ban')){add('ban',1);L.forEach(function(l){if(l.tid==='fba')l.d=l.d.replace('plato de ducha','bañera')})}else libre('Suministro y colocación de bañera de acero esmaltado de 160x70 cm',1,'ud')}
  if(s.techo)add('tec',sq);add('pit',sq);
  if(s.mueble)add('mba',1);
+ /* BAÑO COMPLETO = con todo lo que lleva un baño, a precio medio de material («material a … € en formato comercial»): el mueble con lavabo, el inodoro, la grifería y la mampara.
+    Lo que se dice aparte en el dictado ya va por su partida (no se pone dos veces); lo que pone el cliente o se quita con «sin…», no va. */
+ (function(){var TX=' '+norm(String((window.__A&&(__A.bruto||__A.todo))||''))+' ';
+  if(s.mueble&&!/\b(?:lavabo|mueble (?:de|del|con) lavabo)\b/.test(TX))add('lavm',1);
+  if(!/\b(?:inodoro|vater|water|taza)\b/.test(TX))add('ino',1);
+  if(!/\b(?:grifer\w*|grifos?)\b/.test(TX))add('gri',1);
+  if(s.ducha==='ducha'&&!/\b(?:mamparas?|cortina)\b/.test(TX))add('mam',1)})();
  if(s.ventana===false)add('vent',1);
  if(s.puerta){add('pue',1);add('pub',1)}
  if(!sinCon)add('con',1)}
