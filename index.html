@@ -198,7 +198,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v244';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v245';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -1818,7 +1818,7 @@ function alVolverApp(){if(document.visibilityState!=='hidden'&&Date.now()-__ultV
 document.addEventListener('visibilitychange',alVolverApp);window.addEventListener('focus',alVolverApp);window.addEventListener('pageshow',function(e){if(e&&e.persisted)alVolverApp()});
 /* después de ponerse la versión nueva, vuelve al presupuesto que estaba abierto */
 try{var __ra=sessionStorage.getItem('vr_reabrir');if(__ra){sessionStorage.removeItem('vr_reabrir');if(DB.presus&&DB.presus[__ra])setTimeout(function(){try{abrir(__ra)}catch(_){}},400)}}catch(_){}
-</script><script src="oficio.js?v242"></script><script src="entiende.js?v244"></script><script src="escena.js?v244"></script><script src="arquitecto.js?v239"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v242"></script><script src="portero.js?v244"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
+</script><script src="oficio.js?v245"></script><script src="entiende.js?v245"></script><script src="escena.js?v244"></script><script src="arquitecto.js?v239"></script><script src="actualiza.js?v167"></script><script src="precios.js?v183"></script><script src="vigila.js?v242"></script><script src="portero.js?v245"></script><script src="autoarreglo.js?v222"></script><script src="mapa.js?v195"></script><script src="pdfdatos.js?v194"></script><script src="planos.js?v201"></script>
 <script src="correos.js?v195"></script>
 <script src="rumano.js?v242"></script>
 <script src="dictados.js?v238"></script>
