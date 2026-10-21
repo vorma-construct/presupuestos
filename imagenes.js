@@ -127,7 +127,7 @@
  function estanciaDe(n){var m=n.match(new RegExp('\\b('+ESTANCIAS+')\\b'));return m?m[1]:''}
  function m2De(n){var m=n.match(/(\d+(?:[.,]\d+)?)\s*(?:m2|m²|metros cuadrados)/);return m?nm(m[1]):0}
  function mlDe(n){var m=n.match(/(\d+(?:[.,]\d+)?)\s*(?:ml\b|metros lineales)/);return m?nm(m[1]):0}
- function longitudes(n){var m=n.match(/(\d+(?:,\d+)?)(?:\s*m)?\s*\+\s*(\d+(?:,\d+)?)(?:\s*\+\s*(\d+(?:,\d+)?))?/);if(m)return [m[1],m[2],m[3]].filter(Boolean).map(nm);var u=n.match(/(\d+(?:,\d+)?)\s*m\b(?!2| de alto| de ancho)/);return u?[nm(u[1])]:[]}
+ function longitudes(n){var m=n.match(/(\d+(?:,\d+)?)(?:\s*m)?\s*\+\s*(\d+(?:,\d+)?)(?:\s*\+\s*(\d+(?:,\d+)?))?/);if(m)return [m[1],m[2],m[3]].filter(Boolean).map(nm);var u=n.match(/(\d+(?:,\d+)?)\s*ml?\b(?!2| de alto| de ancho)/);return u?[nm(u[1])]:[]}
  function contexto(items){var c={paredes:{},alto:0};items.forEach(function(t){var n=sa(pulir(t));
   var a=n.match(/hasta (?:el )?techo,?\s*(?:de\s*)?(\d+(?:,\d+)?)\s*m/)||n.match(/altura (?:de )?(?:techo )?(?:de )?(\d+(?:,\d+)?)\s*m/)||n.match(/(\d+(?:,\d+)?)\s*m de alto/);if(a&&!c.alto){var v=nm(a[1]);if(v>=2&&v<=4)c.alto=v}
   if(/pared/.test(n)&&!/techo/.test(n)){var q=m2De(n),e=estanciaDe(n.replace(/.*pared\w*/,''));if(q&&e&&!c.paredes[e])c.paredes[e]=q}});return c}
@@ -240,8 +240,9 @@
    return [L('Traslado desde almacén y colocación en la vivienda '+(/^del\s/.test(que)?'':'de ')+que,vol||1,'m3',{cy:function(){return cyP('traslado_mobiliario')+cyP('transporte_mobiliario')},notaCy:'la vuelta del almacén la he contado con unos '+f1(vol)+' m³ de muebles'})]}],
   /* tabiques */
   [/^(derribo|derribar|demoler|demolicion|tirar|quitar)\b.*\btabiques?\b/,function(n,p,c){var lg=longitudes(n),col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];
-   var alto=(c&&c.alto)||0,suma=lg.reduce(function(a,b){return a+b},0),m2=suma&&alto?r2(suma*alto):0;
-   return [L('Demolición de tabique'+(/plano/.test(n)?' según plano':'')+(col?' (marcado en '+col+')':'')+(lg.length?', de '+lg.map(f2).join(' m + ')+' m de longitud'+(m2?' y '+f2(alto)+' m de altura ('+f2(m2)+' m²)':''):'')+', con retirada de escombro a vertedero autorizado',1,'ud',{tar:'tab',nota:m2?'el tabique a derribar mide '+f2(m2)+' m² ('+lg.map(f2).join(' + ')+' m de largo por '+f2(alto)+' m de alto); tu tarifa lo cobra por unidad':''})]}],
+   var alto=(c&&c.alto)||0,suma=lg.reduce(function(a,b){return a+b},0),m2=suma&&alto?r2(suma*alto):0,m2d=!m2&&lg.length?m2De(n):0;
+   var rep=(/arreglo de (?:las )?paredes|repaso de (?:las )?paredes|remate de (?:las )?paredes/.test(n)?', repaso de las paredes en los encuentros':'')+(/relleno (?:de|del) suelo|suelo con masa|recrecido (?:de|del) suelo/.test(n)?', relleno y nivelación del suelo con masa en la huella del tabique':'');
+   return [L('Demolición de tabique'+(/plano/.test(n)?' según plano':'')+(col?' (marcado en '+col+')':'')+(lg.length?', de '+lg.map(f2).join(' m + ')+' m de longitud'+(m2?' y '+f2(alto)+' m de altura ('+f2(m2)+' m²)':m2d?' ('+f2(m2d)+' m²)':''):'')+', con retirada de escombro a vertedero autorizado'+rep,1,'ud',{tar:'tab',nota:m2d?'el tabique a derribar mide '+f2(m2d)+' m² ('+lg.map(f2).join(' + ')+' m de largo); tu tarifa lo cobra por unidad':m2?'el tabique a derribar mide '+f2(m2)+' m² ('+lg.map(f2).join(' + ')+' m de largo por '+f2(alto)+' m de alto); tu tarifa lo cobra por unidad':''})]}],
   [/^(levantar|hacer|construir|ejecutar|formar|formacion|colocar|poner|cerrar con)\b.*\btabique\b/,function(n,p,c){var lg=(n.match(/tabique(?: nuevo)?(?: de)?\s*(\d+(?:,\d+)?)\s*m\b/)||[])[1];lg=lg?nm(lg):0;
    var col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];var alto=c.alto||0;var out=[];
    var d='Formación de tabique nuevo'+(lg?' de '+f2(lg)+' m de longitud':'')+(alto?' hasta techo ('+f2(alto)+' m de altura)':'')+(/plano|marcado/.test(n)?', según plano':'')+(col?' (marcado en '+col+')':'');
@@ -251,7 +252,7 @@
     out.push(L('Suministro y colocación de armazón para puerta corredera empotrada'+(/hasta (el )?techo/.test(n)?', hasta techo':'')+(an||al?', de '+(an?an+' m de ancho':'')+(an&&al?' y ':'')+(al?al+' m de alto':''):''),1,'ud',{tar:'cor',notaTar:/hasta (el )?techo/.test(n)?'el armazón de la corredera es hasta techo'+(al?' ('+al+' m de alto)':'')+' y el precio de tu tarifa es el del normal: revísalo':''}))}
    return out}],
   /* puertas y rodapies */
-  [/^(soltar|quitar|desmontar|retirar|levantar|arrancar)\b.*\bpuertas?\b.*\brodapies?\b/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];var ml=mlDe(n);
+  [/^(soltar|quitar|desmontar|retirar|levantar|arrancar)\b(?=.*\bpuertas?\b)(?=.*\brodapies?\b)/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];var ml=mlDe(n);
    return [L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio'+garbi(n),np?+np:0,'ud',{tar:'pue',falta:np?'':'cuántas puertas'}),
            L('Arranque de rodapiés existentes y transporte a punto limpio'+garbi(n),ml||0,'ml',{tar:'rod',falta:ml?'':'los metros de rodapié'})]}],
   [/^(soltar|quitar|desmontar|retirar|levantar)\b(?!.*\b(tabique|corredera)\b).*\bpuertas?\b/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];return [L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio'+garbi(n),np?+np:(/\bpuerta\b/.test(n)?1:0),'ud',{tar:'pue',falta:np||/\bpuerta\b/.test(n)?'':'cuántas puertas'})]}],
@@ -302,6 +303,7 @@
  /* cuántas: "3 puertas", "tres puertas", "la puerta" (una) */
  var NUMS={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12};
  function cuantas(n,nom){var m=n.match(new RegExp('\\b(\\d{1,3}|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\\s+(?:[a-z]+\\s+)?'+nom+'\\b'));if(m)return /^\d/.test(m[1])?+m[1]:NUMS[m[1]];
+  var mu=n.match(new RegExp('\\b'+nom+'\\b[^\\d.;]{0,40}?\\b(\\d{1,3})\\s*(?:uds?|unidades)\\b'));if(mu)return +mu[1];
   var sg=nom.replace(/s\?$/,'');if(new RegExp('\\b(la|el|una|un|esta|este)\\s+'+sg+'\\b').test(n)&&!new RegExp('\\b'+sg+'s\\b').test(n))return 1;return 0}
 
  /* lo que no encaja en ninguna regla: verbo del cliente -> nombre de partida, y sus medidas */
@@ -392,7 +394,10 @@
   try{if(window.guiaBarra)guiaBarra()}catch(e){}}
 
  /* ---------------- trabajos del cliente -> lineas del presupuesto con su precio (sin tocar la pantalla) ---------------- */
- function lineasDe(items){var ctx=contexto(items),xs=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){xs.push(x)})});var ext=implicitas(xs,items);xs=xs.concat(ext);
+ function lineasDe(items){var ctx=contexto(items),xs=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){xs.push(x)})});  /* quitar el rodapié sin metros, y en la misma lista se pone rodapié nuevo con sus ml: se quita lo mismo que se pone */
+  var mlNuevo=0;xs.forEach(function(x){if(x.u==='ml'&&x.q>0&&/^(suministro y )?colocaci[oó]n de rodapi/i.test(sa(x.d)))mlNuevo=x.q});
+  if(mlNuevo)xs.forEach(function(x){if(x.tar==='rod'&&!(x.q>0)){x.q=mlNuevo;x.falta='';x.nota='los metros de rodapié a quitar son los del rodapié nuevo ('+f2(mlNuevo)+' ml)'}});
+  var ext=implicitas(xs,items);xs=xs.concat(ext);
   var R={lineas:[],n:{tuyo:0,tarifa:0,cype:0,mercado:0,cero:0},notas:[],faltan:[],aj:[],ext:ext.map(function(x){return x.d})};
   xs.forEach(function(x){ponerPrecio(x);if(x.nota&&R.notas.indexOf(x.nota)<0)R.notas.push(x.nota);if(!(x.q>0)&&x.falta)R.faltan.push(x.falta);
    if(x.p>0)R.n[x.src]++;else R.n.cero++;if(x.r&&x.r!==1)R.aj.push(x.r);

@@ -149,11 +149,30 @@
  function esCab(l){var s=sa(l).replace(/\s*[\-–\/]\s*/g,' ').trim();return s.split(/\s+/).length<=5&&RE_CAB.test(s)}
  function listaSinVinetas(P){if(P.length<2)return false;var largos=P.filter(function(l){return l.length>130}).length;if(largos)return false;
   var ok=P.slice(1).filter(function(l){return /^[A-ZÁÉÍÓÚÑ0-9¿¡]/.test(l)||RE_VINI.test(sa(l))}).length;return ok/(P.length-1)>=0.7}
+ /* «REFORMA BERMEO»: el título de la lista, no un trabajo */
+ function esTitulo(t){var s=String(t).trim();return s.length<=40&&!/\d/.test(s)&&s===s.toUpperCase()&&s.split(/\s+/).length<=4&&/^(REFORMA|OBRA|PRESUPUESTO|PROYECTO|VIVIENDA|PISO|CASA|LOCAL|LONJA)\b/.test(sa(s).toUpperCase())}
+ var UM='(?:m2|m²|ml|uds?|unidades)';
+ var RE_SUMA=new RegExp('(?:\\d+(?:[.,]\\d+)?\\s*m[2²l]?\\d*\\s*\\+\\s*)+\\d+(?:[.,]\\d+)?\\s*m[2²l]?\\d*\\s*=\\s*(\\d+(?:[.,]\\d+)?\\s*'+UM+')','gi');
+ var RE_DOSMED=new RegExp('^(.*?\\S)\\s*(\\d+(?:[.,]\\d+)?\\s*'+UM+')\\s+y\\s+(.*\\d+(?:[.,]\\d+)?\\s*'+UM+'(?![a-z]).*)$','i');
+ var RE_SUP=/^(paredes|pared|suelos?|techos?|zocalos?|rodapies?)\b/;
+ /* lo que un profesional escribe junto: «20m2 + 16m2 = 36 m2» vale 36; «Paredes 37m2 y Suelos 8 m2» son dos partidas;
+    «rodapié 105ml y puertas 7 uds» también; una nota entre paréntesis sola no es un trabajo */
+ function repartir(items){var out=[];
+  items.forEach(function(t){t=t.replace(RE_SUMA,'$1');
+   if(/^\(.*\)$/.test(t.trim())&&out.length)return;
+   var m=t.match(RE_DOSMED);
+   if(m){var izq=m[1],m1=m[2],der=m[3];
+    var sup=sa(der).match(RE_SUP),w=izq.match(/[\s.,:]*(paredes|pared|suelos?|techos?|z[oó]calos?)\s*:?\s*$/i);
+    if(sup&&w){var base=izq.slice(0,w.index).replace(/[\s.,;:]+$/,'');out.push(base+'. '+w[1]+' '+m1);out.push(base+'. '+der);return}
+    var pre=izq.match(/^(.*\b(?:de|del))\s+\S/i);
+    if(pre&&!sup){out.push(izq+' '+m1);out.push(pre[1]+' '+der);return}}
+   out.push(t)});
+  return out}
  function trabajosDe(texto){
   var L=String(texto||'').split('\n').map(function(l){return l.replace(/\s+$/,'')}),fin=L.length;
   for(var i=0;i<L.length;i++){var s=L[i].trim();if(/^--\s*$/.test(s)||(s.length<80&&CIERRE.test(sa(s)))){fin=i;break}}
   var firma=L.slice(fin).map(function(l){return l.trim()}).filter(Boolean);L=L.slice(0,fin);
-  L=L.map(function(l){return medidaLimpia(l).replace(/^\s*(?:\d{1,2}|[a-hA-H])\s*[.)]\s+(?=\S)/,'• ').replace(/^\s*\d{1,2}\s*[\-–]\s+(?=[A-Za-zÁÉÍÓÚÑáéíóúñ])/,'• ').replace(/^\s*[*·•●▪◦‣\-–—]\s*(?=\S)/,'• ')});
+  L=L.map(function(l){return medidaLimpia(l).replace(/^\s*(?:\d{1,2}|[a-hA-H])\s*[.)]\s+(?=\S)/,'• ').replace(/^\s*\d{1,2}\s*[\-–]\s+(?=[A-Za-zÁÉÍÓÚÑáéíóúñ])/,'• ').replace(/^\s*[*·•●▪◦‣\-–—][\s.·]*(?=\S)/,'• ')});
   var pars=[],act=[];L.forEach(function(l){if(!l.trim()){if(act.length)pars.push(act);act=[]}else act.push(l.trim())});if(act.length)pars.push(act);
   var items=[],sala='',lista=false,prosa=false;
   function mete(t,sl){t=t.trim();if(!t)return;var m=t.match(RE_INL);if(m&&RE_CAB.test(sa(m[1]))){sl=m[1];t=m[2]}items.push(conSala(t,sl))}
@@ -169,7 +188,7 @@
    if(listaSinVinetas(P)){lista=true;P.forEach(function(l){if(esCab(l))sala=l;else mete(l,sala)});return}
    var t0=P.join(' ');var mi=t0.match(RE_INL);if(mi&&RE_CAB.test(sa(mi[1]))){sala=mi[1];t0=mi[2]}
    prosa=true;frases(t0).forEach(function(f){mete(f,sala)})});
-  items=items.map(function(t){return limpio(medidaLimpia(t.replace(/^[•\s]+/,'')))}).filter(esTrabajo);
+  items=repartir(items.map(function(t){return limpio(medidaLimpia(t.replace(/^[•.·\s]+/,'')))}).filter(function(t){return !esTitulo(t)})).filter(esTrabajo);
   var todo=sa(L.join(' '));
   return {items:items,lista:lista,prosa:prosa,firma:firma,cuerpo:L.join('\n').trim(),asc:/sin ascensor|no (tiene|hay) ascensor|no tienen ascensor|sin elevador/.test(todo)}}
 
