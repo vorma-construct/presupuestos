@@ -1,16 +1,16 @@
 {
- "generado": 1792584824130,
+ "generado": 1792619699443,
  "aparatos": [
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": true,
-   "ver": "v246",
+   "ver": "v247",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1792523900090,
-   "ultimoQue": "abre",
+   "ultimo": 1792604691825,
+   "ultimoQue": "pdf",
    "dias": {
     "2026-10-08": {
      "abre": 2,
@@ -50,28 +50,37 @@
     },
     "2026-10-20": {
      "abre": 1
+    },
+    "2026-10-21": {
+     "abre": 3,
+     "nuevo": 1,
+     "correo": 1,
+     "mandar": 2,
+     "mandado": 2,
+     "pdf": 1
     }
    },
    "total": {
-    "abre": 18,
-    "nuevo": 9,
+    "abre": 21,
+    "nuevo": 10,
     "dicta": 9,
-    "mandar": 15,
+    "mandar": 17,
     "voz": 1,
     "variante": 1,
-    "pdf": 1,
+    "pdf": 2,
     "agenda": 1,
-    "mandado": 2,
+    "mandado": 4,
     "repe": 1,
-    "partidas": 12
+    "partidas": 12,
+    "correo": 1
    },
-   "presupuestos": 17,
-   "mandados": 2,
+   "presupuestos": 19,
+   "mandados": 3,
    "estado": {
-    "partidas": 0,
+    "partidas": 14,
     "aCero": 0,
-    "total": 0,
-    "avisos": 2
+    "total": 34070,
+    "avisos": 0
    },
    "fallo": false,
    "falloTxt": "",
@@ -208,6 +217,46 @@
     {
      "t": 1792523900090,
      "q": "abre"
+    },
+    {
+     "t": 1792597102295,
+     "q": "abre"
+    },
+    {
+     "t": 1792597105642,
+     "q": "nuevo"
+    },
+    {
+     "t": 1792597116906,
+     "q": "correo"
+    },
+    {
+     "t": 1792602603591,
+     "q": "abre"
+    },
+    {
+     "t": 1792604509105,
+     "q": "mandar"
+    },
+    {
+     "t": 1792604512083,
+     "q": "mandado"
+    },
+    {
+     "t": 1792604555405,
+     "q": "abre"
+    },
+    {
+     "t": 1792604671682,
+     "q": "mandar"
+    },
+    {
+     "t": 1792604674582,
+     "q": "mandado"
+    },
+    {
+     "t": 1792604691825,
+     "q": "pdf"
     }
    ]
   },
