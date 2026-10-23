@@ -172,7 +172,7 @@
   var L=String(texto||'').split('\n').map(function(l){return l.replace(/\s+$/,'')}),fin=L.length;
   for(var i=0;i<L.length;i++){var s=L[i].trim();if(/^--\s*$/.test(s)||(s.length<80&&CIERRE.test(sa(s)))){fin=i;break}}
   var firma=L.slice(fin).map(function(l){return l.trim()}).filter(Boolean);L=L.slice(0,fin);
-  L=L.map(function(l){return medidaLimpia(l).replace(/^\s*(?:\d{1,2}|[a-hA-H])\s*[.)]\s+(?=\S)/,'• ').replace(/^\s*\d{1,2}\s*[\-–]\s+(?=[A-Za-zÁÉÍÓÚÑáéíóúñ])/,'• ').replace(/^\s*[*·•●▪◦‣\-–—][\s.·]*(?=\S)/,'• ')});
+  L=L.map(function(l){return medidaLimpia(l.replace(/^\s*\.\s+(?=[A-ZÁÉÍÓÚÑ])/,'• ')).replace(/^\s*(?:\d{1,2}|[a-hA-H])\s*[.)]\s+(?=\S)/,'• ').replace(/^\s*\d{1,2}\s*[\-–]\s+(?=[A-Za-zÁÉÍÓÚÑáéíóúñ])/,'• ').replace(/^\s*[*·•●▪◦‣\-–—][\s.·]*(?=\S)/,'• ')});
   var pars=[],act=[];L.forEach(function(l){if(!l.trim()){if(act.length)pars.push(act);act=[]}else act.push(l.trim())});if(act.length)pars.push(act);
   var items=[],sala='',lista=false,prosa=false;
   function mete(t,sl){t=t.trim();if(!t)return;var m=t.match(RE_INL);if(m&&RE_CAB.test(sa(m[1]))){sl=m[1];t=m[2]}items.push(conSala(t,sl))}
