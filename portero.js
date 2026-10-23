@@ -45,10 +45,38 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
    if(!(hh.suelo&&r.suelo==='no')&&!hay(/^(flo|sue|tar|par|vin)\b|suelo flotante|tarima|laminado/))falta.push('los suelos');
    if(!(hh.puertas&&!(num(r.puertas)>0))&&!hay(/^pub\b|puertas? batiente|puerta de paso/))falta.push('las puertas');
    if(!(hh.paredes&&r.paredes==='no')&&!hay(/^pip\b|paramentos verticales \(paredes\)/))falta.push('la pintura de las paredes');
-   var eur=m2>0?Math.round(tot/m2):0;
+   var eurM=m2>0?Math.round(tot/m2):0;
    var entera=r.cocina!==false&&num(r.banos)>0;/* sin cocina o sin baño es normal que salga barata: ahí solo se mira lo que falta */
-   if(falta.length||(entera&&eur>0&&eur<250))P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²'+(falta.length?'. Falta '+falta.join(', ').replace(/, ([^,]*)$/,' y $1')+'.':', muy poco para una casa entera: mira qué falta.')});
-   else if(eur>1200)P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²: mucho para una reforma. Mira si hay algo repetido.'})}}catch(_){}
+   if(falta.length||(entera&&eurM>0&&eurM<250))P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eurM+' €/m²'+(falta.length?'. Falta '+falta.join(', ').replace(/, ([^,]*)$/,' y $1')+'.':', muy poco para una casa entera: mira qué falta.')});
+   else if(eurM>1200)P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²: mucho para una reforma. Mira si hay algo repetido.'})}}catch(_){}
+ /* LO PEDIDO QUE NO ESTÁ: lo que el cliente pidió contado («7 puertas», «cinco ventanas», «(7 uds)») tiene que tener su línea con esa cantidad.
+    Si no, se le dice antes de que salga, con «Meterlas» (la partida de la tarifa con esa cantidad) o «No las cobro». */
+ try{var src=String((c.correo&&c.correo.texto)||c.dictado||((document.getElementById('dictado')||{}).value)||'');
+  if(src.length>8){var tx=nrm(src).replace(/\s+/g,' '),NUMS={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,trece:13,catorce:14,quince:15,veinte:20};
+   var COSAS=[{re:'puertas?(?: de paso| interiores?| nuevas?| batientes?)?',raiz:/\bpuerta/,nueva:'pub',quitar:'pue',nom:'puertas'},{re:'ventanas?',raiz:/\bventana/,nueva:'ven',quitar:'dven',nom:'ventanas'},{re:'radiadores?',raiz:/\bradiador/,nueva:'rad',nom:'radiadores'},{re:'persianas?',raiz:/\bpersiana/,nueva:'per',nom:'persianas'},{re:'(?:bases de )?enchufes?',raiz:/\benchufe/,nueva:'ench',nom:'enchufes'},{re:'puntos? de luz',raiz:/\bpunto de luz/,nueva:'pluz',nom:'puntos de luz'},{re:'luminarias?',raiz:/\bluminaria/,nueva:'lum',nom:'luminarias'}];
+   var ok0=c.okPedido||{};
+   COSAS.forEach(function(k){
+    /* «7 puertas», «siete puertas», «puertas … (7 uds)» */
+    var re=new RegExp('\\b(\\d+|'+Object.keys(NUMS).join('|')+')\\s+'+k.re+'\\b|\\b'+k.re+'\\b[^.;()]{0,40}\\(\\s*(\\d+)\\s*(?:uds?|unidades)\\s*\\)','g'),m;
+    while((m=re.exec(tx))){var n=m[1]?(NUMS[m[1]]||+m[1]):+m[2];if(!(n>0)||n>60)continue;
+     var antes=tx.slice(Math.max(0,m.index-60),m.index),quita=/\b(quitar|desmont\w*|retir\w*|levant\w*|sacar|arrancar)\b[^.;]*$/.test(antes)&&!/\b(poner|colocar|suministr\w*|instalar|nuev[oa]s?)\b[^.;]*$/.test(antes.split(/\b(?:quitar|desmont\w*|retir\w*)\b/).pop());
+     if(/\b(?:no|sin|ni)\s+$/.test(antes.slice(-12)))continue;
+     var despues=tx.slice(m.index+m[0].length,m.index+m[0].length+45);
+     /* «seis puertas, no, cinco», «o sea cinco», «menos la del baño»: vale la cuenta corregida, no esta */
+     if(/^[^.;]{0,30}\b(?:no|o sea|bueno|perdona|menos|mejor)\b/.test(despues))continue;
+     if(new RegExp('^\\s*(?:eh\\s+)?(?:\\d+|'+Object.keys(NUMS).join('|')+')\\b').test(despues))continue;/* «ocho puertas seis eh seis»: lo que sigue es la cuenta buena */
+     if(new RegExp('\\b'+k.re+'\\b[^.;]{0,20}\\b(?:al final no|tampoco|no van|no se cambian|no)\\b').test(tx.slice(m.index+m[0].length,m.index+m[0].length+80)))continue;/* «… y cinco puertas. Las puertas al final no» */
+     /* «premarcos para tres puertas», «armario de tres puertas»: no son puertas de paso */
+     if(k.nom==='puertas'&&(/\b(?:premarc\w*|armario\w*|mueble\w*|corredera\w*|vidrio\w*|cristal\w*)\b[^.;]{0,50}$/.test(antes)||/^[^.;]{0,30}\b(?:las pone|van a poner ellos|ponen ellos|lo pone el cliente)\b/.test(despues)))continue;
+     var key=k.nom+'|'+n+'|'+(quita?'q':'n');if(ok0[key])continue;
+     var suyas=L.concat((c.lineas||[]).filter(function(l){return l.imp})).filter(function(l){var d=nrm(l.d||'');if(!k.raiz.test(d))return false;var qd=/\b(quitar|desmontaje|levantado|retirada de|derribo)\b/.test(d.slice(0,40));return !(quita!==qd&&k.quitar)});
+     /* pendiente de contestar (la cantidad la pregunta la app): ya saldrá */
+     if((c.lineas||[]).some(function(l){return k.raiz.test(nrm(l.d||''))&&(l.qPend||!(num(l.q)>0))}))continue;
+     var palabra=Object.keys(NUMS).filter(function(w){return NUMS[w]===n})[0]||'';
+     var tiene=suyas.reduce(function(a,l){return a+num(l.q)},0)>=n-0.01||suyas.some(function(l){var d=nrm(l.d||'');return new RegExp('\\b(?:'+n+(palabra?'|'+palabra:'')+')\\s+'+k.re).test(d)});
+     if(tiene)continue;
+     var idT=quita?k.quitar:k.nueva,tt=null;try{tt=idT?tarifa().find(function(x){return x.id===idT})||null:null}catch(_){}
+     P.push({tipo:'pedido',lineas:[],clave:key,meter:tt?{id:idT,q:n}:null,txt:'Lo que se pidió lleva '+n+' '+(quita?k.nom+' para quitar':k.nom)+' y en el presupuesto no está'+(tt?'.':': ponlo a mano.')})}})}}catch(_){}
  return P}
 window.porteroProblemas=problemas;
 
@@ -62,12 +90,13 @@ function mostrar(P,seguir){var vie=document.getElementById('porteroBox');if(vie)
   +'<div style="color:#555;font-size:13px;margin-bottom:10px">El cliente todavía no lo ha visto.</div>';
  P.forEach(function(p,i){h+='<div style="border-left:5px solid #B3261E;background:#FBE3E0;border-radius:8px;padding:10px 12px;margin:8px 0">'+p.txt
   +'<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">'
-  +(p.tipo==='total'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Mirar el presupuesto</button>':p.tipo==='medidas'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Poner medidas</button>':'<button type="button" data-i="'+i+'" data-a="quitar" class="mini">Quitar la línea</button>')
-  +'<button type="button" data-i="'+i+'" data-a="ok" class="mini sec">Está bien así</button></div></div>'});
+  +(p.tipo==='pedido'?(p.meter?'<button type="button" data-i="'+i+'" data-a="meter" class="mini">Meterlas</button>':''):p.tipo==='total'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Mirar el presupuesto</button>':p.tipo==='medidas'?'<button type="button" data-i="'+i+'" data-a="ver" class="mini">Poner medidas</button>':'<button type="button" data-i="'+i+'" data-a="quitar" class="mini">Quitar la línea</button>')
+  +'<button type="button" data-i="'+i+'" data-a="ok" class="mini sec">'+(p.tipo==='pedido'?'No las cobro':'Está bien así')+'</button></div></div>'});
  h+='</div>';d.innerHTML=h;document.body.appendChild(d);
  d.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b){if(ev.target===d)d.remove();return}try{leer()}catch(_){}P=problemas(cur);/* leer() rehace las líneas: se buscan otra vez */var p=P[+b.getAttribute('data-i')],a=b.getAttribute('data-a');if(!p){d.remove();if(seguir)seguir();return}
   if(a==='quitar'){cur.lineas=cur.lineas.filter(function(l){return p.lineas.indexOf(l)<0})}
   else if(a==='ok'){p.lineas.forEach(function(l){l.okPortero=1});if(p.tipo==='total')cur.okTotal=1}
+  if(p.tipo==='pedido'){if(a==='ok'){cur.okPedido=cur.okPedido||{};cur.okPedido[p.clave]=1}else if(a==='meter'&&p.meter){var tz=tarifa().find(function(x){return x.id===p.meter.id});if(tz)cur.lineas.push({d:tz.d,q:p.meter.q,u:tz.u,p:tz.p,tid:p.meter.id})}}
   else if(a==='ver'){d.remove();try{renderLineas()}catch(_){}var e=document.getElementById('revBox')||document.getElementById('lineas');if(e)e.scrollIntoView({behavior:'smooth',block:'center'});return}
   try{renderLineas()}catch(_){}try{autoGuardar()}catch(_){}
   var R=problemas(cur);if(R.length){P=R;mostrar(R,seguir)}else{d.remove();if(seguir)seguir()}})}
