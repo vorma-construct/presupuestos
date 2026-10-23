@@ -45,10 +45,10 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
    if(!(hh.suelo&&r.suelo==='no')&&!hay(/^(flo|sue|tar|par|vin)\b|suelo flotante|tarima|laminado/))falta.push('los suelos');
    if(!(hh.puertas&&!(num(r.puertas)>0))&&!hay(/^pub\b|puertas? batiente|puerta de paso/))falta.push('las puertas');
    if(!(hh.paredes&&r.paredes==='no')&&!hay(/^pip\b|paramentos verticales \(paredes\)/))falta.push('la pintura de las paredes');
-   var eur=m2>0?Math.round(tot/m2):0;
+   var eurM2=m2>0?Math.round(tot/m2):0;/* ojo: no llamarla «eur», que taparía la función eur() en todo problemas() */
    var entera=r.cocina!==false&&num(r.banos)>0;/* sin cocina o sin baño es normal que salga barata: ahí solo se mira lo que falta */
-   if(falta.length||(entera&&eur>0&&eur<250))P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²'+(falta.length?'. Falta '+falta.join(', ').replace(/, ([^,]*)$/,' y $1')+'.':', muy poco para una casa entera: mira qué falta.')});
-   else if(eur>1200)P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eur+' €/m²: mucho para una reforma. Mira si hay algo repetido.'})}}catch(_){}
+   if(falta.length||(entera&&eurM2>0&&eurM2<250))P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eurM2+' €/m²'+(falta.length?'. Falta '+falta.join(', ').replace(/, ([^,]*)$/,' y $1')+'.':', muy poco para una casa entera: mira qué falta.')});
+   else if(eurM2>1200)P.push({tipo:'total',lineas:[],txt:'Es una obra de casa entera de '+String(m2).replace('.',',')+' m² y sale a '+eurM2+' €/m²: mucho para una reforma. Mira si hay algo repetido.'})}}catch(_){}
  return P}
 window.porteroProblemas=problemas;
 
