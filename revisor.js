@@ -37,7 +37,7 @@ function preparar(c){if(!c||!c.lineas||!c.lineas.length)return null;var pedido=l
 function huella(d){return hs(JSON.stringify([d.pedido,d.lineas.map(function(l){return [l.d,l.q,l.u,l.p]})]))}
 
 function clave(a){return a.tipo+'|'+nrm(a.trabajo).replace(/[^a-z0-9]+/g,' ').trim()}
-function pendientes(avisos){var ok=(cur.revIAok||[]);return (avisos||[]).filter(function(a){return ok.indexOf(clave(a))<0})}
+function pendientes(avisos){var ok=(cur.revIAok||[]),yaP=(cur.okPedidoT||[]);return (avisos||[]).filter(function(a){return ok.indexOf(clave(a))<0&&!(a&&a.id_tarifa&&yaP.indexOf(a.id_tarifa)>=0)})}
 function hecho(a){cur.revIAok=(cur.revIAok||[]).concat([clave(a)]).slice(-60)}
 
 function preguntar(datos){

@@ -76,7 +76,7 @@ function problemas(c){var P=[];if(!c||!c.lineas)return P;var L=c.lineas.filter(f
      var tiene=suyas.reduce(function(a,l){return a+num(l.q)},0)>=n-0.01||suyas.some(function(l){var d=nrm(l.d||'');return new RegExp('\\b(?:'+n+(palabra?'|'+palabra:'')+')\\s+'+k.re).test(d)});
      if(tiene)continue;
      var idT=quita?k.quitar:k.nueva,tt=null;try{tt=idT?tarifa().find(function(x){return x.id===idT})||null:null}catch(_){}
-     P.push({tipo:'pedido',lineas:[],clave:key,meter:tt?{id:idT,q:n}:null,txt:'Lo que se pidió lleva '+n+' '+(quita?k.nom+' para quitar':k.nom)+' y en el presupuesto no está'+(tt?'.':': ponlo a mano.')})}})}}catch(_){}
+     P.push({tipo:'pedido',lineas:[],clave:key,ids:[k.nueva,k.quitar].filter(Boolean),meter:tt?{id:idT,q:n}:null,txt:'Lo que se pidió lleva '+n+' '+(quita?k.nom+' para quitar':k.nom)+' y en el presupuesto no está'+(tt?'.':': ponlo a mano.')})}})}}catch(_){}
  return P}
 window.porteroProblemas=problemas;
 
@@ -96,7 +96,7 @@ function mostrar(P,seguir){var vie=document.getElementById('porteroBox');if(vie)
  d.addEventListener('click',function(ev){var b=ev.target.closest&&ev.target.closest('button');if(!b){if(ev.target===d)d.remove();return}try{leer()}catch(_){}P=problemas(cur);/* leer() rehace las líneas: se buscan otra vez */var p=P[+b.getAttribute('data-i')],a=b.getAttribute('data-a');if(!p){d.remove();if(seguir)seguir();return}
   if(a==='quitar'){cur.lineas=cur.lineas.filter(function(l){return p.lineas.indexOf(l)<0})}
   else if(a==='ok'){p.lineas.forEach(function(l){l.okPortero=1});if(p.tipo==='total')cur.okTotal=1}
-  if(p.tipo==='pedido'){if(a==='ok'){cur.okPedido=cur.okPedido||{};cur.okPedido[p.clave]=1}else if(a==='meter'&&p.meter){var tz=tarifa().find(function(x){return x.id===p.meter.id});if(tz)cur.lineas.push({d:tz.d,q:p.meter.q,u:tz.u,p:tz.p,tid:p.meter.id})}}
+  if(p.tipo==='pedido'){if(a==='ok'){cur.okPedido=cur.okPedido||{};cur.okPedido[p.clave]=1;cur.okPedidoT=(cur.okPedidoT||[]).concat(p.ids||[])}else if(a==='meter'&&p.meter){var tz=tarifa().find(function(x){return x.id===p.meter.id});if(tz)cur.lineas.push({d:tz.d,q:p.meter.q,u:tz.u,p:tz.p,tid:p.meter.id})}}
   else if(a==='ver'){d.remove();try{renderLineas()}catch(_){}var e=document.getElementById('revBox')||document.getElementById('lineas');if(e)e.scrollIntoView({behavior:'smooth',block:'center'});return}
   try{renderLineas()}catch(_){}try{autoGuardar()}catch(_){}
   var R=problemas(cur);if(R.length){P=R;mostrar(R,seguir)}else{d.remove();if(seguir)seguir()}})}
