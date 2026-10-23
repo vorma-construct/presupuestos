@@ -1,0 +1,132 @@
+[
+ {
+  "nombre": "Correo de César (lucas), «REFORMA BERMEO», 21/10/2026",
+  "empresa": "lucas",
+  "texto": "REFORMA BERMEO\n· . Derribo de tabique en el pasillo y posterior arreglo de las paredes ,relleno de suelo con masa donde iban los tabiques …….10ml ( 26,20 m2)\n· . Quitar todos los rodapiés y puertas (9 puertas) existentes en la vivienda.retirada a garbigune\n· . Desmontaje y retirada de los sanitarios de los 2 baños (bañera1 ,lavabo2 ,inodoro1).retirada a Garbigune\n· . Picado manualmente de azulejos y baldosas en suelo y paredes incluso el material de agarre hasta llegar al ladrillo de obra y el suelo hasta placa de hormigón. En los 2 baños. 20m2 +16m7=36 m2 aprox\n· . Raseo, maestrado en las paredes del baño y nivelación con mortero y en el suelo después de acabar los trabajos de fontaneria .36m2\n· . Colocación de azulejos y baldosas en paredes y suelo del baño suministro incluido y rejunteo .Paredes 37m2 y Suelos 8 m2\n(suministro de baldosa y azulejo en leroy / obramat…)\n· . Bajar el techo con perfileria metálica ,aislado con lana de roca , placa de pladur en toda la casa (placa hidrófuga en los baños) y preparado para pintar 110m2 salvo en la cocina.\n· . Lucir resto de paredes de la vivienda ( quitando gotele)245m2 aprox\n· . Pintado de todas las paredes de la vivienda.245m2 +- (salvo cocina)\n· . Pintado de techos de la vivienda.110m2 aprox.\n· . Suministro y colocación de suelo vinílico en resto de la casa …..100m2 / salvo cocina.\n· . Suministro y colocación de rodapié 105ml y puertas de paso blancas (7 uds) de Leroy merlin/ obramat. suministro y colocacion\n. Tapado de rozas de electricistas.\n. Proteger escalera comunitaria.",
+  "items": null,
+  "deben": [
+   {
+    "d": "^Demolición de tabique",
+    "q": 1,
+    "u": "ud"
+   },
+   {
+    "d": "^Desmontaje de puertas",
+    "q": 9,
+    "u": "ud"
+   },
+   {
+    "d": "^Arranque de rodapi",
+    "q": 105,
+    "u": "ml"
+   },
+   {
+    "d": "^Desmontaje de sanitarios",
+    "q": 2,
+    "u": "ud"
+   },
+   {
+    "d": "^Picado",
+    "q": 36,
+    "u": "m2"
+   },
+   {
+    "d": "azulejos.*paredes",
+    "q": 37,
+    "u": "m2"
+   },
+   {
+    "d": "azulejos.*suelo",
+    "q": 8,
+    "u": "m2"
+   },
+   {
+    "d": "^Falso techo de placa de pladur",
+    "q": 110,
+    "u": "m2"
+   },
+   {
+    "d": "^Lucido de yeso",
+    "q": 245,
+    "u": "m2"
+   },
+   {
+    "d": "^Pintura plástica en paredes",
+    "q": 245,
+    "u": "m2"
+   },
+   {
+    "d": "^Pintura plástica en techos",
+    "q": 110,
+    "u": "m2"
+   },
+   {
+    "d": "vinílico",
+    "q": 100,
+    "u": "m2"
+   },
+   {
+    "d": "^Suministro y colocación de rodapié",
+    "q": 105,
+    "u": "ml"
+   },
+   {
+    "d": "^Suministro y colocación de puerta de paso",
+    "q": 7,
+    "u": "ud"
+   },
+   {
+    "d": "rozas",
+    "q": 1,
+    "u": "ud"
+   },
+   {
+    "d": "^Protección de la escalera",
+    "q": 1,
+    "u": "ud"
+   }
+  ],
+  "no": [
+   "(?i)^reforma bermeo"
+  ],
+  "sin_precio_max": 0
+ },
+ {
+  "nombre": "Lista numerada con título y estancias en mayúsculas",
+  "empresa": "lucas",
+  "texto": "OBRA CALLE AUTONOMIA\n\nBAÑO\n1. Quitar sanitarios\n2. Alicatar paredes 25 m2\n3. PINTAR TODA LA CASA 200 m2\nCOCINA\n1. Quitar muebles de cocina\n2. Lucir paredes 30 m2\n3. Rodapié nuevo 40 ml\n4. Quitar el rodapié",
+  "items": 7,
+  "deben": [
+   {
+    "d": "^Desmontaje de sanitarios del baño",
+    "q": 1,
+    "u": "ud"
+   },
+   {
+    "d": "^Alicatado de paredes",
+    "q": 25,
+    "u": "m2"
+   },
+   {
+    "d": "^Pintura plástica en paredes",
+    "q": 200,
+    "u": "m2"
+   },
+   {
+    "d": "mobiliario de cocina",
+    "q": 1,
+    "u": "ud"
+   },
+   {
+    "d": "^Lucido de yeso en paredes",
+    "q": 30,
+    "u": "m2"
+   }
+  ],
+  "no": [
+   "(?i)autonomia",
+   "(?i)^baño$"
+  ],
+  "sin_precio_max": 1
+ }
+]
