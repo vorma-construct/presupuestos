@@ -225,7 +225,9 @@
  },
  {
   "t": "electricidad nueva en la cocina solamente",
-  "debe": [],
+  "debe": [
+   "elk"
+  ],
   "no_debe": [
    "ele"
   ],
@@ -234,11 +236,9 @@
   "lugares": {},
   "sin_lugar": [],
   "sin_medida": [],
-  "justificacion": "Luz de una sola estancia o el cuadro: no es la instalación eléctrica de todo el piso (3.800 €); sale tal cual, con 1 y sin precio.",
+  "justificacion": "La luz de la cocina sola no es la instalación eléctrica de todo el piso (3.800 €): va con su partida de cocina (elk), a precio de mercado (v250).",
   "fuera": [],
-  "debe_texto": {
-   "Electricidad en la cocina solamente": 1
-  }
+  "debe_texto": {}
  },
  {
   "t": "ayudas de albañilería a la fontanería y a la electricidad",

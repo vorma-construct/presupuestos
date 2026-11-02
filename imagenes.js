@@ -36,7 +36,29 @@
   LECTOR.catch(function(){LECTOR=null});return LECTOR}
  function soltarLector(){clearTimeout(lectorT);lectorT=setTimeout(function(){var L=LECTOR;LECTOR=null;if(L)L.then(function(w){return w.terminate()}).catch(function(){})},300000)}
  window.__preparaLector=function(){try{clearTimeout(lectorT);lector().then(soltarLector).catch(function(){})}catch(e){}};
- function leerImagenes(files,info){
+ /* v250 · LA FOTO DE UN PAPEL (César, 2-nov: le dan papeles, a veces a mano). Primero se le pasa la foto al servidor,
+    que la lee con IA y devuelve SOLO el texto, tal cual está escrito; si no contesta (sin cobertura, apagado, tarda),
+    se lee aquí con el lector de siempre. Con ese texto se hace todo lo demás igual que con una captura. */
+ var URL_FOTO='https://azkar-presupuestos-production.up.railway.app/api/leer-foto';
+ function reducir(file){return new Promise(function(ok,ko){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){
+   var e=Math.min(1,1600/Math.max(im.width,im.height,1)),w=Math.round(im.width*e),h=Math.round(im.height*e);
+   var cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(im,0,0,w,h);
+   ok({mime:'image/jpeg',b64:cv.toDataURL('image/jpeg',0.82).split(',')[1]})};im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
+ function leerConIA(files,info){
+  if(window.LEER_FOTO===false||!window.fetch)return Promise.reject(new Error('apagado'));
+  var lista=[].slice.call(files,0,4),pc=8,iv=null;
+  LEE={tipo:'foto',n:lista.length,i:1,info:info};
+  var txt=lista.length>1?'Leyendo las '+lista.length+' fotos…':'Leyendo la foto…';
+  pinta(txt,pc);iv=setInterval(function(){pc=Math.min(92,pc+(92-pc)*0.12);pinta(txt,Math.round(pc))},700);
+  var ac=window.AbortController?new AbortController():null,t=setTimeout(function(){try{ac&&ac.abort()}catch(e){}},30000);
+  function fin(){clearInterval(iv);clearTimeout(t);LEE=null}
+  return Promise.all(lista.map(reducir)).then(function(fotos){
+   return fetch(window.LEER_FOTO_URL||URL_FOTO,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({fotos:fotos}),signal:ac?ac.signal:undefined,credentials:'omit',cache:'no-store'})
+  }).then(function(r){return r.json()}).then(function(j){fin();if(!j||!j.ok||!String(j.texto||'').trim())throw new Error('sin texto');
+   if(lista.length<files.length)return leerImagenes([].slice.call(files,4),info,true).then(function(m){return [j.texto].concat(m)});
+   return [j.texto]},function(e){fin();throw e})}
+ function leerImagenes(files,info,soloLector){
+  if(!soloLector)return leerConIA(files,info).catch(function(){return leerImagenes(files,info,true)});
   clearTimeout(lectorT);LEE={tipo:'captura',n:files.length,i:1,info:info};pinta('Preparando el lector de capturas…',5);
   return lector().then(function(w){
    var textos=[],cadena=Promise.resolve();
@@ -81,6 +103,9 @@
   for(var i=0;i<lineas.length;i++){var raw=lineas[i],l=raw.replace(/\s+/g,' ').trim();if(!l)continue;
    if(fin){firma.push(l);continue}
    if(FIN.test(l)){fin=true;continue}
+   /* v250 · la cabecera escrita del papel («Reforma piso Basauri - Sra. Maite», «Obra de Juan»), delante de una lista
+      numerada: no es un trabajo. Si dice a quién es, ese es el cliente. */
+   if(!items.length&&!act&&esCabecera(l,lineas.slice(i+1))){var cn=l.match(/\b(?:Sra?\.?|D\.|Dña\.?|Don|Doña)\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){0,2})/)||l.match(/^(?:obra|reforma|presupuesto)\s+(?:de|para)\s+(?:la\s+|el\s+)?([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){0,2})\s*$/i);if(cn)firma.push('@@cliente:'+cn[1]);continue}
    /* firma: un nombre de persona con un telefono o correo justo debajo */
    if(/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){1,3}$/.test(l)&&/\d{3}\s?\d{3}\s?\d{3}|@/.test((lineas[i+1]||'')+' '+(lineas[i+2]||''))){fin=true;firma.push(l);continue}
    /* un título o el nombre de una estancia en su línea («REFORMA BERMEO», «BAÑO») cierra el trabajo de antes y no es un trabajo */
@@ -99,6 +124,10 @@
  /* el título de la hoja o del correo («REFORMA BERMEO», «OBRA CALLE AUTONOMÍA»): todo en mayúsculas, corto, sin cifras,
     sin verbo de trabajo y sin nada concreto que hacer. No es una partida (el correo lo quita en buzon.js; esto, para las capturas). */
  var RE_VTIT=/^(quitar|retirar|poner|colocar|cambiar|sustituir|pintar|alicatar|solar|embaldosar|picar|tirar|derribar|demoler|levantar|hacer|montar|desmontar|instalar|arreglar|reparar|lucir|enlucir|tapar|proteger|vaciar|limpiar|lijar|barnizar|empapelar|abrir|cerrar|forrar|aislar|impermeabilizar|sanear|nivelar|alisar|rozar|mover|trasladar|ampliar|renovar|reformar|soltar|cambio|colocacion|sustitucion|pintura|pintado|instalacion|reparacion|retirada|demolicion|derribo|montaje|desmontaje|alicatado|solado|lucido|picado|suministro|arreglo|proteccion|limpieza|vaciado|traslado|empapelado)\b/;
+ function esCabecera(l,resto){var n=sa(l);if(medidas(l)||/\d+\s*(?:m2|ml|uds?)\b/i.test(l))return false;
+  if(!/^(reforma|obra|presupuesto|trabajos|lista|cliente)\b/.test(n)&&!/\b(sra?\.|dña\.?|don|doña)\s+[a-z]/.test(n))return false;
+  if(/^(reforma|obra)\s+(de\s+|del\s+)?(bano|cocina|salon|habitacion)/.test(n)&&!/\b(sra?\.|dña|don|doña)\b/.test(n))return false;
+  var num=resto.filter(function(x){return /^\s*\d{1,2}\s*[.)-]\s+\S/.test(x)||/^\s*[•·\-–*]\s+\S/.test(x)}).length;return num>=2}
  function esTitulo(t){t=String(t||'').replace(/^[\s•·.\-–—*]+/,'').trim();if(!t||/[a-zß-ÿ]/.test(t)||!/[A-ZÁÉÍÓÚÑ]{2}/.test(t)||/\d/.test(t))return false;
   if(t.split(/\s+/).length>6)return false;var n=sa(t);return !RE_VTIT.test(n)&&familia(n)==='otro'&&objeto(n)==='otro'}
  function medidas(t){var n=0,re=/(^|[^A-Za-zÀ-ÿ\d])(\d+(?:,\d+)?)\s*(?:m2|m²|ml|m|ud|uds|rollos?)\b/gi,m;while((m=re.exec(String(t))))if(nm(m[2])>0)n++;return n}
@@ -112,6 +141,7 @@
 
  /* nombre, empresa, telefono y correo de la firma */
  function clienteDe(ls){var c={};ls.forEach(function(l,i){
+   if(/^@@cliente:/.test(l)){if(!c.nombre)c.nombre=l.slice(10).trim();return}
    var tel=l.match(/(?:\+?34)?\s*\b([6-7]\d{2})[\s.\-]?(\d{3})[\s.\-]?(\d{3})\b/);if(tel&&!c.tel)c.tel=tel[1]+' '+tel[2]+' '+tel[3];
    var fijo=l.match(/(?:\+?34)?\s*\b(9\d{2})[\s.\-]?(\d{2,3})[\s.\-]?(\d{2,3})[\s.\-]?(\d{0,3})\b/);if(fijo&&!c.fijo)c.fijo=(fijo[1]+fijo[2]+fijo[3]+fijo[4]).replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3');
    var em=l.match(/[\w.+-]+@[\w-]+\.[\w.]+/);if(em&&!c.email)c.email=em[0].toLowerCase();
@@ -286,6 +316,9 @@
    if(!q&&e&&c.paredes[e]){q=c.paredes[e];nota='el picado de azulejos lo he medido con los '+fm(q)+' m² de paredes de '+pulir(e)+' que da el mismo correo'}
    return [L('Picado de alicatado en paredes'+(e?' '+de(pulir(e)):'')+', con retirada de escombro a vertedero autorizado',q||0,'m2',{tar:'ali',falta:q?'':'los m² de azulejo',nota:nota})]}],
   /* rozas */
+  /* v250 · la electricidad de la cocina sola no es la de todo el piso (3.800 €): tiene su partida */
+  [/^(?:(?:hacer|poner|nueva|renovar|cambiar)\s+(?:la\s+)?)?(?:instalacion electrica|electricidad)\s+(?:nueva\s+)?(?:de|en)\s+(?:la\s+)?cocina\b(?!.*\b(?:toda|todo|piso|casa|vivienda)\b)/,function(n,p){return [L('Instalación eléctrica de la cocina: circuitos de cocina y horno, enchufes y puntos de luz, con su línea hasta el cuadro',1,'ud',{tar:'elk'})]}],
+  [/^(?:suministro y colocacion de\s+)?mamparas?\b/,function(n,p){var z=(n.match(/\b(?:en|del|de la)\s+(?:el\s+)?(bano\w*|aseo)/)||[])[1];return [L('Suministro y colocación de mampara de ducha'+(z?' en el '+(/aseo/.test(z)?'aseo':'baño'):''),1,'ud',{tar:'mam'})]}],
   [/\b(tapar|tapado|cerrar|rellenar)\b.*\brozas?\b/,function(n,p){var el=/electric|luz/.test(n),fo=/fontaner|agua|tuber/.test(n);
    return [L('Tapado con yeso de las rozas de la instalación'+(el?' eléctrica':fo?' de fontanería':'')+' y remates de albañilería',1,'ud',{tar:el?'aye':fo?'ayf':''})]}],
   /* yeso */
@@ -338,7 +371,10 @@
  var OBJ_PARTE='rodapi\\w*|puertas?|ventanas?|persianas?|radiador\\w*|armarios?|mamparas?|inodoros?|lavabos?|platos? de ducha|banera|termo|encimera';
  var RE_PARTE2=new RegExp('^((?:suministro y colocacion|suministro e instalacion|colocacion|instalacion|sustitucion|cambio|montaje)\\s+de\\s+(?:(?:el|la|los|las)\\s+)?|(?:poner|colocar|instalar|cambiar|sustituir|montar)\\s+(?:(?:el|la|los|las)\\s+)?)(.+?)\\s+(?:y|e)\\s+((?:(?:el|la|los|las|un|una|unos|unas|\\d+)\\s+)?('+OBJ_PARTE+')\\b.*)$');
  function raizObj(w){return sa(w).replace(/^(rodapi|puert|ventan|persian|radiador|armari|mampar|inodor|lavab|plato|baner|termo|encimer).*/,'$1')}
- function partirObjetos(p,n){var m=n.match(RE_PARTE2);if(!m)return null;
+ function partirObjetos(p,n){var m=n.match(RE_PARTE2);
+  /* v250 · «Plato de ducha y mampara en el baño», sin verbo delante: también son dos */
+  if(!m&&new RegExp('^(?:'+OBJ_PARTE+')\\b').test(n)&&!/^suministro y colocacion de /.test(n))return partirObjetos('Suministro y colocación de '+minus(p),'suministro y colocacion de '+n);
+  if(!m)return null;
   var izq=m[2].match(new RegExp('\\b('+OBJ_PARTE+')\\b'));if(!izq||raizObj(izq[1])===raizObj(m[4]))return null;
   var a=m[1].length,b=a+m[2].length,c=n.length-m[3].length;return [p.slice(0,b),p.slice(0,a)+p.slice(c)]}
  /* «…en paredes y suelo del baño… Paredes 37m2 y Suelos 8 m2»: una partida por superficie, cada una con sus m² */
@@ -535,5 +571,16 @@
  function ajustar(){var f=document.getElementById('pdfArq');if(f&&!/image/.test(f.getAttribute('accept')||''))f.setAttribute('accept','application/pdf,image/*');
   var c=document.getElementById('cardPdf');if(c&&!c.__img){c.__img=1;var h=c.querySelector('h2');if(h)h.textContent='Capturas, fotos, plano o PDF';
    var p=c.querySelector('p');if(p)p.innerHTML='<b>1.</b> Elige las capturas del correo o del WhatsApp con la lista de trabajos (varias a la vez). Saco el cliente de la firma, escribo cada trabajo como una partida y le pongo tu precio.<br><b>2.</b> Si tienes el plano, mételo también aquí, antes o después: saco de él dónde es la obra.<br>Vale también el PDF del arquitecto con las mediciones.'}}
- var k=0,iv=setInterval(function(){if(document.getElementById('pdfArq')){clearInterval(iv);ajustar()}else if(++k>80)clearInterval(iv)},150);
+ /* v250 · «📷 Sacar una foto a un papel»: abre la cámara del móvil directamente (en el ordenador, el selector de
+    archivos) y la foto entra por el mismo camino que las capturas. Se pueden sacar varias seguidas: cada una se suma. */
+ window.sacarFotoPapel=function(){
+  try{if(typeof meterPor==='function')meterPor('pdf')}catch(e){}
+  var f=document.getElementById('fotoPapel');
+  if(!f){f=document.createElement('input');f.type='file';f.id='fotoPapel';f.accept='image/*';f.setAttribute('capture','environment');f.style.display='none';
+   f.onchange=function(){var fs=[].slice.call(f.files||[]);f.value='';if(fs.length)window.leerArquitecto(fs)};document.body.appendChild(f)}
+  f.click()};
+ function botonFoto(){var c=document.getElementById('cardPdf');if(!c||document.getElementById('btnFotoPapel'))return;var row=c.querySelector('.row');if(!row)return;
+  var b=document.createElement('button');b.id='btnFotoPapel';b.type='button';b.className='ok';b.style.cssText='width:100%;padding:14px;margin:0 0 10px';b.textContent='📷 Sacar una foto a un papel';b.onclick=window.sacarFotoPapel;
+  row.parentNode.insertBefore(b,row)}
+ var k=0,iv=setInterval(function(){if(document.getElementById('pdfArq')){clearInterval(iv);ajustar();botonFoto()}else if(++k>80)clearInterval(iv)},150);
 })();
