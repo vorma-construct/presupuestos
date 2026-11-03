@@ -1,15 +1,15 @@
 {
- "generado": 1793668194500,
+ "generado": 1793716439757,
  "aparatos": [
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": true,
-   "ver": "v249",
+   "ver": "v250",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1793606604913,
+   "ultimo": 1793708488336,
    "ultimoQue": "abre",
    "dias": {
     "2026-10-08": {
@@ -65,10 +65,13 @@
     },
     "2026-11-02": {
      "abre": 1
+    },
+    "2026-11-03": {
+     "abre": 1
     }
    },
    "total": {
-    "abre": 24,
+    "abre": 25,
     "nuevo": 10,
     "dicta": 9,
     "mandar": 17,
@@ -292,6 +295,10 @@
     },
     {
      "t": 1793606604913,
+     "q": "abre"
+    },
+    {
+     "t": 1793708488336,
      "q": "abre"
     }
    ]
