@@ -1,16 +1,16 @@
 {
- "generado": 1794058014168,
+ "generado": 1794089582647,
  "aparatos": [
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": true,
-   "ver": "v250",
+   "ver": "v251",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1793708488336,
-   "ultimoQue": "abre",
+   "ultimo": 1794071578788,
+   "ultimoQue": "pdfArquitecto",
    "dias": {
     "2026-10-08": {
      "abre": 2,
@@ -68,39 +68,44 @@
     },
     "2026-11-03": {
      "abre": 1
+    },
+    "2026-11-07": {
+     "abre": 2,
+     "nuevo": 2,
+     "agenda": 1,
+     "pdfArquitecto": 4,
+     "plano": 2
     }
    },
    "total": {
-    "abre": 25,
-    "nuevo": 10,
+    "abre": 27,
+    "nuevo": 12,
     "dicta": 9,
     "mandar": 17,
     "voz": 1,
     "variante": 1,
     "pdf": 2,
-    "agenda": 1,
+    "agenda": 2,
     "mandado": 4,
     "repe": 1,
     "partidas": 12,
     "correo": 1,
-    "borra": 4
+    "borra": 4,
+    "pdfArquitecto": 4,
+    "plano": 2
    },
-   "presupuestos": 15,
+   "presupuestos": 17,
    "mandados": 1,
    "estado": {
     "partidas": 0,
     "aCero": 0,
     "total": 0,
-    "avisos": 2
+    "avisos": 1
    },
    "fallo": false,
    "falloTxt": "",
    "falloTs": 0,
    "log": [
-    {
-     "t": 1791480756259,
-     "q": "abre"
-    },
     {
      "t": 1791480773489,
      "q": "nuevo"
@@ -300,6 +305,50 @@
     {
      "t": 1793708488336,
      "q": "abre"
+    },
+    {
+     "t": 1794062497207,
+     "q": "abre"
+    },
+    {
+     "t": 1794062504975,
+     "q": "nuevo"
+    },
+    {
+     "t": 1794062514477,
+     "q": "agenda"
+    },
+    {
+     "t": 1794062863351,
+     "q": "pdfArquitecto"
+    },
+    {
+     "t": 1794062886927,
+     "q": "plano"
+    },
+    {
+     "t": 1794062905715,
+     "q": "nuevo"
+    },
+    {
+     "t": 1794063176084,
+     "q": "pdfArquitecto"
+    },
+    {
+     "t": 1794063191092,
+     "q": "pdfArquitecto"
+    },
+    {
+     "t": 1794063212505,
+     "q": "plano"
+    },
+    {
+     "t": 1794070123390,
+     "q": "abre"
+    },
+    {
+     "t": 1794071578788,
+     "q": "pdfArquitecto"
     }
    ]
   },
