@@ -107,6 +107,7 @@
   try{if(typeof leer==='function')leer()}catch(_){}
   var L=(window.cur&&cur.lineas)||[];var cero=L.filter(function(l){return !(parseFloat(l.p)>0)}).length;
   if(window.AJ&&(!AJ.nombre||!AJ.tel))return {c:'aviso',m:t('datos'),b:t('datosBtn'),f:'irAAjustes'};
+  var _sc=document.querySelector('#arqPanel [onclick^="meterSinCantidad"]');if(_sc&&_sc.offsetParent)return {c:'aviso',m:(lang==='ro'?'Pasul 1 din 4 · Apasă «'+_sc.textContent+'»':'Paso 1 de 4 · Pulsa «'+_sc.textContent+'»'),b:_sc.textContent,f:'meterSinCantidad'};
   if(!L.length)return {c:'listo',m:modo==='pdf'?t('p1pdf'):modo==='mano'?t('p1mano'):t('p1'),b:null};
   var sinQ=L.filter(function(l){return !(parseFloat(l.q)>0)}).length;
   if(sinQ)return {c:'aviso',m:(sinQ===1?t('q1'):t('qn').replace('{n}',sinQ)),b:t('cero_btn'),f:'irACero'};
@@ -124,6 +125,7 @@
   if(b.id==='guiaBtnAyuda'){abrir('que');return}
   var f=b.getAttribute('data-f');
   if(f==='enviar'){try{menuEnviar()}catch(_){}return}
+  if(f==='meterSinCantidad'){try{meterSinCantidad()}catch(_){}return}
   if(f==='irACero'){var rows=[].slice.call(document.querySelectorAll('#tb tr')),vale=function(r,c){var x=r.querySelector(c);return x&&parseFloat(String(x.value).replace(',','.'))>0};
    var rq=rows.find(function(r){return !vale(r,'.lq')}),rp=rows.find(function(r){return !vale(r,'.lp')}),r=rq||rp;
    if(!r){var tb=document.getElementById('tb');if(tb)tb.scrollIntoView({behavior:'smooth',block:'center'});return}
