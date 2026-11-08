@@ -1,5 +1,5 @@
 {
- "generado": 1794145573829,
+ "generado": 1794176526538,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -9,8 +9,8 @@
    "ver": "v252",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1794144795750,
-   "ultimoQue": "abre",
+   "ultimo": 1794146120319,
+   "ultimoQue": "mandado",
    "dias": {
     "2026-10-08": {
      "abre": 2,
@@ -77,19 +77,21 @@
      "plano": 2
     },
     "2026-11-08": {
-     "abre": 1
+     "abre": 1,
+     "mandar": 4,
+     "mandado": 3
     }
    },
    "total": {
     "abre": 28,
     "nuevo": 12,
     "dicta": 9,
-    "mandar": 17,
+    "mandar": 21,
     "voz": 1,
     "variante": 1,
     "pdf": 2,
     "agenda": 2,
-    "mandado": 4,
+    "mandado": 7,
     "repe": 1,
     "partidas": 12,
     "correo": 1,
@@ -98,45 +100,17 @@
     "plano": 2
    },
    "presupuestos": 17,
-   "mandados": 1,
+   "mandados": 2,
    "estado": {
-    "partidas": 25,
-    "aCero": 2,
-    "total": 2204,
-    "avisos": 22
+    "partidas": 24,
+    "aCero": 0,
+    "total": 2254,
+    "avisos": 19
    },
    "fallo": false,
    "falloTxt": "",
    "falloTs": 0,
    "log": [
-    {
-     "t": 1791480832954,
-     "q": "agenda"
-    },
-    {
-     "t": 1791481017717,
-     "q": "nuevo"
-    },
-    {
-     "t": 1791481082933,
-     "q": "dicta"
-    },
-    {
-     "t": 1791523995003,
-     "q": "abre"
-    },
-    {
-     "t": 1791525851264,
-     "q": "mandar"
-    },
-    {
-     "t": 1791525854486,
-     "q": "mandado"
-    },
-    {
-     "t": 1791525867229,
-     "q": "abre"
-    },
     {
      "t": 1791525880208,
      "q": "mandar"
@@ -352,6 +326,34 @@
     {
      "t": 1794144795750,
      "q": "abre"
+    },
+    {
+     "t": 1794145891198,
+     "q": "mandar"
+    },
+    {
+     "t": 1794145931288,
+     "q": "mandar"
+    },
+    {
+     "t": 1794145936768,
+     "q": "mandado"
+    },
+    {
+     "t": 1794145980332,
+     "q": "mandar"
+    },
+    {
+     "t": 1794145988049,
+     "q": "mandado"
+    },
+    {
+     "t": 1794146116900,
+     "q": "mandar"
+    },
+    {
+     "t": 1794146120319,
+     "q": "mandado"
     }
    ]
   },
