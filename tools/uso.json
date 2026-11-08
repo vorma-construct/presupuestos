@@ -1,16 +1,16 @@
 {
- "generado": 1794089582647,
+ "generado": 1794145573829,
  "aparatos": [
   {
    "empresa": "lucas",
    "marca": "REFORMAS LUCAS",
    "disp": "iPhone",
    "instalada": true,
-   "ver": "v251",
+   "ver": "v252",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1794071578788,
-   "ultimoQue": "pdfArquitecto",
+   "ultimo": 1794144795750,
+   "ultimoQue": "abre",
    "dias": {
     "2026-10-08": {
      "abre": 2,
@@ -75,10 +75,13 @@
      "agenda": 1,
      "pdfArquitecto": 4,
      "plano": 2
+    },
+    "2026-11-08": {
+     "abre": 1
     }
    },
    "total": {
-    "abre": 27,
+    "abre": 28,
     "nuevo": 12,
     "dicta": 9,
     "mandar": 17,
@@ -97,19 +100,15 @@
    "presupuestos": 17,
    "mandados": 1,
    "estado": {
-    "partidas": 0,
-    "aCero": 0,
-    "total": 0,
-    "avisos": 1
+    "partidas": 25,
+    "aCero": 2,
+    "total": 2204,
+    "avisos": 22
    },
    "fallo": false,
    "falloTxt": "",
    "falloTs": 0,
    "log": [
-    {
-     "t": 1791480773489,
-     "q": "nuevo"
-    },
     {
      "t": 1791480832954,
      "q": "agenda"
@@ -349,6 +348,10 @@
     {
      "t": 1794071578788,
      "q": "pdfArquitecto"
+    },
+    {
+     "t": 1794144795750,
+     "q": "abre"
     }
    ]
   },
