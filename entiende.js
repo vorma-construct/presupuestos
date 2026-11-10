@@ -113,6 +113,8 @@ var REGLAS=[
 /* el micro no pone comas: «una casa de 87 metros cuadrados tirar el tabique…» → un trabajo nuevo detrás de una medida es otra frase */
 [/(\d(?:[.,]\d+)?\s*(?:m2|m²|metros cuadrados|metros|mts?|m)|\bcuadrados)\s+(?=(?:quitar|poner|tirar|picar|pintar|cambiar|alicatar|lijar|enlucir|lucir|derribar|montar|instalar|colocar|reformar|renovar|abrir|cerrar|levantar|arrancar|sacar|nivelar|empapelar|alisar|rascar|arreglar|modernizar|desmontar|embaldosar|forrar|aislar|hacer|meter|echar|juntar|unir|dividir|separar|acuchillar|barnizar)\b)/g,'$1, '],
 /* separar "x y poner y" en frases */
+/* «lucir con una mano de yeso para quitar el gotelé y dos manos de lucido fino»: es un solo trabajo (tapar el gotelé con yeso y lucirlo), no tres partidas de yeso */
+[/\b(?:lucir|enlucir|dar|echar|tender)\s+(?:con\s+)?(?:una|1)\s+manos?\s+de\s+yeso\s+(?:para\s+)?(?:quitar|tapar|cubrir|matar)\s+(?:el\s+)?gotel[eé]\w*(?:\s*,?\s+(?:y|con)\s+(?:\d+|dos|tres)\s+manos?\s+de\s+(?:lucido|fino|yeso)(?:\s+fino)?)?/g,'quitar el gotele'],
 /* «lijar las paredes y dejarlas con yeso a buena vista»: el lijado ya deja el yeso a buena vista (una partida) */
 [/\b(lij\w*[^,.;]{0,30}?)\s*,?\s+y\s+dejar\w*\s+(?:con\s+yeso\s+)?a\s+buena\s+vista\b/g,'$1'],
 /* «la buhardilla lleva falso techo…», «paredes de la buhardilla, rayado del yeso…»: lo que sigue es de esa estancia */
@@ -1245,6 +1247,8 @@ cur.lineas.forEach(function(l){delete l.__v});
 window.__ultDict={num:cur.num,creado:cur.creado,tal:ta.value,parte:aConv,h:huella(aConv),ds:nuevasDs};
 /* «quitar gotelé de toda la casa doscientos metros… y techos setenta»: si los techos (o el suelo) de la casa miden mucho menos, los metros dichos con las paredes son los de las paredes (lo dicho manda sobre lo calculado) */
 (function(){var lsP=cur.lineas.filter(function(l){return !l.paqId&&!l.okQ&&l.calc&&l.u==='m2'&&!/ \u2014 /.test(l.d)&&FAM(idDe(l),l.d)==='pared'&&/^las paredes, unas 2,7 veces los /.test(l.calcDe||'')});if(!lsP.length)return;var hz=cur.lineas.filter(function(l){return !l.paqId&&!l.calc&&l.u==='m2'&&!/ \u2014 /.test(l.d)&&/^(techo|suelo)$/.test(FAM(idDe(l),l.d))&&num(l.q)>1});lsP.forEach(function(l){var X=num((l.calcDe.match(/los (\d+(?:,\d+)?) m/)||[])[1]);if(!(X>0))return;if(hz.some(function(h){return num(h.q)*1.8<=X})){l.q=X;delete l.calc;delete l.calcDe}})})();
+/* casa entera y dice los metros de pared («pintar 225 metros cuadrados de pared»): esos metros valen para todo lo de pared calculado (gotelé, enlucido, pintura) */
+window.__paredDicha=0;(function(){var bt=norm(String(brutoTal||''));var ms=bt.match(/\d+(?:[.,]\d+)?\s*(?:m2|m\u00b2|metros cuadrados|metros)\s+(?:cuadrados\s+)?de\s+(?:las\s+)?pared(?:es)?\b/g);if(!ms)return;var vs=ms.map(function(x){return num(x.match(/\d+(?:[.,]\d+)?/)[0])});var X=vs[0];if(!(X>=10)||vs.some(function(v){return v!==X}))return;cur.lineas.forEach(function(l){if(l.paqId||l.okQ||!l.calc||l.u!=='m2'||/ \u2014 /.test(l.d)||FAM(idDe(l),l.d)!=='pared'||!/^las paredes, unas 2,7 veces los /.test(l.calcDe||''))return;l.q=X;delete l.calc;delete l.calcDe;window.__paredDicha=X})})();
 ajustarPuertasPiso();ajustarSueltasPiso();(function(){var vis={};cur.lineas=cur.lineas.filter(function(l){if(l.paqId||l.fb||(window.__lineasPrevias||[]).indexOf(l)>-1)return true;var k=l.d+'|'+(/^(m2|ml)$/.test(l.u)&&num(l.q)<=1?0:num(l.q))+'|'+l.u;if(vis[k])return false;vis[k]=1;return true})})();
 /* lo que quedó dudoso o calculado al negar una estancia o una parte (ver negarPartes) */
 try{negarPartesDespues()}catch(eN){}
@@ -1256,9 +1260,12 @@ var añad=cur.lineas.length-n0;
 if(añad>0)ci.innerHTML='<b style="color:#1E6B3A">'+añad+(añad===1?' trabajo añadido':' trabajos añadidos')+'.</b>'+(finales.some(function(l){return num(l.q)===1&&/^m/.test(String(l.u))})?' Revisa abajo las cantidades que pongan 1.':'');
 else ci.innerHTML='<div style="background:#FFF4E5;border-left:4px solid #C24A00;padding:10px;border-radius:6px;margin-top:8px"><b>No he reconocido ningún trabajo de tu tarifa.</b><br>Prueba a decirlo con las palabras del oficio: «alicatar el baño 20 metros, quitar el suelo, tabique de pladur».<br><button class="ok" style="width:100%;margin-top:8px" onclick="irABuscar()">Buscarlos yo uno a uno</button><button class="sec" style="width:100%;margin-top:6px" onclick="addLinea()">Escribir uno a mano</button></div>';
 /* lo que no está en la tarifa: entra a cero y se pide el precio */
-var sinPrecio=finales.filter(function(l){return l.fb||!(num(l.p)>0)}).map(function(l){return l.d});
+var sinPrecio=finales.filter(function(l){return l.fb}).map(function(l){return l.d});
+/* lo que es de la tarifa pero aún sin precio: ya está escrito y medido, solo le falta el precio */
+var sinTuPrecio=finales.filter(function(l){return !l.fb&&!(num(l.p)>0)}).map(function(l){return l.d});
+if(sinTuPrecio.length)ci.insertAdjacentHTML('beforeend','<div style="background:#FBE9E2;border-left:4px solid var(--brick);padding:9px;border-radius:6px;margin-top:8px;font-size:13px"><b>Ponle precio:</b> '+sinTuPrecio.map(function(d){return '«'+esc0(d.slice(0,60))+'…»'}).join(', ')+'.<br>Ya está escrito y medido; pon tu precio abajo y me lo quedo para la próxima.</div>');
 if(sinPrecio.length){if(window.__aprendeCaja)ci.insertAdjacentHTML('beforeend',__aprendeCaja(sinPrecio));else ci.insertAdjacentHTML('beforeend','<div style="background:#FBE9E2;border-left:4px solid var(--brick);padding:9px;border-radius:6px;margin-top:8px;font-size:13px"><b>No está en tu tarifa:</b> '+sinPrecio.map(function(d){return '«'+esc0(d.slice(0,60))+'»'}).join(', ')+'.<br>Pon su precio abajo y me lo quedo para la próxima.</div>')}
-if(window.__PARED&&window.__PARED.length&&window.__MED&&window.cajaPared)ci.insertAdjacentHTML('beforeend',cajaPared(window.__MED));
+if(window.__PARED&&window.__PARED.length&&window.__MED&&window.cajaPared&&!window.__paredDicha)ci.insertAdjacentHTML('beforeend',cajaPared(window.__MED));
 /* dictar en un presupuesto que ya se mandó (tiene enlace de firma): si se vuelve a mandar, el cliente verá esto */
 if(cur.firmaTok&&!cur.firmado)ci.insertAdjacentHTML('beforeend','<div style="margin-top:6px;background:#FFF4E5;border-left:4px solid #C24A00;padding:6px 8px;border-radius:6px"><b>Ojo: este presupuesto ya se mandó a un cliente</b> (nº '+cur.num+'). Si es otra obra, dale a «Nuevo presupuesto» y díctalo allí.</div>');
 if(pisoFuera)ci.insertAdjacentHTML('beforeend','<div style="margin-top:6px">«Reforma de la casa» lo he tomado como los trabajos que dices. Si es la reforma de la casa entera, di «reforma integral de la casa» o «la casa entera».</div>');
