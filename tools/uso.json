@@ -1,5 +1,5 @@
 {
- "generado": 1794323360437,
+ "generado": 1794353943257,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -9,19 +9,9 @@
    "ver": "v252",
    "cta": "bd4dd",
    "mio": false,
-   "ultimo": 1794146120319,
-   "ultimoQue": "mandado",
+   "ultimo": 1794336131236,
+   "ultimoQue": "dicta",
    "dias": {
-    "2026-10-08": {
-     "abre": 2,
-     "nuevo": 7,
-     "dicta": 5,
-     "mandar": 13,
-     "voz": 1,
-     "variante": 1,
-     "pdf": 1,
-     "agenda": 1
-    },
     "2026-10-09": {
      "abre": 4,
      "mandar": 2,
@@ -80,57 +70,45 @@
      "abre": 1,
      "mandar": 4,
      "mandado": 3
+    },
+    "2026-11-10": {
+     "abre": 1,
+     "nuevo": 1,
+     "agenda": 1,
+     "repe": 1,
+     "dicta": 1,
+     "partidas": 5
     }
    },
    "total": {
-    "abre": 28,
-    "nuevo": 12,
-    "dicta": 9,
+    "abre": 29,
+    "nuevo": 13,
+    "dicta": 10,
     "mandar": 21,
     "voz": 1,
     "variante": 1,
     "pdf": 2,
-    "agenda": 2,
+    "agenda": 3,
     "mandado": 7,
-    "repe": 1,
-    "partidas": 12,
+    "repe": 2,
+    "partidas": 17,
     "correo": 1,
     "borra": 4,
     "pdfArquitecto": 4,
     "plano": 2
    },
    "presupuestos": 17,
-   "mandados": 2,
+   "mandados": 1,
    "estado": {
-    "partidas": 24,
+    "partidas": 5,
     "aCero": 0,
-    "total": 2254,
-    "avisos": 19
+    "total": 14149,
+    "avisos": 1
    },
    "fallo": false,
    "falloTxt": "",
    "falloTs": 0,
    "log": [
-    {
-     "t": 1791525880208,
-     "q": "mandar"
-    },
-    {
-     "t": 1791525882168,
-     "q": "mandado"
-    },
-    {
-     "t": 1791544230134,
-     "q": "abre"
-    },
-    {
-     "t": 1791545046871,
-     "q": "nuevo"
-    },
-    {
-     "t": 1791546567560,
-     "q": "abre"
-    },
     {
      "t": 1791614677679,
      "q": "abre"
@@ -354,6 +332,30 @@
     {
      "t": 1794146120319,
      "q": "mandado"
+    },
+    {
+     "t": 1794335848704,
+     "q": "abre"
+    },
+    {
+     "t": 1794335851554,
+     "q": "nuevo"
+    },
+    {
+     "t": 1794335859325,
+     "q": "agenda"
+    },
+    {
+     "t": 1794335863708,
+     "q": "repe"
+    },
+    {
+     "t": 1794336131236,
+     "q": "dicta",
+     "n": 5,
+     "c": 0,
+     "w": 48,
+     "v": 0
     }
    ]
   },
