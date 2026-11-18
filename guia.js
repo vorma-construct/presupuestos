@@ -9,7 +9,7 @@
 
  var T={
   es:{que:'¿Qué quieres hacer?',nuevo:'Hacer un presupuesto nuevo',ver:'Ver mis presupuestos',como:'¿Cómo tienes los trabajos?',
-      voz:'Lo cuento yo, hablando o escribiendo',pdf:'Tengo capturas, fotos, el plano o un PDF',mano:'Los elijo yo de mi lista de precios',
+      voz:'Lo cuento yo, hablando o escribiendo',foto:'Saco una foto a un papel',pdf:'Tengo capturas, fotos, el plano o un PDF',mano:'Los elijo yo de mi lista de precios',
       atras:'Atrás',solo:'Ya me apaño, quitar la ayuda',lang:'Română',
       p1:'Paso 1 de 4 · Cuenta los trabajos abajo y pulsa «Convertir en trabajos»',
       p1pdf:'Paso 1 de 4 · Elige las capturas, y luego el plano si lo tienes (botón «Elegir archivos», abajo)',
@@ -23,7 +23,7 @@
       ok:'Enviado. Cuando el cliente firme, te avisamos aquí.',ayuda:'Ayuda',cero_btn:'Ver cuáles',
       q1:'Paso 2 de 4 · A 1 trabajo le falta la cantidad (cuántas puertas, cuántos metros): escríbela',qn:'Paso 2 de 4 · A {n} trabajos les falta la cantidad (cuántas puertas, cuántos metros): escríbela'},
   ro:{que:'Ce vrei să faci?',nuevo:'Fac un deviz nou',ver:'Văd devizele mele',como:'Cum ai lucrările?',
-      voz:'Le spun eu, vorbind sau scriind',pdf:'Am capturi, poze, planul sau un PDF',mano:'Le aleg eu din lista mea de prețuri',
+      voz:'Le spun eu, vorbind sau scriind',foto:'Fac o poză la o foaie',pdf:'Am capturi, poze, planul sau un PDF',mano:'Le aleg eu din lista mea de prețuri',
       atras:'Înapoi',solo:'Mă descurc, scoate ajutorul',lang:'Español',
       p1:'Pasul 1 din 4 · Spune lucrările mai jos și apasă «Convertir en trabajos»',
       p1pdf:'Pasul 1 din 4 · Alege capturile, apoi planul dacă îl ai (butonul «Elegir archivos», mai jos)',
@@ -72,6 +72,7 @@
    (nPresus()?'<button class="op sec" type="button" data-a="ver"><span class="ic">📂</span>'+t('ver')+'</button>':'')+'</div>'}
   else{h+='<h1>'+t('como')+'</h1><div class="ops">'+
    '<button class="op" type="button" data-a="voz"><span class="ic">🎙️</span>'+t('voz')+'</button>'+
+   '<button class="op" type="button" data-a="foto"><span class="ic">📷</span>'+t('foto')+'</button>'+
    '<button class="op" type="button" data-a="pdf"><span class="ic">📄</span>'+t('pdf')+'</button>'+
    '<button class="op sec" type="button" data-a="mano"><span class="ic">📋</span>'+t('mano')+'</button></div>'}
   h+='<div class="pie">'+(paso==='como'?'<button type="button" data-a="atras">← '+t('atras')+'</button>':'<span></span>')+'<button type="button" data-a="solo">'+t('solo')+'</button></div>';
@@ -84,6 +85,7 @@
   if(a==='atras'){paso='que';pinta();return}
   if(a==='ver'){cerrar();try{ST('clientes')}catch(_){}return}
   if(a==='solo'){s(LS_OFF,'1');cerrar();barra();return}
+  if(a==='foto'){cerrar();modo='pdf';try{if(!(window.cur&&(cur.lineas||[]).length)&&typeof nuevo==='function'&&!(window.cur&&cur.nom))nuevo();ST('presupuesto')}catch(_){}try{sacarFotoPapel()}catch(_){}return}
   if(a==='pdf'){var fi=document.getElementById('pdfArq');if(fi){try{fi.click()}catch(_){}}}
   if(a==='voz'||a==='pdf'||a==='mano'){cerrar();empezar(a);return}
  });

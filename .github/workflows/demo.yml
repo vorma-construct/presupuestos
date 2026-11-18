@@ -1,0 +1,23 @@
+# La app genérica «Presupuéstalo» (para enseñar y ofrecer a autónomos): cada vez que cambia la app, se saca
+# con su marca en la carpeta demo/ → https://vorma-construct.github.io/presupuestos/demo/
+# La app de Mariano (raíz) no se toca. demo/ no entra en las apps de las otras empresas (hacer_empresa la deja fuera).
+name: demo
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['demo/**', 'tools/uso.json']
+  workflow_dispatch:
+permissions: {contents: write}
+concurrency: {group: demo, cancel-in-progress: true}
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: |
+          rm -rf /tmp/demo
+          python3 tools/hacer_empresa.py presupuestalo "https://vorma-construct.github.io/presupuestos/demo/" /tmp/demo
+          rm -rf demo && cp -r /tmp/demo demo
+          git config user.name "demo"; git config user.email "actions@github.com"
+          git add -A demo; git diff --cached --quiet || (git commit -m "demo al día" && git pull --rebase -q && git push)
