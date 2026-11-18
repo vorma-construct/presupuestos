@@ -200,7 +200,7 @@ body.capturando #sh_dosier .segimg img{height:20mm!important}body.capturando #sh
 </section>
 
 <script>
-var APP_VERSION='v254';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
+var APP_VERSION='v255';document.getElementById('ver').textContent=APP_VERSION;var vf=document.getElementById('verFijo');if(vf)vf.textContent=APP_VERSION;
 /* ---------- TARIFA (sacada de los presupuestos 544 y 545 de Ioan) ---------- */
 var TARIFA_BASE=[
 {id:'tab',c:'Demoliciones',d:'Derribo de tabique (uno o dos tabiques), retirada de escombro y tirada al centro autorizado',u:'ud',p:650,k:['tabique','tirar tabique','derribo','derribar']},
@@ -688,7 +688,7 @@ if(!e||p.length<6){m.style.color='var(--brick)';m.textContent='Escribe arriba el
 m.style.color='var(--muted)';m.textContent='Creando\u2026';
 firebase.auth().createUserWithEmailAndPassword(e,p).then(function(){m.style.color='var(--ok)';m.textContent='Cuenta creada. Ya est\u00e1s dentro.'})
 .catch(function(err){m.style.color='var(--brick)';
-m.textContent=(err.code==='auth/email-already-in-use')?'Ese correo ya tiene cuenta: dale a Entrar.':'No he podido crearla: '+(err.code||err.message)})}
+m.textContent=(err.code==='auth/email-already-in-use')?'Ese correo ya tiene cuenta y esa no es su clave. Si no te acuerdas, pulsa «No me acuerdo de la clave».':'No he podido crearla: '+(err.code||err.message)})}
 function olvideClave(){var e=document.getElementById('lg_email').value.trim();
 var m=document.getElementById('lg_msg');
 if(!e){m.textContent='Escribe arriba tu correo y vuelve a darle.';return}
@@ -697,7 +697,7 @@ firebase.auth().sendPasswordResetEmail(e).then(function(){m.style.color='var(--o
 m.textContent='Te he mandado un correo a '+e+' para poner una clave nueva. Mira tambi\u00e9n en spam.'})
 .catch(function(err){m.style.color='var(--brick)';
 m.textContent=(err.code==='auth/user-not-found')?'Ese correo no est\u00e1 dado de alta en la app.':'No he podido mandarlo: '+(err.code||err.message)})}
-function entrar(){var e=document.getElementById('lg_email').value.trim(),p=document.getElementById('lg_pass').value;document.getElementById('lg_msg').textContent='';firebase.auth().signInWithEmailAndPassword(e,p).catch(function(err){document.getElementById('lg_msg').textContent=/password|credential|user/i.test(err.code)?'Correo o clave incorrectos':'No he podido entrar: '+err.message})}
+function entrar(){var e=document.getElementById('lg_email').value.trim(),p=document.getElementById('lg_pass').value;document.getElementById('lg_msg').textContent='';firebase.auth().signInWithEmailAndPassword(e,p).catch(function(err){var m=document.getElementById('lg_msg');if(/password|credential|user/i.test(err.code)){/* v255: si es la primera vez, que pueda crear la cuenta con lo que ya ha escrito, de un toque */m.innerHTML='Correo o clave incorrectos. ¿Es la primera vez? <button type="button" class="ok" style="display:block;margin-top:8px;width:100%" onclick="crearCuenta()">Crear la cuenta con este correo</button>'}else m.textContent='No he podido entrar: '+err.message})}
 function salir(){if(window.firebase&&FB.uid){if(FB.unsub)FB.unsub();firebase.auth().signOut()}}
 function ref(){return FB.db.collection('clientes').doc(FB.uid)}
 /* EQUIPO DE LA EMPRESA: todas las cuentas de una empresa ven y guardan los mismos presupuestos.
