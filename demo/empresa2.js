@@ -4,7 +4,7 @@ var E=window.EMP;
 /* una cuenta solo entra en la app de su empresa (para no mezclar datos ni marcas) */
 window.__empCuenta=function(aj){var mia=E?E.id:'',suya=(aj&&aj.emp)||'';if(mia===suya)return false;
  try{firebase.auth().signOut()}catch(e){}
- setTimeout(function(){var m=document.getElementById('lg_msg');if(m)m.textContent=suya?'Esta cuenta es de otra empresa: entra desde su propio enlace.':'Esta cuenta no es de '+(E?E.aj.marca:'esta app')+'.'},400);return true};
+ setTimeout(function(){var m=document.getElementById('lg_msg');if(m)m.textContent='Ese correo ya tiene cuenta en otra app de presupuestos. Pulsa «Crear una cuenta nueva» y usa otro correo.'},400);return true};
 if(!E)return;
 /* sus colores: en la app, en los documentos y en la pagina donde firma el cliente (va en el primer <style>) */
 var C=E.colores;if(C){var st=document.querySelector('style');var css='\n:root{--brick:'+C.boton+';--ok:'+C.fuerte+';--brick2:'+C.claro+';--gold:'+C.fuerte+';--oro:'+C.boton+';--oro2:'+C.marca+'}';
