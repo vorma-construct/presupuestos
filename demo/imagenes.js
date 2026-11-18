@@ -1,0 +1,586 @@
+/* Capturas o fotos con la lista de trabajos (un correo, un WhatsApp, un papel) -> presupuesto hecho.
+   - Lee el texto en el propio movil (lector optico, sin IA ni servidores).
+   - Saca el cliente de la firma (nombre, empresa, telefono, correo).
+   - Cada linea del correo es una partida: ninguna se pierde, y se escribe como la pondria un arquitecto.
+   - Medidas: las que trae el correo; si una falta y el mismo correo la da en otra linea (paredes de la
+     cocina, altura hasta techo), la usa y lo dice.
+   - Precio: 1) el que el albanil ya puso a un trabajo igual o parecido; 2) su tarifa; 3) la tabla de
+     mercado; 4) si no se sabe, a cero para que lo ponga el. Lo que corrige lo aprende, y aprende
+     tambien si cobra por encima o por debajo de la tarifa. */
+(function(){
+ var RAIZ=(function(){try{var sc=document.currentScript&&document.currentScript.src;return sc?sc.replace(/[^/]*$/,''):''}catch(e){return ''}})();
+
+ /* ---------------- lector optico ---------------- */
+ function cargarTess(){return new Promise(function(ok,ko){if(window.Tesseract)return ok();var s=document.createElement('script');s.src=RAIZ+'ocr/tesseract.min.js';s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
+ /* la imagen se agranda y se pasa a blanco y negro (y se invierte si es modo oscuro): el lector acierta mucho mas */
+ function preparar(file){return new Promise(function(ok,ko){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){
+   var esc=im.width>2000?2000/im.width:Math.min(2.5,Math.max(1,1300/Math.max(im.width,1)));var w=Math.round(im.width*esc),h=Math.round(im.height*esc);
+   var cv=document.createElement('canvas');cv.width=w;cv.height=h;var c=cv.getContext('2d');c.drawImage(im,0,0,w,h);
+   var d=c.getImageData(0,0,w,h),p=d.data,suma=0;
+   for(var i=0;i<p.length;i+=4){var g=0.299*p[i]+0.587*p[i+1]+0.114*p[i+2];p[i]=p[i+1]=p[i+2]=g;suma+=g}
+   var oscuro=suma/(p.length/4)<110;
+   for(var j=0;j<p.length;j+=4){var v=p[j];if(oscuro)v=255-v;v=v>150?255:(v<90?0:v);p[j]=p[j+1]=p[j+2]=v}
+   c.putImageData(d,0,0);ok(cv)};im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
+ /* Un solo lector para capturas y planos: se empieza a preparar en cuanto se abre «Capturas, fotos, plano o PDF»
+    (así, cuando se eligen las capturas, ya está listo), se reutiliza y se cierra a los cinco minutos sin usarlo.
+    Mientras trabaja, dice en qué va: bajándose (solo la primera vez), preparando o leyendo, con su tanto por ciento. */
+ var LECTOR=null,lectorT=null,LEE=null;
+ function pinta(t,pc){if(!LEE||!LEE.info)return;LEE.info.innerHTML='<b>'+t+'</b>'+(pc!=null?'<div style="height:7px;background:rgba(0,0,0,.08);border-radius:4px;margin-top:6px;overflow:hidden"><div style="height:7px;width:'+Math.max(3,Math.min(100,pc))+'%;background:#1B6B36;border-radius:4px;transition:width .3s"></div></div>':'')}
+ function alLog(m){if(!LEE)return;var st=String(m&&m.status||''),p=Math.round(((m&&m.progress)||0)*100);
+  if(/recognizing/.test(st))pinta((LEE.tipo==='plano'?'Leyendo el plano':LEE.n>1?'Leyendo la captura '+LEE.i+' de '+LEE.n:'Leyendo la captura')+'… '+p+' %',p);
+  else if(/tesseract core/.test(st))pinta('Bajando el lector de texto… (solo la primera vez)',p<100?10:25);
+  else if(/traineddata/.test(st))pinta('Bajando el diccionario de español… (solo la primera vez)',p<100?40:85);
+  else if(/initializ/.test(st))pinta('Preparando el lector…',90)}
+ function lector(){if(LECTOR)return LECTOR;
+  LECTOR=cargarTess().then(function(){return Tesseract.createWorker('spa',1,{workerPath:RAIZ+'ocr/worker.min.js',corePath:RAIZ+'ocr/',langPath:RAIZ+'ocr/',gzip:true,logger:alLog})});
+  LECTOR.catch(function(){LECTOR=null});return LECTOR}
+ function soltarLector(){clearTimeout(lectorT);lectorT=setTimeout(function(){var L=LECTOR;LECTOR=null;if(L)L.then(function(w){return w.terminate()}).catch(function(){})},300000)}
+ window.__preparaLector=function(){try{clearTimeout(lectorT);lector().then(soltarLector).catch(function(){})}catch(e){}};
+ /* v250 · LA FOTO DE UN PAPEL (César, 2-nov: le dan papeles, a veces a mano). Primero se le pasa la foto al servidor,
+    que la lee con IA y devuelve SOLO el texto, tal cual está escrito; si no contesta (sin cobertura, apagado, tarda),
+    se lee aquí con el lector de siempre. Con ese texto se hace todo lo demás igual que con una captura. */
+ var URL_FOTO='https://azkar-presupuestos-production.up.railway.app/api/leer-foto';
+ function reducir(file){return new Promise(function(ok,ko){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){
+   var e=Math.min(1,1600/Math.max(im.width,im.height,1)),w=Math.round(im.width*e),h=Math.round(im.height*e);
+   var cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(im,0,0,w,h);
+   ok({mime:'image/jpeg',b64:cv.toDataURL('image/jpeg',0.82).split(',')[1]})};im.onerror=ko;im.src=fr.result};fr.onerror=ko;fr.readAsDataURL(file)})}
+ function leerConIA(files,info){
+  if(window.LEER_FOTO===false||!window.fetch)return Promise.reject(new Error('apagado'));
+  var lista=[].slice.call(files,0,4),pc=8,iv=null;
+  LEE={tipo:'foto',n:lista.length,i:1,info:info};
+  var txt=lista.length>1?'Leyendo las '+lista.length+' fotos…':'Leyendo la foto…';
+  pinta(txt,pc);iv=setInterval(function(){pc=Math.min(92,pc+(92-pc)*0.12);pinta(txt,Math.round(pc))},700);
+  var ac=window.AbortController?new AbortController():null,t=setTimeout(function(){try{ac&&ac.abort()}catch(e){}},30000);
+  function fin(){clearInterval(iv);clearTimeout(t);LEE=null}
+  return Promise.all(lista.map(reducir)).then(function(fotos){
+   return fetch(window.LEER_FOTO_URL||URL_FOTO,{method:'POST',headers:{'content-type':'text/plain'},body:JSON.stringify({fotos:fotos}),signal:ac?ac.signal:undefined,credentials:'omit',cache:'no-store'})
+  }).then(function(r){return r.json()}).then(function(j){fin();if(!j||!j.ok||!String(j.texto||'').trim())throw new Error('sin texto');
+   if(lista.length<files.length)return leerImagenes([].slice.call(files,4),info,true).then(function(m){return [j.texto].concat(m)});
+   return [j.texto]},function(e){fin();throw e})}
+ function leerImagenes(files,info,soloLector){
+  if(!soloLector)return leerConIA(files,info).catch(function(){return leerImagenes(files,info,true)});
+  clearTimeout(lectorT);LEE={tipo:'captura',n:files.length,i:1,info:info};pinta('Preparando el lector de capturas…',5);
+  return lector().then(function(w){
+   var textos=[],cadena=Promise.resolve();
+   [].forEach.call(files,function(f,i){cadena=cadena.then(function(){LEE={tipo:'captura',n:files.length,i:i+1,info:info};pinta(files.length>1?'Leyendo la captura '+(i+1)+' de '+files.length+'…':'Leyendo la captura…',0);return preparar(f)}).then(function(cv){return w.recognize(cv)}).then(function(r){textos.push(r.data.text||'')})});
+   return cadena.then(function(){LEE=null;soltarLector();return textos},function(e){LEE=null;soltarLector();throw e})})}
+
+ /* ---------------- utilidades ---------------- */
+ function sa(s){return String(s||'').normalize('NFC').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+ function nm(s){return parseFloat(String(s).replace(',','.'))||0}
+ function r2(x){return Math.round(x*100)/100}
+ function fm(x){return String(r2(x)).replace('.',',')}
+ function f2(x){return (Math.round(x*100)/100).toFixed(2).replace('.',',')}
+ function cap(s){s=String(s||'').trim();return s.charAt(0).toUpperCase()+s.slice(1)}
+ function minus(s){s=String(s||'').trim();return /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]/.test(s)?s.charAt(0).toLowerCase()+s.slice(1):s}
+ function uN(u){u=sa(u).replace('²','2').trim();return u==='m2'?'m2':(u==='ml'||u==='m')?'ml':u==='m3'?'m3':'ud'}
+
+ /* ---------------- texto del cliente a texto de obra ---------------- */
+ var TILDES=[['salon','salón'],['sofa','sofá'],['sofas','sofás'],['almacen','almacén'],['rodapies','rodapiés'],['rodapie','rodapié'],['habitacion','habitación'],['bano','baño'],['banos','baños'],['cajon','cajón'],['electrica','eléctrica'],['electrico','eléctrico'],['instalacion','instalación'],['proteccion','protección'],['demolicion','demolición'],['colocacion','colocación'],['reparacion','reparación'],['jardin','jardín'],['balcon','balcón'],['segun','según'],['tambien','también'],['metalico','metálico'],['ceramico','cerámico'],['plastica','plástica'],['valvula','válvula'],['ultimo','último']];
+ function pulir(t){
+  t=String(t||'').normalize('NFC');
+  /* la viñeta o el punto suelto con que empieza la línea («· . Quitar…») no es parte del trabajo */
+  t=t.replace(/^[\s.·•,;:*\-–—…]+(?=\S)/,'');
+  /* una suma con su resultado («20m2 +16m7=36 m2») vale lo que da el resultado (el correo ya lo hace en buzon.js; esto, para las capturas) */
+  t=t.replace(/\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m\d|m)?(?:\s*\+\s*\d+(?:[.,]\d+)?\s*(?:m2|m²|ml|m\d|m)?)+\s*=\s*(\d+(?:[.,]\d+)?)/g,'$1');
+  t=t.replace(/(\d)[dD](?=[0-9OoQ])/g,'$1').replace(/(\d)[OoQ](?=\s*(?:m\?|m2|m²|ml|m\b|cm|uds?\b|%))/g,'$10');
+  t=t.replace(/[.…]{2,}/g,', ').replace(/\+\s*-(?!\d)|\+\/-|±/g,' ');
+  t=t.replace(/\b([A-ZÁÉÍÓÚÑ]{2,})\b/g,function(w){return /^(PVC|LED|DM|WC|IVA)$/.test(w)?w:w.toLowerCase()});
+  t=t.replace(/\bdorm\b\.?/gi,'dormitorio').replace(/\bhab\b\.?/gi,'habitación').replace(/\b(\d+)\s*[l1]?uds?\b/gi,'$1 ud').replace(/\b[l1]uds?\b/gi,'1 ud');
+  TILDES.forEach(function(p){t=t.replace(new RegExp('\\b'+p[0]+'\\b','gi'),function(w){return w.charAt(0)!==w.charAt(0).toLowerCase()?cap(p[1]):p[1]})});
+  t=t.replace(/\bque esta\b/gi,'que está').replace(/\bde lato\b/gi,'de alto').replace(/\bsera\b/gi,'será').replace(/\bcuanto\b/gi,'cuánto');
+  /* medidas en centimetros a metros, como en un presupuesto: 146cm -> 1,46 m; 2,26cm (errata) -> 2,26 m */
+  t=t.replace(/(\d+(?:,\d+)?)\s*(?:cm|cem|centimetros?)\b/gi,function(all,n){if(n.indexOf(',')>0&&nm(n)>=1)return n+' m';var v=nm(n);return v>=10?(v/100).toFixed(2).replace('.',',')+' m':all});
+  t=t.replace(/m\?\s*2/g,'m2').replace(/(\d)\s*m\?(?!\s*2)/g,'$1 m2').replace(/(techo)(\d)/gi,'$1 $2').replace(/(\d)\s*\+\s*(\d)/g,'$1 + $2');
+  t=t.replace(/\(\s+/g,'(').replace(/\s+\)/g,')').replace(/\s+([,.;:])/g,'$1').replace(/,(?=[^\s\d])/g,', ').replace(/\s{2,}/g,' ').trim();
+  return t.replace(/[\s.,;:]+$/,'')}
+
+ /* ---------------- partir el texto en trabajos ---------------- */
+ function esMorralla(l){var s=String(l||'');var letras=(s.match(/[a-záéíóúñü]/gi)||[]).length;var pal=s.replace(/[.,;:()]/g,' ').split(/\s+/).filter(function(w){return /^[a-záéíóúñü]{3,}$/i.test(w)}).length;
+  return letras/Math.max(1,s.length)<0.55||pal<2||/^(responder|reenviar|tel\.?|mvl|mvi|movil|www\.|facebook|instagram|c\/)/i.test(s)||/@|\.com\b|\.es\b|\b\d{5}\s+\w+/i.test(s)||/^\d{1,2}:\d{2}/.test(s)}
+ var FIN=/^(creo que no|en el presupuesto|o unidad como|un saludo|saludos|gracias|muchas gracias|atentamente|quedo a la espera|espero tu|espero vuestr|cualquier duda|--\s*$)/i;
+ function aItems(txt){var items=[],act='',fin=false,firma=[];var lineas=String(txt||'').split(/\r?\n/);
+  for(var i=0;i<lineas.length;i++){var raw=lineas[i],l=raw.replace(/\s+/g,' ').trim();if(!l)continue;
+   if(fin){firma.push(l);continue}
+   if(FIN.test(l)){fin=true;continue}
+   /* v250 · la cabecera escrita del papel («Reforma piso Basauri - Sra. Maite», «Obra de Juan»), delante de una lista
+      numerada: no es un trabajo. Si dice a quién es, ese es el cliente. */
+   if(!items.length&&!act&&esCabecera(l,lineas.slice(i+1))){var cn=l.match(/\b(?:Sra?\.?|D\.|Dña\.?|Don|Doña)\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){0,2})/)||l.match(/^(?:obra|reforma|presupuesto)\s+(?:de|para)\s+(?:la\s+|el\s+)?([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){0,2})\s*$/i);if(cn)firma.push('@@cliente:'+cn[1]);continue}
+   /* firma: un nombre de persona con un telefono o correo justo debajo */
+   if(/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){1,3}$/.test(l)&&/\d{3}\s?\d{3}\s?\d{3}|@/.test((lineas[i+1]||'')+' '+(lineas[i+2]||''))){fin=true;firma.push(l);continue}
+   /* un título o el nombre de una estancia en su línea («REFORMA BERMEO», «BAÑO») cierra el trabajo de antes y no es un trabajo */
+   if(esTitulo(l)&&(!act||/[.)]$/.test(act)||/[a-záéíóúñ]/.test(act))){if(act){items.push(act);act=''}continue}
+   var empieza=/^\s*\d{1,2}\s*[.)]\s+(?=\S)/.test(raw)||/^\s*\.\s+(?=[A-ZÁÉÍÓÚÑ])/.test(raw)||/^[\s•·\-–—*●▪º°»>]*(?:e|o|a|«|\*)?\s+(?=[A-ZÁÉÍÓÚÑ])/.test(raw)||/^[•·●▪\-–*]/.test(raw)||(act&&/[.)]$/.test(act)&&/^[A-ZÁÉÍÓÚÑ]/.test(l));
+   var limpia=l.replace(/^\d{1,2}\s*[.)]\s+(?=\S)/,'').replace(/^[.\s]+(?=[A-ZÁÉÍÓÚÑ])/,'').replace(/^[\s•·\-–—*●▪º°»>]*(?:e|o|a|«|\*)?\s+(?=[A-ZÁÉÍÓÚÑ])/,'').replace(/^[•·●▪\-–*]+\s*/,'');
+   /* restos de la pantalla delante del primer trabajo ("< Ba o So e Tapar ascensor.") */
+   var mm=limpia.match(/^(.{1,18}?)\s(?:e|o|a|•|·)\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+\b.*)$/);if(mm&&esMorralla(mm[1])&&!esMorralla(mm[2])){limpia=mm[2];empieza=true}
+   var soloMedida=act&&!/[a-záéíóúñ]{2,}/i.test(limpia)&&/\d+(?:[.,]\d+)?\s*(?:\+|m\b|cm|x)/i.test(limpia)&&limpia.length<40;
+   if(!soloMedida&&esMorralla(limpia)&&(!act||/^[^a-záéíóúñ]*$/i.test(limpia)||/responder|reenviar/i.test(limpia)))continue;
+   if(empieza&&act){items.push(act);act=''}
+   act=act?act+' '+limpia:limpia}
+  if(act)items.push(act);
+  items=items.map(function(t){return t.replace(/\s*(€\s*)?(Responder|Reenviar).*$/i,'').replace(/\s+\d{1,2}:\d{2}\b.*$/,'').trim()}).filter(function(t){return t&&!esMorralla(t)&&!esTitulo(t)});
+  return {items:items,firma:firma.concat(lineas.slice(-14).map(function(x){return x.trim()}))}}
+ /* el título de la hoja o del correo («REFORMA BERMEO», «OBRA CALLE AUTONOMÍA»): todo en mayúsculas, corto, sin cifras,
+    sin verbo de trabajo y sin nada concreto que hacer. No es una partida (el correo lo quita en buzon.js; esto, para las capturas). */
+ var RE_VTIT=/^(quitar|retirar|poner|colocar|cambiar|sustituir|pintar|alicatar|solar|embaldosar|picar|tirar|derribar|demoler|levantar|hacer|montar|desmontar|instalar|arreglar|reparar|lucir|enlucir|tapar|proteger|vaciar|limpiar|lijar|barnizar|empapelar|abrir|cerrar|forrar|aislar|impermeabilizar|sanear|nivelar|alisar|rozar|mover|trasladar|ampliar|renovar|reformar|soltar|cambio|colocacion|sustitucion|pintura|pintado|instalacion|reparacion|retirada|demolicion|derribo|montaje|desmontaje|alicatado|solado|lucido|picado|suministro|arreglo|proteccion|limpieza|vaciado|traslado|empapelado)\b/;
+ function esCabecera(l,resto){var n=sa(l);if(medidas(l)||/\d+\s*(?:m2|ml|uds?)\b/i.test(l))return false;
+  if(!/^(reforma|obra|presupuesto|trabajos|lista|cliente)\b/.test(n)&&!/\b(sra?\.|dña\.?|don|doña)\s+[a-z]/.test(n))return false;
+  if(/^(reforma|obra)\s+(de\s+|del\s+)?(bano|cocina|salon|habitacion)/.test(n)&&!/\b(sra?\.|dña|don|doña)\b/.test(n))return false;
+  var num=resto.filter(function(x){return /^\s*\d{1,2}\s*[.)-]\s+\S/.test(x)||/^\s*[•·\-–*]\s+\S/.test(x)}).length;return num>=2}
+ function esTitulo(t){t=String(t||'').replace(/^[\s•·.\-–—*]+/,'').trim();if(!t||/[a-zß-ÿ]/.test(t)||!/[A-ZÁÉÍÓÚÑ]{2}/.test(t)||/\d/.test(t))return false;
+  if(t.split(/\s+/).length>6)return false;var n=sa(t);return !RE_VTIT.test(n)&&familia(n)==='otro'&&objeto(n)==='otro'}
+ function medidas(t){var n=0,re=/(^|[^A-Za-zÀ-ÿ\d])(\d+(?:,\d+)?)\s*(?:m2|m²|ml|m|ud|uds|rollos?)\b/gi,m;while((m=re.exec(String(t))))if(nm(m[2])>0)n++;return n}
+ function unirItems(listas){var out=[],vistos={};
+  /* dos trabajos que empiezan igual pero acaban distinto y con otras medidas («…rejunteo. Paredes 37m2» y «…rejunteo. Suelos 8 m2») son dos */
+  function letras(t){return sa(t).replace(/[^a-z]+/g,' ').trim()}function cifras(t){return (String(t).match(/\d+(?:[.,]\d+)?/g)||[]).join(' ')}
+  listas.forEach(function(L){L.forEach(function(t){var k=letras(t).slice(0,40);
+   if(vistos[k]!=null&&medidas(t)&&medidas(out[vistos[k]])&&letras(t)!==letras(out[vistos[k]])&&cifras(t)!==cifras(out[vistos[k]]))k=letras(t);
+   if(vistos[k]!=null){var o=out[vistos[k]],a=medidas(t),b=medidas(o);if(a>b||(a===b&&t.length>o.length))out[vistos[k]]=t;return}vistos[k]=out.length;out.push(t)})});
+  return out}
+
+ /* nombre, empresa, telefono y correo de la firma */
+ function clienteDe(ls){var c={};ls.forEach(function(l,i){
+   if(/^@@cliente:/.test(l)){if(!c.nombre)c.nombre=l.slice(10).trim();return}
+   var tel=l.match(/(?:\+?34)?\s*\b([6-7]\d{2})[\s.\-]?(\d{3})[\s.\-]?(\d{3})\b/);if(tel&&!c.tel)c.tel=tel[1]+' '+tel[2]+' '+tel[3];
+   var fijo=l.match(/(?:\+?34)?\s*\b(9\d{2})[\s.\-]?(\d{2,3})[\s.\-]?(\d{2,3})[\s.\-]?(\d{0,3})\b/);if(fijo&&!c.fijo)c.fijo=(fijo[1]+fijo[2]+fijo[3]+fijo[4]).replace(/(\d{3})(\d{3})(\d{3})/,'$1 $2 $3');
+   var em=l.match(/[\w.+-]+@[\w-]+\.[\w.]+/);if(em&&!c.email)c.email=em[0].toLowerCase();
+   if(!c.empresa&&/\b(S\.?\s?L\.?U?|S\.?\s?A\.?|S\.?\s?Coop)\b\.?\s*$/i.test(l)&&l.length<60)c.empresa=l.replace(/\s+/g,' ').replace(/\b([a-záéíóúñ])([a-záéíóúñ]{2,})/g,function(_,a,b){return a.toUpperCase()+b});
+   if(!c.nombre&&/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){1,3}$/.test(l)&&!/interiores|reformas|construc|estudio|arquitect|bizkaia|gernika|bilbao/i.test(l)){var sig=(ls[i+1]||'')+' '+(ls[i+2]||'');if(/\d{3}\s?\d{3}\s?\d{3}|@/i.test(sig))c.nombre=l}});
+  return c}
+
+ /* ---------------- familia y objeto de un trabajo (para no casar churras con merinas) ---------------- */
+ function familia(t){t=sa(t);
+  if(/papel|empapel/.test(t))return 'papel';
+  if(/pint/.test(t))return 'pintura';
+  if(/lucid|enluc|lucir|guarnec|yeso/.test(t))return 'yeso';
+  if(/roza/.test(t))return 'rozas';
+  if(/almacen|traslad|mudanz|devoluc|vaciad/.test(t))return 'traslado';
+  if(/proteg|proteccion|tapar/.test(t))return 'proteccion';
+  if(/derrib|demol|picad|picar|quitar|retir|desmont|tirar|soltar|arranc|levantado/.test(t))return 'demolicion';
+  if(/moldur|escayol/.test(t))return 'escayola';
+  if(/corredera|armazon|casoneto/.test(t))return 'carpinteria';
+  if(/tabique|pladur|trasdos/.test(t))return 'tabiqueria';
+  if(/suministr|coloc|instal|montaj|poner|sustitu|cambi|alicat|embaldos|^solado/.test(t))return 'colocacion';
+  return 'otro'}
+ var OBJ=[['persiana',/persian/],['moldura',/moldur|escayol/],['rodapie',/rodapi/],['corredera',/corredera|casoneto|armazon/],['puerta',/puerta/],['ventana',/ventana/],['alicatado',/azulej|alicat/],['ascensor',/ascensor|zonas comunes/],['roza',/roza/],['cocina_muebles',/(mobiliario|muebles) de (la )?cocina|cocina (actual|existente)|demolicion de cocina/],['mobiliario',/mobiliario|mueble|sofa|cama|mesa|escritorio/],['tabique',/tabique|pladur/],['techo',/techo|paramentos? horizontal/],['pared',/pared|paramentos? vertical/],['suelo',/suelo|solad|pavimento|tarima|parquet/],['sanitario',/inodoro|lavabo|banera|plato de ducha|sanitari/],['radiador',/radiador/]];
+ function objeto(t){t=sa(t);for(var i=0;i<OBJ.length;i++)if(OBJ[i][1].test(t))return OBJ[i][0];return 'otro'}
+
+ /* ---------------- medidas ---------------- */
+ var ESTANCIAS='cocina|bano|aseo|salon|comedor|pasillo|hall|entrada|dormitorio principal|dormitorio|habitacion|habitaciones|terraza|balcon|despensa|trastero|lavadero|txoko|garaje|vivienda|casa|piso';
+ function estanciaDe(n){var m=n.match(new RegExp('\\b('+ESTANCIAS+')\\b'));return m?m[1]:''}
+ function m2De(n){var m=n.match(/(\d+(?:[.,]\d+)?)\s*(?:m2|m²|metros cuadrados)/);return m?nm(m[1]):0}
+ function mlDe(n){var m=n.match(/(\d+(?:[.,]\d+)?)\s*(?:ml\b|metros lineales)/);return m?nm(m[1]):0}
+ function longitudes(n){var m=n.match(/(\d+(?:,\d+)?)(?:\s*m)?\s*\+\s*(\d+(?:,\d+)?)(?:\s*\+\s*(\d+(?:,\d+)?))?/);if(m)return [m[1],m[2],m[3]].filter(Boolean).map(nm);var u=n.match(/(\d+(?:,\d+)?)\s*ml?\b(?!2| de alto| de ancho)/);return u?[nm(u[1])]:[]}
+ function contexto(items){var c={paredes:{},alto:0};items.forEach(function(t){var n=sa(pulir(t));
+  var a=n.match(/hasta (?:el )?techo,?\s*(?:de\s*)?(\d+(?:,\d+)?)\s*m/)||n.match(/altura (?:de )?(?:techo )?(?:de )?(\d+(?:,\d+)?)\s*m/)||n.match(/(\d+(?:,\d+)?)\s*m de alto/);if(a&&!c.alto){var v=nm(a[1]);if(v>=2&&v<=4)c.alto=v}
+  if(/pared/.test(n)&&!/techo/.test(n)){var q=m2De(n),e=estanciaDe(n.replace(/.*pared\w*/,''));if(q&&e&&!c.paredes[e])c.paredes[e]=q}});return c}
+
+ /* ---------------- precios: lo suyo, su tarifa, la tabla de mercado ---------------- */
+ function claveDe(s){return typeof clavePartida==='function'?clavePartida(s):sa(s).replace(/[^a-z0-9]+/g,' ').trim()}
+ var VACIAS={para:1,con:1,desde:1,hasta:1,todo:1,toda:1,todos:1,parte:1,zona:1,segun:1,incluso:1,existente:1,existentes:1,actual:1,nuevo:1,nueva:1,vivienda:1,casa:1,piso:1,durante:1,obra:1,marcado:1,plano:1,precio:1,metro:1,lineal:1};
+ function fuertes(s){return sa(s).replace(/[^a-z ]+/g,' ').split(/\s+/).filter(function(w){return w.length>=4&&!VACIAS[w]}).map(function(w){return w.replace(/(es|s)$/,'')})}
+ function aprendido(textos,u,fam,obj){var A=(window.aprendidos?aprendidos():(window.DB&&DB.aprend)||{});
+  for(var i=0;i<textos.length;i++){if(!textos[i])continue;var e=A[claveDe(textos[i])];if(e&&e.p>0&&(!e.u||uN(e.u)===uN(u)))return {p:e.p,exacto:true}}
+  var R=fuertes(textos[0]),mejor=null,ms=0;
+  Object.keys(A).forEach(function(k){var e=A[k];if(!(e&&e.p>0))return;if(e.u&&uN(e.u)!==uN(u))return;if(familia(k)!==fam||objeto(k)!==obj)return;
+   var K=fuertes(k),c=R.filter(function(r){return K.indexOf(r)>-1}).length,s=c/Math.max(R.length,K.length,1);if(s>ms){ms=s;mejor=e}});
+  return ms>=0.5?{p:mejor.p,exacto:false}:null}
+ /* la primera de estas partidas que tenga precio en su tarifa (si ninguna, la primera) */
+ function tarDe(ids,u){for(var i=0;i<ids.length;i++)if(deTarifa(ids[i],u)>0)return ids[i];return ids[0]}
+ function deTarifa(id,u){try{var t=tarifa().find(function(x){return x.id===id});if(t&&t.p>0&&uN(t.u)===uN(u))return t.p}catch(e){}return 0}
+ function deMercado(fam,txt,u){try{if(!window.precioRealDe)return 0;var R=precioRealDe({t:txt,u:u,q:1,pa:0});if(R&&R.p>0&&R.fam===fam)return r2(R.p)}catch(e){}return 0}
+ /* como cobra respecto a la tarifa: se aprende de sus correcciones (mediana, por familia si hay datos) */
+ function ratio(fam){var L=(window.DB&&DB.ratios)||[];var f=L.filter(function(x){return x.f===fam}).map(function(x){return x.r});if(f.length<2){f=L.map(function(x){return x.r});if(f.length<3)return 1}
+  f.sort(function(a,b){return a-b});return Math.max(0.5,Math.min(2,f[Math.floor(f.length/2)]))}
+ window.apuntaRatio=function(desc,r){if(!(r>0.2&&r<5)||!window.DB)return;DB.ratios=(DB.ratios||[]).concat([{f:familia(desc),r:Math.round(r*1000)/1000,ts:Date.now()}]).slice(-60);try{save()}catch(e){}};
+
+ /* ---------------- cada trabajo del correo -> partidas ---------------- */
+ function L(d,q,u,o){o=o||{};return {d:cap(d),q:q,u:u,tar:o.tar||'',mer:o.mer||null,cy:o.cy||null,falta:o.falta||'',nota:o.nota||'',notaTar:o.notaTar||'',notaCy:o.notaCy||''}}
+ function zonasDe(p,re){var m=p.match(re);if(!m)return '';return m[1].replace(/\s*,?\s*\d+(?:,\d+)?\s*(?:m2|ml|m²)\b.*$/i,'').replace(/\s*-\s*/g,', ').replace(/\s*,\s*y\s+/g,' y ').replace(/^la zona de\s+/i,'').replace(/[\s,.]+$/,'').trim()}
+ function conArt(z){var t=sa(z).trim();if(/^(la|el|los|las)\s/.test(t)||/,| y /.test(t))return z;if(/^(cocina|habitacion|terraza|entrada|despensa|vivienda|casa|zona)\b/.test(t))return 'la '+z;if(/^(bano|salon|pasillo|comedor|dormitorio|hall|aseo|txoko|garaje|piso|trastero)\b/.test(t))return 'el '+z;return z}
+ function de(z){var m=String(z).match(/^([^,]+?)((?:\s*,\s*|\s+y\s+).*)$/);if(m&&!/^(la|el|los|las|del|de)\s/.test(sa(m[1]).trim()))return de(m[1])+m[2];z=conArt(z);return ('de '+z).replace(/^de el\b/,'del')}
+ function garbi(n){return /garbigune|punto limpio/.test(n)?' (Garbigune)':''}
+ /* "DORM PRINCIPAL, vaciar y retirar al Garbigune, SALON: tapar y proteger el mueble..., y mesa con sofa retirar al almacen, resto habitaciones..."
+    -> "Dormitorio principal: vaciado y retirada a punto limpio (Garbigune); salón: protección del mueble... y retirada a almacén de la mesa y el sofá; ..." */
+ var MUEB={mesa:'la mesa',mesas:'las mesas',sofa:'el sofá',sofas:'los sofás',cama:'la cama',camas:'las camas',escritorio:'el escritorio',escritorios:'los escritorios',armario:'el armario',armarios:'los armarios',silla:'la silla',sillas:'las sillas',comoda:'la cómoda',mesilla:'la mesilla',mesillas:'las mesillas',estanteria:'la estantería',estanterias:'las estanterías',colchon:'el colchón',colchones:'los colchones',aparador:'el aparador',libreria:'la librería',televisor:'el televisor',lampara:'la lámpara',alfombra:'la alfombra'};
+ function lista(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' y '+a[a.length-1]}
+ function objetosDe(s,fuera){var out=[];sa(s).replace(/[^a-z ]/g,' ').split(/\s+/).forEach(function(w){var m=MUEB[w];if(m&&out.indexOf(m)<0&&(!fuera||fuera.indexOf(w.replace(/s$/,''))<0))out.push(m)});return out}
+ var SALAS='dormitorio principal|dormitorio|salon|comedor|cocina|bano|pasillo|hall|entrada|terraza|resto (?:de )?(?:las )?habitaciones|habitaciones|habitacion';
+ function detalleMuebles(det){var n=sa(det),re=new RegExp('(?:^|[,;]\\s*)('+SALAS+')(?=\\s*[:,]|\\s+(?:los|las|el|la)\\b)','g'),cortes=[],m;
+  while((m=re.exec(n))){cortes.push({i:m.index+m[0].indexOf(m[1]),sala:m[1]})}
+  if(cortes.length<2)return '';
+  var partes=cortes.map(function(c,k){var fin=k+1<cortes.length?cortes[k+1].i:det.length;return {sala:c.sala,t:det.slice(c.i+c.sala.length,fin).replace(/^[\s:,]+|[\s,;]+$/g,'')}});
+  var out=partes.map(function(pt){var t=sa(pt.t),acc=[],guarda=[];
+   if(/vaciar|vaciado/.test(t))acc.push('vaciado'+(/garbigune|punto limpio/.test(t)?' y retirada a punto limpio (Garbigune)':/almacen/.test(t)?' y traslado a almacén':''));
+   var q=t.match(/(los|las|el|la)\s+(\w+)\s+se\s+quedan?/);
+   if(q){acc.push('protección de '+(MUEB[q[2]]||(q[1]+' '+q[2]))+', que se quedan,');guarda.push(q[2].replace(/s$/,''))}
+   else{var pr=pt.t.match(/(?:tapar y proteger|proteger y tapar|proteger|tapar)\s+(.+?)(?=,\s*y\s|,|\s+y\s+(?:mesa|el resto|la mesa|las|los)\b|$)/i);
+    if(pr){var o=pr[1].replace(/\s+del?\s+(?:salón|salon)\b/i,'').replace(/que est[aá] suspendido a la pared/i,'suspendido de la pared').replace(/\s+/g,' ').trim();acc.push('protección '+(/^(el|los)\s/i.test(o)?o.replace(/^el\s/i,'del ').replace(/^los\s/i,'de los '):'de '+o));sa(o).split(/\s+/).forEach(function(w){if(MUEB[w])guarda.push(w.replace(/s$/,''))})}}
+   if(/retirar\w*\s+al?\s+almacen|al almacen/.test(t)){var antes=t.split(/retirar\w*\s+al?\s+almacen/)[0];var ob=objetosDe(antes.replace(/.*proteger/,''),guarda);if(!ob.length)ob=objetosDe(antes,guarda);if(ob.length)acc.push('retirada a almacén de '+lista(ob))}
+   var sala=pt.sala.replace(/^resto (?:de )?(?:las )?habitaciones$/,'resto de habitaciones');sala=pulir(sala);
+   var txt=acc.length===2?acc[0]+' y '+acc[1]:lista(acc);return acc.length?minus(sala)+': '+txt.replace(/,\s*$/,''):''}).filter(Boolean);
+  return out.length?cap(out.join('; ')):''}
+
+ /* ---------------- precios de CYPE (generadordeprecios.info) + 19 % de gastos generales y beneficio + 7 % ----------------
+    Los precios están en precios.json (cyperef), con su código y su enlace. Se usan cuando el albañil no tiene el suyo
+    (ni aprendido ni en su lista); si el de mercado sale más alto, va el de mercado. */
+ var BASEP=null;try{if(window.basePrecios)basePrecios().then(function(b){if(b)BASEP=b}).catch(function(){})}catch(e){}
+ function CYr(id){return (BASEP&&BASEP.cyperef&&BASEP.cyperef[id])||null}
+ function cyF(){var g=(BASEP&&BASEP.cype_gg)||1.19,m=(BASEP&&BASEP.cype_mas)||1.07;return g*m}
+ function cyP(id){var c=CYr(id);return c&&c.p>0?c.p:0}
+ /* volumen de los muebles (m³), como lo cuenta una mudanza */
+ var VOL={'sofa':2.0,'sillon':0.8,'mesa':0.6,'mesa redonda':0.5,'silla':0.15,'cama':1.0,'cama de matrimonio':1.6,'colchon':0.4,'escritorio':0.6,'armario':1.5,'comoda':0.6,'mesilla':0.15,'estanteria':0.5,'aparador':0.8,'libreria':0.8,'televisor':0.2,'lampara':0.1,'alfombra':0.1,'mueble':0.8},VOL_VACIAR=2.5;
+ var SING={'mesas redondas':'mesa redonda','camas de matrimonio':'cama de matrimonio','sofas':'sofa','sillones':'sillon','mesas':'mesa','sillas':'silla','camas':'cama','colchones':'colchon','escritorios':'escritorio','armarios':'armario','comodas':'comoda','mesillas':'mesilla','estanterias':'estanteria','aparadores':'aparador','librerias':'libreria','televisores':'televisor','lamparas':'lampara','alfombras':'alfombra','muebles':'mueble'};
+ function volDe(s,nPl,fuera){var t=' '+sa(s).replace(/[^a-z0-9 ]/g,' ')+' ',v=0,re=/\b(?:(\d+)\s+)?(mesas? redondas?|camas? de matrimonio|sofas?|sillon(?:es)?|mesas?|sillas?|camas?|colchon(?:es)?|escritorios?|armarios?|comodas?|mesillas?|estanterias?|aparador(?:es)?|librerias?|televisor(?:es)?|lamparas?|alfombras?|muebles?)\b/g,m;
+  while((m=re.exec(t))){var k=SING[m[2]]||m[2];if(fuera&&fuera.indexOf(k)>=0)continue;var pl=k!==m[2];v+=(VOL[k]||0.6)*(m[1]?+m[1]:pl?(nPl||2):1)}return r2(v)}
+ /* muebles: lo que va al almacén, lo que se protege y lo que se vacía (a punto limpio) */
+ function cuentaMuebles(det){var n=sa(det),re=new RegExp('(?:^|[,;]\\s*)('+SALAS+')(?=\\s*[:,]|\\s+(?:los|las|el|la)\\b)','g'),cortes=[],m,o={alm:0,prot:0,vac:0};
+  while((m=re.exec(n))){cortes.push({i:m.index+m[0].indexOf(m[1]),sala:m[1]})}
+  var partes=cortes.length?cortes.map(function(c,k){var fin=k+1<cortes.length?cortes[k+1].i:n.length;return n.slice(c.i+c.sala.length,fin)}):[n];
+  partes.forEach(function(t){var guarda=[];
+   if(/vaciar|vaciado/.test(t))o.vac+=VOL_VACIAR;
+   var q=t.match(/(?:los|las|el|la)\s+(\w+)\s+se\s+quedan?/);
+   if(q){o.prot+=volDe(q[1]);guarda.push(SING[q[1]]||q[1])}
+   else{var pr=t.match(/(?:tapar y proteger|proteger y tapar|proteger|tapar)\s+(.+?)(?=,\s*y\s|,|\s+y\s+(?:mesa|el resto|la mesa|las|los)\b|$)/);if(pr){o.prot+=volDe(pr[1]);sa(pr[1]).split(/\s+/).forEach(function(w){if(VOL[SING[w]||w])guarda.push(SING[w]||w)})}}
+   if(/almacen/.test(t)&&!/^\s*vaciar/.test(t)){var antes=t.split(/retirar\w*\s+al?\s+almacen|al almacen/)[0];o.alm+=volDe(antes,2,guarda)}});
+  o.alm=r2(o.alm);o.prot=r2(o.prot);o.vac=r2(o.vac);return o}
+ function f1(x){return String(r2(x)).replace('.',',')}
+ /* «DORM PRINCIPAL vaciar y retirar al Garbigune, SALON tapar y proteger el mueble... y mesa con sofa al almacén, resto habitaciones...»
+    -> una partida por trabajo y estancia: vaciado, protección y traslado a almacén, cada una con sus m³ */
+ function partesMuebles(det){var n=sa(det),re=new RegExp('(?:^|[,;]\\s*)('+SALAS+')(?=\\s*[:,]|\\s+(?:los|las|el|la)\\b)','g'),cortes=[],m,out=[];
+  while((m=re.exec(n))){cortes.push({i:m.index+m[0].indexOf(m[1]),sala:m[1]})}
+  if(cortes.length<2)return out;
+  cortes.forEach(function(c,k){var fin=k+1<cortes.length?cortes[k+1].i:det.length,raw=det.slice(c.i+c.sala.length,fin).replace(/^[\s:,]+|[\s,;]+$/g,''),t=sa(raw),guarda=[];
+   var sala=c.sala.replace(/^resto (?:de )?(?:las )?habitaciones$/,'habitaciones');var deS=/^habitaciones$/.test(sala)?'de las habitaciones':de(pulir(sala));
+   var o={sala:sala,deS:deS};
+   if(/vaciar|vaciado/.test(t))o.vac={dest:/almacen/.test(t.split(/vaciar|vaciado/)[1]||'')&&!/garbigune|punto limpio/.test(t)?'almacen':'limpio'};
+   var q=t.match(/(los|las|el|la)\s+(\w+)\s+se\s+quedan?/);
+   if(q){o.prot={txt:(MUEB[q[2]]||(q[1]+' '+q[2])).replace(/^el /,'del ').replace(/^los /,'de los ').replace(/^la /,'de la ').replace(/^las /,'de las '),queda:true,vol:volDe(q[2])};guarda.push(SING[q[2]]||q[2])}
+   else{var pr=raw.match(/(?:tapar y proteger|proteger y tapar|proteger|tapar)\s+(.+?)(?=,\s*y\s|,|\s+y\s+(?:mesa|el resto|la mesa|las|los)\b|$)/i);
+    if(pr){var ob=pr[1].replace(/\s+del?\s+(?:salón|salon)\b/i,'').replace(/que est[aá] suspendido a la pared/i,'suspendido de la pared').replace(/\s+/g,' ').trim();
+     o.prot={txt:(/^(el|los|la|las)\s/i.test(ob)?ob.replace(/^el\s/i,'del ').replace(/^los\s/i,'de los ').replace(/^la\s/i,'de la ').replace(/^las\s/i,'de las '):'de '+ob),vol:volDe(ob)};
+     sa(ob).split(/\s+/).forEach(function(w){if(VOL[SING[w]||w])guarda.push(SING[w]||w)})}}
+   if(/retirar\w*\s+al?\s+almacen|al almacen/.test(t)&&!(o.vac&&!/proteger|tapar|mesa|sofa|cama|escritorio/.test(t))){var antes=t.split(/retirar\w*\s+al?\s+almacen|al almacen/)[0];
+    var obs=objetosDe(antes.replace(/.*proteger/,''),guarda);if(!obs.length)obs=objetosDe(antes,guarda);var v=volDe(antes.replace(/.*proteger/,''),2,guarda)||volDe(antes,2,guarda);
+    if(obs.length)o.alm={txt:lista(obs),vol:v}}
+   if(o.vac||o.prot||o.alm)out.push(o)});
+  return out}
+
+ var REGLAS=[
+  /* proteccion */
+  [/\b(tapar|proteger|proteccion)\b.*\b(ascensor|escaleras?|portal|zonas? comun\w*|comunitari\w*|rellanos?|descansillos?)\b/,function(n,p){return [L(/ascensor/.test(n)?'Protección del ascensor y de las zonas comunes durante la obra':'Protección de la escalera y de las zonas comunes durante la obra',1,'ud',{tar:tarDe(['pro'],'ud'),mer:['x_proteccion','Protección de zonas comunes durante la obra'],cy:function(){return cyP('proteccion_ascensor')}})]}],
+  /* muebles a almacen y vuelta */
+  [/^(retirada|retirar|sacar|llevar|quitar)\b.*\b(mobiliario|muebles)\b.*\balmacen\b/,function(n,p){var i=p.indexOf('(');var det=i>=0?p.slice(i+1):p.replace(/^.*?almac[eé]n\.?\s*/i,'');det=det.replace(/\)\s*$/,'').replace(/\s*,\s*,/g,',').trim();
+   var PM=partesMuebles(det);
+   if(PM.length){var A=function(){return cyP('embalaje_mobiliario')+cyP('traslado_mobiliario')+cyP('transporte_mobiliario')},T=function(){return cyP('traslado_mobiliario')+cyP('transporte_mobiliario')},o=[];
+    PM.forEach(function(x){
+     if(x.vac)o.push(L('Vaciado '+x.deS+(x.vac.dest==='almacen'?', con embalaje y traslado de muebles y enseres a almacén':' y transporte de muebles y enseres a punto limpio'+garbi(n)),VOL_VACIAR,'m3',{cy:x.vac.dest==='almacen'?A:T,notaCy:'el vaciado '+x.deS+' lo he contado como unos '+f1(VOL_VACIAR)+' m³ (cama, mesillas y cómoda); cambia los m³ si es más o menos'}));
+     if(x.prot)o.push(L('Protección '+x.prot.txt+' '+x.deS+(x.prot.queda?', que se quedan,':',')+' con lámina de plástico, durante la obra',x.prot.vol||0.5,'m3',{cy:function(){return cyP('proteccion_mobiliario')}}));
+     if(x.alm)o.push(L('Traslado a almacén de '+x.alm.txt+' '+x.deS+', con embalaje, bajada y transporte en camión',x.alm.vol||1,'m3',{cy:A,notaCy:'los m³ de muebles los he contado como en una mudanza (sofá 2, cama 1, mesa y escritorio 0,6)'}))});
+    return o}
+   var bien=detalleMuebles(det),V=cuentaMuebles(det);
+   return [L('Retirada del mobiliario existente y traslado a almacén'+(bien?'. '+bien:(det?': '+minus(det):'')),1,'ud',{cy:function(){var a=cyP('embalaje_mobiliario')+cyP('traslado_mobiliario')+cyP('transporte_mobiliario'),b=cyP('traslado_mobiliario')+cyP('transporte_mobiliario');return V.alm*a+V.prot*cyP('proteccion_mobiliario')+V.vac*b},
+    notaCy:'los muebles los he contado así: '+[V.alm?f1(V.alm)+' m³ al almacén (embalar, bajar y llevar en camión)':'',V.prot?f1(V.prot)+' m³ que se protegen':'',V.vac?'unos '+f1(V.vac)+' m³ del vaciado a punto limpio':''].filter(Boolean).join(', ')+', con los precios por m³ de CYPE; si son más o menos muebles, cambia el precio'})]}],
+  [/^(volver a (llevar|traer|subir|meter|colocar)|devolver|devolucion|traer de nuevo|subir de nuevo)\b.*\balmacen\b/,function(n,p){var m=p.match(/al? (?:piso|casa|vivienda)\s+(.*)$/i);var que=m?m[1]:p.replace(/^.*?almac[eé]n\s*/i,'');var nh=(n.match(/(\d+)\s+habitaciones/)||[])[1];var vol=volDe(que,nh?+nh:2);que=que.replace(/^el\s+/i,'del ').replace(/\s*,\s*y\s+/g,' y ');
+   return [L('Traslado desde almacén y colocación en la vivienda '+(/^del\s/.test(que)?'':'de ')+que,vol||1,'m3',{cy:function(){return cyP('traslado_mobiliario')+cyP('transporte_mobiliario')},notaCy:'la vuelta del almacén la he contado con unos '+f1(vol)+' m³ de muebles'})]}],
+  /* tabiques */
+  [/^(derribo|derribar|demoler|demolicion|tirar|quitar)\b.*\btabiques?\b/,function(n,p,c){var lg=longitudes(n),col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];
+   var alto=(c&&c.alto)||0,suma=lg.reduce(function(a,b){return a+b},0),m2=suma&&alto?r2(suma*alto):0,m2d=!m2&&lg.length?m2De(n):0;
+   var rep=(/arreglo de (?:las )?paredes|repaso de (?:las )?paredes|remate de (?:las )?paredes/.test(n)?', repaso de las paredes en los encuentros':'')+(/relleno (?:de|del) suelo|suelo con masa|recrecido (?:de|del) suelo/.test(n)?', relleno y nivelación del suelo con masa en la huella del tabique':'');
+   return [L('Demolición de tabique'+(/plano/.test(n)?' según plano':'')+(col?' (marcado en '+col+')':'')+(lg.length?', de '+lg.map(f2).join(' m + ')+' m de longitud'+(m2?' y '+f2(alto)+' m de altura ('+f2(m2)+' m²)':m2d?' ('+f2(m2d)+' m²)':''):'')+', con retirada de escombro a vertedero autorizado'+rep,1,'ud',{tar:'tab',nota:m2d?'el tabique a derribar mide '+f2(m2d)+' m² ('+lg.map(f2).join(' + ')+' m de largo); tu tarifa lo cobra por unidad':m2?'el tabique a derribar mide '+f2(m2)+' m² ('+lg.map(f2).join(' + ')+' m de largo por '+f2(alto)+' m de alto); tu tarifa lo cobra por unidad':''})]}],
+  [/^(levantar|hacer|construir|ejecutar|formar|formacion|colocar|poner|cerrar con)\b.*\btabique\b/,function(n,p,c){var lg=(n.match(/tabique(?: nuevo)?(?: de)?\s*(\d+(?:,\d+)?)\s*m\b/)||[])[1];lg=lg?nm(lg):0;
+   var col=(n.match(/\ben (rojo|verde|azul|amarillo|naranja)\b/)||[])[1];var alto=c.alto||0;var out=[];
+   var d='Formación de tabique nuevo'+(lg?' de '+f2(lg)+' m de longitud':'')+(alto?' hasta techo ('+f2(alto)+' m de altura)':'')+(/plano|marcado/.test(n)?', según plano':'')+(col?' (marcado en '+col+')':'');
+   if(lg&&alto)out.push(L(d,r2(lg*alto),'m2',{tar:'pla',nota:'el tabique nuevo lo he medido con '+f2(lg)+' m de largo por '+f2(alto)+' m de altura hasta techo, que es la que da el correo'}));
+   else out.push(L(d,lg||0,lg?'ml':'m2',{falta:lg?'':'los m² del tabique'}));
+   if(/\b(caja|cala|cajon|armazon|casoneto|kit)\b.*\bcorredera\b/.test(n)){var an=(n.match(/(\d+(?:,\d+)?)\s*m de ancho/)||[])[1],al=(n.match(/(\d+(?:,\d+)?)\s*m de alto/)||[])[1];
+    out.push(L('Suministro y colocación de armazón para puerta corredera empotrada'+(/hasta (el )?techo/.test(n)?', hasta techo':'')+(an||al?', de '+(an?an+' m de ancho':'')+(an&&al?' y ':'')+(al?al+' m de alto':''):''),1,'ud',{tar:'cor',notaTar:/hasta (el )?techo/.test(n)?'el armazón de la corredera es hasta techo'+(al?' ('+al+' m de alto)':'')+' y el precio de tu tarifa es el del normal: revísalo':''}))}
+   return out}],
+  /* puertas y rodapies */
+  [/^(soltar|quitar|desmontar|retirar|levantar|arrancar)\b(?=.*\bpuertas?\b)(?=.*\brodapies?\b)/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];var ml=mlDe(n);
+   return [L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio'+garbi(n),np?+np:0,'ud',{tar:'pue',falta:np?'':'cuántas puertas'}),
+           L('Arranque de rodapiés existentes y transporte a punto limpio'+garbi(n),ml||0,'ml',{tar:'rod',falta:ml?'':'los metros de rodapié'})]}],
+  [/^(soltar|quitar|desmontar|retirar|levantar)\b(?!.*\b(tabique|corredera)\b).*\bpuertas?\b/,function(n,p){var np=(n.match(/(\d+)\s*puertas/)||[])[1];return [L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio'+garbi(n),np?+np:(/\bpuerta\b/.test(n)?1:0),'ud',{tar:'pue',falta:np||/\bpuerta\b/.test(n)?'':'cuántas puertas'})]}],
+  [/^(soltar|quitar|arrancar|retirar|levantar)\b.*\brodapies?\b/,function(n,p){var ml=mlDe(n);return [L('Arranque de rodapiés existentes y transporte a punto limpio'+garbi(n),ml||0,'ml',{tar:'rod',falta:ml?'':'los metros de rodapié'})]}],
+  /* quitar los sanitarios: la partida es por baño */
+  [/^(soltar|quitar|desmontar|desmontaje|retirar|retirada|levantar|arrancar)\b.*\bsanitarios\b/,function(n,p){var nb=cuantas(n,'(?:banos|aseos)')||1;
+   return [L('Desmontaje de sanitarios'+(nb>1?' de '+nb+' baños':' del baño')+', con retirada y transporte a punto limpio'+garbi(n),nb,'ud',{tar:'san',nota:nb>1?'los sanitarios van por baño: '+nb+' baños':''})]}],
+  /* falso techo de pladur («bajar el techo con perfilería y placa de pladur») */
+  [/^(?!pint)(?=.*\b(falso techo|bajar (?:el |los )?techos?|techos? de pladur|pladur\b.*\btechos?|techos?\b.*\bpladur)\b)/,function(n,p){var q=m2De(n);
+   return [L('Falso techo de placa de pladur con perfilería metálica'+(/lana de roca|aislad/.test(n)?', aislado con lana de roca':'')+(/hidrofug/.test(n)?' (placa hidrófuga en los baños)':'')+', con juntas y listo para pintar',q||0,'m2',{tar:tarDe(['tec','tecq'],'m2'),falta:q?'':'los m² de techo'})]}],
+  /* cocina */
+  [/^(derribo|derribar|desmontaje|desmontar|quitar|retirar|tirar|demoler|demolicion)\b.*\b(mobiliario|muebles)\b.*\bcocina\b/,function(n,p){return [L('Desmontaje del mobiliario de cocina existente, con bajada y transporte a punto limpio',1,'ud',{tar:'coc'})]}],
+  /* alicatado */
+  [/^(quitar|picar|picado|retirar|arrancar|demoler|derribo|derribar|demolicion|tirar)\b.*\b(azulejos?|alicatados?)\b/,function(n,p,c){var e=estanciaDe(n.replace(/.*(azulejo|alicatado)s?/,''))||estanciaDe(n);var q=m2De(n),nota='';
+   if(!q&&e&&c.paredes[e]){q=c.paredes[e];nota='el picado de azulejos lo he medido con los '+fm(q)+' m² de paredes de '+pulir(e)+' que da el mismo correo'}
+   return [L('Picado de alicatado en paredes'+(e?' '+de(pulir(e)):'')+', con retirada de escombro a vertedero autorizado',q||0,'m2',{tar:'ali',falta:q?'':'los m² de azulejo',nota:nota})]}],
+  /* rozas */
+  /* v250 · la electricidad de la cocina sola no es la de todo el piso (3.800 €): tiene su partida */
+  [/^(?:(?:hacer|poner|nueva|renovar|cambiar)\s+(?:la\s+)?)?(?:instalacion electrica|electricidad)\s+(?:nueva\s+)?(?:de|en)\s+(?:la\s+)?cocina\b(?!.*\b(?:toda|todo|piso|casa|vivienda)\b)/,function(n,p){return [L('Instalación eléctrica de la cocina: circuitos de cocina y horno, enchufes y puntos de luz, con su línea hasta el cuadro',1,'ud',{tar:'elk'})]}],
+  [/^(?:suministro y colocacion de\s+)?mamparas?\b/,function(n,p){var z=(n.match(/\b(?:en|del|de la)\s+(?:el\s+)?(bano\w*|aseo)/)||[])[1];return [L('Suministro y colocación de mampara de ducha'+(z?' en el '+(/aseo/.test(z)?'aseo':'baño'):''),1,'ud',{tar:'mam'})]}],
+  [/\b(tapar|tapado|cerrar|rellenar)\b.*\brozas?\b/,function(n,p){var el=/electric|luz/.test(n),fo=/fontaner|agua|tuber/.test(n);
+   return [L('Tapado con yeso de las rozas de la instalación'+(el?' eléctrica':fo?' de fontanería':'')+' y remates de albañilería',1,'ud',{tar:el?'aye':fo?'ayf':''})]}],
+  /* yeso */
+  [/^(lucido|lucir|enlucido|enlucir|guarnecido|guarnecer|dar yeso)\b/,function(n,p){var z=zonasDe(p,/paredes?\s+(?:de\s+|del\s+)?(.*)$/i)||zonasDe(p,/^\S+\s+(?:de\s+)?(.*)$/i);var q=m2De(n);
+   return [L('Lucido de yeso en paredes'+(z?' '+de(z):'')+', lijado y listo para pintar',q||0,'m2',{tar:'luc',falta:q?'':'los m²'})]}],
+  /* papel pintado */
+  [/^(empapelar|empapelado|colocar papel|poner papel|papel pintado)\b.*\b(caja|cajon)\b.*\bpersiana/,function(n,p){var e=estanciaDe(n.replace(/.*persiana/,''));var med=(p.match(/\((\d+(?:,\d+)?\s*m)\)/)||[])[1]||'';
+   var lg=med?nm(med):0;
+   return [L('Colocación de papel pintado en cajón de persiana'+(e?' de la '+pulir(e):'')+(med?' ('+med+' de largo)':''),lg?r2(lg*0.4):1,lg?'m2':'ud',{cy:function(){return cyP('papel_vinilo')*(lg?1:0.58)},notaCy:lg?'el cajón de persiana empapelado lo he medido con '+f2(lg)+' m de largo por 40 cm de frente':''})]}],
+  [/\b(colocar|poner|empapelar|colocacion de)\b.*\bpapel\b|^empapelar\b/,function(n,p){var z=zonasDe(p,/paredes?\s+(?:de\s+|del\s+)?(.*?)(?:\s+\d.*)?$/i);var ro=n.match(/(\d+)\s*(?:-|a|o)\s*(\d+)\s*rollos?/)||n.match(/(\d+)\s*rollos?/);var q=m2De(n);
+   var nCy='el papel pintado va a precio de CYPE con el papel incluido; si el papel lo pone el cliente, bájalo';
+   if(ro){var max=+(ro[2]||ro[1]);return [L('Colocación de papel pintado en paredes'+(z?' '+de(z):'')+' ('+(ro[2]?ro[1]+' a '+ro[2]:ro[1])+' rollos)',max,'ud',{cy:function(){return cyP('papel_vinilo')*5.33},notaCy:nCy+' (rollo de 5,33 m²)'})]}
+   return [L('Colocación de papel pintado en paredes'+(z?' '+de(z):''),q||0,'m2',{falta:q?'':'los m²',cy:function(){return cyP('papel_vinilo')},notaCy:nCy})]}],
+  /* pintura */
+  [/^(pintado|pintar|pintura)\b.*\b(cajas?|cajon(es)?)\b.*\bpersianas?\b/,function(n,p){var c=n.match(/persianas?(?:\s+(?:de|del|de la|de toda la)\s+[a-z ]+?)?[.,]?\s*(\d+)\s*\(/)||n.match(/(\d+)\s*(?:cajas|cajones)/);var q=c?+c[1]:0;
+   var det=(p.match(/\(([^)]*)\)/)||[])[1]||'';det=det.replace(/(\d+)\s*ud\s+de\s+/gi,'$1 de ').replace(/\s*\+\s*/g,' y ');
+   var lgs=0,mm,reL=/(\d+)\s*(?:ud\s+)?de\s+(\d+(?:,\d+)?)\s*m\b/g;while((mm=reL.exec(det.replace(/ y /g,' , '))))lgs+=(+mm[1])*nm(mm[2]);
+   if(lgs>0)return [L('Pintura con esmalte de cajones de persiana'+(det?' ('+det+')':''),r2(lgs*0.4),'m2',{cy:function(){return cyP('esmalte_madera')},notaCy:'los cajones de persiana los he medido con '+f2(lgs)+' m de largo en total por 40 cm de frente'})];
+   return [L('Pintura con esmalte de cajones de persiana'+(det?' ('+det+')':''),q||1,'ud',{cy:function(){return cyP('esmalte_madera')*0.58},notaCy:'cada cajón de persiana lo he contado de 1,45 m por 40 cm de frente'})]}],
+  [/^(pintado|pintar|pintura|dar (una|dos|tres) manos?)\b.*\btechos?\b/,function(n,p){var z=zonasDe(p,/techos?\s+(?:de\s+|del\s+)?(.*)$/i);var q=m2De(n);var man=(n.match(/\b(una|dos|tres) manos?\b/)||[])[0]||'';
+   return [L('Pintura plástica'+(man?', '+man+',':'')+' en techos'+(z?' '+de(z):''),q||0,'m2',{tar:'pit',falta:q?'':'los m²'})]}],
+  [/^(pintado|pintar|pintura|dar (una|dos|tres) manos?)\b.*\bparedes?\b/,function(n,p){var z=zonasDe(p,/paredes?\s+(?:de\s+|del\s+)?(.*)$/i);var q=m2De(n);var man=(n.match(/\b(una|dos|tres) manos?\b/)||[])[0]||'';
+   return [L('Pintura plástica'+(man?', '+man+',':'')+' en paredes'+(z?' '+de(z):''),q||0,'m2',{tar:'pip',falta:q?'':'los m²'})]}],
+  /* molduras */
+  [/^(arreglo|arreglar|reparacion|reparar|restaurar|restauracion|reponer)\b.*\bmolduras?\b/,function(n,p){var z=zonasDe(p,/(?:zona de|en el|en la|en|del|de la)\s+((?:salón|salon|pasillo|cocina|dormitorio|habitación|habitacion|comedor|hall|entrada)[^,.]*)/i);var porMl=/por ml|metro lineal|por metro/.test(n);var q=mlDe(n);
+   return [L('Reparación de molduras de techo'+(z?' en '+z.replace(/\s*,\s*/g,' y '):'')+(porMl&&!q?'. Precio por metro lineal; se medirá en obra':''),q||1,'ml',{cy:function(){return cyP('moldura_escayola')},notaCy:'las molduras van al precio de CYPE de moldura de escayola nueva por metro'})]}],
+  /* como lo escribe un cliente cualquiera en un correo o en el formulario de la web */
+  [/\b(quitar|retirar|eliminar|rascar|rascado|alisar|alisado|eliminacion)\b.*\bgotel/,function(n,p){var z=zonasDe(p,/gotel[eé]\s+(?:de\s+|del\s+|en\s+)?(.*)$/i);var q=m2De(n);
+   return [L('Eliminación de gotelé y alisado de paredes'+(z?' '+de(z):''),q||0,'m2',{mer:['d_gotele','Quitar gotelé (rascado/alisado de paredes)'],falta:q?'':'los m² de pared'})]}],
+  [/^(pintado|pintar|pintura)\b(?!.*\b(techos?|paredes?|cajas?|cajon(es)?|puertas?|ventanas?|radiador(es)?|barandill\w*|rejas?|fachadas?|esmalte|madera|hierro|forja|tejado|suelo|gotel\w*)\b)/,function(n,p){var z=zonasDe(p,/^(?:pintado|pintar|pintura)\s+(?:(?:de|del|el|la|los|las|todo el|toda la|todo|toda)\s+)*(.*)$/i);var q=m2De(n);
+   z=z.replace(/^(mi|mis|nuestro|nuestra|nuestros|nuestras|su|sus|tu|tus)\s+/i,'').replace(/,?\s+(?:que\s+)?(?:son|tiene|tienen)\s+(.+)$/i,' ($1)');var zp=z.match(/^(.*?)\s(\(.*\))$/);
+   return [L('Pintura plástica en paredes'+(z?' '+(zp?de(zp[1])+' '+zp[2]:de(z)):''),q||0,'m2',{tar:'pip',falta:q?'':'los m² de pared',nota:'donde pide pintar sin decir paredes o techos lo he puesto como paredes; si es también el techo, añade los techos'})]}],
+  [/^(cambiar|cambio|sustituir|sustitucion|renovar|poner|colocar|colocacion|instalar|instalacion|suministro|montar|montaje)\b.*\bpuertas?\b(?!.*\b(entrada|calle|garaje|corredera|armarios?|terraza|balcon|ducha|mampara)\b)/,function(n,p){var c=cuantas(n,'puertas?'),o=[];
+   if(/^(cambiar|cambio|sustituir|sustitucion|renovar)/.test(n))o.push(L('Desmontaje de puertas interiores existentes con marcos y premarcos, y transporte a punto limpio',c||0,'ud',{tar:'pue',falta:c?'':'cuántas puertas'}));
+   o.push(L('Suministro y colocación de puerta de paso interior, con marco, tapajuntas y herrajes',c||0,'ud',{tar:'pub',falta:c?'':'cuántas puertas'}));return o}],
+ ];
+ /* cuántas: "3 puertas", "tres puertas", "la puerta" (una) */
+ var NUMS={un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12};
+ function cuantas(n,nom){var m=n.match(new RegExp('\\b(\\d{1,3}|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\\s+(?:[a-z]+\\s+)?'+nom+'\\b'));if(m)return /^\d/.test(m[1])?+m[1]:NUMS[m[1]];
+  var mu=n.match(new RegExp('\\b'+nom+'\\b[^\\d.;]{0,40}?\\b(\\d{1,3})\\s*(?:uds?|unidades)\\b'));if(mu)return +mu[1];
+  var sg=nom.replace(/s\?$/,'');if(new RegExp('\\b(la|el|una|un|esta|este)\\s+'+sg+'\\b').test(n)&&!new RegExp('\\b'+sg+'s\\b').test(n))return 1;return 0}
+
+ /* lo que no encaja en ninguna regla: verbo del cliente -> nombre de partida, y sus medidas */
+ function generica(n,p){var r=p.replace(/^quitar\s+/i,'Retirada de ').replace(/^tirar\s+/i,'Demolición de ').replace(/^derribo de\s+/i,'Demolición de ').replace(/^levantar\s+/i,'Formación de ').replace(/^colocar\s+/i,'Colocación de ').replace(/^poner\s+/i,'Colocación de ').replace(/^pintar\s+/i,'Pintura plástica de ').replace(/^pintado de\s+/i,'Pintura de ').replace(/^cambiar\s+/i,'Sustitución de ').replace(/^arreglar\s+|^arreglo de\s+/i,'Reparación de ').replace(/^soltar\s+/i,'Desmontaje de ').replace(/^alicatar\s+(?:de nuevo\s+)?(?:de\s+)?/i,'Alicatado de ').replace(/^(?:solar|embaldosar)\s+(?:de\s+)?/i,'Solado de ').replace(/^(?:lucir|enlucir)\s+/i,'Lucido de ').replace(/^impermeabilizar\s+/i,'Impermeabilización de ').replace(/^aislar\s+/i,'Aislamiento de ').replace(/^nivelar\s+/i,'Nivelación de ').replace(/^lijar\s+/i,'Lijado de ').replace(/^barnizar\s+/i,'Barnizado de ').replace(/^empapelar\s+/i,'Colocación de papel pintado en ').replace(/^abrir\s+/i,'Apertura de ').replace(/^ampliar\s+/i,'Ampliación de ').replace(/^(?:mover|trasladar)\s+/i,'Traslado de ').replace(/^sustituir\s+/i,'Sustitución de ').replace(/^reparar\s+/i,'Reparación de ').replace(/^renovar\s+/i,'Renovación de ').replace(/^reformar\s+/i,'Reforma de ').replace(/^desmontar\s+/i,'Desmontaje de ').replace(/^montar\s+/i,'Montaje de ').replace(/^instalar\s+/i,'Instalación de ').replace(/^tapar\s+/i,'Protección de ').replace(/^limpiar\s+/i,'Limpieza de ').replace(/retirar al garbigune/i,'transporte a punto limpio (Garbigune)').replace(/\bde el\b/g,'del');
+  var q=m2De(n),u='m2';if(!q){q=mlDe(n);u='ml'}if(!q){var n2=n.replace(/\b(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce)\s+(?=[a-z])/g,function(w){return NUMS[w.trim()]+' '});var c=n2.match(/\b(\d+)\s*(?:ud|uds|unidades|puntos|piezas|ventanas?|radiadores?|enchufes?|interruptores?|persianas?|focos?|tomas?|grifos?|lavabos?|inodoros?|armarios?|apliques?|plafones?|lamparas?|mamparas?|platos?)\b/);q=c?+c[1]:1;u='ud'}
+  r=r.replace(/[,\s(]*(?:unos|unas|aprox\.?|aproximadamente|alrededor de|sobre|m[aá]s o menos)?\s*\d+(?:,\d+)?\s*(m2|m²|ml)\b.*$/i,'').replace(/[\s,(]+$/,'');
+  return [L(r,q,u)]}
+
+ /* «Suministro y colocación de rodapié 105ml y puertas de paso blancas (7 uds)»: dos cosas distintas, cada una con su partida */
+ var OBJ_PARTE='rodapi\\w*|puertas?|ventanas?|persianas?|radiador\\w*|armarios?|mamparas?|inodoros?|lavabos?|platos? de ducha|banera|termo|encimera';
+ var RE_PARTE2=new RegExp('^((?:suministro y colocacion|suministro e instalacion|colocacion|instalacion|sustitucion|cambio|montaje)\\s+de\\s+(?:(?:el|la|los|las)\\s+)?|(?:poner|colocar|instalar|cambiar|sustituir|montar)\\s+(?:(?:el|la|los|las)\\s+)?)(.+?)\\s+(?:y|e)\\s+((?:(?:el|la|los|las|un|una|unos|unas|\\d+)\\s+)?('+OBJ_PARTE+')\\b.*)$');
+ function raizObj(w){return sa(w).replace(/^(rodapi|puert|ventan|persian|radiador|armari|mampar|inodor|lavab|plato|baner|termo|encimer).*/,'$1')}
+ function partirObjetos(p,n){var m=n.match(RE_PARTE2);
+  /* v250 · «Plato de ducha y mampara en el baño», sin verbo delante: también son dos */
+  if(!m&&new RegExp('^(?:'+OBJ_PARTE+')\\b').test(n)&&!/^suministro y colocacion de /.test(n))return partirObjetos('Suministro y colocación de '+minus(p),'suministro y colocacion de '+n);
+  if(!m)return null;
+  var izq=m[2].match(new RegExp('\\b('+OBJ_PARTE+')\\b'));if(!izq||raizObj(izq[1])===raizObj(m[4]))return null;
+  var a=m[1].length,b=a+m[2].length,c=n.length-m[3].length;return [p.slice(0,b),p.slice(0,a)+p.slice(c)]}
+ /* «…en paredes y suelo del baño… Paredes 37m2 y Suelos 8 m2»: una partida por superficie, cada una con sus m² */
+ var ZONAS=[['paredes','paredes|pared|paramentos? verticales'],['suelo','suelos?|pavimentos?'],['techo','techos?|paramentos? horizontales']];
+ function partirZonas(p,n){var re=/\b(paredes|pared|suelos?|techos?)\s*:?\s*(?:de\s+)?(\d+(?:[.,]\d+)?)\s*(?:m2|m²)/g,m,hs=[];
+  while((m=re.exec(n))){var z=/^pared/.test(m[1])?'paredes':/^suelo/.test(m[1])?'suelo':'techo';if(hs.some(function(h){return h.z===z}))return null;hs.push({z:z,q:m[2],i:m.index,f:m.index+m[0].length})}
+  if(hs.length<2)return null;
+  var base=(p.slice(0,hs[0].i)+p.slice(hs[hs.length-1].f)).replace(/[\s.,;:]+$/,'');
+  return hs.map(function(h){return sinOtras(base,h.z,hs.map(function(o){return o.z}))+' '+h.q+' m2'})}
+ /* «Pintar paredes y techos del salón. Paredes 40 m2» (el correo ya lo ha partido en buzon.js): esta línea es solo de paredes */
+ function zonaSola(p,n){var m=n.match(/^(.*\S)\s*[.:]\s*(paredes|pared|suelos?|techos?)\s*:?\s*(\d+(?:[.,]\d+)?\s*(?:m2|m²))(.*)$/);if(!m)return null;
+  var z=/^pared/.test(m[2])?'paredes':/^suelo/.test(m[2])?'suelo':'techo',otras=ZONAS.filter(function(Z){return Z[0]!==z&&new RegExp('\\b(?:'+Z[1]+')\\b').test(m[1])}).map(function(Z){return Z[0]});
+  if(!otras.length)return null;var base=p.slice(0,m[1].length),cola=p.slice(n.length-m[4].length);
+  return [sinOtras(base,z,otras.concat([z]))+' '+p.slice(n.length-m[4].length-m[3].length,n.length-m[4].length)+cola]}
+ function sinOtras(base,z,zs){var t=base;ZONAS.forEach(function(Z){if(Z[0]===z||zs.indexOf(Z[0])<0)return;
+    t=t.replace(new RegExp('\\s*(?:,|\\by\\b|\\be\\b)\\s*(?:(?:el|la|los|las)\\s+)?(?:'+Z[1]+')\\b','i'),'').replace(new RegExp('\\b(?:'+Z[1]+')\\s*(?:,|\\by\\b|\\be\\b)\\s*','i'),'')});
+  return t.replace(/\s{2,}/g,' ').replace(/[\s.,;:]+$/,'').trim()}
+ function partidasDe(t,ctx){var p=pulir(t),n=sa(p);
+  var dos=partirObjetos(p,n)||partirZonas(p,n);
+  if(!dos&&!t.__zona){var zs=zonaSola(p,n);if(zs){var o1=[];zs.forEach(function(x){x=new String(x);x.__zona=1;partidasDe(x,ctx).forEach(function(y){y.orig=t;o1.push(y)})});return o1}}
+  if(dos){var o2=[];dos.forEach(function(x){partidasDe(x,ctx).forEach(function(y){o2.push(y)})});return o2}
+  for(var i=0;i<REGLAS.length;i++){if(REGLAS[i][0].test(n)){var o=REGLAS[i][1](n,p,ctx);o.forEach(function(x){x.orig=t});return o}}
+  var g=generica(n,p);g.forEach(function(x){x.orig=t;x.generica=true});return g}
+
+ /* capítulo del presupuesto: el de su partida de tarifa, o por el tipo de trabajo */
+ /* lo que toda obra dentro de una vivienda necesita aunque el cliente no lo escriba: proteger el suelo y la limpieza final
+    (sobre los m² de techos que da el correo; si no los da, sobre los m² de paredes / 2,5). No se añade si ya viene en la lista. */
+ function implicitas(xs,items){var out=[],todo=sa(items.join(' '));
+  var obra=xs.some(function(x){return /^(Demolici|Picado|Desmontaje|Arranque|Lucido|Pintura|Formación de tabique|Colocación de papel)/.test(x.d)});if(!obra)return out;
+  var techo=xs.filter(function(x){return /techos/.test(x.d)&&x.u==='m2'&&x.q>0}).reduce(function(a,x){return a+x.q},0);
+  var par=xs.filter(function(x){return /^Pintura plástica.*paredes/.test(x.d)&&x.u==='m2'&&x.q>0}).reduce(function(a,x){return a+x.q},0);
+  var area=r2(techo||(par/2.5));
+  var base=techo?'los '+f1(techo)+' m² de techos que da el correo':'los m² de paredes del correo entre 2,5 de altura';
+  if(!/proteg\w*\s+(el\s+|los\s+)?(suelo|pavimento|solado)/.test(todo))out.push(L('Protección de suelos durante la obra, con lámina de plástico y cartón',area||0,'m2',{cy:function(){return cyP('proteccion_suelos')},falta:area?'':'los m² de suelo',notaCy:area?'proteger el suelo lo he medido con '+base:''}));
+  if(!/limpieza/.test(todo))out.push(L('Limpieza final de obra',area||0,'m2',{cy:function(){return cyP('limpieza_final')},falta:area?'':'los m² de la limpieza',notaCy:area?'la limpieza final la he medido con '+base:''}));
+  out.forEach(function(x){x.extra=true;x.orig='(añadida: la obra la necesita)'});return out}
+ function capDe(x){var fam=familia(x.d);
+  if(/^traslado desde almac|^limpieza/i.test(x.d))return 'Otros trabajos';
+  if(/^(vaciado|protecci[oó]n|traslado a almac)/i.test(x.d))return 'Trabajos previos';
+  if(fam==='proteccion'||(fam==='traslado'&&/^retirada/i.test(x.d)))return 'Trabajos previos';
+  if(fam==='traslado')return 'Otros trabajos';
+  try{if(x.tar&&window.tarifa){var t=tarifa().find(function(y){return y.id===x.tar});if(t&&t.c)return t.c}}catch(e){}
+  return {demolicion:'Demoliciones',tabiqueria:'Albañilería',rozas:'Albañilería',yeso:'Revestimientos',pintura:'Revestimientos',papel:'Revestimientos',escayola:'Revestimientos',carpinteria:'Carpintería y sanitarios'}[fam]||''}
+ function ponerPrecio(x){var fam=familia(x.d),obj=objeto(x.d),s=null,p0=0;
+  var a=aprendido([x.d,x.orig],x.u,fam,obj);if(a){x.p=a.p;x.src='tuyo';return}
+  if(x.tar){p0=deTarifa(x.tar,x.u);if(p0>0)s='tarifa'}
+  if(!s&&(x.cy||x.mer)){var pc=0,pm=0;try{pc=r2((typeof x.cy==='function'?x.cy():(+x.cy||0))*cyF())}catch(e){}if(x.mer)pm=deMercado(x.mer[0],x.mer[1],x.u);
+   if(pc>0&&pc>=pm){p0=pc;s='cype';if(x.notaCy)x.nota=(x.nota?x.nota+'; ':'')+x.notaCy}else if(pm>0){p0=pm;s='mercado'}}
+  if(!s&&x.generica){try{var pz=window.parecida?parecida(x.orig):null;if(pz&&pz.t&&pz.t.p>0&&uN(pz.t.u)===uN(x.u)&&familia(pz.t.d)===fam&&objeto(pz.t.d)===obj){p0=pz.t.p;s='tarifa'}}catch(e){}
+   if(!s){try{var R=window.precioRealDe?precioRealDe({t:x.d,u:x.u,q:x.q||1,pa:0}):null;if(R&&R.p>0&&!R.sinMercado&&R.famDesc&&familia(R.famDesc)===fam&&objeto(R.famDesc)===obj){p0=r2(R.p);s='mercado'}}catch(e){}}}
+  if(s){x.p0=p0;x.r=ratio(fam);x.p=r2(p0*x.r);x.src=s;if(s==='tarifa'&&x.notaTar)x.nota=(x.nota?x.nota+'; ':'')+x.notaTar}else{x.p=0;x.src=''}}
+
+ /* ---------------- planos dibujados (PDF sin texto: impreso a PDF o escaneado) ----------------
+    Del cajetín se saca dónde es la obra, la escala, el nombre del plano y la fecha (sin IA: lector óptico + posiciones).
+    Si el PDF no tiene cajetín, puede ser una lista escaneada: se lee entera como si fuera una captura. */
+ var ET_SITIO=/^(situacion|emplazamiento|direccion|ubicacion|localizacion|kokapena|helbidea)$/,ET_ESC=/^(escala|eskala)$/,ET_PLANO=/^(plano|planoa)$/,ET_FECHA=/^(fecha|data)$/;
+ function abrirPdf(f){return cargarPdfjs().then(function(){return f.arrayBuffer()}).then(function(buf){return pdfjsLib.getDocument({data:buf}).promise}).then(function(doc){return doc.getPage(1).then(function(pg){return pg.getTextContent().then(function(t){var n=t.items.filter(function(x){return String(x.str||'').trim()}).length;return {f:f,pg:pg,conTexto:n>=5}})})})}
+ function pintarPdf(pg,ancho){var v1=pg.getViewport({scale:1}),vp=pg.getViewport({scale:ancho/v1.width});var c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);return pg.render({canvasContext:x,viewport:vp}).promise.then(function(){return c})}
+ function trozoAbajo(c,desde){var y0=Math.round(c.height*desde),d=document.createElement('canvas');d.width=c.width;d.height=c.height-y0;d.getContext('2d').drawImage(c,0,y0,c.width,d.height,0,0,c.width,d.height);return d}
+ function palabras(R){var D=(R&&R.data)||{},W=(D.words||[]).slice();if(!W.length)(D.blocks||[]).forEach(function(b){(b.paragraphs||[]).forEach(function(p){(p.lines||[]).forEach(function(l){(l.words||[]).forEach(function(w){W.push(w)})})})});
+  return W.filter(function(w){return w&&w.text&&w.bbox&&(w.confidence==null||w.confidence>45)&&!/^[|—–\-_.;:,'"`]+$/.test(String(w.text).trim())}).map(function(w){return {t:String(w.text).trim(),x0:w.bbox.x0,x1:w.bbox.x1,y0:w.bbox.y0,y1:w.bbox.y1}})}
+ function cajetin(W){var et=W.filter(function(w){return /:$/.test(w.t)&&w.t.length>2}),o={};
+  function enLinea(a,b){var h=Math.max(a.y1-a.y0,b.y1-b.y0);return Math.abs((a.y0+a.y1)/2-(b.y0+b.y1)/2)<h*0.7}
+  function valor(L){var h=Math.max(10,L.y1-L.y0),sig=et.filter(function(e){return e!==L&&enLinea(e,L)&&e.x0>L.x0}).sort(function(a,b){return a.x0-b.x0})[0],xmax=sig?sig.x0:1e9;
+   var der=W.filter(function(w){return et.indexOf(w)<0&&enLinea(w,L)&&w.x0>L.x1&&w.x1<=xmax+2}).sort(function(a,b){return a.x0-b.x0});
+   if(der.length)return der.map(function(w){return w.t}).join(' ');
+   var ab=W.filter(function(w){var cx=(w.x0+w.x1)/2;return et.indexOf(w)<0&&w.y0>L.y1-3&&w.y0<L.y1+h*3.5&&cx>=L.x0-h*1.5&&cx<xmax-h*0.3}).sort(function(a,b){return (a.y0-b.y0)||(a.x0-b.x0)});
+   if(!ab.length)return '';var y=ab[0].y0;return ab.filter(function(w){return w.y0<y+h*0.9}).sort(function(a,b){return a.x0-b.x0}).map(function(w){return w.t}).join(' ')}
+  et.forEach(function(L){var k=sa(L.t.replace(/:$/,'')).replace(/[^a-z]/g,'');
+   if(ET_SITIO.test(k)&&!o.sitio)o.sitio=valor(L);else if(ET_ESC.test(k)&&!o.escala)o.escala=valor(L);else if(ET_PLANO.test(k)&&!o.plano)o.plano=valor(L);else if(ET_FECHA.test(k)&&!o.fecha)o.fecha=valor(L)});
+  if(o.sitio){o.sitio=o.sitio.replace(/[|]+/g,' ').replace(/\s+/g,' ').replace(/^[\s,.\-]+|[\s,.\-]+$/g,'').trim();if(o.sitio&&o.sitio===o.sitio.toUpperCase())o.sitio=o.sitio.toLowerCase().replace(/(^|[\s\-(])\S/g,function(m){return m.toUpperCase()})}
+  if(o.escala){var m=o.escala.match(/1\s*[\/:]\s*(\d{1,4})/);o.escala=m?'1/'+m[1]:''}
+  if(o.plano)o.plano=o.plano.replace(/_/g,' ').replace(/\s+/g,' ').trim();
+  return o}
+ function leerPlanos(rs,info){var out={sitio:'',escala:'',plano:'',fecha:'',textos:[],n:0};
+  clearTimeout(lectorT);LEE={tipo:'plano',n:1,i:1,info:info};pinta('Leyendo el plano…',5);
+  return lector().then(function(w){
+   var cadena=Promise.resolve();
+   rs.forEach(function(r){cadena=cadena.then(function(){return pintarPdf(r.pg,2400)}).then(function(c){
+     return w.recognize(trozoAbajo(c,0.78)).then(function(R){var o=cajetin(palabras(R));
+      if(o.sitio||o.escala||o.plano){out.n++;['sitio','escala','plano','fecha'].forEach(function(k){if(o[k]&&!out[k])out[k]=o[k]});return}
+      LEE={tipo:'captura',n:1,i:1,info:info};pinta('Leyendo el PDF…',0);
+      return w.recognize(c).then(function(R2){var t=(R2&&R2.data&&R2.data.text)||'';if(t.trim())out.textos.push(t)})})})});
+   return cadena.then(function(){LEE=null;soltarLector();return out},function(e){LEE=null;soltarLector();throw e})})}
+ function esImg(f){return /^image\//.test(f.type)||/\.(jpe?g|png|heic|webp)$/i.test(f.name||'')}
+ function cerrarGuia(){try{var gc=document.getElementById('guiaCapa');if(gc&&gc.classList.contains('on')){gc.classList.remove('on');document.body.style.overflow=''}}catch(e){}}
+ function aLaLista(){try{var e0=document.getElementById('elegirModoMeter');if(e0)e0.style.display='none';['cardVoz','cardPdf'].forEach(function(id){var x=document.getElementById(id);if(x)x.style.display='none'});var mn=document.getElementById('cardMano');if(mn)mn.style.display='';try{sessionStorage.setItem('vr_meter','mano')}catch(_){}}catch(e){}}
+ function verAviso(id){setTimeout(function(){try{var a=document.getElementById(id)||document.getElementById('tb');a.scrollIntoView({block:'start'});var tn=document.getElementById('topnav'),h=0;if(tn){var r=tn.getBoundingClientRect();if(r.top<=2)h=r.bottom}window.scrollBy(0,-(h+10))}catch(e){}},300)}
+ /* lo que se saca del plano se pone en el presupuesto (solo donde está vacío) */
+ function ponerPlano(P){var r={sitio:false};try{var fd=document.getElementById('f_dir');if(P&&P.sitio&&fd&&!fd.value.trim()){fd.value=P.sitio;r.sitio=true}if(typeof leer==='function')leer()}catch(e){}return r}
+ function textoPlano(P,puesto){if(!P||!(P.sitio||P.escala||P.plano))return '';var calle=P.sitio&&!/\d/.test(P.sitio);
+  return 'Del plano'+(P.plano?' «'+P.plano+'»':'')+(P.escala?' (escala '+P.escala+')':'')+': '+(P.sitio?'la obra es en <b>'+P.sitio+'</b>'+(puesto?', ya puesto en «Obra»':'')+(calle?'; pídele la calle y el número':''):'no trae dónde es la obra')+'. Las medidas de las habitaciones no vienen escritas en el plano: las cantidades son las del correo. '}
+ function soloPlano(P,info){var r=ponerPlano(P),hay=window.cur&&(cur.lineas||[]).length;var t=textoPlano(P,r.sitio);
+  try{if(cur.nom&&typeof guardar==='function')guardar()}catch(e){}
+  try{var ac=document.getElementById('avisoCapturas');if(ac&&r.sitio)ac.innerHTML=ac.innerHTML.replace('La dirección de la obra no viene: pídesela. ','')}catch(e){}
+  if(hay){aLaLista();var cm=document.getElementById('cardMano'),av=document.getElementById('avisoPlano');if(av)av.remove();
+   if(cm)cm.insertAdjacentHTML('afterbegin','<div id="avisoPlano" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45"><b>Plano leído.</b> '+t+'</div>');if(info)info.textContent='';verAviso('avisoPlano')}
+  else if(info)info.innerHTML='<div class="aviso" style="color:#1B6B36;line-height:1.45"><b>Plano leído.</b> '+t+'<br><b>Ahora mete las capturas con la lista de trabajos</b> en este mismo botón, o cuéntamelos con tus palabras.</div>';
+  try{if(window.__usoApunta)__usoApunta('plano')}catch(e){}
+  try{if(window.guiaBarra)guiaBarra()}catch(e){}}
+
+ /* ---------------- trabajos del cliente -> lineas del presupuesto con su precio (sin tocar la pantalla) ---------------- */
+ function lineasDe(items){var ctx=contexto(items),xs=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){xs.push(x)})});  /* quitar el rodapié sin metros, y en la misma lista se pone rodapié nuevo con sus ml: se quita lo mismo que se pone */
+  var mlNuevo=0;xs.forEach(function(x){if(x.u==='ml'&&x.q>0&&/^(suministro y )?colocaci[oó]n de rodapi/i.test(sa(x.d)))mlNuevo=x.q});
+  if(mlNuevo)xs.forEach(function(x){if(x.tar==='rod'&&!(x.q>0)){x.q=mlNuevo;x.falta='';x.nota='los metros de rodapié a quitar son los del rodapié nuevo ('+f2(mlNuevo)+' ml)'}});
+  var ext=implicitas(xs,items);xs=xs.concat(ext);
+  var R={lineas:[],n:{tuyo:0,tarifa:0,cype:0,mercado:0,cero:0},notas:[],faltan:[],aj:[],ext:ext.map(function(x){return x.d})};
+  xs.forEach(function(x){ponerPrecio(x);if(x.nota&&R.notas.indexOf(x.nota)<0)R.notas.push(x.nota);if(!(x.q>0)&&x.falta)R.faltan.push(x.falta);
+   if(x.p>0)R.n[x.src]++;else R.n.cero++;if(x.r&&x.r!==1)R.aj.push(x.r);
+   var l={d:x.d,q:x.q,u:x.u,p:x.p,orig:x.orig};if(x.src)l.src=x.src;if(x.p0)l.p0=x.p0;var c=capDe(x);if(c)l.cap=c;R.lineas.push(l)});
+  return R}
+ /* el aviso verde de lo leído: cuántas partidas, de dónde sale cada precio, qué falta */
+ function resumen(R,items,o){o=o||{};var n=R.n,conP=n.tuyo+n.tarifa+n.cype+n.mercado,ext=R.ext,aj=R.aj;
+  return '<b>Leído '+(o.leido||('de '+(o.de||'las capturas')))+':</b> '+(items.length===1?'1 trabajo':items.length+' trabajos')+' del cliente, '+(R.lineas.length===1?'1 partida':R.lineas.length+' partidas')+'. '+
+   (conP?conP+' con precio ('+[n.tuyo?n.tuyo+' tuyos de otras veces':'',n.tarifa?n.tarifa+' de tu tarifa':'',n.cype?n.cype+' de CYPE con el 19 % y el 7 %':'',n.mercado?n.mercado+' de la tabla de mercado':''].filter(Boolean).join(', ')+'). ':'')+
+   (n.cero?'<b>'+n.cero+' sin precio</b>: ponles el tuyo tocando el precio, y me lo quedo para la próxima. ':'')+
+   (R.faltan.length?'<b>Falta la cantidad</b> de '+R.faltan.length+': '+R.faltan.join(', ')+'. ':'')+
+   (ext.length?'He añadido '+(ext.length===1?'una partida que la obra necesita':ext.length+' partidas que la obra necesita')+' aunque '+(o.aunque||'el correo no lo diga')+': '+lista(ext.map(function(d){return minus(d.replace(/,.*$/,''))}))+'. Quítalas si no van. ':'')+
+   (o.puesto||'')+(o.plano||'')+
+   (o.sinDir?'La dirección de la obra no viene: pídesela. ':'')+
+   (aj.length?(function(){var m=aj.reduce(function(a,b){return a+b},0)/aj.length,pc=Math.round(Math.abs(m-1)*100);return pc?'Los precios de tarifa y de mercado van '+(m>1?'subidos':'bajados')+' un '+pc+' % de media, que es como cobras tú por lo que has corregido otras veces. ':''})():'')+
+   (R.notas.length?'<div style="margin-top:6px">'+R.notas.map(function(t){return '· '+cap(t)+'.'}).join('<br>')+'</div>':'')+
+   '<details style="margin-top:6px"><summary>Ver lo que he leído</summary><ol style="margin:6px 0 0 18px;padding:0">'+items.map(function(t){return '<li>'+String(t).replace(/[<>&]/g,'')+'</li>'}).join('')+'</ol></details>'}
+ /* el texto de un PDF con texto, en lineas como se ven en la hoja (para los PDF que llegan por correo) */
+ function textoPdf(f){return cargarPdfjs().then(function(){return f.arrayBuffer()}).then(function(buf){return pdfjsLib.getDocument({data:buf}).promise}).then(function(doc){var ps=[];
+   for(var i=1;i<=Math.min(doc.numPages,40);i++)ps.push(doc.getPage(i).then(function(pg){return pg.getTextContent().then(function(tc){var filas=[];
+    tc.items.forEach(function(it){var s=String(it.str||'');if(!s.trim())return;var x=it.transform[4],y=it.transform[5],h=Math.abs(it.transform[3])||10;
+     var f=null;for(var k=0;k<filas.length;k++)if(Math.abs(filas[k].y-y)<h*0.5){f=filas[k];break}if(!f){f={y:y,its:[]};filas.push(f)}f.its.push({x:x,s:s,w:it.width||0})});
+    filas.sort(function(a,b){return b.y-a.y});
+    return filas.map(function(r){r.its.sort(function(a,b){return a.x-b.x});var t='',xf=null;r.its.forEach(function(it){if(xf!=null&&it.x-xf>1.5)t+=' ';t+=it.s;xf=it.x+it.w});return t.replace(/\s+/g,' ').trim()}).filter(Boolean)})}));
+   return Promise.all(ps)}).then(function(pp){return [].concat.apply([],pp)})}
+
+ /* ---------------- al elegir capturas (y el plano, si viene): montar el presupuesto ---------------- */
+ var leer0=window.leerArquitecto;
+ window.leerArquitecto=function(files){
+  var todos=[].slice.call(files||[]),imgs=todos.filter(esImg),pdfs=todos.filter(function(f){return imgs.indexOf(f)<0});
+  var info=document.getElementById('arqInfo');
+  if(!pdfs.length){if(imgs.length)montar(imgs,null,info);return}
+  cerrarGuia();if(info)info.innerHTML='<b>Leyendo…</b>';try{if(window.guiaBarra)setTimeout(guiaBarra,50)}catch(e){}
+  Promise.all(pdfs.map(function(f){return abrirPdf(f).catch(function(){return {f:f,conTexto:true}})})).then(function(rs){
+   var conT=rs.filter(function(r){return r.conTexto}).map(function(r){return r.f}),sinT=rs.filter(function(r){return !r.conTexto});
+   if(conT.length&&leer0)leer0.call(window,conT);
+   if(!sinT.length){if(imgs.length)montar(imgs,null,info);return}
+   return leerPlanos(sinT,info).then(function(P){montar(imgs,P,info)})
+  }).catch(function(e){if(info)info.textContent='No he podido leer el PDF ('+(e&&e.message||e)+'). Cuéntamelo con tus palabras.'})};
+ function montar(imgs,P,info){
+  cerrarGuia();
+  if(info){info.innerHTML='<b>Leyendo…</b>';try{var cp=document.getElementById('cardPdf');if(cp&&cp.style.display!=='none')cp.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
+  try{if(window.guiaBarra)setTimeout(guiaBarra,50)}catch(e){}
+  var lee=imgs.length?leerImagenes(imgs,info):Promise.resolve([]);
+  Promise.all([lee,window.basePrecios?basePrecios():null]).then(function(res){if(res[1])BASEP=res[1];var textos=res[0].concat((P&&P.textos)||[]);
+   if(!textos.length){if(P&&(P.sitio||P.escala||P.plano))return soloPlano(P,info);if(info)info.textContent='No he sacado texto de este PDF. Mete las capturas de la lista de trabajos o cuéntamelo con tus palabras.';return}
+   var partes=textos.map(aItems),items=unirItems(partes.map(function(x){return x.items}));
+   var firma=[].concat.apply([],partes.map(function(x){return x.firma}));var cli=clienteDe(firma);
+   if(!items.length){if(P&&(P.sitio||P.escala||P.plano))return soloPlano(P,info);if(info)info.textContent='No he sacado texto de la captura. Prueba con una más nítida, o copia el texto y pégalo en «Lo cuento yo».';return}
+   try{if(typeof leer==='function')leer()}catch(e){}
+   /* si hay otro presupuesto a medias de otro cliente, se empieza uno nuevo */
+   var nombre=cli.nombre?(cli.nombre+(cli.empresa?' ('+cli.empresa+')':'')):'';
+   try{if(nombre&&cur&&cur.nom&&sa(cur.nom).indexOf(sa(cli.nombre))<0&&(cur.lineas||[]).length&&typeof nuevo==='function'){nuevo()}}catch(e){}
+   var puesto=[];try{var fn=document.getElementById('f_nom'),ft=document.getElementById('f_tel'),fe=document.getElementById('f_email');
+    if(nombre&&fn&&!fn.value.trim()){fn.value=nombre;puesto.push('nombre')}
+    if((cli.tel||cli.fijo)&&ft&&!ft.value.trim()){ft.value=cli.tel||cli.fijo;puesto.push('teléfono')}
+    if(cli.email&&fe&&!fe.value.trim()){fe.value=cli.email;puesto.push('correo')}
+    if(typeof leer==='function')leer()}catch(e){}
+   var pp=ponerPlano(P);
+   var R=lineasDe(items);R.lineas.forEach(function(l){cur.lineas.push(l)});
+   try{renderLineas()}catch(e){}
+   aLaLista();
+   var nc=imgs.length,np=((P&&P.textos)||[]).length;
+   var de=nc&&np?'las capturas y el PDF':nc?(nc===1?'la captura':'las '+nc+' capturas'):'el PDF';
+   var msg=resumen(R,items,{de:de,puesto:puesto.length?'Cliente: '+puesto.join(', ')+' cogidos de la firma. ':'',plano:textoPlano(P,pp.sitio),sinDir:!(cur.dir||'').trim()});
+   var cm=document.getElementById('cardMano');['avisoCapturas','avisoPlano'].forEach(function(id){var av=document.getElementById(id);if(av)av.remove()});
+   if(cm){cm.insertAdjacentHTML('afterbegin','<div id="avisoCapturas" class="aviso" style="margin-bottom:8px;color:#1B6B36;line-height:1.45">'+msg+'</div>')}
+   if(info)info.textContent='';
+   try{if(cur.nom&&typeof guardar==='function')guardar()}catch(e){}
+   verAviso('avisoCapturas');
+   try{if(window.__usoApunta)__usoApunta('imagen')}catch(e){}
+   try{if(window.guiaBarra)guiaBarra()}catch(e){}
+  }).catch(function(e){if(info)info.textContent='No he podido leer la captura ('+(e&&e.message||e)+'). Copia el texto y pégalo en «Lo cuento yo».'})}
+
+ /* para probar sin capturas: el mismo motor con texto */
+ window.__capturasTexto=function(textos){return textos.map(aItems)};
+ window.__unirItems=unirItems;
+ window.__partidasDe=function(items){var ctx=contexto(items),o=[];items.forEach(function(it){partidasDe(it,ctx).forEach(function(x){o.push(x)})});o=o.concat(implicitas(o,items));o.forEach(ponerPrecio);return o};
+ /* el mismo motor para los presupuestos que llegan por correo (correo.js), sin tocar la pantalla */
+ window.__motor={aItems:aItems,esTitulo:esTitulo,unirItems:unirItems,clienteDe:clienteDe,lineas:lineasDe,resumen:resumen,textoPlano:textoPlano,textoPdf:textoPdf,
+  esImg:esImg,abrirPdf:abrirPdf,leerPlanos:leerPlanos,leerImagenes:leerImagenes,pulir:pulir,sa:sa,
+  base:function(){return Promise.resolve(window.basePrecios?basePrecios():null).then(function(b){if(b)BASEP=b;return b},function(){return null})}};
+
+ /* en cuanto se abre «Capturas, fotos, plano o PDF», el lector se empieza a preparar */
+ var mp0=window.meterPor;if(mp0)window.meterPor=function(k){var r=mp0.apply(this,arguments);if(k==='pdf')window.__preparaLector();return r};
+
+ /* el selector acepta fotos y capturas, y los textos lo dicen */
+ function ajustar(){var f=document.getElementById('pdfArq');if(f&&!/image/.test(f.getAttribute('accept')||''))f.setAttribute('accept','application/pdf,image/*');
+  var c=document.getElementById('cardPdf');if(c&&!c.__img){c.__img=1;var h=c.querySelector('h2');if(h)h.textContent='Capturas, fotos, plano o PDF';
+   var p=c.querySelector('p');if(p)p.innerHTML='<b>1.</b> Elige las capturas del correo o del WhatsApp con la lista de trabajos (varias a la vez). Saco el cliente de la firma, escribo cada trabajo como una partida y le pongo tu precio.<br><b>2.</b> Si tienes el plano, mételo también aquí, antes o después: saco de él dónde es la obra.<br>Vale también el PDF del arquitecto con las mediciones.'}}
+ /* v250 · «📷 Sacar una foto a un papel»: abre la cámara del móvil directamente (en el ordenador, el selector de
+    archivos) y la foto entra por el mismo camino que las capturas. Se pueden sacar varias seguidas: cada una se suma. */
+ window.sacarFotoPapel=function(){
+  try{if(typeof meterPor==='function')meterPor('pdf')}catch(e){}
+  var f=document.getElementById('fotoPapel');
+  if(!f){f=document.createElement('input');f.type='file';f.id='fotoPapel';f.accept='image/*';f.setAttribute('capture','environment');f.style.display='none';
+   f.onchange=function(){var fs=[].slice.call(f.files||[]);f.value='';if(fs.length)window.leerArquitecto(fs)};document.body.appendChild(f)}
+  f.click()};
+ function botonFoto(){var c=document.getElementById('cardPdf');if(!c||document.getElementById('btnFotoPapel'))return;var row=c.querySelector('.row');if(!row)return;
+  var b=document.createElement('button');b.id='btnFotoPapel';b.type='button';b.className='ok';b.style.cssText='width:100%;padding:14px;margin:0 0 10px';b.textContent='📷 Sacar una foto a un papel';b.onclick=window.sacarFotoPapel;
+  row.parentNode.insertBefore(b,row)}
+ var k=0,iv=setInterval(function(){if(document.getElementById('pdfArq')){clearInterval(iv);ajustar();botonFoto()}else if(++k>80)clearInterval(iv)},150);
+})();
