@@ -1,5 +1,5 @@
 {
- "generado": 1795017281123,
+ "generado": 1795048836289,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -685,6 +685,58 @@
    "falloTxt": "Script error. (v213)",
    "falloTs": 1791457859786,
    "log": []
+  },
+  {
+   "empresa": "presupuestalo",
+   "marca": "TU EMPRESA DE REFORMAS",
+   "disp": "Android",
+   "instalada": false,
+   "ver": "v255",
+   "cta": "06325",
+   "mio": true,
+   "ultimo": 1795039996826,
+   "ultimoQue": "abre",
+   "dias": {
+    "2026-11-18": {
+     "abre": 5
+    }
+   },
+   "total": {
+    "abre": 5
+   },
+   "presupuestos": 0,
+   "mandados": 0,
+   "estado": {
+    "partidas": 0,
+    "aCero": 0,
+    "total": 0,
+    "avisos": 2
+   },
+   "fallo": false,
+   "falloTxt": "",
+   "falloTs": 0,
+   "log": [
+    {
+     "t": 1795039563911,
+     "q": "abre"
+    },
+    {
+     "t": 1795039879399,
+     "q": "abre"
+    },
+    {
+     "t": 1795039915944,
+     "q": "abre"
+    },
+    {
+     "t": 1795039918304,
+     "q": "abre"
+    },
+    {
+     "t": 1795039996826,
+     "q": "abre"
+    }
+   ]
   }
  ]
 }
