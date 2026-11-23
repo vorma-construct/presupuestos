@@ -5,7 +5,7 @@ name: demo
 on:
   push:
     branches: [main]
-    paths-ignore: ['demo/**', 'tools/uso.json']
+    paths-ignore: ['demo/**', 'nayza/**', 'tools/uso.json']
   workflow_dispatch:
 permissions: {contents: write}
 concurrency: {group: demo, cancel-in-progress: true}
@@ -19,5 +19,9 @@ jobs:
           rm -rf /tmp/demo
           python3 tools/hacer_empresa.py presupuestalo "https://vorma-construct.github.io/presupuestos/demo/" /tmp/demo
           rm -rf demo && cp -r /tmp/demo demo
+          # Nayza (Javier, Vitoria): su app, con su marca → https://vorma-construct.github.io/presupuestos/nayza/
+          rm -rf /tmp/nayza
+          python3 tools/hacer_empresa.py nayza "https://vorma-construct.github.io/presupuestos/nayza/" /tmp/nayza
+          rm -rf nayza && cp -r /tmp/nayza nayza
           git config user.name "demo"; git config user.email "actions@github.com"
-          git add -A demo; git diff --cached --quiet || (git commit -m "demo al día" && git pull --rebase -q && git push)
+          git add -A demo nayza; git diff --cached --quiet || (git commit -m "demo y nayza al día" && git pull --rebase -q && git push)
