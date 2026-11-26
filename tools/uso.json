@@ -1,5 +1,5 @@
 {
- "generado": 1795627891443,
+ "generado": 1795658083208,
  "aparatos": [
   {
    "empresa": "lucas",
@@ -694,7 +694,7 @@
    "ver": "v256",
    "cta": "e60db",
    "mio": false,
-   "ultimo": 1795604402396,
+   "ultimo": 1795639482838,
    "ultimoQue": "abre",
    "dias": {
     "2026-11-24": {
@@ -705,24 +705,26 @@
      "partidas": 1
     },
     "2026-11-25": {
-     "abre": 2,
-     "dicta": 3,
-     "partidas": 3,
+     "abre": 6,
+     "dicta": 4,
+     "partidas": 4,
      "mandar": 1,
-     "mandado": 1
+     "mandado": 1,
+     "borra": 1
     }
    },
    "total": {
-    "abre": 17,
+    "abre": 21,
     "nuevo": 3,
     "agenda": 1,
-    "dicta": 4,
-    "partidas": 4,
+    "dicta": 5,
+    "partidas": 5,
     "mandar": 1,
-    "mandado": 1
+    "mandado": 1,
+    "borra": 1
    },
    "presupuestos": 1,
-   "mandados": 1,
+   "mandados": 0,
    "estado": {
     "partidas": 0,
     "aCero": 0,
@@ -855,6 +857,34 @@
     },
     {
      "t": 1795604402396,
+     "q": "abre"
+    },
+    {
+     "t": 1795639361596,
+     "q": "abre"
+    },
+    {
+     "t": 1795639373899,
+     "q": "borra"
+    },
+    {
+     "t": 1795639381097,
+     "q": "abre"
+    },
+    {
+     "t": 1795639415796,
+     "q": "dicta",
+     "n": 1,
+     "c": 0,
+     "w": 5,
+     "v": 0
+    },
+    {
+     "t": 1795639462285,
+     "q": "abre"
+    },
+    {
+     "t": 1795639482838,
      "q": "abre"
     }
    ]
