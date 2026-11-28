@@ -80,6 +80,7 @@ function aprendidoParecido(txt){var ex=(precioAprendido0?precioAprendido0(txt):0
 window.aprendidoParecido=aprendidoParecido;
 if(precioAprendido0){window.precioAprendido=function(txt){var ex=precioAprendido0(txt);return ex>0?ex:aprendidoParecido(txt)}}
 /* tabiques: un tabique de piso de los 70-90 son unos 7,5 m2 (3 m x 2,5 m de alto; los de pasillo con puerta, los de habitacion a habitacion sin ella).
+   El derribo se cobra por lote: un precio por DOS tabiques.
    Hasta dos tabiques = un lote a su precio; con mas, por metro cuadrado (precio aparte, que decide el). */
 var M2_TABIQUE=7.5,MAX_POR_UD=2;
 if(!TARIFA_BASE.some(function(t){return t.id==='tabm'}))TARIFA_BASE.push({id:'tabm',c:'Demoliciones',d:'Derribo de tabiquería de ladrillo por metro cuadrado (obra de varios tabiques), retirada de escombro y tirada al centro autorizado',u:'m2',p:0,k:['derribo de tabiqueria','tabiqueria por metro','tabiques por metro']});
